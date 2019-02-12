@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mica/src/home.dart';
+import 'package:mica/src/loading_screen.dart';
 
 class MicaApp extends StatelessWidget {
   @override
@@ -7,7 +7,17 @@ class MicaApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Midlands Cognitive Assessment",
-      home: new Home(),
+      home: new LoadingScreen(),
+      theme: ThemeData(
+          primaryColor: Color(0xFF64638f),
+          accentColor: Color(0xFF9795cf),
+          splashColor: Color(0xFFaba9e9),
+          backgroundColor: Color(0xFFaba9e9),
+          scaffoldBackgroundColor: Color(0xFFcbc9ff),
+          //ecf4f3
+          buttonColor: Color(0xFF9795cf),
+          dialogBackgroundColor: Color(0xFFcbc9ff),
+          cardColor: Colors.purple.shade200),
     );
   }
 }
