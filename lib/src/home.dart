@@ -112,7 +112,7 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
             return WillPopScope(
               onWillPop: () async => false,
               child: AlertDialog(
-                backgroundColor: Colors.white,
+                //backgroundColor: Colors.white,
                 title: Text(
                   "Disclaimer",
                   style: TextStyle(
