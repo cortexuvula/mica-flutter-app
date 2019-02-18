@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/loading_screen.dart';
+import 'package:mica/src/patient_information.dart';
 
 class MicaApp extends StatelessWidget {
   @override
@@ -17,7 +18,11 @@ class MicaApp extends StatelessWidget {
           //ecf4f3
           buttonColor: Color(0xFF9795cf),
           dialogBackgroundColor: Color(0xFFcbc9ff),
-          cardColor: Colors.purple.shade200),
+          cardColor: Colors.white),
+      routes: <String, WidgetBuilder> {
+        '/patient_information': (BuildContext context) => PatientInformation(),
+
+      },
     );
   }
 }
