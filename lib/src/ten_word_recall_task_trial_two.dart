@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/home.dart';
+import 'package:mica/src/visuospatial_praxis.dart';
 
 class TenWordRecallTrialTwo extends StatefulWidget {
 
@@ -176,16 +177,14 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
                       "Continue",
                       overflow: TextOverflow.clip,
                     ),
-                    onPressed: () => debugPrint("hello"),
-//                  onPressed: () {
-//                    var router = new MaterialPageRoute(
-//                        builder: (BuildContext context) =>
-//                        new TenWordRecallTrialTwo(
-//                          trialOneScore: scoreTenWordRecallTrialOne,
-//                        ));
-//                    Navigator.of(context).pushAndRemoveUntil(
-//                        router, (Route<dynamic> route) => false);
-//                  }
+                    //onPressed: () => debugPrint("hello"),
+                  onPressed: () {
+                    var router = new MaterialPageRoute(
+                        builder: (BuildContext context) =>
+                        new VisuospatialPraxis());
+                    Navigator.of(context).pushAndRemoveUntil(
+                        router, (Route<dynamic> route) => false);
+                  }
                   ),
                 ),
               )),
