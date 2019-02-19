@@ -1,13 +1,9 @@
 import 'dart:async';
 
-
 import 'package:flutter/material.dart';
 
 import 'package:after_layout/after_layout.dart';
 import 'package:mica/src/home.dart';
-
-
-
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -19,9 +15,9 @@ class _LoadingScreenState extends State<LoadingScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
 //          Image.asset("images/neon_brain_android.png", height: 200.0, width: 200.0,),
 //          Padding(
 //            padding: const EdgeInsets.all(16.0),
@@ -34,10 +30,9 @@ class _LoadingScreenState extends State<LoadingScreen>
 //                size: 50.0,
 //                type: SpinKitWaveType.center,
 //              )),
-        ],
-      ),
-      backgroundColor: Theme.of(context).backgroundColor
-    );
+          ],
+        ),
+        backgroundColor: Theme.of(context).backgroundColor);
   }
 
   @override
@@ -46,9 +41,12 @@ class _LoadingScreenState extends State<LoadingScreen>
 //      Navigator.of(context).pushNamedAndRemoveUntil("/home", (Route<dynamic> route) => false);
 //    });
     await Future.delayed(Duration(seconds: 2));
-    var router = new MaterialPageRoute(builder: (BuildContext context) => new Home(viewedDisclaimer: false,));
-    Navigator.of(context).pushAndRemoveUntil(
-        router, (Route<dynamic> route) => false);
+    var router = new MaterialPageRoute(
+        builder: (BuildContext context) => new Home(
+              viewedDisclaimer: false,
+            ));
+    Navigator.of(context)
+        .pushAndRemoveUntil(router, (Route<dynamic> route) => false);
 //    Navigator.of(context).pushNamedAndRemoveUntil("/home", (Route<dynamic> route) => false);
   }
 }

@@ -19,9 +19,8 @@ class MicaApp extends StatelessWidget {
           buttonColor: Color(0xFF9795cf),
           dialogBackgroundColor: Color(0xFFcbc9ff),
           cardColor: Colors.white),
-      routes: <String, WidgetBuilder> {
+      routes: <String, WidgetBuilder>{
         '/patient_information': (BuildContext context) => PatientInformation(),
-
       },
     );
   }

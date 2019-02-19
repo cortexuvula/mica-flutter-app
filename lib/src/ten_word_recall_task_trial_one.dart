@@ -47,7 +47,13 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
         (MediaQuery.of(context).size.height * 0.45).floorToDouble();
     return Scaffold(
       appBar: AppBar(
-        title: Text(appData.testTenWordRecallTrialOne),
+        title: Text(
+          "${appData.testTenWordRecallTrialOne} - ${widget.patientName}",
+          style: TextStyle(
+            fontSize: 15.0,
+          ),
+          overflow: TextOverflow.clip,
+        ),
         centerTitle: true,
         actions: <Widget>[
           IconButton(
@@ -55,8 +61,8 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
               onPressed: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) => new Home(
-                      viewedDisclaimer: true,
-                    ));
+                          viewedDisclaimer: true,
+                        ));
                 Navigator.of(context).pushAndRemoveUntil(
                     router, (Route<dynamic> route) => false);
               })
@@ -172,26 +178,26 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: RaisedButton(
-                    child: Text(
-                      "Continue",
-                      overflow: TextOverflow.clip,
-                    ),
-                    //onPressed: () => debugPrint("hello"),
-                  onPressed: () {
-                    var router = new MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                        new TenWordRecallTrialTwo(
-                          patientName: widget.patientName,
-                          assessorName: widget.assessorName,
-                          handedness: widget.handedness,
-                          assessmentDate: widget.assessmentDate,
-                          languageComprehensionRadioValue: widget.languageComprehensionRadioValue,
-                          trialOneScore: scoreTenWordRecallTrialOne,
-                        ));
-                    Navigator.of(context).pushAndRemoveUntil(
-                        router, (Route<dynamic> route) => false);
-                  }
-                  ),
+                      child: Text(
+                        "Continue",
+                        overflow: TextOverflow.clip,
+                      ),
+                      //onPressed: () => debugPrint("hello"),
+                      onPressed: () {
+                        var router = new MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                new TenWordRecallTrialTwo(
+                                  patientName: widget.patientName,
+                                  assessorName: widget.assessorName,
+                                  handedness: widget.handedness,
+                                  assessmentDate: widget.assessmentDate,
+                                  languageComprehensionRadioValue:
+                                      widget.languageComprehensionRadioValue,
+                                  trialOneScore: scoreTenWordRecallTrialOne,
+                                ));
+                        Navigator.of(context).pushAndRemoveUntil(
+                            router, (Route<dynamic> route) => false);
+                      }),
                 ),
               )),
         ],

@@ -3,12 +3,30 @@ import 'package:mica/src/home.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 
 class VisuospatialPraxis extends StatefulWidget {
+  String patientName;
+  String assessorName;
+  String handedness;
+  DateTime assessmentDate;
+  int languageComprehensionRadioValue;
+  int trialOneScore;
+  int trialTwoScore;
+
+  VisuospatialPraxis(
+      {Key key,
+      this.patientName,
+      this.assessorName,
+      this.handedness,
+      this.assessmentDate,
+      this.languageComprehensionRadioValue,
+      this.trialOneScore,
+      this.trialTwoScore})
+      : super(key: key);
+
   @override
   _VisuospatialPraxisState createState() => _VisuospatialPraxisState();
 }
 
 class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
-
   double sizeBoxHeight = 5.0;
   int _radioValueImageOne = 0;
   int _radioValueImageTwo = 0;
@@ -19,7 +37,13 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
     var _width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text(appData.testVisuospatialPraxis),
+        title: Text(
+          "${appData.testVisuospatialPraxis} - ${widget.patientName}",
+          style: TextStyle(
+            fontSize: 15.0,
+          ),
+          overflow: TextOverflow.clip,
+        ),
         centerTitle: true,
         actions: <Widget>[
           IconButton(
@@ -27,15 +51,14 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
               onPressed: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) => new Home(
-                      viewedDisclaimer: true,
-                    ));
+                          viewedDisclaimer: true,
+                        ));
                 Navigator.of(context).pushAndRemoveUntil(
                     router, (Route<dynamic> route) => false);
               })
         ],
       ),
       body: PageView(
-
         children: <Widget>[
           Container(
             color: Theme.of(context).backgroundColor,
@@ -57,7 +80,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                             child: Column(
                               children: <Widget>[
                                 Text(
-                                  "Test Details",
+                                  appData.testDescription,
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     color: Colors.black,
@@ -95,7 +118,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                             child: Column(
                               children: <Widget>[
                                 Text(
-                                  "To Patient",
+                                  appData.testToPatient,
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     color: Colors.black,
@@ -133,7 +156,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                             child: Column(
                               children: <Widget>[
                                 Text(
-                                  "Respone",
+                                  appData.testResponse,
                                   textAlign: TextAlign.left,
                                   style: TextStyle(
                                     color: Colors.black,
@@ -153,7 +176,6 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                       fontWeight: FontWeight.w500,
                                       fontSize: 15.0),
                                 ),
-
                                 Row(
                                   children: <Widget>[
                                     Text(
@@ -337,41 +359,45 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                       fontSize: 15.0),
                                 ),
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     Text(
-                                      appData.testVisuospatialPraxisResponseNormal,
+                                      appData
+                                          .testVisuospatialPraxisResponseNormal,
                                       style: TextStyle(
                                         color: Colors.black,
                                       ),
                                     ),
                                     Text(
-                                      appData.testVisuospatialPraxisResponseEquivocal,
+                                      appData
+                                          .testVisuospatialPraxisResponseEquivocal,
                                       style: TextStyle(
                                         color: Colors.black,
                                       ),
                                     ),
                                   ],
                                 ),
-
                                 Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     Text(
-                                      appData.testVisuospatialPraxisResponseImpaired,
+                                      appData
+                                          .testVisuospatialPraxisResponseImpaired,
                                       style: TextStyle(
                                         color: Colors.black,
                                       ),
                                     ),
                                     Text(
-                                      appData.testVisuospatialPraxisResponseFubar,
+                                      appData
+                                          .testVisuospatialPraxisResponseFubar,
                                       style: TextStyle(
                                         color: Colors.black,
                                       ),
                                     ),
                                   ],
                                 ),
-
                               ],
                             ),
                           ),
@@ -421,7 +447,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                     height: 20.0,
                   ),
                   Text(
-                      "Image 1",
+                    "Image 1",
                     style: TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 30.0,
@@ -438,8 +464,8 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                       padding: const EdgeInsets.all(10.0),
                       child: Image.asset(
                         "./images/block_one.png",
-
-                        fit: BoxFit.fitWidth,),
+                        fit: BoxFit.fitWidth,
+                      ),
                     ),
                   )
                 ],
@@ -472,8 +498,8 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                       padding: const EdgeInsets.all(10.0),
                       child: Image.asset(
                         "./images/block_two.png",
-
-                        fit: BoxFit.fitWidth,),
+                        fit: BoxFit.fitWidth,
+                      ),
                     ),
                   )
                 ],
@@ -506,8 +532,8 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                       padding: const EdgeInsets.all(10.0),
                       child: Image.asset(
                         "./images/block_three.png",
-
-                        fit: BoxFit.fitWidth,),
+                        fit: BoxFit.fitWidth,
+                      ),
                     ),
                   )
                 ],
