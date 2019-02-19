@@ -31,3 +31,13 @@ const String instructionsTenWordRecallTrialTwoHealthworker1 = "Healthworker: Rea
 const String instructionsTenWordRecallTrialTwoPatient1 = "To Patient: \“What were those words?\”";
 const String instructionsTenWordRecallTrialTwoHealthworker2 = "Healthworker: Tap on each word correctly recalled.";
 const String instructionsTenWordRecallTrialTwoPatient2 = "To Patient: \“Now remember the words because I will ask you later for it.\"";
+
+const String testVisuospatialPraxis = "Visuospatial & Praxis";
+const String testVisuospatialPraxisDetails = "Assess the ability to copy line drawings. Swipe to the left to show the following 3 pictures to the patient.";
+const String testVisuospatialPraxisToPatient = "Copy these figures.";
+const String testVisuospatialPraxisResponse = " Do not warn about delayed recall. Observe how the patient performs the copy task and take this information into account when scoring.";
+const String testVisuospatialPraxisScoring = "Score each drawing:";
+const String testVisuospatialPraxisResponseNormal = "3 Points = No mistakes";
+const String testVisuospatialPraxisResponseEquivocal = "2 Points = Few Omissions";
+const String testVisuospatialPraxisResponseImpaired = "1 Point = Poor";
+const String testVisuospatialPraxisResponseFubar = "0 Point = No drawing";
