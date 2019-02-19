@@ -17,7 +17,8 @@ class _PatientInformationState extends State<PatientInformation> {
 
   int _radioValue = 0;
   DateTime selectedDate = DateTime.now();
-  var format = DateFormat.yMMMMd();
+//  var format = DateFormat.yMMMMd();
+  var format = DateFormat('d MMM y');
 
   final myPatient = TextEditingController();
   final myAssessor = TextEditingController();
@@ -67,7 +68,7 @@ class _PatientInformationState extends State<PatientInformation> {
                           controller: myPatient,
                           validator: (value) {
                             if (value.isEmpty) {
-                              return 'Please enter some text';
+                              return 'Please enter patient full name';
                             }
                           },
                           decoration: InputDecoration(
@@ -142,11 +143,11 @@ class _PatientInformationState extends State<PatientInformation> {
                           controller: myAssessor,
                           validator: (value) {
                             if (value.isEmpty) {
-                              return 'Please enter some text';
+                              return 'Please enter name of assessor';
                             }
                           },
                           decoration: InputDecoration(
-                            labelText: "Assessment completed by",
+                            labelText: "Assessment completed by:",
                             labelStyle: TextStyle(
                               color: Colors.black,
                             ),
@@ -177,16 +178,18 @@ class _PatientInformationState extends State<PatientInformation> {
                                 // If the form is valid, display a snackbar. In the real world, you'd
                                 // often want to call a server or save the information in a database
                                 _scaffoldState.currentState.showSnackBar(SnackBar(content: Text('Processing Data')));
+
+                                var router = new MaterialPageRoute(
+                                    builder: (BuildContext context) => new LanguageComprehension(
+                                      patientName: myPatient.text,
+                                      assessorName: myAssessor.text,
+                                      handedness: _handed,
+                                      assessmentDate: selectedDate,
+                                    ));
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    router, (Route<dynamic> route) => false);
                               }
-                              var router = new MaterialPageRoute(
-                                  builder: (BuildContext context) => new LanguageComprehension(
-                                    patientName: myPatient.text,
-                                    assessorName: myAssessor.text,
-                                    handedness: _handed,
-                                    assessmentDate: selectedDate,
-                                  ));
-                              Navigator.of(context).pushAndRemoveUntil(
-                                  router, (Route<dynamic> route) => false);
+
                             },
                             elevation: 10.0,
                             child: Text("Start Testing"),

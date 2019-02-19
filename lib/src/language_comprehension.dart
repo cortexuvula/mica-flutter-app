@@ -23,7 +23,6 @@ class LanguageComprehension extends StatefulWidget {
 }
 
 class _LanguageComprehensionState extends State<LanguageComprehension> {
-
   var format = DateFormat.yMMMMd();
   int _radioValue = 0;
   double sizeBoxHeight = 10.0;
@@ -33,7 +32,13 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
     var _width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text(appData.testLanguageComprehension),
+        title: Text(
+          "${appData.testLanguageComprehension} - ${widget.patientName}",
+          style: TextStyle(
+            fontSize: 15.0,
+          ),
+          overflow: TextOverflow.clip,
+        ),
         centerTitle: true,
         actions: <Widget>[
           IconButton(
@@ -41,8 +46,8 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
               onPressed: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) => new Home(
-                      viewedDisclaimer: true,
-                    ));
+                          viewedDisclaimer: true,
+                        ));
                 Navigator.of(context).pushAndRemoveUntil(
                     router, (Route<dynamic> route) => false);
               })
@@ -57,26 +62,26 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                 SizedBox(
                   height: sizeBoxHeight,
                 ),
-                Container(
-                  width: _width * 0.9,
-                  child: Card(
-                    elevation: 10.0,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        widget.patientName,
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontWeight: FontWeight.w500,
-                            fontSize: 35.0),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: sizeBoxHeight,
-                ),
+//                Container(
+//                  width: _width * 0.9,
+//                  child: Card(
+//                    elevation: 10.0,
+//                    child: Padding(
+//                      padding: const EdgeInsets.all(8.0),
+//                      child: Text(
+//                        widget.patientName,
+//                        textAlign: TextAlign.center,
+//                        style: TextStyle(
+//                            color: Colors.black,
+//                            fontWeight: FontWeight.w500,
+//                            fontSize: 35.0),
+//                      ),
+//                    ),
+//                  ),
+//                ),
+//                SizedBox(
+//                  height: sizeBoxHeight,
+//                ),
                 Container(
                   width: _width * 0.9,
                   child: Card(
@@ -87,12 +92,12 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            "Test Details",
+                            appData.testDescription,
                             textAlign: TextAlign.left,
                             style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 20.0,
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 20.0,
                               decoration: TextDecoration.underline,
                             ),
                           ),
@@ -125,7 +130,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            "To Patient",
+                            appData.testToPatient,
                             textAlign: TextAlign.left,
                             style: TextStyle(
                               color: Colors.black,
@@ -163,7 +168,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            "Respone",
+                            appData.testResponse,
                             textAlign: TextAlign.left,
                             style: TextStyle(
                               color: Colors.black,
@@ -257,18 +262,20 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: RaisedButton(
-                          onPressed: () {
-                            var router = new MaterialPageRoute(
-                                builder: (BuildContext context) => new TenWordRecallTrialOne(
-                                  patientName: widget.patientName,
-                                  assessorName: widget.assessorName,
-                                  handedness: widget.handedness,
-                                  assessmentDate: widget.assessmentDate,
-                                  languageComprehensionRadioValue: _radioValue,
-                                ));
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => false);
-                          },
+                        onPressed: () {
+                          var router = new MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  new TenWordRecallTrialOne(
+                                    patientName: widget.patientName,
+                                    assessorName: widget.assessorName,
+                                    handedness: widget.handedness,
+                                    assessmentDate: widget.assessmentDate,
+                                    languageComprehensionRadioValue:
+                                        _radioValue,
+                                  ));
+                          Navigator.of(context).pushAndRemoveUntil(
+                              router, (Route<dynamic> route) => false);
+                        },
                         child: Text("Continue with Testing"),
                       ),
                     ),
@@ -278,7 +285,6 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
             ),
           ),
         ],
-
       ),
     );
   }

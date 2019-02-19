@@ -4,7 +4,6 @@ import 'package:mica/src/home.dart';
 import 'package:mica/src/visuospatial_praxis.dart';
 
 class TenWordRecallTrialTwo extends StatefulWidget {
-
   String patientName;
   String assessorName;
   String handedness;
@@ -14,12 +13,12 @@ class TenWordRecallTrialTwo extends StatefulWidget {
 
   TenWordRecallTrialTwo(
       {Key key,
-        this.patientName,
-        this.assessorName,
-        this.handedness,
-        this.assessmentDate,
-        this.languageComprehensionRadioValue,
-        this.trialOneScore})
+      this.patientName,
+      this.assessorName,
+      this.handedness,
+      this.assessmentDate,
+      this.languageComprehensionRadioValue,
+      this.trialOneScore})
       : super(key: key);
 
   @override
@@ -43,12 +42,18 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
     var screenHeightInfo =
-    (MediaQuery.of(context).size.height * 0.3).floorToDouble();
+        (MediaQuery.of(context).size.height * 0.3).floorToDouble();
     var screenHeightWords =
-    (MediaQuery.of(context).size.height * 0.45).floorToDouble();
+        (MediaQuery.of(context).size.height * 0.45).floorToDouble();
     return Scaffold(
       appBar: AppBar(
-        title: Text(appData.testTenWordRecallTrialTwo),
+        title: Text(
+          "${appData.testTenWordRecallTrialTwo} - ${widget.patientName}",
+          style: TextStyle(
+            fontSize: 15.0,
+          ),
+          overflow: TextOverflow.clip,
+        ),
         centerTitle: true,
         actions: <Widget>[
           IconButton(
@@ -56,8 +61,8 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
               onPressed: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) => new Home(
-                      viewedDisclaimer: true,
-                    ));
+                          viewedDisclaimer: true,
+                        ));
                 Navigator.of(context).pushAndRemoveUntil(
                     router, (Route<dynamic> route) => false);
               })
@@ -96,14 +101,14 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
                             Text(
                               "Scroll down to reveal more instructions",
                               style: TextStyle(
-                                  fontSize: 10.0,
-                                  color: Colors.black38),
+                                  fontSize: 10.0, color: Colors.black38),
                             ),
                           ],
                         ),
                         Padding(padding: EdgeInsets.all(8.0)),
                         Text(
-                          appData.instructionsTenWordRecallTrialTwoHealthworker1,
+                          appData
+                              .instructionsTenWordRecallTrialTwoHealthworker1,
                           style: TextStyle(color: Colors.blue),
                         ),
                         Text(
@@ -112,7 +117,8 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
                           textAlign: TextAlign.left,
                         ),
                         Text(
-                          appData.instructionsTenWordRecallTrialTwoHealthworker2,
+                          appData
+                              .instructionsTenWordRecallTrialTwoHealthworker2,
                           style: TextStyle(
                             color: Colors.blue,
                           ),
@@ -173,19 +179,27 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: RaisedButton(
-                    child: Text(
-                      "Continue",
-                      overflow: TextOverflow.clip,
-                    ),
-                    //onPressed: () => debugPrint("hello"),
-                  onPressed: () {
-                    var router = new MaterialPageRoute(
-                        builder: (BuildContext context) =>
-                        new VisuospatialPraxis());
-                    Navigator.of(context).pushAndRemoveUntil(
-                        router, (Route<dynamic> route) => false);
-                  }
-                  ),
+                      child: Text(
+                        "Continue",
+                        overflow: TextOverflow.clip,
+                      ),
+                      //onPressed: () => debugPrint("hello"),
+                      onPressed: () {
+                        var router = new MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                new VisuospatialPraxis(
+                                  patientName: widget.patientName,
+                                  assessorName: widget.assessorName,
+                                  handedness: widget.handedness,
+                                  assessmentDate: widget.assessmentDate,
+                                  languageComprehensionRadioValue:
+                                      widget.languageComprehensionRadioValue,
+                                  trialOneScore: widget.trialOneScore,
+                                  trialTwoScore: scoreTenWordRecallTrialTwo,
+                                ));
+                        Navigator.of(context).pushAndRemoveUntil(
+                            router, (Route<dynamic> route) => false);
+                      }),
                 ),
               )),
         ],
