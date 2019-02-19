@@ -15,3 +15,19 @@ const String testLanguageComprehensionResponse = "Note the response of the patie
 const String testLanguageComprehensionResponseNormal = "Normal = 3 stages complete without an error";
 const String testLanguageComprehensionResponseEquivocal = "Equivocal = some difficulty, 1-2 stages completed";
 const String testLanguageComprehensionResponseImpaired = "Impaired = 1 or more clear errors";
+
+const List<String> tenWordRecallList = ["CARROT", "BOAT", "LION", "EYE", "JUG", "CAT", "SOUP", "LEG", "HOUSE", "TICKET"];
+const List<String> tenWordMemoryList = ["CARROT", "ONION", "BUG", "JUG", "SHIP", "BOAT", "LION", "GOAT", "SPY", "EYE", "SOUP", "BUTTER", "BAT", "ARM",
+"CAT", "LEG", "MOUSE", "TICKET", "HOUSE", "BUCKET"];
+
+const String testTenWordRecallTrialOne = "Ten Word Recall Trial 1";
+const String instructionsTenWordRecallTrialOnePaient1 = "To Patient: \"I am going to read you a list of 10 words. Remember these words, as I will ask you what you can remember after I have finished reading the list to you. Please repeat each word after I have said it, so that I can be sure that you heard it correctly. Do you understand? Are you ready? Let's go!\"";
+const String instructionsTenWordRecallTrialOneHealthworker1 = "Healthworker: If the patient does not repeat the word say: \“Please repeat the word.\” Carry on with the rest of the list.";
+const String instructionsTenWordRecallTrialOnePatient2 = "To Patient: \“What were those words?\” ";
+const String instructionsTenWordRecallTrialOneHealthworker2 = "Healthworker: Tap on each word correctly recalled:";
+
+const String testTenWordRecallTrialTwo = "Ten Word Recall Trial 2";
+const String instructionsTenWordRecallTrialTwoHealthworker1 = "Healthworker: Read the words again, asking for repetition after every word.";
+const String instructionsTenWordRecallTrialTwoPatient1 = "To Patient: \“What were those words?\”";
+const String instructionsTenWordRecallTrialTwoHealthworker2 = "Healthworker: Tap on each word correctly recalled.";
+const String instructionsTenWordRecallTrialTwoPatient2 = "To Patient: \“Now remember the words because I will ask you later for it.\"";
