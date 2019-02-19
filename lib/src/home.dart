@@ -14,7 +14,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
+    var _width = MediaQuery.of(context).size.width;
     return WillPopScope(
       onWillPop: () async => false,
       child: Scaffold(
@@ -32,7 +32,7 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
                   height: 25.0,
                 ),
                 Container(
-                  width: width * 0.9,
+                  width: _width * 0.9,
                   child: Card(
                     elevation: 10.0,
                     child: Padding(
@@ -47,7 +47,7 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
                   ),
                 ),
                 Container(
-                  width: width * 0.9,
+                  width: _width * 0.9,
                   child: Card(
                     elevation: 10.0,
                     color: Colors.white,
@@ -80,7 +80,7 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
                   ),
                 ),
                 Container(
-                  width: width * 0.9,
+                  width: _width * 0.9,
                   child: Card(
                     elevation: 10.0,
                     color: Colors.white,

@@ -2,21 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
 import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/src/language_comprehension.dart';
 
 class PatientInformation extends StatefulWidget {
+
   @override
   _PatientInformationState createState() => _PatientInformationState();
 }
 
 class _PatientInformationState extends State<PatientInformation> {
+
+  final _formKey = GlobalKey<FormState>();
+  final GlobalKey<ScaffoldState> _scaffoldState = new GlobalKey<ScaffoldState>();
+
   int _radioValue = 0;
   DateTime selectedDate = DateTime.now();
   var format = DateFormat.yMMMMd();
 
+  final myPatient = TextEditingController();
+  final myAssessor = TextEditingController();
+
+
+  @override
+  void dispose() {
+    myPatient.dispose();
+    myAssessor.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
+    var _width = MediaQuery.of(context).size.width;
     return Scaffold(
+        key: _scaffoldState,
         appBar: AppBar(
           title: Text(appData.appName),
           centerTitle: true,
@@ -40,18 +58,24 @@ class _PatientInformationState extends State<PatientInformation> {
                   height: 20.0,
                 ),
                 Form(
+                  key: _formKey,
                   child: Column(
                     children: <Widget>[
                       Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: TextFormField(
+                          controller: myPatient,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                          },
                           decoration: InputDecoration(
                               labelText: "Patient Name:",
                               labelStyle: TextStyle(
                                 color: Colors.black,
                               ),
                               hintText: "Jane Doe"),
-                          
                         ),
                       ),
                       Padding(
@@ -64,17 +88,14 @@ class _PatientInformationState extends State<PatientInformation> {
                                 color: Colors.black,
                               ),
                             ),
-                            SizedBox(width: 10.0,),
+                            SizedBox(
+                              width: 10.0,
+                            ),
                             FlatButton(
                               color: Colors.white,
                               onPressed: () => _selectDate(context),
                               child: Text(format.format(selectedDate)),
                             ),
-//                            RaisedButton(
-//                              elevation: 10.0,
-//                              onPressed: () => _selectDate(context),
-//                              child: Text(format.format(selectedDate)),
-//                            ),
                           ],
                         ),
                       ),
@@ -118,6 +139,12 @@ class _PatientInformationState extends State<PatientInformation> {
                       Padding(
                         padding: EdgeInsets.all(16.0),
                         child: TextFormField(
+                          controller: myAssessor,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Please enter some text';
+                            }
+                          },
                           decoration: InputDecoration(
                             labelText: "Assessment completed by",
                             labelStyle: TextStyle(
@@ -131,7 +158,7 @@ class _PatientInformationState extends State<PatientInformation> {
                   ),
                 ),
                 Container(
-                  width: width * 0.9,
+                  width: _width * 0.9,
                   child: Card(
                     color: Colors.white,
                     child: Padding(
@@ -139,7 +166,28 @@ class _PatientInformationState extends State<PatientInformation> {
                       child: Column(
                         children: <Widget>[
                           RaisedButton(
-                              onPressed: () => debugPrint("Start Testing"),
+                            onPressed: () {
+                              String _handed;
+                              if (_radioValue == 0) {
+                                _handed = "Right";
+                              } else {
+                                _handed = "Left";
+                              }
+                              if (_formKey.currentState.validate()) {
+                                // If the form is valid, display a snackbar. In the real world, you'd
+                                // often want to call a server or save the information in a database
+                                _scaffoldState.currentState.showSnackBar(SnackBar(content: Text('Processing Data')));
+                              }
+                              var router = new MaterialPageRoute(
+                                  builder: (BuildContext context) => new LanguageComprehension(
+                                    patientName: myPatient.text,
+                                    assessorName: myAssessor.text,
+                                    handedness: _handed,
+                                    assessmentDate: selectedDate,
+                                  ));
+                              Navigator.of(context).pushAndRemoveUntil(
+                                  router, (Route<dynamic> route) => false);
+                            },
                             elevation: 10.0,
                             child: Text("Start Testing"),
                           ),
