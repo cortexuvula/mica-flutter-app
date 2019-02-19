@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/src/home.dart';
+import 'package:mica/src/ten_word_recall_task_trial_one.dart';
 
 class LanguageComprehension extends StatefulWidget {
   String patientName;
@@ -33,6 +35,18 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
       appBar: AppBar(
         title: Text(appData.testLanguageComprehension),
         centerTitle: true,
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.clear),
+              onPressed: () {
+                var router = new MaterialPageRoute(
+                    builder: (BuildContext context) => new Home(
+                      viewedDisclaimer: true,
+                    ));
+                Navigator.of(context).pushAndRemoveUntil(
+                    router, (Route<dynamic> route) => false);
+              })
+        ],
       ),
       body: ListView(
         children: <Widget>[
@@ -243,7 +257,18 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: RaisedButton(
-                          onPressed: () => debugPrint("Hello"),
+                          onPressed: () {
+                            var router = new MaterialPageRoute(
+                                builder: (BuildContext context) => new TenWordRecallTrialOne(
+                                  patientName: widget.patientName,
+                                  assessorName: widget.assessorName,
+                                  handedness: widget.handedness,
+                                  assessmentDate: widget.assessmentDate,
+                                  languageComprehensionRadioValue: _radioValue,
+                                ));
+                            Navigator.of(context).pushAndRemoveUntil(
+                                router, (Route<dynamic> route) => false);
+                          },
                         child: Text("Continue with Testing"),
                       ),
                     ),
