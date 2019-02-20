@@ -1,39 +1,60 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/home.dart';
-import 'package:mica/src/ten_word_recall_task_trial_one.dart';
 
-class LanguageComprehension extends StatefulWidget {
+class Attention extends StatefulWidget {
   String patientName;
   String assessorName;
   String handedness;
   DateTime assessmentDate;
+  int languageComprehensionRadioValue;
+  int trialOneScore;
+  int trialTwoScore;
+  int visuospatialPraxis;
 
-  LanguageComprehension(
+  Attention(
       {Key key,
       this.patientName,
       this.assessorName,
       this.handedness,
-      this.assessmentDate})
+      this.assessmentDate,
+      this.languageComprehensionRadioValue,
+      this.trialOneScore,
+      this.trialTwoScore,
+      this.visuospatialPraxis})
       : super(key: key);
 
   @override
-  _LanguageComprehensionState createState() => _LanguageComprehensionState();
+  _AttentionState createState() => _AttentionState();
 }
 
-class _LanguageComprehensionState extends State<LanguageComprehension> {
-  var format = DateFormat.yMMMMd();
+class _AttentionState extends State<Attention> {
+  Timer timer;
+
   int _radioValue = 0;
   double sizeBoxHeight = 10.0;
+  int sequenceIndex = 0;
+  bool sequenceInMotion = false;
+
+  int i = 0;
+  String displayLetter = "Letters will diplay here.";
+
+  @override
+  void dispose() {
+    timer?.cancel();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "${appData.testLanguageComprehension} - ${widget.patientName}",
+          "${appData.testAttention} - ${widget.patientName}",
           style: TextStyle(
             fontSize: 15.0,
           ),
@@ -85,7 +106,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                             height: 5.0,
                           ),
                           Text(
-                            appData.testLanguageComprehensionDetails,
+                            appData.testAttentionDetails,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -123,12 +144,49 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                             height: 5.0,
                           ),
                           Text(
-                            appData.testLanguageComprehensionToPatient,
+                            appData.testAttentionToPatient,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15.0),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: sizeBoxHeight,
+                ),
+                Container(
+                  width: _width * 0.9,
+                  child: Card(
+                    elevation: 10.0,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            displayLetter,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 30.0,
+                            ),
+                          ),
+                          RaisedButton(
+                            onPressed: () {
+                              setState(() {
+                                sequenceInMotion = !sequenceInMotion;
+                              });
+                              _startStopSequence(sequenceInMotion);
+                            },
+                            child: sequenceInMotion
+                                ? Text("Pause")
+                                : Text("Start / Restart Sequence"),
+                            color: Colors.red,
                           ),
                         ],
                       ),
@@ -161,7 +219,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                             height: 5.0,
                           ),
                           Text(
-                            appData.testLanguageComprehensionResponse,
+                            appData.testAttentionResponse,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -209,19 +267,19 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                             ],
                           ),
                           Text(
-                            appData.testLanguageComprehensionResponseNormal,
+                            appData.testAttentionResponseNormal,
                             style: TextStyle(
                               color: Colors.black,
                             ),
                           ),
                           Text(
-                            appData.testLanguageComprehensionResponseEquivocal,
+                            appData.testAttentionResponseEquivocal,
                             style: TextStyle(
                               color: Colors.black,
                             ),
                           ),
                           Text(
-                            appData.testLanguageComprehensionResponseImpaired,
+                            appData.testAttentionResponseImpaired,
                             style: TextStyle(
                               color: Colors.black,
                             ),
@@ -243,18 +301,13 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                       padding: EdgeInsets.all(8.0),
                       child: RaisedButton(
                         onPressed: () {
-                          var router = new MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  new TenWordRecallTrialOne(
-                                    patientName: widget.patientName,
-                                    assessorName: widget.assessorName,
-                                    handedness: widget.handedness,
-                                    assessmentDate: widget.assessmentDate,
-                                    languageComprehensionRadioValue:
-                                        _radioValue,
-                                  ));
-                          Navigator.of(context).pushAndRemoveUntil(
-                              router, (Route<dynamic> route) => false);
+//                          var router = new MaterialPageRoute(
+//                              builder: (BuildContext context) =>
+//                              new TenWordRecallTrialOne(
+//
+//                              ));
+//                          Navigator.of(context).pushAndRemoveUntil(
+//                              router, (Route<dynamic> route) => false);
                         },
                         child: Text("Continue with Testing"),
                       ),
@@ -273,5 +326,30 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
     setState(() {
       _radioValue = value;
     });
+  }
+
+  void _startStopSequence(bool _sequenceInMotion) {
+    if (_sequenceInMotion) {
+      timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
+        //print("Letters are running $i");
+        if (i < 26) {
+          setState(() {
+            displayLetter = appData.attentionList[i];
+          });
+          i += 1;
+        } else {
+          //print("Letters are stopped");
+          timer?.cancel();
+          setState(() {
+            sequenceInMotion = false;
+            displayLetter = "Test completed";
+            i = 0;
+          });
+        }
+      });
+    } else if (!_sequenceInMotion) {
+      //print("Letters are stopped");
+      timer?.cancel();
+    }
   }
 }
