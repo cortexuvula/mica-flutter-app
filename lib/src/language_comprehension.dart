@@ -242,6 +242,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: RaisedButton(
+                        elevation: 10.0,
                         onPressed: () {
                           var router = new MaterialPageRoute(
                               builder: (BuildContext context) =>

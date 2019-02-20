@@ -415,6 +415,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                           child: Padding(
                             padding: EdgeInsets.all(8.0),
                             child: RaisedButton(
+                              elevation: 10.0,
                               onPressed: () {
                                 int score = _radioValueImageOne + _radioValueImageTwo + _radioValueImageThree;
                                 var router = new MaterialPageRoute(

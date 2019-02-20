@@ -179,6 +179,7 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: RaisedButton(
+                    elevation: 10.0,
                       child: Text(
                         "Continue",
                         overflow: TextOverflow.clip,
