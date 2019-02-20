@@ -28,6 +28,35 @@ const String testLanguageComprehensionResponseEquivocal =
 const String testLanguageComprehensionResponseImpaired =
     "Impaired = 1 or more clear errors";
 
+const List<String> attentionList = [
+  "A",
+  "L",
+  "T",
+  "A",
+  "A",
+  "D",
+  "A",
+  "R",
+  "S",
+  "N",
+  "A",
+  "G",
+  "A",
+  "A",
+  "A",
+  "K",
+  "P",
+  "A",
+  "T",
+  "C",
+  "A",
+  "A",
+  "P",
+  "A",
+  "L",
+  "R"
+];
+
 const List<String> tenWordRecallList = [
   "CARROT",
   "BOAT",
@@ -95,3 +124,14 @@ const String testVisuospatialPraxisResponseEquivocal =
     "2 Points = Few Omissions";
 const String testVisuospatialPraxisResponseImpaired = "1 Point = Poor";
 const String testVisuospatialPraxisResponseFubar = "0 Point = No drawing";
+
+const String testAttention = "Attention";
+const String testAttentionDetails = "";
+const String testAttentionToPatient = "\"I am going to read you a long series of letters. Whenever you hear the letter A, tap your hand like this.\” Indicate tapping movement. For all other letters, do not tap. ";
+const String testAttentionResponse = "A mistake is an omission or inclusion.";
+const String testAttentionResponseNormal =
+    "Normal = no mistakes.";
+const String testAttentionResponseEquivocal =
+    "Equivocal = 1 mistake.";
+const String testAttentionResponseImpaired =
+    "Impaired = > 1 mistake.";

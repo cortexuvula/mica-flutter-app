@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mica/src/attention.dart';
 import 'package:mica/src/home.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 
@@ -414,19 +415,22 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                           child: Padding(
                             padding: EdgeInsets.all(8.0),
                             child: RaisedButton(
-                              onPressed: () => debugPrint("hello"),
-//                              onPressed: () {
-//                                var router = new MaterialPageRoute(
-//                                    builder: (BuildContext context) => new TenWordRecallTrialOne(
-//                                      patientName: widget.patientName,
-//                                      assessorName: widget.assessorName,
-//                                      handedness: widget.handedness,
-//                                      assessmentDate: widget.assessmentDate,
-//                                      languageComprehensionRadioValue: _radioValue,
-//                                    ));
-//                                Navigator.of(context).pushAndRemoveUntil(
-//                                    router, (Route<dynamic> route) => false);
-//                              },
+                              onPressed: () {
+                                int score = _radioValueImageOne + _radioValueImageTwo + _radioValueImageThree;
+                                var router = new MaterialPageRoute(
+                                    builder: (BuildContext context) => new Attention(
+                                      patientName: widget.patientName,
+                                      assessorName: widget.assessorName,
+                                      handedness: widget.handedness,
+                                      assessmentDate: widget.assessmentDate,
+                                      languageComprehensionRadioValue: widget.languageComprehensionRadioValue,
+                                      trialOneScore: widget.trialOneScore,
+                                      trialTwoScore: widget.trialTwoScore,
+                                      visuospatialPraxis: score,
+                                    ));
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    router, (Route<dynamic> route) => false);
+                              },
                               child: Text("Continue with Testing"),
                             ),
                           ),
