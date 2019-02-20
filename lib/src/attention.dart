@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/home.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class Attention extends StatefulWidget {
   String patientName;
@@ -39,7 +40,7 @@ class _AttentionState extends State<Attention> {
   bool sequenceInMotion = false;
 
   int i = 0;
-  String displayLetter = "Letters will diplay here.";
+  String displayLetter = "Letters";
 
   @override
   void dispose() {
@@ -168,26 +169,83 @@ class _AttentionState extends State<Attention> {
                       padding: EdgeInsets.all(8.0),
                       child: Column(
                         children: <Widget>[
-                          Text(
-                            displayLetter,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 30.0,
-                            ),
+                          Row(
+                            children: <Widget>[
+                              SizedBox(
+                                width: _width * 0.8 / 2,
+                                height: 50.0,
+                                child: sequenceInMotion
+                                    ? ScaleAnimatedTextKit(
+                                        isRepeatingAnimation: false,
+                                        text: appData.attentionList,
+                                        textStyle: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 40.0,
+                                        ),
+                                        alignment: Alignment.center,
+                                      )
+                                    : Text(
+                                        displayLetter,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 40.0,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                              ),
+                              SizedBox(
+                                width: _width * 0.8 / 2,
+                                height: 50.0,
+                                child: FlatButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      sequenceInMotion = !sequenceInMotion;
+                                    });
+                                    //_startStopSequence(sequenceInMotion);
+                                  },
+                                  child: sequenceInMotion
+                                      ? Text("Reset")
+                                      : Text("Start"),
+                                  color: Colors.red,
+                                ),
+                              )
+                            ],
                           ),
-                          RaisedButton(
-                            onPressed: () {
-                              setState(() {
-                                sequenceInMotion = !sequenceInMotion;
-                              });
-                              _startStopSequence(sequenceInMotion);
-                            },
-                            child: sequenceInMotion
-                                ? Text("Pause")
-                                : Text("Start / Restart Sequence"),
-                            color: Colors.red,
-                          ),
+//                          SizedBox(
+//                            width: 250.0,
+//                            child: Center(
+//                              child: sequenceInMotion
+//                                  ? ScaleAnimatedTextKit(
+//
+//                                      text: appData.attentionList,
+//                                      textStyle: TextStyle(
+//                                        fontSize: 25.0,
+//                                      ),
+//                                    )
+//                                  : Text(
+//                                      displayLetter,
+//                                      style: TextStyle(
+//                                        color: Colors.black,
+//                                        fontWeight: FontWeight.w500,
+//                                        fontSize: 25.0,
+//                                      ),
+//                                    ),
+//                            ),
+//                          ),
+//                          RaisedButton(
+//                            onPressed: () {
+//                              setState(() {
+//                                sequenceInMotion = !sequenceInMotion;
+//                              });
+//                              //_startStopSequence(sequenceInMotion);
+//                            },
+//                            child: sequenceInMotion
+//                                ? Text("Pause")
+//                                : Text("Start Sequence"),
+//                            color: Colors.red,
+//                          ),
                         ],
                       ),
                     ),
@@ -300,6 +358,7 @@ class _AttentionState extends State<Attention> {
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
                       child: RaisedButton(
+                        elevation: 10.0,
                         onPressed: () {
 //                          var router = new MaterialPageRoute(
 //                              builder: (BuildContext context) =>
@@ -329,27 +388,27 @@ class _AttentionState extends State<Attention> {
   }
 
   void _startStopSequence(bool _sequenceInMotion) {
-    if (_sequenceInMotion) {
-      timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
-        //print("Letters are running $i");
-        if (i < 26) {
-          setState(() {
-            displayLetter = appData.attentionList[i];
-          });
-          i += 1;
-        } else {
-          //print("Letters are stopped");
-          timer?.cancel();
-          setState(() {
-            sequenceInMotion = false;
-            displayLetter = "Test completed";
-            i = 0;
-          });
-        }
-      });
-    } else if (!_sequenceInMotion) {
-      //print("Letters are stopped");
-      timer?.cancel();
-    }
+//    if (_sequenceInMotion) {
+//      timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
+//        //print("Letters are running $i");
+//        if (i < 26) {
+//          setState(() {
+//            displayLetter = appData.attentionList[i];
+//          });
+//          i += 1;
+//        } else {
+//          //print("Letters are stopped");
+//          timer?.cancel();
+//          setState(() {
+//            sequenceInMotion = false;
+//            displayLetter = "Test completed";
+//            i = 0;
+//          });
+//        }
+//      });
+//    } else if (!_sequenceInMotion) {
+//      //print("Letters are stopped");
+//      timer?.cancel();
+//    }
   }
 }

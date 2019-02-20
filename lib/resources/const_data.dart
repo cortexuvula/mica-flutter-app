@@ -54,7 +54,8 @@ const List<String> attentionList = [
   "P",
   "A",
   "L",
-  "R"
+  "R",
+  "Done"
 ];
 
 const List<String> tenWordRecallList = [
