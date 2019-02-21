@@ -32,13 +32,17 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
     var _width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title:
+        Text(
           "${appData.testLanguageComprehension} - ${widget.patientName}",
           style: TextStyle(
             fontSize: 15.0,
           ),
           overflow: TextOverflow.clip,
         ),
+//        bottom: PreferredSize(
+//            child: Text("Hello"),
+//            preferredSize: Size(_width, 20.0)),
         centerTitle: true,
         actions: <Widget>[
           IconButton(
@@ -168,64 +172,162 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15.0),
                           ),
-                          Row(
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
-                              Radio(
-                                value: 0,
-                                groupValue: _radioValue,
-                                onChanged: _handleRadioValueChange,
-                                activeColor: Colors.white,
+                              Row(
+                                children: <Widget>[
+                                  Radio(
+                                    value: 0,
+                                    groupValue: _radioValue,
+                                    onChanged: _handleRadioValueChange,
+                                    activeColor: Colors.white,
+                                  ),
+                                  Text(
+                                    appData.testLanguageComprehensionResponseNormal,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                "Normal",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ),
+                              Row(
+                                children: <Widget>[
+                                  Radio(
+                                    value: 1,
+                                    groupValue: _radioValue,
+                                    onChanged: _handleRadioValueChange,
+                                    activeColor: Colors.white,
+                                  ),
+                                  Text(
+                                    appData.testLanguageComprehensionResponseEquivocal,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Radio(
-                                value: 1,
-                                groupValue: _radioValue,
-                                onChanged: _handleRadioValueChange,
-                                activeColor: Colors.white,
-                              ),
-                              Text(
-                                "Equivocal",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ),
-                              ),
-                              Radio(
-                                value: 2,
-                                groupValue: _radioValue,
-                                onChanged: _handleRadioValueChange,
-                                activeColor: Colors.white,
-                              ),
-                              Text(
-                                "Impaired",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ),
+                              Row(
+                                children: <Widget>[
+                                  Radio(
+                                    value: 2,
+                                    groupValue: _radioValue,
+                                    onChanged: _handleRadioValueChange,
+                                    activeColor: Colors.white,
+                                  ),
+                                  Text(
+                                    appData.testLanguageComprehensionResponseImpaired,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
-                          ),
-                          Text(
-                            appData.testLanguageComprehensionResponseNormal,
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                          Text(
-                            appData.testLanguageComprehensionResponseEquivocal,
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
-                          Text(
-                            appData.testLanguageComprehensionResponseImpaired,
-                            style: TextStyle(
-                              color: Colors.black,
-                            ),
-                          ),
+                          )
+//                          Row(
+//                            mainAxisAlignment: MainAxisAlignment.center,
+//                            children: <Widget>[
+//                              SizedBox(
+//                                width: _width * 0.8 / 3,
+//                                height: 100.0,
+//                                child: Column(
+//
+//                                  children: <Widget>[
+//                                    Row(
+//                                      children: <Widget>[
+//                                        Radio(
+//                                          value: 0,
+//                                          groupValue: _radioValue,
+//                                          onChanged: _handleRadioValueChange,
+//                                          activeColor: Colors.white,
+//                                        ),
+//                                        Text(
+//                                          "Normal",
+//                                          style: TextStyle(
+//                                            color: Colors.black,
+//                                          ),
+//                                        ),
+//                                      ],
+//                                    ),
+//                                    Text(
+//                                      appData.testLanguageComprehensionResponseNormal,
+//                                      style: TextStyle(
+//                                        color: Colors.black,
+//                                      ),
+//                                    ),
+//                                  ],
+//                                ),
+//                              ),
+//
+//                              SizedBox(
+//                                width: _width * 0.8 / 3,
+//                                height: 100.0,
+//                                child: Column(
+//                                  children: <Widget>[
+//                                    Row(
+//                                      children: <Widget>[
+//                                        Radio(
+//                                          value: 1,
+//                                          groupValue: _radioValue,
+//                                          onChanged: _handleRadioValueChange,
+//                                          activeColor: Colors.white,
+//                                        ),
+//                                        Text(
+//                                          "Equivocal",
+//                                          style: TextStyle(
+//                                            color: Colors.black,
+//                                          ),
+//                                        ),
+//                                      ],
+//                                    ),
+//                                    Text(
+//                                      appData.testLanguageComprehensionResponseEquivocal,
+//                                      style: TextStyle(
+//                                        color: Colors.black,
+//                                      ),
+//                                    ),
+//                                  ],
+//                                ),
+//                              ),
+//
+//                              SizedBox(
+//                                width: _width * 0.8 / 3,
+//                                height: 100.0,
+//                                child: Column(
+//                                  crossAxisAlignment: CrossAxisAlignment.start,
+//                                  children: <Widget>[
+//                                    Row(
+//                                      children: <Widget>[
+//                                        Radio(
+//                                          value: 2,
+//                                          groupValue: _radioValue,
+//                                          onChanged: _handleRadioValueChange,
+//                                          activeColor: Colors.white,
+//                                        ),
+//                                        Text(
+//                                          "Impaired",
+//                                          style: TextStyle(
+//                                            color: Colors.black,
+//                                          ),
+//                                        ),
+//                                      ],
+//                                    ),
+//                                    Text(
+//                                      appData.testLanguageComprehensionResponseImpaired,
+//                                      style: TextStyle(
+//                                        color: Colors.black,
+//                                      ),
+//                                    ),
+//                                  ],
+//                                ),
+//                              ),
+//
+//                            ],
+//                          ),
+
+
+
                         ],
                       ),
                     ),

@@ -66,11 +66,12 @@ class _PatientInformationState extends State<PatientInformation> {
                         padding: const EdgeInsets.all(16.0),
                         child: TextFormField(
                           controller: myPatient,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return 'Please enter patient full name';
-                            }
-                          },
+
+//                          validator: (value) {
+//                            if (value.isEmpty) {
+//                              return 'Please enter patient full name';
+//                            }
+//                          },
                           decoration: InputDecoration(
                               labelText: "Patient Name:",
                               labelStyle: TextStyle(
@@ -141,11 +142,12 @@ class _PatientInformationState extends State<PatientInformation> {
                         padding: EdgeInsets.all(16.0),
                         child: TextFormField(
                           controller: myAssessor,
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return 'Please enter name of assessor';
-                            }
-                          },
+
+//                          validator: (value) {
+//                            if (value.isEmpty) {
+//                              return 'Please enter name of assessor';
+//                            }
+//                          },
                           decoration: InputDecoration(
                             labelText: "Assessment completed by:",
                             labelStyle: TextStyle(
@@ -194,17 +196,7 @@ class _PatientInformationState extends State<PatientInformation> {
                             elevation: 10.0,
                             child: Text("Start Testing"),
                           ),
-                          SizedBox(
-                            height: 10.0,
-                          ),
-                          Text(
-                            appData.startTesting,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                fontWeight: FontWeight.w300,
-                                fontSize: 14.0,
-                                color: Colors.black),
-                          ),
+
                         ],
                       ),
                     ),

@@ -81,20 +81,20 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: <Widget>[
-                        Padding(padding: EdgeInsets.all(8.0)),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              "Instructions",
-                              style: TextStyle(
-                                  fontSize: 18.0,
-                                  fontWeight: FontWeight.w500,
-                                  decoration: TextDecoration.underline),
-                            ),
-                          ],
-                        ),
-                        Padding(padding: EdgeInsets.all(4.0)),
+//                        Padding(padding: EdgeInsets.all(8.0)),
+//                        Row(
+//                          mainAxisAlignment: MainAxisAlignment.center,
+//                          children: <Widget>[
+//                            Text(
+//                              "Instructions",
+//                              style: TextStyle(
+//                                  fontSize: 18.0,
+//                                  fontWeight: FontWeight.w500,
+//                                  decoration: TextDecoration.underline),
+//                            ),
+//                          ],
+//                        ),
+//                        Padding(padding: EdgeInsets.all(4.0)),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -105,28 +105,64 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                             ),
                           ],
                         ),
-                        Padding(padding: EdgeInsets.all(8.0)),
-                        Text(
-                          appData.instructionsTenWordRecallTrialOnePaient1,
-                          style: TextStyle(color: Colors.green),
+//                        Padding(padding: EdgeInsets.all(8.0)),
+                        Card(
+                          elevation: 10.0,
+                          color: Colors.yellowAccent.shade400,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              appData.instructionsTenWordRecallTrialOnePaient1,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15.0),
+                            ),
+                          ),
                         ),
 //                    Padding(padding: EdgeInsets.all(8.0)),
-                        Text(
-                          appData
-                              .instructionsTenWordRecallTrialOneHealthworker1,
-                          style: TextStyle(color: Colors.blue),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Card(
+                          elevation: 10.0,
+                          color: Colors.deepPurple.shade300,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              appData
+                                  .instructionsTenWordRecallTrialOneHealthworker1,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15.0),
+                            ),
+                          ),
                         ),
 //                    Padding(padding: EdgeInsets.all(8.0)),
-                        Text(
-                          appData.instructionsTenWordRecallTrialOnePatient2,
-                          style: TextStyle(color: Colors.green),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Card(
+                          elevation: 10.0,
+                          color: Colors.yellowAccent.shade400,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              appData.instructionsTenWordRecallTrialOnePatient2,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15.0),
+                            ),
+                          ),
                         ),
 //                    Padding(padding: EdgeInsets.all(8.0)),
-                        Text(
-                          appData
-                              .instructionsTenWordRecallTrialOneHealthworker2,
-                          style: TextStyle(color: Colors.blue),
-                        ),
+//                        Text(
+//                          appData
+//                              .instructionsTenWordRecallTrialOneHealthworker2,
+//                          style: TextStyle(color: Colors.blue),
+//                        ),
                       ],
                       crossAxisAlignment: CrossAxisAlignment.start,
                     ),

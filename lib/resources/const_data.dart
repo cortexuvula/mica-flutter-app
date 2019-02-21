@@ -1,7 +1,8 @@
 const String appName = "Midland Cognitive Assessment";
 const String disclaimer =
     "The Midland Cognitive Assessment App does not provide medical advice and cannot replace good clinical practice. It is intended for health professionals familiar with this type of assessment. You use this App as is and at your own risk. You are strongly encouraged to first read the Full Instructions and Teaching Booklet.";
-const String testDescription = "Test Description:";
+const String disclaimer2 = "The midland cognitive assessment app is intended for use by health professionals familiar with this type of cognitive assessment. It does not provide medical advice and cannot replace good clinical practice. It should be used at your own discretion. You are strongly encouraged to first read the full instructions and teaching booklet.";
+const String testDescription = "Task Description:";
 const String testToPatient = "To Patient:";
 const String testResponse = "Response:";
 
@@ -22,11 +23,11 @@ const String testLanguageComprehensionToPatient =
 const String testLanguageComprehensionResponse =
     "Note the response of the patient and score as below.";
 const String testLanguageComprehensionResponseNormal =
-    "Normal = 3 stages complete without an error";
+    "Normal - 3 stages complete without an error";
 const String testLanguageComprehensionResponseEquivocal =
-    "Equivocal = some difficulty";
+    "Equivocal - Some difficulty";
 const String testLanguageComprehensionResponseImpaired =
-    "Impaired = 1 or more clear errors";
+    "Impaired - 1 or more clear errors";
 
 const List<String> attentionList = [
   "A",
@@ -70,6 +71,20 @@ const List<String> tenWordRecallList = [
   "HOUSE",
   "TICKET"
 ];
+
+const List<String> tenWordRecallList2 = [
+  "LION",
+  "CARROT",
+  "BOAT",
+  "CAT",
+  "EYE",
+  "JUG",
+  "HOUSE",
+  "SOUP",
+  "LEG",
+  "TICKET"
+];
+
 const List<String> tenWordMemoryList = [
   "CARROT",
   "ONION",
@@ -95,23 +110,23 @@ const List<String> tenWordMemoryList = [
 
 const String testTenWordRecallTrialOne = "Ten Word Recall Trial 1";
 const String instructionsTenWordRecallTrialOnePaient1 =
-    "To Patient: \"I am going to read you a list of 10 words. Remember these words, as I will ask you what you can remember after I have finished reading the list to you. Please repeat each word after I have said it, so that I can be sure that you heard it correctly. Do you understand? Are you ready? Let's go!\"";
+    "\"I am going to read you a list of 10 words. Remember these words, as I will ask you what you can remember after I have finished reading the list to you. Please repeat each word after I have said it, so that I can be sure that you heard it correctly. Do you understand? Are you ready? Let's go!\"";
 const String instructionsTenWordRecallTrialOneHealthworker1 =
-    "Healthworker: If the patient does not repeat the word say: \“Please repeat the word.\” Carry on with the rest of the list.";
+    "If the patient does not repeat the word say: \“Please repeat the word.\” Carry on with the rest of the list. Tap on each word correctly recalled.";
 const String instructionsTenWordRecallTrialOnePatient2 =
-    "To Patient: \“What were those words?\” ";
+    "\“What were those words?\” ";
 const String instructionsTenWordRecallTrialOneHealthworker2 =
-    "Healthworker: Tap on each word correctly recalled:";
+    "Tap on each word correctly recalled:";
 
 const String testTenWordRecallTrialTwo = "Ten Word Recall Trial 2";
 const String instructionsTenWordRecallTrialTwoHealthworker1 =
-    "Healthworker: Read the words again, asking for repetition after every word.";
+    "Read the words again, asking for repetition after every word.";
 const String instructionsTenWordRecallTrialTwoPatient1 =
-    "To Patient: \“What were those words?\”";
+    "\“What were those words?\”";
 const String instructionsTenWordRecallTrialTwoHealthworker2 =
-    "Healthworker: Tap on each word correctly recalled.";
+    "Tap on each word correctly recalled.";
 const String instructionsTenWordRecallTrialTwoPatient2 =
-    "To Patient: \“Now remember the words because I will ask you later for it.\"";
+    "\“Now remember the words because I will ask you later for it.\"";
 
 const String testVisuospatialPraxis = "Visuospatial & Praxis";
 const String testVisuospatialPraxisDetails =
