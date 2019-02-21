@@ -7,6 +7,7 @@ class MicaApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
       title: "Midlands Cognitive Assessment",
       home: new LoadingScreen(),
       theme: ThemeData(

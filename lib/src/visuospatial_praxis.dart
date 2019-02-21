@@ -361,7 +361,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                 ),
                                 Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
                                     Text(
                                       appData
@@ -381,7 +381,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                 ),
                                 Row(
                                   mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                                      MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
                                     Text(
                                       appData
