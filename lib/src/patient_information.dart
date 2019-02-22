@@ -37,8 +37,16 @@ class _PatientInformationState extends State<PatientInformation> {
     return Scaffold(
         key: _scaffoldState,
         appBar: AppBar(
-          title: Text(appData.appName),
-          centerTitle: true,
+          title: ListTile(
+            title: Text(
+              appData.appName,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.start,
+            ),
+          ),
         ),
         body: ListView(
           children: <Widget>[

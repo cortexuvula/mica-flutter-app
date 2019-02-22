@@ -38,14 +38,16 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
     var _width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "${appData.testVisuospatialPraxis} - ${widget.patientName}",
-          style: TextStyle(
-            fontSize: 15.0,
+        title: ListTile(
+          title: Text(
+            appData.testVisuospatialPraxis,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.start,
           ),
-          overflow: TextOverflow.clip,
         ),
-        centerTitle: true,
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.clear),
