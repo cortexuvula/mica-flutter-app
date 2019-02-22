@@ -5,24 +5,23 @@ import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/language_comprehension.dart';
 
 class PatientInformation extends StatefulWidget {
-
   @override
   _PatientInformationState createState() => _PatientInformationState();
 }
 
 class _PatientInformationState extends State<PatientInformation> {
-
   final _formKey = GlobalKey<FormState>();
-  final GlobalKey<ScaffoldState> _scaffoldState = new GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldState =
+      new GlobalKey<ScaffoldState>();
 
   int _radioValue = 0;
   DateTime selectedDate = DateTime.now();
+
 //  var format = DateFormat.yMMMMd();
   var format = DateFormat('d MMM y');
 
   final myPatient = TextEditingController();
   final myAssessor = TextEditingController();
-
 
   @override
   void dispose() {
@@ -187,24 +186,24 @@ class _PatientInformationState extends State<PatientInformation> {
                               if (_formKey.currentState.validate()) {
                                 // If the form is valid, display a snackbar. In the real world, you'd
                                 // often want to call a server or save the information in a database
-                                _scaffoldState.currentState.showSnackBar(SnackBar(content: Text('Processing Data')));
+                                _scaffoldState.currentState.showSnackBar(
+                                    SnackBar(content: Text('Processing Data')));
 
                                 var router = new MaterialPageRoute(
-                                    builder: (BuildContext context) => new LanguageComprehension(
-                                      patientName: myPatient.text,
-                                      assessorName: myAssessor.text,
-                                      handedness: _handed,
-                                      assessmentDate: selectedDate,
-                                    ));
+                                    builder: (BuildContext context) =>
+                                        new LanguageComprehension(
+                                          patientName: myPatient.text,
+                                          assessorName: myAssessor.text,
+                                          handedness: _handed,
+                                          assessmentDate: selectedDate,
+                                        ));
                                 Navigator.of(context).pushAndRemoveUntil(
                                     router, (Route<dynamic> route) => false);
                               }
-
                             },
                             elevation: 10.0,
                             child: Text("Start Testing"),
                           ),
-
                         ],
                       ),
                     ),

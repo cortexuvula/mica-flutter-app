@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:after_layout/after_layout.dart';
 import 'package:mica/src/home.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -15,22 +16,18 @@ class _LoadingScreenState extends State<LoadingScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-//          Image.asset("images/neon_brain_android.png", height: 200.0, width: 200.0,),
-//          Padding(
-//            padding: const EdgeInsets.all(16.0),
-//            child: Text(appData.appName, style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w500),),
-//          ),
-//          Padding(
-//              padding: const EdgeInsets.all(32.0),
-//              child: SpinKitWave(
-//                color: Theme.of(context).primaryColor,
-//                size: 50.0,
-//                type: SpinKitWaveType.center,
-//              )),
-          ],
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Hero(
+                tag: "logo",
+                child: FlutterLogo(
+                  size: 200.0,
+                ),
+              )
+            ],
+          ),
         ),
         backgroundColor: Theme.of(context).backgroundColor);
   }

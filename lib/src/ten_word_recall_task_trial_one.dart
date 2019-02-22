@@ -152,10 +152,10 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               appData.instructionsTenWordRecallTrialOnePatient2,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 15.0),
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15.0),
                             ),
                           ),
                         ),
@@ -216,7 +216,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: RaisedButton(
-                    elevation: 10.0,
+                      elevation: 10.0,
                       child: Text(
                         "Continue",
                         overflow: TextOverflow.clip,

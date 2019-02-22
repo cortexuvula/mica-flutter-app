@@ -182,7 +182,8 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                     activeColor: Colors.white,
                                   ),
                                   Text(
-                                    appData.testLanguageComprehensionResponseNormal,
+                                    appData
+                                        .testLanguageComprehensionResponseNormal,
                                     style: TextStyle(
                                       color: Colors.black,
                                     ),
@@ -198,7 +199,8 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                     activeColor: Colors.white,
                                   ),
                                   Text(
-                                    appData.testLanguageComprehensionResponseEquivocal,
+                                    appData
+                                        .testLanguageComprehensionResponseEquivocal,
                                     style: TextStyle(
                                       color: Colors.black,
                                     ),
@@ -214,7 +216,8 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                     activeColor: Colors.white,
                                   ),
                                   Text(
-                                    appData.testLanguageComprehensionResponseImpaired,
+                                    appData
+                                        .testLanguageComprehensionResponseImpaired,
                                     style: TextStyle(
                                       color: Colors.black,
                                     ),
@@ -323,9 +326,6 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
 //
 //                            ],
 //                          ),
-
-
-
                         ],
                       ),
                     ),

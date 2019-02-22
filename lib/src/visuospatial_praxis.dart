@@ -419,18 +419,22 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                             child: RaisedButton(
                               elevation: 10.0,
                               onPressed: () {
-                                int score = _radioValueImageOne + _radioValueImageTwo + _radioValueImageThree;
+                                int score = _radioValueImageOne +
+                                    _radioValueImageTwo +
+                                    _radioValueImageThree;
                                 var router = new MaterialPageRoute(
-                                    builder: (BuildContext context) => new Attention(
-                                      patientName: widget.patientName,
-                                      assessorName: widget.assessorName,
-                                      handedness: widget.handedness,
-                                      assessmentDate: widget.assessmentDate,
-                                      languageComprehensionRadioValue: widget.languageComprehensionRadioValue,
-                                      trialOneScore: widget.trialOneScore,
-                                      trialTwoScore: widget.trialTwoScore,
-                                      visuospatialPraxis: score,
-                                    ));
+                                    builder: (BuildContext context) =>
+                                        new Attention(
+                                          patientName: widget.patientName,
+                                          assessorName: widget.assessorName,
+                                          handedness: widget.handedness,
+                                          assessmentDate: widget.assessmentDate,
+                                          languageComprehensionRadioValue: widget
+                                              .languageComprehensionRadioValue,
+                                          trialOneScore: widget.trialOneScore,
+                                          trialTwoScore: widget.trialTwoScore,
+                                          visuospatialPraxis: score,
+                                        ));
                                 Navigator.of(context).pushAndRemoveUntil(
                                     router, (Route<dynamic> route) => false);
                               },
