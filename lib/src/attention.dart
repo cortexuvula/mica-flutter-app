@@ -42,6 +42,27 @@ class _AttentionState extends State<Attention> {
   int i = 0;
   String displayLetter = "Letters";
 
+  bool _value1correct = false;
+  bool _value1wrong = false;
+
+  List<Color> letterTapButtonColor = [];
+  List<Color> letterNoTapButtonColor = [];
+  int correctTap = 0;
+  int wrongTap = 0;
+  var correctSelectedColor = Colors.green;
+  var wrongSelectedColor = Colors.red;
+
+  @override
+  void initState() {
+    super.initState();
+    for (var i = 0; i < appData.attentionList.length; i++) {
+      letterTapButtonColor.add(Colors.white);
+    }
+    for (var i = 0; i < appData.attentionList.length; i++) {
+      letterNoTapButtonColor.add(Colors.white);
+    }
+  }
+
   @override
   void dispose() {
     timer?.cancel();
@@ -54,14 +75,16 @@ class _AttentionState extends State<Attention> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "${appData.testAttention} - ${widget.patientName}",
-          style: TextStyle(
-            fontSize: 15.0,
+        title: ListTile(
+          title: Text(
+            appData.testAttention,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.start,
           ),
-          overflow: TextOverflow.clip,
         ),
-        centerTitle: true,
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.clear),
@@ -160,92 +183,292 @@ class _AttentionState extends State<Attention> {
                 SizedBox(
                   height: sizeBoxHeight,
                 ),
+//                Container(
+//                  width: _width * 0.9,
+//                  child: Card(
+//                    elevation: 10.0,
+//                    color: Colors.white,
+//                    child: Padding(
+//                      padding: EdgeInsets.all(8.0),
+//                      child: Column(
+//                        children: <Widget>[
+//                          Row(
+//                            children: <Widget>[
+//                              SizedBox(
+//                                width: _width * 0.8 / 2,
+//                                height: 50.0,
+//                                child: sequenceInMotion
+//                                    ? ScaleAnimatedTextKit(
+//                                        isRepeatingAnimation: false,
+//                                        text: appData.attentionList,
+//                                        textStyle: TextStyle(
+//                                          color: Colors.black,
+//                                          fontWeight: FontWeight.w500,
+//                                          fontSize: 40.0,
+//                                        ),
+//                                        alignment: Alignment.center,
+//                                      )
+//                                    : Text(
+//                                        displayLetter,
+//                                        style: TextStyle(
+//                                          color: Colors.black,
+//                                          fontWeight: FontWeight.w500,
+//                                          fontSize: 40.0,
+//                                        ),
+//                                        textAlign: TextAlign.center,
+//                                      ),
+//                              ),
+//                              SizedBox(
+//                                width: _width * 0.8 / 2,
+//                                height: 50.0,
+//                                child: FlatButton(
+//                                  onPressed: () {
+//                                    setState(() {
+//                                      sequenceInMotion = !sequenceInMotion;
+//                                    });
+//                                    //_startStopSequence(sequenceInMotion);
+//                                  },
+//                                  child: sequenceInMotion
+//                                      ? Text("Reset")
+//                                      : Text("Start"),
+//                                  color: Colors.red,
+//                                ),
+//                              )
+//                            ],
+//                          ),
+////                          SizedBox(
+////                            width: 250.0,
+////                            child: Center(
+////                              child: sequenceInMotion
+////                                  ? ScaleAnimatedTextKit(
+////
+////                                      text: appData.attentionList,
+////                                      textStyle: TextStyle(
+////                                        fontSize: 25.0,
+////                                      ),
+////                                    )
+////                                  : Text(
+////                                      displayLetter,
+////                                      style: TextStyle(
+////                                        color: Colors.black,
+////                                        fontWeight: FontWeight.w500,
+////                                        fontSize: 25.0,
+////                                      ),
+////                                    ),
+////                            ),
+////                          ),
+////                          RaisedButton(
+////                            onPressed: () {
+////                              setState(() {
+////                                sequenceInMotion = !sequenceInMotion;
+////                              });
+////                              //_startStopSequence(sequenceInMotion);
+////                            },
+////                            child: sequenceInMotion
+////                                ? Text("Pause")
+////                                : Text("Start Sequence"),
+////                            color: Colors.red,
+////                          ),
+//                        ],
+//                      ),
+//                    ),
+//                  ),
+//                ),
+                Container(
+                  width: _width * 0.9,
+                  height: 200.0,
+                  child: Card(
+                      elevation: 10.0,
+                      color: Colors.white,
+                      child: ListView.builder(
+                        itemCount: appData.attentionList.length,
+                        itemBuilder: (BuildContext context, int index) {
+                          return Card(
+                            elevation: 5.0,
+                            color: Colors.blueGrey.shade300,
+                            child: ListTile(
+                              title: Text(
+                                appData.attentionList[index],
+                                style: TextStyle(fontSize: 30.0),
+                              ),
+                              trailing: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  FlatButton(
+                                    onPressed: () {
+                                      if (appData.attentionList[index] == "A" &&
+                                          letterTapButtonColor[index] ==
+                                              Colors.white) {
+                                        if (letterNoTapButtonColor[index] ==
+                                            Colors.red) {
+                                          setState(() {
+                                            wrongTap -= 1;
+                                          });
+                                        }
+                                        setState(() {
+                                          correctTap += 1;
+                                          letterTapButtonColor[index] =
+                                              correctSelectedColor;
+                                          letterNoTapButtonColor[index] =
+                                              Colors.white;
+                                        });
+                                        return;
+                                      }
+                                      if (appData.attentionList[index] != "A" &&
+                                          letterTapButtonColor[index] ==
+                                              Colors.white) {
+                                        if (letterNoTapButtonColor[index] ==
+                                            Colors.green) {
+                                          setState(() {
+                                            correctTap -= 1;
+                                          });
+                                        }
+                                        setState(() {
+                                          wrongTap += 1;
+                                          letterTapButtonColor[index] =
+                                              wrongSelectedColor;
+                                          letterNoTapButtonColor[index] =
+                                              Colors.white;
+                                        });
+                                        return;
+                                      }
+
+                                      if (letterTapButtonColor[index] ==
+                                          Colors.green) {
+                                        setState(() {
+                                          correctTap -= 1;
+                                          letterTapButtonColor[index] =
+                                              Colors.white;
+                                          letterNoTapButtonColor[index] =
+                                              Colors.white;
+                                        });
+                                      }
+                                      if (letterTapButtonColor[index] ==
+                                          Colors.red) {
+                                        setState(() {
+                                          wrongTap -= 1;
+                                          letterTapButtonColor[index] =
+                                              Colors.white;
+                                          letterNoTapButtonColor[index] =
+                                              Colors.white;
+                                        });
+                                      }
+                                    },
+                                    child: Text("Tap"),
+                                    color: letterTapButtonColor[index],
+                                  ),
+                                  FlatButton(
+                                    onPressed: () {
+                                      if (appData.attentionList[index] == "A" &&
+                                          letterNoTapButtonColor[index] ==
+                                              Colors.white) {
+                                        if (letterTapButtonColor[index] ==
+                                            Colors.green) {
+                                          setState(() {
+                                            correctTap -= 1;
+                                          });
+                                        }
+                                        setState(() {
+                                          wrongTap += 1;
+                                          letterNoTapButtonColor[index] =
+                                              wrongSelectedColor;
+                                          letterTapButtonColor[index] =
+                                              Colors.white;
+                                        });
+                                        return;
+                                      }
+                                      if (appData.attentionList[index] != "A" &&
+                                          letterNoTapButtonColor[index] ==
+                                              Colors.white) {
+                                        if (letterTapButtonColor[index] ==
+                                            Colors.red) {
+                                          setState(() {
+                                            wrongTap -= 1;
+                                          });
+                                        }
+                                        setState(() {
+                                          correctTap += 1;
+                                          letterNoTapButtonColor[index] =
+                                              correctSelectedColor;
+                                          letterTapButtonColor[index] =
+                                              Colors.white;
+                                        });
+                                        return;
+                                      }
+
+                                      if (letterNoTapButtonColor[index] ==
+                                          Colors.green) {
+                                        setState(() {
+                                          correctTap -= 1;
+                                          letterNoTapButtonColor[index] =
+                                              Colors.white;
+                                          letterTapButtonColor[index] =
+                                              Colors.white;
+                                        });
+                                      }
+                                      if (letterNoTapButtonColor[index] ==
+                                          Colors.red) {
+                                        setState(() {
+                                          wrongTap -= 1;
+                                          letterNoTapButtonColor[index] =
+                                              Colors.white;
+                                          letterTapButtonColor[index] =
+                                              Colors.white;
+                                        });
+                                      }
+                                    },
+                                    child: Text("No Tap"),
+                                    color: letterNoTapButtonColor[index],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          );
+                        },
+                      )),
+                ),
+                SizedBox(
+                  height: sizeBoxHeight,
+                ),
                 Container(
                   width: _width * 0.9,
                   child: Card(
                     elevation: 10.0,
                     color: Colors.white,
                     child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Column(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
-                          Row(
-                            children: <Widget>[
-                              SizedBox(
-                                width: _width * 0.8 / 2,
-                                height: 50.0,
-                                child: sequenceInMotion
-                                    ? ScaleAnimatedTextKit(
-                                        isRepeatingAnimation: false,
-                                        text: appData.attentionList,
-                                        textStyle: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 40.0,
-                                        ),
-                                        alignment: Alignment.center,
-                                      )
-                                    : Text(
-                                        displayLetter,
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: 40.0,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                              ),
-                              SizedBox(
-                                width: _width * 0.8 / 2,
-                                height: 50.0,
-                                child: FlatButton(
-                                  onPressed: () {
-                                    setState(() {
-                                      sequenceInMotion = !sequenceInMotion;
-                                    });
-                                    //_startStopSequence(sequenceInMotion);
-                                  },
-                                  child: sequenceInMotion
-                                      ? Text("Reset")
-                                      : Text("Start"),
-                                  color: Colors.red,
-                                ),
-                              )
-                            ],
+                          Text(
+                            "Correct: ",
+                            style: TextStyle(
+                                color: Colors.green,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 25.0),
                           ),
-//                          SizedBox(
-//                            width: 250.0,
-//                            child: Center(
-//                              child: sequenceInMotion
-//                                  ? ScaleAnimatedTextKit(
-//
-//                                      text: appData.attentionList,
-//                                      textStyle: TextStyle(
-//                                        fontSize: 25.0,
-//                                      ),
-//                                    )
-//                                  : Text(
-//                                      displayLetter,
-//                                      style: TextStyle(
-//                                        color: Colors.black,
-//                                        fontWeight: FontWeight.w500,
-//                                        fontSize: 25.0,
-//                                      ),
-//                                    ),
-//                            ),
-//                          ),
-//                          RaisedButton(
-//                            onPressed: () {
-//                              setState(() {
-//                                sequenceInMotion = !sequenceInMotion;
-//                              });
-//                              //_startStopSequence(sequenceInMotion);
-//                            },
-//                            child: sequenceInMotion
-//                                ? Text("Pause")
-//                                : Text("Start Sequence"),
-//                            color: Colors.red,
-//                          ),
+                          Text(
+                            "$correctTap",
+                            style: TextStyle(
+                                color: Colors.green,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 25.0),
+                          ),
+                          Text(
+                            "Mistakes: ",
+                            style: TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 25.0),
+                          ),
+                          Text(
+                            "$wrongTap",
+                            style: TextStyle(
+                                color: Colors.red,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 25.0),
+                          ),
                         ],
                       ),
                     ),
@@ -386,6 +609,11 @@ class _AttentionState extends State<Attention> {
       _radioValue = value;
     });
   }
+
+  void _value1ChangedCorrect(bool value) =>
+      setState(() => _value1correct = value);
+
+  void _value1ChangedWrong(bool value) => setState(() => _value1wrong = value);
 
   void _startStopSequence(bool _sequenceInMotion) {
 //    if (_sequenceInMotion) {

@@ -47,14 +47,16 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
         (MediaQuery.of(context).size.height * 0.45).floorToDouble();
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "${appData.testTenWordRecallTrialOne} - ${widget.patientName}",
-          style: TextStyle(
-            fontSize: 15.0,
+        title: ListTile(
+          title: Text(
+            appData.testTenWordRecallTrialOne,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.start,
           ),
-          overflow: TextOverflow.clip,
         ),
-        centerTitle: true,
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.clear),

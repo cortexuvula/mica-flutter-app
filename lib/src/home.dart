@@ -19,16 +19,17 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
       onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
-            title: ListTile(
-          title: Text(
-            appData.appName,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
+          title: ListTile(
+            title: Text(
+              appData.appName,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.center,
             ),
-            textAlign: TextAlign.center,
           ),
-        )),
+        ),
         body: ListView(
           children: <Widget>[
             Container(
@@ -97,7 +98,6 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
                           SizedBox(
                             height: 10.0,
                           ),
-
                           Card(
                             elevation: 10.0,
                             color: Colors.yellowAccent.shade400,
@@ -141,8 +141,6 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
                             },
                             child: Text(appData.fullTestButton),
                           ),
-
-
                         ],
                       ),
                     ),
