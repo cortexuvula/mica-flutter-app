@@ -1,7 +1,7 @@
 const String appName = "Midland Cognitive Assessment";
 const String disclaimer =
     "The Midland Cognitive Assessment App does not provide medical advice and cannot replace good clinical practice. It is intended for health professionals familiar with this type of assessment. You use this App as is and at your own risk. You are strongly encouraged to first read the Full Instructions and Teaching Booklet.";
-const String disclaimer2 = "The midland cognitive assessment app is intended for use by health professionals familiar with this type of cognitive assessment. It does not provide medical advice and cannot replace good clinical practice. It should be used at your own discretion. You are strongly encouraged to first read the full instructions and teaching booklet.";
+const String disclaimer2 = "The Midland Cognitive Assessment app is intended for use by health professionals familiar with this type of cognitive assessment. It does not provide medical advice and cannot replace good clinical practice. It should be used at your own discretion. You are strongly encouraged to first read the full instructions and teaching booklet.";
 const String testDescription = "Task Description:";
 const String testToPatient = "To Patient:";
 const String testResponse = "Response:";
@@ -112,7 +112,7 @@ const String testTenWordRecallTrialOne = "Ten Word Recall Trial 1";
 const String instructionsTenWordRecallTrialOnePaient1 =
     "\"I am going to read you a list of 10 words. Remember these words, as I will ask you what you can remember after I have finished reading the list to you. Please repeat each word after I have said it, so that I can be sure that you heard it correctly. Do you understand? Are you ready? Let's go!\"";
 const String instructionsTenWordRecallTrialOneHealthworker1 =
-    "If the patient does not repeat the word say: \“Please repeat the word.\” Carry on with the rest of the list. Tap on each word correctly recalled.";
+    "If the patient does not repeat the word say: \“Please repeat the word.\” Read the words from left to right. Carry on with the rest of the list. Tap on each word correctly recalled.";
 const String instructionsTenWordRecallTrialOnePatient2 =
     "\“What were those words?\” ";
 const String instructionsTenWordRecallTrialOneHealthworker2 =
@@ -120,7 +120,7 @@ const String instructionsTenWordRecallTrialOneHealthworker2 =
 
 const String testTenWordRecallTrialTwo = "Ten Word Recall Trial 2";
 const String instructionsTenWordRecallTrialTwoHealthworker1 =
-    "Read the words again, asking for repetition after every word.";
+    "Read the words again from left to right, asking for repetition after every word.";
 const String instructionsTenWordRecallTrialTwoPatient1 =
     "\“What were those words?\”";
 const String instructionsTenWordRecallTrialTwoHealthworker2 =

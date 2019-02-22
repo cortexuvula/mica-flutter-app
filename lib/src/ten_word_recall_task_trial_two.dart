@@ -57,7 +57,6 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
             textAlign: TextAlign.start,
           ),
         ),
-
         actions: <Widget>[
           IconButton(
               icon: Icon(Icons.clear),
@@ -229,7 +228,7 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: RaisedButton(
-                    elevation: 10.0,
+                      elevation: 10.0,
                       child: Text(
                         "Continue",
                         overflow: TextOverflow.clip,

@@ -23,15 +23,29 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
             title: Text(
               appData.appName,
               style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-              ),
-              textAlign: TextAlign.center,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 20.0),
+              textAlign: TextAlign.start,
             ),
           ),
+          actions: <Widget>[
+            IconButton(
+                icon: Icon(Icons.info_outline),
+                onPressed: () => debugPrint("info")),
+          ],
         ),
         body: ListView(
           children: <Widget>[
+            SizedBox(
+              height: 25.0,
+            ),
+            Hero(
+              tag: "logo",
+              child: FlutterLogo(
+                size: 50.0,
+              ),
+            ),
             Container(
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
