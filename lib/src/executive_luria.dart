@@ -211,6 +211,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                           "Normal",
                                           style: TextStyle(
                                             color: Colors.black,
+                                            fontSize: 10.0,
                                           ),
                                         ),
                                       ],
@@ -230,6 +231,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                           "Equivocal",
                                           style: TextStyle(
                                             color: Colors.black,
+                                            fontSize: 10.0,
                                           ),
                                         ),
                                       ],
@@ -249,6 +251,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                           "Impaired",
                                           style: TextStyle(
                                             color: Colors.black,
+                                            fontSize: 10.0,
                                           ),
                                         ),
                                       ],
@@ -268,6 +271,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                         appData
                                             .testExecutiveLuriaResponseNormal,
                                         textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),
@@ -279,6 +283,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                         appData
                                             .testExecutiveLuriaResponseEquivocal,
                                         textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),
@@ -290,6 +295,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                         appData
                                             .testExecutiveLuriaResponseImpaired,
                                         textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),

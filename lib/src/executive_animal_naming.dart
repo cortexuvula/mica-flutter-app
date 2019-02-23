@@ -209,6 +209,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> {
                                           "Normal",
                                           style: TextStyle(
                                             color: Colors.black,
+                                            fontSize: 10.0,
                                           ),
                                         ),
                                       ],
@@ -228,6 +229,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> {
                                           "Equivocal",
                                           style: TextStyle(
                                             color: Colors.black,
+                                            fontSize: 10.0,
                                           ),
                                         ),
                                       ],
@@ -247,6 +249,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> {
                                           "Impaired",
                                           style: TextStyle(
                                             color: Colors.black,
+                                            fontSize: 10.0,
                                           ),
                                         ),
                                       ],
@@ -266,6 +269,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> {
                                         appData
                                             .testExecutiveAnimalNamingResponseNormal,
                                         textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),
@@ -277,6 +281,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> {
                                         appData
                                             .testExecutiveAnimalNamingResponseEquivocal,
                                         textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),
@@ -288,6 +293,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> {
                                         appData
                                             .testExecutiveAnimalNamingResponseImpaired,
                                         textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),

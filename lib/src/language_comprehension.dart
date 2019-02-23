@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/home.dart';
 import 'package:mica/src/ten_word_recall_task_trial_one.dart';
+import 'package:auto_size_text/auto_size_text.dart';
 
 class LanguageComprehension extends StatefulWidget {
   String patientName;
@@ -175,7 +176,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+
                                 children: <Widget>[
                                   SizedBox(
                                     width: sizeBoxWidth,
@@ -191,7 +192,9 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                           "Normal",
                                           style: TextStyle(
                                             color: Colors.black,
+                                              fontSize: 10.0
                                           ),
+
                                         ),
                                       ],
                                     ),
@@ -210,7 +213,10 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                           "Equivocal",
                                           style: TextStyle(
                                             color: Colors.black,
+                                            fontSize: 10.0
                                           ),
+
+                                          overflow: TextOverflow.ellipsis,
                                         ),
                                       ],
                                     ),
@@ -229,7 +235,9 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                           "Impaired",
                                           style: TextStyle(
                                             color: Colors.black,
+                                              fontSize: 10.0
                                           ),
+
                                         ),
                                       ],
                                     ),
@@ -248,6 +256,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                         appData
                                             .testLanguageComprehensionResponseNormal,
                                         textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),
@@ -259,6 +268,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                         appData
                                             .testLanguageComprehensionResponseEquivocal,
                                         textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),
@@ -270,6 +280,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                         appData
                                             .testLanguageComprehensionResponseImpaired,
                                         textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),
