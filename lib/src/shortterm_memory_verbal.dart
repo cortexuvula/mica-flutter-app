@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/home.dart';
-import 'package:mica/src/shortterm_memory_verbal.dart';
+import 'package:mica/src/praxis.dart';
 
-class ExecutiveSerial extends StatefulWidget {
-
+class ShortTermMemoryVerbal extends StatefulWidget {
   String patientName;
   String assessorName;
   String handedness;
@@ -16,30 +15,37 @@ class ExecutiveSerial extends StatefulWidget {
   int attention;
   int executiveAnimalNaming;
   int executiveLuria;
+  int executiveSerial;
 
-  ExecutiveSerial(
+  ShortTermMemoryVerbal(
       {Key key,
-        this.patientName,
-        this.assessorName,
-        this.handedness,
-        this.assessmentDate,
-        this.languageComprehensionRadioValue,
-        this.trialOneScore,
-        this.trialTwoScore,
-        this.visuospatialPraxis,
-        this.attention,
-        this.executiveAnimalNaming,
-        this.executiveLuria})
+      this.patientName,
+      this.assessorName,
+      this.handedness,
+      this.assessmentDate,
+      this.languageComprehensionRadioValue,
+      this.trialOneScore,
+      this.trialTwoScore,
+      this.visuospatialPraxis,
+      this.attention,
+      this.executiveAnimalNaming,
+      this.executiveLuria,
+      this.executiveSerial})
       : super(key: key);
 
   @override
-  _ExecutiveSerialState createState() => _ExecutiveSerialState();
+  _ShortTermMemoryVerbalState createState() => _ShortTermMemoryVerbalState();
 }
 
-class _ExecutiveSerialState extends State<ExecutiveSerial> {
+class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
   double sizeBoxHeight = 10.0;
   int _radioValue = 0;
 
+  bool _valueDate = false;
+  bool _valueDay = false;
+  bool _valueMonth = false;
+  bool _valueCity = false;
+  bool _valuePlace = false;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +55,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            appData.testExecutiveSerial,
+            appData.testShortTermMemory,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,
@@ -57,7 +63,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
             textAlign: TextAlign.start,
           ),
           subtitle: Text(
-            appData.testExecutiveSerialSubtitle,
+            appData.testShortTermMemorySubtitle,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w300,
@@ -71,8 +77,8 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
               onPressed: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) => new Home(
-                      viewedDisclaimer: true,
-                    ));
+                          viewedDisclaimer: true,
+                        ));
                 Navigator.of(context).pushAndRemoveUntil(
                     router, (Route<dynamic> route) => false);
               })
@@ -110,7 +116,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                             height: 5.0,
                           ),
                           Text(
-                            appData.testExecutiveSerialDetails,
+                            appData.testShortTermMemoryDetails,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -148,12 +154,104 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                             height: 5.0,
                           ),
                           Text(
-                            appData.testExecutiveSerialToPatient,
+                            appData.testShortTermMemoryToPatient,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15.0),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: sizeBoxHeight,
+                ),
+                Container(
+                  width: _width * 0.9,
+                  child: Card(
+                    elevation: 10.0,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: <Widget>[
+                          Row(
+                            children: <Widget>[
+                              Checkbox(
+                                value: _valueDate,
+                                onChanged: _valueDateChanged,
+                                activeColor: Colors.green,
+                              ),
+                              Text(
+                                "Date",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: <Widget>[
+                              Checkbox(
+                                value: _valueMonth,
+                                onChanged: _valueMonthChanged,
+                                activeColor: Colors.green,
+                              ),
+                              Text(
+                                "Month",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: <Widget>[
+                              Checkbox(
+                                value: _valueDay,
+                                onChanged: _valueDayChanged,
+                                activeColor: Colors.green,
+                              ),
+                              Text(
+                                "Day",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: <Widget>[
+                              Checkbox(
+                                value: _valuePlace,
+                                onChanged: _valuePlaceChanged,
+                                activeColor: Colors.green,
+                              ),
+                              Text(
+                                "Place",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            children: <Widget>[
+                              Checkbox(
+                                value: _valueCity,
+                                onChanged: _valueCityChanged,
+                                activeColor: Colors.green,
+                              ),
+                              Text(
+                                "City",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -186,7 +284,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                             height: 5.0,
                           ),
                           Text(
-                            appData.testExecutiveSerialResponse,
+                            appData.testShortTermMemoryResponse,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -268,7 +366,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                       width: sizeBoxWidth,
                                       child: Text(
                                         appData
-                                            .testExecutiveSerialResponseNormal,
+                                            .testShortTermMemoryResponseNormal,
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -279,7 +377,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                       width: sizeBoxWidth,
                                       child: Text(
                                         appData
-                                            .testExecutiveSerialResponseEquivocal,
+                                            .testShortTermMemoryResponseEquivocal,
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -290,7 +388,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                       width: sizeBoxWidth,
                                       child: Text(
                                         appData
-                                            .testExecutiveSerialResponseImpaired,
+                                            .testShortTermMemoryResponseImpaired,
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -317,23 +415,40 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                       child: RaisedButton(
                         elevation: 10.0,
                         onPressed: () {
+                          int score = 0;
+                          if (_valueDate) {
+                            score += 1;
+                          }
+                          if (_valueDay) {
+                            score += 1;
+                          }
+                          if (_valueMonth) {
+                            score += 1;
+                          }
+                          if (_valueCity) {
+                            score += 1;
+                          }
+                          if (_valuePlace) {
+                            score += 1;
+                          }
                           var router = new MaterialPageRoute(
                               builder: (BuildContext context) =>
-                              new ShortTermMemoryVerbal(
-                                patientName: widget.patientName,
-                                assessorName: widget.assessorName,
-                                handedness: widget.handedness,
-                                assessmentDate: widget.assessmentDate,
-                                languageComprehensionRadioValue: widget
-                                    .languageComprehensionRadioValue,
-                                trialOneScore: widget.trialOneScore,
-                                trialTwoScore: widget.trialTwoScore,
-                                visuospatialPraxis: widget.visuospatialPraxis,
-                                attention: widget.attention,
-                                executiveAnimalNaming: widget.executiveAnimalNaming,
-                                executiveLuria: widget.executiveLuria,
-                                executiveSerial: _radioValue,
-                              ));
+                                  new Praxis(
+                                    patientName: widget.patientName,
+                                    assessorName: widget.assessorName,
+                                    handedness: widget.handedness,
+                                    assessmentDate: widget.assessmentDate,
+                                    languageComprehensionRadioValue: widget
+                                        .languageComprehensionRadioValue,
+                                    trialOneScore: widget.trialOneScore,
+                                    trialTwoScore: widget.trialTwoScore,
+                                    visuospatialPraxis: widget.visuospatialPraxis,
+                                    attention: widget.attention,
+                                    executiveAnimalNaming: widget.executiveAnimalNaming,
+                                    executiveLuria: widget.executiveLuria,
+                                    executiveSerial: widget.executiveSerial,
+                                    shorttermMemoryVerbal: score,
+                                  ));
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => false);
                         },
@@ -355,4 +470,14 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
       _radioValue = value;
     });
   }
+
+  void _valueDateChanged(bool value) => setState(() => _valueDate = value);
+
+  void _valueDayChanged(bool value) => setState(() => _valueDay = value);
+
+  void _valueMonthChanged(bool value) => setState(() => _valueMonth = value);
+
+  void _valueCityChanged(bool value) => setState(() => _valueCity = value);
+
+  void _valuePlaceChanged(bool value) => setState(() => _valuePlace = value);
 }
