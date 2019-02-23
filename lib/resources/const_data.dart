@@ -175,3 +175,21 @@ const String testExecutiveSerialResponse = "Allow the person to complete the tas
 const String testExecutiveSerialResponseNormal = "No errors";
 const String testExecutiveSerialResponseEquivocal = "1 error";
 const String testExecutiveSerialResponseImpaired = "> 1 error";
+
+const String testShortTermMemory = "Short-Term Memory";
+const String testShortTermMemorySubtitle = "Verbal";
+const String testShortTermMemoryDetails = "";
+const String testShortTermMemoryToPatient = "";
+const String testShortTermMemoryResponse = "Date can be +/- one day, the rest must be exact.";
+const String testShortTermMemoryResponseNormal = "5 correct";
+const String testShortTermMemoryResponseEquivocal = "4 correct";
+const String testShortTermMemoryResponseImpaired = "< 4 correct";
+
+const String testPraxis = "Praxis";
+const String testPraxisSubtitle = "";
+const String testPraxisDetails = "Test both hands.";
+const String testPraxisToPatient = "\“Take this pen and rotate it with your fingers as fast as you can.\”";
+const String testPraxisResponse = "";
+const String testPraxisResponseNormal = "no errors";
+const String testPraxisResponseEquivocal = "some difficulty";
+const String testPraxisyResponseImpaired = "clear difficulty";

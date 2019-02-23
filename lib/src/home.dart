@@ -25,7 +25,7 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w500,
-                  fontSize: 20.0),
+                  fontSize: 15.0),
               textAlign: TextAlign.start,
             ),
           ),
