@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/home.dart';
+import 'package:mica/src/ten_word_delay_recall.dart';
 
 class Praxis extends StatefulWidget {
   String patientName;
@@ -414,7 +415,7 @@ class _PraxisState extends State<Praxis> {
                         onPressed: () {
                           var router = new MaterialPageRoute(
                               builder: (BuildContext context) =>
-                              new Praxis(
+                              new TenWordDelayedRecall(
                                 patientName: widget.patientName,
                                 assessorName: widget.assessorName,
                                 handedness: widget.handedness,
@@ -428,6 +429,7 @@ class _PraxisState extends State<Praxis> {
                                 executiveAnimalNaming: widget.executiveAnimalNaming,
                                 executiveLuria: widget.executiveLuria,
                                 executiveSerial: widget.executiveSerial,
+                                praxis: _radioValue,
                               ));
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => false);
