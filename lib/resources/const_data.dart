@@ -193,3 +193,7 @@ const String testPraxisResponse = "";
 const String testPraxisResponseNormal = "no errors";
 const String testPraxisResponseEquivocal = "some difficulty";
 const String testPraxisyResponseImpaired = "clear difficulty";
+
+const String testTenWordDelayedRecall = "Ten Word Recall Trial 3";
+const String instructionDelayedRecallPatient1 = "To Patient: \“What were the words I asked you to remember?\”";
+const String instructionDelayedRecallHealthworker1 ="Healthworker: Tap on each word correctly recalled:";
