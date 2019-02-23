@@ -370,6 +370,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                           .testVisuospatialPraxisResponseNormal,
                                       style: TextStyle(
                                         color: Colors.black,
+                                        fontSize: 10.0,
                                       ),
                                     ),
                                     Text(
@@ -377,6 +378,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                           .testVisuospatialPraxisResponseEquivocal,
                                       style: TextStyle(
                                         color: Colors.black,
+                                        fontSize: 10.0,
                                       ),
                                     ),
                                   ],
@@ -390,6 +392,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                           .testVisuospatialPraxisResponseImpaired,
                                       style: TextStyle(
                                         color: Colors.black,
+                                        fontSize: 10.0,
                                       ),
                                     ),
                                     Text(
@@ -397,6 +400,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                           .testVisuospatialPraxisResponseFubar,
                                       style: TextStyle(
                                         color: Colors.black,
+                                        fontSize: 10.0,
                                       ),
                                     ),
                                   ],

@@ -213,6 +213,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                           "Normal",
                                           style: TextStyle(
                                             color: Colors.black,
+                                            fontSize: 10.0,
                                           ),
                                         ),
                                       ],
@@ -232,6 +233,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                           "Equivocal",
                                           style: TextStyle(
                                             color: Colors.black,
+                                            fontSize: 10.0,
                                           ),
                                         ),
                                       ],
@@ -251,6 +253,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                           "Impaired",
                                           style: TextStyle(
                                             color: Colors.black,
+                                            fontSize: 10.0,
                                           ),
                                         ),
                                       ],
@@ -270,6 +273,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                         appData
                                             .testExecutiveSerialResponseNormal,
                                         textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),
@@ -281,6 +285,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                         appData
                                             .testExecutiveSerialResponseEquivocal,
                                         textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),
@@ -292,6 +297,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                         appData
                                             .testExecutiveSerialResponseImpaired,
                                         textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),

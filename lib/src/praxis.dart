@@ -309,6 +309,7 @@ class _PraxisState extends State<Praxis> {
                                           "Normal",
                                           style: TextStyle(
                                             color: Colors.black,
+                                            fontSize: 10.0,
                                           ),
                                         ),
                                       ],
@@ -328,6 +329,7 @@ class _PraxisState extends State<Praxis> {
                                           "Equivocal",
                                           style: TextStyle(
                                             color: Colors.black,
+                                            fontSize: 10.0,
                                           ),
                                         ),
                                       ],
@@ -347,6 +349,7 @@ class _PraxisState extends State<Praxis> {
                                           "Impaired",
                                           style: TextStyle(
                                             color: Colors.black,
+                                            fontSize: 10.0,
                                           ),
                                         ),
                                       ],
@@ -366,6 +369,7 @@ class _PraxisState extends State<Praxis> {
                                         appData
                                             .testPraxisResponseNormal,
                                         textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),
@@ -377,6 +381,7 @@ class _PraxisState extends State<Praxis> {
                                         appData
                                             .testPraxisResponseEquivocal,
                                         textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),
@@ -388,6 +393,7 @@ class _PraxisState extends State<Praxis> {
                                         appData
                                             .testPraxisyResponseImpaired,
                                         textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),

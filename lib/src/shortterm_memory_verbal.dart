@@ -311,6 +311,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                           "Normal",
                                           style: TextStyle(
                                             color: Colors.black,
+                                            fontSize: 10.0,
                                           ),
                                         ),
                                       ],
@@ -330,6 +331,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                           "Equivocal",
                                           style: TextStyle(
                                             color: Colors.black,
+                                            fontSize: 10.0,
                                           ),
                                         ),
                                       ],
@@ -349,6 +351,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                           "Impaired",
                                           style: TextStyle(
                                             color: Colors.black,
+                                              fontSize: 10.0,
                                           ),
                                         ),
                                       ],
@@ -368,6 +371,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                         appData
                                             .testShortTermMemoryResponseNormal,
                                         textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),
@@ -379,6 +383,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                         appData
                                             .testShortTermMemoryResponseEquivocal,
                                         textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),
@@ -390,6 +395,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                         appData
                                             .testShortTermMemoryResponseImpaired,
                                         textAlign: TextAlign.center,
+                                        style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
                                   ),

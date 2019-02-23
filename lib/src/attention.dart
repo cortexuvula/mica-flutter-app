@@ -494,6 +494,7 @@ class _AttentionState extends State<Attention> {
                                 fontSize: 15.0),
                           ),
                           Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Radio(
                                 value: 0,
@@ -505,6 +506,7 @@ class _AttentionState extends State<Attention> {
                                 "Normal",
                                 style: TextStyle(
                                   color: Colors.black,
+                                  fontSize: 10.0,
                                 ),
                               ),
                               Radio(
@@ -515,8 +517,10 @@ class _AttentionState extends State<Attention> {
                               ),
                               Text(
                                 "Equivocal",
+
                                 style: TextStyle(
                                   color: Colors.black,
+                                  fontSize: 10.0,
                                 ),
                               ),
                               Radio(
@@ -529,6 +533,7 @@ class _AttentionState extends State<Attention> {
                                 "Impaired",
                                 style: TextStyle(
                                   color: Colors.black,
+                                  fontSize: 10.0,
                                 ),
                               ),
                             ],
@@ -537,18 +542,21 @@ class _AttentionState extends State<Attention> {
                             appData.testAttentionResponseNormal,
                             style: TextStyle(
                               color: Colors.black,
+                              fontSize: 10.0,
                             ),
                           ),
                           Text(
                             appData.testAttentionResponseEquivocal,
                             style: TextStyle(
                               color: Colors.black,
+                              fontSize: 10.0,
                             ),
                           ),
                           Text(
                             appData.testAttentionResponseImpaired,
                             style: TextStyle(
                               color: Colors.black,
+                              fontSize: 10.0,
                             ),
                           ),
                         ],
