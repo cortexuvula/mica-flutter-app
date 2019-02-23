@@ -17,17 +17,17 @@ class _LoadingScreenState extends State<LoadingScreen>
   Widget build(BuildContext context) {
     return Scaffold(
         body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Hero(
-                tag: "logo",
-                child: FlutterLogo(
-                  size: 200.0,
-                ),
-              )
-            ],
-          ),
+//          child: Column(
+//            mainAxisAlignment: MainAxisAlignment.center,
+//            children: <Widget>[
+//              Hero(
+//                tag: "logo",
+//                child: FlutterLogo(
+//                  size: 200.0,
+//                ),
+//              )
+//            ],
+//          ),
         ),
         backgroundColor: Theme.of(context).backgroundColor);
   }
