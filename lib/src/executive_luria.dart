@@ -1,31 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/src/executive_serial.dart';
 import 'package:mica/src/home.dart';
-import 'package:mica/src/ten_word_recall_task_trial_one.dart';
 
-class LanguageComprehension extends StatefulWidget {
+class ExecutiveLuria extends StatefulWidget {
+
   String patientName;
   String assessorName;
   String handedness;
   DateTime assessmentDate;
+  int languageComprehensionRadioValue;
+  int trialOneScore;
+  int trialTwoScore;
+  int visuospatialPraxis;
+  int attention;
+  int executiveAnimalNaming;
 
-  LanguageComprehension(
+  ExecutiveLuria(
       {Key key,
-      this.patientName,
-      this.assessorName,
-      this.handedness,
-      this.assessmentDate})
+        this.patientName,
+        this.assessorName,
+        this.handedness,
+        this.assessmentDate,
+        this.languageComprehensionRadioValue,
+        this.trialOneScore,
+        this.trialTwoScore,
+        this.visuospatialPraxis,
+        this.attention,
+        this.executiveAnimalNaming})
       : super(key: key);
 
   @override
-  _LanguageComprehensionState createState() => _LanguageComprehensionState();
+  _ExecutiveLuriaState createState() => _ExecutiveLuriaState();
 }
 
-class _LanguageComprehensionState extends State<LanguageComprehension> {
-  var format = DateFormat.yMMMMd();
-  int _radioValue = 0;
+class _ExecutiveLuriaState extends State<ExecutiveLuria> {
   double sizeBoxHeight = 10.0;
+  int _radioValue = 0;
+
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +47,18 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            appData.testLanguageComprehension,
+            appData.testExecutiveLuria,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.start,
+          ),
+          subtitle: Text(
+            appData.testExecutiveLuriaSubtitle,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w300,
             ),
             textAlign: TextAlign.start,
           ),
@@ -49,8 +69,8 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
               onPressed: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) => new Home(
-                          viewedDisclaimer: true,
-                        ));
+                      viewedDisclaimer: true,
+                    ));
                 Navigator.of(context).pushAndRemoveUntil(
                     router, (Route<dynamic> route) => false);
               })
@@ -88,7 +108,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                             height: 5.0,
                           ),
                           Text(
-                            appData.testLanguageComprehensionDetails,
+                            appData.testExecutiveLuriaDetails,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -126,7 +146,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                             height: 5.0,
                           ),
                           Text(
-                            appData.testLanguageComprehensionToPatient,
+                            appData.testExecutiveLuriaToPatient,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -164,7 +184,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                             height: 5.0,
                           ),
                           Text(
-                            appData.testLanguageComprehensionResponse,
+                            appData.testExecutiveLuriaResponse,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -246,7 +266,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                       width: sizeBoxWidth,
                                       child: Text(
                                         appData
-                                            .testLanguageComprehensionResponseNormal,
+                                            .testExecutiveLuriaResponseNormal,
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -257,7 +277,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                       width: sizeBoxWidth,
                                       child: Text(
                                         appData
-                                            .testLanguageComprehensionResponseEquivocal,
+                                            .testExecutiveLuriaResponseEquivocal,
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -268,7 +288,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                       width: sizeBoxWidth,
                                       child: Text(
                                         appData
-                                            .testLanguageComprehensionResponseImpaired,
+                                            .testExecutiveLuriaResponseImpaired,
                                         textAlign: TextAlign.center,
                                       ),
                                     ),
@@ -297,14 +317,20 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                         onPressed: () {
                           var router = new MaterialPageRoute(
                               builder: (BuildContext context) =>
-                                  new TenWordRecallTrialOne(
-                                    patientName: widget.patientName,
-                                    assessorName: widget.assessorName,
-                                    handedness: widget.handedness,
-                                    assessmentDate: widget.assessmentDate,
-                                    languageComprehensionRadioValue:
-                                        _radioValue,
-                                  ));
+                              new ExecutiveSerial(
+                                patientName: widget.patientName,
+                                assessorName: widget.assessorName,
+                                handedness: widget.handedness,
+                                assessmentDate: widget.assessmentDate,
+                                languageComprehensionRadioValue: widget
+                                    .languageComprehensionRadioValue,
+                                trialOneScore: widget.trialOneScore,
+                                trialTwoScore: widget.trialTwoScore,
+                                visuospatialPraxis: widget.visuospatialPraxis,
+                                attention: widget.attention,
+                                executiveAnimalNaming: widget.executiveAnimalNaming,
+                                executiveLuria: _radioValue,
+                              ));
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => false);
                         },

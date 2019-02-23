@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/src/executive_animal_naming.dart';
 import 'package:mica/src/home.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
@@ -52,27 +53,9 @@ class _AttentionState extends State<Attention> {
   var correctSelectedColor = Colors.green;
   var wrongSelectedColor = Colors.red;
 
-//  @override
-//  void initState() {
-//    super.initState();
-//    for (var i = 0; i < appData.attentionList.length; i++) {
-//      letterTapButtonColor.add(Colors.white);
-//    }
-//    for (var i = 0; i < appData.attentionList.length; i++) {
-//      letterNoTapButtonColor.add(Colors.white);
-//    }
-//  }
-
-//  @override
-//  void dispose() {
-//    timer?.cancel();
-//    super.dispose();
-//  }
-
   @override
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
-
     return Scaffold(
       appBar: AppBar(
         title: ListTile(
@@ -197,7 +180,6 @@ class _AttentionState extends State<Attention> {
                           childAspectRatio: 1.2,
                           crossAxisSpacing: 5.0,
                           mainAxisSpacing: 5.0,
-
                           children: List.generate(appData.attentionList.length,
                               (index) {
                             tapCorrect.add(false);
@@ -207,36 +189,22 @@ class _AttentionState extends State<Attention> {
                               children: <Widget>[
                                 FlatButton(
                                   onPressed: () {
-//                                    if (tapWrong[index]) {
-//                                      setState(() {
-//                                        tapWrong[index] = false;
-//                                        wrongTap -= 1;
-//                                        letterTapButtonColor[index] = Colors.cyan.shade200;
-//                                      });
-//                                      return;
-//                                    }
-//                                    if (tapCorrect[index]) {
-//                                      setState(() {
-//                                        tapCorrect[index] = false;
-//                                        correctTap -= 1;
-//                                        letterTapButtonColor[index] = Colors.cyan.shade200;
-//                                      });
-//                                      return;
-//                                    }
                                     if (!tapWrong[index] &&
                                         !tapCorrect[index]) {
                                       if (appData.attentionList[index] == "A") {
                                         setState(() {
                                           tapCorrect[index] = true;
                                           correctTap += 1;
-                                          letterTapButtonColor[index] = Colors.green;
+                                          letterTapButtonColor[index] =
+                                              Colors.green;
                                         });
                                       }
                                       if (appData.attentionList[index] != "A") {
                                         setState(() {
                                           tapWrong[index] = true;
                                           wrongTap += 1;
-                                          letterTapButtonColor[index] = Colors.red;
+                                          letterTapButtonColor[index] =
+                                              Colors.red;
                                         });
                                       }
                                     }
@@ -248,7 +216,6 @@ class _AttentionState extends State<Attention> {
                                 Center(
                                   child: Container(
                                     child: GestureDetector(
-
                                       child: tapCorrect[index]
                                           ? Container(
                                               child: Icon(
@@ -262,7 +229,8 @@ class _AttentionState extends State<Attention> {
                                         setState(() {
                                           tapCorrect[index] = false;
                                           correctTap -= 1;
-                                          letterTapButtonColor[index] = Colors.cyan.shade200;
+                                          letterTapButtonColor[index] =
+                                              Colors.cyan.shade200;
                                         });
                                       },
                                     ),
@@ -271,7 +239,6 @@ class _AttentionState extends State<Attention> {
                                 Center(
                                   child: Container(
                                     child: GestureDetector(
-
                                       child: tapWrong[index]
                                           ? Container(
                                               child: Icon(
@@ -284,11 +251,11 @@ class _AttentionState extends State<Attention> {
                                         setState(() {
                                           tapWrong[index] = false;
                                           wrongTap -= 1;
-                                          letterTapButtonColor[index] = Colors.cyan.shade200;
+                                          letterTapButtonColor[index] =
+                                              Colors.cyan.shade200;
                                         });
                                       },
                                     ),
-
                                   ),
                                 )
                               ],
@@ -602,13 +569,22 @@ class _AttentionState extends State<Attention> {
                       child: RaisedButton(
                         elevation: 10.0,
                         onPressed: () {
-//                          var router = new MaterialPageRoute(
-//                              builder: (BuildContext context) =>
-//                              new TenWordRecallTrialOne(
-//
-//                              ));
-//                          Navigator.of(context).pushAndRemoveUntil(
-//                              router, (Route<dynamic> route) => false);
+                          var router = new MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  new ExecutiveAnimalNaming(
+                                    patientName: widget.patientName,
+                                    assessorName: widget.assessorName,
+                                    handedness: widget.handedness,
+                                    assessmentDate: widget.assessmentDate,
+                                    languageComprehensionRadioValue: widget
+                                        .languageComprehensionRadioValue,
+                                    trialOneScore: widget.trialOneScore,
+                                    trialTwoScore: widget.trialTwoScore,
+                                    visuospatialPraxis: widget.visuospatialPraxis,
+                                    attention: _radioValue,
+                                  ));
+                          Navigator.of(context).pushAndRemoveUntil(
+                              router, (Route<dynamic> route) => false);
                         },
                         child: Text("Continue with Testing"),
                       ),
@@ -627,35 +603,5 @@ class _AttentionState extends State<Attention> {
     setState(() {
       _radioValue = value;
     });
-  }
-
-//  void _value1ChangedCorrect(bool value) =>
-//      setState(() => _value1correct = value);
-//
-//  void _value1ChangedWrong(bool value) => setState(() => _value1wrong = value);
-
-  void _startStopSequence(bool _sequenceInMotion) {
-//    if (_sequenceInMotion) {
-//      timer = Timer.periodic(Duration(seconds: 1), (Timer t) {
-//        //print("Letters are running $i");
-//        if (i < 26) {
-//          setState(() {
-//            displayLetter = appData.attentionList[i];
-//          });
-//          i += 1;
-//        } else {
-//          //print("Letters are stopped");
-//          timer?.cancel();
-//          setState(() {
-//            sequenceInMotion = false;
-//            displayLetter = "Test completed";
-//            i = 0;
-//          });
-//        }
-//      });
-//    } else if (!_sequenceInMotion) {
-//      //print("Letters are stopped");
-//      timer?.cancel();
-//    }
   }
 }

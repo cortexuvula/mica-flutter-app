@@ -1,7 +1,8 @@
 const String appName = "Midland Cognitive Assessment";
 const String disclaimer =
     "The Midland Cognitive Assessment App does not provide medical advice and cannot replace good clinical practice. It is intended for health professionals familiar with this type of assessment. You use this App as is and at your own risk. You are strongly encouraged to first read the Full Instructions and Teaching Booklet.";
-const String disclaimer2 = "The Midland Cognitive Assessment app is intended for use by health professionals familiar with this type of cognitive assessment. It does not provide medical advice and cannot replace good clinical practice. It should be used at your own discretion. You are strongly encouraged to first read the full instructions and teaching booklet.";
+const String disclaimer2 =
+    "The Midland Cognitive Assessment app is intended for use by health professionals familiar with this type of cognitive assessment. It does not provide medical advice and cannot replace good clinical practice. It should be used at your own discretion. You are strongly encouraged to first read the full instructions and teaching booklet.";
 const String testDescription = "Task Description:";
 const String testToPatient = "To Patient:";
 const String testResponse = "Response:";
@@ -23,11 +24,10 @@ const String testLanguageComprehensionToPatient =
 const String testLanguageComprehensionResponse =
     "Note the response of the patient and score as below.";
 const String testLanguageComprehensionResponseNormal =
-    "Normal - 3 stages complete without an error";
-const String testLanguageComprehensionResponseEquivocal =
-    "Equivocal - Some difficulty";
+    "3 stages complete without an error";
+const String testLanguageComprehensionResponseEquivocal = "Some difficulty";
 const String testLanguageComprehensionResponseImpaired =
-    "Impaired - 1 or more clear errors";
+    "1 or more clear errors";
 
 const List<String> attentionList = [
   "A",
@@ -56,7 +56,6 @@ const List<String> attentionList = [
   "A",
   "L",
   "R",
-
 ];
 
 const List<String> tenWordRecallList = [
@@ -143,11 +142,36 @@ const String testVisuospatialPraxisResponseFubar = "0 Point = No drawing";
 
 const String testAttention = "Attention";
 const String testAttentionDetails = "";
-const String testAttentionToPatient = "\"I am going to read you a long series of letters. Whenever you hear the letter A, tap your hand like this.\” Indicate tapping movement. For all other letters, do not tap. ";
+const String testAttentionToPatient =
+    "\"I am going to read you a long series of letters. Whenever you hear the letter A, tap your hand like this.\” Indicate tapping movement. For all other letters, do not tap. ";
 const String testAttentionResponse = "A mistake is an omission or inclusion.";
-const String testAttentionResponseNormal =
-    "Normal = no mistakes.";
-const String testAttentionResponseEquivocal =
-    "Equivocal = 1 mistake.";
-const String testAttentionResponseImpaired =
-    "Impaired = > 1 mistake.";
+const String testAttentionResponseNormal = "Normal = no mistakes.";
+const String testAttentionResponseEquivocal = "Equivocal = 1 mistake.";
+const String testAttentionResponseImpaired = "Impaired = > 1 mistake.";
+
+const String testExecutiveAnimalNaming = "Executive";
+const String testExecutiveAnimalNamingSubtitle = "Animal Naming Task";
+const String testExecutiveAnimalNamingDetails = "";
+const String testExecutiveAnimalNamingToPatient = "\“I am going to give you one minute to name as many animals as possible.\”";
+const String testExecutiveAnimalNamingResponse = "The patient can name mammals, birds, reptiles or fish. Repetitions are not scored.";
+const String testExecutiveAnimalNamingResponseNormal = "> 14 Names";
+const String testExecutiveAnimalNamingResponseEquivocal = "12 - 14 Names";
+const String testExecutiveAnimalNamingResponseImpaired = "< 12 Names";
+
+const String testExecutiveLuria = "Executive";
+const String testExecutiveLuriaSubtitle = "Luria Alternating Hand Movements";
+const String testExecutiveLuriaDetails = "";
+const String testExecutiveLuriaToPatient = "\"Place both hands on the table like I do. Watch me carefully because I want you to do the same as I am doing. Can you see that I am making a fist with one hand? Now I swap it around. Can you do that as fast as you can?\”";
+const String testExecutiveLuriaResponse = "";
+const String testExecutiveLuriaResponseNormal = "3 cycles without any mistakes";
+const String testExecutiveLuriaResponseEquivocal = "1-2 cycles";
+const String testExecutiveLuriaResponseImpaired = "Not being able to complete the task.";
+
+const String testExecutiveSerial = "Executive";
+const String testExecutiveSerialSubtitle = "Serial Order Reversal Task";
+const String testExecutiveSerialDetails = "";
+const String testExecutiveSerialToPatient = "\”Say the months of the year starting with January. Now start with December and go backwards.\”";
+const String testExecutiveSerialResponse = "Allow the person to complete the task until December. Stop the person when he reaches July or makes 2 or more mistakes: December November October September August July.";
+const String testExecutiveSerialResponseNormal = "No errors";
+const String testExecutiveSerialResponseEquivocal = "1 error";
+const String testExecutiveSerialResponseImpaired = "> 1 error";

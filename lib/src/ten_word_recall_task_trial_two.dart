@@ -78,6 +78,7 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
               padding: EdgeInsets.fromLTRB(32.0, 8.0, 32.0, 8.0),
               children: <Widget>[
                 Card(
+                  elevation: 10.0,
                   color: Colors.white,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
