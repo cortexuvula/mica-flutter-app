@@ -197,3 +197,10 @@ const String testPraxisyResponseImpaired = "clear difficulty";
 const String testTenWordDelayedRecall = "Ten Word Recall Trial 3";
 const String instructionDelayedRecallPatient1 = "To Patient: \“What were the words I asked you to remember?\”";
 const String instructionDelayedRecallHealthworker1 ="Healthworker: Tap on each word correctly recalled:";
+
+const String testTenWordRecognition = "Ten Word Recognition";
+const String instructionsWordRecognitionHealthworker1 = "Healthworker: Scroll down to see all the words.";
+const String instructionsWordRecognitionPatient1 = "To Patient: \"I am now going to read a list of words. Some of the words are from the list that I asked you to remember and some of the words are new. Say yes if you recognise the word and no if it was not in the list I asked you to memorise. If you don’t know the answer just guess.\"";
+const String instructionsWordRecognitionHealthworker2 = "Healthworker: The instructions may be repeated if it is forgotten.To select correct responses, tap on Yes or No for each word. (Words from the memory list is in";
+const String instructionsWordRecognitionHealthworker3 = " BOLD";
+const String instructionsWordRecognitionHealthworker4 = ".)";

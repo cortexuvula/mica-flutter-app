@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/home.dart';
+import 'package:mica/src/ten_word_recognition.dart';
 
 class TenWordDelayedRecall extends StatefulWidget {
   String patientName;
@@ -213,8 +214,23 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
                       onPressed: () {
                         var router = new MaterialPageRoute(
                             builder: (BuildContext context) =>
-                            new TenWordDelayedRecall(
-
+                            new TenWordRecognition(
+                              patientName: widget.patientName,
+                              assessorName: widget.assessorName,
+                              handedness: widget.handedness,
+                              assessmentDate: widget.assessmentDate,
+                              languageComprehensionRadioValue: widget
+                                  .languageComprehensionRadioValue,
+                              trialOneScore: widget.trialOneScore,
+                              trialTwoScore: widget.trialTwoScore,
+                              visuospatialPraxis: widget.visuospatialPraxis,
+                              attention: widget.attention,
+                              executiveAnimalNaming: widget.executiveAnimalNaming,
+                              executiveLuria: widget.executiveLuria,
+                              executiveSerial: widget.executiveSerial,
+                              praxis: widget.praxis,
+                              shorttermMemoryVerbal: widget.shorttermMemoryVerbal,
+                              tenWordDelay: scoreTenWordDelayRecall,
                             ));
                         Navigator.of(context).pushAndRemoveUntil(
                             router, (Route<dynamic> route) => false);
