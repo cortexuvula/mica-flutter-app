@@ -1,31 +1,61 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/home.dart';
-import 'package:mica/src/ten_word_recall_task_trial_one.dart';
+import 'package:mica/src/ten_word_delay_recall.dart';
+import 'package:snaplist/snaplist.dart';
 
-class LanguageComprehension extends StatefulWidget {
+class AnomiaAgnosia extends StatefulWidget {
   String patientName;
   String assessorName;
   String handedness;
   DateTime assessmentDate;
+  int languageComprehensionRadioValue;
+  int trialOneScore;
+  int trialTwoScore;
+  int visuospatialPraxis;
+  int attention;
+  int executiveAnimalNaming;
+  int executiveLuria;
+  int executiveSerial;
+  int shorttermMemoryVerbal;
+  int praxis;
+  int tenWordDelay;
+  int scoreVerbalRecognitionMemoryTenWords;
+  int scoreVerbalRecognitionMemoryTenWordsInList;
+  int scoreVerbalRecognitionMemoryTenWordsNotInList;
+  int shorttermMemoryVisual;
 
-  LanguageComprehension(
+  AnomiaAgnosia(
       {Key key,
       this.patientName,
       this.assessorName,
       this.handedness,
-      this.assessmentDate})
+      this.assessmentDate,
+      this.languageComprehensionRadioValue,
+      this.trialOneScore,
+      this.trialTwoScore,
+      this.visuospatialPraxis,
+      this.attention,
+      this.executiveAnimalNaming,
+      this.executiveLuria,
+      this.executiveSerial,
+      this.shorttermMemoryVerbal,
+      this.praxis,
+      this.tenWordDelay,
+      this.scoreVerbalRecognitionMemoryTenWords,
+      this.scoreVerbalRecognitionMemoryTenWordsInList,
+      this.scoreVerbalRecognitionMemoryTenWordsNotInList,
+      this.shorttermMemoryVisual})
       : super(key: key);
 
   @override
-  _LanguageComprehensionState createState() => _LanguageComprehensionState();
+  _AnomiaAgnosiaState createState() => _AnomiaAgnosiaState();
 }
 
-class _LanguageComprehensionState extends State<LanguageComprehension> {
-  var format = DateFormat.yMMMMd();
-  int _radioValue = 0;
+class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
   double sizeBoxHeight = 10.0;
+
+  int _radioValue = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +65,18 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            appData.testLanguageComprehension,
+            appData.testAnomiaAgnosia,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.start,
+          ),
+          subtitle: Text(
+            appData.testAnomiaAgnosiaSubtitle,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w300,
             ),
             textAlign: TextAlign.start,
           ),
@@ -88,7 +126,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                             height: 5.0,
                           ),
                           Text(
-                            appData.testLanguageComprehensionDetails,
+                            appData.testAnomiaAgnosiaDetails,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -126,7 +164,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                             height: 5.0,
                           ),
                           Text(
-                            appData.testLanguageComprehensionToPatient,
+                            appData.testAnomiaAgnosiaToPatient,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -134,6 +172,66 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                 fontSize: 15.0),
                           ),
                         ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: sizeBoxHeight,
+                ),
+                Container(
+                  width: 200.0,
+                  child: Card(
+                    elevation: 10.0,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        width: 200.0,
+                        height: 150.0,
+                        child: ListView(
+                          scrollDirection: Axis.horizontal,
+                          children: <Widget>[
+                            GestureDetector(
+                              child: SizedBox(
+                                width: 150.0,
+                                child: Image.asset(
+                                  "./images/dice.png",
+                                  fit: BoxFit.fitWidth,
+                                ),
+                              ),
+                              onTap: () => debugPrint("tapped"),
+                            ),
+                            GestureDetector(
+                              child: Image.asset(
+                                "./images/glass.png",
+                                fit: BoxFit.fitWidth,
+                              ),
+                              onTap: () => debugPrint("tapped"),
+                            ),
+                            GestureDetector(
+                              child: Image.asset(
+                                "./images/guitar.png",
+                                fit: BoxFit.fitWidth,
+                              ),
+                              onTap: () => debugPrint("tapped"),
+                            ),
+                            GestureDetector(
+                              child: Image.asset(
+                                "./images/scale.png",
+                                fit: BoxFit.fitWidth,
+                              ),
+                              onTap: () => debugPrint("tapped"),
+                            ),
+                            GestureDetector(
+                              child: Image.asset(
+                                "./images/stapler.png",
+                                fit: BoxFit.fitWidth,
+                              ),
+                              onTap: () => debugPrint("tapped"),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -164,7 +262,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                             height: 5.0,
                           ),
                           Text(
-                            appData.testLanguageComprehensionResponse,
+                            appData.testAnomiaAgnosiaResponse,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -190,7 +288,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                         Text(
                                           "Normal",
                                           style: TextStyle(
-                                            color: Colors.black,
+                                              color: Colors.black,
                                               fontSize: 10.0
                                           ),
 
@@ -211,8 +309,8 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                         Text(
                                           "Equivocal",
                                           style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 10.0
+                                              color: Colors.black,
+                                              fontSize: 10.0
                                           ),
 
                                           overflow: TextOverflow.ellipsis,
@@ -233,7 +331,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                         Text(
                                           "Impaired",
                                           style: TextStyle(
-                                            color: Colors.black,
+                                              color: Colors.black,
                                               fontSize: 10.0
                                           ),
 
@@ -253,7 +351,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                       width: sizeBoxWidth,
                                       child: Text(
                                         appData
-                                            .testLanguageComprehensionResponseNormal,
+                                            .testAnomiaAgnosiaResponseNormal,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(fontSize: 10.0),
                                       ),
@@ -265,7 +363,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                       width: sizeBoxWidth,
                                       child: Text(
                                         appData
-                                            .testLanguageComprehensionResponseEquivocal,
+                                            .testAnomiaAgnosiaResponseEquivocal,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(fontSize: 10.0),
                                       ),
@@ -277,7 +375,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                       width: sizeBoxWidth,
                                       child: Text(
                                         appData
-                                            .testLanguageComprehensionResponseImpaired,
+                                            .testAnomiaAgnosiaResponseImpaired,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(fontSize: 10.0),
                                       ),
@@ -287,6 +385,44 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                               )
                             ],
                           ),
+//                          Column(
+//                            crossAxisAlignment: CrossAxisAlignment.center,
+//                            children: <Widget>[
+//                              Row(
+//                                mainAxisAlignment:
+//                                    MainAxisAlignment.spaceEvenly,
+//                                children: <Widget>[
+//                                  Text(
+//                                    appData.testAttentionResponseNormal,
+//                                    style: TextStyle(
+//                                      color: Colors.black,
+//                                      fontSize: 10.0,
+//                                    ),
+//                                  ),
+//                                  Text(
+//                                    appData.testAnomiaAgnosiaResponseEquivocal,
+//                                    style: TextStyle(
+//                                      color: Colors.black,
+//                                      fontSize: 10.0,
+//                                    ),
+//                                  ),
+//                                ],
+//                              ),
+//                              Row(
+//                                mainAxisAlignment:
+//                                    MainAxisAlignment.spaceEvenly,
+//                                children: <Widget>[
+//                                  Text(
+//                                    appData.testAnomiaAgnosiaResponseImpaired,
+//                                    style: TextStyle(
+//                                      color: Colors.black,
+//                                      fontSize: 10.0,
+//                                    ),
+//                                  ),
+//                                ],
+//                              ),
+//                            ],
+//                          ),
                         ],
                       ),
                     ),
@@ -307,13 +443,22 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                         onPressed: () {
                           var router = new MaterialPageRoute(
                               builder: (BuildContext context) =>
-                                  new TenWordRecallTrialOne(
+                                  new TenWordDelayedRecall(
                                     patientName: widget.patientName,
                                     assessorName: widget.assessorName,
                                     handedness: widget.handedness,
                                     assessmentDate: widget.assessmentDate,
                                     languageComprehensionRadioValue:
-                                        _radioValue,
+                                        widget.languageComprehensionRadioValue,
+                                    trialOneScore: widget.trialOneScore,
+                                    trialTwoScore: widget.trialTwoScore,
+                                    visuospatialPraxis:
+                                        widget.visuospatialPraxis,
+                                    attention: widget.attention,
+                                    executiveAnimalNaming:
+                                        widget.executiveAnimalNaming,
+                                    executiveLuria: widget.executiveLuria,
+                                    executiveSerial: widget.executiveSerial,
                                   ));
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => false);

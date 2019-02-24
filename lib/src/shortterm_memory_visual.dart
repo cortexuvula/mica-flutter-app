@@ -1,0 +1,589 @@
+import 'package:flutter/material.dart';
+import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/src/anomia_agnosia.dart';
+import 'package:mica/src/home.dart';
+import 'package:mica/src/ten_word_delay_recall.dart';
+import 'package:snaplist/snaplist.dart';
+
+class ShortTermMemoryVisual extends StatefulWidget {
+  String patientName;
+  String assessorName;
+  String handedness;
+  DateTime assessmentDate;
+  int languageComprehensionRadioValue;
+  int trialOneScore;
+  int trialTwoScore;
+  int visuospatialPraxis;
+  int attention;
+  int executiveAnimalNaming;
+  int executiveLuria;
+  int executiveSerial;
+  int shorttermMemoryVerbal;
+  int praxis;
+  int tenWordDelay;
+  int scoreVerbalRecognitionMemoryTenWords;
+  int scoreVerbalRecognitionMemoryTenWordsInList;
+  int scoreVerbalRecognitionMemoryTenWordsNotInList;
+
+
+  ShortTermMemoryVisual(
+      {Key key,
+        this.patientName,
+        this.assessorName,
+        this.handedness,
+        this.assessmentDate,
+        this.languageComprehensionRadioValue,
+        this.trialOneScore,
+        this.trialTwoScore,
+        this.visuospatialPraxis,
+        this.attention,
+        this.executiveAnimalNaming,
+        this.executiveLuria,
+        this.executiveSerial,
+        this.shorttermMemoryVerbal,
+        this.praxis,
+        this.tenWordDelay,
+        this.scoreVerbalRecognitionMemoryTenWords,
+        this.scoreVerbalRecognitionMemoryTenWordsInList,
+        this.scoreVerbalRecognitionMemoryTenWordsNotInList
+      })
+      : super(key: key);
+
+  @override
+  _ShortTermMemoryVisualState createState() => _ShortTermMemoryVisualState();
+}
+
+class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
+  double sizeBoxHeight = 10.0;
+
+
+  int _radioValueImageOne = 0;
+  int _radioValueImageTwo = 0;
+  int _radioValueImageThree = 0;
+
+
+  @override
+  Widget build(BuildContext context) {
+    var _width = MediaQuery.of(context).size.width;
+    var sizeBoxWidth = (_width * 0.8) / 3;
+    return Scaffold(
+      appBar: AppBar(
+        title: ListTile(
+          title: Text(
+            appData.testShortTermMemoryVisual,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w500,
+            ),
+            textAlign: TextAlign.start,
+          ),
+          subtitle: Text(
+            appData.testShortTermMemoryVisualSubtitle,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w300,
+            ),
+            textAlign: TextAlign.start,
+          ),
+        ),
+        actions: <Widget>[
+          IconButton(
+              icon: Icon(Icons.clear),
+              onPressed: () {
+                var router = new MaterialPageRoute(
+                    builder: (BuildContext context) => new Home(
+                      viewedDisclaimer: true,
+                    ));
+                Navigator.of(context).pushAndRemoveUntil(
+                    router, (Route<dynamic> route) => false);
+              })
+        ],
+      ),
+      body: ListView(
+        children: <Widget>[
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(
+                  height: sizeBoxHeight,
+                ),
+                Container(
+                  width: _width * 0.9,
+                  child: Card(
+                    elevation: 10.0,
+                    color: Colors.deepPurple.shade300,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            appData.testDescription,
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 20.0,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5.0,
+                          ),
+                          Text(
+                            appData.testShortTermMemoryVisualDetails,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15.0),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: sizeBoxHeight,
+                ),
+                Container(
+                  width: _width * 0.9,
+                  child: Card(
+                    elevation: 10.0,
+                    color: Colors.yellowAccent.shade400,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            appData.testToPatient,
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 20.0,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5.0,
+                          ),
+                          Text(
+                            appData.testShortTermMemoryVisualToPatient,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15.0),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: sizeBoxHeight,
+                ),
+                Container(
+                  width: _width * 0.9,
+                  child: Card(
+                    elevation: 10.0,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SizedBox(
+                        width: _width * 0.9,
+                        height: 150.0,
+                        child: Row(
+                          children: <Widget>[
+                            SizedBox(
+                              width: _width * 0.8 / 3,
+                              height: 130.0,
+                              child: Image.asset("./images/block_one.png",
+                              fit: BoxFit.fitWidth,
+                              ),
+                            ),
+                            SizedBox(
+                              width: _width * 0.8 / 3,
+                              height: 130.0,
+                              child: Image.asset("./images/block_two.png",
+                                fit: BoxFit.fitWidth,
+                              ),
+                            ),
+                            SizedBox(
+                              width: _width * 0.8 / 3,
+                              height: 130.0,
+                              child: Image.asset("./images/block_three.png",
+                                fit: BoxFit.fitWidth,
+                              ),
+                            ),
+                          ],
+                        ),
+//                        child: ListView(
+//                          scrollDirection: Axis.horizontal,
+//
+//
+//                          children: <Widget>[
+//                            GestureDetector(
+//                              child: Image.asset("./images/block_one.png",
+//                              fit: BoxFit.fitWidth,
+//                              ),
+//                              onTap: () => debugPrint("tapped"),
+//                            ),
+//                            Image.asset("./images/block_two.png",
+//                              fit: BoxFit.fitWidth,
+//                            ),
+//                            Image.asset("./images/block_three.png",
+//                              fit: BoxFit.fitWidth,
+//                            ),
+//                          ],
+//                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: sizeBoxHeight,
+                ),
+                Container(
+                  width: _width * 0.9,
+                  child: Card(
+                    elevation: 10.0,
+                    color: Colors.green,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: <Widget>[
+                          Text(
+                            appData.testResponse,
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 20.0,
+                              decoration: TextDecoration.underline,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 5.0,
+                          ),
+                          Text(
+                            appData.testShortTermMemoryVisualResponse,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15.0),
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: <Widget>[
+
+                              Row(
+                                children: <Widget>[
+                                  Text(
+                                    "Image 1",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Radio(
+                                    value: 0,
+                                    groupValue: _radioValueImageOne,
+                                    onChanged: _handleRadioValueChange1,
+                                    activeColor: Colors.white,
+                                  ),
+                                  Text(
+                                    "3",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Radio(
+                                    value: 1,
+                                    groupValue: _radioValueImageOne,
+                                    onChanged: _handleRadioValueChange1,
+                                    activeColor: Colors.white,
+                                  ),
+                                  Text(
+                                    "2",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Radio(
+                                    value: 2,
+                                    groupValue: _radioValueImageOne,
+                                    onChanged: _handleRadioValueChange1,
+                                    activeColor: Colors.white,
+                                  ),
+                                  Text(
+                                    "1",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Radio(
+                                    value: 3,
+                                    groupValue: _radioValueImageOne,
+                                    onChanged: _handleRadioValueChange1,
+                                    activeColor: Colors.white,
+                                  ),
+                                  Text(
+                                    "0",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  Text(
+                                    "Image 2",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Radio(
+                                    value: 0,
+                                    groupValue: _radioValueImageTwo,
+                                    onChanged: _handleRadioValueChange2,
+                                    activeColor: Colors.white,
+                                  ),
+                                  Text(
+                                    "3",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Radio(
+                                    value: 1,
+                                    groupValue: _radioValueImageTwo,
+                                    onChanged: _handleRadioValueChange2,
+                                    activeColor: Colors.white,
+                                  ),
+                                  Text(
+                                    "2",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Radio(
+                                    value: 2,
+                                    groupValue: _radioValueImageTwo,
+                                    onChanged: _handleRadioValueChange2,
+                                    activeColor: Colors.white,
+                                  ),
+                                  Text(
+                                    "1",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Radio(
+                                    value: 3,
+                                    groupValue: _radioValueImageTwo,
+                                    onChanged: _handleRadioValueChange2,
+                                    activeColor: Colors.white,
+                                  ),
+                                  Text(
+                                    "0",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  Text(
+                                    "Image 3",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Radio(
+                                    value: 0,
+                                    groupValue: _radioValueImageThree,
+                                    onChanged: _handleRadioValueChange3,
+                                    activeColor: Colors.white,
+                                  ),
+                                  Text(
+                                    "3",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Radio(
+                                    value: 1,
+                                    groupValue: _radioValueImageThree,
+                                    onChanged: _handleRadioValueChange3,
+                                    activeColor: Colors.white,
+                                  ),
+                                  Text(
+                                    "2",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Radio(
+                                    value: 2,
+                                    groupValue: _radioValueImageThree,
+                                    onChanged: _handleRadioValueChange3,
+                                    activeColor: Colors.white,
+                                  ),
+                                  Text(
+                                    "1",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  Radio(
+                                    value: 3,
+                                    groupValue: _radioValueImageThree,
+                                    onChanged: _handleRadioValueChange3,
+                                    activeColor: Colors.white,
+                                  ),
+                                  Text(
+                                    "0",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                appData.testVisuospatialPraxisScoring,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15.0),
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Text(
+                                    appData
+                                        .testVisuospatialPraxisResponseNormal,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 10.0,
+                                    ),
+                                  ),
+                                  Text(
+                                    appData
+                                        .testVisuospatialPraxisResponseEquivocal,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 10.0,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Text(
+                                    appData
+                                        .testVisuospatialPraxisResponseImpaired,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 10.0,
+                                    ),
+                                  ),
+                                  Text(
+                                    appData
+                                        .testVisuospatialPraxisResponseFubar,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 10.0,
+                                    ),
+                                  ),
+                                ],
+                              ),
+
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: sizeBoxHeight,
+                ),
+                Container(
+                  width: _width * 0.9,
+                  child: Card(
+                    elevation: 10.0,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: RaisedButton(
+                        elevation: 10.0,
+                        onPressed: () {
+                          var router = new MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                              new AnomiaAgnosia(
+                                patientName: widget.patientName,
+                                assessorName: widget.assessorName,
+                                handedness: widget.handedness,
+                                assessmentDate: widget.assessmentDate,
+                                languageComprehensionRadioValue: widget
+                                    .languageComprehensionRadioValue,
+                                trialOneScore: widget.trialOneScore,
+                                trialTwoScore: widget.trialTwoScore,
+                                visuospatialPraxis: widget.visuospatialPraxis,
+                                attention: widget.attention,
+                                executiveAnimalNaming: widget.executiveAnimalNaming,
+                                executiveLuria: widget.executiveLuria,
+                                executiveSerial: widget.executiveSerial,
+                                praxis: widget.praxis,
+                                shorttermMemoryVerbal: widget.shorttermMemoryVerbal,
+                                tenWordDelay: widget.tenWordDelay,
+                                scoreVerbalRecognitionMemoryTenWords: widget.scoreVerbalRecognitionMemoryTenWords,
+                                scoreVerbalRecognitionMemoryTenWordsInList: widget.scoreVerbalRecognitionMemoryTenWordsInList,
+                                scoreVerbalRecognitionMemoryTenWordsNotInList: widget.scoreVerbalRecognitionMemoryTenWordsNotInList,
+
+                              ));
+                          Navigator.of(context).pushAndRemoveUntil(
+                              router, (Route<dynamic> route) => false);
+                        },
+                        child: Text("Continue with Testing"),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+
+
+  void _handleRadioValueChange1(int value) {
+    setState(() {
+      _radioValueImageOne = value;
+    });
+  }
+
+  void _handleRadioValueChange2(int value) {
+    setState(() {
+      _radioValueImageTwo = value;
+    });
+  }
+
+  void _handleRadioValueChange3(int value) {
+    setState(() {
+      _radioValueImageThree = value;
+    });
+  }
+
+}

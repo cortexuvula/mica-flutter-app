@@ -192,7 +192,7 @@ const String testPraxisToPatient = "\“Take this pen and rotate it with your fi
 const String testPraxisResponse = "";
 const String testPraxisResponseNormal = "no errors";
 const String testPraxisResponseEquivocal = "some difficulty";
-const String testPraxisyResponseImpaired = "clear difficulty";
+const String testPraxisResponseImpaired = "clear difficulty";
 
 const String testTenWordDelayedRecall = "Ten Word Recall Trial 3";
 const String instructionDelayedRecallPatient1 = "To Patient: \“What were the words I asked you to remember?\”";
@@ -204,3 +204,22 @@ const String instructionsWordRecognitionPatient1 = "To Patient: \"I am now going
 const String instructionsWordRecognitionHealthworker2 = "Healthworker: The instructions may be repeated if it is forgotten.To select correct responses, tap on Yes or No for each word. (Words from the memory list is in";
 const String instructionsWordRecognitionHealthworker3 = " BOLD";
 const String instructionsWordRecognitionHealthworker4 = ".)";
+
+const String testShortTermMemoryVisual = "Short-Term Memory";
+const String testShortTermMemoryVisualSubtitle = "Visual";
+const String testShortTermMemoryVisualDetails = "";
+const String testShortTermMemoryVisualToPatient = "\“Earlier, you copied three pictures, can you remember it? Can you draw it here?\”";
+const String testShortTermMemoryVisualResponse = "Provide the patient with a blank sheet of paper.";
+const String testShortTermMemoryVisualResponseNormal = "no mistakes";
+const String testShortTermMemoryVisualResponseEquivocal = "few omissions";
+const String testShortTermMemoryVisualResponseImpaired = "poor recall";
+const String testShortTermMemoryVisualResponseFubar = "a failure to recall anything.";
+
+const String testAnomiaAgnosia = "Anomia & Agnosia";
+const String testAnomiaAgnosiaSubtitle = "";
+const String testAnomiaAgnosiaDetails = "This is to distinguish anomia from agnosia.";
+const String testAnomiaAgnosiaToPatient = "\"Name the following pictures.\”";
+const String testAnomiaAgnosiaResponse = "If unable, ask the patient to describe what the object is used for.";
+const String testAnomiaAgnosiaResponseNormal = "All correct";
+const String testAnomiaAgnosiaResponseEquivocal = "1 mistake";
+const String testAnomiaAgnosiaResponseImpaired = "> 1 mistake";

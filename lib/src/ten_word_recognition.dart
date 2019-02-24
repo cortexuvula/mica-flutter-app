@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/home.dart';
+import 'package:mica/src/shortterm_memory_visual.dart';
 
 class TenWordRecognition extends StatefulWidget {
   String patientName;
@@ -339,8 +340,26 @@ class _TenWordRecognitionState
                       onPressed: () {
                         var router = new MaterialPageRoute(
                             builder: (BuildContext context) =>
-                            new TenWordRecognition(
-
+                            new ShortTermMemoryVisual(
+                              patientName: widget.patientName,
+                              assessorName: widget.assessorName,
+                              handedness: widget.handedness,
+                              assessmentDate: widget.assessmentDate,
+                              languageComprehensionRadioValue: widget
+                                  .languageComprehensionRadioValue,
+                              trialOneScore: widget.trialOneScore,
+                              trialTwoScore: widget.trialTwoScore,
+                              visuospatialPraxis: widget.visuospatialPraxis,
+                              attention: widget.attention,
+                              executiveAnimalNaming: widget.executiveAnimalNaming,
+                              executiveLuria: widget.executiveLuria,
+                              executiveSerial: widget.executiveSerial,
+                              praxis: widget.praxis,
+                              shorttermMemoryVerbal: widget.shorttermMemoryVerbal,
+                              tenWordDelay: widget.tenWordDelay,
+                              scoreVerbalRecognitionMemoryTenWords: scoreVerbalRecognitionMemoryTenWords,
+                              scoreVerbalRecognitionMemoryTenWordsInList: scoreVerbalRecognitionMemoryTenWordsInList,
+                              scoreVerbalRecognitionMemoryTenWordsNotInList: scoreVerbalRecognitionMemoryTenWordsNotInList,
                             ));
                         Navigator.of(context).pushAndRemoveUntil(
                             router, (Route<dynamic> route) => false);

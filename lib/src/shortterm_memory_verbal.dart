@@ -180,64 +180,80 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                         children: <Widget>[
                           Row(
                             children: <Widget>[
-                              Checkbox(
-                                value: _valueDate,
-                                onChanged: _valueDateChanged,
-                                activeColor: Colors.green,
+                              Row(
+                                children: <Widget>[
+                                  Checkbox(
+                                    value: _valueDate,
+                                    onChanged: _valueDateChanged,
+                                    activeColor: Colors.green,
+                                  ),
+                                  Text(
+                                    "Date",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                "Date",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ),
+                              SizedBox(
+                                width: 30.0,
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  Checkbox(
+                                    value: _valueMonth,
+                                    onChanged: _valueMonthChanged,
+                                    activeColor: Colors.green,
+                                  ),
+                                  Text(
+                                    "Month",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
+
                           Row(
                             children: <Widget>[
-                              Checkbox(
-                                value: _valueMonth,
-                                onChanged: _valueMonthChanged,
-                                activeColor: Colors.green,
+                              Row(
+                                children: <Widget>[
+                                  Checkbox(
+                                    value: _valueDay,
+                                    onChanged: _valueDayChanged,
+                                    activeColor: Colors.green,
+                                  ),
+                                  Text(
+                                    "Day",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              Text(
-                                "Month",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ),
+                              SizedBox(
+                                width: 30.0,
                               ),
-                            ],
-                          ),
-                          Row(
-                            children: <Widget>[
-                              Checkbox(
-                                value: _valueDay,
-                                onChanged: _valueDayChanged,
-                                activeColor: Colors.green,
-                              ),
-                              Text(
-                                "Day",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: <Widget>[
-                              Checkbox(
-                                value: _valuePlace,
-                                onChanged: _valuePlaceChanged,
-                                activeColor: Colors.green,
-                              ),
-                              Text(
-                                "Place",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                ),
+                              Row(
+                                children: <Widget>[
+                                  Checkbox(
+                                    value: _valuePlace,
+                                    onChanged: _valuePlaceChanged,
+                                    activeColor: Colors.green,
+                                  ),
+                                  Text(
+                                    "Place",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ],
                               ),
                             ],
                           ),
+
                           Row(
                             children: <Widget>[
                               Checkbox(
