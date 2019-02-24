@@ -45,6 +45,7 @@ class _AttentionState extends State<Attention> {
 
   List<bool> tapCorrect = [];
   List<bool> tapWrong = [];
+  List<bool> correctCheck = [];
 
   List<Color> letterTapButtonColor = [];
   List<Color> letterNoTapButtonColor = [];
@@ -184,9 +185,54 @@ class _AttentionState extends State<Attention> {
                               (index) {
                             tapCorrect.add(false);
                             tapWrong.add(false);
+                            correctCheck.add(false);
                             letterTapButtonColor.add(Colors.cyan.shade200);
+
                             return Stack(
                               children: <Widget>[
+
+//                                Container(
+//                                  color: letterTapButtonColor[index],
+//                                ),
+//                                GestureDetector(
+//                                  onTap: () {
+//                                    if (!tapWrong[index] &&
+//                                        !tapCorrect[index]) {
+//                                      if (appData.attentionList[index] == "A") {
+//                                        setState(() {
+//                                          tapCorrect[index] = true;
+//                                          correctTap += 1;
+//                                          letterTapButtonColor[index] =
+//                                              Colors.green;
+//                                        });
+//                                      }
+//                                      if (appData.attentionList[index] != "A") {
+//                                        setState(() {
+//                                          tapWrong[index] = true;
+//                                          wrongTap += 1;
+//                                          letterTapButtonColor[index] =
+//                                              Colors.red;
+//                                        });
+//                                      }
+//                                    }
+//                                  },
+////                                  onDoubleTap: () {
+////                                      setState(() {
+////                                        tapWrong[index] = true;
+////                                        wrongTap += 1;
+////                                        letterTapButtonColor[index] =
+////                                            Colors.red;
+////                                      });
+////                                  },
+//
+//                                  child:
+//                                  Center(
+//                                    child: Container(
+//                                        color: letterTapButtonColor[index],
+//                                        child: Text("${appData.attentionList[index]}")),
+//                                  ),
+//
+//                                ),
                                 FlatButton(
                                   onPressed: () {
                                     if (!tapWrong[index] &&
@@ -197,6 +243,7 @@ class _AttentionState extends State<Attention> {
                                           correctTap += 1;
                                           letterTapButtonColor[index] =
                                               Colors.green;
+                                          correctCheck[index] = true;
                                         });
                                       }
                                       if (appData.attentionList[index] != "A") {
@@ -208,7 +255,16 @@ class _AttentionState extends State<Attention> {
                                         });
                                       }
                                     }
+
                                   },
+//                                  onDoubleTap: () {
+//                                    setState(() {
+//                                      tapWrong[index] = false;
+//                                      wrongTap += 1;
+//                                      letterTapButtonColor[index] =
+//                                          Colors.red;
+//                                    });
+//                                  },
                                   color: letterTapButtonColor[index],
                                   child:
                                       Text("${appData.attentionList[index]}"),
@@ -226,13 +282,25 @@ class _AttentionState extends State<Attention> {
                                           : Container(),
                                       onTap: () {
                                         print("hello tap");
-                                        setState(() {
-                                          tapCorrect[index] = false;
-                                          correctTap -= 1;
-                                          letterTapButtonColor[index] =
-                                              Colors.cyan.shade200;
-                                        });
+                                        if (correctCheck[index]) {
+                                            setState(() {
+                                              correctCheck[index] = true;
+                                              tapCorrect[index] = false;
+                                              tapWrong[index] = true;
+                                              correctTap -= 1;
+                                              wrongTap += 1;
+                                              letterTapButtonColor[index] =
+                                                  Colors.red;
+                                            });
+                                        }
+//                                        setState(() {
+//                                          tapCorrect[index] = false;
+//                                          correctTap -= 1;
+//                                          letterTapButtonColor[index] =
+//                                              Colors.cyan.shade200;
+//                                        });
                                       },
+
                                     ),
                                   ),
                                 ),
