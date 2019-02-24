@@ -391,7 +391,7 @@ class _PraxisState extends State<Praxis> {
                                       width: sizeBoxWidth,
                                       child: Text(
                                         appData
-                                            .testPraxisyResponseImpaired,
+                                            .testPraxisResponseImpaired,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(fontSize: 10.0),
                                       ),

@@ -22,7 +22,7 @@ dependencies:
   after_layout: ^1.0.7
   intl: ^0.15.7
   animated_text_kit: ^1.3.0
-  auto_size_text: ^1.0.0
+  snaplist: ^0.1.7
 
 dev_dependencies:
   flutter_test:
@@ -45,6 +45,11 @@ flutter:
    - images/block_one.png
    - images/block_two.png
    - images/block_three.png
+   - images/dice.png
+   - images/glass.png
+   - images/guitar.png
+   - images/scale.png
+   - images/stapler.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
