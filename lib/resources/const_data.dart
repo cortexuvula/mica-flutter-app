@@ -132,8 +132,8 @@ const String testVisuospatialPraxisDetails =
     "Assess the ability to copy line drawings. Swipe to the left to show the following 3 pictures to the patient.";
 const String testVisuospatialPraxisToPatient = "\"Copy these figures.\"";
 const String testVisuospatialPraxisResponse =
-    " Do not warn about delayed recall. Observe how the patient performs the copy task and take this information into account when scoring.";
-const String testVisuospatialPraxisScoring = "Score each drawing:";
+    " Do not warn about delayed recall.";
+const String testVisuospatialPraxisScoring = "";
 const String testVisuospatialPraxisResponseNormal = "3 Points = No mistakes";
 const String testVisuospatialPraxisResponseEquivocal =
     "2 Points = Few Omissions";
@@ -141,7 +141,7 @@ const String testVisuospatialPraxisResponseImpaired = "1 Point = Poor";
 const String testVisuospatialPraxisResponseFubar = "0 Point = No drawing";
 
 const String testAttention = "Attention";
-const String testAttentionDetails = "";
+const String testAttentionDetails = "Tap on letter when patient indicates a tap. Double tap on letter A to mark as a missed tap by the patient.";
 const String testAttentionToPatient =
     "\"I am going to read you a long series of letters. Whenever you hear the letter A, tap your hand like this.\” Indicate tapping movement. For all other letters, do not tap. ";
 const String testAttentionResponse = "A mistake is an omission or inclusion.";
@@ -201,7 +201,7 @@ const String instructionDelayedRecallHealthworker1 ="Healthworker: Tap on each w
 const String testTenWordRecognition = "Ten Word Recognition";
 const String instructionsWordRecognitionHealthworker1 = "Healthworker: Scroll down to see all the words.";
 const String instructionsWordRecognitionPatient1 = "To Patient: \"I am now going to read a list of words. Some of the words are from the list that I asked you to remember and some of the words are new. Say yes if you recognise the word and no if it was not in the list I asked you to memorise. If you don’t know the answer just guess.\"";
-const String instructionsWordRecognitionHealthworker2 = "Healthworker: The instructions may be repeated if it is forgotten.To select correct responses, tap on Yes or No for each word. (Words from the memory list is in";
+const String instructionsWordRecognitionHealthworker2 = "Healthworker: The instructions may be repeated if forgotten.To select correct responses, tap on Yes or No for each word. (Words from the memory list is in";
 const String instructionsWordRecognitionHealthworker3 = " BOLD";
 const String instructionsWordRecognitionHealthworker4 = ".)";
 

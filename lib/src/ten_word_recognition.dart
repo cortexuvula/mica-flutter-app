@@ -110,20 +110,7 @@ class _TenWordRecognitionState
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-//                      Padding(padding: EdgeInsets.all(8.0)),
-//                      Row(
-//                        mainAxisAlignment: MainAxisAlignment.center,
-//                        children: <Widget>[
-//                          Text(
-//                            "Instructions",
-//                            style: TextStyle(
-//                                fontSize: 18.0,
-//                                fontWeight: FontWeight.w500,
-//                                decoration: TextDecoration.underline),
-//                          ),
-//                        ],
-//                      ),
-//                      Padding(padding: EdgeInsets.all(4.0)),
+
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -215,6 +202,7 @@ class _TenWordRecognitionState
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: <Widget>[
+                              // yes button setup
                               FlatButton(
                                 onPressed: () {
                                   setState(() {
@@ -222,38 +210,83 @@ class _TenWordRecognitionState
                                         Colors.white70) {
                                       if (wordButtonColor[index]["yes"] ==
                                           Colors.white70) {
-                                        wordButtonColor[index]["yes"] =
-                                            Colors.green;
+//                                        wordButtonColor[index]["yes"] =
+//                                            Colors.green;
                                         if (appData.tenWordRecallList.contains(
                                             appData.tenWordMemoryList[index])) {
                                           ifWordInTheListAdd();
+                                          wordButtonColor[index]["yes"] =
+                                              Colors.green;
                                         } else {
+                                          wordButtonColor[index]["yes"] =
+                                              Colors.red;
                                           // Do nothing as word is not in list and not correctly rejected
                                         }
-                                      } else if (wordButtonColor[index]
-                                      ["yes"] ==
-                                          Colors.green) {
-                                        wordButtonColor[index]["yes"] =
-                                            Colors.white70;
-                                        if (appData.tenWordRecallList.contains(
-                                            appData.tenWordMemoryList[index])) {
-                                          ifWordInTheListMinus();
-                                        }
                                       }
+                                      //TODO: Sort out the scorring as it will not be correct as code is now
+//                                      else if (wordButtonColor[index]
+//                                      ["yes"] ==
+//                                          Colors.green) {
+//                                        wordButtonColor[index]["yes"] =
+//                                            Colors.white70;
+//                                        if (appData.tenWordRecallList.contains(
+//                                            appData.tenWordMemoryList[index])) {
+//                                          ifWordInTheListMinus();
+//                                        }
+//                                      }
+//                                      else if (wordButtonColor[index]
+//                                      ["yes"] ==
+//                                          Colors.red) {
+//                                        wordButtonColor[index]["yes"] =
+//                                            Colors.white70;
+//                                        // Not sure if this is the correct logic here - check scores
+////                                        if (!appData.tenWordRecallList.contains(
+////                                            appData.tenWordMemoryList[index])) {
+////                                          ifWordInTheListMinus();
+////                                        }
+//                                      }
                                     } else if (wordButtonColor[index]["no"] ==
                                         Colors.green) {
                                       if (wordButtonColor[index]["yes"] ==
                                           Colors.white70) {
-                                        wordButtonColor[index]["yes"] =
-                                            Colors.green;
+//                                        wordButtonColor[index]["yes"] =
+//                                            Colors.green;
                                         wordButtonColor[index]["no"] =
                                             Colors.white70;
                                         if (appData.tenWordRecallList.contains(
                                             appData.tenWordMemoryList[index])) {
                                           ifWordInTheListAdd();
-                                        } else if (!appData.tenWordRecallList
+                                          wordButtonColor[index]["yes"] =
+                                              Colors.green;
+                                        }
+                                        if (!appData.tenWordRecallList
                                             .contains(appData
                                             .tenWordMemoryList[index])) {
+                                          wordButtonColor[index]["yes"] =
+                                              Colors.red;
+                                          // Do nothing as word is not in list and not correctly rejected
+                                          ifWordNotInListMinus();
+                                        }
+                                      }
+                                    } else if (wordButtonColor[index]["no"] ==
+                                        Colors.red) {
+                                      if (wordButtonColor[index]["yes"] ==
+                                          Colors.white70) {
+//                                        wordButtonColor[index]["yes"] =
+//                                            Colors.green;
+                                        wordButtonColor[index]["no"] =
+                                            Colors.white70;
+                                        if (appData.tenWordRecallList.contains(
+                                            appData.tenWordMemoryList[index])) {
+                                          ifWordInTheListAdd();
+                                          wordButtonColor[index]["yes"] =
+                                              Colors.green;
+                                        }
+                                        if (!appData.tenWordRecallList
+                                            .contains(appData
+                                            .tenWordMemoryList[index])) {
+                                          wordButtonColor[index]["yes"] =
+                                              Colors.red;
                                           // Do nothing as word is not in list and not correctly rejected
                                           ifWordNotInListMinus();
                                         }
@@ -265,47 +298,53 @@ class _TenWordRecognitionState
                                 child: Text("Yes"),
                                 color: wordButtonColor[index]["yes"],
                               ),
+                              // No Button Setup
                               FlatButton(
                                 onPressed: () {
                                   setState(() {
-                                    if (wordButtonColor[index]["yes"] ==
-                                        Colors.white70) {
-                                      if (wordButtonColor[index]["no"] ==
-                                          Colors.white70) {
-                                        wordButtonColor[index]["no"] =
-                                            Colors.green;
-                                        if (!appData.tenWordRecallList.contains(
-                                            appData.tenWordMemoryList[index])) {
+                                    if (wordButtonColor[index]["yes"] == Colors.white70) {
+                                      if (wordButtonColor[index]["no"] == Colors.white70) {
+                                        if (!appData.tenWordRecallList.contains(appData.tenWordMemoryList[index])) {
                                           ifWordNotInListAdd();
+                                          wordButtonColor[index]["no"] =
+                                              Colors.green;
                                         } else {
-                                          // Do nothing as word is not in list and not correctly rejected
-                                        }
-                                      } else if (wordButtonColor[index]["no"] ==
-                                          Colors.green) {
-                                        wordButtonColor[index]["no"] =
-                                            Colors.white70;
-                                        if (!appData.tenWordRecallList.contains(
-                                            appData.tenWordMemoryList[index])) {
-                                          ifWordNotInListMinus();
+                                          wordButtonColor[index]["no"] =
+                                              Colors.red;
+                                          // not sure if logic is needed for scoring
                                         }
                                       }
-                                    } else if (wordButtonColor[index]["yes"] ==
-                                        Colors.green) {
-                                      if (wordButtonColor[index]["no"] ==
-                                          Colors.white70) {
-                                        wordButtonColor[index]["no"] =
-                                            Colors.green;
-                                        wordButtonColor[index]["yes"] =
-                                            Colors.white70;
-                                        if (!appData.tenWordRecallList.contains(
-                                            appData.tenWordMemoryList[index])) {
+//                                      if (wordButtonColor[index]["no"] == Colors.green) {
+//                                        wordButtonColor[index]["no"] =
+//                                            Colors.white70;
+//                                        if (!appData.tenWordRecallList.contains(appData.tenWordMemoryList[index])) {
+//                                          ifWordNotInListMinus();
+//
+//                                        }
+//                                      }
+
+                                    } else if (wordButtonColor[index]["yes"] == Colors.green) {
+                                      if (wordButtonColor[index]["no"] == Colors.white70) {
+                                        if (!appData.tenWordRecallList.contains(appData.tenWordMemoryList[index])) {
                                           ifWordNotInListAdd();
-                                        } else if (appData.tenWordRecallList
-                                            .contains(appData
-                                            .tenWordMemoryList[index])) {
+                                          wordButtonColor[index]["no"] =
+                                              Colors.green;
+                                          wordButtonColor[index]["yes"] =
+                                              Colors.white70;
+                                        } else if (appData.tenWordRecallList.contains(appData.tenWordMemoryList[index])) {
                                           // Do nothing as word is not in list and not correctly rejected
                                           ifWordInTheListMinus();
+                                          wordButtonColor[index]["no"] =
+                                              Colors.red;
+                                          wordButtonColor[index]["yes"] =
+                                              Colors.white70;
                                         }
+                                      }
+                                    } else if (wordButtonColor[index]["yes"] == Colors.red) {
+                                      wordButtonColor[index]["yes"] = Colors.white70;
+                                      if (!appData.tenWordRecallList.contains(appData.tenWordMemoryList[index])) {
+                                        wordButtonColor[index]["no"] =
+                                            Colors.green;
                                       }
                                     }
                                   });
