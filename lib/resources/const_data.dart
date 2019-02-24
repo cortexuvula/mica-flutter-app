@@ -223,3 +223,23 @@ const String testAnomiaAgnosiaResponse = "If unable, ask the patient to describe
 const String testAnomiaAgnosiaResponseNormal = "All correct";
 const String testAnomiaAgnosiaResponseEquivocal = "1 mistake";
 const String testAnomiaAgnosiaResponseImpaired = "> 1 mistake";
+
+const List<String> imageURL = ["./images/dice.png", "./images/glass.png", "./images/guitar.png", "./images/scale.png", "./images/stapler.png"];
+
+const String testExecutive = "Executive";
+const String testExecutiveSubtitle = "";
+const String testExecutiveDetails = "Draw a hash sign (#) and steps . Count the lines as you draw them.";
+const String testExecutiveToPatient = "\“You have one minute to draw anything using four lines. The drawings must be different and I must be able to count the lines. I will give you two examples. Do you have any questions? Your minute starts now.\”";
+const String testExecutiveResponse = "";
+const String testExecutiveResponseNormal = "7 drawings";
+const String testExecutiveResponseEquivocal = "5 - 7 drawings";
+const String testExecutiveResponseImpaired = "> 5 drawings";
+
+const String testSpokenLanguage = "Spoken Language";
+const String testSpokenLanguageSubtitle = "";
+const String testSpokenLanguageDetails = "";
+const String testSpokenLanguageToPatient = "";
+const String testSpokenLanguageResponse = "Estimate spoken language ability by evaluating speech. It should be clear, fluent and understandable.";
+const String testSpokenLanguageResponseNormal = "normal speech";
+const String testSpokenLanguageResponseEquivocal = "equivocal";
+const String testSpokenLanguageResponseImpaired = "definite impairment";

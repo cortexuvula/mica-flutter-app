@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
-import 'package:mica/src/executive.dart';
 import 'package:mica/src/home.dart';
+import 'package:mica/src/spoken_language.dart';
 import 'package:mica/src/ten_word_delay_recall.dart';
-import 'package:snaplist/snaplist.dart';
 
-class AnomiaAgnosia extends StatefulWidget {
+class Executive extends StatefulWidget {
   String patientName;
   String assessorName;
   String handedness;
@@ -25,35 +24,37 @@ class AnomiaAgnosia extends StatefulWidget {
   int scoreVerbalRecognitionMemoryTenWordsInList;
   int scoreVerbalRecognitionMemoryTenWordsNotInList;
   int shorttermMemoryVisual;
+  int anomiaAgnosia;
 
-  AnomiaAgnosia(
+  Executive(
       {Key key,
-      this.patientName,
-      this.assessorName,
-      this.handedness,
-      this.assessmentDate,
-      this.languageComprehensionRadioValue,
-      this.trialOneScore,
-      this.trialTwoScore,
-      this.visuospatialPraxis,
-      this.attention,
-      this.executiveAnimalNaming,
-      this.executiveLuria,
-      this.executiveSerial,
-      this.shorttermMemoryVerbal,
-      this.praxis,
-      this.tenWordDelay,
-      this.scoreVerbalRecognitionMemoryTenWords,
-      this.scoreVerbalRecognitionMemoryTenWordsInList,
-      this.scoreVerbalRecognitionMemoryTenWordsNotInList,
-      this.shorttermMemoryVisual})
+        this.patientName,
+        this.assessorName,
+        this.handedness,
+        this.assessmentDate,
+        this.languageComprehensionRadioValue,
+        this.trialOneScore,
+        this.trialTwoScore,
+        this.visuospatialPraxis,
+        this.attention,
+        this.executiveAnimalNaming,
+        this.executiveLuria,
+        this.executiveSerial,
+        this.shorttermMemoryVerbal,
+        this.praxis,
+        this.tenWordDelay,
+        this.scoreVerbalRecognitionMemoryTenWords,
+        this.scoreVerbalRecognitionMemoryTenWordsInList,
+        this.scoreVerbalRecognitionMemoryTenWordsNotInList,
+        this.shorttermMemoryVisual,
+        this.anomiaAgnosia})
       : super(key: key);
 
   @override
-  _AnomiaAgnosiaState createState() => _AnomiaAgnosiaState();
+  _ExecutiveState createState() => _ExecutiveState();
 }
 
-class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
+class _ExecutiveState extends State<Executive> {
   double sizeBoxHeight = 10.0;
 
   int _radioValue = 0;
@@ -72,7 +73,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            appData.testAnomiaAgnosia,
+            appData.testExecutive,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,
@@ -80,7 +81,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
             textAlign: TextAlign.start,
           ),
           subtitle: Text(
-            appData.testAnomiaAgnosiaSubtitle,
+            appData.testExecutiveSubtitle,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w300,
@@ -94,8 +95,8 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
               onPressed: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) => new Home(
-                          viewedDisclaimer: true,
-                        ));
+                      viewedDisclaimer: true,
+                    ));
                 Navigator.of(context).pushAndRemoveUntil(
                     router, (Route<dynamic> route) => false);
               })
@@ -133,7 +134,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                             height: 5.0,
                           ),
                           Text(
-                            appData.testAnomiaAgnosiaDetails,
+                            appData.testExecutiveDetails,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -171,7 +172,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                             height: 5.0,
                           ),
                           Text(
-                            appData.testAnomiaAgnosiaToPatient,
+                            appData.testExecutiveToPatient,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -183,85 +184,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: sizeBoxHeight,
-                ),
-                Container(
-                  width: _width * 0.8,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      IconButton(
-                          icon: Icon(Icons.arrow_back_ios),
-                          iconSize: 40.0,
-                          onPressed: backButtonActive ? () {
-                              print("tapped");
-                              if (imageNumber > 0) {
-                                setState(() {
-                                  imageNumber -= 1;
-                                  displayImage = appData.imageURL[imageNumber];
-                                });
-                              }
-                              if (imageNumber == 0) {
-                                setState(() {
-                                  backButtonActive = false;
-                                });
-                              }
-                              if (imageNumber < 4) {
-                                setState(() {
-                                  forwardButtonActive = true;
-                                });
-                              }
-                          } : null
-                      ),
-                      SizedBox(
-                        width: 20.0,
-                      ),
-                      Card(
-                        elevation: 10.0,
-                        color: Colors.white,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: SizedBox(
-                            width: 150.0,
-                            height: 150.0,
-                            child: Image.asset(
-                              displayImage,
-                              fit: BoxFit.contain,
-                            ),
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 20.0,
-                      ),
-                      IconButton(
-                          icon: Icon(
-                              Icons.arrow_forward_ios),
-                          iconSize: 40.0,
-                          onPressed: forwardButtonActive ?  () {
-                              print("tapped");
-                              if (imageNumber < 4) {
-                                setState(() {
-                                  imageNumber += 1;
-                                  displayImage = appData.imageURL[imageNumber];
-                                });
-                              }
-                              if (imageNumber == 4) {
-                                setState(() {
-                                  forwardButtonActive = false;
-                                });
-                              }
-                              if (imageNumber > 0) {
-                                setState(() {
-                                  backButtonActive = true;
-                                });
-                              }
-                              } : null
-                      ),
-                    ],
-                  ),
-                ),
+
                 SizedBox(
                   height: sizeBoxHeight,
                 ),
@@ -288,7 +211,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                             height: 5.0,
                           ),
                           Text(
-                            appData.testAnomiaAgnosiaResponse,
+                            appData.testExecutiveResponse,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -369,7 +292,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                     child: SizedBox(
                                       width: sizeBoxWidth,
                                       child: Text(
-                                        appData.testAnomiaAgnosiaResponseNormal,
+                                        appData.testExecutiveResponseNormal,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(fontSize: 10.0),
                                       ),
@@ -381,7 +304,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                       width: sizeBoxWidth,
                                       child: Text(
                                         appData
-                                            .testAnomiaAgnosiaResponseEquivocal,
+                                            .testExecutiveResponseEquivocal,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(fontSize: 10.0),
                                       ),
@@ -393,7 +316,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                       width: sizeBoxWidth,
                                       child: Text(
                                         appData
-                                            .testAnomiaAgnosiaResponseImpaired,
+                                            .testExecutiveResponseImpaired,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(fontSize: 10.0),
                                       ),
@@ -461,29 +384,30 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                         onPressed: () {
                           var router = new MaterialPageRoute(
                               builder: (BuildContext context) =>
-                                  new Executive(
-                                    patientName: widget.patientName,
-                                    assessorName: widget.assessorName,
-                                    handedness: widget.handedness,
-                                    assessmentDate: widget.assessmentDate,
-                                    languageComprehensionRadioValue: widget
-                                        .languageComprehensionRadioValue,
-                                    trialOneScore: widget.trialOneScore,
-                                    trialTwoScore: widget.trialTwoScore,
-                                    visuospatialPraxis: widget.visuospatialPraxis,
-                                    attention: widget.attention,
-                                    executiveAnimalNaming: widget.executiveAnimalNaming,
-                                    executiveLuria: widget.executiveLuria,
-                                    executiveSerial: widget.executiveSerial,
-                                    praxis: widget.praxis,
-                                    shorttermMemoryVerbal: widget.shorttermMemoryVerbal,
-                                    tenWordDelay: widget.tenWordDelay,
-                                    scoreVerbalRecognitionMemoryTenWords: widget.scoreVerbalRecognitionMemoryTenWords,
-                                    scoreVerbalRecognitionMemoryTenWordsInList: widget.scoreVerbalRecognitionMemoryTenWordsInList,
-                                    scoreVerbalRecognitionMemoryTenWordsNotInList: widget.scoreVerbalRecognitionMemoryTenWordsNotInList,
-                                    shorttermMemoryVisual: widget.shorttermMemoryVisual,
-                                    anomiaAgnosia: _radioValue,
-                                  ));
+                              new SpokenLanguage(
+                                patientName: widget.patientName,
+                                assessorName: widget.assessorName,
+                                handedness: widget.handedness,
+                                assessmentDate: widget.assessmentDate,
+                                languageComprehensionRadioValue: widget
+                                    .languageComprehensionRadioValue,
+                                trialOneScore: widget.trialOneScore,
+                                trialTwoScore: widget.trialTwoScore,
+                                visuospatialPraxis: widget.visuospatialPraxis,
+                                attention: widget.attention,
+                                executiveAnimalNaming: widget.executiveAnimalNaming,
+                                executiveLuria: widget.executiveLuria,
+                                executiveSerial: widget.executiveSerial,
+                                praxis: widget.praxis,
+                                shorttermMemoryVerbal: widget.shorttermMemoryVerbal,
+                                tenWordDelay: widget.tenWordDelay,
+                                scoreVerbalRecognitionMemoryTenWords: widget.scoreVerbalRecognitionMemoryTenWords,
+                                scoreVerbalRecognitionMemoryTenWordsInList: widget.scoreVerbalRecognitionMemoryTenWordsInList,
+                                scoreVerbalRecognitionMemoryTenWordsNotInList: widget.scoreVerbalRecognitionMemoryTenWordsNotInList,
+                                shorttermMemoryVisual: widget.shorttermMemoryVisual,
+                                anomiaAgnosia: widget.anomiaAgnosia,
+                                executive: _radioValue,
+                              ));
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => false);
                         },
