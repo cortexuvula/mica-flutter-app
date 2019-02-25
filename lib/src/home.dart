@@ -1,6 +1,12 @@
+import 'dart:io';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:after_layout/after_layout.dart';
 import 'package:mica/resources/const_data.dart' as appData;
+import 'package:flutter_full_pdf_viewer/flutter_full_pdf_viewer.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'dart:async';
+import 'package:path_provider/path_provider.dart';
 
 class Home extends StatefulWidget {
   bool viewedDisclaimer;
@@ -12,6 +18,23 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
+
+  String pathPDF = "";
+
+
+  Future<File> createFileOfPdfUrl() async {
+    final url = "https://firebasestorage.googleapis.com/v0/b/verbal-memory-assessment.appspot.com/o/BCA.pdf?alt=media&token=bdec08ab-deca-492c-8553-0139ee5fc6f6";
+    final filename = url.substring(url.lastIndexOf("/") + 1);
+    var request = await HttpClient().getUrl(Uri.parse(url));
+    var response = await request.close();
+    var bytes = await consolidateHttpClientResponseBytes(response);
+    String dir = (await getApplicationDocumentsDirectory()).path;
+    File file = new File('$dir/$filename');
+    await file.writeAsBytes(bytes);
+    return file;
+  }
+
+
   @override
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
@@ -169,7 +192,13 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
                       padding: const EdgeInsets.all(20.0),
                       child: RaisedButton(
                         elevation: 10.0,
-                        onPressed: () => debugPrint("Clicked pdf button"),
+                        onPressed: () {
+
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => PDFScreen(pathPDF)));
+                        },
+//                        onPressed: () => 
+//                            Navigator.push(context, MaterialPageRoute(builder: (context) => PDFScreen(pathPDF)),
+//                        ),
                         child: Text(appData.bookletButton),
                       ),
                     ),
@@ -185,6 +214,12 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
 
   @override
   void afterFirstLayout(BuildContext context) async {
+    createFileOfPdfUrl().then((f) {
+      setState(() {
+        pathPDF = f.path;
+        print(pathPDF);
+      });
+    });
     if (!widget.viewedDisclaimer) {
       showDialog(
           barrierDismissible: false,
@@ -219,5 +254,26 @@ class _HomeState extends State<Home> with AfterLayoutMixin<Home> {
             );
           });
     }
+  }
+}
+
+class PDFScreen extends StatelessWidget {
+  String pathPDF = "";
+  PDFScreen(this.pathPDF);
+
+
+  @override
+  Widget build(BuildContext context) {
+    return PDFViewerScaffold(
+        appBar: AppBar(
+          title: Text("Bedside Cognitive Assessement"),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(Icons.share),
+              onPressed: () {},
+            ),
+          ],
+        ),
+        path: pathPDF);
   }
 }

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/anomia_agnosia.dart';
 import 'package:mica/src/home.dart';
-import 'package:mica/src/ten_word_delay_recall.dart';
-import 'package:snaplist/snaplist.dart';
 
 class ShortTermMemoryVisual extends StatefulWidget {
   String patientName;

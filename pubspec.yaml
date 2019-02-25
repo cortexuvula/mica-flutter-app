@@ -22,7 +22,9 @@ dependencies:
   after_layout: ^1.0.7
   intl: ^0.15.7
   animated_text_kit: ^1.3.0
-  snaplist: ^0.1.7
+  flutter_full_pdf_viewer: ^1.0.2
+  path_provider: ^0.5.0+1
+
 
 dev_dependencies:
   flutter_test:
@@ -50,6 +52,7 @@ flutter:
    - images/guitar.png
    - images/scale.png
    - images/stapler.png
+   - assets/bca.pdf
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
