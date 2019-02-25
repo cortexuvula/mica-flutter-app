@@ -1,7 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/home.dart';
-import 'package:mica/src/ten_word_delay_recall.dart';
+import 'package:mica/src/summary.dart';
 
 class SpokenLanguage extends StatefulWidget {
   String patientName;
@@ -11,6 +12,7 @@ class SpokenLanguage extends StatefulWidget {
   int languageComprehensionRadioValue;
   int trialOneScore;
   int trialTwoScore;
+  int trialThreeScore;
   int visuospatialPraxis;
   int attention;
   int executiveAnimalNaming;
@@ -35,6 +37,7 @@ class SpokenLanguage extends StatefulWidget {
         this.languageComprehensionRadioValue,
         this.trialOneScore,
         this.trialTwoScore,
+        this.trialThreeScore,
         this.visuospatialPraxis,
         this.attention,
         this.executiveAnimalNaming,
@@ -385,23 +388,33 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                         onPressed: () {
                           var router = new MaterialPageRoute(
                               builder: (BuildContext context) =>
-                              new SpokenLanguage(
+                              new TestSummary(
                                 patientName: widget.patientName,
                                 assessorName: widget.assessorName,
                                 handedness: widget.handedness,
                                 assessmentDate: widget.assessmentDate,
-                                languageComprehensionRadioValue:
-                                widget.languageComprehensionRadioValue,
+                                languageComprehensionRadioValue: widget
+                                    .languageComprehensionRadioValue,
                                 trialOneScore: widget.trialOneScore,
                                 trialTwoScore: widget.trialTwoScore,
-                                visuospatialPraxis:
-                                widget.visuospatialPraxis,
+                                trialThreeScore: widget.trialThreeScore,
+                                visuospatialPraxis: widget.visuospatialPraxis,
                                 attention: widget.attention,
-                                executiveAnimalNaming:
-                                widget.executiveAnimalNaming,
+                                executiveAnimalNaming: widget.executiveAnimalNaming,
                                 executiveLuria: widget.executiveLuria,
                                 executiveSerial: widget.executiveSerial,
-                              ));
+                                praxis: widget.praxis,
+                                shorttermMemoryVerbal: widget.shorttermMemoryVerbal,
+                                tenWordDelay: widget.tenWordDelay,
+                                scoreVerbalRecognitionMemoryTenWords: widget.scoreVerbalRecognitionMemoryTenWords,
+                                scoreVerbalRecognitionMemoryTenWordsInList: widget.scoreVerbalRecognitionMemoryTenWordsInList,
+                                scoreVerbalRecognitionMemoryTenWordsNotInList: widget.scoreVerbalRecognitionMemoryTenWordsNotInList,
+                                shorttermMemoryVisual: widget.shorttermMemoryVisual,
+                                anomiaAgnosia: widget.anomiaAgnosia,
+                                executive: widget.executive,
+
+                              )
+                          );
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => false);
                         },

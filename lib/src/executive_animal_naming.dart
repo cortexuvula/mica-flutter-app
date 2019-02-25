@@ -12,6 +12,7 @@ class ExecutiveAnimalNaming extends StatefulWidget {
   int languageComprehensionRadioValue;
   int trialOneScore;
   int trialTwoScore;
+  int trialThreeScore;
   int visuospatialPraxis;
   int attention;
 
@@ -24,6 +25,7 @@ class ExecutiveAnimalNaming extends StatefulWidget {
         this.languageComprehensionRadioValue,
         this.trialOneScore,
         this.trialTwoScore,
+        this.trialThreeScore,
         this.visuospatialPraxis,
         this.attention})
       : super(key: key);
@@ -330,6 +332,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> {
                                         .languageComprehensionRadioValue,
                                     trialOneScore: widget.trialOneScore,
                                     trialTwoScore: widget.trialTwoScore,
+                                    trialThreeScore: widget.trialThreeScore,
                                     visuospatialPraxis: widget.visuospatialPraxis,
                                     attention: widget.attention,
                                     executiveAnimalNaming: _radioValue,

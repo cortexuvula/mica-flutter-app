@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mica/src/attention.dart';
 import 'package:mica/src/home.dart';
 import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/src/show_image.dart';
 
 class VisuospatialPraxis extends StatefulWidget {
   String patientName;
@@ -11,6 +12,7 @@ class VisuospatialPraxis extends StatefulWidget {
   int languageComprehensionRadioValue;
   int trialOneScore;
   int trialTwoScore;
+  int trialThreeScore;
 
   VisuospatialPraxis(
       {Key key,
@@ -20,7 +22,8 @@ class VisuospatialPraxis extends StatefulWidget {
       this.assessmentDate,
       this.languageComprehensionRadioValue,
       this.trialOneScore,
-      this.trialTwoScore})
+      this.trialTwoScore,
+      this.trialThreeScore})
       : super(key: key);
 
   @override
@@ -32,6 +35,13 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
   int _radioValueImageOne = 0;
   int _radioValueImageTwo = 0;
   int _radioValueImageThree = 0;
+
+  int imageNumber = 0;
+
+  String displayImage = appData.imageURLPraxis[0];
+
+  bool backButtonActive = false;
+  bool forwardButtonActive = true;
 
   @override
   Widget build(BuildContext context) {
@@ -148,6 +158,92 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                           ),
                         ),
                       ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          IconButton(
+                              icon: Icon(Icons.arrow_back_ios),
+                              iconSize: 40.0,
+                              onPressed: backButtonActive ? () {
+                                print("tapped");
+                                if (imageNumber > 0) {
+                                  setState(() {
+                                    imageNumber -= 1;
+                                    displayImage = appData.imageURLPraxis[imageNumber];
+                                  });
+                                }
+                                if (imageNumber == 0) {
+                                  setState(() {
+                                    backButtonActive = false;
+                                  });
+                                }
+                                if (imageNumber < 2) {
+                                  setState(() {
+                                    forwardButtonActive = true;
+                                  });
+                                }
+                              } : null
+                          ),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          Card(
+                            elevation: 10.0,
+                            color: Colors.white,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: GestureDetector(
+                                onTap: () {
+                                  debugPrint("tapped picture");
+                                  var router = new MaterialPageRoute(
+                                      builder: (BuildContext context) =>
+                                      new ShowImage(
+                                        imageURL: displayImage,
+                                      ));
+                                  Navigator.of(context).pushAndRemoveUntil(
+                                      router, (Route<dynamic> route) => true);
+                                },
+                                child: SizedBox(
+                                  width: 150.0,
+                                  height: 150.0,
+                                  child: Image.asset(
+                                    displayImage,
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 20.0,
+                          ),
+                          IconButton(
+                              icon: Icon(
+                                  Icons.arrow_forward_ios),
+                              iconSize: 40.0,
+                              onPressed: forwardButtonActive ?  () {
+                                print("tapped");
+                                if (imageNumber < 2) {
+                                  setState(() {
+                                    imageNumber += 1;
+                                    displayImage = appData.imageURLPraxis[imageNumber];
+                                  });
+                                }
+                                if (imageNumber == 2) {
+                                  setState(() {
+                                    forwardButtonActive = false;
+                                  });
+                                }
+                                if (imageNumber > 0) {
+                                  setState(() {
+                                    backButtonActive = true;
+                                  });
+                                }
+                              } : null
+                          ),
+                        ],
+                      ),
+
                       SizedBox(
                         height: sizeBoxHeight,
                       ),
@@ -611,6 +707,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                               .languageComprehensionRadioValue,
                                           trialOneScore: widget.trialOneScore,
                                           trialTwoScore: widget.trialTwoScore,
+                                          trialThreeScore: widget.trialThreeScore,
                                           visuospatialPraxis: score,
                                         ));
                                 Navigator.of(context).pushAndRemoveUntil(

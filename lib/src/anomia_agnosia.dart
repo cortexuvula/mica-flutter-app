@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/executive.dart';
 import 'package:mica/src/home.dart';
+import 'package:mica/src/show_image.dart';
 import 'package:mica/src/ten_word_delay_recall.dart';
 import 'package:snaplist/snaplist.dart';
 
@@ -13,6 +14,7 @@ class AnomiaAgnosia extends StatefulWidget {
   int languageComprehensionRadioValue;
   int trialOneScore;
   int trialTwoScore;
+  int trialThreeScore;
   int visuospatialPraxis;
   int attention;
   int executiveAnimalNaming;
@@ -35,6 +37,7 @@ class AnomiaAgnosia extends StatefulWidget {
       this.languageComprehensionRadioValue,
       this.trialOneScore,
       this.trialTwoScore,
+        this.trialThreeScore,
       this.visuospatialPraxis,
       this.attention,
       this.executiveAnimalNaming,
@@ -222,12 +225,24 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                         color: Colors.white,
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: SizedBox(
-                            width: 150.0,
-                            height: 150.0,
-                            child: Image.asset(
-                              displayImage,
-                              fit: BoxFit.contain,
+                          child: GestureDetector(
+                            onTap: () {
+                              debugPrint("tapped picture");
+                              var router = new MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                  new ShowImage(
+                                    imageURL: displayImage,
+                                  ));
+                              Navigator.of(context).pushAndRemoveUntil(
+                                  router, (Route<dynamic> route) => true);
+                            },
+                            child: SizedBox(
+                              width: 150.0,
+                              height: 150.0,
+                              child: Image.asset(
+                                displayImage,
+                                fit: BoxFit.contain,
+                              ),
                             ),
                           ),
                         ),
@@ -470,6 +485,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                         .languageComprehensionRadioValue,
                                     trialOneScore: widget.trialOneScore,
                                     trialTwoScore: widget.trialTwoScore,
+                                    trialThreeScore: widget.trialThreeScore,
                                     visuospatialPraxis: widget.visuospatialPraxis,
                                     attention: widget.attention,
                                     executiveAnimalNaming: widget.executiveAnimalNaming,
