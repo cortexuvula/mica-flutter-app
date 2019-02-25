@@ -84,6 +84,19 @@ const List<String> tenWordRecallList2 = [
   "TICKET"
 ];
 
+const List<String> tenWordRecallList3 = [
+  "SOUP",
+  "TICKET",
+  "BOAT",
+  "JUG",
+  "EYE",
+  "CAT",
+  "HOUSE",
+  "LION",
+  "LEG",
+  "CARROT"
+];
+
 const List<String> tenWordMemoryList = [
   "CARROT",
   "ONION",
@@ -125,6 +138,16 @@ const String instructionsTenWordRecallTrialTwoPatient1 =
 const String instructionsTenWordRecallTrialTwoHealthworker2 =
     "Tap on each word correctly recalled.";
 const String instructionsTenWordRecallTrialTwoPatient2 =
+    "\“Now remember the words because I will ask you later for it.\"";
+
+const String testTenWordRecallTrialThree = "Ten Word Recall Trial 3";
+const String instructionsTenWordRecallTrialThreeHealthworker1 =
+    "Read the words again from left to right, asking for repetition after every word.";
+const String instructionsTenWordRecallTrialThreePatient1 =
+    "\“What were those words?\”";
+const String instructionsTenWordRecallTrialThreeHealthworker2 =
+    "Tap on each word correctly recalled.";
+const String instructionsTenWordRecallTrialThreePatient2 =
     "\“Now remember the words because I will ask you later for it.\"";
 
 const String testVisuospatialPraxis = "Visuospatial & Praxis";
@@ -194,7 +217,7 @@ const String testPraxisResponseNormal = "no errors";
 const String testPraxisResponseEquivocal = "some difficulty";
 const String testPraxisResponseImpaired = "clear difficulty";
 
-const String testTenWordDelayedRecall = "Ten Word Recall Trial 3";
+const String testTenWordDelayedRecall = "Ten Word Delayed Recall";
 const String instructionDelayedRecallPatient1 = "To Patient: \“What were the words I asked you to remember?\”";
 const String instructionDelayedRecallHealthworker1 ="Healthworker: Tap on each word correctly recalled:";
 
@@ -217,7 +240,7 @@ const String testShortTermMemoryVisualResponseFubar = "a failure to recall anyth
 
 const String testAnomiaAgnosia = "Anomia & Agnosia";
 const String testAnomiaAgnosiaSubtitle = "";
-const String testAnomiaAgnosiaDetails = "This is to distinguish anomia from agnosia.";
+const String testAnomiaAgnosiaDetails = "This is to distinguish anomia from agnosia. Click on image to enlarge image.";
 const String testAnomiaAgnosiaToPatient = "\"Name the following pictures.\”";
 const String testAnomiaAgnosiaResponse = "If unable, ask the patient to describe what the object is used for.";
 const String testAnomiaAgnosiaResponseNormal = "All correct";
@@ -243,3 +266,7 @@ const String testSpokenLanguageResponse = "Estimate spoken language ability by e
 const String testSpokenLanguageResponseNormal = "normal speech";
 const String testSpokenLanguageResponseEquivocal = "equivocal";
 const String testSpokenLanguageResponseImpaired = "definite impairment";
+
+const List<String> imageURLPraxis = ["./images/block_one.png", "./images/block_two.png", "./images/block_three.png"];
+
+const String summary = "Summary";

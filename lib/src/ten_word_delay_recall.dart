@@ -12,6 +12,7 @@ class TenWordDelayedRecall extends StatefulWidget {
   int languageComprehensionRadioValue;
   int trialOneScore;
   int trialTwoScore;
+  int trialThreeScore;
   int visuospatialPraxis;
   int attention;
   int executiveAnimalNaming;
@@ -29,6 +30,7 @@ class TenWordDelayedRecall extends StatefulWidget {
         this.languageComprehensionRadioValue,
         this.trialOneScore,
         this.trialTwoScore,
+        this.trialThreeScore,
         this.visuospatialPraxis,
         this.attention,
         this.executiveAnimalNaming,
@@ -223,6 +225,7 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
                                   .languageComprehensionRadioValue,
                               trialOneScore: widget.trialOneScore,
                               trialTwoScore: widget.trialTwoScore,
+                              trialThreeScore: widget.trialThreeScore,
                               visuospatialPraxis: widget.visuospatialPraxis,
                               attention: widget.attention,
                               executiveAnimalNaming: widget.executiveAnimalNaming,

@@ -14,6 +14,7 @@ class Attention extends StatefulWidget {
   int languageComprehensionRadioValue;
   int trialOneScore;
   int trialTwoScore;
+  int trialThreeScore;
   int visuospatialPraxis;
 
   Attention(
@@ -25,6 +26,7 @@ class Attention extends StatefulWidget {
       this.languageComprehensionRadioValue,
       this.trialOneScore,
       this.trialTwoScore,
+        this.trialThreeScore,
       this.visuospatialPraxis})
       : super(key: key);
 
@@ -656,6 +658,7 @@ class _AttentionState extends State<Attention> {
                                         .languageComprehensionRadioValue,
                                     trialOneScore: widget.trialOneScore,
                                     trialTwoScore: widget.trialTwoScore,
+                                    trialThreeScore: widget.trialThreeScore,
                                     visuospatialPraxis: widget.visuospatialPraxis,
                                     attention: _radioValue,
                                   ));

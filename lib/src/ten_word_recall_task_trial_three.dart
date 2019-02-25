@@ -1,34 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/home.dart';
-import 'package:mica/src/ten_word_recall_task_trial_three.dart';
 import 'package:mica/src/visuospatial_praxis.dart';
 
-class TenWordRecallTrialTwo extends StatefulWidget {
+class TenWordRecallTrialThree extends StatefulWidget {
   String patientName;
   String assessorName;
   String handedness;
   DateTime assessmentDate;
   int languageComprehensionRadioValue;
   int trialOneScore;
+  int trialTwoScore;
 
-  TenWordRecallTrialTwo(
+  TenWordRecallTrialThree(
       {Key key,
-      this.patientName,
-      this.assessorName,
-      this.handedness,
-      this.assessmentDate,
-      this.languageComprehensionRadioValue,
-      this.trialOneScore})
+        this.patientName,
+        this.assessorName,
+        this.handedness,
+        this.assessmentDate,
+        this.languageComprehensionRadioValue,
+        this.trialOneScore,
+        this.trialTwoScore})
       : super(key: key);
 
   @override
-  _TenWordRecallTrialTwoState createState() => _TenWordRecallTrialTwoState();
+  _TenWordRecallTrialThreeState createState() => _TenWordRecallTrialThreeState();
 }
 
-class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
+class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
   List<Color> wordButtonColor = [];
-  int scoreTenWordRecallTrialTwo = 0;
+  int scoreTenWordRecallTrialThree = 0;
   bool activeContinueButton = false;
 
   @override
@@ -43,14 +44,14 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
     var screenHeightInfo =
-        (MediaQuery.of(context).size.height * 0.3).floorToDouble();
+    (MediaQuery.of(context).size.height * 0.3).floorToDouble();
     var screenHeightWords =
-        (MediaQuery.of(context).size.height * 0.45).floorToDouble();
+    (MediaQuery.of(context).size.height * 0.45).floorToDouble();
     return Scaffold(
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            appData.testTenWordRecallTrialTwo,
+            appData.testTenWordRecallTrialThree,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,
@@ -64,8 +65,8 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
               onPressed: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) => new Home(
-                          viewedDisclaimer: true,
-                        ));
+                      viewedDisclaimer: true,
+                    ));
                 Navigator.of(context).pushAndRemoveUntil(
                     router, (Route<dynamic> route) => false);
               })
@@ -117,7 +118,7 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               appData
-                                  .instructionsTenWordRecallTrialTwoHealthworker1,
+                                  .instructionsTenWordRecallTrialThreeHealthworker1,
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
@@ -134,7 +135,7 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              appData.instructionsTenWordRecallTrialTwoPatient1,
+                              appData.instructionsTenWordRecallTrialThreePatient1,
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
@@ -153,7 +154,7 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               appData
-                                  .instructionsTenWordRecallTrialTwoHealthworker2,
+                                  .instructionsTenWordRecallTrialThreeHealthworker2,
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
@@ -170,7 +171,7 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              appData.instructionsTenWordRecallTrialTwoPatient2,
+                              appData.instructionsTenWordRecallTrialThreePatient2,
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
@@ -205,19 +206,19 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
                           if (wordButtonColor[index] ==
                               Colors.yellowAccent.shade100) {
                             wordButtonColor[index] = Colors.green;
-                            scoreTenWordRecallTrialTwo += 1;
+                            scoreTenWordRecallTrialThree += 1;
                           } else if (wordButtonColor[index] == Colors.green) {
                             wordButtonColor[index] =
                                 Colors.yellowAccent.shade100;
-                            scoreTenWordRecallTrialTwo -= 1;
+                            scoreTenWordRecallTrialThree -= 1;
                           }
 
-                          if (scoreTenWordRecallTrialTwo == 10) {
+                          if (scoreTenWordRecallTrialThree == 10) {
                             activeContinueButton = true;
                           }
                         });
                       },
-                      child: Text("${appData.tenWordRecallList2[index]}"),
+                      child: Text("${appData.tenWordRecallList3[index]}"),
                     );
                   })),
             ),
@@ -239,16 +240,17 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
                       onPressed: () {
                         var router = new MaterialPageRoute(
                             builder: (BuildContext context) =>
-                                new TenWordRecallTrialThree(
-                                  patientName: widget.patientName,
-                                  assessorName: widget.assessorName,
-                                  handedness: widget.handedness,
-                                  assessmentDate: widget.assessmentDate,
-                                  languageComprehensionRadioValue:
-                                      widget.languageComprehensionRadioValue,
-                                  trialOneScore: widget.trialOneScore,
-                                  trialTwoScore: scoreTenWordRecallTrialTwo,
-                                ));
+                            new VisuospatialPraxis(
+                              patientName: widget.patientName,
+                              assessorName: widget.assessorName,
+                              handedness: widget.handedness,
+                              assessmentDate: widget.assessmentDate,
+                              languageComprehensionRadioValue:
+                              widget.languageComprehensionRadioValue,
+                              trialOneScore: widget.trialOneScore,
+                              trialTwoScore: widget.trialTwoScore,
+                              trialThreeScore: scoreTenWordRecallTrialThree,
+                            ));
                         Navigator.of(context).pushAndRemoveUntil(
                             router, (Route<dynamic> route) => false);
                       }),

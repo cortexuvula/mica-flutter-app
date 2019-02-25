@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/loading_screen.dart';
 import 'package:mica/src/patient_information.dart';
+import 'package:mica/src/show_image.dart';
 
 class MicaApp extends StatelessWidget {
   @override
@@ -22,6 +23,7 @@ class MicaApp extends StatelessWidget {
           cardColor: Colors.white),
       routes: <String, WidgetBuilder>{
         '/patient_information': (BuildContext context) => PatientInformation(),
+        '/show_image': (BuildContext context) => ShowImage(),
       },
     );
   }
