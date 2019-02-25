@@ -152,7 +152,7 @@ const String instructionsTenWordRecallTrialThreePatient2 =
 
 const String testVisuospatialPraxis = "Visuospatial & Praxis";
 const String testVisuospatialPraxisDetails =
-    "Assess the ability to copy line drawings. Swipe to the left to show the following 3 pictures to the patient.";
+    "Assess the ability to copy line drawings. Click on the images to enlarge image before displaying to patient.";
 const String testVisuospatialPraxisToPatient = "\"Copy these figures.\"";
 const String testVisuospatialPraxisResponse =
     " Do not warn about delayed recall.";

@@ -724,108 +724,108 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
               ],
             ),
           ),
-          Container(
-            color: Theme.of(context).backgroundColor,
-            child: Center(
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Text(
-                    "Image 1",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 30.0,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Container(
-                    width: _width * 0.9,
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Image.asset(
-                        "./images/block_one.png",
-                        fit: BoxFit.fitWidth,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          Container(
-            color: Theme.of(context).backgroundColor,
-            child: Center(
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Text(
-                    "Image 2",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 30.0,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Container(
-                    width: _width * 0.9,
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Image.asset(
-                        "./images/block_two.png",
-                        fit: BoxFit.fitWidth,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
-          Container(
-            color: Theme.of(context).backgroundColor,
-            child: Center(
-              child: Column(
-                children: <Widget>[
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Text(
-                    "Image 3",
-                    style: TextStyle(
-                      fontWeight: FontWeight.w500,
-                      fontSize: 30.0,
-                      decoration: TextDecoration.underline,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 20.0,
-                  ),
-                  Container(
-                    width: _width * 0.9,
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Image.asset(
-                        "./images/block_three.png",
-                        fit: BoxFit.fitWidth,
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ),
+//          Container(
+//            color: Theme.of(context).backgroundColor,
+//            child: Center(
+//              child: Column(
+//                children: <Widget>[
+//                  SizedBox(
+//                    height: 20.0,
+//                  ),
+//                  Text(
+//                    "Image 1",
+//                    style: TextStyle(
+//                      fontWeight: FontWeight.w500,
+//                      fontSize: 30.0,
+//                      decoration: TextDecoration.underline,
+//                    ),
+//                  ),
+//                  SizedBox(
+//                    height: 20.0,
+//                  ),
+//                  Container(
+//                    width: _width * 0.9,
+//                    color: Colors.white,
+//                    child: Padding(
+//                      padding: const EdgeInsets.all(10.0),
+//                      child: Image.asset(
+//                        "./images/block_one.png",
+//                        fit: BoxFit.fitWidth,
+//                      ),
+//                    ),
+//                  )
+//                ],
+//              ),
+//            ),
+//          ),
+//          Container(
+//            color: Theme.of(context).backgroundColor,
+//            child: Center(
+//              child: Column(
+//                children: <Widget>[
+//                  SizedBox(
+//                    height: 20.0,
+//                  ),
+//                  Text(
+//                    "Image 2",
+//                    style: TextStyle(
+//                      fontWeight: FontWeight.w500,
+//                      fontSize: 30.0,
+//                      decoration: TextDecoration.underline,
+//                    ),
+//                  ),
+//                  SizedBox(
+//                    height: 20.0,
+//                  ),
+//                  Container(
+//                    width: _width * 0.9,
+//                    color: Colors.white,
+//                    child: Padding(
+//                      padding: const EdgeInsets.all(10.0),
+//                      child: Image.asset(
+//                        "./images/block_two.png",
+//                        fit: BoxFit.fitWidth,
+//                      ),
+//                    ),
+//                  )
+//                ],
+//              ),
+//            ),
+//          ),
+//          Container(
+//            color: Theme.of(context).backgroundColor,
+//            child: Center(
+//              child: Column(
+//                children: <Widget>[
+//                  SizedBox(
+//                    height: 20.0,
+//                  ),
+//                  Text(
+//                    "Image 3",
+//                    style: TextStyle(
+//                      fontWeight: FontWeight.w500,
+//                      fontSize: 30.0,
+//                      decoration: TextDecoration.underline,
+//                    ),
+//                  ),
+//                  SizedBox(
+//                    height: 20.0,
+//                  ),
+//                  Container(
+//                    width: _width * 0.9,
+//                    color: Colors.white,
+//                    child: Padding(
+//                      padding: const EdgeInsets.all(10.0),
+//                      child: Image.asset(
+//                        "./images/block_three.png",
+//                        fit: BoxFit.fitWidth,
+//                      ),
+//                    ),
+//                  )
+//                ],
+//              ),
+//            ),
+//          ),
         ],
       ),
     );
