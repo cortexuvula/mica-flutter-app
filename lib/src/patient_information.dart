@@ -170,41 +170,38 @@ class _PatientInformationState extends State<PatientInformation> {
                 Container(
                   width: _width * 0.9,
                   child: Card(
+                    elevation: 10.0,
                     color: Colors.white,
                     child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        children: <Widget>[
-                          RaisedButton(
-                            onPressed: () {
-                              String _handed;
-                              if (_radioValue == 0) {
-                                _handed = "Right";
-                              } else {
-                                _handed = "Left";
-                              }
-                              if (_formKey.currentState.validate()) {
-                                // If the form is valid, display a snackbar. In the real world, you'd
-                                // often want to call a server or save the information in a database
-                                _scaffoldState.currentState.showSnackBar(
-                                    SnackBar(content: Text('Processing Data')));
+                      padding: const EdgeInsets.all(8.0),
+                      child: RaisedButton(
+                        onPressed: () {
+                          String _handed;
+                          if (_radioValue == 0) {
+                            _handed = "Right";
+                          } else {
+                            _handed = "Left";
+                          }
+                          if (_formKey.currentState.validate()) {
+                            // If the form is valid, display a snackbar. In the real world, you'd
+                            // often want to call a server or save the information in a database
+                            _scaffoldState.currentState.showSnackBar(
+                                SnackBar(content: Text('Processing Data')));
 
-                                var router = new MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        new LanguageComprehension(
-                                          patientName: myPatient.text,
-                                          assessorName: myAssessor.text,
-                                          handedness: _handed,
-                                          assessmentDate: selectedDate,
-                                        ));
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    router, (Route<dynamic> route) => false);
-                              }
-                            },
-                            elevation: 10.0,
-                            child: Text("Start Testing"),
-                          ),
-                        ],
+                            var router = new MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    new LanguageComprehension(
+                                      patientName: myPatient.text,
+                                      assessorName: myAssessor.text,
+                                      handedness: _handed,
+                                      assessmentDate: selectedDate,
+                                    ));
+                            Navigator.of(context).pushAndRemoveUntil(
+                                router, (Route<dynamic> route) => false);
+                          }
+                        },
+                        elevation: 10.0,
+                        child: Text("Start Testing"),
                       ),
                     ),
                   ),
