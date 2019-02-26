@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/executive_animal_naming.dart';
 import 'package:mica/src/home.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 
 class Attention extends StatefulWidget {
   String patientName;
