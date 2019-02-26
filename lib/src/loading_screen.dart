@@ -1,8 +1,5 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
-
 import 'package:mica/src/home.dart';
 
 class LoadingScreen extends StatefulWidget {
@@ -73,16 +70,4 @@ class _LoadingScreenState extends State<LoadingScreen> {
         ),
         backgroundColor: Theme.of(context).backgroundColor);
   }
-
-//  @override
-//  void afterFirstLayout(BuildContext context) async {
-//
-//    await Future.delayed(Duration(seconds: 2));
-//    var router = new MaterialPageRoute(
-//        builder: (BuildContext context) => new Home(
-//              viewedDisclaimer: false,
-//            ));
-//    Navigator.of(context)
-//        .pushAndRemoveUntil(router, (Route<dynamic> route) => false);
-//  }
 }
