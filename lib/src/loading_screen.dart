@@ -21,9 +21,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
               ),
               Hero(
                 tag: "logo",
-                child: FlutterLogo(
-                  size: 200.0,
-                ),
+                child: Image.asset("./images/logo512.png",
+                  height: 200.0,
+                  width: 200.0,
+                )
               ),
               SizedBox(
                 height: 20.0,
