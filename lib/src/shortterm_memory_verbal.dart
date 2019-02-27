@@ -180,6 +180,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: <Widget>[
+
                           Row(
                             children: <Widget>[
                               Row(

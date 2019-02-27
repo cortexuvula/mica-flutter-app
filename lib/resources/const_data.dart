@@ -20,7 +20,7 @@ const String testLanguageComprehension = "Language Comprehension";
 const String testLanguageComprehensionDetails =
     "Evaluate comprehension of spoken language by using a 3-stage command.";
 const String testLanguageComprehensionToPatient =
-    "\"Can you point with your finger to the ceiling, floor and the door.\"";
+    "\"Can you point with your finger to the ceiling, the floor and the door.\"";
 const String testLanguageComprehensionResponse =
     "Note the response of the patient and score as below.";
 const String testLanguageComprehensionResponseNormal =
@@ -124,31 +124,31 @@ const String testTenWordRecallTrialOne = "Ten Word Recall Trial 1";
 const String instructionsTenWordRecallTrialOnePaient1 =
     "\"I am going to read you a list of 10 words. Remember these words, as I will ask you what you can remember after I have finished reading the list to you. Please repeat each word after I have said it, so that I can be sure that you heard it correctly. Do you understand? Are you ready? Let's go!\"";
 const String instructionsTenWordRecallTrialOneHealthworker1 =
-    "If the patient does not repeat the word say: \“Please repeat the word.\” Read the words from left to right. Carry on with the rest of the list. Tap on each word correctly recalled.";
+    "If the patient does not repeat the word say: \“Please repeat the word.\” Read the words from left to right. Carry on with the rest of the list.";
 const String instructionsTenWordRecallTrialOnePatient2 =
     "\“What were those words?\” ";
 const String instructionsTenWordRecallTrialOneHealthworker2 =
-    "Tap on each word correctly recalled:";
+    "Tap on each word correctly recalled.";
 
 const String testTenWordRecallTrialTwo = "Ten Word Recall Trial 2";
 const String instructionsTenWordRecallTrialTwoHealthworker1 =
-    "Read the words again from left to right, asking for repetition after every word.";
+    "Read the words aloud again from left to right, asking for repetition after every word.";
 const String instructionsTenWordRecallTrialTwoPatient1 =
     "\“What were those words?\”";
 const String instructionsTenWordRecallTrialTwoHealthworker2 =
     "Tap on each word correctly recalled.";
 const String instructionsTenWordRecallTrialTwoPatient2 =
-    "\“Now remember the words because I will ask you later for it.\"";
+    "\“Now try to remember the words because I will ask you again later.\"";
 
 const String testTenWordRecallTrialThree = "Ten Word Recall Trial 3";
 const String instructionsTenWordRecallTrialThreeHealthworker1 =
-    "Read the words again from left to right, asking for repetition after every word.";
+    "Read the words aloud again from left to right, asking for repetition after every word.";
 const String instructionsTenWordRecallTrialThreePatient1 =
     "\“What were those words?\”";
 const String instructionsTenWordRecallTrialThreeHealthworker2 =
     "Tap on each word correctly recalled.";
 const String instructionsTenWordRecallTrialThreePatient2 =
-    "\“Now remember the words because I will ask you later for it.\"";
+    "\“Now try to remember the words because I will ask you again later.\"";
 
 const String testVisuospatialPraxis = "Visuospatial & Praxis";
 const String testVisuospatialPraxisDetails =
@@ -174,7 +174,7 @@ const String testAttentionResponseImpaired = "Impaired = > 1 mistake.";
 
 const String testExecutiveAnimalNaming = "Executive";
 const String testExecutiveAnimalNamingSubtitle = "Animal Naming Task";
-const String testExecutiveAnimalNamingDetails = "";
+const String testExecutiveAnimalNamingDetails = "Verbal fluency.";
 const String testExecutiveAnimalNamingToPatient = "\“I am going to give you one minute to name as many animals as possible.\”";
 const String testExecutiveAnimalNamingResponse = "The patient can name mammals, birds, reptiles or fish. Repetitions are not scored.";
 const String testExecutiveAnimalNamingResponseNormal = "> 14 Names";
@@ -193,7 +193,7 @@ const String testExecutiveLuriaResponseImpaired = "Not being able to complete th
 const String testExecutiveSerial = "Executive";
 const String testExecutiveSerialSubtitle = "Serial Order Reversal Task";
 const String testExecutiveSerialDetails = "";
-const String testExecutiveSerialToPatient = "\”Say the months of the year starting with January. Now start with December and go backwards.\”";
+const String testExecutiveSerialToPatient = "\”Say the months of the year starting with January.\nNow start with December and go backwards.\”";
 const String testExecutiveSerialResponse = "Allow the person to complete the task until December. Stop the person when he reaches July or makes 2 or more mistakes: December November October September August July.";
 const String testExecutiveSerialResponseNormal = "No errors";
 const String testExecutiveSerialResponseEquivocal = "1 error";
@@ -201,8 +201,8 @@ const String testExecutiveSerialResponseImpaired = "> 1 error";
 
 const String testShortTermMemory = "Short-Term Memory";
 const String testShortTermMemorySubtitle = "Verbal";
-const String testShortTermMemoryDetails = "";
-const String testShortTermMemoryToPatient = "";
+const String testShortTermMemoryDetails = "Orientation.";
+const String testShortTermMemoryToPatient = "Ask the patient the following:";
 const String testShortTermMemoryResponse = "Date can be +/- one day, the rest must be exact.";
 const String testShortTermMemoryResponseNormal = "5 correct";
 const String testShortTermMemoryResponseEquivocal = "4 correct";
@@ -224,14 +224,14 @@ const String instructionDelayedRecallHealthworker1 ="Healthworker: Tap on each w
 const String testTenWordRecognition = "Ten Word Recognition";
 const String instructionsWordRecognitionHealthworker1 = "Healthworker: Scroll down to see all the words.";
 const String instructionsWordRecognitionPatient1 = "To Patient: \"I am now going to read a list of words. Some of the words are from the list that I asked you to remember and some of the words are new. Say yes if you recognise the word and no if it was not in the list I asked you to memorise. If you don’t know the answer just guess.\"";
-const String instructionsWordRecognitionHealthworker2 = "Healthworker: The instructions may be repeated if forgotten.To select correct responses, tap on Yes or No for each word. (Words from the memory list is in";
+const String instructionsWordRecognitionHealthworker2 = "Healthworker: The instructions may be repeated if forgotten.To select correct responses, tap on Yes or No for each word. (Words from the original memory list are in";
 const String instructionsWordRecognitionHealthworker3 = " BOLD";
 const String instructionsWordRecognitionHealthworker4 = ".)";
 
 const String testShortTermMemoryVisual = "Short-Term Memory";
 const String testShortTermMemoryVisualSubtitle = "Visual";
-const String testShortTermMemoryVisualDetails = "";
-const String testShortTermMemoryVisualToPatient = "\“Earlier, you copied three pictures, can you remember it? Can you draw it here?\”";
+const String testShortTermMemoryVisualDetails = "Visual recall.";
+const String testShortTermMemoryVisualToPatient = "\“Earlier, you copied three pictures, can you remember them? Can you draw them here?\”";
 const String testShortTermMemoryVisualResponse = "Provide the patient with a blank sheet of paper.";
 const String testShortTermMemoryVisualResponseNormal = "no mistakes";
 const String testShortTermMemoryVisualResponseEquivocal = "few omissions";

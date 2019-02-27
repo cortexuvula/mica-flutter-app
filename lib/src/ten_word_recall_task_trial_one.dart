@@ -160,12 +160,25 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                             ),
                           ),
                         ),
-//                    Padding(padding: EdgeInsets.all(8.0)),
-//                        Text(
-//                          appData
-//                              .instructionsTenWordRecallTrialOneHealthworker2,
-//                          style: TextStyle(color: Colors.blue),
-//                        ),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+
+                        Card(
+                          elevation: 10.0,
+                          color: Colors.deepPurple.shade300,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              appData
+                                  .instructionsTenWordRecallTrialOneHealthworker2,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15.0),
+                            ),
+                          ),
+                        ),
                       ],
                       crossAxisAlignment: CrossAxisAlignment.start,
                     ),
