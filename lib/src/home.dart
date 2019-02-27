@@ -40,15 +40,7 @@ class _HomeState extends State<Home> {
         ),
         body: ListView(
           children: <Widget>[
-            SizedBox(
-              height: 25.0,
-            ),
-            Hero(
-              tag: "logo",
-              child: FlutterLogo(
-                size: 50.0,
-              ),
-            ),
+
             Container(
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
