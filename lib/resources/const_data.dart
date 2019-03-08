@@ -2,13 +2,13 @@ const String appName = "Midland Cognitive Assessment";
 const String disclaimer =
     "The Midland Cognitive Assessment App does not provide medical advice and cannot replace good clinical practice. It is intended for health professionals familiar with this type of assessment. You use this App as is and at your own risk. You are strongly encouraged to first read the Full Instructions and Teaching Booklet.";
 const String disclaimer2 =
-    "The Midland Cognitive Assessment app is intended for use by health professionals familiar with this type of cognitive assessment. It does not provide medical advice and cannot replace good clinical practice. It should be used at your own discretion. You are strongly encouraged to first read the full instructions and teaching booklet.";
+    "The Midland Cognitive Assessment App is intended for use by health professionals familiar with this type of cognitive assessment. It does not provide medical advice and cannot replace good clinical practice. It should be used at your own discretion. You are strongly encouraged to first read the full instructions and teaching booklet.";
 const String testDescription = "Task Description:";
 const String testToPatient = "To Patient:";
 const String testResponse = "Response:";
 
 const String appDescription =
-    "The Midland Cognitive Assessment (MICA) is a collection of cognitive tasks that can be done in full or in part. Emphasis is on cognitive domain assessment and not on total scores. For full instructions see the accompanying booklet - Bedside Cognitive Assessment.";
+    "The Midland Cognitive Assessment (MICA) is a collection of cognitive tasks that can be done in full or in part. Emphasis is on cognitive domain assessment and not on a total score. For full instructions see the accompanying booklet - Bedside Cognitive Assessment.";
 const String bookletButton = "Bedside Cognitive Assessment Booklet";
 const String fullTestButton = "Start Full Test";
 const String fullTestText =
@@ -270,3 +270,30 @@ const String testSpokenLanguageResponseImpaired = "definite impairment";
 const List<String> imageURLPraxis = ["./images/block_one.png", "./images/block_two.png", "./images/block_three.png"];
 
 const String summary = "Summary";
+
+const List<Map<String, String>> videos = [
+  {"title": "Alternating Numbers & Letters", "video":"AlternatingNumLetters.m4v"},
+  {"title": "Animal Naming", "video":"AnimalNaming.m4v"},
+  {"title": "Clock Drawing", "video":"ClockDrawing.m4v"},
+  {"title": "Coin Rotation", "video":"CoinRotation.m4v"},
+  {"title": "Comprehension", "video":"Comprehension3Objects.m4v"},
+  {"title": "Design Fluency", "video":"DesignFluency.m4v"},
+  {"title": "Digit Span", "video":"DigitSpan.m4v"},
+  {"title": "Finger Perception", "video":"FingerID.m4v"},
+  {"title": "Finger-Nose Task", "video":"FingerNose.m4v"},
+  {"title": "Ideational Apraxia", "video":"FoldingLetter.m4v"},
+  {"title": "Four Stage Command", "video":"FourStageCommand.m4v"},
+  {"title": "Luria Hand Movement I", "video":"LuriaI.m4v"},
+  {"title": "Luria Hand Movement II", "video":"LuriaII.m4v"},
+  {"title": "Ideomotor Apraxia", "video":"MakingTea.m4v"},
+  {"title": "Naming", "video":"Naming.m4v"},
+  {"title": "Object Identification", "video":"ObjectIDTouch.m4v"},
+  {"title": "Serial 7's", "video":"Serial7s.m4v"},
+  {"title": "Tap Task", "video":"TappingTask.m4v"},
+  {"title": "Delayed Recall", "video":"VerbalMemDelayedRecog.m4v"},
+  {"title": "Vigilance Test", "video":"VigilanceTest.m4v"},
+  {"title": "Verbal Recall", "video":"WordListImRec2.m4v"},
+
+  ];
+
+const String resourceButton = "Instructions and Videos";

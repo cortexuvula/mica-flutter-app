@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/src/resource_page.dart';
 import 'pdf_screen.dart';
 
 class Home extends StatefulWidget {
@@ -168,9 +169,9 @@ class _HomeState extends State<Home> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => PDFScreen()));
+                                  builder: (context) => ResourcePage()));
                         },
-                        child: Text(appData.bookletButton),
+                        child: Text(appData.resourceButton),
                       ),
                     ),
                   ),
