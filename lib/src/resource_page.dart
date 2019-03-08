@@ -14,7 +14,7 @@ class _ResourcePageState extends State<ResourcePage> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            appData.appName,
+            "Video Resource",
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,

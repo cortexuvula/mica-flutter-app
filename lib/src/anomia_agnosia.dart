@@ -120,19 +120,19 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: <Widget>[
-                          Text(
-                            appData.testDescription,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20.0,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5.0,
-                          ),
+//                          Text(
+//                            appData.testDescription,
+//                            textAlign: TextAlign.left,
+//                            style: TextStyle(
+//                              color: Colors.black,
+//                              fontWeight: FontWeight.w500,
+//                              fontSize: 20.0,
+//                              decoration: TextDecoration.underline,
+//                            ),
+//                          ),
+//                          SizedBox(
+//                            height: 5.0,
+//                          ),
                           Text(
                             appData.testAnomiaAgnosiaDetails,
                             textAlign: TextAlign.center,
@@ -158,19 +158,19 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: <Widget>[
-                          Text(
-                            appData.testToPatient,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20.0,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5.0,
-                          ),
+//                          Text(
+//                            appData.testToPatient,
+//                            textAlign: TextAlign.left,
+//                            style: TextStyle(
+//                              color: Colors.black,
+//                              fontWeight: FontWeight.w500,
+//                              fontSize: 20.0,
+//                              decoration: TextDecoration.underline,
+//                            ),
+//                          ),
+//                          SizedBox(
+//                            height: 5.0,
+//                          ),
                           Text(
                             appData.testAnomiaAgnosiaToPatient,
                             textAlign: TextAlign.center,
@@ -287,19 +287,19 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: <Widget>[
-                          Text(
-                            appData.testResponse,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20.0,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5.0,
-                          ),
+//                          Text(
+//                            appData.testResponse,
+//                            textAlign: TextAlign.left,
+//                            style: TextStyle(
+//                              color: Colors.black,
+//                              fontWeight: FontWeight.w500,
+//                              fontSize: 20.0,
+//                              decoration: TextDecoration.underline,
+//                            ),
+//                          ),
+//                          SizedBox(
+//                            height: 5.0,
+//                          ),
                           Text(
                             appData.testAnomiaAgnosiaResponse,
                             textAlign: TextAlign.center,

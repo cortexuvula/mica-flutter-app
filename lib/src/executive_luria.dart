@@ -87,41 +87,41 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                 SizedBox(
                   height: sizeBoxHeight,
                 ),
-                Container(
-                  width: _width * 0.9,
-                  child: Card(
-                    elevation: 10.0,
-                    color: Colors.deepPurple.shade300,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: <Widget>[
-                          Text(
-                            appData.testDescription,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20.0,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5.0,
-                          ),
-                          Text(
-                            appData.testExecutiveLuriaDetails,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15.0),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+//                Container(
+//                  width: _width * 0.9,
+//                  child: Card(
+//                    elevation: 10.0,
+//                    color: Colors.deepPurple.shade300,
+//                    child: Padding(
+//                      padding: const EdgeInsets.all(8.0),
+//                      child: Column(
+//                        children: <Widget>[
+////                          Text(
+////                            appData.testDescription,
+////                            textAlign: TextAlign.left,
+////                            style: TextStyle(
+////                              color: Colors.black,
+////                              fontWeight: FontWeight.w500,
+////                              fontSize: 20.0,
+////                              decoration: TextDecoration.underline,
+////                            ),
+////                          ),
+////                          SizedBox(
+////                            height: 5.0,
+////                          ),
+//                          Text(
+//                            appData.testExecutiveLuriaDetails,
+//                            textAlign: TextAlign.center,
+//                            style: TextStyle(
+//                                color: Colors.black,
+//                                fontWeight: FontWeight.w500,
+//                                fontSize: 15.0),
+//                          ),
+//                        ],
+//                      ),
+//                    ),
+//                  ),
+//                ),
                 SizedBox(
                   height: sizeBoxHeight,
                 ),
@@ -134,19 +134,19 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: <Widget>[
-                          Text(
-                            appData.testToPatient,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20.0,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5.0,
-                          ),
+//                          Text(
+//                            appData.testToPatient,
+//                            textAlign: TextAlign.left,
+//                            style: TextStyle(
+//                              color: Colors.black,
+//                              fontWeight: FontWeight.w500,
+//                              fontSize: 20.0,
+//                              decoration: TextDecoration.underline,
+//                            ),
+//                          ),
+//                          SizedBox(
+//                            height: 5.0,
+//                          ),
                           Text(
                             appData.testExecutiveLuriaToPatient,
                             textAlign: TextAlign.center,
@@ -172,19 +172,19 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: <Widget>[
-                          Text(
-                            appData.testResponse,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 20.0,
-                              decoration: TextDecoration.underline,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 5.0,
-                          ),
+//                          Text(
+//                            appData.testResponse,
+//                            textAlign: TextAlign.left,
+//                            style: TextStyle(
+//                              color: Colors.black,
+//                              fontWeight: FontWeight.w500,
+//                              fontSize: 20.0,
+//                              decoration: TextDecoration.underline,
+//                            ),
+//                          ),
+//                          SizedBox(
+//                            height: 5.0,
+//                          ),
                           Text(
                             appData.testExecutiveLuriaResponse,
                             textAlign: TextAlign.center,
