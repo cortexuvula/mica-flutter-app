@@ -172,6 +172,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                 fontSize: 15.0),
                           ),
                           Column(
+
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Row(
