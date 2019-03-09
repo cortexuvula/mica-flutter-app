@@ -562,72 +562,174 @@ class _AttentionState extends State<Attention> {
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15.0),
                           ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Radio(
-                                value: 0,
-                                groupValue: _radioValue,
-                                onChanged: _handleRadioValueChange,
-                                activeColor: Colors.white,
-                              ),
-                              Text(
-                                "Normal",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 10.0,
-                                ),
-                              ),
-                              Radio(
-                                value: 1,
-                                groupValue: _radioValue,
-                                onChanged: _handleRadioValueChange,
-                                activeColor: Colors.white,
-                              ),
-                              Text(
-                                "Equivocal",
+                          Table(
+                            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                            border: TableBorder.all(),
+                            columnWidths: {
+                              0: FlexColumnWidth(0.3),
+                              1: FlexColumnWidth(0.3),
+                              2: FlexColumnWidth(0.34)
+                            },
+                            children: [
+                              TableRow(
+                                children: [
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 0,
+                                        groupValue: _radioValue,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Normal",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 10.0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 1,
+                                        groupValue: _radioValue,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Equivocal",
 
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 10.0,
-                                ),
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 10.0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 2,
+                                        groupValue: _radioValue,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Impaired",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 10.0,
+                                        ),
+                                      ),
+                                    ],
+                                  )
+                                ]
                               ),
-                              Radio(
-                                value: 2,
-                                groupValue: _radioValue,
-                                onChanged: _handleRadioValueChange,
-                                activeColor: Colors.white,
-                              ),
-                              Text(
-                                "Impaired",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 10.0,
-                                ),
-                              ),
+                              TableRow(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData.testAttentionResponseNormal,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 10.0,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData.testAttentionResponseEquivocal,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 10.0,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData.testAttentionResponseImpaired,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 10.0,
+                                      ),
+                                    ),
+                                  ),
+                                ]
+                              )
                             ],
                           ),
-                          Text(
-                            appData.testAttentionResponseNormal,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 10.0,
-                            ),
-                          ),
-                          Text(
-                            appData.testAttentionResponseEquivocal,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 10.0,
-                            ),
-                          ),
-                          Text(
-                            appData.testAttentionResponseImpaired,
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 10.0,
-                            ),
-                          ),
+
+//                          Row(
+//                            mainAxisAlignment: MainAxisAlignment.center,
+//                            children: <Widget>[
+//                              Radio(
+//                                value: 0,
+//                                groupValue: _radioValue,
+//                                onChanged: _handleRadioValueChange,
+//                                activeColor: Colors.white,
+//                              ),
+//                              Text(
+//                                "Normal",
+//                                style: TextStyle(
+//                                  color: Colors.black,
+//                                  fontSize: 10.0,
+//                                ),
+//                              ),
+//                              Radio(
+//                                value: 1,
+//                                groupValue: _radioValue,
+//                                onChanged: _handleRadioValueChange,
+//                                activeColor: Colors.white,
+//                              ),
+//                              Text(
+//                                "Equivocal",
+//
+//                                style: TextStyle(
+//                                  color: Colors.black,
+//                                  fontSize: 10.0,
+//                                ),
+//                              ),
+//                              Radio(
+//                                value: 2,
+//                                groupValue: _radioValue,
+//                                onChanged: _handleRadioValueChange,
+//                                activeColor: Colors.white,
+//                              ),
+//                              Text(
+//                                "Impaired",
+//                                style: TextStyle(
+//                                  color: Colors.black,
+//                                  fontSize: 10.0,
+//                                ),
+//                              ),
+//                            ],
+//                          ),
+//                          Text(
+//                            appData.testAttentionResponseNormal,
+//                            style: TextStyle(
+//                              color: Colors.black,
+//                              fontSize: 10.0,
+//                            ),
+//                          ),
+//                          Text(
+//                            appData.testAttentionResponseEquivocal,
+//                            style: TextStyle(
+//                              color: Colors.black,
+//                              fontSize: 10.0,
+//                            ),
+//                          ),
+//                          Text(
+//                            appData.testAttentionResponseImpaired,
+//                            style: TextStyle(
+//                              color: Colors.black,
+//                              fontSize: 10.0,
+//                            ),
+//                          ),
                         ],
                       ),
                     ),

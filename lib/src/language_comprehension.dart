@@ -171,123 +171,226 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15.0),
                           ),
-                          Column(
-
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Row(
-
-                                children: <Widget>[
-                                  SizedBox(
-                                    width: sizeBoxWidth,
-                                    child: Row(
-                                      children: <Widget>[
-                                        Radio(
-                                          value: 0,
-                                          groupValue: _radioValue,
-                                          onChanged: _handleRadioValueChange,
-                                          activeColor: Colors.white,
-                                        ),
-                                        Text(
-                                          "Normal",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                              fontSize: 10.0
-                                          ),
-
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: sizeBoxWidth,
-                                    child: Row(
-                                      children: <Widget>[
-                                        Radio(
-                                          value: 1,
-                                          groupValue: _radioValue,
-                                          onChanged: _handleRadioValueChange,
-                                          activeColor: Colors.white,
-                                        ),
-                                        Text(
-                                          "Equivocal",
-                                          style: TextStyle(
+                          SizedBox(
+                            height: 5.0,
+                          ),
+                          Table(
+                            border: TableBorder.all(),
+                            columnWidths: {
+                              0: FlexColumnWidth(0.33),
+                              1: FlexColumnWidth(0.33),
+                              2: FlexColumnWidth(0.34),
+                            },
+                            children: [
+                              TableRow(
+                                children: [
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 0,
+                                        groupValue: _radioValue,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Normal",
+                                        style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 10.0
-                                          ),
+                                        ),
 
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
-                                  SizedBox(
-                                    width: sizeBoxWidth,
-                                    child: Row(
-                                      children: <Widget>[
-                                        Radio(
-                                          value: 2,
-                                          groupValue: _radioValue,
-                                          onChanged: _handleRadioValueChange,
-                                          activeColor: Colors.white,
-                                        ),
-                                        Text(
-                                          "Impaired",
-                                          style: TextStyle(
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 1,
+                                        groupValue: _radioValue,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Equivocal",
+                                        style: TextStyle(
                                             color: Colors.black,
-                                              fontSize: 10.0
-                                          ),
-
+                                            fontSize: 10.0
                                         ),
-                                      ],
-                                    ),
-                                  )
-                                ],
+
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 2,
+                                        groupValue: _radioValue,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Impaired",
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 10.0
+                                        ),
+
+                                      ),
+                                    ],
+                                  ),
+                                ]
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
+                              TableRow(
+                                children: [
                                   Padding(
-                                    padding: const EdgeInsets.all(2.0),
-                                    child: SizedBox(
-                                      width: sizeBoxWidth,
-                                      child: Text(
-                                        appData
-                                            .testLanguageComprehensionResponseNormal,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(fontSize: 10.0),
-                                      ),
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData
+                                          .testLanguageComprehensionResponseNormal,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(2.0),
-                                    child: SizedBox(
-                                      width: sizeBoxWidth,
-                                      child: Text(
-                                        appData
-                                            .testLanguageComprehensionResponseEquivocal,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(fontSize: 10.0),
-                                      ),
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData
+                                          .testLanguageComprehensionResponseEquivocal,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                   Padding(
-                                    padding: const EdgeInsets.all(2.0),
-                                    child: SizedBox(
-                                      width: sizeBoxWidth,
-                                      child: Text(
-                                        appData
-                                            .testLanguageComprehensionResponseImpaired,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(fontSize: 10.0),
-                                      ),
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData
+                                          .testLanguageComprehensionResponseImpaired,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 10.0),
                                     ),
                                   ),
-                                ],
+                                ]
                               )
                             ],
                           ),
+//                          Column(
+//
+//                            crossAxisAlignment: CrossAxisAlignment.start,
+//                            children: <Widget>[
+//                              Row(
+//
+//                                children: <Widget>[
+//                                  SizedBox(
+//                                    width: sizeBoxWidth,
+//                                    child: Row(
+//                                      children: <Widget>[
+//                                        Radio(
+//                                          value: 0,
+//                                          groupValue: _radioValue,
+//                                          onChanged: _handleRadioValueChange,
+//                                          activeColor: Colors.white,
+//                                        ),
+//                                        Text(
+//                                          "Normal",
+//                                          style: TextStyle(
+//                                            color: Colors.black,
+//                                              fontSize: 10.0
+//                                          ),
+//
+//                                        ),
+//                                      ],
+//                                    ),
+//                                  ),
+//                                  SizedBox(
+//                                    width: sizeBoxWidth,
+//                                    child: Row(
+//                                      children: <Widget>[
+//                                        Radio(
+//                                          value: 1,
+//                                          groupValue: _radioValue,
+//                                          onChanged: _handleRadioValueChange,
+//                                          activeColor: Colors.white,
+//                                        ),
+//                                        Text(
+//                                          "Equivocal",
+//                                          style: TextStyle(
+//                                            color: Colors.black,
+//                                            fontSize: 10.0
+//                                          ),
+//
+//                                          overflow: TextOverflow.ellipsis,
+//                                        ),
+//                                      ],
+//                                    ),
+//                                  ),
+//                                  SizedBox(
+//                                    width: sizeBoxWidth,
+//                                    child: Row(
+//                                      children: <Widget>[
+//                                        Radio(
+//                                          value: 2,
+//                                          groupValue: _radioValue,
+//                                          onChanged: _handleRadioValueChange,
+//                                          activeColor: Colors.white,
+//                                        ),
+//                                        Text(
+//                                          "Impaired",
+//                                          style: TextStyle(
+//                                            color: Colors.black,
+//                                              fontSize: 10.0
+//                                          ),
+//
+//                                        ),
+//                                      ],
+//                                    ),
+//                                  )
+//                                ],
+//                              ),
+//                              Row(
+//                                mainAxisAlignment: MainAxisAlignment.center,
+//                                crossAxisAlignment: CrossAxisAlignment.start,
+//                                children: <Widget>[
+//                                  Padding(
+//                                    padding: const EdgeInsets.all(2.0),
+//                                    child: SizedBox(
+//                                      width: sizeBoxWidth,
+//                                      child: Text(
+//                                        appData
+//                                            .testLanguageComprehensionResponseNormal,
+//                                        textAlign: TextAlign.center,
+//                                        style: TextStyle(fontSize: 10.0),
+//                                      ),
+//                                    ),
+//                                  ),
+//                                  Padding(
+//                                    padding: const EdgeInsets.all(2.0),
+//                                    child: SizedBox(
+//                                      width: sizeBoxWidth,
+//                                      child: Text(
+//                                        appData
+//                                            .testLanguageComprehensionResponseEquivocal,
+//                                        textAlign: TextAlign.center,
+//                                        style: TextStyle(fontSize: 10.0),
+//                                      ),
+//                                    ),
+//                                  ),
+//                                  Padding(
+//                                    padding: const EdgeInsets.all(2.0),
+//                                    child: SizedBox(
+//                                      width: sizeBoxWidth,
+//                                      child: Text(
+//                                        appData
+//                                            .testLanguageComprehensionResponseImpaired,
+//                                        textAlign: TextAlign.center,
+//                                        style: TextStyle(fontSize: 10.0),
+//                                      ),
+//                                    ),
+//                                  ),
+//                                ],
+//                              )
+//                            ],
+//                          ),
                         ],
                       ),
                     ),
