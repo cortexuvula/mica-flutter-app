@@ -992,9 +992,6 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                             child: RaisedButton(
                               elevation: 10.0,
                               onPressed: () {
-                                int score = _radioValueImageOne +
-                                    _radioValueImageTwo +
-                                    _radioValueImageThree;
                                 var router = new MaterialPageRoute(
                                     builder: (BuildContext context) =>
                                         new Attention(
@@ -1007,7 +1004,9 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                           trialOneScore: widget.trialOneScore,
                                           trialTwoScore: widget.trialTwoScore,
                                           trialThreeScore: widget.trialThreeScore,
-                                          visuospatialPraxis: score,
+                                          visuospatialPraxisImage1: _radioValueImageOne,
+                                          visuospatialPraxisImage2: _radioValueImageTwo,
+                                          visuospatialPraxisImage3: _radioValueImageThree,
                                         ));
                                 Navigator.of(context).pushAndRemoveUntil(
                                     router, (Route<dynamic> route) => false);
