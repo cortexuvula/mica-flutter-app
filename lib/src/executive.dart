@@ -220,14 +220,18 @@ class _ExecutiveState extends State<Executive> {
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15.0),
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Row(
-                                children: <Widget>[
-                                  SizedBox(
-                                    width: sizeBoxWidth,
-                                    child: Row(
+                          Table(
+                            border: TableBorder.all(),
+                            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                            columnWidths: {
+                              0: FlexColumnWidth(0.3),
+                              1: FlexColumnWidth(0.3),
+                              2: FlexColumnWidth(0.34)
+                            },
+                            children: [
+                              TableRow(
+                                  children: [
+                                    Row(
                                       children: <Widget>[
                                         Radio(
                                           value: 0,
@@ -238,15 +242,13 @@ class _ExecutiveState extends State<Executive> {
                                         Text(
                                           "Normal",
                                           style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 10.0),
+                                            color: Colors.black,
+                                            fontSize: 10.0,
+                                          ),
                                         ),
                                       ],
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: sizeBoxWidth,
-                                    child: Row(
+                                    Row(
                                       children: <Widget>[
                                         Radio(
                                           value: 1,
@@ -257,16 +259,13 @@ class _ExecutiveState extends State<Executive> {
                                         Text(
                                           "Equivocal",
                                           style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 10.0),
-                                          overflow: TextOverflow.ellipsis,
+                                            color: Colors.black,
+                                            fontSize: 10.0,
+                                          ),
                                         ),
                                       ],
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: sizeBoxWidth,
-                                    child: Row(
+                                    Row(
                                       children: <Widget>[
                                         Radio(
                                           value: 2,
@@ -277,33 +276,27 @@ class _ExecutiveState extends State<Executive> {
                                         Text(
                                           "Impaired",
                                           style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 10.0),
+                                            color: Colors.black,
+                                            fontSize: 10.0,
+                                          ),
                                         ),
                                       ],
                                     ),
-                                  )
-                                ],
+                                  ]
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.all(2.0),
-                                    child: SizedBox(
-                                      width: sizeBoxWidth,
+                              TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
                                       child: Text(
-                                        appData.testExecutiveResponseNormal,
+                                        appData
+                                            .testExecutiveResponseNormal,
                                         textAlign: TextAlign.center,
                                         style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(2.0),
-                                    child: SizedBox(
-                                      width: sizeBoxWidth,
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
                                       child: Text(
                                         appData
                                             .testExecutiveResponseEquivocal,
@@ -311,11 +304,8 @@ class _ExecutiveState extends State<Executive> {
                                         style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(2.0),
-                                    child: SizedBox(
-                                      width: sizeBoxWidth,
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
                                       child: Text(
                                         appData
                                             .testExecutiveResponseImpaired,
@@ -323,11 +313,118 @@ class _ExecutiveState extends State<Executive> {
                                         style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ]
                               )
                             ],
                           ),
+//                          Column(
+//                            crossAxisAlignment: CrossAxisAlignment.start,
+//                            children: <Widget>[
+//                              Row(
+//                                children: <Widget>[
+//                                  SizedBox(
+//                                    width: sizeBoxWidth,
+//                                    child: Row(
+//                                      children: <Widget>[
+//                                        Radio(
+//                                          value: 0,
+//                                          groupValue: _radioValue,
+//                                          onChanged: _handleRadioValueChange,
+//                                          activeColor: Colors.white,
+//                                        ),
+//                                        Text(
+//                                          "Normal",
+//                                          style: TextStyle(
+//                                              color: Colors.black,
+//                                              fontSize: 10.0),
+//                                        ),
+//                                      ],
+//                                    ),
+//                                  ),
+//                                  SizedBox(
+//                                    width: sizeBoxWidth,
+//                                    child: Row(
+//                                      children: <Widget>[
+//                                        Radio(
+//                                          value: 1,
+//                                          groupValue: _radioValue,
+//                                          onChanged: _handleRadioValueChange,
+//                                          activeColor: Colors.white,
+//                                        ),
+//                                        Text(
+//                                          "Equivocal",
+//                                          style: TextStyle(
+//                                              color: Colors.black,
+//                                              fontSize: 10.0),
+//                                          overflow: TextOverflow.ellipsis,
+//                                        ),
+//                                      ],
+//                                    ),
+//                                  ),
+//                                  SizedBox(
+//                                    width: sizeBoxWidth,
+//                                    child: Row(
+//                                      children: <Widget>[
+//                                        Radio(
+//                                          value: 2,
+//                                          groupValue: _radioValue,
+//                                          onChanged: _handleRadioValueChange,
+//                                          activeColor: Colors.white,
+//                                        ),
+//                                        Text(
+//                                          "Impaired",
+//                                          style: TextStyle(
+//                                              color: Colors.black,
+//                                              fontSize: 10.0),
+//                                        ),
+//                                      ],
+//                                    ),
+//                                  )
+//                                ],
+//                              ),
+//                              Row(
+//                                mainAxisAlignment: MainAxisAlignment.center,
+//                                crossAxisAlignment: CrossAxisAlignment.start,
+//                                children: <Widget>[
+//                                  Padding(
+//                                    padding: const EdgeInsets.all(2.0),
+//                                    child: SizedBox(
+//                                      width: sizeBoxWidth,
+//                                      child: Text(
+//                                        appData.testExecutiveResponseNormal,
+//                                        textAlign: TextAlign.center,
+//                                        style: TextStyle(fontSize: 10.0),
+//                                      ),
+//                                    ),
+//                                  ),
+//                                  Padding(
+//                                    padding: const EdgeInsets.all(2.0),
+//                                    child: SizedBox(
+//                                      width: sizeBoxWidth,
+//                                      child: Text(
+//                                        appData
+//                                            .testExecutiveResponseEquivocal,
+//                                        textAlign: TextAlign.center,
+//                                        style: TextStyle(fontSize: 10.0),
+//                                      ),
+//                                    ),
+//                                  ),
+//                                  Padding(
+//                                    padding: const EdgeInsets.all(2.0),
+//                                    child: SizedBox(
+//                                      width: sizeBoxWidth,
+//                                      child: Text(
+//                                        appData
+//                                            .testExecutiveResponseImpaired,
+//                                        textAlign: TextAlign.center,
+//                                        style: TextStyle(fontSize: 10.0),
+//                                      ),
+//                                    ),
+//                                  ),
+//                                ],
+//                              )
+//                            ],
+//                          ),
 //                          Column(
 //                            crossAxisAlignment: CrossAxisAlignment.center,
 //                            children: <Widget>[

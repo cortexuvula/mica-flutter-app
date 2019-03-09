@@ -168,9 +168,9 @@ const String testAttentionDetails = "Tap on letter when patient indicates a tap.
 const String testAttentionToPatient =
     "\"I am going to read you a long series of letters. Whenever you hear the letter A, tap your hand like this.\” Indicate tapping movement. For all other letters, do not tap. ";
 const String testAttentionResponse = "A mistake is an omission or inclusion.";
-const String testAttentionResponseNormal = "Normal = no mistakes.";
-const String testAttentionResponseEquivocal = "Equivocal = 1 mistake.";
-const String testAttentionResponseImpaired = "Impaired = > 1 mistake.";
+const String testAttentionResponseNormal = "no mistakes.";
+const String testAttentionResponseEquivocal = "1 mistake.";
+const String testAttentionResponseImpaired = "1 mistake.";
 
 const String testExecutiveAnimalNaming = "Executive";
 const String testExecutiveAnimalNamingSubtitle = "Animal Naming Task";

@@ -193,15 +193,18 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15.0),
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  SizedBox(
-                                    width: sizeBoxWidth,
-                                    child: Row(
+                          Table(
+                            border: TableBorder.all(),
+                            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                            columnWidths: {
+                              0: FlexColumnWidth(0.3),
+                              1: FlexColumnWidth(0.3),
+                              2: FlexColumnWidth(0.34)
+                            },
+                            children: [
+                              TableRow(
+                                  children: [
+                                    Row(
                                       children: <Widget>[
                                         Radio(
                                           value: 0,
@@ -218,10 +221,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                         ),
                                       ],
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: sizeBoxWidth,
-                                    child: Row(
+                                    Row(
                                       children: <Widget>[
                                         Radio(
                                           value: 1,
@@ -238,10 +238,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                         ),
                                       ],
                                     ),
-                                  ),
-                                  SizedBox(
-                                    width: sizeBoxWidth,
-                                    child: Row(
+                                    Row(
                                       children: <Widget>[
                                         Radio(
                                           value: 2,
@@ -258,17 +255,12 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                         ),
                                       ],
                                     ),
-                                  )
-                                ],
+                                  ]
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  Padding(
-                                    padding: const EdgeInsets.all(2.0),
-                                    child: SizedBox(
-                                      width: sizeBoxWidth,
+                              TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
                                       child: Text(
                                         appData
                                             .testExecutiveLuriaResponseNormal,
@@ -276,11 +268,8 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                         style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(2.0),
-                                    child: SizedBox(
-                                      width: sizeBoxWidth,
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
                                       child: Text(
                                         appData
                                             .testExecutiveLuriaResponseEquivocal,
@@ -288,11 +277,8 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                         style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(2.0),
-                                    child: SizedBox(
-                                      width: sizeBoxWidth,
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
                                       child: Text(
                                         appData
                                             .testExecutiveLuriaResponseImpaired,
@@ -300,11 +286,122 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                         style: TextStyle(fontSize: 10.0),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ]
                               )
                             ],
                           ),
+//                          Column(
+//                            crossAxisAlignment: CrossAxisAlignment.start,
+//                            children: <Widget>[
+//                              Row(
+//                                mainAxisAlignment: MainAxisAlignment.center,
+//                                children: <Widget>[
+//                                  SizedBox(
+//                                    width: sizeBoxWidth,
+//                                    child: Row(
+//                                      children: <Widget>[
+//                                        Radio(
+//                                          value: 0,
+//                                          groupValue: _radioValue,
+//                                          onChanged: _handleRadioValueChange,
+//                                          activeColor: Colors.white,
+//                                        ),
+//                                        Text(
+//                                          "Normal",
+//                                          style: TextStyle(
+//                                            color: Colors.black,
+//                                            fontSize: 10.0,
+//                                          ),
+//                                        ),
+//                                      ],
+//                                    ),
+//                                  ),
+//                                  SizedBox(
+//                                    width: sizeBoxWidth,
+//                                    child: Row(
+//                                      children: <Widget>[
+//                                        Radio(
+//                                          value: 1,
+//                                          groupValue: _radioValue,
+//                                          onChanged: _handleRadioValueChange,
+//                                          activeColor: Colors.white,
+//                                        ),
+//                                        Text(
+//                                          "Equivocal",
+//                                          style: TextStyle(
+//                                            color: Colors.black,
+//                                            fontSize: 10.0,
+//                                          ),
+//                                        ),
+//                                      ],
+//                                    ),
+//                                  ),
+//                                  SizedBox(
+//                                    width: sizeBoxWidth,
+//                                    child: Row(
+//                                      children: <Widget>[
+//                                        Radio(
+//                                          value: 2,
+//                                          groupValue: _radioValue,
+//                                          onChanged: _handleRadioValueChange,
+//                                          activeColor: Colors.white,
+//                                        ),
+//                                        Text(
+//                                          "Impaired",
+//                                          style: TextStyle(
+//                                            color: Colors.black,
+//                                            fontSize: 10.0,
+//                                          ),
+//                                        ),
+//                                      ],
+//                                    ),
+//                                  )
+//                                ],
+//                              ),
+//                              Row(
+//                                mainAxisAlignment: MainAxisAlignment.center,
+//                                crossAxisAlignment: CrossAxisAlignment.start,
+//                                children: <Widget>[
+//                                  Padding(
+//                                    padding: const EdgeInsets.all(2.0),
+//                                    child: SizedBox(
+//                                      width: sizeBoxWidth,
+//                                      child: Text(
+//                                        appData
+//                                            .testExecutiveLuriaResponseNormal,
+//                                        textAlign: TextAlign.center,
+//                                        style: TextStyle(fontSize: 10.0),
+//                                      ),
+//                                    ),
+//                                  ),
+//                                  Padding(
+//                                    padding: const EdgeInsets.all(2.0),
+//                                    child: SizedBox(
+//                                      width: sizeBoxWidth,
+//                                      child: Text(
+//                                        appData
+//                                            .testExecutiveLuriaResponseEquivocal,
+//                                        textAlign: TextAlign.center,
+//                                        style: TextStyle(fontSize: 10.0),
+//                                      ),
+//                                    ),
+//                                  ),
+//                                  Padding(
+//                                    padding: const EdgeInsets.all(2.0),
+//                                    child: SizedBox(
+//                                      width: sizeBoxWidth,
+//                                      child: Text(
+//                                        appData
+//                                            .testExecutiveLuriaResponseImpaired,
+//                                        textAlign: TextAlign.center,
+//                                        style: TextStyle(fontSize: 10.0),
+//                                      ),
+//                                    ),
+//                                  ),
+//                                ],
+//                              )
+//                            ],
+//                          ),
                         ],
                       ),
                     ),
