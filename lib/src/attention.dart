@@ -14,7 +14,9 @@ class Attention extends StatefulWidget {
   int trialOneScore;
   int trialTwoScore;
   int trialThreeScore;
-  int visuospatialPraxis;
+  int visuospatialPraxisImage1;
+  int visuospatialPraxisImage2;
+  int visuospatialPraxisImage3;
 
   Attention(
       {Key key,
@@ -26,7 +28,10 @@ class Attention extends StatefulWidget {
       this.trialOneScore,
       this.trialTwoScore,
         this.trialThreeScore,
-      this.visuospatialPraxis})
+        this.visuospatialPraxisImage1,
+        this.visuospatialPraxisImage2,
+        this.visuospatialPraxisImage3,
+      })
       : super(key: key);
 
   @override
@@ -628,6 +633,7 @@ class _AttentionState extends State<Attention> {
                                 ]
                               ),
                               TableRow(
+
                                 children: [
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
@@ -760,7 +766,9 @@ class _AttentionState extends State<Attention> {
                                     trialOneScore: widget.trialOneScore,
                                     trialTwoScore: widget.trialTwoScore,
                                     trialThreeScore: widget.trialThreeScore,
-                                    visuospatialPraxis: widget.visuospatialPraxis,
+                                    visuospatialPraxisImage1: widget.visuospatialPraxisImage1,
+                                    visuospatialPraxisImage2: widget.visuospatialPraxisImage2,
+                                    visuospatialPraxisImage3: widget.visuospatialPraxisImage3,
                                     attention: _radioValue,
                                   ));
                           Navigator.of(context).pushAndRemoveUntil(

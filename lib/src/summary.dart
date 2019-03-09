@@ -19,7 +19,9 @@ class TestSummary extends StatefulWidget {
   int trialOneScore;
   int trialTwoScore;
   int trialThreeScore;
-  int visuospatialPraxis;
+  int visuospatialPraxisImage1;
+  int visuospatialPraxisImage2;
+  int visuospatialPraxisImage3;
   int attention;
   int executiveAnimalNaming;
   int executiveLuria;
@@ -30,7 +32,9 @@ class TestSummary extends StatefulWidget {
   int scoreVerbalRecognitionMemoryTenWords;
   int scoreVerbalRecognitionMemoryTenWordsInList;
   int scoreVerbalRecognitionMemoryTenWordsNotInList;
-  int shorttermMemoryVisual;
+  int shorttermMemoryVisualImage1;
+  int shorttermMemoryVisualImage2;
+  int shorttermMemoryVisualImage3;
   int anomiaAgnosia;
   int executive;
   int spokenLanguage;
@@ -45,7 +49,9 @@ class TestSummary extends StatefulWidget {
       this.trialOneScore,
       this.trialTwoScore,
       this.trialThreeScore,
-      this.visuospatialPraxis,
+        this.visuospatialPraxisImage1,
+        this.visuospatialPraxisImage2,
+        this.visuospatialPraxisImage3,
       this.attention,
       this.executiveAnimalNaming,
       this.executiveLuria,
@@ -56,7 +62,9 @@ class TestSummary extends StatefulWidget {
       this.scoreVerbalRecognitionMemoryTenWords,
       this.scoreVerbalRecognitionMemoryTenWordsInList,
       this.scoreVerbalRecognitionMemoryTenWordsNotInList,
-      this.shorttermMemoryVisual,
+        this.shorttermMemoryVisualImage1,
+        this.shorttermMemoryVisualImage2,
+        this.shorttermMemoryVisualImage3,
       this.anomiaAgnosia,
       this.executive,
       this.spokenLanguage})
@@ -143,7 +151,39 @@ class _TestSummaryState extends State<TestSummary> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            Text("Full report Here"),
+              Text("Name: ${widget.patientName}"),
+              Text("Assessor Name: ${widget.assessorName}"),
+              Text("Handedness: ${widget.handedness}"),
+              Text("Assessment Date: ${widget.assessmentDate}"),
+              Text("Language Comprehension: ${widget.languageComprehensionRadioValue}"),
+              Text("Trial 1: ${widget.trialOneScore}"),
+              Text("Trial 2: ${widget.trialTwoScore}"),
+              Text("Trial 3: ${widget.trialThreeScore}"),
+              Text("Visuospartial Praxis Image 1: ${widget.visuospatialPraxisImage1}"),
+              Text("Visuospartial Praxis Image 2: ${widget.visuospatialPraxisImage2}"),
+              Text("Visuospartial Praxis Image 3: ${widget.visuospatialPraxisImage3}"),
+              Text("Attention: ${widget.attention}"),
+              Text("Executive Animal Naming: ${widget.executiveAnimalNaming}"),
+              Text("Executive Luria: ${widget.executiveLuria}"),
+              Text("Executive Serial${widget.executiveSerial}"),
+              Text("Short-term Memory Verbal: ${widget.shorttermMemoryVerbal}"),
+              Text("Praxis: ${widget.praxis}"),
+              Text("Word Delay: ${widget.tenWordDelay}"),
+              Text("Recognition Ten Words: ${widget.scoreVerbalRecognitionMemoryTenWords}"),
+              Text("Recognition Words in List: ${widget.scoreVerbalRecognitionMemoryTenWordsInList}"),
+              Text("Recognition Words not in List: ${widget.scoreVerbalRecognitionMemoryTenWordsNotInList}"),
+              Text("Short-term Memory Visual Image 1: ${widget.shorttermMemoryVisualImage1}"),
+              Text("Short-term Memory Visual Image 2: ${widget.shorttermMemoryVisualImage2}"),
+              Text("Short-term Memory Visual Image 3: ${widget.shorttermMemoryVisualImage3}"),
+              Text("Anomia Agnosia: ${widget.anomiaAgnosia}"),
+              Text("Executive: ${widget.executive}"),
+              Text("Spoken Language: ${widget.spokenLanguage}"),
+
+
+
+
+
+
           ],
         ),
       ],

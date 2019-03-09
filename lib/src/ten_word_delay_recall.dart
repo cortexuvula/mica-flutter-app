@@ -13,7 +13,9 @@ class TenWordDelayedRecall extends StatefulWidget {
   int trialOneScore;
   int trialTwoScore;
   int trialThreeScore;
-  int visuospatialPraxis;
+  int visuospatialPraxisImage1;
+  int visuospatialPraxisImage2;
+  int visuospatialPraxisImage3;
   int attention;
   int executiveAnimalNaming;
   int executiveLuria;
@@ -31,7 +33,9 @@ class TenWordDelayedRecall extends StatefulWidget {
         this.trialOneScore,
         this.trialTwoScore,
         this.trialThreeScore,
-        this.visuospatialPraxis,
+        this.visuospatialPraxisImage1,
+        this.visuospatialPraxisImage2,
+        this.visuospatialPraxisImage3,
         this.attention,
         this.executiveAnimalNaming,
         this.executiveLuria,
@@ -226,7 +230,9 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
                               trialOneScore: widget.trialOneScore,
                               trialTwoScore: widget.trialTwoScore,
                               trialThreeScore: widget.trialThreeScore,
-                              visuospatialPraxis: widget.visuospatialPraxis,
+                              visuospatialPraxisImage1: widget.visuospatialPraxisImage1,
+                              visuospatialPraxisImage2: widget.visuospatialPraxisImage2,
+                              visuospatialPraxisImage3: widget.visuospatialPraxisImage3,
                               attention: widget.attention,
                               executiveAnimalNaming: widget.executiveAnimalNaming,
                               executiveLuria: widget.executiveLuria,
