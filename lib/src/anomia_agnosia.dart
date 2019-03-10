@@ -3,6 +3,7 @@ import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/executive.dart';
 import 'package:mica/src/home.dart';
 import 'package:mica/src/show_image.dart';
+import 'package:mica/src/show_image_anomia.dart';
 
 class AnomiaAgnosia extends StatefulWidget {
   String patientName;
@@ -237,8 +238,9 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                               debugPrint("tapped picture");
                               var router = new MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                  new ShowImage(
+                                  new ShowImageAnomia(
                                     imageURL: displayImage,
+                                    imageNumber: imageNumber,
                                   ));
                               Navigator.of(context).pushAndRemoveUntil(
                                   router, (Route<dynamic> route) => true);
