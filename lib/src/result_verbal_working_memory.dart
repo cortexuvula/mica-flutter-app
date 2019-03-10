@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
+
 class VerbalWorkingMemory extends StatefulWidget {
+
+
+  int workingMemoryVerbalTrial1;
+
+  VerbalWorkingMemory({Key key, this.workingMemoryVerbalTrial1}) : super(key: key);
+
   @override
   _VerbalWorkingMemoryState createState() => _VerbalWorkingMemoryState();
 }

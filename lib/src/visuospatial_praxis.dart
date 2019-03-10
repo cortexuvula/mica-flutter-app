@@ -194,11 +194,11 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                               padding: const EdgeInsets.all(8.0),
                               child: GestureDetector(
                                 onTap: () {
-                                  debugPrint("tapped picture");
                                   var router = new MaterialPageRoute(
                                       builder: (BuildContext context) =>
                                       new ShowImage(
                                         imageURL: displayImage,
+                                        imageNumber: imageNumber,
                                       ));
                                   Navigator.of(context).pushAndRemoveUntil(
                                       router, (Route<dynamic> route) => true);
