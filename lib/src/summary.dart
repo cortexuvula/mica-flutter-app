@@ -780,7 +780,6 @@ class _TestSummaryState extends State<TestSummary> {
     return ListView(
       children: <Widget>[
         Card(
-          color: Colors.white,
           elevation: 10.0,
           child: Container(
             color: Colors.yellow,
@@ -798,7 +797,7 @@ class _TestSummaryState extends State<TestSummary> {
           ),
         ),
         Card(
-          color: Colors.green,
+
           elevation: 10.0,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -810,24 +809,26 @@ class _TestSummaryState extends State<TestSummary> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              subtitle: Text(
-                "Domain Result:",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              trailing: Text(
-                "Normal",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+//              subtitle: Text(
+//                "Domain Result:",
+//                style: TextStyle(
+//                  color: Colors.black,
+//                  fontWeight: FontWeight.w500,
+//                ),
+//              ),
+//              trailing: Text(
+//                "Normal",
+//                style: TextStyle(
+//                  color: Colors.black,
+//                  fontWeight: FontWeight.w500,
+//                ),
+//              ),
               onTap: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        new AttentionConcentration());
+                        new AttentionConcentration(
+                          attention: widget.attention,
+                        ));
                 Navigator.of(context)
                     .pushAndRemoveUntil(router, (Route<dynamic> route) => true);
               },
@@ -835,7 +836,7 @@ class _TestSummaryState extends State<TestSummary> {
           ),
         ),
         Card(
-          color: Colors.green,
+
           elevation: 10.0,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -847,24 +848,28 @@ class _TestSummaryState extends State<TestSummary> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              subtitle: Text(
-                "Domain Result:",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              trailing: Text(
-                "Normal",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+//              subtitle: Text(
+//                "Domain Result:",
+//                style: TextStyle(
+//                  color: Colors.black,
+//                  fontWeight: FontWeight.w500,
+//                ),
+//              ),
+//              trailing: Text(
+//                "Normal",
+//                style: TextStyle(
+//                  color: Colors.black,
+//                  fontWeight: FontWeight.w500,
+//                ),
+//              ),
               onTap: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        new Language());
+                        new Language(
+                          spokenLanguage: widget.spokenLanguage,
+                          comprehension: widget.languageComprehensionRadioValue,
+                          drawLine: widget.executive,
+                        ));
                 Navigator.of(context)
                     .pushAndRemoveUntil(router, (Route<dynamic> route) => true);
               },
@@ -872,7 +877,7 @@ class _TestSummaryState extends State<TestSummary> {
           ),
         ),
         Card(
-          color: Colors.green,
+
           elevation: 10.0,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -884,20 +889,20 @@ class _TestSummaryState extends State<TestSummary> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              subtitle: Text(
-                "Domain Result:",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              trailing: Text(
-                "Normal",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+//              subtitle: Text(
+//                "Domain Result:",
+//                style: TextStyle(
+//                  color: Colors.black,
+//                  fontWeight: FontWeight.w500,
+//                ),
+//              ),
+//              trailing: Text(
+//                "Normal",
+//                style: TextStyle(
+//                  color: Colors.black,
+//                  fontWeight: FontWeight.w500,
+//                ),
+//              ),
               onTap: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) =>
@@ -911,7 +916,7 @@ class _TestSummaryState extends State<TestSummary> {
           ),
         ),
         Card(
-          color: Colors.green,
+
           elevation: 10.0,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -923,20 +928,20 @@ class _TestSummaryState extends State<TestSummary> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              subtitle: Text(
-                "Domain Result:",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              trailing: Text(
-                "Normal",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+//              subtitle: Text(
+//                "Domain Result:",
+//                style: TextStyle(
+//                  color: Colors.black,
+//                  fontWeight: FontWeight.w500,
+//                ),
+//              ),
+//              trailing: Text(
+//                "Normal",
+//                style: TextStyle(
+//                  color: Colors.black,
+//                  fontWeight: FontWeight.w500,
+//                ),
+//              ),
               onTap: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) =>
@@ -948,7 +953,7 @@ class _TestSummaryState extends State<TestSummary> {
           ),
         ),
         Card(
-          color: Colors.green,
+
           elevation: 10.0,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -960,20 +965,20 @@ class _TestSummaryState extends State<TestSummary> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              subtitle: Text(
-                "Domain Result:",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              trailing: Text(
-                "Normal",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+//              subtitle: Text(
+//                "Domain Result:",
+//                style: TextStyle(
+//                  color: Colors.black,
+//                  fontWeight: FontWeight.w500,
+//                ),
+//              ),
+//              trailing: Text(
+//                "Normal",
+//                style: TextStyle(
+//                  color: Colors.black,
+//                  fontWeight: FontWeight.w500,
+//                ),
+//              ),
               onTap: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) =>
@@ -985,7 +990,7 @@ class _TestSummaryState extends State<TestSummary> {
           ),
         ),
         Card(
-          color: Colors.green,
+
           elevation: 10.0,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -997,20 +1002,20 @@ class _TestSummaryState extends State<TestSummary> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              subtitle: Text(
-                "Domain Result:",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              trailing: Text(
-                "Normal",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+//              subtitle: Text(
+//                "Domain Result:",
+//                style: TextStyle(
+//                  color: Colors.black,
+//                  fontWeight: FontWeight.w500,
+//                ),
+//              ),
+//              trailing: Text(
+//                "Normal",
+//                style: TextStyle(
+//                  color: Colors.black,
+//                  fontWeight: FontWeight.w500,
+//                ),
+//              ),
               onTap: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) =>
@@ -1022,7 +1027,7 @@ class _TestSummaryState extends State<TestSummary> {
           ),
         ),
         Card(
-          color: Colors.green,
+
           elevation: 10.0,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -1034,20 +1039,20 @@ class _TestSummaryState extends State<TestSummary> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              subtitle: Text(
-                "Domain Result:",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              trailing: Text(
-                "Normal",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+//              subtitle: Text(
+//                "Domain Result:",
+//                style: TextStyle(
+//                  color: Colors.black,
+//                  fontWeight: FontWeight.w500,
+//                ),
+//              ),
+//              trailing: Text(
+//                "Normal",
+//                style: TextStyle(
+//                  color: Colors.black,
+//                  fontWeight: FontWeight.w500,
+//                ),
+//              ),
               onTap: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) =>
@@ -1059,7 +1064,7 @@ class _TestSummaryState extends State<TestSummary> {
           ),
         ),
         Card(
-          color: Colors.green,
+
           elevation: 10.0,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -1071,20 +1076,20 @@ class _TestSummaryState extends State<TestSummary> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              subtitle: Text(
-                "Domain Result:",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              trailing: Text(
-                "Normal",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
+//              subtitle: Text(
+//                "Domain Result:",
+//                style: TextStyle(
+//                  color: Colors.black,
+//                  fontWeight: FontWeight.w500,
+//                ),
+//              ),
+//              trailing: Text(
+//                "Normal",
+//                style: TextStyle(
+//                  color: Colors.black,
+//                  fontWeight: FontWeight.w500,
+//                ),
+//              ),
               onTap: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) =>
