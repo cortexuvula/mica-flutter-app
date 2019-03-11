@@ -1,6 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:mica/src/domain_results/attention_concentration.dart';
+import 'package:mica/src/domain_results/executive_functions.dart';
+import 'package:mica/src/domain_results/gnosis.dart';
+import 'package:mica/src/domain_results/language.dart';
+import 'package:mica/src/domain_results/praxis.dart';
+import 'package:mica/src/domain_results/visual_short_term_memory.dart';
 import 'package:mica/src/home.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/result_verbal_shortterm_memory.dart';
@@ -821,7 +827,7 @@ class _TestSummaryState extends State<TestSummary> {
               onTap: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        new VerbalWorkingMemory());
+                        new AttentionConcentration());
                 Navigator.of(context)
                     .pushAndRemoveUntil(router, (Route<dynamic> route) => true);
               },
@@ -858,7 +864,7 @@ class _TestSummaryState extends State<TestSummary> {
               onTap: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        new VerbalWorkingMemory());
+                        new Language());
                 Navigator.of(context)
                     .pushAndRemoveUntil(router, (Route<dynamic> route) => true);
               },
@@ -934,7 +940,7 @@ class _TestSummaryState extends State<TestSummary> {
               onTap: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        new VerbalWorkingMemory());
+                        new VerbalShortTermMemory());
                 Navigator.of(context)
                     .pushAndRemoveUntil(router, (Route<dynamic> route) => true);
               },
@@ -971,7 +977,7 @@ class _TestSummaryState extends State<TestSummary> {
               onTap: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        new VerbalWorkingMemory());
+                        new VisualShortTermMemory());
                 Navigator.of(context)
                     .pushAndRemoveUntil(router, (Route<dynamic> route) => true);
               },
@@ -1008,7 +1014,7 @@ class _TestSummaryState extends State<TestSummary> {
               onTap: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        new VerbalWorkingMemory());
+                        new Praxis());
                 Navigator.of(context)
                     .pushAndRemoveUntil(router, (Route<dynamic> route) => true);
               },
@@ -1045,7 +1051,7 @@ class _TestSummaryState extends State<TestSummary> {
               onTap: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        new VerbalWorkingMemory());
+                        new Gnosis());
                 Navigator.of(context)
                     .pushAndRemoveUntil(router, (Route<dynamic> route) => true);
               },
@@ -1059,7 +1065,7 @@ class _TestSummaryState extends State<TestSummary> {
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
               title: Text(
-                "Executive Functions",
+                "Executive Function",
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
@@ -1082,7 +1088,7 @@ class _TestSummaryState extends State<TestSummary> {
               onTap: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        new VerbalWorkingMemory());
+                        new ExecutiveFunctions());
                 Navigator.of(context)
                     .pushAndRemoveUntil(router, (Route<dynamic> route) => true);
               },
