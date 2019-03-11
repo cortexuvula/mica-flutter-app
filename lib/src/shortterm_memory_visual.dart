@@ -20,7 +20,8 @@ class ShortTermMemoryVisual extends StatefulWidget {
   int executiveLuria;
   int executiveSerial;
   int shorttermMemoryVerbal;
-  int praxis;
+  int praxisRight;
+  int praxisLeft;
   int tenWordDelay;
   int scoreVerbalRecognitionMemoryTenWords;
   int scoreVerbalRecognitionMemoryTenWordsInList;
@@ -45,7 +46,8 @@ class ShortTermMemoryVisual extends StatefulWidget {
         this.executiveLuria,
         this.executiveSerial,
         this.shorttermMemoryVerbal,
-        this.praxis,
+        this.praxisRight,
+        this.praxisLeft,
         this.tenWordDelay,
         this.scoreVerbalRecognitionMemoryTenWords,
         this.scoreVerbalRecognitionMemoryTenWordsInList,
@@ -1196,7 +1198,8 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                                 executiveAnimalNaming: widget.executiveAnimalNaming,
                                 executiveLuria: widget.executiveLuria,
                                 executiveSerial: widget.executiveSerial,
-                                praxis: widget.praxis,
+                                praxisRight: widget.praxisRight,
+                                praxisLeft: widget.praxisLeft,
                                 shorttermMemoryVerbal: widget.shorttermMemoryVerbal,
                                 tenWordDelay: widget.tenWordDelay,
                                 scoreVerbalRecognitionMemoryTenWords: widget.scoreVerbalRecognitionMemoryTenWords,
