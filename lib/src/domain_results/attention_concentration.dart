@@ -4,15 +4,26 @@ import 'package:flutter/material.dart';
 class AttentionConcentration extends StatefulWidget {
 
 
-  int workingMemoryVerbalTrial1;
+  int attention;
 
-  AttentionConcentration({Key key, this.workingMemoryVerbalTrial1}) : super(key: key);
+  AttentionConcentration({Key key, this.attention}) : super(key: key);
 
   @override
   _AttentionConcentrationState createState() => _AttentionConcentrationState();
 }
 
 class _AttentionConcentrationState extends State<AttentionConcentration> {
+
+  Color cardColor;
+  String result = "";
+
+
+  @override
+  void initState() {
+    super.initState();
+    radio3ButtonValueToString(widget.attention);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,14 +50,14 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
       body: ListView(
         children: <Widget>[
           Card(
-            color: Colors.green,
+            color: cardColor,
             elevation: 10.0,
             child: ListTile(
               title: Text("Vigilance Test",style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
               ),),
-              trailing: Text("8/10",style: TextStyle(
+              trailing: Text(result,style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
               ),),
@@ -55,5 +66,31 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
         ],
       ),
     );
+  }
+
+  radio3ButtonValueToString (int value) {
+    switch (value) {
+      case 0: {
+        setState(() {
+          cardColor = Colors.green;
+          result = "Normal";
+        });
+        break;
+      }
+      case 1: {
+        setState(() {
+          cardColor = Colors.yellow;
+          result = "Equivocal";
+        });
+        break;
+      }
+      case 2: {
+        setState(() {
+          cardColor = Colors.red;
+          result = "Impaired";
+        });
+        break;
+      }
+    }
   }
 }
