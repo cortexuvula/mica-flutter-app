@@ -46,6 +46,7 @@ class ShortTermMemoryVerbal extends StatefulWidget {
 class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
   double sizeBoxHeight = 10.0;
   int _radioValue = 0;
+  int score = 0;
 
   bool _valueDate = false;
   bool _valueDay = false;
@@ -544,7 +545,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                       child: RaisedButton(
                         elevation: 10.0,
                         onPressed: () {
-                          int score = 0;
+
                           if (_valueDate) {
                             score += 1;
                           }
@@ -579,7 +580,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                     executiveAnimalNaming: widget.executiveAnimalNaming,
                                     executiveLuria: widget.executiveLuria,
                                     executiveSerial: widget.executiveSerial,
-                                    shorttermMemoryVerbal: score,
+                                    shorttermMemoryVerbal: _radioValue,
                                   ));
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => false);

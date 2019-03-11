@@ -21,7 +21,8 @@ class TenWordDelayedRecall extends StatefulWidget {
   int executiveLuria;
   int executiveSerial;
   int shorttermMemoryVerbal;
-  int praxis;
+  int praxisRight;
+  int praxisLeft;
 
   TenWordDelayedRecall(
       {Key key,
@@ -41,7 +42,9 @@ class TenWordDelayedRecall extends StatefulWidget {
         this.executiveLuria,
         this.executiveSerial,
         this.shorttermMemoryVerbal,
-        this.praxis})
+        this.praxisRight,
+        this.praxisLeft
+      })
       : super(key: key);
 
   @override
@@ -237,7 +240,8 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
                               executiveAnimalNaming: widget.executiveAnimalNaming,
                               executiveLuria: widget.executiveLuria,
                               executiveSerial: widget.executiveSerial,
-                              praxis: widget.praxis,
+                              praxisRight: widget.praxisRight,
+                              praxisLeft: widget.praxisLeft,
                               shorttermMemoryVerbal: widget.shorttermMemoryVerbal,
                               tenWordDelay: scoreTenWordDelayRecall,
                             ));

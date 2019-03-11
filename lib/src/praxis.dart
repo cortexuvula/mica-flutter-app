@@ -47,7 +47,8 @@ class Praxis extends StatefulWidget {
 
 class _PraxisState extends State<Praxis> {
   double sizeBoxHeight = 10.0;
-  int _radioValue = 0;
+  int _radioValueRight = 0;
+  int _radioValueLeft = 0;
 
 
 
@@ -300,18 +301,24 @@ class _PraxisState extends State<Praxis> {
                             border: TableBorder.all(),
                             defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                             columnWidths: {
-                              0: FlexColumnWidth(0.3),
-                              1: FlexColumnWidth(0.3),
-                              2: FlexColumnWidth(0.34)
+                              0: FlexColumnWidth(0.15),
+                              1: FlexColumnWidth(0.27),
+                              2: FlexColumnWidth(0.27),
+                              3: FlexColumnWidth(0.27)
                             },
                             children: [
+
                               TableRow(
                                   children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text("Right"),
+                                    ),
                                     Row(
                                       children: <Widget>[
                                         Radio(
                                           value: 0,
-                                          groupValue: _radioValue,
+                                          groupValue: _radioValueRight,
                                           onChanged: _handleRadioValueChange,
                                           activeColor: Colors.white,
                                         ),
@@ -328,7 +335,7 @@ class _PraxisState extends State<Praxis> {
                                       children: <Widget>[
                                         Radio(
                                           value: 1,
-                                          groupValue: _radioValue,
+                                          groupValue: _radioValueRight,
                                           onChanged: _handleRadioValueChange,
                                           activeColor: Colors.white,
                                         ),
@@ -345,7 +352,7 @@ class _PraxisState extends State<Praxis> {
                                       children: <Widget>[
                                         Radio(
                                           value: 2,
-                                          groupValue: _radioValue,
+                                          groupValue: _radioValueRight,
                                           onChanged: _handleRadioValueChange,
                                           activeColor: Colors.white,
                                         ),
@@ -362,6 +369,66 @@ class _PraxisState extends State<Praxis> {
                               ),
                               TableRow(
                                   children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text("Left"),
+                                    ),
+                                    Row(
+                                      children: <Widget>[
+                                        Radio(
+                                          value: 0,
+                                          groupValue: _radioValueLeft,
+                                          onChanged: _handleRadioValueChangeLeft,
+                                          activeColor: Colors.white,
+                                        ),
+                                        Text(
+                                          "Normal",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 10.0,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: <Widget>[
+                                        Radio(
+                                          value: 1,
+                                          groupValue: _radioValueLeft,
+                                          onChanged: _handleRadioValueChangeLeft,
+                                          activeColor: Colors.white,
+                                        ),
+                                        Text(
+                                          "Equivocal",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 10.0,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: <Widget>[
+                                        Radio(
+                                          value: 2,
+                                          groupValue: _radioValueLeft,
+                                          onChanged: _handleRadioValueChangeLeft,
+                                          activeColor: Colors.white,
+                                        ),
+                                        Text(
+                                          "Impaired",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 10.0,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ]
+                              ),
+                              TableRow(
+                                  children: [
+                                    Container(),
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
@@ -542,7 +609,9 @@ class _PraxisState extends State<Praxis> {
                                 executiveAnimalNaming: widget.executiveAnimalNaming,
                                 executiveLuria: widget.executiveLuria,
                                 executiveSerial: widget.executiveSerial,
-                                praxis: _radioValue,
+                                shorttermMemoryVerbal: widget.shorttermMemoryVerbal,
+                                praxisRight: _radioValueRight,
+                                praxisLeft: _radioValueLeft,
                               ));
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => false);
@@ -562,7 +631,13 @@ class _PraxisState extends State<Praxis> {
 
   void _handleRadioValueChange(int value) {
     setState(() {
-      _radioValue = value;
+      _radioValueRight = value;
+    });
+  }
+
+  void _handleRadioValueChangeLeft(int value) {
+    setState(() {
+      _radioValueLeft = value;
     });
   }
   

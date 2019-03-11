@@ -21,7 +21,8 @@ class TenWordRecognition extends StatefulWidget {
   int executiveLuria;
   int executiveSerial;
   int shorttermMemoryVerbal;
-  int praxis;
+  int praxisRight;
+  int praxisLeft;
   int tenWordDelay;
 
 
@@ -43,7 +44,8 @@ class TenWordRecognition extends StatefulWidget {
         this.executiveLuria,
         this.executiveSerial,
         this.shorttermMemoryVerbal,
-        this.praxis,
+        this.praxisRight,
+        this.praxisLeft,
         this.tenWordDelay
         })
       : super(key: key);
@@ -402,7 +404,8 @@ class _TenWordRecognitionState
                               executiveAnimalNaming: widget.executiveAnimalNaming,
                               executiveLuria: widget.executiveLuria,
                               executiveSerial: widget.executiveSerial,
-                              praxis: widget.praxis,
+                              praxisRight: widget.praxisRight,
+                              praxisLeft: widget.praxisLeft,
                               shorttermMemoryVerbal: widget.shorttermMemoryVerbal,
                               tenWordDelay: widget.tenWordDelay,
                               scoreVerbalRecognitionMemoryTenWords: scoreVerbalRecognitionMemoryTenWords,
