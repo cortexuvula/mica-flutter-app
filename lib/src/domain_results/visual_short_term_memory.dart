@@ -4,15 +4,25 @@ import 'package:flutter/material.dart';
 class VisualShortTermMemory extends StatefulWidget {
 
 
-  int workingMemoryVerbalTrial1;
+  int shorttermMemoryVisualImage1;
+  int shorttermMemoryVisualImage2;
+  int shorttermMemoryVisualImage3;
 
-  VisualShortTermMemory({Key key, this.workingMemoryVerbalTrial1}) : super(key: key);
+  VisualShortTermMemory({Key key,
+    this.shorttermMemoryVisualImage1,
+    this.shorttermMemoryVisualImage2,
+    this.shorttermMemoryVisualImage3,
+  }) : super(key: key);
 
   @override
   _VisualShortTermMemoryState createState() => _VisualShortTermMemoryState();
 }
 
 class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
+
+
+  String result = "Normal";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,11 +52,11 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
             color: Colors.green,
             elevation: 10.0,
             child: ListTile(
-              title: Text("Working Memory Verbal Trial 1",style: TextStyle(
+              title: Text("Short-Term Memory Visual: Line Drawing Recall",style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
               ),),
-              trailing: Text("8/10",style: TextStyle(
+              trailing: Text(result,style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
               ),),
@@ -55,5 +65,27 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
         ],
       ),
     );
+  }
+
+  combineScores () {
+    int score1 = 3 - widget.shorttermMemoryVisualImage1;
+    int score2 = 3 - widget.shorttermMemoryVisualImage2;
+    int score3 = 3 - widget.shorttermMemoryVisualImage3;
+
+    int _combineScore = score1 + score2 + score3;
+
+    if (_combineScore > 5) {
+      setState(() {
+        result = "Normal";
+      });
+    } else if (_combineScore < 5) {
+      setState(() {
+        result = "Impaired";
+      });
+    } else {
+      setState(() {
+        result = "Equivocal";
+      });
+    }
   }
 }

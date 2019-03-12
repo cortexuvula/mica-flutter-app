@@ -6,11 +6,13 @@ import 'package:mica/src/domain_results/executive_functions.dart';
 import 'package:mica/src/domain_results/gnosis.dart';
 import 'package:mica/src/domain_results/language.dart';
 import 'package:mica/src/domain_results/praxis.dart';
+import 'package:mica/src/domain_results/verbal_shortterm_memory.dart';
+import 'package:mica/src/domain_results/verbal_working_memory.dart';
 import 'package:mica/src/domain_results/visual_short_term_memory.dart';
 import 'package:mica/src/home.dart';
 import 'package:mica/resources/const_data.dart' as appData;
-import 'package:mica/src/result_verbal_shortterm_memory.dart';
-import 'package:mica/src/result_verbal_working_memory.dart';
+
+
 
 //import 'package:share_extend/share_extend.dart';
 //import 'package:flutter_html_to_pdf/flutter_html_to_pdf.dart';
@@ -907,7 +909,7 @@ class _TestSummaryState extends State<TestSummary> {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) =>
                         new VerbalWorkingMemory(
-                          workingMemoryVerbalTrial1: widget.trialOneScore,
+                          trialOneScore: widget.trialOneScore,
                         ));
                 Navigator.of(context)
                     .pushAndRemoveUntil(router, (Route<dynamic> route) => true);
@@ -945,7 +947,13 @@ class _TestSummaryState extends State<TestSummary> {
               onTap: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        new VerbalShortTermMemory());
+                        new VerbalShortTermMemory(
+                          trialTwoScore: widget.trialTwoScore,
+                          trialThreeScore: widget.trialThreeScore,
+                          orientation: widget.shorttermMemoryVerbal,
+                          tenWordDelay: widget.tenWordDelay,
+                          scoreVerbalRecognitionMemoryTenWords: widget.scoreVerbalRecognitionMemoryTenWords,
+                        ));
                 Navigator.of(context)
                     .pushAndRemoveUntil(router, (Route<dynamic> route) => true);
               },
@@ -982,7 +990,11 @@ class _TestSummaryState extends State<TestSummary> {
               onTap: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        new VisualShortTermMemory());
+                        new VisualShortTermMemory(
+                          shorttermMemoryVisualImage1: widget.shorttermMemoryVisualImage1,
+                          shorttermMemoryVisualImage2: widget.shorttermMemoryVisualImage2,
+                          shorttermMemoryVisualImage3: widget.shorttermMemoryVisualImage3,
+                        ));
                 Navigator.of(context)
                     .pushAndRemoveUntil(router, (Route<dynamic> route) => true);
               },
@@ -1019,7 +1031,13 @@ class _TestSummaryState extends State<TestSummary> {
               onTap: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        new Praxis());
+                        new Praxis(
+                          praxisRight: widget.praxisRight,
+                          praxisLeft: widget.praxisLeft,
+                          visuospatialPraxisImage1: widget.visuospatialPraxisImage1,
+                          visuospatialPraxisImage2: widget.visuospatialPraxisImage2,
+                          visuospatialPraxisImage3: widget.visuospatialPraxisImage3,
+                        ));
                 Navigator.of(context)
                     .pushAndRemoveUntil(router, (Route<dynamic> route) => true);
               },
