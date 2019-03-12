@@ -1074,7 +1074,12 @@ class _TestSummaryState extends State<TestSummary> {
               onTap: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        new Gnosis());
+                        new Gnosis(
+                          visuospatialPraxisImage1: widget.visuospatialPraxisImage1,
+                          visuospatialPraxisImage2: widget.visuospatialPraxisImage2,
+                          visuospatialPraxisImage3: widget.visuospatialPraxisImage3,
+                          anomiaAgnosia: widget.anomiaAgnosia,
+                        ));
                 Navigator.of(context)
                     .pushAndRemoveUntil(router, (Route<dynamic> route) => true);
               },
@@ -1111,7 +1116,9 @@ class _TestSummaryState extends State<TestSummary> {
               onTap: () {
                 var router = new MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        new ExecutiveFunctions());
+                        new ExecutiveFunctions(
+                          executiveAnimalNaming: widget.executiveAnimalNaming,
+                        ));
                 Navigator.of(context)
                     .pushAndRemoveUntil(router, (Route<dynamic> route) => true);
               },
