@@ -30,12 +30,16 @@ class _PraxisState extends State<Praxis> {
   Color cardColorPraxisLeft;
   String resultPraxisLeft = "";
 
+  String result = "Normal";
+  Color resultColor;
+
   @override
   void initState() {
     super.initState();
 
     radio3ButtonValueToStringPraxisRight(widget.praxisRight);
     radio3ButtonValueToStringPraxisLeft(widget.praxisLeft);
+    combineScores();
   }
 
   @override
@@ -92,19 +96,20 @@ class _PraxisState extends State<Praxis> {
             ),
           ),
           Card(
-            color: cardColorPraxisLeft,
+            color: resultColor,
             elevation: 10.0,
             child: ListTile(
               title: Text("Visuospatial & Praxis: Line Drawing Copy",style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
               ),),
-              trailing: Text(resultPraxisLeft,style: TextStyle(
+              trailing: Text(result,style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
               ),),
             ),
-          )
+          ),
+
         ],
       ),
     );
@@ -159,6 +164,31 @@ class _PraxisState extends State<Praxis> {
         });
         break;
       }
+    }
+  }
+
+  combineScores () {
+    int score1 = 3 - widget.visuospatialPraxisImage1;
+    int score2 = 3 - widget.visuospatialPraxisImage2;
+    int score3 = 3 - widget.visuospatialPraxisImage3;
+
+    int _combineScore = score1 + score2 + score3;
+
+    if (_combineScore > 5) {
+      setState(() {
+        resultColor = Colors.green;
+        result = "Normal";
+      });
+    } else if (_combineScore < 5) {
+      setState(() {
+        resultColor = Colors.red;
+        result = "Impaired";
+      });
+    } else {
+      setState(() {
+        resultColor = Colors.yellow;
+        result = "Equivocal";
+      });
     }
   }
 }

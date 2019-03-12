@@ -4,15 +4,27 @@ import 'package:flutter/material.dart';
 class ExecutiveFunctions extends StatefulWidget {
 
 
-  int workingMemoryVerbalTrial1;
+  int executiveAnimalNaming;
 
-  ExecutiveFunctions({Key key, this.workingMemoryVerbalTrial1}) : super(key: key);
+  ExecutiveFunctions({Key key, this.executiveAnimalNaming}) : super(key: key);
 
   @override
   _ExecutiveFunctionsState createState() => _ExecutiveFunctionsState();
 }
 
 class _ExecutiveFunctionsState extends State<ExecutiveFunctions> {
+
+  Color cardColorAnimalNaming;
+  String resultAnimalNaming = "";
+
+  @override
+  void initState() {
+    super.initState();
+
+    radio3ButtonValueToStringAnimalNaming(widget.executiveAnimalNaming);
+    
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,14 +51,14 @@ class _ExecutiveFunctionsState extends State<ExecutiveFunctions> {
       body: ListView(
         children: <Widget>[
           Card(
-            color: Colors.green,
+            color: cardColorAnimalNaming,
             elevation: 10.0,
             child: ListTile(
-              title: Text("Working Memory Verbal Trial 1",style: TextStyle(
+              title: Text("Executive: Animal Naming Task",style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
               ),),
-              trailing: Text("8/10",style: TextStyle(
+              trailing: Text(resultAnimalNaming,style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
               ),),
@@ -56,4 +68,31 @@ class _ExecutiveFunctionsState extends State<ExecutiveFunctions> {
       ),
     );
   }
+
+  radio3ButtonValueToStringAnimalNaming (int value) {
+    switch (value) {
+      case 0: {
+        setState(() {
+          cardColorAnimalNaming = Colors.green;
+          resultAnimalNaming = "Normal";
+        });
+        break;
+      }
+      case 1: {
+        setState(() {
+          cardColorAnimalNaming = Colors.yellow;
+          resultAnimalNaming = "Equivocal";
+        });
+        break;
+      }
+      case 2: {
+        setState(() {
+          cardColorAnimalNaming = Colors.red;
+          resultAnimalNaming = "Impaired";
+        });
+        break;
+      }
+    }
+  }
+
 }
