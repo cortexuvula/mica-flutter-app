@@ -4,9 +4,19 @@ import 'package:flutter/material.dart';
 class VerbalShortTermMemory extends StatefulWidget {
 
 
-  int workingMemoryVerbalTrial1;
+  int trialTwoScore;
+  int trialThreeScore;
+  int orientation;
+  int tenWordDelay;
+  int scoreVerbalRecognitionMemoryTenWords;
 
-  VerbalShortTermMemory({Key key, this.workingMemoryVerbalTrial1}) : super(key: key);
+  VerbalShortTermMemory({Key key,
+    this.trialTwoScore,
+    this.trialThreeScore,
+    this.orientation,
+    this.tenWordDelay,
+    this.scoreVerbalRecognitionMemoryTenWords
+  }) : super(key: key);
 
   @override
   _VerbalShortTermMemoryState createState() => _VerbalShortTermMemoryState();
@@ -42,16 +52,72 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
             color: Colors.green,
             elevation: 10.0,
             child: ListTile(
-              title: Text("Working Memory Verbal Trial 1",style: TextStyle(
+              title: Text("Short-term Memory Verbal Trial 2",style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
               ),),
-              trailing: Text("8/10",style: TextStyle(
+              trailing: Text("${widget.trialTwoScore}",style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
               ),),
             ),
-          )
+          ),
+          Card(
+            color: Colors.green,
+            elevation: 10.0,
+            child: ListTile(
+              title: Text("Short-term Memory Verbal Trial 3",style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+              ),),
+              trailing: Text("${widget.trialThreeScore}",style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+              ),),
+            ),
+          ),
+          Card(
+            color: Colors.green,
+            elevation: 10.0,
+            child: ListTile(
+              title: Text("Orientation",style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+              ),),
+              trailing: Text("${widget.orientation}",style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+              ),),
+            ),
+          ),
+          Card(
+            color: Colors.green,
+            elevation: 10.0,
+            child: ListTile(
+              title: Text("Short-Term Memory Verbal: Delayed Recall Of 10 Words",style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+              ),),
+              trailing: Text("${widget.tenWordDelay}",style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+              ),),
+            ),
+          ),
+          Card(
+            color: Colors.green,
+            elevation: 10.0,
+            child: ListTile(
+              title: Text("Short-Term Memory Verbal Recognition: Total Score",style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+              ),),
+              trailing: Text("${widget.scoreVerbalRecognitionMemoryTenWords}",style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+              ),),
+            ),
+          ),
         ],
       ),
     );

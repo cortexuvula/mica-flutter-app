@@ -4,15 +4,40 @@ import 'package:flutter/material.dart';
 class Praxis extends StatefulWidget {
 
 
-  int workingMemoryVerbalTrial1;
+  int praxisRight;
+  int praxisLeft;
+  int visuospatialPraxisImage1;
+  int visuospatialPraxisImage2;
+  int visuospatialPraxisImage3;
 
-  Praxis({Key key, this.workingMemoryVerbalTrial1}) : super(key: key);
+  Praxis({Key key,
+    this.praxisRight,
+    this.praxisLeft,
+    this.visuospatialPraxisImage1,
+    this.visuospatialPraxisImage2,
+    this.visuospatialPraxisImage3
+  }) : super(key: key);
 
   @override
   _PraxisState createState() => _PraxisState();
 }
 
 class _PraxisState extends State<Praxis> {
+
+  Color cardColorPraxisRight;
+  String resultPraxisRight = "";
+
+  Color cardColorPraxisLeft;
+  String resultPraxisLeft = "";
+
+  @override
+  void initState() {
+    super.initState();
+
+    radio3ButtonValueToStringPraxisRight(widget.praxisRight);
+    radio3ButtonValueToStringPraxisLeft(widget.praxisLeft);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,14 +64,42 @@ class _PraxisState extends State<Praxis> {
       body: ListView(
         children: <Widget>[
           Card(
-            color: Colors.green,
+            color: cardColorPraxisRight,
             elevation: 10.0,
             child: ListTile(
-              title: Text("Working Memory Verbal Trial 1",style: TextStyle(
+              title: Text("Praxis: Finger-hand Dexterity: Right",style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
               ),),
-              trailing: Text("8/10",style: TextStyle(
+              trailing: Text(resultPraxisRight,style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+              ),),
+            ),
+          ),
+          Card(
+            color: cardColorPraxisLeft,
+            elevation: 10.0,
+            child: ListTile(
+              title: Text("Praxis: Finger-hand Dexterity: Left",style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+              ),),
+              trailing: Text(resultPraxisLeft,style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+              ),),
+            ),
+          ),
+          Card(
+            color: cardColorPraxisLeft,
+            elevation: 10.0,
+            child: ListTile(
+              title: Text("Visuospatial & Praxis: Line Drawing Copy",style: TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.w500,
+              ),),
+              trailing: Text(resultPraxisLeft,style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
               ),),
@@ -55,5 +108,57 @@ class _PraxisState extends State<Praxis> {
         ],
       ),
     );
+  }
+
+  radio3ButtonValueToStringPraxisRight (int value) {
+    switch (value) {
+      case 0: {
+        setState(() {
+          cardColorPraxisRight = Colors.green;
+          resultPraxisRight = "Normal";
+        });
+        break;
+      }
+      case 1: {
+        setState(() {
+          cardColorPraxisRight = Colors.yellow;
+          resultPraxisRight = "Equivocal";
+        });
+        break;
+      }
+      case 2: {
+        setState(() {
+          cardColorPraxisRight = Colors.red;
+          resultPraxisRight = "Impaired";
+        });
+        break;
+      }
+    }
+  }
+
+  radio3ButtonValueToStringPraxisLeft (int value) {
+    switch (value) {
+      case 0: {
+        setState(() {
+          cardColorPraxisLeft = Colors.green;
+          resultPraxisLeft = "Normal";
+        });
+        break;
+      }
+      case 1: {
+        setState(() {
+          cardColorPraxisLeft = Colors.yellow;
+          resultPraxisLeft = "Equivocal";
+        });
+        break;
+      }
+      case 2: {
+        setState(() {
+          cardColorPraxisLeft = Colors.red;
+          resultPraxisLeft = "Impaired";
+        });
+        break;
+      }
+    }
   }
 }

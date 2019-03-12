@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 class VerbalWorkingMemory extends StatefulWidget {
 
 
-  int workingMemoryVerbalTrial1;
+  int trialOneScore;
 
-  VerbalWorkingMemory({Key key, this.workingMemoryVerbalTrial1}) : super(key: key);
+  VerbalWorkingMemory({Key key, this.trialOneScore}) : super(key: key);
 
   @override
   _VerbalWorkingMemoryState createState() => _VerbalWorkingMemoryState();
@@ -46,7 +46,7 @@ class _VerbalWorkingMemoryState extends State<VerbalWorkingMemory> {
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
               ),),
-              trailing: Text("8/10",style: TextStyle(
+              trailing: Text("${widget.trialOneScore}",style: TextStyle(
                 color: Colors.black,
                 fontWeight: FontWeight.w500,
               ),),
