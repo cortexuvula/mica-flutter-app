@@ -91,6 +91,14 @@ class _TenWordRecognitionState
             ),
             textAlign: TextAlign.start,
           ),
+          subtitle: Text(
+            appData.testTenWordRecognitionSubtitle,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w300,
+            ),
+            textAlign: TextAlign.start,
+          ),
         ),
         actions: <Widget>[
           IconButton(

@@ -788,11 +788,11 @@ class _TestSummaryState extends State<TestSummary> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "Tap on the card to display more detail about domain results",
+                "Tap on the card to display more details",
                 style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
-                    fontSize: 15.0),
+                    ),
                 textAlign: TextAlign.center,
               ),
             ),

@@ -57,6 +57,14 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
             ),
             textAlign: TextAlign.start,
           ),
+          subtitle: Text(
+            appData.testTenWordRecallTrialTwoSubtitle,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w300,
+            ),
+            textAlign: TextAlign.start,
+          ),
         ),
         actions: <Widget>[
           IconButton(

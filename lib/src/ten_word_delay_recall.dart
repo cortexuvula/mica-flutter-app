@@ -83,6 +83,14 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
             ),
             textAlign: TextAlign.start,
           ),
+          subtitle: Text(
+            appData.testTenWordDelayedRecallSubtitle,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w300,
+            ),
+            textAlign: TextAlign.start,
+          ),
         ),
         actions: <Widget>[
           IconButton(

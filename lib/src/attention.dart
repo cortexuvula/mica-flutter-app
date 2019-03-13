@@ -74,6 +74,14 @@ class _AttentionState extends State<Attention> {
             ),
             textAlign: TextAlign.start,
           ),
+          subtitle: Text(
+            appData.testVisuospatialPraxisSubtitle,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w300,
+            ),
+            textAlign: TextAlign.start,
+          ),
         ),
         actions: <Widget>[
           IconButton(
