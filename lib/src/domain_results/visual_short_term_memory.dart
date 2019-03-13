@@ -22,6 +22,14 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
 
 
   String result = "Normal";
+  Color resultColor;
+
+
+  @override
+  void initState() {
+    super.initState();
+    combineScores();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +57,7 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
       body: ListView(
         children: <Widget>[
           Card(
-            color: Colors.green,
+            color: resultColor,
             elevation: 10.0,
             child: ListTile(
               title: Text("Short-Term Memory Visual: Line Drawing Recall",style: TextStyle(
@@ -76,14 +84,17 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
 
     if (_combineScore > 5) {
       setState(() {
+        resultColor = Colors.green;
         result = "Normal";
       });
     } else if (_combineScore < 5) {
       setState(() {
+        resultColor = Colors.red;
         result = "Impaired";
       });
     } else {
       setState(() {
+        resultColor = Colors.yellow;
         result = "Equivocal";
       });
     }

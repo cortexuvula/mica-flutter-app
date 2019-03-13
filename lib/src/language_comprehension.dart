@@ -42,6 +42,14 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
             ),
             textAlign: TextAlign.start,
           ),
+          subtitle: Text(
+            appData.testLanguageComprehensionSubtitle,
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w300,
+            ),
+            textAlign: TextAlign.start,
+          ),
         ),
         actions: <Widget>[
           IconButton(
