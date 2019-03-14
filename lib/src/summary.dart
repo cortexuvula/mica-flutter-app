@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:mica/src/domain_results/attention_concentration.dart';
 import 'package:mica/src/domain_results/executive_functions.dart';
 import 'package:mica/src/domain_results/gnosis.dart';
@@ -85,6 +86,9 @@ class TestSummary extends StatefulWidget {
 }
 
 class _TestSummaryState extends State<TestSummary> {
+
+  var format = DateFormat('d MMM y');
+
   @override
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
@@ -174,10 +178,10 @@ class _TestSummaryState extends State<TestSummary> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text("Name: ${widget.patientName}"),
+                          Text("Name: ${widget.patientName[0].toUpperCase()}${widget.patientName.substring(1)}"),
                           Text("Handedness: ${widget.handedness}"),
-                          Text("Date of Assessment: ${widget.assessmentDate}"),
-                          Text("Assessor: ${widget.assessorName}"),
+                          Text("Date of Assessment: ${format.format(widget.assessmentDate)}"),
+                          Text("Assessor: ${widget.assessorName[0].toUpperCase()}${widget.assessorName.substring(1)}"),
                         ],
                       ),
                     ),
@@ -235,9 +239,9 @@ class _TestSummaryState extends State<TestSummary> {
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text("${widget.languageComprehensionRadioValue}",
-                                textAlign: TextAlign.center,
-                              ),
+//                              child: Text("${widget.languageComprehensionRadioValue}",
+//                                textAlign: TextAlign.center,
+//                              ),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -360,9 +364,9 @@ class _TestSummaryState extends State<TestSummary> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("${widget.attention}",
-                                  textAlign: TextAlign.center,
-                                ),
+//                                child: Text("${widget.attention}",
+//                                  textAlign: TextAlign.center,
+//                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -385,9 +389,9 @@ class _TestSummaryState extends State<TestSummary> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("${widget.executiveAnimalNaming}",
-                                  textAlign: TextAlign.center,
-                                ),
+//                                child: Text("${widget.executiveAnimalNaming}",
+//                                  textAlign: TextAlign.center,
+//                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -410,9 +414,9 @@ class _TestSummaryState extends State<TestSummary> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("${widget.executiveLuria}",
-                                  textAlign: TextAlign.center,
-                                ),
+//                                child: Text("${widget.executiveLuria}",
+//                                  textAlign: TextAlign.center,
+//                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -435,9 +439,9 @@ class _TestSummaryState extends State<TestSummary> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("${widget.executiveSerial}",
-                                  textAlign: TextAlign.center,
-                                ),
+//                                child: Text("${widget.executiveSerial}",
+//                                  textAlign: TextAlign.center,
+//                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -460,9 +464,9 @@ class _TestSummaryState extends State<TestSummary> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("${widget.shorttermMemoryVerbal}",
-                                  textAlign: TextAlign.center,
-                                ),
+//                                child: Text("${widget.shorttermMemoryVerbal}",
+//                                  textAlign: TextAlign.center,
+//                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -485,9 +489,9 @@ class _TestSummaryState extends State<TestSummary> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("${widget.praxisRight}",
-                                  textAlign: TextAlign.center,
-                                ),
+//                                child: Text("${widget.praxisRight}",
+//                                  textAlign: TextAlign.center,
+//                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -510,9 +514,9 @@ class _TestSummaryState extends State<TestSummary> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("${widget.praxisLeft}",
-                                  textAlign: TextAlign.center,
-                                ),
+//                                child: Text("${widget.praxisLeft}",
+//                                  textAlign: TextAlign.center,
+//                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -585,9 +589,9 @@ class _TestSummaryState extends State<TestSummary> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("${widget.shorttermMemoryVisualImage1 + widget.shorttermMemoryVisualImage2 + widget.shorttermMemoryVisualImage3}",
-                                  textAlign: TextAlign.center,
-                                ),
+//                                child: Text("${widget.shorttermMemoryVisualImage1 + widget.shorttermMemoryVisualImage2 + widget.shorttermMemoryVisualImage3}",
+//                                  textAlign: TextAlign.center,
+//                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -610,9 +614,9 @@ class _TestSummaryState extends State<TestSummary> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("${widget.anomiaAgnosia}",
-                                  textAlign: TextAlign.center,
-                                ),
+//                                child: Text("${widget.anomiaAgnosia}",
+//                                  textAlign: TextAlign.center,
+//                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -635,9 +639,9 @@ class _TestSummaryState extends State<TestSummary> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("${widget.anomiaAgnosia}",
-                                  textAlign: TextAlign.center,
-                                ),
+//                                child: Text("${widget.anomiaAgnosia}",
+//                                  textAlign: TextAlign.center,
+//                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -660,9 +664,9 @@ class _TestSummaryState extends State<TestSummary> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("${widget.executive}",
-                                  textAlign: TextAlign.center,
-                                ),
+//                                child: Text("${widget.executive}",
+//                                  textAlign: TextAlign.center,
+//                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -685,9 +689,9 @@ class _TestSummaryState extends State<TestSummary> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("${widget.spokenLanguage}",
-                                  textAlign: TextAlign.center,
-                                ),
+//                                child: Text("${widget.spokenLanguage}",
+//                                  textAlign: TextAlign.center,
+//                                ),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
