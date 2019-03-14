@@ -182,6 +182,12 @@ class _PatientInformationState extends State<PatientInformation> {
                           } else {
                             _handed = "Left";
                           }
+                          if (myPatient.text == "") {
+                            myPatient.text = "No Name Provided";
+                          }
+                          if (myAssessor.text == "") {
+                            myAssessor.text = "No Name Provided";
+                          }
                           if (_formKey.currentState.validate()) {
                             // If the form is valid, display a snackbar. In the real world, you'd
                             // often want to call a server or save the information in a database
