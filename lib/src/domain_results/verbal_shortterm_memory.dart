@@ -205,22 +205,23 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
   }
 
   String valueOrientationResultToString(int _valueTotal) {
-    switch (_valueTotal > 4) {
-      case true: {
+    switch (_valueTotal) {
+      case 0: {
         setState(() {
           resultOrientation = "Normal";
           resultOrientationColor = Colors.green;
         });
         break;
       }
-      case false: {
-        if (_valueTotal < 4) {
+      case 2:
+        {
           setState(() {
             resultOrientation = "Impaired";
             resultOrientationColor = Colors.red;
           });
           break;
         }
+      case 1: {
         setState(() {
           resultOrientation = "Equivocal";
           resultOrientationColor = Colors.yellow;
