@@ -856,6 +856,51 @@ class _TestSummaryState extends State<TestSummary> {
     }
   }
 
+  Color combineScoresVisualShortTermMemoryColor () {
+    int score1 = 3 - widget.shorttermMemoryVisualImage1;
+    int score2 = 3 - widget.shorttermMemoryVisualImage2;
+    int score3 = 3 - widget.shorttermMemoryVisualImage3;
+
+    int _combineScore = score1 + score2 + score3;
+
+    if (_combineScore > 5) {
+     
+        
+        return Colors.green;
+     
+    } else if (_combineScore < 5) {
+      return Colors.red;
+        
+     
+    } else {
+
+  return Colors.yellow;
+    }
+  }
+
+  Color combineScoresPraxisMemoryColor () {
+    int score1 = 3 - widget.visuospatialPraxisImage1;
+    int score2 = 3 - widget.visuospatialPraxisImage2;
+    int score3 = 3 - widget.visuospatialPraxisImage3;
+
+    int _combineScore = score1 + score2 + score3;
+
+    if (_combineScore > 5) {
+
+
+      return Colors.green;
+
+    } else if (_combineScore < 5) {
+      return Colors.red;
+
+
+    } else {
+
+      return Colors.yellow;
+    }
+  }
+  
+
   Widget domainReport() {
     return ListView(
       children: <Widget>[
@@ -1102,16 +1147,9 @@ class _TestSummaryState extends State<TestSummary> {
                   children: <Widget>[
                     Icon(
                       Icons.brightness_1,
-                      color: radioValueResultToColor(widget.shorttermMemoryVisualImage1),
+                      color: combineScoresVisualShortTermMemoryColor(),
                     ),
-                    Icon(
-                      Icons.brightness_1,
-                      color: radioValueResultToColor(widget.shorttermMemoryVisualImage2),
-                    ),
-                    Icon(
-                      Icons.brightness_1,
-                      color: radioValueResultToColor(widget.shorttermMemoryVisualImage3),
-                    )
+                    
                   ],
                 ),
               ),
@@ -1166,16 +1204,9 @@ class _TestSummaryState extends State<TestSummary> {
                     ),
                     Icon(
                       Icons.brightness_1,
-                      color: radioValueResultToColor(widget.visuospatialPraxisImage1),
+                      color: combineScoresPraxisMemoryColor(),
                     ),
-                    Icon(
-                      Icons.brightness_1,
-                      color: radioValueResultToColor(widget.visuospatialPraxisImage2),
-                    ),
-                    Icon(
-                      Icons.brightness_1,
-                      color: radioValueResultToColor(widget.visuospatialPraxisImage3),
-                    ),
+
                   ],
                 ),
               ),
@@ -1223,16 +1254,9 @@ class _TestSummaryState extends State<TestSummary> {
                   children: <Widget>[
                     Icon(
                       Icons.brightness_1,
-                      color: radioValueResultToColor(widget.visuospatialPraxisImage1),
+                      color: combineScoresPraxisMemoryColor(),
                     ),
-                    Icon(
-                      Icons.brightness_1,
-                      color: radioValueResultToColor(widget.visuospatialPraxisImage2),
-                    ),
-                    Icon(
-                      Icons.brightness_1,
-                      color: radioValueResultToColor(widget.visuospatialPraxisImage3),
-                    ),
+
                     Icon(
                       Icons.brightness_1,
                       color: radioValueResultToColor(widget.anomiaAgnosia),
