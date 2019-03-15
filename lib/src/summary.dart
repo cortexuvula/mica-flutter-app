@@ -1,4 +1,4 @@
-import 'dart:io';
+
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -12,12 +12,11 @@ import 'package:mica/src/domain_results/verbal_working_memory.dart';
 import 'package:mica/src/domain_results/visual_short_term_memory.dart';
 import 'package:mica/src/home.dart';
 import 'package:mica/resources/const_data.dart' as appData;
+import 'package:share/share.dart';
 
 
 
-//import 'package:share_extend/share_extend.dart';
-//import 'package:flutter_html_to_pdf/flutter_html_to_pdf.dart';
-//import 'package:path_provider/path_provider.dart';
+
 
 class TestSummary extends StatefulWidget {
   String patientName;
@@ -125,8 +124,9 @@ class _TestSummaryState extends State<TestSummary> {
               IconButton(
                   icon: Icon(Icons.share),
                   tooltip: "Share Summary",
-                  onPressed: () async {
+                  onPressed: () {
                     print("summary");
+                    Share.share(shareDoc());
                   }),
               IconButton(
                 icon: Icon(Icons.home),
@@ -235,7 +235,7 @@ class _TestSummaryState extends State<TestSummary> {
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Text("E (Equivocal) =some difficulty, I (Impaired) = 1 or more clearerrors"),
+                              child: Text("E (Equivocal) = some difficulty, I (Impaired) = 1 or more clear errors"),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -635,7 +635,7 @@ class _TestSummaryState extends State<TestSummary> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text("N = all correct;E = 1 error, I >1 errorr"),
+                                child: Text("N = all correct;E = 1 error, I >1 error"),
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -1169,5 +1169,58 @@ class _TestSummaryState extends State<TestSummary> {
 //        )
       ],
     );
+  }
+
+  String shareDoc() {
+
+    String  shareDoc = "Disclaimer: ${appData.disclaimer2} \n\n";
+
+    shareDoc += "Name: ${widget.patientName[0].toUpperCase()}${widget.patientName.substring(1)}\n\n";
+
+    shareDoc += "Handedness: ${widget.handedness}\n";
+    shareDoc += "Test Date: ${format.format(widget.assessmentDate)}\n";
+    shareDoc += "Assessor: ${widget.assessorName[0].toUpperCase()}${widget.assessorName.substring(1)}\n\n";
+
+    shareDoc += "Results: \n\n";
+
+    shareDoc += "Language Comprehension: 3 Stage Command\nE (Equivocal) =some difficulty, I (Impaired) = 1 or more clear errors\n${radioValueResultToString(widget.languageComprehensionRadioValue)}\n\n";
+
+    shareDoc += "Working Memory VerbalTrial 1: 10 Word Recall\nN > 6, E = 5-6,I < 5\n${valueTrial12ResultToString(widget.trialOneScore)}\n\n";
+
+    shareDoc += "Short-term Memory Verbal Trial 2: 10 Word Recall\nN > 6, E = 5-6,I < 5\n${valueTrial12ResultToString(widget.trialTwoScore)}\n\n";
+
+    shareDoc += "Short-term Memory Verbal Trial 3: 10 Word Recall\nN > 7, E = 5-7,I < 5\n${valueTrial3ResultToString(widget.trialThreeScore)}\n\n";
+
+    shareDoc += "Visuospatial & Praxis: Line Drawing Copy\nN > 6, E = 6, I < 6\n${valueVisualResultToString(widget.visuospatialPraxisImage1 + widget.visuospatialPraxisImage2 + widget.visuospatialPraxisImage3)}\n\n";
+
+    shareDoc += "Attention: Vigilance Test\nN = no mistakes, E = one mistake and I = > 1 mistake\n${valueTrial12ResultToString(widget.attention)}\n\n";
+
+    shareDoc += "Executive: Animal Naming Task\n>14 = N; 12-14 = E;  <12 = I\n${radioValueResultToString(widget.executiveAnimalNaming)}\n\n";
+
+    shareDoc += "Executive: Luria Alternating Hand Movements\nN =  3 cycles without mistakes; E = able to do 1-2 cycles; I = unable to complete task\n${radioValueResultToString(widget.executiveLuria)}\n\n";
+
+    shareDoc += "Executive: Serial Order Reversal Task\nN = no errors; E = 1 error; I >1 error\n${radioValueResultToString(widget.executiveSerial)}\n\n";
+
+    shareDoc += "Short-Term Memory Verbal Recall: Orientation\nN = 5, E = 4, I < 4\n${radioValueResultToString(widget.shorttermMemoryVerbal)}\n\n";
+
+    shareDoc += "Praxis: Finger-hand Dexterity: Right\nN = no errors; E = some difficulty; I = clear difficulty\n${radioValueResultToString(widget.praxisRight)}\n\n";
+
+    shareDoc += "Praxis: Finger-hand Dexterity: Left\nN = no errors; E = some difficulty; I = clear difficulty\n${radioValueResultToString(widget.praxisLeft)}\n\n";
+
+    shareDoc += "Short-Term Memory Verbal: Delayed Recall Of 10 Words\nN >5, E = 5, I < 5\n${valueDelayResultToString(widget.tenWordDelay)}\n\n";
+
+    shareDoc += "Short-Term Memory Verbal  Recognition: Total Score\nN >5, E = 5, I < 5\n${valueDelayResultToString(widget.scoreVerbalRecognitionMemoryTenWordsInList)}\n\n";
+
+    shareDoc += "Short-Term Memory Visual: Line Drawing Recall\nN >5, E = 5, I < 5\n${valueDelayResultToString(widget.shorttermMemoryVisualImage1 + widget.shorttermMemoryVisualImage2 + widget.shorttermMemoryVisualImage3)}\n\n";
+
+    shareDoc += "Anomia: Naming Line Drawings\nN = all correct;E = 1 error, I >1 errorN = all correct;E = 1 error, I >1 error\n${radioValueResultToString(widget.anomiaAgnosia)}\n\n";
+
+    shareDoc += "Agnosia: Recognition of Line Drawings\nN = all correct;E = 1 error, I >1 error\n${radioValueResultToString(widget.anomiaAgnosia)}\n\n";
+
+    shareDoc += "Executive: Design Fluency\nN > 7 drawings; E = 5-7 drawings; I< 5 drawings\n${radioValueResultToString(widget.executive)}\n\n";
+
+    shareDoc += "Spoken Language\nN = normal speech, E = equivocal, I definite impairment\n${radioValueResultToString(widget.spokenLanguage)}\n\n";
+
+    return shareDoc;
   }
 }
