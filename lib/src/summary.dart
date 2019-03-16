@@ -1565,62 +1565,72 @@ class _TestSummaryState extends State<TestSummary> {
     shareDoc += "Results: \n\n";
 
     shareDoc +=
-        "Language Comprehension: 3 Stage Command\nE (Equivocal) =some difficulty, I (Impaired) = 1 or more clear errors\n${radioValueResultToString(widget.languageComprehensionRadioValue)}\n\n";
+        "Language Comprehension: 3 Stage Command\nE (Equivocal) =some difficulty, I (Impaired) = 1 or more clear errors\n${ConvertResponseToString(radioValueResultToString(widget.languageComprehensionRadioValue))}\n\n";
 
     shareDoc +=
-        "Working Memory VerbalTrial 1: 10 Word Recall\nN > 6, E = 5-6,I < 5\n${valueTrial12ResultToString(widget.trialOneScore)}\n\n";
+        "Working Memory VerbalTrial 1: 10 Word Recall\nN > 6, E = 5-6,I < 5\n${ConvertResponseToString(valueTrial12ResultToString(widget.trialOneScore))}\nScore: ${widget.trialOneScore}/10\n\n";
 
     shareDoc +=
-        "Short-term Memory Verbal Trial 2: 10 Word Recall\nN > 6, E = 5-6,I < 5\n${valueTrial12ResultToString(widget.trialTwoScore)}\n\n";
+        "Short-term Memory Verbal Trial 2: 10 Word Recall\nN > 6, E = 5-6,I < 5\n${ConvertResponseToString(valueTrial12ResultToString(widget.trialTwoScore))}\nScore: ${widget.trialTwoScore}/10\n\n";
 
     shareDoc +=
-        "Short-term Memory Verbal Trial 3: 10 Word Recall\nN > 7, E = 5-7,I < 5\n${valueTrial3ResultToString(widget.trialThreeScore)}\n\n";
+        "Short-term Memory Verbal Trial 3: 10 Word Recall\nN > 7, E = 5-7,I < 5\n${ConvertResponseToString(valueTrial3ResultToString(widget.trialThreeScore))}\nScore: ${widget.trialThreeScore}/10\n\n";
 
     shareDoc +=
-        "Visuospatial & Praxis: Line Drawing Copy\nN > 6, E = 6, I < 6\n${valueVisualResultToString(widget.visuospatialPraxisImage1 + widget.visuospatialPraxisImage2 + widget.visuospatialPraxisImage3)}\n\n";
+        "Visuospatial & Praxis: Line Drawing Copy\nN > 6, E = 6, I < 6\n${ConvertResponseToString(valueVisualResultToString(widget.visuospatialPraxisImage1 + widget.visuospatialPraxisImage2 + widget.visuospatialPraxisImage3))}\n\n";
 
     shareDoc +=
-        "Attention: Vigilance Test\nN = no mistakes, E = one mistake and I = > 1 mistake\n${valueTrial12ResultToString(widget.attention)}\n\n";
+        "Attention: Vigilance Test\nN = no mistakes, E = one mistake and I = > 1 mistake\n${ConvertResponseToString(valueTrial12ResultToString(widget.attention))}\n\n";
 
     shareDoc +=
-        "Executive: Animal Naming Task\n>14 = N; 12-14 = E;  <12 = I\n${radioValueResultToString(widget.executiveAnimalNaming)}\n\n";
+        "Executive: Animal Naming Task\n>14 = N; 12-14 = E;  <12 = I\n${ConvertResponseToString(radioValueResultToString(widget.executiveAnimalNaming))}\n\n";
 
     shareDoc +=
-        "Executive: Luria Alternating Hand Movements\nN =  3 cycles without mistakes; E = able to do 1-2 cycles; I = unable to complete task\n${radioValueResultToString(widget.executiveLuria)}\n\n";
+        "Executive: Luria Alternating Hand Movements\nN =  3 cycles without mistakes; E = able to do 1-2 cycles; I = unable to complete task\n${ConvertResponseToString(radioValueResultToString(widget.executiveLuria))}\n\n";
 
     shareDoc +=
-        "Executive: Serial Order Reversal Task\nN = no errors; E = 1 error; I >1 error\n${radioValueResultToString(widget.executiveSerial)}\n\n";
+        "Executive: Serial Order Reversal Task\nN = no errors; E = 1 error; I >1 error\n${ConvertResponseToString(radioValueResultToString(widget.executiveSerial))}\n\n";
 
     shareDoc +=
-        "Short-Term Memory Verbal Recall: Orientation\nN = 5, E = 4, I < 4\n${radioValueResultToString(widget.shorttermMemoryVerbal)}\n\n";
+        "Short-Term Memory Verbal Recall: Orientation\nN = 5, E = 4, I < 4\n${ConvertResponseToString(radioValueResultToString(widget.shorttermMemoryVerbal))}\n\n";
 
     shareDoc +=
-        "Praxis: Finger-hand Dexterity: Right\nN = no errors; E = some difficulty; I = clear difficulty\n${radioValueResultToString(widget.praxisRight)}\n\n";
+        "Praxis: Finger-hand Dexterity: Right\nN = no errors; E = some difficulty; I = clear difficulty\n${ConvertResponseToString(radioValueResultToString(widget.praxisRight))}\n\n";
 
     shareDoc +=
-        "Praxis: Finger-hand Dexterity: Left\nN = no errors; E = some difficulty; I = clear difficulty\n${radioValueResultToString(widget.praxisLeft)}\n\n";
+        "Praxis: Finger-hand Dexterity: Left\nN = no errors; E = some difficulty; I = clear difficulty\n${ConvertResponseToString(radioValueResultToString(widget.praxisLeft))}\n\n";
 
     shareDoc +=
-        "Short-Term Memory Verbal: Delayed Recall Of 10 Words\nN >5, E = 5, I < 5\n${valueDelayResultToString(widget.tenWordDelay)}\n\n";
+        "Short-Term Memory Verbal: Delayed Recall Of 10 Words\nN >5, E = 5, I < 5\n${ConvertResponseToString(valueDelayResultToString(widget.tenWordDelay))}\nScore: ${widget.tenWordDelay}/10\n\n";
 
     shareDoc +=
-        "Short-Term Memory Verbal  Recognition: Total Score\nN >5, E = 5, I < 5\n${valueDelayResultToString(widget.scoreVerbalRecognitionMemoryTenWordsInList)}\n\n";
+        "Short-Term Memory Verbal  Recognition: Total Score\nN >5, E = 5, I < 5\n${ConvertResponseToString(valueDelayResultToString(widget.scoreVerbalRecognitionMemoryTenWordsInList))}\nScore: ${widget.scoreVerbalRecognitionMemoryTenWordsInList}/10\n\n";
 
     shareDoc +=
-        "Short-Term Memory Visual: Line Drawing Recall\nN >5, E = 5, I < 5\n${valueDelayResultToString(widget.shorttermMemoryVisualImage1 + widget.shorttermMemoryVisualImage2 + widget.shorttermMemoryVisualImage3)}\n\n";
+        "Short-Term Memory Visual: Line Drawing Recall\nN >5, E = 5, I < 5\n${ConvertResponseToString(valueDelayResultToString(widget.shorttermMemoryVisualImage1 + widget.shorttermMemoryVisualImage2 + widget.shorttermMemoryVisualImage3))}\n\n";
 
     shareDoc +=
-        "Anomia: Naming Line Drawings\nN = all correct;E = 1 error, I >1 errorN = all correct;E = 1 error, I >1 error\n${radioValueResultToString(widget.anomiaAgnosia)}\n\n";
+        "Anomia: Naming Line Drawings\nN = all correct;E = 1 error, I >1 errorN = all correct;E = 1 error, I >1 error\n${ConvertResponseToString(radioValueResultToString(widget.anomiaAgnosia))}\n\n";
 
     shareDoc +=
-        "Agnosia: Recognition of Line Drawings\nN = all correct;E = 1 error, I >1 error\n${radioValueResultToString(widget.anomiaAgnosia)}\n\n";
+        "Agnosia: Recognition of Line Drawings\nN = all correct;E = 1 error, I >1 error\n${ConvertResponseToString(radioValueResultToString(widget.anomiaAgnosia))}\n\n";
 
     shareDoc +=
-        "Executive: Design Fluency\nN > 7 drawings; E = 5-7 drawings; I< 5 drawings\n${radioValueResultToString(widget.executive)}\n\n";
+        "Executive: Design Fluency\nN > 7 drawings; E = 5-7 drawings; I< 5 drawings\n${ConvertResponseToString(radioValueResultToString(widget.executive))}\n\n";
 
     shareDoc +=
-        "Spoken Language\nN = normal speech, E = equivocal, I definite impairment\n${radioValueResultToString(widget.spokenLanguage)}\n\n";
+        "Spoken Language\nN = normal speech, E = equivocal, I definite impairment\n${ConvertResponseToString(radioValueResultToString(widget.spokenLanguage))}\n\n";
 
     return shareDoc;
+  }
+  
+  String ConvertResponseToString(String response) {
+    if (response == "N") {
+      return "Normal";
+    } else if (response == "I") {
+      return "Impaired";
+    } else {
+      return "Equivocal";
+    }
   }
 }
