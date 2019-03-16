@@ -79,7 +79,16 @@ class TestSummary extends StatefulWidget {
 }
 
 class _TestSummaryState extends State<TestSummary> {
+
   var format = DateFormat('d MMM y');
+  Color attentionColor = Colors.green;
+  Color languageColor = Colors.green;
+  Color verbalWMColor = Colors.green;
+  Color verbalSTMColor = Colors.green;
+  Color visualSTMColor = Colors.green;
+  Color praxisColor = Colors.green;
+  Color gnosisColor = Colors.green;
+  Color executiveColor = Colors.green;
 
   @override
   Widget build(BuildContext context) {
@@ -1324,43 +1333,7 @@ class _TestSummaryState extends State<TestSummary> {
           ),
         ),
 
-//        Card(
-//          color: Colors.red,
-//          elevation: 10.0,
-//          child: Padding(
-//            padding: const EdgeInsets.all(8.0),
-//            child: ListTile(
-//              title: Text(
-//                "Verbal Short-Term Memory",
-//                style: TextStyle(
-//                  color: Colors.black,
-//                  fontWeight: FontWeight.w500,
-//                ),
-//              ),
-//              subtitle: Text(
-//                "Domain Result:",
-//                style: TextStyle(
-//                  color: Colors.black,
-//                  fontWeight: FontWeight.w500,
-//                ),
-//              ),
-//              trailing: Text(
-//                "Impaired",
-//                style: TextStyle(
-//                  color: Colors.black,
-//                  fontWeight: FontWeight.w500,
-//                ),
-//              ),
-//              onTap: () {
-//                var router = new MaterialPageRoute(
-//                    builder: (BuildContext context) =>
-//                        new VerbalShortTermMemory());
-//                Navigator.of(context)
-//                    .pushAndRemoveUntil(router, (Route<dynamic> route) => true);
-//              },
-//            ),
-//          ),
-//        )
+
       ],
     );
   }
