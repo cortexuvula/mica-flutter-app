@@ -766,19 +766,25 @@ class _TestSummaryState extends State<TestSummary> {
   }
 
   Color valueTrial12ResultToColor(int _valueTotal) {
+    Color _color;
     switch (_valueTotal > 6) {
       case true:
         {
-          return Colors.green;
+          _color = Colors.green;
+          break;
         }
       case false:
         {
           if (_valueTotal < 5) {
-            return Colors.red;
+            _color = Colors.red;
+          } else {
+            _color = Colors.yellow;
           }
-          return Colors.yellow;
+
+          break;
         }
     }
+    return _color;
   }
 
   String valueTrial3ResultToString(int _valueTotal) {
@@ -909,6 +915,8 @@ class _TestSummaryState extends State<TestSummary> {
     }
   }
   
+  
+  
 
   Widget domainReport() {
     return ListView(
@@ -932,6 +940,7 @@ class _TestSummaryState extends State<TestSummary> {
         ),
         Card(
           elevation: 10.0,
+          color: attentionCardColor(widget.attention),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
@@ -951,13 +960,21 @@ class _TestSummaryState extends State<TestSummary> {
 //              ),
               trailing: Container(
 
-                width: 100.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    Icon(Icons.brightness_1,
-                        color: radioValueResultToColor(widget.attention)),
-                  ],
+                width: 130.0,
+                height: 50.0,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10.0)
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(Icons.brightness_1,
+                          color: radioValueResultToColor(widget.attention)),
+                    ],
+                  ),
                 ),
               ),
               onTap: () {
@@ -974,6 +991,7 @@ class _TestSummaryState extends State<TestSummary> {
         ),
         Card(
           elevation: 10.0,
+          color: languageCardColor(widget.spokenLanguage, widget.languageComprehensionRadioValue, widget.executive),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
@@ -992,23 +1010,31 @@ class _TestSummaryState extends State<TestSummary> {
 //                ),
 //              ),
               trailing: Container(
-                width: 100.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    Icon(
-                      Icons.brightness_1,
-                      color: radioValueResultToColor(widget.spokenLanguage),
-                    ),
-                    Icon(
-                      Icons.brightness_1,
-                      color: radioValueResultToColor(widget.languageComprehensionRadioValue),
-                    ),
-                    Icon(
-                      Icons.brightness_1,
-                      color: radioValueResultToColor(widget.executive),
-                    )
-                  ],
+                width: 130.0,
+                height: 50.0,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10.0)
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.brightness_1,
+                        color: radioValueResultToColor(widget.spokenLanguage),
+                      ),
+                      Icon(
+                        Icons.brightness_1,
+                        color: radioValueResultToColor(widget.languageComprehensionRadioValue),
+                      ),
+                      Icon(
+                        Icons.brightness_1,
+                        color: radioValueResultToColor(widget.executive),
+                      )
+                    ],
+                  ),
                 ),
               ),
               onTap: () {
@@ -1026,6 +1052,7 @@ class _TestSummaryState extends State<TestSummary> {
         ),
         Card(
           elevation: 10.0,
+          color: verbalWorkingMemoryCardColor(widget.trialOneScore),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
@@ -1044,15 +1071,23 @@ class _TestSummaryState extends State<TestSummary> {
 //                ),
 //              ),
               trailing: Container(
-                width: 100.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    Icon(
-                      Icons.brightness_1,
-                      color: valueTrial12ResultToColor(widget.trialOneScore),
-                    ),
-                  ],
+                width: 130.0,
+                height: 50.0,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10.0)
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.brightness_1,
+                        color: valueTrial12ResultToColor(widget.trialOneScore),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               onTap: () {
@@ -1068,6 +1103,7 @@ class _TestSummaryState extends State<TestSummary> {
         ),
         Card(
           elevation: 10.0,
+          color: verbalShortTermMemory(widget.trialTwoScore, widget.trialThreeScore, widget.shorttermMemoryVerbal, widget.tenWordDelay, widget.scoreVerbalRecognitionMemoryTenWords),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
@@ -1086,31 +1122,40 @@ class _TestSummaryState extends State<TestSummary> {
 //                ),
 //              ),
               trailing: Container(
-                width: 120.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    Icon(
-                      Icons.brightness_1,
-                      color: valueTrial12ResultToColor(widget.trialTwoScore),
-                    ),
-                    Icon(
-                      Icons.brightness_1,
-                      color: valueTrial3ResultToColor(widget.trialThreeScore),
-                    ),
-                    Icon(
-                      Icons.brightness_1,
-                      color: radioValueResultToColor(widget.shorttermMemoryVerbal),
-                    ),
-                    Icon(
-                      Icons.brightness_1,
-                      color: valueDelayResultToColor(widget.tenWordDelay),
-                    ),
-                    Icon(
-                      Icons.brightness_1,
-                      color: valueDelayResultToColor(widget.scoreVerbalRecognitionMemoryTenWords),
-                    ),
-                  ],
+                width: 130.0,
+                height: 50.0,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(10.0)
+                ),
+                
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.brightness_1,
+                        color: valueTrial12ResultToColor(widget.trialTwoScore),
+                      ),
+                      Icon(
+                        Icons.brightness_1,
+                        color: valueTrial3ResultToColor(widget.trialThreeScore),
+                      ),
+                      Icon(
+                        Icons.brightness_1,
+                        color: radioValueResultToColor(widget.shorttermMemoryVerbal),
+                      ),
+                      Icon(
+                        Icons.brightness_1,
+                        color: valueDelayResultToColor(widget.tenWordDelay),
+                      ),
+                      Icon(
+                        Icons.brightness_1,
+                        color: valueDelayResultToColor(widget.scoreVerbalRecognitionMemoryTenWords),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               onTap: () {
@@ -1132,6 +1177,7 @@ class _TestSummaryState extends State<TestSummary> {
         ),
         Card(
           elevation: 10.0,
+          color: visualShortTermMemoryCardColor(),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
@@ -1150,16 +1196,24 @@ class _TestSummaryState extends State<TestSummary> {
 //                ),
 //              ),
               trailing: Container(
-                width: 100.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    Icon(
-                      Icons.brightness_1,
-                      color: combineScoresVisualShortTermMemoryColor(),
-                    ),
-                    
-                  ],
+                width: 130.0,
+                height: 50.0,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10.0)
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.brightness_1,
+                        color: combineScoresVisualShortTermMemoryColor(),
+                      ),
+
+                    ],
+                  ),
                 ),
               ),
               onTap: () {
@@ -1181,6 +1235,7 @@ class _TestSummaryState extends State<TestSummary> {
         ),
         Card(
           elevation: 10.0,
+          color: praxisCardColor(),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
@@ -1199,24 +1254,32 @@ class _TestSummaryState extends State<TestSummary> {
 //                ),
 //              ),
               trailing: Container(
-                width: 120.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    Icon(
-                      Icons.brightness_1,
-                      color: radioValueResultToColor(widget.praxisRight),
-                    ),
-                    Icon(
-                      Icons.brightness_1,
-                      color: radioValueResultToColor(widget.praxisLeft),
-                    ),
-                    Icon(
-                      Icons.brightness_1,
-                      color: combineScoresPraxisMemoryColor(),
-                    ),
+                width: 130.0,
+                height: 50.0,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10.0)
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.brightness_1,
+                        color: radioValueResultToColor(widget.praxisRight),
+                      ),
+                      Icon(
+                        Icons.brightness_1,
+                        color: radioValueResultToColor(widget.praxisLeft),
+                      ),
+                      Icon(
+                        Icons.brightness_1,
+                        color: combineScoresPraxisMemoryColor(),
+                      ),
 
-                  ],
+                    ],
+                  ),
                 ),
               ),
               onTap: () {
@@ -1239,6 +1302,7 @@ class _TestSummaryState extends State<TestSummary> {
         ),
         Card(
           elevation: 10.0,
+          color: gnosisCardColor(),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
@@ -1257,20 +1321,28 @@ class _TestSummaryState extends State<TestSummary> {
 //                ),
 //              ),
               trailing: Container(
-                width: 120.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    Icon(
-                      Icons.brightness_1,
-                      color: combineScoresPraxisMemoryColor(),
-                    ),
+                width: 130.0,
+                height: 50.0,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10.0)
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.brightness_1,
+                        color: combineScoresPraxisMemoryColor(),
+                      ),
 
-                    Icon(
-                      Icons.brightness_1,
-                      color: radioValueResultToColor(widget.anomiaAgnosia),
-                    ),
-                  ],
+                      Icon(
+                        Icons.brightness_1,
+                        color: radioValueResultToColor(widget.anomiaAgnosia),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               onTap: () {
@@ -1292,6 +1364,7 @@ class _TestSummaryState extends State<TestSummary> {
         ),
         Card(
           elevation: 10.0,
+          color: executiveFunctionCarcColor(widget.executiveAnimalNaming),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
@@ -1310,15 +1383,23 @@ class _TestSummaryState extends State<TestSummary> {
 //                ),
 //              ),
               trailing: Container(
-                width: 120.0,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: <Widget>[
-                    Icon(
-                      Icons.brightness_1,
-                      color: radioValueResultToColor(widget.executiveAnimalNaming),
-                    ),
-                  ],
+                width: 130.0,
+                height: 50.0,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10.0)
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.brightness_1,
+                        color: radioValueResultToColor(widget.executiveAnimalNaming),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               onTap: () {
@@ -1336,6 +1417,138 @@ class _TestSummaryState extends State<TestSummary> {
 
       ],
     );
+  }
+
+  // Card Colors
+
+  Color attentionCardColor(int _radioValue) {
+    Color _color;
+    switch (_radioValue) {
+      case 0:
+        {
+          _color = Colors.green;
+          break;
+        }
+      case 1:
+        {
+          _color = Colors.yellow;
+          break;
+        }
+      case 2:
+        {
+          _color = Colors.red;
+          break;
+        }
+    }
+
+    return _color;
+  }
+  
+  Color languageCardColor(int valueSpokenLanguage, int valueComprehension, int valueExecutive) {
+    if (valueSpokenLanguage == 2 || valueComprehension == 2 || valueExecutive == 2) {
+      return Colors.red;
+    } else if (valueSpokenLanguage == 1 || valueComprehension == 1 || valueExecutive == 1) {
+      return Colors.yellow;
+    } else {
+      return Colors.green;
+    }
+  }
+
+  Color verbalWorkingMemoryCardColor(int value) {
+    if (value < 5) {
+      return Colors.red;
+    } else if (value > 6) {
+      return Colors.green;
+    } else {
+      return Colors.yellow;
+    }
+  }
+
+  Color verbalShortTermMemory(valuetrialTwoScore, valuetrialThreeScore, valueshorttermMemoryVerbal, valuetenWordDelay, valuescoreVerbalRecognitionMemoryTenWords,) {
+    if (valuetrialTwoScore < 5 || valuetrialThreeScore < 5 || valueshorttermMemoryVerbal == 2 || valuetenWordDelay < 5 || valuescoreVerbalRecognitionMemoryTenWords < 5) {
+      return Colors.red;
+    } else if (valuetrialTwoScore == 5 || valuetrialThreeScore == 5 || valueshorttermMemoryVerbal == 1 || valuetenWordDelay == 5 || valuescoreVerbalRecognitionMemoryTenWords == 5) {
+      return Colors.yellow;
+    } else {
+      return Colors.green;
+    }
+  }
+
+  Color visualShortTermMemoryCardColor() {
+    int score1 = 3 - widget.shorttermMemoryVisualImage1;
+    int score2 = 3 - widget.shorttermMemoryVisualImage2;
+    int score3 = 3 - widget.shorttermMemoryVisualImage3;
+
+    int _combineScore = score1 + score2 + score3;
+
+    if (_combineScore > 5) {
+
+
+      return Colors.green;
+
+    } else if (_combineScore < 5) {
+      return Colors.red;
+
+
+    } else {
+
+      return Colors.yellow;
+    }
+  }
+
+  Color praxisCardColor() {
+    int score1 = 3 - widget.visuospatialPraxisImage1;
+    int score2 = 3 - widget.visuospatialPraxisImage2;
+    int score3 = 3 - widget.visuospatialPraxisImage3;
+
+    int _combineScore = score1 + score2 + score3;
+
+    if (_combineScore < 5 || widget.praxisLeft == 2 || widget.praxisRight == 2) {
+      return Colors.red;
+    } else if (_combineScore == 5 || widget.praxisLeft == 1 || widget.praxisRight == 1) {
+      return Colors.yellow;
+    } else {
+      return Colors.green;
+    }
+  }
+
+  Color gnosisCardColor() {
+    int score1 = 3 - widget.visuospatialPraxisImage1;
+    int score2 = 3 - widget.visuospatialPraxisImage2;
+    int score3 = 3 - widget.visuospatialPraxisImage3;
+
+    int _combineScore = score1 + score2 + score3;
+
+    if (_combineScore < 5 || widget.anomiaAgnosia == 2) {
+      return Colors.red;
+    } else if (_combineScore == 5 || widget.anomiaAgnosia == 1) {
+      return Colors.yellow;
+    } else {
+      return Colors.green;
+    }
+  }
+  
+  Color executiveFunctionCarcColor(int _radioValue){
+    Color _color;
+    switch (_radioValue) {
+      case 0:
+        {
+          _color = Colors.green;
+          break;
+        }
+      case 1:
+        {
+          _color = Colors.yellow;
+          break;
+        }
+      case 2:
+        {
+          _color = Colors.red;
+          break;
+        }
+    }
+
+    return _color;
   }
 
   String shareDoc() {
