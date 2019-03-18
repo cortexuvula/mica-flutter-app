@@ -157,8 +157,8 @@ const String instructionsTenWordRecallTrialThreePatient2 =
 const String testVisuospatialPraxis = "Agnosia and Apraxia";
 const String testVisuospatialPraxisSubtitle = "Line Drawing Copy";
 const String testVisuospatialPraxisDetails =
-    "Assess the ability to copy line drawings. Click on the images to enlarge image before displaying to patient.";
-const String testVisuospatialPraxisToPatient = "\"Copy these figures.\"";
+    "Assess the ability to copy line drawings. Click on the images to enlarge image before displaying to patient. Do not warn about the delayed recall of these drawings.";
+const String testVisuospatialPraxisToPatient = "\"Copy these drawings.\"";
 const String testVisuospatialPraxisResponse =
     " Do not warn about delayed recall.";
 const String testVisuospatialPraxisScoring = "";
@@ -169,10 +169,10 @@ const String testVisuospatialPraxisResponseImpaired = "1 Point = Poor";
 const String testVisuospatialPraxisResponseFubar = "0 Point = No drawing";
 
 const String testAttention = "Attention and Concentration";
-const String testAttentionSubtitle = "Vigilance";
-const String testAttentionDetails = "Tap on letter when patient indicates a tap. Double tap on letter A to mark as a missed tap by the patient.";
+const String testAttentionSubtitle = "Vigilance Task";
+const String testAttentionDetails = "Tap on a letter when patient taps. Double tap on A when patient does not tap on hearing the letter A.";
 const String testAttentionToPatient =
-    "\"I am going to read you a long series of letters. Whenever you hear the letter A, tap your hand like this.\” Indicate tapping movement. For all other letters, do not tap. ";
+    "\"I am going to read you a long series of letters. Whenever you hear the letter A, tap your hand like this.\” Indicate tapping movement. For all other letters, do nothing, that is do not tap.";
 const String testAttentionResponse = "A mistake is an omission or inclusion.";
 const String testAttentionResponseNormal = "no mistakes.";
 const String testAttentionResponseEquivocal = "1 mistake.";
@@ -304,4 +304,5 @@ const List<Map<String, String>> videos = [
 
   ];
 
-const String resourceButton = "Instructions and Videos";
+const String resourceButtonBooklet = "Bedside Cognitive Assessment Booklet";
+const String resourceButtonVideo = "Educational Videos";

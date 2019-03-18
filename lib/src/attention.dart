@@ -75,7 +75,7 @@ class _AttentionState extends State<Attention> {
             textAlign: TextAlign.start,
           ),
           subtitle: Text(
-            appData.testVisuospatialPraxisSubtitle,
+            appData.testAttentionSubtitle,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w300,
@@ -109,26 +109,13 @@ class _AttentionState extends State<Attention> {
                   width: _width * 0.9,
                   child: Card(
                     elevation: 10.0,
-                    color: Colors.deepPurple.shade300,
+                    color: Colors.yellowAccent.shade400,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: <Widget>[
-//                          Text(
-//                            appData.testDescription,
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.w500,
-//                              fontSize: 20.0,
-//                              decoration: TextDecoration.underline,
-//                            ),
-//                          ),
-//                          SizedBox(
-//                            height: 5.0,
-//                          ),
                           Text(
-                            appData.testAttentionDetails,
+                            appData.testAttentionToPatient,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -140,6 +127,7 @@ class _AttentionState extends State<Attention> {
                     ),
                   ),
                 ),
+
                 SizedBox(
                   height: sizeBoxHeight,
                 ),
@@ -147,26 +135,13 @@ class _AttentionState extends State<Attention> {
                   width: _width * 0.9,
                   child: Card(
                     elevation: 10.0,
-                    color: Colors.yellowAccent.shade400,
+                    color: Colors.deepPurple.shade300,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: <Widget>[
-//                          Text(
-//                            appData.testToPatient,
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.w500,
-//                              fontSize: 20.0,
-//                              decoration: TextDecoration.underline,
-//                            ),
-//                          ),
-//                          SizedBox(
-//                            height: 5.0,
-//                          ),
                           Text(
-                            appData.testAttentionToPatient,
+                            appData.testAttentionDetails,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,

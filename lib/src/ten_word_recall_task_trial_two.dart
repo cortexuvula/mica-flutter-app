@@ -172,21 +172,21 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
                         SizedBox(
                           height: 5.0,
                         ),
-                        Card(
-                          elevation: 10.0,
-                          color: Colors.yellowAccent.shade400,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              appData.instructionsTenWordRecallTrialTwoPatient2,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 15.0),
-                              textAlign: TextAlign.left,
-                            ),
-                          ),
-                        ),
+//                        Card(
+//                          elevation: 10.0,
+//                          color: Colors.yellowAccent.shade400,
+//                          child: Padding(
+//                            padding: const EdgeInsets.all(8.0),
+//                            child: Text(
+//                              appData.instructionsTenWordRecallTrialTwoPatient2,
+//                              style: TextStyle(
+//                                  color: Colors.black,
+//                                  fontWeight: FontWeight.w500,
+//                                  fontSize: 15.0),
+//                              textAlign: TextAlign.left,
+//                            ),
+//                          ),
+//                        ),
                       ],
                       crossAxisAlignment: CrossAxisAlignment.start,
                     ),
