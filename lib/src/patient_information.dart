@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'dart:async';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/language_comprehension.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PatientInformation extends StatefulWidget {
   @override
@@ -14,6 +15,8 @@ class _PatientInformationState extends State<PatientInformation> {
   final GlobalKey<ScaffoldState> _scaffoldState =
       new GlobalKey<ScaffoldState>();
 
+  bool rememberAssessor = false;
+
   int _radioValue = 0;
   DateTime selectedDate = DateTime.now();
 
@@ -22,6 +25,13 @@ class _PatientInformationState extends State<PatientInformation> {
 
   final myPatient = TextEditingController();
   final myAssessor = TextEditingController();
+
+
+  @override
+  void initState() {
+    super.initState();
+    getPrefs();
+  }
 
   @override
   void dispose() {
@@ -167,6 +177,28 @@ class _PatientInformationState extends State<PatientInformation> {
                     ],
                   ),
                 ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Text("Rememeber Assessor Name: "),
+                      Switch(
+                          value: rememberAssessor,
+                          onChanged: (bool newValue) {
+                            setState(() {
+                              rememberAssessor = newValue;
+
+                            });
+                          },
+                        activeColor: Colors.green,
+                        activeTrackColor: Colors.white,
+                        inactiveThumbColor: Colors.red,
+                        inactiveTrackColor: Colors.white,
+                      ),
+                    ],
+                  ),
+                ),
                 Container(
                   width: _width * 0.9,
                   child: Card(
@@ -193,7 +225,12 @@ class _PatientInformationState extends State<PatientInformation> {
                             // often want to call a server or save the information in a database
                             _scaffoldState.currentState.showSnackBar(
                                 SnackBar(content: Text('Processing Data')));
-
+//                            if (rememberAssessor) {
+//                              setPrefs();
+//                            } else if (!rememberAssessor) {
+//
+//                            }
+                            setPrefs();
                             var router = new MaterialPageRoute(
                                 builder: (BuildContext context) =>
                                     new LanguageComprehension(
@@ -234,6 +271,50 @@ class _PatientInformationState extends State<PatientInformation> {
       setState(() {
         selectedDate = picked;
       });
+    }
+  }
+
+  void getPrefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    try {
+      String assessor = prefs.getString("assessor");
+      bool remember = prefs.getBool("rememberAssessor");
+      if (assessor != null) {
+        if (remember) {
+          setState(() {
+            myAssessor.text = assessor;
+            rememberAssessor = remember;
+          });
+        } else if (!remember) {
+          setState(() {
+            rememberAssessor = remember;
+          });
+        }
+      }
+
+
+
+      print("Retrieved Assessor Name $assessor");
+
+    } catch (e) {
+      print("failed to get assessor name");
+    }
+  }
+
+  void setPrefs() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    try {
+      if (rememberAssessor) {
+        prefs.setString("assessor", myAssessor.text);
+        prefs.setBool("rememberAssessor", rememberAssessor);
+        print("Saved ${myAssessor.text}");
+      } else if (!rememberAssessor) {
+        prefs.setString("assessor", "");
+        prefs.setBool("rememberAssessor", rememberAssessor);
+      }
+
+    } catch (e) {
+      print("Failed to save assessor");
     }
   }
 }

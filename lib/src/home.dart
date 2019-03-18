@@ -4,6 +4,8 @@ import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/resource_page.dart';
 import 'package:mica/src/resource_pdf_video_page.dart';
 import 'pdf_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:dart_ping/dart_ping.dart';
 
 class Home extends StatefulWidget {
   bool viewedDisclaimer;
@@ -166,13 +168,38 @@ class _HomeState extends State<Home> {
                       padding: const EdgeInsets.all(20.0),
                       child: RaisedButton(
                         elevation: 10.0,
+                        onPressed: () async {
+                          print("PDF tapped");
+//                          Navigator.push(
+//                              context,
+//                              MaterialPageRoute(
+//                                  builder: (context) => PDFScreen()));
+                          _launchURL();
+                        },
+                        child: Text(appData.resourceButtonBooklet),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 5.0,
+                ),
+                Container(
+                  width: _width * 0.9,
+                  child: Card(
+                    elevation: 10.0,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: RaisedButton(
+                        elevation: 10.0,
                         onPressed: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ResourceVideoPDF()));
+                                  builder: (context) => ResourcePage()));
                         },
-                        child: Text(appData.resourceButton),
+                        child: Text(appData.resourceButtonVideo),
                       ),
                     ),
                   ),
@@ -183,5 +210,15 @@ class _HomeState extends State<Home> {
         ),
       ),
     );
+  }
+
+  _launchURL() async {
+    const url =
+        'http://neoncortex.net/wp-content/mca/bca.pdf';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

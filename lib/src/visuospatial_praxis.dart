@@ -278,14 +278,14 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
 //                                SizedBox(
 //                                  height: 5.0,
 //                                ),
-                                Text(
-                                  appData.testVisuospatialPraxisResponse,
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15.0),
-                                ),
+//                                Text(
+//                                  appData.testVisuospatialPraxisResponse,
+//                                  textAlign: TextAlign.center,
+//                                  style: TextStyle(
+//                                      color: Colors.black,
+//                                      fontWeight: FontWeight.w500,
+//                                      fontSize: 15.0),
+//                                ),
                                 SizedBox(
                                   height: 5.0,
                                 ),

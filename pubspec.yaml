@@ -25,6 +25,9 @@ dependencies:
   chewie: ^0.9.6
   flutter_html_to_pdf: ^0.3.0
   share: ^0.6.0+1
+  url_launcher: ^5.0.2
+  dart_ping: ^1.0.0
+  shared_preferences: ^0.5.1+2
 
 
 
