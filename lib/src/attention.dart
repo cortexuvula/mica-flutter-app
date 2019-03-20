@@ -241,6 +241,13 @@ class _AttentionState extends State<Attention> {
                                           wrongTap += 1;
                                           letterTapButtonColor[index] =
                                               Colors.red;
+                                          if (wrongTap == 1) {
+                                            _radioValue = 1;
+                                          } else if (wrongTap > 1) {
+                                            _radioValue = 2;
+                                          } else if (wrongTap < 1) {
+                                            _radioValue = 0;
+                                          }
                                         });
                                       }
                                     }
@@ -280,6 +287,13 @@ class _AttentionState extends State<Attention> {
                                               wrongTap += 1;
                                               letterTapButtonColor[index] =
                                                   Colors.red;
+                                              if (wrongTap == 1) {
+                                                _radioValue = 1;
+                                              } else if (wrongTap > 1) {
+                                                _radioValue = 2;
+                                              } else if (wrongTap < 1) {
+                                                _radioValue = 0;
+                                              }
                                             });
                                         }
 //                                        setState(() {
@@ -310,6 +324,13 @@ class _AttentionState extends State<Attention> {
                                           wrongTap -= 1;
                                           letterTapButtonColor[index] =
                                               Colors.cyan.shade200;
+                                          if (wrongTap == 1) {
+                                            _radioValue = 1;
+                                          } else if (wrongTap > 1) {
+                                            _radioValue = 2;
+                                          } else if (wrongTap < 1) {
+                                            _radioValue = 0;
+                                          }
                                         });
                                       },
                                     ),

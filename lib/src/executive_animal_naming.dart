@@ -40,7 +40,8 @@ class ExecutiveAnimalNaming extends StatefulWidget {
 
 class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> {
   double sizeBoxHeight = 10.0;
-  int _radioValue = 0;
+  int _radioValue = 2;
+  int _counter = 0;
 
 
   @override
@@ -167,6 +168,51 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> {
                 ),
                 Container(
                   width: _width * 0.9,
+
+                  child: Card(
+                    elevation: 10.0,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          Container(
+                            color: Colors.white,
+                            child: Text(
+                              "$_counter",
+                              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
+                            ),
+                          ),
+                          Container(
+                            child: FlatButton(
+                                color: Colors.cyan.shade200,
+                                onPressed: () {
+                                  setState(() {
+                                    _counter += 1;
+                                    if (_counter >= 12 && _counter <= 14) {
+                                      _radioValue = 1;
+                                    }
+                                    if (_counter > 14) {
+                                      _radioValue = 0;
+                                    }
+                                  });
+                                },
+                                child: Text("Tap to Count Words",
+                                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
+                                )
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                Container(
+                  width: _width * 0.9,
                   child: Card(
                     elevation: 10.0,
                     color: Colors.green,
@@ -187,14 +233,15 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> {
 //                          SizedBox(
 //                            height: 5.0,
 //                          ),
-                          Text(
-                            appData.testExecutiveAnimalNamingResponse,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15.0),
-                          ),
+//                          Text(
+//                            appData.testExecutiveAnimalNamingResponse,
+//                            textAlign: TextAlign.center,
+//                            style: TextStyle(
+//                                color: Colors.black,
+//                                fontWeight: FontWeight.w500,
+//                                fontSize: 15.0),
+//                          ),
+
                           Table(
                             border: TableBorder.all(),
                             defaultVerticalAlignment: TableCellVerticalAlignment.middle,

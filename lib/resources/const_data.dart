@@ -172,17 +172,17 @@ const String testAttention = "Attention and Concentration";
 const String testAttentionSubtitle = "Vigilance Task";
 const String testAttentionDetails = "Tap on a letter when patient taps. Double tap on A when patient does not tap on hearing the letter A.";
 const String testAttentionToPatient =
-    "\"I am going to read you a long series of letters. Whenever you hear the letter A, tap your hand like this.\” Indicate tapping movement. For all other letters, do nothing, that is do not tap.";
+    "\"I am going to read you a long series of letters. Whenever you hear the letter A, tap your hand like this.\” Indicate tapping movement. For all other letters do not tap.";
 const String testAttentionResponse = "A mistake is an omission or inclusion.";
 const String testAttentionResponseNormal = "no mistakes.";
 const String testAttentionResponseEquivocal = "1 mistake.";
-const String testAttentionResponseImpaired = "1 mistake.";
+const String testAttentionResponseImpaired = "> 1 mistake.";
 
 const String testExecutiveAnimalNaming = "Executive";
 const String testExecutiveAnimalNamingSubtitle = "Animal Naming Task";
-const String testExecutiveAnimalNamingDetails = "Verbal fluency.";
+const String testExecutiveAnimalNamingDetails = "The patient can name mammals, birds, reptiles or fish. Repetitions are not scored.";
 const String testExecutiveAnimalNamingToPatient = "\“I am going to give you one minute to name as many animals as possible.\”";
-const String testExecutiveAnimalNamingResponse = "The patient can name mammals, birds, reptiles or fish. Repetitions are not scored.";
+const String testExecutiveAnimalNamingResponse = "";
 const String testExecutiveAnimalNamingResponseNormal = "> 14 Names";
 const String testExecutiveAnimalNamingResponseEquivocal = "12 - 14 Names";
 const String testExecutiveAnimalNamingResponseImpaired = "< 12 Names";
