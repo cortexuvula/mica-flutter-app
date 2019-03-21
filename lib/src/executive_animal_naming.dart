@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/executive_luria.dart';
 import 'package:mica/src/home.dart';
+import 'package:async/async.dart';
+
 
 class ExecutiveAnimalNaming extends StatefulWidget {
 
@@ -38,16 +42,46 @@ class ExecutiveAnimalNaming extends StatefulWidget {
   _ExecutiveAnimalNamingState createState() => _ExecutiveAnimalNamingState();
 }
 
-class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> {
+class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> with TickerProviderStateMixin {
   double sizeBoxHeight = 10.0;
   int _radioValue = 2;
   int _counter = 0;
 
+  String buttonText = "Start";
+
+  AnimationController clockController;
+
+  bool isCountingDown = false;
+  bool counterStarted = false;
+
+  String get timerString {
+    Duration duration = clockController.duration * clockController.value;
+    return '${duration.inMinutes}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
+  }
+
+
+  @override
+  void initState() {
+    super.initState();
+    clockController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 60),
+    );
+
+//    clockController.addListener(() {
+//      if (clockController.value == 0.0) {
+//        showAlertDialog();
+//        player.play('sound.mp3');
+//      }
+//
+//    });
+  }
 
   @override
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
     var sizeBoxWidth = (_width * 0.8) / 3;
+
     return Scaffold(
       appBar: AppBar(
         title: ListTile(
@@ -175,30 +209,42 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> {
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
 
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.end,
                         children: <Widget>[
-                          Container(
-                            color: Colors.white,
-                            child: Text(
-                              "$_counter",
-                              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
-                            ),
+                          Expanded(
+                            child: AnimatedBuilder(
+                                animation: clockController,
+                                builder: (BuildContext context, Widget child) {
+                                  return new Text(
+                                    timerString,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
+                                  );
+                                }),
                           ),
                           Container(
+                            width: 150.0,
                             child: FlatButton(
                                 color: Colors.cyan.shade200,
+
                                 onPressed: () {
-                                  setState(() {
-                                    _counter += 1;
-                                    if (_counter >= 12 && _counter <= 14) {
-                                      _radioValue = 1;
-                                    }
-                                    if (_counter > 14) {
-                                      _radioValue = 0;
-                                    }
-                                  });
+                                  if (clockController.isAnimating){
+                                    clockController.stop();
+                                    setState(() {
+                                      buttonText = "Resume";
+                                    });
+                                  } else {
+                                    clockController.reverse(from: clockController.value == 0.0
+                                        ? 1.0
+                                        : clockController.value);
+                                    setState(() {
+                                      buttonText = "Pause";
+                                    });
+                                  }
+
+
                                 },
-                                child: Text("Tap to Count Words",
+                                child: Text("$buttonText",
                                   style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
                                 )
                             ),
@@ -220,27 +266,52 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> {
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: <Widget>[
-//                          Text(
-//                            appData.testResponse,
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.w500,
-//                              fontSize: 20.0,
-//                              decoration: TextDecoration.underline,
-//                            ),
-//                          ),
-//                          SizedBox(
-//                            height: 5.0,
-//                          ),
-//                          Text(
-//                            appData.testExecutiveAnimalNamingResponse,
-//                            textAlign: TextAlign.center,
-//                            style: TextStyle(
-//                                color: Colors.black,
-//                                fontWeight: FontWeight.w500,
-//                                fontSize: 15.0),
-//                          ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: <Widget>[
+                                Expanded(
+                                  child: Container(
+                                    height: 50.0,
+                                    color: Colors.white,
+                                    child: Center(
+                                      child: Text(
+                                        "$_counter",
+                                        style: TextStyle(fontSize: 20.0,
+                                            fontWeight: FontWeight.w500,
+
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  height: 50.0,
+                                  child: FlatButton(
+
+                                      color: Colors.cyan.shade200,
+                                      onPressed: () {
+                                        setState(() {
+                                          _counter += 1;
+                                          if (_counter >= 12 && _counter <= 14) {
+                                            _radioValue = 1;
+                                          }
+                                          if (_counter > 14) {
+                                            _radioValue = 0;
+                                          }
+                                        });
+                                      },
+                                      child: Text("Tap to Count Words",
+                                        style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
+                                      )
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
 
                           Table(
                             border: TableBorder.all(),
@@ -502,6 +573,10 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> {
       ),
     );
   }
+
+
+
+
 
   void _handleRadioValueChange(int value) {
     setState(() {
