@@ -205,6 +205,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> with Tick
 
                   child: Card(
                     elevation: 10.0,
+                    color: Colors.deepPurple.shade300,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(

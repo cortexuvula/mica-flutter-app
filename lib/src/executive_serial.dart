@@ -44,7 +44,22 @@ class ExecutiveSerial extends StatefulWidget {
 
 class _ExecutiveSerialState extends State<ExecutiveSerial> {
   double sizeBoxHeight = 10.0;
-  int _radioValue = 0;
+  int _radioValue = 2;
+  int score = 0;
+
+  Color decembermonthButtonColor = Colors.yellow;
+  Color novembermonthButtonColor = Colors.yellow;
+  Color octobermonthButtonColor = Colors.yellow;
+  Color septembermonthButtonColor = Colors.yellow;
+  Color augustmonthButtonColor = Colors.yellow;
+  Color julymonthButtonColor = Colors.yellow;
+
+  bool decemberTapped = false;
+  bool novemberTapped = false;
+  bool octoberTapped = false;
+  bool septemberTapped = false;
+  bool augustTapped = false;
+  bool julyTapped = false;
 
 
   @override
@@ -173,24 +188,195 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                   width: _width * 0.9,
                   child: Card(
                     elevation: 10.0,
+                    color: Colors.deepPurple.shade300,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: <Widget>[
+                          Text("Tap to score",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15.0),
+                          ),
+                          Table(
+
+                            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                            columnWidths: {
+                              0: FlexColumnWidth(0.5),
+                              1: FlexColumnWidth(0.5),
+
+                            },
+                            children: [
+                              TableRow(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: FlatButton(
+                                      child: Text("December"),
+                                      onPressed: () {
+                                        if (!decemberTapped) {
+                                          setState(() {
+                                            decembermonthButtonColor = Colors.green;
+                                            decemberTapped = true;
+                                            score += 1;
+                                          });
+                                        } else if (decemberTapped) {
+                                          setState(() {
+                                            decembermonthButtonColor = Colors.yellow;
+                                            decemberTapped = false;
+                                            score -= 1;
+                                          });
+                                        }
+                                        setRadioValue();
+                                      },
+                                      color: decembermonthButtonColor,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: FlatButton(
+                                      child: Text("November"),
+                                      onPressed: () {
+                                        if (!novemberTapped) {
+                                          setState(() {
+                                            novembermonthButtonColor = Colors.green;
+                                            novemberTapped = true;
+                                            score += 1;
+                                          });
+                                        } else if (novemberTapped) {
+                                          setState(() {
+                                            novembermonthButtonColor = Colors.yellow;
+                                            novemberTapped = false;
+                                            score -= 1;
+                                          });
+                                        }
+                                        setRadioValue();
+                                      },
+                                      color: novembermonthButtonColor,
+                                    ),
+                                  ),
+                                ]
+                              ),
+                              TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: FlatButton(
+                                        child: Text("October"),
+                                        onPressed: () {
+                                          if (!octoberTapped) {
+                                            setState(() {
+                                              octobermonthButtonColor = Colors.green;
+                                              octoberTapped = true;
+                                              score += 1;
+                                            });
+                                          } else if (octoberTapped) {
+                                            setState(() {
+                                              octobermonthButtonColor = Colors.yellow;
+                                              octoberTapped = false;
+                                              score -= 1;
+                                            });
+                                          }
+                                          setRadioValue();
+                                        },
+                                        color: octobermonthButtonColor,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: FlatButton(
+                                        child: Text("September"),
+                                        onPressed: () {
+                                          if (!septemberTapped) {
+                                            setState(() {
+                                              septembermonthButtonColor = Colors.green;
+                                              septemberTapped = true;
+                                              score += 1;
+                                            });
+                                          } else if (septemberTapped) {
+                                            setState(() {
+                                              septembermonthButtonColor = Colors.yellow;
+                                              septemberTapped = false;
+                                              score -= 1;
+                                            });
+                                          }
+                                          setRadioValue();
+                                        },
+                                        color: septembermonthButtonColor,
+                                      ),
+                                    ),
+                                  ]
+                              ),
+                              TableRow(
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: FlatButton(
+                                        child: Text("August"),
+                                        onPressed: () {
+                                          if (!augustTapped) {
+                                            setState(() {
+                                              augustmonthButtonColor = Colors.green;
+                                              augustTapped = true;
+                                              score += 1;
+                                            });
+                                          } else if (augustTapped) {
+                                            setState(() {
+                                              augustmonthButtonColor = Colors.yellow;
+                                              augustTapped = false;
+                                              score -= 1;
+                                            });
+                                          }
+                                          setRadioValue();
+                                        },
+                                        color: augustmonthButtonColor,
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: FlatButton(
+                                        child: Text("July"),
+                                        onPressed: () {
+                                          if (!julyTapped) {
+                                            setState(() {
+                                              julymonthButtonColor = Colors.green;
+                                              julyTapped = true;
+                                              score += 1;
+                                            });
+                                          } else if (julyTapped) {
+                                            setState(() {
+                                              julymonthButtonColor = Colors.yellow;
+                                              julyTapped = false;
+                                              score -= 1;
+                                            });
+                                          }
+                                          setRadioValue();
+                                        },
+                                        color: julymonthButtonColor,
+                                      ),
+                                    ),
+                                  ]
+                              )
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: sizeBoxHeight,
+                ),
+                Container(
+                  width: _width * 0.9,
+                  child: Card(
+                    elevation: 10.0,
                     color: Colors.green,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: <Widget>[
-//                          Text(
-//                            appData.testResponse,
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.w500,
-//                              fontSize: 20.0,
-//                              decoration: TextDecoration.underline,
-//                            ),
-//                          ),
-//                          SizedBox(
-//                            height: 5.0,
-//                          ),
                           Text(
                             appData.testExecutiveSerialResponse,
                             textAlign: TextAlign.center,
@@ -469,5 +655,23 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
     setState(() {
       _radioValue = value;
     });
+  }
+
+  void setRadioValue() {
+    if (score == 5) {
+      setState(() {
+        _radioValue = 1;
+      });
+    }
+    if (score == 6) {
+      setState(() {
+        _radioValue = 0;
+      });
+    }
+    if (score < 5) {
+      setState(() {
+        _radioValue = 2;
+      });
+    }
   }
 }
