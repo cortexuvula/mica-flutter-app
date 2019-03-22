@@ -240,7 +240,7 @@ class _PatientInformationState extends State<PatientInformation> {
                                       assessmentDate: selectedDate,
                                     ));
                             Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => false);
+                                router, (Route<dynamic> route) => true);
                           }
                         },
                         elevation: 10.0,
