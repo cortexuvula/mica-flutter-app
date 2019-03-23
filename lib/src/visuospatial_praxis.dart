@@ -47,7 +47,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
     var _sizeboxWidth = _width * 0.8 / 5;
-    double _fontSize = 10.0;
+    double _fontSize = 8.0;
     return Scaffold(
       appBar: AppBar(
         title: ListTile(
@@ -329,7 +329,9 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                             style: TextStyle(
                                               color: Colors.black,
                                               fontSize: _fontSize,
+
                                             ),
+
                                           ),
                                         ),
                                         Padding(

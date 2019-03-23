@@ -67,14 +67,13 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> with Tick
       vsync: this,
       duration: Duration(seconds: 60),
     );
+  }
 
-//    clockController.addListener(() {
-//      if (clockController.value == 0.0) {
-//        showAlertDialog();
-//        player.play('sound.mp3');
-//      }
-//
-//    });
+
+  @override
+  void dispose() {
+    clockController.dispose();
+    super.dispose();
   }
 
   @override

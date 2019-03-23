@@ -182,7 +182,7 @@ class _PatientInformationState extends State<PatientInformation> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-                      Text("Rememeber Assessor Name: "),
+                      Text("Remember Assessor Name: "),
                       Switch(
                           value: rememberAssessor,
                           onChanged: (bool newValue) {
