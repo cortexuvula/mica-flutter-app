@@ -67,12 +67,13 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
   int _radioValueImageTwo = 0;
   int _radioValueImageThree = 0;
 
+  double _fontSize = 8.0;
 
   @override
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
     var _sizeboxWidth = _width * 0.8 / 5;
-    double _fontSize = 10.0;
+
 
     return Scaffold(
       appBar: AppBar(

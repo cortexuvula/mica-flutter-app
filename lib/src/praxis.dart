@@ -50,7 +50,7 @@ class _PraxisState extends State<Praxis> {
   int _radioValueRight = 0;
   int _radioValueLeft = 0;
 
-
+  double _fontsize = 8.0;
 
   @override
   Widget build(BuildContext context) {
@@ -312,7 +312,9 @@ class _PraxisState extends State<Praxis> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Text("Right"),
+                                      child: Text("Right",
+                                      style: TextStyle(fontSize: _fontsize),
+                                      ),
                                     ),
                                     Row(
                                       children: <Widget>[
@@ -326,7 +328,7 @@ class _PraxisState extends State<Praxis> {
                                           "Normal",
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 10.0,
+                                            fontSize: _fontsize,
                                           ),
                                         ),
                                       ],
@@ -343,7 +345,7 @@ class _PraxisState extends State<Praxis> {
                                           "Equivocal",
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 10.0,
+                                            fontSize: _fontsize,
                                           ),
                                         ),
                                       ],
@@ -360,7 +362,7 @@ class _PraxisState extends State<Praxis> {
                                           "Impaired",
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 10.0,
+                                            fontSize: _fontsize,
                                           ),
                                         ),
                                       ],
@@ -371,7 +373,9 @@ class _PraxisState extends State<Praxis> {
                                   children: [
                                     Padding(
                                       padding: const EdgeInsets.all(8.0),
-                                      child: Text("Left"),
+                                      child: Text("Left",
+                                        style: TextStyle(fontSize: _fontsize),
+                                      ),
                                     ),
                                     Row(
                                       children: <Widget>[
@@ -385,7 +389,7 @@ class _PraxisState extends State<Praxis> {
                                           "Normal",
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 10.0,
+                                            fontSize: _fontsize,
                                           ),
                                         ),
                                       ],
@@ -402,7 +406,7 @@ class _PraxisState extends State<Praxis> {
                                           "Equivocal",
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 10.0,
+                                            fontSize: _fontsize,
                                           ),
                                         ),
                                       ],
@@ -419,7 +423,7 @@ class _PraxisState extends State<Praxis> {
                                           "Impaired",
                                           style: TextStyle(
                                             color: Colors.black,
-                                            fontSize: 10.0,
+                                            fontSize: _fontsize,
                                           ),
                                         ),
                                       ],

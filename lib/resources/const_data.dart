@@ -124,7 +124,7 @@ const List<String> tenWordMemoryList = [
 const String testTenWordRecallTrialOne = "Working Memory";
 const String testTenWordRecallTrialOneSubtitle = "Verbal Trial 1";
 const String instructionsTenWordRecallTrialOnePaient1 =
-    "\"I am going to read you a list of 10 words. Remember these words, as I will ask you what you can remember after I have finished reading the list to you. Please repeat each word after I have said it, so that I can be sure that you heard it correctly. Do you understand? Are you ready? Let's go!\"";
+    "\"I am going to read you a list of 10 words. Remember these words, as I will ask you what you can remember afterwards. Please repeat each word after I have said it, so that I can be sure that you heard it correctly. Do you understand? Are you ready? Let's go!\"";
 const String instructionsTenWordRecallTrialOneHealthworker1 =
     "If the patient does not repeat the word say: \“Please repeat the word.\” Read the words from left to right. Carry on with the rest of the list.";
 const String instructionsTenWordRecallTrialOnePatient2 =
@@ -190,7 +190,7 @@ const String testExecutiveAnimalNamingResponseImpaired = "< 12 Names";
 const String testExecutiveLuria = "Executive";
 const String testExecutiveLuriaSubtitle = "Luria Alternating Hand Movements";
 const String testExecutiveLuriaDetails = "";
-const String testExecutiveLuriaToPatient = "\"Place both hands on the table like I do. Watch me carefully because I want you to do the same as I am doing. Can you see that I am making a fist with one hand? Now I swap it around. Can you do that as fast as you can?\”";
+const String testExecutiveLuriaToPatient = "\"Place both hands on the table like I do. Watch me carefully because I want you to do the same as I am doing. Can you see that I am making a fist with one hand? Now swap the hands over. Can you do that as fast as you can?\”";
 const String testExecutiveLuriaResponse = "";
 const String testExecutiveLuriaResponseNormal = "3 cycles without any mistakes";
 const String testExecutiveLuriaResponseEquivocal = "1-2 cycles";
@@ -225,7 +225,7 @@ const String testPraxisResponseImpaired = "clear difficulty";
 
 const String testTenWordDelayedRecall = "Short-Term Memory";
 const String testTenWordDelayedRecallSubtitle = "Verbal Delayed Recall";
-const String instructionDelayedRecallPatient1 = "To Patient: \“What were the words I asked you to remember?\”";
+const String instructionDelayedRecallPatient1 = "To Patient: \“What were the words I asked you to remember earlier?\”";
 const String instructionDelayedRecallHealthworker1 ="Healthworker: Tap on each word correctly recalled:";
 
 const String testTenWordRecognition = "Short-Term Memory";

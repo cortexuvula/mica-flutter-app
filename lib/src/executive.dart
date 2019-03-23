@@ -66,7 +66,7 @@ class Executive extends StatefulWidget {
   _ExecutiveState createState() => _ExecutiveState();
 }
 
-class _ExecutiveState extends State<Executive> {
+class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
   double sizeBoxHeight = 10.0;
 
   int _radioValue = 0;
@@ -76,6 +76,30 @@ class _ExecutiveState extends State<Executive> {
 
   bool backButtonActive = false;
   bool forwardButtonActive = true;
+
+  AnimationController clockController;
+
+  String buttonText = "Start";
+
+  String get timerString {
+    Duration duration = clockController.duration * clockController.value;
+    return '${duration.inMinutes}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    clockController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 60),
+    );
+  }
+
+  @override
+  void dispose() {
+    clockController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -197,6 +221,64 @@ class _ExecutiveState extends State<Executive> {
                   ),
                 ),
 
+                SizedBox(
+                  height: sizeBoxHeight,
+                ),
+                Container(
+                  width: _width * 0.9,
+
+                  child: Card(
+                    elevation: 10.0,
+                    color: Colors.deepPurple.shade300,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: <Widget>[
+                          Expanded(
+                            child: AnimatedBuilder(
+                                animation: clockController,
+                                builder: (BuildContext context, Widget child) {
+                                  return new Text(
+                                    timerString,
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
+                                  );
+                                }),
+                          ),
+                          Container(
+                            width: 150.0,
+                            child: FlatButton(
+                                color: Colors.cyan.shade200,
+
+                                onPressed: () {
+                                  if (clockController.isAnimating){
+                                    clockController.stop();
+                                    setState(() {
+                                      buttonText = "Resume";
+                                    });
+                                  } else {
+                                    clockController.reverse(from: clockController.value == 0.0
+                                        ? 1.0
+                                        : clockController.value);
+                                    setState(() {
+                                      buttonText = "Pause";
+                                    });
+                                  }
+
+
+                                },
+                                child: Text("$buttonText",
+                                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
+                                )
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
                 SizedBox(
                   height: sizeBoxHeight,
                 ),
