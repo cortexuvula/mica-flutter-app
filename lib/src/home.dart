@@ -2,10 +2,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/resource_page.dart';
-import 'package:mica/src/resource_pdf_video_page.dart';
-import 'pdf_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:dart_ping/dart_ping.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   bool viewedDisclaimer;
@@ -17,6 +16,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+
 
 
   @override
@@ -220,5 +221,70 @@ class _HomeState extends State<Home> {
     } else {
       throw 'Could not launch $url';
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    saveInitialData();
+  }
+
+  void saveInitialData () async {
+//    String patientName;
+//    String assessorName;
+//    String handedness;
+//    DateTime assessmentDate;
+//    int languageComprehensionRadioValue;
+//    int trialOneScore;
+//    int trialTwoScore;
+//    int trialThreeScore;
+//    int visuospatialPraxisImage1;
+//    int visuospatialPraxisImage2;
+//    int visuospatialPraxisImage3;
+//    int attention;
+//    int executiveAnimalNaming;
+//    int executiveLuria;
+//    int executiveSerial;
+//    int shorttermMemoryVerbal;
+//    int praxisRight;
+//    int praxisLeft;
+//    int tenWordDelay;
+//    int scoreVerbalRecognitionMemoryTenWords;
+//    int scoreVerbalRecognitionMemoryTenWordsInList;
+//    int scoreVerbalRecognitionMemoryTenWordsNotInList;
+//    int shorttermMemoryVisualImage1;
+//    int shorttermMemoryVisualImage2;
+//    int shorttermMemoryVisualImage3;
+//    int anomiaAgnosia;
+//    int executive;
+//    int spokenLanguage;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // screen 1
+    prefs.setInt("languageComprehensionRadioValue", 0);
+
+    //screen 2
+    prefs.setInt("trialOneScore", 0);
+    List<String> word1ButtonColor = [];
+    for (var i = 0; i < 10; i++) {
+      word1ButtonColor.add("yellow");
+    }
+    prefs.setStringList("trial1wordButtonColor", word1ButtonColor);
+
+    //screen 3
+    prefs.setInt("trialTwoScore", 0);
+    List<String> word2ButtonColor = [];
+    for (var i = 0; i < 10; i++) {
+      word2ButtonColor.add("yellow");
+    }
+    prefs.setStringList("trial2wordButtonColor", word2ButtonColor);
+
+    //screen 4
+    prefs.setInt("trialThreeScore", 0);
+    List<String> word3ButtonColor = [];
+    for (var i = 0; i < 10; i++) {
+      word3ButtonColor.add("yellow");
+    }
+    prefs.setStringList("trial3wordButtonColor", word3ButtonColor);
   }
 }
