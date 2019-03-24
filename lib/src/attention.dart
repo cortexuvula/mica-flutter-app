@@ -182,56 +182,15 @@ class _AttentionState extends State<Attention> {
                             mainAxisSpacing: 5.0,
                             children: List.generate(appData.attentionList.length,
                                 (index) {
-                              tapCorrect.add(false);
-                              tapWrong.add(false);
-                              correctCheck.add(false);
-                              letterTapButtonColor.add(Colors.cyan.shade200);
+//                              tapCorrect.add(false);
+//                              tapWrong.add(false);
+//                              correctCheck.add(false);
+//                              letterTapButtonColor.add(Colors.cyan.shade200);
 
                               return Stack(
                                 children: <Widget>[
 
-//                                Container(
-//                                  color: letterTapButtonColor[index],
-//                                ),
-//                                GestureDetector(
-//                                  onTap: () {
-//                                    if (!tapWrong[index] &&
-//                                        !tapCorrect[index]) {
-//                                      if (appData.attentionList[index] == "A") {
-//                                        setState(() {
-//                                          tapCorrect[index] = true;
-//                                          correctTap += 1;
-//                                          letterTapButtonColor[index] =
-//                                              Colors.green;
-//                                        });
-//                                      }
-//                                      if (appData.attentionList[index] != "A") {
-//                                        setState(() {
-//                                          tapWrong[index] = true;
-//                                          wrongTap += 1;
-//                                          letterTapButtonColor[index] =
-//                                              Colors.red;
-//                                        });
-//                                      }
-//                                    }
-//                                  },
-////                                  onDoubleTap: () {
-////                                      setState(() {
-////                                        tapWrong[index] = true;
-////                                        wrongTap += 1;
-////                                        letterTapButtonColor[index] =
-////                                            Colors.red;
-////                                      });
-////                                  },
-//
-//                                  child:
-//                                  Center(
-//                                    child: Container(
-//                                        color: letterTapButtonColor[index],
-//                                        child: Text("${appData.attentionList[index]}")),
-//                                  ),
-//
-//                                ),
+
                                   FlatButton(
                                     onPressed: () {
                                       if (!tapWrong[index] &&
@@ -352,154 +311,7 @@ class _AttentionState extends State<Attention> {
                           ),
                         ),
                       ),
-//                      ListView.builder(
-//                        itemCount: appData.attentionList.length,
-//                        itemBuilder: (BuildContext context, int index) {
-//                          return Card(
-//                            elevation: 5.0,
-//                            color: Colors.blueGrey.shade300,
-//                            child:
-//                            ListTile(
-//                              title: Text(
-//                                appData.attentionList[index],
-//                                style: TextStyle(fontSize: 30.0),
-//                              ),
-//                              trailing: Row(
-//                                mainAxisAlignment:
-//                                    MainAxisAlignment.spaceEvenly,
-//                                children: <Widget>[
-//                                  FlatButton(
-//                                    onPressed: () {
-//                                      if (appData.attentionList[index] == "A" &&
-//                                          letterTapButtonColor[index] ==
-//                                              Colors.white) {
-//                                        if (letterNoTapButtonColor[index] ==
-//                                            Colors.red) {
-//                                          setState(() {
-//                                            wrongTap -= 1;
-//                                          });
-//                                        }
-//                                        setState(() {
-//                                          correctTap += 1;
-//                                          letterTapButtonColor[index] =
-//                                              correctSelectedColor;
-//                                          letterNoTapButtonColor[index] =
-//                                              Colors.white;
-//                                        });
-//                                        return;
-//                                      }
-//                                      if (appData.attentionList[index] != "A" &&
-//                                          letterTapButtonColor[index] ==
-//                                              Colors.white) {
-//                                        if (letterNoTapButtonColor[index] ==
-//                                            Colors.green) {
-//                                          setState(() {
-//                                            correctTap -= 1;
-//                                          });
-//                                        }
-//                                        setState(() {
-//                                          wrongTap += 1;
-//                                          letterTapButtonColor[index] =
-//                                              wrongSelectedColor;
-//                                          letterNoTapButtonColor[index] =
-//                                              Colors.white;
-//                                        });
-//                                        return;
-//                                      }
-//
-//                                      if (letterTapButtonColor[index] ==
-//                                          Colors.green) {
-//                                        setState(() {
-//                                          correctTap -= 1;
-//                                          letterTapButtonColor[index] =
-//                                              Colors.white;
-//                                          letterNoTapButtonColor[index] =
-//                                              Colors.white;
-//                                        });
-//                                      }
-//                                      if (letterTapButtonColor[index] ==
-//                                          Colors.red) {
-//                                        setState(() {
-//                                          wrongTap -= 1;
-//                                          letterTapButtonColor[index] =
-//                                              Colors.white;
-//                                          letterNoTapButtonColor[index] =
-//                                              Colors.white;
-//                                        });
-//                                      }
-//                                    },
-//                                    child: Text("Tap"),
-//                                    color: letterTapButtonColor[index],
-//                                  ),
-//                                  FlatButton(
-//                                    onPressed: () {
-//                                      if (appData.attentionList[index] == "A" &&
-//                                          letterNoTapButtonColor[index] ==
-//                                              Colors.white) {
-//                                        if (letterTapButtonColor[index] ==
-//                                            Colors.green) {
-//                                          setState(() {
-//                                            correctTap -= 1;
-//                                          });
-//                                        }
-//                                        setState(() {
-//                                          wrongTap += 1;
-//                                          letterNoTapButtonColor[index] =
-//                                              wrongSelectedColor;
-//                                          letterTapButtonColor[index] =
-//                                              Colors.white;
-//                                        });
-//                                        return;
-//                                      }
-//                                      if (appData.attentionList[index] != "A" &&
-//                                          letterNoTapButtonColor[index] ==
-//                                              Colors.white) {
-//                                        if (letterTapButtonColor[index] ==
-//                                            Colors.red) {
-//                                          setState(() {
-//                                            wrongTap -= 1;
-//                                          });
-//                                        }
-//                                        setState(() {
-//                                          correctTap += 1;
-//                                          letterNoTapButtonColor[index] =
-//                                              correctSelectedColor;
-//                                          letterTapButtonColor[index] =
-//                                              Colors.white;
-//                                        });
-//                                        return;
-//                                      }
-//
-//                                      if (letterNoTapButtonColor[index] ==
-//                                          Colors.green) {
-//                                        setState(() {
-//                                          correctTap -= 1;
-//                                          letterNoTapButtonColor[index] =
-//                                              Colors.white;
-//                                          letterTapButtonColor[index] =
-//                                              Colors.white;
-//                                        });
-//                                      }
-//                                      if (letterNoTapButtonColor[index] ==
-//                                          Colors.red) {
-//                                        setState(() {
-//                                          wrongTap -= 1;
-//                                          letterNoTapButtonColor[index] =
-//                                              Colors.white;
-//                                          letterTapButtonColor[index] =
-//                                              Colors.white;
-//                                        });
-//                                      }
-//                                    },
-//                                    child: Text("No Tap"),
-//                                    color: letterNoTapButtonColor[index],
-//                                  ),
-//                                ],
-//                              ),
-//                            ),
-//                          );
-//                        },
-//                      )
+
                     ),
                   ),
                   SizedBox(
@@ -684,72 +496,6 @@ class _AttentionState extends State<Attention> {
                               ],
                             ),
 
-//                          Row(
-//                            mainAxisAlignment: MainAxisAlignment.center,
-//                            children: <Widget>[
-//                              Radio(
-//                                value: 0,
-//                                groupValue: _radioValue,
-//                                onChanged: _handleRadioValueChange,
-//                                activeColor: Colors.white,
-//                              ),
-//                              Text(
-//                                "Normal",
-//                                style: TextStyle(
-//                                  color: Colors.black,
-//                                  fontSize: 10.0,
-//                                ),
-//                              ),
-//                              Radio(
-//                                value: 1,
-//                                groupValue: _radioValue,
-//                                onChanged: _handleRadioValueChange,
-//                                activeColor: Colors.white,
-//                              ),
-//                              Text(
-//                                "Equivocal",
-//
-//                                style: TextStyle(
-//                                  color: Colors.black,
-//                                  fontSize: 10.0,
-//                                ),
-//                              ),
-//                              Radio(
-//                                value: 2,
-//                                groupValue: _radioValue,
-//                                onChanged: _handleRadioValueChange,
-//                                activeColor: Colors.white,
-//                              ),
-//                              Text(
-//                                "Impaired",
-//                                style: TextStyle(
-//                                  color: Colors.black,
-//                                  fontSize: 10.0,
-//                                ),
-//                              ),
-//                            ],
-//                          ),
-//                          Text(
-//                            appData.testAttentionResponseNormal,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontSize: 10.0,
-//                            ),
-//                          ),
-//                          Text(
-//                            appData.testAttentionResponseEquivocal,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontSize: 10.0,
-//                            ),
-//                          ),
-//                          Text(
-//                            appData.testAttentionResponseImpaired,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontSize: 10.0,
-//                            ),
-//                          ),
                           ],
                         ),
                       ),
@@ -811,10 +557,50 @@ class _AttentionState extends State<Attention> {
   void getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int _score1 = prefs.getInt("attention");
+    int _score2 = prefs.getInt("correctTap");
+    int _score3 = prefs.getInt("wrongTap");
 
+    List<String> tapCorrectList = [];
+    List<String> letterTapButtonColorList = [];
+    List<String> tapWrongList = [];
+    List<String> correctCheckList = [];
+
+    letterTapButtonColorList = prefs.getStringList("letterTapButtonColor");
+    tapCorrectList = prefs.getStringList("tapCorrect");
+    tapWrongList = prefs.getStringList("tapWrong");
+    correctCheckList = prefs.getStringList("correctCheck");
+
+
+    for (var i = 0; i < 26; i++) {
+      if (letterTapButtonColorList[i] == "cyan") {
+        letterTapButtonColor.add(Colors.cyan.shade200);
+      } else if (letterTapButtonColorList[i] == "green") {
+        letterTapButtonColor.add(Colors.green);
+      } else {
+        letterTapButtonColor.add(Colors.red);
+      }
+      if (tapCorrectList[i] == "false") {
+        tapCorrect.add(false);
+      } else {
+        tapCorrect.add(true);
+      }
+      if (tapWrongList[i] == "false") {
+        tapWrong.add(false);
+      } else {
+        tapWrong.add(true);
+      }
+      if (correctCheckList[i] == "false") {
+        correctCheck.add(false);
+      } else {
+        correctCheck.add(true);
+      }
+    }
 
     setState(() {
       _radioValue = _score1;
+      correctTap = _score2;
+      wrongTap = _score3;
+
 
     });
   }
@@ -823,7 +609,46 @@ class _AttentionState extends State<Attention> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     prefs.setInt("attention", _radioValue);
+    prefs.setInt("correctTap", correctTap);
+    prefs.setInt("wrongTap", wrongTap);
 
+    List<String> tapCorrectList = [];
+    List<String> letterTapButtonColorList = [];
+    List<String> tapWrongList = [];
+    List<String> correctCheckList = [];
+
+    for (var i = 0; i < 26; i++) {
+      if (letterTapButtonColor[i] == Colors.cyan.shade200) {
+        letterTapButtonColorList.add("cyan");
+      } else if (letterTapButtonColor[i] == Colors.red) {
+        letterTapButtonColorList.add("red");
+      } else {
+        letterTapButtonColorList.add("green");
+      }
+
+      if (tapCorrect[i] == false) {
+        tapCorrectList.add("false");
+      } else {
+        tapCorrectList.add("true");
+      }
+
+      if (tapWrong[i] == false) {
+        tapWrongList.add("false");
+      } else {
+        tapWrongList.add("true");
+      }
+
+      if (correctCheck[i] == false) {
+        correctCheckList.add("false");
+      } else {
+        correctCheckList.add("true");
+      }
+    }
+
+    prefs.setStringList("letterTapButtonColor", letterTapButtonColorList);
+    prefs.setStringList("tapCorrect", tapCorrectList);
+    prefs.setStringList("tapWrong", tapWrongList);
+    prefs.setStringList("correctCheck", correctCheckList);
 
     return true;
   }
