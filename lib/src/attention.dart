@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/executive_animal_naming.dart';
 import 'package:mica/src/home.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Attention extends StatefulWidget {
   String patientName;
@@ -41,7 +42,7 @@ class Attention extends StatefulWidget {
 class _AttentionState extends State<Attention> {
   Timer timer;
 
-  int _radioValue = 0;
+  int _radioValue;
   double sizeBoxHeight = 10.0;
   int sequenceIndex = 0;
   bool sequenceInMotion = false;
@@ -60,125 +61,134 @@ class _AttentionState extends State<Attention> {
   var correctSelectedColor = Colors.green;
   var wrongSelectedColor = Colors.red;
 
+
+  @override
+  void initState() {
+    super.initState();
+    getPrefsData();
+  }
+
   @override
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
-    return Scaffold(
-      appBar: AppBar(
-        title: ListTile(
-          title: Text(
-            appData.testAttention,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
+    return WillPopScope(
+      onWillPop: savePrefData,
+      child: Scaffold(
+        appBar: AppBar(
+          title: ListTile(
+            title: Text(
+              appData.testAttention,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.start,
             ),
-            textAlign: TextAlign.start,
-          ),
-          subtitle: Text(
-            appData.testAttentionSubtitle,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w300,
+            subtitle: Text(
+              appData.testAttentionSubtitle,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w300,
+              ),
+              textAlign: TextAlign.start,
             ),
-            textAlign: TextAlign.start,
           ),
+          actions: <Widget>[
+            IconButton(
+                icon: Icon(Icons.clear),
+                onPressed: () {
+                  var router = new MaterialPageRoute(
+                      builder: (BuildContext context) => new Home(
+                            viewedDisclaimer: true,
+                          ));
+                  Navigator.of(context).pushAndRemoveUntil(
+                      router, (Route<dynamic> route) => false);
+                })
+          ],
         ),
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.clear),
-              onPressed: () {
-                var router = new MaterialPageRoute(
-                    builder: (BuildContext context) => new Home(
-                          viewedDisclaimer: true,
-                        ));
-                Navigator.of(context).pushAndRemoveUntil(
-                    router, (Route<dynamic> route) => false);
-              })
-        ],
-      ),
-      body: ListView(
-        children: <Widget>[
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
-                  height: sizeBoxHeight,
-                ),
-                Container(
-                  width: _width * 0.9,
-                  child: Card(
-                    elevation: 10.0,
-                    color: Colors.yellowAccent.shade400,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: <Widget>[
-                          Text(
-                            appData.testAttentionToPatient,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15.0),
-                          ),
-                        ],
+        body: ListView(
+          children: <Widget>[
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                    height: sizeBoxHeight,
+                  ),
+                  Container(
+                    width: _width * 0.9,
+                    child: Card(
+                      elevation: 10.0,
+                      color: Colors.yellowAccent.shade400,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                              appData.testAttentionToPatient,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15.0),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
 
-                SizedBox(
-                  height: sizeBoxHeight,
-                ),
-                Container(
-                  width: _width * 0.9,
-                  child: Card(
-                    elevation: 10.0,
-                    color: Colors.deepPurple.shade300,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: <Widget>[
-                          Text(
-                            appData.testAttentionDetails,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15.0),
-                          ),
-                        ],
+                  SizedBox(
+                    height: sizeBoxHeight,
+                  ),
+                  Container(
+                    width: _width * 0.9,
+                    child: Card(
+                      elevation: 10.0,
+                      color: Colors.deepPurple.shade300,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                              appData.testAttentionDetails,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15.0),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: sizeBoxHeight,
-                ),
-                Container(
-                  width: _width * 0.9,
-                  height: 200.0,
-                  child: Card(
-                    elevation: 10.0,
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Container(
-                        child: GridView.count(
-                          crossAxisCount: 7,
-                          childAspectRatio: 1.2,
-                          crossAxisSpacing: 5.0,
-                          mainAxisSpacing: 5.0,
-                          children: List.generate(appData.attentionList.length,
-                              (index) {
-                            tapCorrect.add(false);
-                            tapWrong.add(false);
-                            correctCheck.add(false);
-                            letterTapButtonColor.add(Colors.cyan.shade200);
+                  SizedBox(
+                    height: sizeBoxHeight,
+                  ),
+                  Container(
+                    width: _width * 0.9,
+                    height: 200.0,
+                    child: Card(
+                      elevation: 10.0,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Container(
+                          child: GridView.count(
+                            crossAxisCount: 7,
+                            childAspectRatio: 1.2,
+                            crossAxisSpacing: 5.0,
+                            mainAxisSpacing: 5.0,
+                            children: List.generate(appData.attentionList.length,
+                                (index) {
+                              tapCorrect.add(false);
+                              tapWrong.add(false);
+                              correctCheck.add(false);
+                              letterTapButtonColor.add(Colors.cyan.shade200);
 
-                            return Stack(
-                              children: <Widget>[
+                              return Stack(
+                                children: <Widget>[
 
 //                                Container(
 //                                  color: letterTapButtonColor[index],
@@ -222,37 +232,37 @@ class _AttentionState extends State<Attention> {
 //                                  ),
 //
 //                                ),
-                                FlatButton(
-                                  onPressed: () {
-                                    if (!tapWrong[index] &&
-                                        !tapCorrect[index]) {
-                                      if (appData.attentionList[index] == "A") {
-                                        setState(() {
-                                          tapCorrect[index] = true;
-                                          correctTap += 1;
-                                          letterTapButtonColor[index] =
-                                              Colors.green;
-                                          correctCheck[index] = true;
-                                        });
+                                  FlatButton(
+                                    onPressed: () {
+                                      if (!tapWrong[index] &&
+                                          !tapCorrect[index]) {
+                                        if (appData.attentionList[index] == "A") {
+                                          setState(() {
+                                            tapCorrect[index] = true;
+                                            correctTap += 1;
+                                            letterTapButtonColor[index] =
+                                                Colors.green;
+                                            correctCheck[index] = true;
+                                          });
+                                        }
+                                        if (appData.attentionList[index] != "A") {
+                                          setState(() {
+                                            tapWrong[index] = true;
+                                            wrongTap += 1;
+                                            letterTapButtonColor[index] =
+                                                Colors.red;
+                                            if (wrongTap == 1) {
+                                              _radioValue = 1;
+                                            } else if (wrongTap > 1) {
+                                              _radioValue = 2;
+                                            } else if (wrongTap < 1) {
+                                              _radioValue = 0;
+                                            }
+                                          });
+                                        }
                                       }
-                                      if (appData.attentionList[index] != "A") {
-                                        setState(() {
-                                          tapWrong[index] = true;
-                                          wrongTap += 1;
-                                          letterTapButtonColor[index] =
-                                              Colors.red;
-                                          if (wrongTap == 1) {
-                                            _radioValue = 1;
-                                          } else if (wrongTap > 1) {
-                                            _radioValue = 2;
-                                          } else if (wrongTap < 1) {
-                                            _radioValue = 0;
-                                          }
-                                        });
-                                      }
-                                    }
 
-                                  },
+                                    },
 //                                  onDoubleTap: () {
 //                                    setState(() {
 //                                      tapWrong[index] = false;
@@ -261,87 +271,87 @@ class _AttentionState extends State<Attention> {
 //                                          Colors.red;
 //                                    });
 //                                  },
-                                  color: letterTapButtonColor[index],
-                                  child:
-                                      Text("${appData.attentionList[index]}"),
-                                ),
-                                Center(
-                                  child: Container(
-                                    child: GestureDetector(
-                                      child: tapCorrect[index]
-                                          ? Container(
-                                              child: Icon(
-                                                Icons.check,
-                                                color: Colors.white,
-                                              ),
-                                            )
-                                          : Container(),
-                                      onTap: () {
-                                        print("hello tap");
-                                        if (correctCheck[index]) {
-                                            setState(() {
-                                              correctCheck[index] = true;
-                                              tapCorrect[index] = false;
-                                              tapWrong[index] = true;
-                                              correctTap -= 1;
-                                              wrongTap += 1;
-                                              letterTapButtonColor[index] =
-                                                  Colors.red;
-                                              if (wrongTap == 1) {
-                                                _radioValue = 1;
-                                              } else if (wrongTap > 1) {
-                                                _radioValue = 2;
-                                              } else if (wrongTap < 1) {
-                                                _radioValue = 0;
-                                              }
-                                            });
-                                        }
+                                    color: letterTapButtonColor[index],
+                                    child:
+                                        Text("${appData.attentionList[index]}"),
+                                  ),
+                                  Center(
+                                    child: Container(
+                                      child: GestureDetector(
+                                        child: tapCorrect[index]
+                                            ? Container(
+                                                child: Icon(
+                                                  Icons.check,
+                                                  color: Colors.white,
+                                                ),
+                                              )
+                                            : Container(),
+                                        onTap: () {
+                                          print("hello tap");
+                                          if (correctCheck[index]) {
+                                              setState(() {
+                                                correctCheck[index] = true;
+                                                tapCorrect[index] = false;
+                                                tapWrong[index] = true;
+                                                correctTap -= 1;
+                                                wrongTap += 1;
+                                                letterTapButtonColor[index] =
+                                                    Colors.red;
+                                                if (wrongTap == 1) {
+                                                  _radioValue = 1;
+                                                } else if (wrongTap > 1) {
+                                                  _radioValue = 2;
+                                                } else if (wrongTap < 1) {
+                                                  _radioValue = 0;
+                                                }
+                                              });
+                                          }
 //                                        setState(() {
 //                                          tapCorrect[index] = false;
 //                                          correctTap -= 1;
 //                                          letterTapButtonColor[index] =
 //                                              Colors.cyan.shade200;
 //                                        });
-                                      },
+                                        },
 
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Center(
-                                  child: Container(
-                                    child: GestureDetector(
-                                      child: tapWrong[index]
-                                          ? Container(
-                                              child: Icon(
-                                                Icons.clear,
-                                                color: Colors.white,
-                                              ),
-                                            )
-                                          : Container(),
-                                      onTap: () {
-                                        setState(() {
-                                          tapWrong[index] = false;
-                                          wrongTap -= 1;
-                                          letterTapButtonColor[index] =
-                                              Colors.cyan.shade200;
-                                          if (wrongTap == 1) {
-                                            _radioValue = 1;
-                                          } else if (wrongTap > 1) {
-                                            _radioValue = 2;
-                                          } else if (wrongTap < 1) {
-                                            _radioValue = 0;
-                                          }
-                                        });
-                                      },
+                                  Center(
+                                    child: Container(
+                                      child: GestureDetector(
+                                        child: tapWrong[index]
+                                            ? Container(
+                                                child: Icon(
+                                                  Icons.clear,
+                                                  color: Colors.white,
+                                                ),
+                                              )
+                                            : Container(),
+                                        onTap: () {
+                                          setState(() {
+                                            tapWrong[index] = false;
+                                            wrongTap -= 1;
+                                            letterTapButtonColor[index] =
+                                                Colors.cyan.shade200;
+                                            if (wrongTap == 1) {
+                                              _radioValue = 1;
+                                            } else if (wrongTap > 1) {
+                                              _radioValue = 2;
+                                            } else if (wrongTap < 1) {
+                                              _radioValue = 0;
+                                            }
+                                          });
+                                        },
+                                      ),
                                     ),
-                                  ),
-                                )
-                              ],
-                            );
-                          }),
+                                  )
+                                ],
+                              );
+                            }),
+                          ),
                         ),
                       ),
-                    ),
 //                      ListView.builder(
 //                        itemCount: appData.attentionList.length,
 //                        itemBuilder: (BuildContext context, int index) {
@@ -490,66 +500,66 @@ class _AttentionState extends State<Attention> {
 //                          );
 //                        },
 //                      )
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: sizeBoxHeight,
-                ),
-                Container(
-                  width: _width * 0.9,
-                  child: Card(
-                    elevation: 10.0,
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            "Correct: ",
-                            style: TextStyle(
-                                color: Colors.green,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 25.0),
-                          ),
-                          Text(
-                            "$correctTap",
-                            style: TextStyle(
-                                color: Colors.green,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 25.0),
-                          ),
-                          Text(
-                            "Mistakes: ",
-                            style: TextStyle(
-                                color: Colors.red,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 25.0),
-                          ),
-                          Text(
-                            "$wrongTap",
-                            style: TextStyle(
-                                color: Colors.red,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 25.0),
-                          ),
-                        ],
+                  SizedBox(
+                    height: sizeBoxHeight,
+                  ),
+                  Container(
+                    width: _width * 0.9,
+                    child: Card(
+                      elevation: 10.0,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              "Correct: ",
+                              style: TextStyle(
+                                  color: Colors.green,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 25.0),
+                            ),
+                            Text(
+                              "$correctTap",
+                              style: TextStyle(
+                                  color: Colors.green,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 25.0),
+                            ),
+                            Text(
+                              "Mistakes: ",
+                              style: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 25.0),
+                            ),
+                            Text(
+                              "$wrongTap",
+                              style: TextStyle(
+                                  color: Colors.red,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 25.0),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: sizeBoxHeight,
-                ),
-                Container(
-                  width: _width * 0.9,
-                  child: Card(
-                    elevation: 10.0,
-                    color: Colors.green,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: <Widget>[
+                  SizedBox(
+                    height: sizeBoxHeight,
+                  ),
+                  Container(
+                    width: _width * 0.9,
+                    child: Card(
+                      elevation: 10.0,
+                      color: Colors.green,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: <Widget>[
 //                          Text(
 //                            appData.testResponse,
 //                            textAlign: TextAlign.left,
@@ -563,116 +573,116 @@ class _AttentionState extends State<Attention> {
 //                          SizedBox(
 //                            height: 5.0,
 //                          ),
-                          Text(
-                            appData.testAttentionResponse,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15.0),
-                          ),
-                          Table(
-                            defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                            border: TableBorder.all(),
-                            columnWidths: {
-                              0: FlexColumnWidth(0.3),
-                              1: FlexColumnWidth(0.3),
-                              2: FlexColumnWidth(0.34)
-                            },
-                            children: [
-                              TableRow(
-                                children: [
-                                  Row(
-                                    children: <Widget>[
-                                      Radio(
-                                        value: 0,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
-                                        activeColor: Colors.white,
-                                      ),
-                                      Text(
-                                        "Normal",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 10.0,
+                            Text(
+                              appData.testAttentionResponse,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15.0),
+                            ),
+                            Table(
+                              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                              border: TableBorder.all(),
+                              columnWidths: {
+                                0: FlexColumnWidth(0.3),
+                                1: FlexColumnWidth(0.3),
+                                2: FlexColumnWidth(0.34)
+                              },
+                              children: [
+                                TableRow(
+                                  children: [
+                                    Row(
+                                      children: <Widget>[
+                                        Radio(
+                                          value: 0,
+                                          groupValue: _radioValue,
+                                          onChanged: _handleRadioValueChange,
+                                          activeColor: Colors.white,
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: <Widget>[
-                                      Radio(
-                                        value: 1,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
-                                        activeColor: Colors.white,
-                                      ),
-                                      Text(
-                                        "Equivocal",
+                                        Text(
+                                          "Normal",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 10.0,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      children: <Widget>[
+                                        Radio(
+                                          value: 1,
+                                          groupValue: _radioValue,
+                                          onChanged: _handleRadioValueChange,
+                                          activeColor: Colors.white,
+                                        ),
+                                        Text(
+                                          "Equivocal",
 
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 10.0,
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 10.0,
+                                          ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: <Widget>[
-                                      Radio(
-                                        value: 2,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
-                                        activeColor: Colors.white,
-                                      ),
-                                      Text(
-                                        "Impaired",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 10.0,
+                                      ],
+                                    ),
+                                    Row(
+                                      children: <Widget>[
+                                        Radio(
+                                          value: 2,
+                                          groupValue: _radioValue,
+                                          onChanged: _handleRadioValueChange,
+                                          activeColor: Colors.white,
                                         ),
-                                      ),
-                                    ],
-                                  )
-                                ]
-                              ),
-                              TableRow(
+                                        Text(
+                                          "Impaired",
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 10.0,
+                                          ),
+                                        ),
+                                      ],
+                                    )
+                                  ]
+                                ),
+                                TableRow(
 
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      appData.testAttentionResponseNormal,
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 10.0,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        appData.testAttentionResponseNormal,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 10.0,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      appData.testAttentionResponseEquivocal,
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 10.0,
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        appData.testAttentionResponseEquivocal,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 10.0,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      appData.testAttentionResponseImpaired,
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 10.0,
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        appData.testAttentionResponseImpaired,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 10.0,
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ]
-                              )
-                            ],
-                          ),
+                                  ]
+                                )
+                              ],
+                            ),
 
 //                          Row(
 //                            mainAxisAlignment: MainAxisAlignment.center,
@@ -740,53 +750,54 @@ class _AttentionState extends State<Attention> {
 //                              fontSize: 10.0,
 //                            ),
 //                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: sizeBoxHeight,
-                ),
-                Container(
-                  width: _width * 0.9,
-                  child: Card(
-                    elevation: 10.0,
-                    color: Colors.white,
-                    child: Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: RaisedButton(
-                        elevation: 10.0,
-                        onPressed: () {
-                          var router = new MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  new ExecutiveAnimalNaming(
-                                    patientName: widget.patientName,
-                                    assessorName: widget.assessorName,
-                                    handedness: widget.handedness,
-                                    assessmentDate: widget.assessmentDate,
-                                    languageComprehensionRadioValue: widget
-                                        .languageComprehensionRadioValue,
-                                    trialOneScore: widget.trialOneScore,
-                                    trialTwoScore: widget.trialTwoScore,
-                                    trialThreeScore: widget.trialThreeScore,
-                                    visuospatialPraxisImage1: widget.visuospatialPraxisImage1,
-                                    visuospatialPraxisImage2: widget.visuospatialPraxisImage2,
-                                    visuospatialPraxisImage3: widget.visuospatialPraxisImage3,
-                                    attention: _radioValue,
-                                  ));
-                          Navigator.of(context).pushAndRemoveUntil(
-                              router, (Route<dynamic> route) => false);
-                        },
-                        child: Text("Continue with Testing"),
+                  SizedBox(
+                    height: sizeBoxHeight,
+                  ),
+                  Container(
+                    width: _width * 0.9,
+                    child: Card(
+                      elevation: 10.0,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: RaisedButton(
+                          elevation: 10.0,
+                          onPressed: () {
+                            var router = new MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    new ExecutiveAnimalNaming(
+                                      patientName: widget.patientName,
+                                      assessorName: widget.assessorName,
+                                      handedness: widget.handedness,
+                                      assessmentDate: widget.assessmentDate,
+                                      languageComprehensionRadioValue: widget
+                                          .languageComprehensionRadioValue,
+                                      trialOneScore: widget.trialOneScore,
+                                      trialTwoScore: widget.trialTwoScore,
+                                      trialThreeScore: widget.trialThreeScore,
+                                      visuospatialPraxisImage1: widget.visuospatialPraxisImage1,
+                                      visuospatialPraxisImage2: widget.visuospatialPraxisImage2,
+                                      visuospatialPraxisImage3: widget.visuospatialPraxisImage3,
+                                      attention: _radioValue,
+                                    ));
+                            Navigator.of(context).pushAndRemoveUntil(
+                                router, (Route<dynamic> route) => true);
+                          },
+                          child: Text("Continue with Testing"),
+                        ),
                       ),
                     ),
-                  ),
-                )
-              ],
+                  )
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -795,5 +806,25 @@ class _AttentionState extends State<Attention> {
     setState(() {
       _radioValue = value;
     });
+  }
+
+  void getPrefsData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int _score1 = prefs.getInt("attention");
+
+
+    setState(() {
+      _radioValue = _score1;
+
+    });
+  }
+
+  Future<bool> savePrefData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.setInt("attention", _radioValue);
+
+
+    return true;
   }
 }

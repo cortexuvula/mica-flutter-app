@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/src/patient_information.dart';
 import 'package:mica/src/resource_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:dart_ping/dart_ping.dart';
@@ -150,8 +151,12 @@ class _HomeState extends State<Home> {
                           RaisedButton(
                             elevation: 10.0,
                             onPressed: () {
-                              Navigator.pushNamed(
-                                  context, "/patient_information");
+//                              Navigator.pushNamed(
+//                                  context, "/patient_information");
+                              var router = new MaterialPageRoute(
+                                  builder: (BuildContext context) => new PatientInformation());
+                              Navigator.of(context).pushAndRemoveUntil(
+                                  router, (Route<dynamic> route) => false);
                             },
                             child: Text(appData.fullTestButton),
                           ),
@@ -286,5 +291,30 @@ class _HomeState extends State<Home> {
       word3ButtonColor.add("yellow");
     }
     prefs.setStringList("trial3wordButtonColor", word3ButtonColor);
+    
+    //screen 5
+    prefs.setInt("visuospatialPraxisImage1", 0);
+    prefs.setInt("visuospatialPraxisImage2", 0);
+    prefs.setInt("visuospatialPraxisImage3", 0);
+
+    //screen 6
+    prefs.setInt("attention", 0);
+
+    //screen 7
+    prefs.setInt("executiveAnimalNaming", 2);
+
+    //screen 8
+    prefs.setInt("executiveLuria", 0);
+    
+    //screen 9
+    List<String> executiveSerialButtonColor = [];
+    for (var i = 0; i < 6; i++) {
+      executiveSerialButtonColor.add("yellow");
+    }
+    prefs.setInt("executiveSerial", 2);
+    prefs.setInt("score", 0);
+    prefs.setStringList("executiveSerialButtonColor", executiveSerialButtonColor);
   }
+  
+ 
 }

@@ -265,7 +265,7 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
                                 trialThreeScore: scoreTenWordRecallTrialThree,
                               ));
                           Navigator.of(context).pushAndRemoveUntil(
-                              router, (Route<dynamic> route) => false);
+                              router, (Route<dynamic> route) => true);
                         }),
                   ),
                 )),

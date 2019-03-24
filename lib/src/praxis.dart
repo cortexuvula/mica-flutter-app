@@ -174,6 +174,23 @@ class _PraxisState extends State<Praxis> {
                 SizedBox(
                   height: sizeBoxHeight,
                 ),
+                Container(
+                  width: _width * 0.9,
+                  child: Card(
+                    elevation: 10.0,
+                    color: Colors.deepPurple.shade300,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                          width: _width * 0.8,
+
+                          child: Image.asset("./images/pen.png", fit: BoxFit.contain,)),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: sizeBoxHeight,
+                ),
 //                Container(
 //                  width: _width * 0.9,
 //                  child: Card(
