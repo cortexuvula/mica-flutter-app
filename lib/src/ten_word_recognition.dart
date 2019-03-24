@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/home.dart';
 import 'package:mica/src/shortterm_memory_visual.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class TenWordRecognition extends StatefulWidget {
   String patientName;
@@ -65,12 +66,16 @@ class _TenWordRecognitionState
 
   bool yesNoSelected = false;
 
+  List<String> noColors;
+  List<String> yesColors;
+
   @override
   void initState() {
     super.initState();
     for (var i = 0; i < appData.tenWordMemoryList.length; i++) {
       wordButtonColor.add({"yes": Colors.white70, "no": Colors.white70});
     }
+    getPrefsData();
   }
 
   @override
@@ -80,166 +85,168 @@ class _TenWordRecognitionState
     (MediaQuery.of(context).size.height * 0.3).floorToDouble();
     var screenHeightWords =
     (MediaQuery.of(context).size.height * 0.4).floorToDouble();
-    return Scaffold(
-      appBar: AppBar(
-        title: ListTile(
-          title: Text(
-            appData.testTenWordRecognition,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w500,
+    return WillPopScope(
+      onWillPop: savePrefData,
+      child: Scaffold(
+        appBar: AppBar(
+          title: ListTile(
+            title: Text(
+              appData.testTenWordRecognition,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              ),
+              textAlign: TextAlign.start,
             ),
-            textAlign: TextAlign.start,
-          ),
-          subtitle: Text(
-            appData.testTenWordRecognitionSubtitle,
-            style: TextStyle(
-              color: Colors.white,
-              fontWeight: FontWeight.w300,
+            subtitle: Text(
+              appData.testTenWordRecognitionSubtitle,
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w300,
+              ),
+              textAlign: TextAlign.start,
             ),
-            textAlign: TextAlign.start,
           ),
+          actions: <Widget>[
+            IconButton(
+                icon: Icon(Icons.clear),
+                onPressed: () {
+                  var router = new MaterialPageRoute(
+                      builder: (BuildContext context) => new Home(
+                        viewedDisclaimer: true,
+                      ));
+                  Navigator.of(context).pushAndRemoveUntil(
+                      router, (Route<dynamic> route) => false);
+                })
+          ],
         ),
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.clear),
-              onPressed: () {
-                var router = new MaterialPageRoute(
-                    builder: (BuildContext context) => new Home(
-                      viewedDisclaimer: true,
-                    ));
-                Navigator.of(context).pushAndRemoveUntil(
-                    router, (Route<dynamic> route) => false);
-              })
-        ],
-      ),
-      body: Column(
-        children: <Widget>[
-          SizedBox(
-            height: screenHeightInfo,
-            child: ListView(
-              padding: EdgeInsets.fromLTRB(32.0, 8.0, 32.0, 8.0),
-              children: <Widget>[
-                Card(
-                  elevation: 10.0,
-                  color: Colors.white,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
+        body: Column(
+          children: <Widget>[
+            SizedBox(
+              height: screenHeightInfo,
+              child: ListView(
+                padding: EdgeInsets.fromLTRB(32.0, 8.0, 32.0, 8.0),
+                children: <Widget>[
+                  Card(
+                    elevation: 10.0,
+                    color: Colors.white,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
 
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            "Scroll down to reveal more instructions",
-                            style:
-                            TextStyle(fontSize: 10.0, color: Colors.black38),
-                          ),
-                        ],
-                      ),
-                      Card(
-                        elevation: 10.0,
-                        color: Colors.yellowAccent.shade400,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            appData.instructionsWordRecognitionPatient1,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15.0),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              "Scroll down to reveal more instructions",
+                              style:
+                              TextStyle(fontSize: 10.0, color: Colors.black38),
+                            ),
+                          ],
+                        ),
+                        Card(
+                          elevation: 10.0,
+                          color: Colors.yellowAccent.shade400,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text(
+                              appData.instructionsWordRecognitionPatient1,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15.0),
+                            ),
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 5.0,
-                      ),
-                      Card(
-                        elevation: 10.0,
-                        color: Colors.deepPurple.shade300,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: RichText(
-                              text: TextSpan(
-                                  style: TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 15.0),
-                                  children: <TextSpan>[
-                                    TextSpan(
-                                        text: appData
-                                            .instructionsWordRecognitionHealthworker2),
-                                    TextSpan(
-                                        text: appData
-                                            .instructionsWordRecognitionHealthworker3,
-                                        style: TextStyle(
-                                            color: Colors.black,
-                                            fontWeight: FontWeight.bold)),
-                                    TextSpan(
-                                        text: appData
-                                            .instructionsWordRecognitionHealthworker4)
-                                  ])),
+                        SizedBox(
+                          height: 5.0,
                         ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                        Card(
+                          elevation: 10.0,
+                          color: Colors.deepPurple.shade300,
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: RichText(
+                                text: TextSpan(
+                                    style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 15.0),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                          text: appData
+                                              .instructionsWordRecognitionHealthworker2),
+                                      TextSpan(
+                                          text: appData
+                                              .instructionsWordRecognitionHealthworker3,
+                                          style: TextStyle(
+                                              color: Colors.black,
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(
+                                          text: appData
+                                              .instructionsWordRecognitionHealthworker4)
+                                    ])),
+                          ),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
-          SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: screenHeightWords,
-              child: ListView.builder(
-                  itemCount: appData.tenWordMemoryList.length,
-                  padding: EdgeInsets.all(16.0),
-                  itemBuilder: (BuildContext context, int index) {
-                    return Card(
-                      elevation: 10.0,
-                      color: Theme.of(context).cardColor,
-                      child: ListTile(
-                        title: Text(
-                          appData.tenWordMemoryList[index],
-                          style: TextStyle(
-                              fontWeight: appData.tenWordRecallList.contains(
-                                  appData.tenWordMemoryList[index])
-                                  ? FontWeight.bold
-                                  : FontWeight.normal,
-                              color: appData.tenWordRecallList.contains(
-                                  appData.tenWordMemoryList[index])
-                                  ? Colors.black
-                                  : Colors.black38),
-                        ),
-                        trailing: Container(
-                          width: 200.0,
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              // yes button setup
-                              FlatButton(
-                                onPressed: () {
-                                  setState(() {
-                                    if (wordButtonColor[index]["no"] ==
-                                        Colors.white70) {
-                                      if (wordButtonColor[index]["yes"] ==
+            SizedBox(
+              height: 10.0,
+            ),
+            SizedBox(
+                width: MediaQuery.of(context).size.width,
+                height: screenHeightWords,
+                child: ListView.builder(
+                    itemCount: appData.tenWordMemoryList.length,
+                    padding: EdgeInsets.all(16.0),
+                    itemBuilder: (BuildContext context, int index) {
+                      return Card(
+                        elevation: 10.0,
+                        color: Theme.of(context).cardColor,
+                        child: ListTile(
+                          title: Text(
+                            appData.tenWordMemoryList[index],
+                            style: TextStyle(
+                                fontWeight: appData.tenWordRecallList.contains(
+                                    appData.tenWordMemoryList[index])
+                                    ? FontWeight.bold
+                                    : FontWeight.normal,
+                                color: appData.tenWordRecallList.contains(
+                                    appData.tenWordMemoryList[index])
+                                    ? Colors.black
+                                    : Colors.black38),
+                          ),
+                          trailing: Container(
+                            width: 200.0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                // yes button setup
+                                FlatButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      if (wordButtonColor[index]["no"] ==
                                           Colors.white70) {
+                                        if (wordButtonColor[index]["yes"] ==
+                                            Colors.white70) {
 //                                        wordButtonColor[index]["yes"] =
 //                                            Colors.green;
-                                        if (appData.tenWordRecallList.contains(
-                                            appData.tenWordMemoryList[index])) {
-                                          ifWordInTheListAdd();
-                                          wordButtonColor[index]["yes"] =
-                                              Colors.green;
-                                        } else {
-                                          wordButtonColor[index]["yes"] =
-                                              Colors.red;
-                                          // Do nothing as word is not in list and not correctly rejected
+                                          if (appData.tenWordRecallList.contains(
+                                              appData.tenWordMemoryList[index])) {
+                                            ifWordInTheListAdd();
+                                            wordButtonColor[index]["yes"] =
+                                                Colors.green;
+                                          } else {
+                                            wordButtonColor[index]["yes"] =
+                                                Colors.red;
+                                            // Do nothing as word is not in list and not correctly rejected
+                                          }
                                         }
-                                      }
-                                      //TODO: Sort out the scorring as it will not be correct as code is now
+                                        //TODO: Sort out the scorring as it will not be correct as code is now
 //                                      else if (wordButtonColor[index]
 //                                      ["yes"] ==
 //                                          Colors.green) {
@@ -261,75 +268,75 @@ class _TenWordRecognitionState
 ////                                          ifWordInTheListMinus();
 ////                                        }
 //                                      }
-                                    } else if (wordButtonColor[index]["no"] ==
-                                        Colors.green) {
-                                      if (wordButtonColor[index]["yes"] ==
-                                          Colors.white70) {
+                                      } else if (wordButtonColor[index]["no"] ==
+                                          Colors.green) {
+                                        if (wordButtonColor[index]["yes"] ==
+                                            Colors.white70) {
 //                                        wordButtonColor[index]["yes"] =
 //                                            Colors.green;
-                                        wordButtonColor[index]["no"] =
-                                            Colors.white70;
-                                        if (appData.tenWordRecallList.contains(
-                                            appData.tenWordMemoryList[index])) {
-                                          ifWordInTheListAdd();
-                                          wordButtonColor[index]["yes"] =
-                                              Colors.green;
+                                          wordButtonColor[index]["no"] =
+                                              Colors.white70;
+                                          if (appData.tenWordRecallList.contains(
+                                              appData.tenWordMemoryList[index])) {
+                                            ifWordInTheListAdd();
+                                            wordButtonColor[index]["yes"] =
+                                                Colors.green;
+                                          }
+                                          if (!appData.tenWordRecallList
+                                              .contains(appData
+                                              .tenWordMemoryList[index])) {
+                                            wordButtonColor[index]["yes"] =
+                                                Colors.red;
+                                            // Do nothing as word is not in list and not correctly rejected
+                                            ifWordNotInListMinus();
+                                          }
                                         }
-                                        if (!appData.tenWordRecallList
-                                            .contains(appData
-                                            .tenWordMemoryList[index])) {
-                                          wordButtonColor[index]["yes"] =
-                                              Colors.red;
-                                          // Do nothing as word is not in list and not correctly rejected
-                                          ifWordNotInListMinus();
-                                        }
-                                      }
-                                    } else if (wordButtonColor[index]["no"] ==
-                                        Colors.red) {
-                                      if (wordButtonColor[index]["yes"] ==
-                                          Colors.white70) {
+                                      } else if (wordButtonColor[index]["no"] ==
+                                          Colors.red) {
+                                        if (wordButtonColor[index]["yes"] ==
+                                            Colors.white70) {
 //                                        wordButtonColor[index]["yes"] =
 //                                            Colors.green;
-                                        wordButtonColor[index]["no"] =
-                                            Colors.white70;
-                                        if (appData.tenWordRecallList.contains(
-                                            appData.tenWordMemoryList[index])) {
-                                          ifWordInTheListAdd();
-                                          wordButtonColor[index]["yes"] =
-                                              Colors.green;
-                                        }
-                                        if (!appData.tenWordRecallList
-                                            .contains(appData
-                                            .tenWordMemoryList[index])) {
-                                          wordButtonColor[index]["yes"] =
-                                              Colors.red;
-                                          // Do nothing as word is not in list and not correctly rejected
-                                          ifWordNotInListMinus();
+                                          wordButtonColor[index]["no"] =
+                                              Colors.white70;
+                                          if (appData.tenWordRecallList.contains(
+                                              appData.tenWordMemoryList[index])) {
+                                            ifWordInTheListAdd();
+                                            wordButtonColor[index]["yes"] =
+                                                Colors.green;
+                                          }
+                                          if (!appData.tenWordRecallList
+                                              .contains(appData
+                                              .tenWordMemoryList[index])) {
+                                            wordButtonColor[index]["yes"] =
+                                                Colors.red;
+                                            // Do nothing as word is not in list and not correctly rejected
+                                            ifWordNotInListMinus();
+                                          }
                                         }
                                       }
-                                    }
-                                  });
+                                    });
 
-                                },
-                                child: Text("Yes"),
-                                color: wordButtonColor[index]["yes"],
-                              ),
-                              // No Button Setup
-                              FlatButton(
-                                onPressed: () {
-                                  setState(() {
-                                    if (wordButtonColor[index]["yes"] == Colors.white70) {
-                                      if (wordButtonColor[index]["no"] == Colors.white70) {
-                                        if (!appData.tenWordRecallList.contains(appData.tenWordMemoryList[index])) {
-                                          ifWordNotInListAdd();
-                                          wordButtonColor[index]["no"] =
-                                              Colors.green;
-                                        } else {
-                                          wordButtonColor[index]["no"] =
-                                              Colors.red;
-                                          // not sure if logic is needed for scoring
+                                  },
+                                  child: Text("Yes"),
+                                  color: wordButtonColor[index]["yes"],
+                                ),
+                                // No Button Setup
+                                FlatButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      if (wordButtonColor[index]["yes"] == Colors.white70) {
+                                        if (wordButtonColor[index]["no"] == Colors.white70) {
+                                          if (!appData.tenWordRecallList.contains(appData.tenWordMemoryList[index])) {
+                                            ifWordNotInListAdd();
+                                            wordButtonColor[index]["no"] =
+                                                Colors.green;
+                                          } else {
+                                            wordButtonColor[index]["no"] =
+                                                Colors.red;
+                                            // not sure if logic is needed for scoring
+                                          }
                                         }
-                                      }
 //                                      if (wordButtonColor[index]["no"] == Colors.green) {
 //                                        wordButtonColor[index]["no"] =
 //                                            Colors.white70;
@@ -339,96 +346,97 @@ class _TenWordRecognitionState
 //                                        }
 //                                      }
 
-                                    } else if (wordButtonColor[index]["yes"] == Colors.green) {
-                                      if (wordButtonColor[index]["no"] == Colors.white70) {
+                                      } else if (wordButtonColor[index]["yes"] == Colors.green) {
+                                        if (wordButtonColor[index]["no"] == Colors.white70) {
+                                          if (!appData.tenWordRecallList.contains(appData.tenWordMemoryList[index])) {
+                                            ifWordNotInListAdd();
+                                            wordButtonColor[index]["no"] =
+                                                Colors.green;
+                                            wordButtonColor[index]["yes"] =
+                                                Colors.white70;
+                                          } else if (appData.tenWordRecallList.contains(appData.tenWordMemoryList[index])) {
+                                            // Do nothing as word is not in list and not correctly rejected
+                                            ifWordInTheListMinus();
+                                            wordButtonColor[index]["no"] =
+                                                Colors.red;
+                                            wordButtonColor[index]["yes"] =
+                                                Colors.white70;
+                                          }
+                                        }
+                                      } else if (wordButtonColor[index]["yes"] == Colors.red) {
+                                        wordButtonColor[index]["yes"] = Colors.white70;
                                         if (!appData.tenWordRecallList.contains(appData.tenWordMemoryList[index])) {
-                                          ifWordNotInListAdd();
                                           wordButtonColor[index]["no"] =
                                               Colors.green;
-                                          wordButtonColor[index]["yes"] =
-                                              Colors.white70;
-                                        } else if (appData.tenWordRecallList.contains(appData.tenWordMemoryList[index])) {
-                                          // Do nothing as word is not in list and not correctly rejected
-                                          ifWordInTheListMinus();
-                                          wordButtonColor[index]["no"] =
-                                              Colors.red;
-                                          wordButtonColor[index]["yes"] =
-                                              Colors.white70;
                                         }
                                       }
-                                    } else if (wordButtonColor[index]["yes"] == Colors.red) {
-                                      wordButtonColor[index]["yes"] = Colors.white70;
-                                      if (!appData.tenWordRecallList.contains(appData.tenWordMemoryList[index])) {
-                                        wordButtonColor[index]["no"] =
-                                            Colors.green;
-                                      }
-                                    }
-                                  });
+                                    });
 
-                                },
-                                child: Text("No"),
-                                color: wordButtonColor[index]["no"],
-                              )
-                            ],
+                                  },
+                                  child: Text("No"),
+                                  color: wordButtonColor[index]["no"],
+                                )
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  })),
-          SizedBox(
-            height: 10.0,
-          ),
-          Container(
-              width: _width * 0.9,
-              child: Card(
-                elevation: 10.0,
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: RaisedButton(
-                      elevation: 10.0,
-                      child: Text(
-                        "Continue",
-                        overflow: TextOverflow.clip,
-                      ),
-                      //onPressed: () => debugPrint("hello"),
-                      onPressed: () {
-                        var router = new MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                            new ShortTermMemoryVisual(
-                              patientName: widget.patientName,
-                              assessorName: widget.assessorName,
-                              handedness: widget.handedness,
-                              assessmentDate: widget.assessmentDate,
-                              languageComprehensionRadioValue: widget
-                                  .languageComprehensionRadioValue,
-                              trialOneScore: widget.trialOneScore,
-                              trialTwoScore: widget.trialTwoScore,
-                              trialThreeScore: widget.trialThreeScore,
-                              visuospatialPraxisImage1: widget.visuospatialPraxisImage1,
-                              visuospatialPraxisImage2: widget.visuospatialPraxisImage2,
-                              visuospatialPraxisImage3: widget.visuospatialPraxisImage3,
-                              attention: widget.attention,
-                              executiveAnimalNaming: widget.executiveAnimalNaming,
-                              executiveLuria: widget.executiveLuria,
-                              executiveSerial: widget.executiveSerial,
-                              praxisRight: widget.praxisRight,
-                              praxisLeft: widget.praxisLeft,
-                              shorttermMemoryVerbal: widget.shorttermMemoryVerbal,
-                              tenWordDelay: widget.tenWordDelay,
-                              scoreVerbalRecognitionMemoryTenWords: scoreVerbalRecognitionMemoryTenWords,
-                              scoreVerbalRecognitionMemoryTenWordsInList: scoreVerbalRecognitionMemoryTenWordsInList,
-                              scoreVerbalRecognitionMemoryTenWordsNotInList: scoreVerbalRecognitionMemoryTenWordsNotInList,
-                            ));
-                        Navigator.of(context).pushAndRemoveUntil(
-                            router, (Route<dynamic> route) => false);
-                      }),
-                ),
-              )),
+                      );
+                    })),
+            SizedBox(
+              height: 10.0,
+            ),
+            Container(
+                width: _width * 0.9,
+                child: Card(
+                  elevation: 10.0,
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: RaisedButton(
+                        elevation: 10.0,
+                        child: Text(
+                          "Continue",
+                          overflow: TextOverflow.clip,
+                        ),
+                        //onPressed: () => debugPrint("hello"),
+                        onPressed: () {
+                          var router = new MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                              new ShortTermMemoryVisual(
+                                patientName: widget.patientName,
+                                assessorName: widget.assessorName,
+                                handedness: widget.handedness,
+                                assessmentDate: widget.assessmentDate,
+                                languageComprehensionRadioValue: widget
+                                    .languageComprehensionRadioValue,
+                                trialOneScore: widget.trialOneScore,
+                                trialTwoScore: widget.trialTwoScore,
+                                trialThreeScore: widget.trialThreeScore,
+                                visuospatialPraxisImage1: widget.visuospatialPraxisImage1,
+                                visuospatialPraxisImage2: widget.visuospatialPraxisImage2,
+                                visuospatialPraxisImage3: widget.visuospatialPraxisImage3,
+                                attention: widget.attention,
+                                executiveAnimalNaming: widget.executiveAnimalNaming,
+                                executiveLuria: widget.executiveLuria,
+                                executiveSerial: widget.executiveSerial,
+                                praxisRight: widget.praxisRight,
+                                praxisLeft: widget.praxisLeft,
+                                shorttermMemoryVerbal: widget.shorttermMemoryVerbal,
+                                tenWordDelay: widget.tenWordDelay,
+                                scoreVerbalRecognitionMemoryTenWords: scoreVerbalRecognitionMemoryTenWords,
+                                scoreVerbalRecognitionMemoryTenWordsInList: scoreVerbalRecognitionMemoryTenWordsInList,
+                                scoreVerbalRecognitionMemoryTenWordsNotInList: scoreVerbalRecognitionMemoryTenWordsNotInList,
+                              ));
+                          Navigator.of(context).pushAndRemoveUntil(
+                              router, (Route<dynamic> route) => true);
+                        }),
+                  ),
+                )),
 
-        ],
+          ],
+        ),
+        backgroundColor: Theme.of(context).backgroundColor,
       ),
-      backgroundColor: Theme.of(context).backgroundColor,
     );
   }
 
@@ -450,5 +458,85 @@ class _TenWordRecognitionState
   void ifWordNotInListMinus() {
     scoreVerbalRecognitionMemoryTenWords -= 1;
     scoreVerbalRecognitionMemoryTenWordsNotInList -= 1;
+  }
+
+  void getPrefsData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int score1 = prefs.getInt("scoreVerbalRecognitionMemoryTenWords");
+    int score2 = prefs.getInt("scoreVerbalRecognitionMemoryTenWordsInList");
+    int score3 = prefs.getInt("scoreVerbalRecognitionMemoryTenWordsNotInList");
+    yesColors = prefs.getStringList("yesColors");
+    noColors = prefs.getStringList("noColors");
+
+    for (var i = 0; i < 20; i++) {
+
+      if (yesColors[i] == "white") {
+        setState(() {
+          wordButtonColor[i]["yes"] = Colors.white70;
+        });
+      } else if (yesColors[i] == "red") {
+        setState(() {
+          wordButtonColor[i]["yes"] = Colors.red;
+        });
+      } else {
+        setState(() {
+          wordButtonColor[i]["yes"] = Colors.green;
+        });
+      }
+
+      if (noColors[i] == "white") {
+        setState(() {
+          wordButtonColor[i]["no"] = Colors.white70;
+        });
+      } else if (noColors[i] == "red") {
+        setState(() {
+          wordButtonColor[i]["no"] = Colors.red;
+        });
+      } else {
+        setState(() {
+          wordButtonColor[i]["no"] = Colors.green;
+        });
+      }
+
+    }
+
+    setState(() {
+      scoreVerbalRecognitionMemoryTenWords = score1;
+      scoreVerbalRecognitionMemoryTenWordsInList = score2;
+      scoreVerbalRecognitionMemoryTenWordsNotInList = score3;
+    });
+  }
+
+  Future<bool> savePrefData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    prefs.setInt("scoreVerbalRecognitionMemoryTenWords", scoreVerbalRecognitionMemoryTenWords);
+    prefs.setInt("scoreVerbalRecognitionMemoryTenWordsInList", scoreVerbalRecognitionMemoryTenWordsInList);
+    prefs.setInt("scoreVerbalRecognitionMemoryTenWordsNotInList", scoreVerbalRecognitionMemoryTenWordsNotInList);
+
+    List<String> noWordColor = [];
+    List<String> yesWordColor = [];
+
+    for (var i = 0; i < 20; i++) {
+      if (wordButtonColor[i]["yes"] == Colors.white70) {
+        yesWordColor.add("white");
+      } else if (wordButtonColor[i]["yes"] == Colors.red) {
+        yesWordColor.add("red");
+      } else {
+        yesWordColor.add("green");
+      }
+      if (wordButtonColor[i]["no"] == Colors.white70) {
+        noWordColor.add("white");
+      } else if (wordButtonColor[i]["no"] == Colors.red) {
+        noWordColor.add("red");
+      } else {
+        noWordColor.add("green");
+      }
+    }
+
+    prefs.setStringList("noColors", noWordColor);
+    prefs.setStringList("yesColors", yesWordColor);
+
+    return true;
   }
 }
