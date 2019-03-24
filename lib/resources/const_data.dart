@@ -198,8 +198,8 @@ const String testExecutiveLuriaResponseImpaired = "Not being able to complete th
 
 const String testExecutiveSerial = "Executive";
 const String testExecutiveSerialSubtitle = "Serial Order Reversal Task";
-const String testExecutiveSerialDetails = "";
-const String testExecutiveSerialToPatient = "\”Say the months of the year starting with January.\"\nAllow person to complete the sequence January to December.\n\"Now start with December and go backwards.\”";
+const String testExecutiveSerialDetails = "Allow person to complete the sequence January to December.";
+const String testExecutiveSerialToPatient = "\”Say the months of the year starting with January.\"\n\"Now start with December and go backwards.\”";
 const String testExecutiveSerialResponse = "Stop the person when he reaches July or makes 2 or more mistakes.";
 const String testExecutiveSerialResponseNormal = "No errors";
 const String testExecutiveSerialResponseEquivocal = "1 error";
@@ -259,7 +259,7 @@ const List<String> imageURL = ["./images/dice.png", "./images/glass.png", "./ima
 
 const String testExecutive = "Executive";
 const String testExecutiveSubtitle = "Design Fluency";
-const String testExecutiveDetails = "Draw a hash sign (#) and steps . Count the lines as you draw them.";
+const String testExecutiveDetails = "Draw the following two examples on the same paper that the patient will use. Count the lines from 1 - 4 while you are drawing.";
 const String testExecutiveToPatient = "\“You have one minute to draw anything using four lines. The drawings must be different and I must be able to count the lines. I will give you two examples. Do you have any questions? Your minute starts now.\”";
 const String testExecutiveResponse = "";
 const String testExecutiveResponseNormal = "7 drawings";

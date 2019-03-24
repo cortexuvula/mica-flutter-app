@@ -177,6 +177,25 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                                 fontWeight: FontWeight.w500,
                                 fontSize: 15.0),
                           ),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              width: _width * 0.8,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Container(
+                                    width: _width * 0.35,
+                                    child: Image.asset("./images/hash.png", fit: BoxFit.contain,),
+                                  ),
+                                  Container(
+                                    width: _width * 0.35,
+                                    child: Image.asset("./images/steps.png", fit: BoxFit.contain,),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),

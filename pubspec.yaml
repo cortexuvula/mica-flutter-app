@@ -65,6 +65,10 @@ flutter:
    - assets/bca.pdf
    - images/logo512.png
    - images/logo192.png
+   - images/pen.png
+   - images/hands.png
+   - images/hash.png
+   - images/steps.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

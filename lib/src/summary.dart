@@ -342,17 +342,14 @@ class _TestSummaryState extends State<TestSummary> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              "${widget.visuospatialPraxisImage1 + widget.visuospatialPraxisImage2 + widget.visuospatialPraxisImage3}",
+                              "",
                               textAlign: TextAlign.center,
                             ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              valueVisualResultToString(
-                                  widget.visuospatialPraxisImage1 +
-                                      widget.visuospatialPraxisImage2 +
-                                      widget.visuospatialPraxisImage3),
+                              valueVisualResultToString(),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -807,15 +804,20 @@ class _TestSummaryState extends State<TestSummary> {
     }
   }
 
-  String valueVisualResultToString(int _valueTotal) {
-    switch (_valueTotal > 6) {
+  String valueVisualResultToString() {
+    int score1 = 3 - widget.visuospatialPraxisImage1;
+    int score2 = 3 - widget.visuospatialPraxisImage2;
+    int score3 = 3 - widget.visuospatialPraxisImage3;
+
+    int _combineScore = score1 + score2 + score3;
+    switch (_combineScore > 6) {
       case true:
         {
           return "N";
         }
       case false:
         {
-          if (_valueTotal < 6) {
+          if (_combineScore < 6) {
             return "I";
           }
           return "E";
@@ -1578,7 +1580,7 @@ class _TestSummaryState extends State<TestSummary> {
         "Short-term Memory Verbal Trial 3: 10 Word Recall\nN > 7, E = 5-7,I < 5\n${ConvertResponseToString(valueTrial3ResultToString(widget.trialThreeScore))}\nScore: ${widget.trialThreeScore}/10\n\n";
 
     shareDoc +=
-        "Visuospatial & Praxis: Line Drawing Copy\nN > 6, E = 6, I < 6\n${ConvertResponseToString(valueVisualResultToString(widget.visuospatialPraxisImage1 + widget.visuospatialPraxisImage2 + widget.visuospatialPraxisImage3))}\n\n";
+        "Visuospatial & Praxis: Line Drawing Copy\nN > 6, E = 6, I < 6\n${ConvertResponseToString(valueVisualResultToString())}\n\n";
 
     shareDoc +=
         "Attention: Vigilance Test\nN = no mistakes, E = one mistake and I = > 1 mistake\n${ConvertResponseToString(valueTrial12ResultToString(widget.attention))}\n\n";
