@@ -314,6 +314,15 @@ class _HomeState extends State<Home> {
     prefs.setInt("executiveSerial", 2);
     prefs.setInt("score", 0);
     prefs.setStringList("executiveSerialButtonColor", executiveSerialButtonColor);
+
+    //screen 10
+    prefs.setInt("shorttermMemoryVerbal", 2);
+    prefs.setInt("score", 0);
+    prefs.setBool("_valueDate", false);
+    prefs.setBool("_valueMonth", false);
+    prefs.setBool("_valueDay", false);
+    prefs.setBool("_valuePlace", false);
+    prefs.setBool("_valueCity", false);
   }
   
  
