@@ -300,6 +300,27 @@ class _HomeState extends State<Home> {
 
     //screen 6
     prefs.setInt("attention", 0);
+    prefs.setInt("correctTap", 0);
+    prefs.setInt("wrongTap", 0);
+
+    List<String> letterTapButtonColor = [];
+
+    List<String> tapCorrect = [];
+    List<String> tapWrong = [];
+    List<String> correctCheck = [];
+
+
+    for (var i = 0; i < 26; i++) {
+      tapCorrect.add("false");
+      tapWrong.add("false");
+      correctCheck.add("false");
+      letterTapButtonColor.add("cyan");
+    }
+
+    prefs.setStringList("letterTapButtonColor", letterTapButtonColor);
+    prefs.setStringList("tapCorrect", tapCorrect);
+    prefs.setStringList("tapWrong", tapWrong);
+    prefs.setStringList("correctCheck", correctCheck);
 
     //screen 7
     prefs.setInt("executiveAnimalNaming", 2);
