@@ -3,6 +3,8 @@ const String disclaimer =
     "The Midland Cognitive Assessment App does not provide medical advice and cannot replace good clinical practice. It is intended for health professionals familiar with this type of assessment. You use this App as is and at your own risk. You are strongly encouraged to first read the Full Instructions and Teaching Booklet.";
 const String disclaimer2 =
     "The Midland Cognitive Assessment App is intended for use by health professionals familiar with this type of cognitive assessment. It does not provide medical advice and cannot replace good clinical practice. It should be used at your own discretion. You are strongly encouraged to first read the full instructions and teaching booklet.";
+
+const String disclaimer3 = "The following abbreviations are used:\nN = Normal, E = Equivocal, I = Impaired\n\nCut scores are estimates only.";
 const String testDescription = "Task Description:";
 const String testToPatient = "To Patient:";
 const String testResponse = "Response:";
@@ -248,9 +250,10 @@ const String testShortTermMemoryVisualResponseFubar = "a failure to recall anyth
 
 const String testAnomiaAgnosia = "Anomia & Agnosia";
 const String testAnomiaAgnosiaSubtitle = "";
-const String testAnomiaAgnosiaDetails = "This is to distinguish anomia from agnosia. Click on image to enlarge image.";
+const String testAnomiaAgnosiaDetails = "Anomia: Cannot name picture.\nAgnosia: Cannot describe object.\n Click on image to enlarge image.";
 const String testAnomiaAgnosiaToPatient = "\"Name the following pictures.\”";
-const String testAnomiaAgnosiaResponse = "If unable, ask the patient to describe what the object is used for.";
+const String testAnomiaAgnosiaResponse = "Anomia: Cannot name picture.";
+const String testAnomiaAgnosiaResponse2 = "Agnosia: Cannot describe object.";
 const String testAnomiaAgnosiaResponseNormal = "All correct";
 const String testAnomiaAgnosiaResponseEquivocal = "1 mistake";
 const String testAnomiaAgnosiaResponseImpaired = "> 1 mistake";

@@ -261,6 +261,7 @@ class _HomeState extends State<Home> {
 //    int shorttermMemoryVisualImage2;
 //    int shorttermMemoryVisualImage3;
 //    int anomiaAgnosia;
+//    int agnosia;
 //    int executive;
 //    int spokenLanguage;
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -323,6 +324,48 @@ class _HomeState extends State<Home> {
     prefs.setBool("_valueDay", false);
     prefs.setBool("_valuePlace", false);
     prefs.setBool("_valueCity", false);
+
+    //screen 11
+    prefs.setInt("praxisRight", 0);
+    prefs.setInt("praxisLeft", 0);
+
+    //screen 12
+    prefs.setInt("tenWordDelay", 0);
+    List<String> wordRecallButtonColor = [];
+    for (var i = 0; i < 10; i++) {
+      wordRecallButtonColor.add("yellow");
+    }
+    prefs.setStringList("recallwordButtonColor", wordRecallButtonColor);
+
+    //screen 13
+    prefs.setInt("scoreVerbalRecognitionMemoryTenWords", 0);
+    prefs.setInt("scoreVerbalRecognitionMemoryTenWordsInList", 0);
+    prefs.setInt("scoreVerbalRecognitionMemoryTenWordsNotInList", 0);
+
+    List<String> noColors = [];
+    List<String> yesColors = [];
+    for (var i = 0; i < 20; i++) {
+      noColors.add("white");
+      yesColors.add("white");
+    }
+
+    prefs.setStringList("noColors", noColors);
+    prefs.setStringList("yesColors", yesColors);
+
+    //screen 14
+    prefs.setInt("shorttermMemoryVisualImage1", 0);
+    prefs.setInt("shorttermMemoryVisualImage2", 0);
+    prefs.setInt("shorttermMemoryVisualImage3", 0);
+
+    //screen 15
+    prefs.setInt("anomiaAgnosia", 0);
+    prefs.setInt("agnosia", 0);
+
+    //screen 16
+    prefs.setInt("executive", 0);
+
+    //screen 17
+    prefs.setInt("spokenLanguage", 0);
   }
   
  

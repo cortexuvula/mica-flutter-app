@@ -482,7 +482,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                       shorttermMemoryVerbal: _radioValue,
                                     ));
                             Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => false);
+                                router, (Route<dynamic> route) => true);
                           },
                           child: Text("Continue with Testing"),
                         ),
