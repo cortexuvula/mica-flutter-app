@@ -1,29 +1,26 @@
 import 'package:flutter/material.dart';
 
-
 class VerbalShortTermMemory extends StatefulWidget {
-
-
   int trialTwoScore;
   int trialThreeScore;
   int orientation;
   int tenWordDelay;
   int scoreVerbalRecognitionMemoryTenWords;
 
-  VerbalShortTermMemory({Key key,
-    this.trialTwoScore,
-    this.trialThreeScore,
-    this.orientation,
-    this.tenWordDelay,
-    this.scoreVerbalRecognitionMemoryTenWords
-  }) : super(key: key);
+  VerbalShortTermMemory(
+      {Key key,
+      this.trialTwoScore,
+      this.trialThreeScore,
+      this.orientation,
+      this.tenWordDelay,
+      this.scoreVerbalRecognitionMemoryTenWords})
+      : super(key: key);
 
   @override
   _VerbalShortTermMemoryState createState() => _VerbalShortTermMemoryState();
 }
 
 class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
-
   String resultTrial3 = "normal";
   Color resultTrial3Color;
 
@@ -38,7 +35,6 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
 
   String resultRecon = "normal";
   Color resultReconColor;
-
 
   @override
   void initState() {
@@ -79,70 +75,100 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
             color: resultTrial2Color,
             elevation: 10.0,
             child: ListTile(
-              title: Text("Short-term Memory Verbal Trial 2",style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),),
-              trailing: Text(resultTrial2,style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),),
+              title: Text(
+                "Short-term Memory Verbal Trial 2",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              trailing: Text(
+                resultTrial2,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ),
           ),
           Card(
             color: resultTrial3Color,
             elevation: 10.0,
             child: ListTile(
-              title: Text("Short-term Memory Verbal Trial 3",style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),),
-              trailing: Text(resultTrial3,style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),),
+              title: Text(
+                "Short-term Memory Verbal Trial 3",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              trailing: Text(
+                resultTrial3,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ),
           ),
           Card(
             color: resultOrientationColor,
             elevation: 10.0,
             child: ListTile(
-              title: Text("Orientation",style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),),
-              trailing: Text(resultOrientation,style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),),
+              title: Text(
+                "Orientation",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              trailing: Text(
+                resultOrientation,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ),
           ),
           Card(
             color: resultDelayColor,
             elevation: 10.0,
             child: ListTile(
-              title: Text("Short-Term Memory Verbal: Delayed Recall Of 10 Words",style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),),
-              trailing: Text(resultDelay,style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),),
+              title: Text(
+                "Short-Term Memory Verbal: Delayed Recall Of 10 Words",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              trailing: Text(
+                resultDelay,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ),
           ),
           Card(
             color: resultReconColor,
             elevation: 10.0,
             child: ListTile(
-              title: Text("Short-Term Memory Verbal Recognition: Total Score",style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),),
-              trailing: Text(resultRecon,style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),),
+              title: Text(
+                "Short-Term Memory Verbal Recognition: Total Score",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              trailing: Text(
+                resultRecon,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ),
           ),
         ],
@@ -152,67 +178,70 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
 
   String valueTrial2ResultToString(int _valueTotal) {
     switch (_valueTotal > 6) {
-      case true: {
-        setState(() {
-          resultTrial2 = "Normal";
-          resultTrial2Color = Colors.green;
-        });
-        break;
-      }
-      case false: {
-        if (_valueTotal < 5) {
+      case true:
+        {
           setState(() {
-            resultTrial2 = "Impaired";
-            resultTrial2Color = Colors.red;
+            resultTrial2 = "Normal";
+            resultTrial2Color = Colors.green;
           });
           break;
         }
-        setState(() {
-          resultTrial2 = "Equivocal";
-          resultTrial2Color = Colors.yellow;
-        });
-        break;
-      }
-
+      case false:
+        {
+          if (_valueTotal < 5) {
+            setState(() {
+              resultTrial2 = "Impaired";
+              resultTrial2Color = Colors.red;
+            });
+            break;
+          }
+          setState(() {
+            resultTrial2 = "Equivocal";
+            resultTrial2Color = Colors.yellow;
+          });
+          break;
+        }
     }
   }
 
   String valueTrial3ResultToString(int _valueTotal) {
     switch (_valueTotal > 7) {
-      case true: {
-        setState(() {
-          resultTrial3 = "Normal";
-          resultTrial3Color = Colors.green;
-        });
-        break;
-      }
-      case false: {
-        if (_valueTotal < 5) {
+      case true:
+        {
           setState(() {
-            resultTrial3 = "Impaired";
-            resultTrial3Color = Colors.red;
+            resultTrial3 = "Normal";
+            resultTrial3Color = Colors.green;
           });
           break;
         }
-        setState(() {
-          resultTrial3 = "Equivocal";
-          resultTrial3Color = Colors.yellow;
-        });
-        break;
-      }
-
+      case false:
+        {
+          if (_valueTotal < 5) {
+            setState(() {
+              resultTrial3 = "Impaired";
+              resultTrial3Color = Colors.red;
+            });
+            break;
+          }
+          setState(() {
+            resultTrial3 = "Equivocal";
+            resultTrial3Color = Colors.yellow;
+          });
+          break;
+        }
     }
   }
 
   String valueOrientationResultToString(int _valueTotal) {
     switch (_valueTotal) {
-      case 0: {
-        setState(() {
-          resultOrientation = "Normal";
-          resultOrientationColor = Colors.green;
-        });
-        break;
-      }
+      case 0:
+        {
+          setState(() {
+            resultOrientation = "Normal";
+            resultOrientationColor = Colors.green;
+          });
+          break;
+        }
       case 2:
         {
           setState(() {
@@ -221,67 +250,70 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
           });
           break;
         }
-      case 1: {
-        setState(() {
-          resultOrientation = "Equivocal";
-          resultOrientationColor = Colors.yellow;
-        });
-        break;
-      }
-
+      case 1:
+        {
+          setState(() {
+            resultOrientation = "Equivocal";
+            resultOrientationColor = Colors.yellow;
+          });
+          break;
+        }
     }
   }
 
   String valueRecallResultToString(int _valueTotal) {
     switch (_valueTotal > 5) {
-      case true: {
-        setState(() {
-          resultDelay = "Normal";
-          resultDelayColor = Colors.green;
-        });
-        break;
-      }
-      case false: {
-        if (_valueTotal < 5) {
+      case true:
+        {
           setState(() {
-            resultDelay = "Impaired";
-            resultDelayColor = Colors.red;
+            resultDelay = "Normal";
+            resultDelayColor = Colors.green;
           });
           break;
         }
-        setState(() {
-          resultDelay = "Equivocal";
-          resultDelayColor = Colors.yellow;
-        });
-        break;
-      }
-
+      case false:
+        {
+          if (_valueTotal < 5) {
+            setState(() {
+              resultDelay = "Impaired";
+              resultDelayColor = Colors.red;
+            });
+            break;
+          }
+          setState(() {
+            resultDelay = "Equivocal";
+            resultDelayColor = Colors.yellow;
+          });
+          break;
+        }
     }
   }
+
   String valueRecogResultToString(int _valueTotal) {
     switch (_valueTotal > 5) {
-      case true: {
-        setState(() {
-          resultRecon = "Normal";
-          resultReconColor = Colors.green;
-        });
-        break;
-      }
-      case false: {
-        if (_valueTotal < 5) {
+      case true:
+        {
           setState(() {
-            resultRecon = "Impaired";
-            resultReconColor = Colors.red;
+            resultRecon = "Normal";
+            resultReconColor = Colors.green;
           });
           break;
         }
-        setState(() {
-          resultRecon = "Equivocal";
-          resultReconColor = Colors.yellow;
-        });
-        break;
-      }
-
+      case false:
+        {
+          if (_valueTotal < 5) {
+            setState(() {
+              resultRecon = "Impaired";
+              resultReconColor = Colors.red;
+            });
+            break;
+          }
+          setState(() {
+            resultRecon = "Equivocal";
+            resultReconColor = Colors.yellow;
+          });
+          break;
+        }
     }
   }
 }

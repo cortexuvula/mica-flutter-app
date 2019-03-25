@@ -37,34 +37,34 @@ class SpokenLanguage extends StatefulWidget {
 
   SpokenLanguage(
       {Key key,
-        this.patientName,
-        this.assessorName,
-        this.handedness,
-        this.assessmentDate,
-        this.languageComprehensionRadioValue,
-        this.trialOneScore,
-        this.trialTwoScore,
-        this.trialThreeScore,
-        this.visuospatialPraxisImage1,
-        this.visuospatialPraxisImage2,
-        this.visuospatialPraxisImage3,
-        this.attention,
-        this.executiveAnimalNaming,
-        this.executiveLuria,
-        this.executiveSerial,
-        this.shorttermMemoryVerbal,
-        this.praxisRight,
-        this.praxisLeft,
-        this.tenWordDelay,
-        this.scoreVerbalRecognitionMemoryTenWords,
-        this.scoreVerbalRecognitionMemoryTenWordsInList,
-        this.scoreVerbalRecognitionMemoryTenWordsNotInList,
-        this.shorttermMemoryVisualImage1,
-        this.shorttermMemoryVisualImage2,
-        this.shorttermMemoryVisualImage3,
-        this.anomiaAgnosia,
-        this.agnosia,
-        this.executive})
+      this.patientName,
+      this.assessorName,
+      this.handedness,
+      this.assessmentDate,
+      this.languageComprehensionRadioValue,
+      this.trialOneScore,
+      this.trialTwoScore,
+      this.trialThreeScore,
+      this.visuospatialPraxisImage1,
+      this.visuospatialPraxisImage2,
+      this.visuospatialPraxisImage3,
+      this.attention,
+      this.executiveAnimalNaming,
+      this.executiveLuria,
+      this.executiveSerial,
+      this.shorttermMemoryVerbal,
+      this.praxisRight,
+      this.praxisLeft,
+      this.tenWordDelay,
+      this.scoreVerbalRecognitionMemoryTenWords,
+      this.scoreVerbalRecognitionMemoryTenWordsInList,
+      this.scoreVerbalRecognitionMemoryTenWordsNotInList,
+      this.shorttermMemoryVisualImage1,
+      this.shorttermMemoryVisualImage2,
+      this.shorttermMemoryVisualImage3,
+      this.anomiaAgnosia,
+      this.agnosia,
+      this.executive})
       : super(key: key);
 
   @override
@@ -81,7 +81,6 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
 
   bool backButtonActive = false;
   bool forwardButtonActive = true;
-
 
   @override
   void initState() {
@@ -121,8 +120,8 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                 onPressed: () {
                   var router = new MaterialPageRoute(
                       builder: (BuildContext context) => new Home(
-                        viewedDisclaimer: true,
-                      ));
+                            viewedDisclaimer: true,
+                          ));
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -246,99 +245,95 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                             ),
                             Table(
                               border: TableBorder.all(),
-                              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                              defaultVerticalAlignment:
+                                  TableCellVerticalAlignment.middle,
                               columnWidths: {
                                 0: FlexColumnWidth(0.3),
                                 1: FlexColumnWidth(0.3),
                                 2: FlexColumnWidth(0.34)
                               },
                               children: [
-                                TableRow(
-                                    children: [
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 0,
-                                            groupValue: _radioValue,
-                                            onChanged: _handleRadioValueChange,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "Normal",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 10.0,
-                                            ),
-                                          ),
-                                        ],
+                                TableRow(children: [
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 0,
+                                        groupValue: _radioValue,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
                                       ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 1,
-                                            groupValue: _radioValue,
-                                            onChanged: _handleRadioValueChange,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "Equivocal",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 10.0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 2,
-                                            groupValue: _radioValue,
-                                            onChanged: _handleRadioValueChange,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "Impaired",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 10.0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ]
-                                ),
-                                TableRow(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          appData
-                                              .testSpokenLanguageResponseNormal,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 10.0),
+                                      Text(
+                                        "Normal",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 10.0,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          appData
-                                              .testSpokenLanguageResponseEquivocal,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 10.0),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 1,
+                                        groupValue: _radioValue,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Equivocal",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 10.0,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          appData
-                                              .testSpokenLanguageResponseImpaired,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 10.0),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 2,
+                                        groupValue: _radioValue,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Impaired",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 10.0,
                                         ),
                                       ),
-                                    ]
-                                )
+                                    ],
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData.testSpokenLanguageResponseNormal,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 10.0),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData
+                                          .testSpokenLanguageResponseEquivocal,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 10.0),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData
+                                          .testSpokenLanguageResponseImpaired,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 10.0),
+                                    ),
+                                  ),
+                                ])
                               ],
                             ),
 //                          Column(
@@ -507,40 +502,51 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                           onPressed: () {
                             var router = new MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                new TestSummary(
-                                  patientName: widget.patientName,
-                                  assessorName: widget.assessorName,
-                                  handedness: widget.handedness,
-                                  assessmentDate: widget.assessmentDate,
-                                  languageComprehensionRadioValue: widget
-                                      .languageComprehensionRadioValue,
-                                  trialOneScore: widget.trialOneScore,
-                                  trialTwoScore: widget.trialTwoScore,
-                                  trialThreeScore: widget.trialThreeScore,
-                                  visuospatialPraxisImage1: widget.visuospatialPraxisImage1,
-                                  visuospatialPraxisImage2: widget.visuospatialPraxisImage2,
-                                  visuospatialPraxisImage3: widget.visuospatialPraxisImage3,
-                                  attention: widget.attention,
-                                  executiveAnimalNaming: widget.executiveAnimalNaming,
-                                  executiveLuria: widget.executiveLuria,
-                                  executiveSerial: widget.executiveSerial,
-                                  praxisRight: widget.praxisRight,
-                                  praxisLeft: widget.praxisLeft,
-                                  shorttermMemoryVerbal: widget.shorttermMemoryVerbal,
-                                  tenWordDelay: widget.tenWordDelay,
-                                  scoreVerbalRecognitionMemoryTenWords: widget.scoreVerbalRecognitionMemoryTenWords,
-                                  scoreVerbalRecognitionMemoryTenWordsInList: widget.scoreVerbalRecognitionMemoryTenWordsInList,
-                                  scoreVerbalRecognitionMemoryTenWordsNotInList: widget.scoreVerbalRecognitionMemoryTenWordsNotInList,
-                                  shorttermMemoryVisualImage1: widget.shorttermMemoryVisualImage1,
-                                  shorttermMemoryVisualImage2: widget.shorttermMemoryVisualImage2,
-                                  shorttermMemoryVisualImage3: widget.shorttermMemoryVisualImage3,
-                                  anomiaAgnosia: widget.anomiaAgnosia,
-                                  agnosia: widget.agnosia,
-
-                                  executive: widget.executive,
-                                  spokenLanguage: _radioValue,
-                                )
-                            );
+                                    new TestSummary(
+                                      patientName: widget.patientName,
+                                      assessorName: widget.assessorName,
+                                      handedness: widget.handedness,
+                                      assessmentDate: widget.assessmentDate,
+                                      languageComprehensionRadioValue: widget
+                                          .languageComprehensionRadioValue,
+                                      trialOneScore: widget.trialOneScore,
+                                      trialTwoScore: widget.trialTwoScore,
+                                      trialThreeScore: widget.trialThreeScore,
+                                      visuospatialPraxisImage1:
+                                          widget.visuospatialPraxisImage1,
+                                      visuospatialPraxisImage2:
+                                          widget.visuospatialPraxisImage2,
+                                      visuospatialPraxisImage3:
+                                          widget.visuospatialPraxisImage3,
+                                      attention: widget.attention,
+                                      executiveAnimalNaming:
+                                          widget.executiveAnimalNaming,
+                                      executiveLuria: widget.executiveLuria,
+                                      executiveSerial: widget.executiveSerial,
+                                      praxisRight: widget.praxisRight,
+                                      praxisLeft: widget.praxisLeft,
+                                      shorttermMemoryVerbal:
+                                          widget.shorttermMemoryVerbal,
+                                      tenWordDelay: widget.tenWordDelay,
+                                      scoreVerbalRecognitionMemoryTenWords: widget
+                                          .scoreVerbalRecognitionMemoryTenWords,
+                                      scoreVerbalRecognitionMemoryTenWordsInList:
+                                          widget
+                                              .scoreVerbalRecognitionMemoryTenWordsInList,
+                                      scoreVerbalRecognitionMemoryTenWordsNotInList:
+                                          widget
+                                              .scoreVerbalRecognitionMemoryTenWordsNotInList,
+                                      shorttermMemoryVisualImage1:
+                                          widget.shorttermMemoryVisualImage1,
+                                      shorttermMemoryVisualImage2:
+                                          widget.shorttermMemoryVisualImage2,
+                                      shorttermMemoryVisualImage3:
+                                          widget.shorttermMemoryVisualImage3,
+                                      anomiaAgnosia: widget.anomiaAgnosia,
+                                      agnosia: widget.agnosia,
+                                      executive: widget.executive,
+                                      spokenLanguage: _radioValue,
+                                    ));
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },

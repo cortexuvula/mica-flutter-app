@@ -27,7 +27,6 @@ class _PatientInformationState extends State<PatientInformation> {
   final myPatient = TextEditingController();
   final myAssessor = TextEditingController();
 
-
   @override
   void initState() {
     super.initState();
@@ -63,8 +62,8 @@ class _PatientInformationState extends State<PatientInformation> {
                 onPressed: () {
                   var router = new MaterialPageRoute(
                       builder: (BuildContext context) => new Home(
-                        viewedDisclaimer: true,
-                      ));
+                            viewedDisclaimer: true,
+                          ));
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -96,12 +95,6 @@ class _PatientInformationState extends State<PatientInformation> {
                         padding: const EdgeInsets.all(16.0),
                         child: TextFormField(
                           controller: myPatient,
-
-//                          validator: (value) {
-//                            if (value.isEmpty) {
-//                              return 'Please enter patient full name';
-//                            }
-//                          },
                           decoration: InputDecoration(
                               labelText: "Patient Name:",
                               labelStyle: TextStyle(
@@ -172,12 +165,6 @@ class _PatientInformationState extends State<PatientInformation> {
                         padding: EdgeInsets.all(16.0),
                         child: TextFormField(
                           controller: myAssessor,
-
-//                          validator: (value) {
-//                            if (value.isEmpty) {
-//                              return 'Please enter name of assessor';
-//                            }
-//                          },
                           decoration: InputDecoration(
                             labelText: "Assessment completed by:",
                             labelStyle: TextStyle(
@@ -197,13 +184,12 @@ class _PatientInformationState extends State<PatientInformation> {
                     children: <Widget>[
                       Text("Remember Assessor Name: "),
                       Switch(
-                          value: rememberAssessor,
-                          onChanged: (bool newValue) {
-                            setState(() {
-                              rememberAssessor = newValue;
-
-                            });
-                          },
+                        value: rememberAssessor,
+                        onChanged: (bool newValue) {
+                          setState(() {
+                            rememberAssessor = newValue;
+                          });
+                        },
                         activeColor: Colors.green,
                         activeTrackColor: Colors.white,
                         inactiveThumbColor: Colors.red,
@@ -238,11 +224,7 @@ class _PatientInformationState extends State<PatientInformation> {
                             // often want to call a server or save the information in a database
                             _scaffoldState.currentState.showSnackBar(
                                 SnackBar(content: Text('Processing Data')));
-//                            if (rememberAssessor) {
-//                              setPrefs();
-//                            } else if (!rememberAssessor) {
-//
-//                            }
+
                             setPrefs();
                             var router = new MaterialPageRoute(
                                 builder: (BuildContext context) =>
@@ -305,10 +287,7 @@ class _PatientInformationState extends State<PatientInformation> {
         }
       }
 
-
-
       print("Retrieved Assessor Name $assessor");
-
     } catch (e) {
       print("failed to get assessor name");
     }
@@ -325,7 +304,6 @@ class _PatientInformationState extends State<PatientInformation> {
         prefs.setString("assessor", "");
         prefs.setBool("rememberAssessor", rememberAssessor);
       }
-
     } catch (e) {
       print("Failed to save assessor");
     }

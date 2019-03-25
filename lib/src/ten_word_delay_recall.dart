@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/home.dart';
@@ -27,25 +26,24 @@ class TenWordDelayedRecall extends StatefulWidget {
 
   TenWordDelayedRecall(
       {Key key,
-        this.patientName,
-        this.assessorName,
-        this.handedness,
-        this.assessmentDate,
-        this.languageComprehensionRadioValue,
-        this.trialOneScore,
-        this.trialTwoScore,
-        this.trialThreeScore,
-        this.visuospatialPraxisImage1,
-        this.visuospatialPraxisImage2,
-        this.visuospatialPraxisImage3,
-        this.attention,
-        this.executiveAnimalNaming,
-        this.executiveLuria,
-        this.executiveSerial,
-        this.shorttermMemoryVerbal,
-        this.praxisRight,
-        this.praxisLeft
-      })
+      this.patientName,
+      this.assessorName,
+      this.handedness,
+      this.assessmentDate,
+      this.languageComprehensionRadioValue,
+      this.trialOneScore,
+      this.trialTwoScore,
+      this.trialThreeScore,
+      this.visuospatialPraxisImage1,
+      this.visuospatialPraxisImage2,
+      this.visuospatialPraxisImage3,
+      this.attention,
+      this.executiveAnimalNaming,
+      this.executiveLuria,
+      this.executiveSerial,
+      this.shorttermMemoryVerbal,
+      this.praxisRight,
+      this.praxisLeft})
       : super(key: key);
 
   @override
@@ -70,9 +68,9 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
     var screenHeightInfo =
-    (MediaQuery.of(context).size.height * 0.3).floorToDouble();
+        (MediaQuery.of(context).size.height * 0.3).floorToDouble();
     var screenHeightWords =
-    (MediaQuery.of(context).size.height * 0.45).floorToDouble();
+        (MediaQuery.of(context).size.height * 0.45).floorToDouble();
     return WillPopScope(
       onWillPop: savePrefData,
       child: Scaffold(
@@ -101,8 +99,8 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
                 onPressed: () {
                   var router = new MaterialPageRoute(
                       builder: (BuildContext context) => new Home(
-                        viewedDisclaimer: true,
-                      ));
+                            viewedDisclaimer: true,
+                          ));
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -141,8 +139,7 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
                             Text(
                               "Scroll down to reveal more instructions",
                               style: TextStyle(
-                                  fontSize: 10.0,
-                                  color: Colors.black38),
+                                  fontSize: 10.0, color: Colors.black38),
                             ),
                           ],
                         ),
@@ -234,28 +231,33 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
                         onPressed: () {
                           var router = new MaterialPageRoute(
                               builder: (BuildContext context) =>
-                              new TenWordRecognition(
-                                patientName: widget.patientName,
-                                assessorName: widget.assessorName,
-                                handedness: widget.handedness,
-                                assessmentDate: widget.assessmentDate,
-                                languageComprehensionRadioValue: widget
-                                    .languageComprehensionRadioValue,
-                                trialOneScore: widget.trialOneScore,
-                                trialTwoScore: widget.trialTwoScore,
-                                trialThreeScore: widget.trialThreeScore,
-                                visuospatialPraxisImage1: widget.visuospatialPraxisImage1,
-                                visuospatialPraxisImage2: widget.visuospatialPraxisImage2,
-                                visuospatialPraxisImage3: widget.visuospatialPraxisImage3,
-                                attention: widget.attention,
-                                executiveAnimalNaming: widget.executiveAnimalNaming,
-                                executiveLuria: widget.executiveLuria,
-                                executiveSerial: widget.executiveSerial,
-                                praxisRight: widget.praxisRight,
-                                praxisLeft: widget.praxisLeft,
-                                shorttermMemoryVerbal: widget.shorttermMemoryVerbal,
-                                tenWordDelay: scoreTenWordDelayRecall,
-                              ));
+                                  new TenWordRecognition(
+                                    patientName: widget.patientName,
+                                    assessorName: widget.assessorName,
+                                    handedness: widget.handedness,
+                                    assessmentDate: widget.assessmentDate,
+                                    languageComprehensionRadioValue:
+                                        widget.languageComprehensionRadioValue,
+                                    trialOneScore: widget.trialOneScore,
+                                    trialTwoScore: widget.trialTwoScore,
+                                    trialThreeScore: widget.trialThreeScore,
+                                    visuospatialPraxisImage1:
+                                        widget.visuospatialPraxisImage1,
+                                    visuospatialPraxisImage2:
+                                        widget.visuospatialPraxisImage2,
+                                    visuospatialPraxisImage3:
+                                        widget.visuospatialPraxisImage3,
+                                    attention: widget.attention,
+                                    executiveAnimalNaming:
+                                        widget.executiveAnimalNaming,
+                                    executiveLuria: widget.executiveLuria,
+                                    executiveSerial: widget.executiveSerial,
+                                    praxisRight: widget.praxisRight,
+                                    praxisLeft: widget.praxisLeft,
+                                    shorttermMemoryVerbal:
+                                        widget.shorttermMemoryVerbal,
+                                    tenWordDelay: scoreTenWordDelayRecall,
+                                  ));
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => true);
                         }),
@@ -279,7 +281,6 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
           wordButtonColor[i] = Colors.green;
         });
       }
-
     }
 
     setState(() {
@@ -299,7 +300,6 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
         wordColor[i] = 'yellow';
       }
     }
-
     prefs.setStringList("recallwordButtonColor", wordColor);
 
     return true;

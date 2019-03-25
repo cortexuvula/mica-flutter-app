@@ -28,32 +28,30 @@ class ShortTermMemoryVisual extends StatefulWidget {
   int scoreVerbalRecognitionMemoryTenWordsInList;
   int scoreVerbalRecognitionMemoryTenWordsNotInList;
 
-
   ShortTermMemoryVisual(
       {Key key,
-        this.patientName,
-        this.assessorName,
-        this.handedness,
-        this.assessmentDate,
-        this.languageComprehensionRadioValue,
-        this.trialOneScore,
-        this.trialTwoScore,
-        this.trialThreeScore,
-        this.visuospatialPraxisImage1,
-        this.visuospatialPraxisImage2,
-        this.visuospatialPraxisImage3,
-        this.attention,
-        this.executiveAnimalNaming,
-        this.executiveLuria,
-        this.executiveSerial,
-        this.shorttermMemoryVerbal,
-        this.praxisRight,
-        this.praxisLeft,
-        this.tenWordDelay,
-        this.scoreVerbalRecognitionMemoryTenWords,
-        this.scoreVerbalRecognitionMemoryTenWordsInList,
-        this.scoreVerbalRecognitionMemoryTenWordsNotInList
-      })
+      this.patientName,
+      this.assessorName,
+      this.handedness,
+      this.assessmentDate,
+      this.languageComprehensionRadioValue,
+      this.trialOneScore,
+      this.trialTwoScore,
+      this.trialThreeScore,
+      this.visuospatialPraxisImage1,
+      this.visuospatialPraxisImage2,
+      this.visuospatialPraxisImage3,
+      this.attention,
+      this.executiveAnimalNaming,
+      this.executiveLuria,
+      this.executiveSerial,
+      this.shorttermMemoryVerbal,
+      this.praxisRight,
+      this.praxisLeft,
+      this.tenWordDelay,
+      this.scoreVerbalRecognitionMemoryTenWords,
+      this.scoreVerbalRecognitionMemoryTenWordsInList,
+      this.scoreVerbalRecognitionMemoryTenWordsNotInList})
       : super(key: key);
 
   @override
@@ -62,7 +60,6 @@ class ShortTermMemoryVisual extends StatefulWidget {
 
 class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
   double sizeBoxHeight = 10.0;
-
 
   int _radioValueImageOne;
   int _radioValueImageTwo;
@@ -80,7 +77,6 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
     var _sizeboxWidth = _width * 0.8 / 5;
-
 
     return WillPopScope(
       onWillPop: savePrefData,
@@ -110,8 +106,8 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                 onPressed: () {
                   var router = new MaterialPageRoute(
                       builder: (BuildContext context) => new Home(
-                        viewedDisclaimer: true,
-                      ));
+                            viewedDisclaimer: true,
+                          ));
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -135,19 +131,6 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
-//                          Text(
-//                            appData.testDescription,
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.w500,
-//                              fontSize: 20.0,
-//                              decoration: TextDecoration.underline,
-//                            ),
-//                          ),
-//                          SizedBox(
-//                            height: 5.0,
-//                          ),
                             Text(
                               appData.testShortTermMemoryVisualDetails,
                               textAlign: TextAlign.center,
@@ -217,21 +200,24 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                               SizedBox(
                                 width: _width * 0.8 / 3,
                                 height: 130.0,
-                                child: Image.asset("./images/block_one.png",
-                                fit: BoxFit.fitWidth,
-                                ),
-                              ),
-                              SizedBox(
-                                width: _width * 0.8 / 3,
-                                height: 130.0,
-                                child: Image.asset("./images/block_two.png",
+                                child: Image.asset(
+                                  "./images/block_one.png",
                                   fit: BoxFit.fitWidth,
                                 ),
                               ),
                               SizedBox(
                                 width: _width * 0.8 / 3,
                                 height: 130.0,
-                                child: Image.asset("./images/block_three.png",
+                                child: Image.asset(
+                                  "./images/block_two.png",
+                                  fit: BoxFit.fitWidth,
+                                ),
+                              ),
+                              SizedBox(
+                                width: _width * 0.8 / 3,
+                                height: 130.0,
+                                child: Image.asset(
+                                  "./images/block_three.png",
                                   fit: BoxFit.fitWidth,
                                 ),
                               ),
@@ -298,7 +284,8 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                             ),
                             Table(
                               border: TableBorder.all(),
-                              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                              defaultVerticalAlignment:
+                                  TableCellVerticalAlignment.middle,
                               columnWidths: {
                                 0: FlexColumnWidth(0.2),
                                 1: FlexColumnWidth(0.2),
@@ -307,291 +294,283 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                                 4: FlexColumnWidth(0.2),
                               },
                               children: [
-                                TableRow(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          "Image",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: _fontSize,
-                                          ),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "Image",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: _fontSize,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "No Mistakes",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: _fontSize,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "Few Omissions",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: _fontSize,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "Poor",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: _fontSize,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "No Drawing",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: _fontSize,
+                                      ),
+                                    ),
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "Image 1",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 0,
+                                        groupValue: _radioValueImageOne,
+                                        onChanged: _handleRadioValueChange1,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "3",
+                                        style: TextStyle(
+                                          color: Colors.black,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          "No Mistakes",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: _fontSize,
-                                          ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 1,
+                                        groupValue: _radioValueImageOne,
+                                        onChanged: _handleRadioValueChange1,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "2",
+                                        style: TextStyle(
+                                          color: Colors.black,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          "Few Omissions",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: _fontSize,
-                                          ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 2,
+                                        groupValue: _radioValueImageOne,
+                                        onChanged: _handleRadioValueChange1,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "1",
+                                        style: TextStyle(
+                                          color: Colors.black,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          "Poor",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: _fontSize,
-                                          ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 3,
+                                        groupValue: _radioValueImageOne,
+                                        onChanged: _handleRadioValueChange1,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "0",
+                                        style: TextStyle(
+                                          color: Colors.black,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          "No Drawing",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: _fontSize,
-                                          ),
+                                    ],
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "Image 2",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 0,
+                                        groupValue: _radioValueImageTwo,
+                                        onChanged: _handleRadioValueChange2,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "3",
+                                        style: TextStyle(
+                                          color: Colors.black,
                                         ),
                                       ),
-                                    ]
-                                ),
-                                TableRow(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          "Image 1",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                          ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 1,
+                                        groupValue: _radioValueImageTwo,
+                                        onChanged: _handleRadioValueChange2,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "2",
+                                        style: TextStyle(
+                                          color: Colors.black,
                                         ),
                                       ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 0,
-                                            groupValue: _radioValueImageOne,
-                                            onChanged: _handleRadioValueChange1,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "3",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                        ],
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 2,
+                                        groupValue: _radioValueImageTwo,
+                                        onChanged: _handleRadioValueChange2,
+                                        activeColor: Colors.white,
                                       ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 1,
-                                            groupValue: _radioValueImageOne,
-                                            onChanged: _handleRadioValueChange1,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "2",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 2,
-                                            groupValue: _radioValueImageOne,
-                                            onChanged: _handleRadioValueChange1,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "1",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 3,
-                                            groupValue: _radioValueImageOne,
-                                            onChanged: _handleRadioValueChange1,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "0",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ]
-                                ),
-                                TableRow(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          "Image 2",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                          ),
+                                      Text(
+                                        "1",
+                                        style: TextStyle(
+                                          color: Colors.black,
                                         ),
                                       ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 0,
-                                            groupValue: _radioValueImageTwo,
-                                            onChanged: _handleRadioValueChange2,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "3",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                        ],
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 3,
+                                        groupValue: _radioValueImageTwo,
+                                        onChanged: _handleRadioValueChange2,
+                                        activeColor: Colors.white,
                                       ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 1,
-                                            groupValue: _radioValueImageTwo,
-                                            onChanged: _handleRadioValueChange2,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "2",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 2,
-                                            groupValue: _radioValueImageTwo,
-                                            onChanged: _handleRadioValueChange2,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "1",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 3,
-                                            groupValue: _radioValueImageTwo,
-                                            onChanged: _handleRadioValueChange2,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "0",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ]
-                                ),
-                                TableRow(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          "Image 3",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                          ),
+                                      Text(
+                                        "0",
+                                        style: TextStyle(
+                                          color: Colors.black,
                                         ),
                                       ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 0,
-                                            groupValue: _radioValueImageThree,
-                                            onChanged: _handleRadioValueChange3,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "3",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                        ],
+                                    ],
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "Image 3",
+                                      style: TextStyle(
+                                        color: Colors.black,
                                       ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 1,
-                                            groupValue: _radioValueImageThree,
-                                            onChanged: _handleRadioValueChange3,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "2",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                        ],
+                                    ),
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 0,
+                                        groupValue: _radioValueImageThree,
+                                        onChanged: _handleRadioValueChange3,
+                                        activeColor: Colors.white,
                                       ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 2,
-                                            groupValue: _radioValueImageThree,
-                                            onChanged: _handleRadioValueChange3,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "1",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                        ],
+                                      Text(
+                                        "3",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                        ),
                                       ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 3,
-                                            groupValue: _radioValueImageThree,
-                                            onChanged: _handleRadioValueChange3,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "0",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                            ),
-                                          ),
-                                        ],
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 1,
+                                        groupValue: _radioValueImageThree,
+                                        onChanged: _handleRadioValueChange3,
+                                        activeColor: Colors.white,
                                       ),
-                                    ]
-                                )
+                                      Text(
+                                        "2",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 2,
+                                        groupValue: _radioValueImageThree,
+                                        onChanged: _handleRadioValueChange3,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "1",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 3,
+                                        groupValue: _radioValueImageThree,
+                                        onChanged: _handleRadioValueChange3,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "0",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ])
                               ],
                             ),
 //                          Column(
@@ -1191,34 +1170,47 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                           onPressed: () {
                             var router = new MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                new AnomiaAgnosia(
-                                  patientName: widget.patientName,
-                                  assessorName: widget.assessorName,
-                                  handedness: widget.handedness,
-                                  assessmentDate: widget.assessmentDate,
-                                  languageComprehensionRadioValue: widget
-                                      .languageComprehensionRadioValue,
-                                  trialOneScore: widget.trialOneScore,
-                                  trialTwoScore: widget.trialTwoScore,
-                                  trialThreeScore: widget.trialThreeScore,
-                                  visuospatialPraxisImage1: widget.visuospatialPraxisImage1,
-                                  visuospatialPraxisImage2: widget.visuospatialPraxisImage2,
-                                  visuospatialPraxisImage3: widget.visuospatialPraxisImage3,
-                                  attention: widget.attention,
-                                  executiveAnimalNaming: widget.executiveAnimalNaming,
-                                  executiveLuria: widget.executiveLuria,
-                                  executiveSerial: widget.executiveSerial,
-                                  praxisRight: widget.praxisRight,
-                                  praxisLeft: widget.praxisLeft,
-                                  shorttermMemoryVerbal: widget.shorttermMemoryVerbal,
-                                  tenWordDelay: widget.tenWordDelay,
-                                  scoreVerbalRecognitionMemoryTenWords: widget.scoreVerbalRecognitionMemoryTenWords,
-                                  scoreVerbalRecognitionMemoryTenWordsInList: widget.scoreVerbalRecognitionMemoryTenWordsInList,
-                                  scoreVerbalRecognitionMemoryTenWordsNotInList: widget.scoreVerbalRecognitionMemoryTenWordsNotInList,
-                                  shorttermMemoryVisualImage1: _radioValueImageOne,
-                                  shorttermMemoryVisualImage2: _radioValueImageTwo,
-                                  shorttermMemoryVisualImage3: _radioValueImageThree,
-                                ));
+                                    new AnomiaAgnosia(
+                                      patientName: widget.patientName,
+                                      assessorName: widget.assessorName,
+                                      handedness: widget.handedness,
+                                      assessmentDate: widget.assessmentDate,
+                                      languageComprehensionRadioValue: widget
+                                          .languageComprehensionRadioValue,
+                                      trialOneScore: widget.trialOneScore,
+                                      trialTwoScore: widget.trialTwoScore,
+                                      trialThreeScore: widget.trialThreeScore,
+                                      visuospatialPraxisImage1:
+                                          widget.visuospatialPraxisImage1,
+                                      visuospatialPraxisImage2:
+                                          widget.visuospatialPraxisImage2,
+                                      visuospatialPraxisImage3:
+                                          widget.visuospatialPraxisImage3,
+                                      attention: widget.attention,
+                                      executiveAnimalNaming:
+                                          widget.executiveAnimalNaming,
+                                      executiveLuria: widget.executiveLuria,
+                                      executiveSerial: widget.executiveSerial,
+                                      praxisRight: widget.praxisRight,
+                                      praxisLeft: widget.praxisLeft,
+                                      shorttermMemoryVerbal:
+                                          widget.shorttermMemoryVerbal,
+                                      tenWordDelay: widget.tenWordDelay,
+                                      scoreVerbalRecognitionMemoryTenWords: widget
+                                          .scoreVerbalRecognitionMemoryTenWords,
+                                      scoreVerbalRecognitionMemoryTenWordsInList:
+                                          widget
+                                              .scoreVerbalRecognitionMemoryTenWordsInList,
+                                      scoreVerbalRecognitionMemoryTenWordsNotInList:
+                                          widget
+                                              .scoreVerbalRecognitionMemoryTenWordsNotInList,
+                                      shorttermMemoryVisualImage1:
+                                          _radioValueImageOne,
+                                      shorttermMemoryVisualImage2:
+                                          _radioValueImageTwo,
+                                      shorttermMemoryVisualImage3:
+                                          _radioValueImageThree,
+                                    ));
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
@@ -1235,8 +1227,6 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
       ),
     );
   }
-
-
 
   void _handleRadioValueChange1(int value) {
     setState(() {
@@ -1278,5 +1268,4 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
 
     return true;
   }
-
 }

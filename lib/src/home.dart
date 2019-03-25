@@ -146,8 +146,6 @@ class _HomeState extends State<Home> {
                           RaisedButton(
                             elevation: 10.0,
                             onPressed: () {
-//                              Navigator.pushNamed(
-//                                  context, "/patient_information");
                               var router = new MaterialPageRoute(
                                   builder: (BuildContext context) =>
                                       new PatientInformation());
@@ -172,10 +170,7 @@ class _HomeState extends State<Home> {
                         elevation: 10.0,
                         onPressed: () async {
                           print("PDF tapped");
-//                          Navigator.push(
-//                              context,
-//                              MaterialPageRoute(
-//                                  builder: (context) => PDFScreen()));
+
                           _launchURL();
                         },
                         child: Text(appData.resourceButtonBooklet),
@@ -230,35 +225,6 @@ class _HomeState extends State<Home> {
   }
 
   void saveInitialData() async {
-//    String patientName;
-//    String assessorName;
-//    String handedness;
-//    DateTime assessmentDate;
-//    int languageComprehensionRadioValue;
-//    int trialOneScore;
-//    int trialTwoScore;
-//    int trialThreeScore;
-//    int visuospatialPraxisImage1;
-//    int visuospatialPraxisImage2;
-//    int visuospatialPraxisImage3;
-//    int attention;
-//    int executiveAnimalNaming;
-//    int executiveLuria;
-//    int executiveSerial;
-//    int shorttermMemoryVerbal;
-//    int praxisRight;
-//    int praxisLeft;
-//    int tenWordDelay;
-//    int scoreVerbalRecognitionMemoryTenWords;
-//    int scoreVerbalRecognitionMemoryTenWordsInList;
-//    int scoreVerbalRecognitionMemoryTenWordsNotInList;
-//    int shorttermMemoryVisualImage1;
-//    int shorttermMemoryVisualImage2;
-//    int shorttermMemoryVisualImage3;
-//    int anomiaAgnosia;
-//    int agnosia;
-//    int executive;
-//    int spokenLanguage;
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     // screen 1

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
-
 class ExecutiveFunctions extends StatefulWidget {
-
-
   int executiveAnimalNaming;
 
   ExecutiveFunctions({Key key, this.executiveAnimalNaming}) : super(key: key);
@@ -13,7 +10,6 @@ class ExecutiveFunctions extends StatefulWidget {
 }
 
 class _ExecutiveFunctionsState extends State<ExecutiveFunctions> {
-
   Color cardColorAnimalNaming;
   String resultAnimalNaming = "";
 
@@ -22,9 +18,8 @@ class _ExecutiveFunctionsState extends State<ExecutiveFunctions> {
     super.initState();
 
     radio3ButtonValueToStringAnimalNaming(widget.executiveAnimalNaming);
-    
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,14 +49,20 @@ class _ExecutiveFunctionsState extends State<ExecutiveFunctions> {
             color: cardColorAnimalNaming,
             elevation: 10.0,
             child: ListTile(
-              title: Text("Executive: Animal Naming Task",style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),),
-              trailing: Text(resultAnimalNaming,style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),),
+              title: Text(
+                "Executive: Animal Naming Task",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              trailing: Text(
+                resultAnimalNaming,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ),
           )
         ],
@@ -69,30 +70,32 @@ class _ExecutiveFunctionsState extends State<ExecutiveFunctions> {
     );
   }
 
-  radio3ButtonValueToStringAnimalNaming (int value) {
+  radio3ButtonValueToStringAnimalNaming(int value) {
     switch (value) {
-      case 0: {
-        setState(() {
-          cardColorAnimalNaming = Colors.green;
-          resultAnimalNaming = "Normal";
-        });
-        break;
-      }
-      case 1: {
-        setState(() {
-          cardColorAnimalNaming = Colors.yellow;
-          resultAnimalNaming = "Equivocal";
-        });
-        break;
-      }
-      case 2: {
-        setState(() {
-          cardColorAnimalNaming = Colors.red;
-          resultAnimalNaming = "Impaired";
-        });
-        break;
-      }
+      case 0:
+        {
+          setState(() {
+            cardColorAnimalNaming = Colors.green;
+            resultAnimalNaming = "Normal";
+          });
+          break;
+        }
+      case 1:
+        {
+          setState(() {
+            cardColorAnimalNaming = Colors.yellow;
+            resultAnimalNaming = "Equivocal";
+          });
+          break;
+        }
+      case 2:
+        {
+          setState(() {
+            cardColorAnimalNaming = Colors.red;
+            resultAnimalNaming = "Impaired";
+          });
+          break;
+        }
     }
   }
-
 }

@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
-
 class VisualShortTermMemory extends StatefulWidget {
-
-
   int shorttermMemoryVisualImage1;
   int shorttermMemoryVisualImage2;
   int shorttermMemoryVisualImage3;
 
-  VisualShortTermMemory({Key key,
+  VisualShortTermMemory({
+    Key key,
     this.shorttermMemoryVisualImage1,
     this.shorttermMemoryVisualImage2,
     this.shorttermMemoryVisualImage3,
@@ -19,11 +17,8 @@ class VisualShortTermMemory extends StatefulWidget {
 }
 
 class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
-
-
   String result = "Normal";
   Color resultColor;
-
 
   @override
   void initState() {
@@ -60,14 +55,20 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
             color: resultColor,
             elevation: 10.0,
             child: ListTile(
-              title: Text("Short-Term Memory Visual: Line Drawing Recall",style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),),
-              trailing: Text(result,style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),),
+              title: Text(
+                "Short-Term Memory Visual: Line Drawing Recall",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              trailing: Text(
+                result,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ),
           )
         ],
@@ -75,7 +76,7 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
     );
   }
 
-  combineScores () {
+  combineScores() {
     int score1 = 3 - widget.shorttermMemoryVisualImage1;
     int score2 = 3 - widget.shorttermMemoryVisualImage2;
     int score3 = 3 - widget.shorttermMemoryVisualImage3;

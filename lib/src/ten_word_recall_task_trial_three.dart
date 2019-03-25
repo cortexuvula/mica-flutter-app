@@ -15,17 +15,18 @@ class TenWordRecallTrialThree extends StatefulWidget {
 
   TenWordRecallTrialThree(
       {Key key,
-        this.patientName,
-        this.assessorName,
-        this.handedness,
-        this.assessmentDate,
-        this.languageComprehensionRadioValue,
-        this.trialOneScore,
-        this.trialTwoScore})
+      this.patientName,
+      this.assessorName,
+      this.handedness,
+      this.assessmentDate,
+      this.languageComprehensionRadioValue,
+      this.trialOneScore,
+      this.trialTwoScore})
       : super(key: key);
 
   @override
-  _TenWordRecallTrialThreeState createState() => _TenWordRecallTrialThreeState();
+  _TenWordRecallTrialThreeState createState() =>
+      _TenWordRecallTrialThreeState();
 }
 
 class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
@@ -47,9 +48,9 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
     var screenHeightInfo =
-    (MediaQuery.of(context).size.height * 0.3).floorToDouble();
+        (MediaQuery.of(context).size.height * 0.3).floorToDouble();
     var screenHeightWords =
-    (MediaQuery.of(context).size.height * 0.45).floorToDouble();
+        (MediaQuery.of(context).size.height * 0.45).floorToDouble();
     return WillPopScope(
       onWillPop: savePrefData,
       child: Scaffold(
@@ -78,8 +79,8 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
                 onPressed: () {
                   var router = new MaterialPageRoute(
                       builder: (BuildContext context) => new Home(
-                        viewedDisclaimer: true,
-                      ));
+                            viewedDisclaimer: true,
+                          ));
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -148,7 +149,8 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                appData.instructionsTenWordRecallTrialThreePatient1,
+                                appData
+                                    .instructionsTenWordRecallTrialThreePatient1,
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w500,
@@ -184,7 +186,8 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                appData.instructionsTenWordRecallTrialThreePatient2,
+                                appData
+                                    .instructionsTenWordRecallTrialThreePatient2,
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w500,
@@ -253,17 +256,18 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
                         onPressed: () {
                           var router = new MaterialPageRoute(
                               builder: (BuildContext context) =>
-                              new VisuospatialPraxis(
-                                patientName: widget.patientName,
-                                assessorName: widget.assessorName,
-                                handedness: widget.handedness,
-                                assessmentDate: widget.assessmentDate,
-                                languageComprehensionRadioValue:
-                                widget.languageComprehensionRadioValue,
-                                trialOneScore: widget.trialOneScore,
-                                trialTwoScore: widget.trialTwoScore,
-                                trialThreeScore: scoreTenWordRecallTrialThree,
-                              ));
+                                  new VisuospatialPraxis(
+                                    patientName: widget.patientName,
+                                    assessorName: widget.assessorName,
+                                    handedness: widget.handedness,
+                                    assessmentDate: widget.assessmentDate,
+                                    languageComprehensionRadioValue:
+                                        widget.languageComprehensionRadioValue,
+                                    trialOneScore: widget.trialOneScore,
+                                    trialTwoScore: widget.trialTwoScore,
+                                    trialThreeScore:
+                                        scoreTenWordRecallTrialThree,
+                                  ));
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => true);
                         }),
@@ -287,7 +291,6 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
           wordButtonColor[i] = Colors.green;
         });
       }
-
     }
 
     setState(() {

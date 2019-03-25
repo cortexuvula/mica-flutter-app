@@ -24,7 +24,7 @@ class _ResourcePageState extends State<ResourcePage> {
         ),
       ),
       body: ListView.builder(
-        itemCount: appData.videos.length,
+          itemCount: appData.videos.length,
           itemBuilder: (BuildContext context, int index) {
             return Card(
               color: Colors.white,
@@ -34,15 +34,14 @@ class _ResourcePageState extends State<ResourcePage> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => VideoPage(
-                            videoTitle: appData.videos[index]["title"],
-                            videoURL: appData.videos[index]["video"],
-                          )));
+                                videoTitle: appData.videos[index]["title"],
+                                videoURL: appData.videos[index]["video"],
+                              )));
                 },
                 title: Text(appData.videos[index]["title"]),
               ),
             );
-          }
-      ),
+          }),
     );
   }
 }

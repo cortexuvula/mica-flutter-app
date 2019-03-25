@@ -24,22 +24,22 @@ class Praxis extends StatefulWidget {
 
   Praxis(
       {Key key,
-        this.patientName,
-        this.assessorName,
-        this.handedness,
-        this.assessmentDate,
-        this.languageComprehensionRadioValue,
-        this.trialOneScore,
-        this.trialTwoScore,
-        this.trialThreeScore,
-        this.visuospatialPraxisImage1,
-        this.visuospatialPraxisImage2,
-        this.visuospatialPraxisImage3,
-        this.attention,
-        this.executiveAnimalNaming,
-        this.executiveLuria,
-        this.executiveSerial,
-        this.shorttermMemoryVerbal})
+      this.patientName,
+      this.assessorName,
+      this.handedness,
+      this.assessmentDate,
+      this.languageComprehensionRadioValue,
+      this.trialOneScore,
+      this.trialTwoScore,
+      this.trialThreeScore,
+      this.visuospatialPraxisImage1,
+      this.visuospatialPraxisImage2,
+      this.visuospatialPraxisImage3,
+      this.attention,
+      this.executiveAnimalNaming,
+      this.executiveLuria,
+      this.executiveSerial,
+      this.shorttermMemoryVerbal})
       : super(key: key);
 
   @override
@@ -52,7 +52,6 @@ class _PraxisState extends State<Praxis> {
   int _radioValueLeft;
 
   double _fontsize = 8.0;
-
 
   @override
   void initState() {
@@ -92,8 +91,8 @@ class _PraxisState extends State<Praxis> {
                 onPressed: () {
                   var router = new MaterialPageRoute(
                       builder: (BuildContext context) => new Home(
-                        viewedDisclaimer: true,
-                      ));
+                            viewedDisclaimer: true,
+                          ));
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -117,19 +116,6 @@ class _PraxisState extends State<Praxis> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
-//                          Text(
-//                            appData.testDescription,
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.w500,
-//                              fontSize: 20.0,
-//                              decoration: TextDecoration.underline,
-//                            ),
-//                          ),
-//                          SizedBox(
-//                            height: 5.0,
-//                          ),
                             Text(
                               appData.testPraxisDetails,
                               textAlign: TextAlign.center,
@@ -155,19 +141,6 @@ class _PraxisState extends State<Praxis> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
-//                          Text(
-//                            appData.testToPatient,
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.w500,
-//                              fontSize: 20.0,
-//                              decoration: TextDecoration.underline,
-//                            ),
-//                          ),
-//                          SizedBox(
-//                            height: 5.0,
-//                          ),
                             Text(
                               appData.testPraxisToPatient,
                               textAlign: TextAlign.center,
@@ -193,106 +166,16 @@ class _PraxisState extends State<Praxis> {
                         padding: const EdgeInsets.all(8.0),
                         child: Container(
                             width: _width * 0.8,
-
-                            child: Image.asset("./images/pen.png", fit: BoxFit.contain,)),
+                            child: Image.asset(
+                              "./images/pen.png",
+                              fit: BoxFit.contain,
+                            )),
                       ),
                     ),
                   ),
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-//                Container(
-//                  width: _width * 0.9,
-//                  child: Card(
-//                    elevation: 10.0,
-//                    color: Colors.white,
-//                    child: Padding(
-//                      padding: const EdgeInsets.all(8.0),
-//                      child: Column(
-//                        children: <Widget>[
-//                          Row(
-//                            children: <Widget>[
-//                              Checkbox(
-//                                value: _valueDate,
-//                                onChanged: _valueDateChanged,
-//                                activeColor: Colors.green,
-//                              ),
-//                              Text(
-//                                "Date",
-//                                style: TextStyle(
-//                                  color: Colors.black,
-//                                ),
-//                              ),
-//                            ],
-//                          ),
-//                          Row(
-//                            children: <Widget>[
-//                              Checkbox(
-//                                value: _valueMonth,
-//                                onChanged: _valueMonthChanged,
-//                                activeColor: Colors.green,
-//                              ),
-//                              Text(
-//                                "Month",
-//                                style: TextStyle(
-//                                  color: Colors.black,
-//                                ),
-//                              ),
-//                            ],
-//                          ),
-//                          Row(
-//                            children: <Widget>[
-//                              Checkbox(
-//                                value: _valueDay,
-//                                onChanged: _valueDayChanged,
-//                                activeColor: Colors.green,
-//                              ),
-//                              Text(
-//                                "Day",
-//                                style: TextStyle(
-//                                  color: Colors.black,
-//                                ),
-//                              ),
-//                            ],
-//                          ),
-//                          Row(
-//                            children: <Widget>[
-//                              Checkbox(
-//                                value: _valuePlace,
-//                                onChanged: _valuePlaceChanged,
-//                                activeColor: Colors.green,
-//                              ),
-//                              Text(
-//                                "Place",
-//                                style: TextStyle(
-//                                  color: Colors.black,
-//                                ),
-//                              ),
-//                            ],
-//                          ),
-//                          Row(
-//                            children: <Widget>[
-//                              Checkbox(
-//                                value: _valueCity,
-//                                onChanged: _valueCityChanged,
-//                                activeColor: Colors.green,
-//                              ),
-//                              Text(
-//                                "City",
-//                                style: TextStyle(
-//                                  color: Colors.black,
-//                                ),
-//                              ),
-//                            ],
-//                          ),
-//                        ],
-//                      ),
-//                    ),
-//                  ),
-//                ),
-//                SizedBox(
-//                  height: sizeBoxHeight,
-//                ),
                   Container(
                     width: _width * 0.9,
                     child: Card(
@@ -302,19 +185,6 @@ class _PraxisState extends State<Praxis> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
-//                          Text(
-//                            appData.testResponse,
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.w500,
-//                              fontSize: 20.0,
-//                              decoration: TextDecoration.underline,
-//                            ),
-//                          ),
-//                          SizedBox(
-//                            height: 5.0,
-//                          ),
                             Text(
                               appData.testPraxisResponse,
                               textAlign: TextAlign.center,
@@ -323,10 +193,10 @@ class _PraxisState extends State<Praxis> {
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
                             ),
-
                             Table(
                               border: TableBorder.all(),
-                              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                              defaultVerticalAlignment:
+                                  TableCellVerticalAlignment.middle,
                               columnWidths: {
                                 0: FlexColumnWidth(0.15),
                                 1: FlexColumnWidth(0.27),
@@ -334,275 +204,155 @@ class _PraxisState extends State<Praxis> {
                                 3: FlexColumnWidth(0.27)
                               },
                               children: [
-
-                                TableRow(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text("Right",
-                                        style: TextStyle(fontSize: _fontsize),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "Right",
+                                      style: TextStyle(fontSize: _fontsize),
+                                    ),
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 0,
+                                        groupValue: _radioValueRight,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Normal",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: _fontsize,
                                         ),
                                       ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 0,
-                                            groupValue: _radioValueRight,
-                                            onChanged: _handleRadioValueChange,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "Normal",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: _fontsize,
-                                            ),
-                                          ),
-                                        ],
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 1,
+                                        groupValue: _radioValueRight,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
                                       ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 1,
-                                            groupValue: _radioValueRight,
-                                            onChanged: _handleRadioValueChange,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "Equivocal",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: _fontsize,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 2,
-                                            groupValue: _radioValueRight,
-                                            onChanged: _handleRadioValueChange,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "Impaired",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: _fontsize,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ]
-                                ),
-                                TableRow(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text("Left",
-                                          style: TextStyle(fontSize: _fontsize),
+                                      Text(
+                                        "Equivocal",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: _fontsize,
                                         ),
                                       ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 0,
-                                            groupValue: _radioValueLeft,
-                                            onChanged: _handleRadioValueChangeLeft,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "Normal",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: _fontsize,
-                                            ),
-                                          ),
-                                        ],
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 2,
+                                        groupValue: _radioValueRight,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
                                       ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 1,
-                                            groupValue: _radioValueLeft,
-                                            onChanged: _handleRadioValueChangeLeft,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "Equivocal",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: _fontsize,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 2,
-                                            groupValue: _radioValueLeft,
-                                            onChanged: _handleRadioValueChangeLeft,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "Impaired",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: _fontsize,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ]
-                                ),
-                                TableRow(
-                                    children: [
-                                      Container(),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          appData
-                                              .testPraxisResponseNormal,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 10.0),
+                                      Text(
+                                        "Impaired",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: _fontsize,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          appData
-                                              .testPraxisResponseEquivocal,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 10.0),
+                                    ],
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "Left",
+                                      style: TextStyle(fontSize: _fontsize),
+                                    ),
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 0,
+                                        groupValue: _radioValueLeft,
+                                        onChanged: _handleRadioValueChangeLeft,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Normal",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: _fontsize,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          appData
-                                              .testPraxisResponseImpaired,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 10.0),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 1,
+                                        groupValue: _radioValueLeft,
+                                        onChanged: _handleRadioValueChangeLeft,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Equivocal",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: _fontsize,
                                         ),
                                       ),
-                                    ]
-                                )
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 2,
+                                        groupValue: _radioValueLeft,
+                                        onChanged: _handleRadioValueChangeLeft,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Impaired",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: _fontsize,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  Container(),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData.testPraxisResponseNormal,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 10.0),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData.testPraxisResponseEquivocal,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 10.0),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData.testPraxisResponseImpaired,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 10.0),
+                                    ),
+                                  ),
+                                ])
                               ],
                             ),
-//                          Column(
-//                            crossAxisAlignment: CrossAxisAlignment.start,
-//                            children: <Widget>[
-//                              Row(
-//                                mainAxisAlignment: MainAxisAlignment.center,
-//                                children: <Widget>[
-//                                  SizedBox(
-//                                    width: sizeBoxWidth,
-//                                    child: Row(
-//                                      children: <Widget>[
-//                                        Radio(
-//                                          value: 0,
-//                                          groupValue: _radioValue,
-//                                          onChanged: _handleRadioValueChange,
-//                                          activeColor: Colors.white,
-//                                        ),
-//                                        Text(
-//                                          "Normal",
-//                                          style: TextStyle(
-//                                            color: Colors.black,
-//                                            fontSize: 10.0,
-//                                          ),
-//                                        ),
-//                                      ],
-//                                    ),
-//                                  ),
-//                                  SizedBox(
-//                                    width: sizeBoxWidth,
-//                                    child: Row(
-//                                      children: <Widget>[
-//                                        Radio(
-//                                          value: 1,
-//                                          groupValue: _radioValue,
-//                                          onChanged: _handleRadioValueChange,
-//                                          activeColor: Colors.white,
-//                                        ),
-//                                        Text(
-//                                          "Equivocal",
-//                                          style: TextStyle(
-//                                            color: Colors.black,
-//                                            fontSize: 10.0,
-//                                          ),
-//                                        ),
-//                                      ],
-//                                    ),
-//                                  ),
-//                                  SizedBox(
-//                                    width: sizeBoxWidth,
-//                                    child: Row(
-//                                      children: <Widget>[
-//                                        Radio(
-//                                          value: 2,
-//                                          groupValue: _radioValue,
-//                                          onChanged: _handleRadioValueChange,
-//                                          activeColor: Colors.white,
-//                                        ),
-//                                        Text(
-//                                          "Impaired",
-//                                          style: TextStyle(
-//                                            color: Colors.black,
-//                                            fontSize: 10.0,
-//                                          ),
-//                                        ),
-//                                      ],
-//                                    ),
-//                                  )
-//                                ],
-//                              ),
-//                              Row(
-//                                mainAxisAlignment: MainAxisAlignment.center,
-//                                crossAxisAlignment: CrossAxisAlignment.start,
-//                                children: <Widget>[
-//                                  Padding(
-//                                    padding: const EdgeInsets.all(2.0),
-//                                    child: SizedBox(
-//                                      width: sizeBoxWidth,
-//                                      child: Text(
-//                                        appData
-//                                            .testPraxisResponseNormal,
-//                                        textAlign: TextAlign.center,
-//                                        style: TextStyle(fontSize: 10.0),
-//                                      ),
-//                                    ),
-//                                  ),
-//                                  Padding(
-//                                    padding: const EdgeInsets.all(2.0),
-//                                    child: SizedBox(
-//                                      width: sizeBoxWidth,
-//                                      child: Text(
-//                                        appData
-//                                            .testPraxisResponseEquivocal,
-//                                        textAlign: TextAlign.center,
-//                                        style: TextStyle(fontSize: 10.0),
-//                                      ),
-//                                    ),
-//                                  ),
-//                                  Padding(
-//                                    padding: const EdgeInsets.all(2.0),
-//                                    child: SizedBox(
-//                                      width: sizeBoxWidth,
-//                                      child: Text(
-//                                        appData
-//                                            .testPraxisResponseImpaired,
-//                                        textAlign: TextAlign.center,
-//                                        style: TextStyle(fontSize: 10.0),
-//                                      ),
-//                                    ),
-//                                  ),
-//                                ],
-//                              )
-//                            ],
-//                          ),
                           ],
                         ),
                       ),
@@ -623,27 +373,32 @@ class _PraxisState extends State<Praxis> {
                           onPressed: () {
                             var router = new MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                new TenWordDelayedRecall(
-                                  patientName: widget.patientName,
-                                  assessorName: widget.assessorName,
-                                  handedness: widget.handedness,
-                                  assessmentDate: widget.assessmentDate,
-                                  languageComprehensionRadioValue: widget
-                                      .languageComprehensionRadioValue,
-                                  trialOneScore: widget.trialOneScore,
-                                  trialTwoScore: widget.trialTwoScore,
-                                  trialThreeScore: widget.trialThreeScore,
-                                  visuospatialPraxisImage1: widget.visuospatialPraxisImage1,
-                                  visuospatialPraxisImage2: widget.visuospatialPraxisImage2,
-                                  visuospatialPraxisImage3: widget.visuospatialPraxisImage3,
-                                  attention: widget.attention,
-                                  executiveAnimalNaming: widget.executiveAnimalNaming,
-                                  executiveLuria: widget.executiveLuria,
-                                  executiveSerial: widget.executiveSerial,
-                                  shorttermMemoryVerbal: widget.shorttermMemoryVerbal,
-                                  praxisRight: _radioValueRight,
-                                  praxisLeft: _radioValueLeft,
-                                ));
+                                    new TenWordDelayedRecall(
+                                      patientName: widget.patientName,
+                                      assessorName: widget.assessorName,
+                                      handedness: widget.handedness,
+                                      assessmentDate: widget.assessmentDate,
+                                      languageComprehensionRadioValue: widget
+                                          .languageComprehensionRadioValue,
+                                      trialOneScore: widget.trialOneScore,
+                                      trialTwoScore: widget.trialTwoScore,
+                                      trialThreeScore: widget.trialThreeScore,
+                                      visuospatialPraxisImage1:
+                                          widget.visuospatialPraxisImage1,
+                                      visuospatialPraxisImage2:
+                                          widget.visuospatialPraxisImage2,
+                                      visuospatialPraxisImage3:
+                                          widget.visuospatialPraxisImage3,
+                                      attention: widget.attention,
+                                      executiveAnimalNaming:
+                                          widget.executiveAnimalNaming,
+                                      executiveLuria: widget.executiveLuria,
+                                      executiveSerial: widget.executiveSerial,
+                                      shorttermMemoryVerbal:
+                                          widget.shorttermMemoryVerbal,
+                                      praxisRight: _radioValueRight,
+                                      praxisLeft: _radioValueLeft,
+                                    ));
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
@@ -678,7 +433,6 @@ class _PraxisState extends State<Praxis> {
     int right = prefs.getInt("praxisRight");
     int left = prefs.getInt("praxisLeft");
 
-
     setState(() {
       _radioValueLeft = left;
       _radioValueRight = right;
@@ -691,9 +445,6 @@ class _PraxisState extends State<Praxis> {
     prefs.setInt("praxisRight", _radioValueRight);
     prefs.setInt("praxisLeft", _radioValueLeft);
 
-
-
     return true;
   }
-  
 }

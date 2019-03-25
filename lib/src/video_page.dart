@@ -5,30 +5,18 @@ import 'package:chewie/chewie.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPage extends StatefulWidget {
-
   String videoURL;
   String videoTitle;
 
-  VideoPage(
-      {Key key,
-        this.videoURL,
-        this.videoTitle
-      }) : super(key: key);
+  VideoPage({Key key, this.videoURL, this.videoTitle}) : super(key: key);
 
   @override
   _VideoPageState createState() => _VideoPageState();
 }
 
 class _VideoPageState extends State<VideoPage> {
-
-
-
   VideoPlayerController videoPlayerController;
   ChewieController _chewieController;
-
-
-
-
 
   @override
   void initState() {

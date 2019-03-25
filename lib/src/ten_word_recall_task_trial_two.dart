@@ -147,7 +147,8 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                appData.instructionsTenWordRecallTrialTwoPatient1,
+                                appData
+                                    .instructionsTenWordRecallTrialTwoPatient1,
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w500,
@@ -285,7 +286,6 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
           wordButtonColor[i] = Colors.green;
         });
       }
-
     }
 
     setState(() {

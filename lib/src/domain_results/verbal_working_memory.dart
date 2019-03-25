@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 
-
 class VerbalWorkingMemory extends StatefulWidget {
-
-
   int trialOneScore;
-
 
   VerbalWorkingMemory({Key key, this.trialOneScore}) : super(key: key);
 
@@ -14,15 +10,13 @@ class VerbalWorkingMemory extends StatefulWidget {
 }
 
 class _VerbalWorkingMemoryState extends State<VerbalWorkingMemory> {
-
   Color resultColor;
   String result = "Normal";
 
-
   @override
   void initState() {
-      super.initState();
-      valueTrial12ResultToString(widget.trialOneScore);
+    super.initState();
+    valueTrial12ResultToString(widget.trialOneScore);
   }
 
   @override
@@ -54,14 +48,20 @@ class _VerbalWorkingMemoryState extends State<VerbalWorkingMemory> {
             color: resultColor,
             elevation: 10.0,
             child: ListTile(
-              title: Text("Working Memory Verbal Trial 1",style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),),
-              trailing: Text(result,style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),),
+              title: Text(
+                "Working Memory Verbal Trial 1",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              trailing: Text(
+                result,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ),
           )
         ],
@@ -71,28 +71,29 @@ class _VerbalWorkingMemoryState extends State<VerbalWorkingMemory> {
 
   String valueTrial12ResultToString(int _valueTotal) {
     switch (_valueTotal > 6) {
-      case true: {
-        setState(() {
-          result = "Normal";
-          resultColor = Colors.green;
-        });
-        break;
-      }
-      case false: {
-        if (_valueTotal < 5) {
+      case true:
+        {
           setState(() {
-            result = "Impaired";
-            resultColor = Colors.red;
+            result = "Normal";
+            resultColor = Colors.green;
           });
           break;
         }
-        setState(() {
-          result = "Equivocal";
-          resultColor = Colors.yellow;
-        });
-        break;
-      }
-
+      case false:
+        {
+          if (_valueTotal < 5) {
+            setState(() {
+              result = "Impaired";
+              resultColor = Colors.red;
+            });
+            break;
+          }
+          setState(() {
+            result = "Equivocal";
+            resultColor = Colors.yellow;
+          });
+          break;
+        }
     }
   }
 }
