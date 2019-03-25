@@ -1,15 +1,11 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/executive_luria.dart';
 import 'package:mica/src/home.dart';
-import 'package:async/async.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-
 class ExecutiveAnimalNaming extends StatefulWidget {
-
   String patientName;
   String assessorName;
   String handedness;
@@ -25,28 +21,30 @@ class ExecutiveAnimalNaming extends StatefulWidget {
 
   ExecutiveAnimalNaming(
       {Key key,
-        this.patientName,
-        this.assessorName,
-        this.handedness,
-        this.assessmentDate,
-        this.languageComprehensionRadioValue,
-        this.trialOneScore,
-        this.trialTwoScore,
-        this.trialThreeScore,
-        this.visuospatialPraxisImage1,
-        this.visuospatialPraxisImage2,
-        this.visuospatialPraxisImage3,
-        this.attention})
+      this.patientName,
+      this.assessorName,
+      this.handedness,
+      this.assessmentDate,
+      this.languageComprehensionRadioValue,
+      this.trialOneScore,
+      this.trialTwoScore,
+      this.trialThreeScore,
+      this.visuospatialPraxisImage1,
+      this.visuospatialPraxisImage2,
+      this.visuospatialPraxisImage3,
+      this.attention})
       : super(key: key);
 
   @override
   _ExecutiveAnimalNamingState createState() => _ExecutiveAnimalNamingState();
 }
 
-class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> with TickerProviderStateMixin {
+class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
+    with TickerProviderStateMixin {
   double sizeBoxHeight = 10.0;
   int _radioValue;
   int _counter = 0;
+  int startSeconds = 60;
 
   String buttonText = "Start";
 
@@ -60,17 +58,15 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> with Tick
     return '${duration.inMinutes}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
 
-
   @override
   void initState() {
     super.initState();
+    getPrefsData();
     clockController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 60),
+      duration: Duration(seconds: startSeconds),
     );
-    getPrefsData();
   }
-
 
   @override
   void dispose() {
@@ -205,24 +201,25 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> with Tick
                   ),
                   Container(
                     width: _width * 0.9,
-
                     child: Card(
                       elevation: 10.0,
                       color: Colors.deepPurple.shade300,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
-
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             Expanded(
                               child: AnimatedBuilder(
                                   animation: clockController,
-                                  builder: (BuildContext context, Widget child) {
+                                  builder:
+                                      (BuildContext context, Widget child) {
                                     return new Text(
                                       timerString,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
+                                      style: TextStyle(
+                                          fontSize: 20.0,
+                                          fontWeight: FontWeight.w500),
                                     );
                                   }),
                             ),
@@ -230,28 +227,28 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> with Tick
                               width: 150.0,
                               child: FlatButton(
                                   color: Colors.cyan.shade200,
-
                                   onPressed: () {
-                                    if (clockController.isAnimating){
+                                    if (clockController.isAnimating) {
                                       clockController.stop();
                                       setState(() {
                                         buttonText = "Resume";
                                       });
                                     } else {
-                                      clockController.reverse(from: clockController.value == 0.0
-                                          ? 1.0
-                                          : clockController.value);
+                                      clockController.reverse(
+                                          from: clockController.value == 0.0
+                                              ? 1.0
+                                              : clockController.value);
                                       setState(() {
                                         buttonText = "Pause";
                                       });
                                     }
-
-
                                   },
-                                  child: Text("$buttonText",
-                                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
-                                  )
-                              ),
+                                  child: Text(
+                                    "$buttonText",
+                                    style: TextStyle(
+                                        fontSize: 20.0,
+                                        fontWeight: FontWeight.w500),
+                                  )),
                             )
                           ],
                         ),
@@ -273,7 +270,6 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> with Tick
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(
-
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: <Widget>[
                                   Expanded(
@@ -283,9 +279,9 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> with Tick
                                       child: Center(
                                         child: Text(
                                           "$_counter",
-                                          style: TextStyle(fontSize: 20.0,
-                                              fontWeight: FontWeight.w500,
-
+                                          style: TextStyle(
+                                            fontSize: 20.0,
+                                            fontWeight: FontWeight.w500,
                                           ),
                                           textAlign: TextAlign.center,
                                         ),
@@ -296,22 +292,27 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> with Tick
                                     height: 75.0,
                                     color: Colors.cyan.shade200,
                                     child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: <Widget>[
                                         Container(
-                                            color: Colors.cyan.shade200,
-                                            child: Text("Tap to count Words",
-                                              style: TextStyle(fontWeight: FontWeight.w500,),
-                                            ),),
+                                          color: Colors.cyan.shade200,
+                                          child: Text(
+                                            "Tap to count Words",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
                                         Row(
                                           children: <Widget>[
                                             FlatButton(
-
                                                 color: Colors.cyan.shade200,
                                                 onPressed: () {
                                                   setState(() {
                                                     _counter += 1;
-                                                    if (_counter >= 12 && _counter <= 14) {
+                                                    if (_counter >= 12 &&
+                                                        _counter <= 14) {
                                                       _radioValue = 1;
                                                     }
                                                     if (_counter > 14) {
@@ -319,17 +320,18 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> with Tick
                                                     }
                                                   });
                                                 },
-                                                child: Icon(Icons.add,)
-                                            ),
+                                                child: Icon(
+                                                  Icons.add,
+                                                )),
                                             FlatButton(
-
                                                 color: Colors.cyan.shade200,
                                                 onPressed: () {
                                                   if (_counter > 0) {
                                                     _counter -= 1;
                                                   }
                                                   setState(() {
-                                                    if (_counter >= 12 && _counter <= 14) {
+                                                    if (_counter >= 12 &&
+                                                        _counter <= 14) {
                                                       _radioValue = 1;
                                                     }
                                                     if (_counter > 14) {
@@ -337,8 +339,9 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> with Tick
                                                     }
                                                   });
                                                 },
-                                                child: Icon(Icons.remove,)
-                                            ),
+                                                child: Icon(
+                                                  Icons.remove,
+                                                )),
                                           ],
                                         ),
                                       ],
@@ -347,216 +350,100 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> with Tick
                                 ],
                               ),
                             ),
-
                             Table(
                               border: TableBorder.all(),
-                              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                              defaultVerticalAlignment:
+                                  TableCellVerticalAlignment.middle,
                               columnWidths: {
                                 0: FlexColumnWidth(0.3),
                                 1: FlexColumnWidth(0.3),
                                 2: FlexColumnWidth(0.34)
                               },
                               children: [
-                                TableRow(
-                                  children: [
-                                    Row(
-                                      children: <Widget>[
-                                        Radio(
-                                          value: 0,
-                                          groupValue: _radioValue,
-                                          onChanged: _handleRadioValueChange,
-                                          activeColor: Colors.white,
-                                        ),
-                                        Text(
-                                          "Normal",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 10.0,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: <Widget>[
-                                        Radio(
-                                          value: 1,
-                                          groupValue: _radioValue,
-                                          onChanged: _handleRadioValueChange,
-                                          activeColor: Colors.white,
-                                        ),
-                                        Text(
-                                          "Equivocal",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 10.0,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: <Widget>[
-                                        Radio(
-                                          value: 2,
-                                          groupValue: _radioValue,
-                                          onChanged: _handleRadioValueChange,
-                                          activeColor: Colors.white,
-                                        ),
-                                        Text(
-                                          "Impaired",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 10.0,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ]
-                                ),
-                                TableRow(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        appData
-                                            .testExecutiveAnimalNamingResponseNormal,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(fontSize: 10.0),
+                                TableRow(children: [
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 0,
+                                        groupValue: _radioValue,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        appData
-                                            .testExecutiveAnimalNamingResponseEquivocal,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(fontSize: 10.0),
+                                      Text(
+                                        "Normal",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 10.0,
+                                        ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        appData
-                                            .testExecutiveAnimalNamingResponseImpaired,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(fontSize: 10.0),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 1,
+                                        groupValue: _radioValue,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
                                       ),
+                                      Text(
+                                        "Equivocal",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 10.0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 2,
+                                        groupValue: _radioValue,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Impaired",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 10.0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData
+                                          .testExecutiveAnimalNamingResponseNormal,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 10.0),
                                     ),
-                                  ]
-                                )
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData
+                                          .testExecutiveAnimalNamingResponseEquivocal,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 10.0),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData
+                                          .testExecutiveAnimalNamingResponseImpaired,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 10.0),
+                                    ),
+                                  ),
+                                ])
                               ],
                             ),
-//                          Column(
-//                            crossAxisAlignment: CrossAxisAlignment.start,
-//                            children: <Widget>[
-//                              Row(
-//                                mainAxisAlignment: MainAxisAlignment.center,
-//                                children: <Widget>[
-//                                  SizedBox(
-//                                    width: sizeBoxWidth,
-//                                    child: Row(
-//                                      children: <Widget>[
-//                                        Radio(
-//                                          value: 0,
-//                                          groupValue: _radioValue,
-//                                          onChanged: _handleRadioValueChange,
-//                                          activeColor: Colors.white,
-//                                        ),
-//                                        Text(
-//                                          "Normal",
-//                                          style: TextStyle(
-//                                            color: Colors.black,
-//                                            fontSize: 10.0,
-//                                          ),
-//                                        ),
-//                                      ],
-//                                    ),
-//                                  ),
-//                                  SizedBox(
-//                                    width: sizeBoxWidth,
-//                                    child: Row(
-//                                      children: <Widget>[
-//                                        Radio(
-//                                          value: 1,
-//                                          groupValue: _radioValue,
-//                                          onChanged: _handleRadioValueChange,
-//                                          activeColor: Colors.white,
-//                                        ),
-//                                        Text(
-//                                          "Equivocal",
-//                                          style: TextStyle(
-//                                            color: Colors.black,
-//                                            fontSize: 10.0,
-//                                          ),
-//                                        ),
-//                                      ],
-//                                    ),
-//                                  ),
-//                                  SizedBox(
-//                                    width: sizeBoxWidth,
-//                                    child: Row(
-//                                      children: <Widget>[
-//                                        Radio(
-//                                          value: 2,
-//                                          groupValue: _radioValue,
-//                                          onChanged: _handleRadioValueChange,
-//                                          activeColor: Colors.white,
-//                                        ),
-//                                        Text(
-//                                          "Impaired",
-//                                          style: TextStyle(
-//                                            color: Colors.black,
-//                                            fontSize: 10.0,
-//                                          ),
-//                                        ),
-//                                      ],
-//                                    ),
-//                                  )
-//                                ],
-//                              ),
-//                              Row(
-//                                mainAxisAlignment: MainAxisAlignment.center,
-//                                crossAxisAlignment: CrossAxisAlignment.start,
-//                                children: <Widget>[
-//                                  Padding(
-//                                    padding: const EdgeInsets.all(2.0),
-//                                    child: SizedBox(
-//                                      width: sizeBoxWidth,
-//                                      child: Text(
-//                                        appData
-//                                            .testExecutiveAnimalNamingResponseNormal,
-//                                        textAlign: TextAlign.center,
-//                                        style: TextStyle(fontSize: 10.0),
-//                                      ),
-//                                    ),
-//                                  ),
-//                                  Padding(
-//                                    padding: const EdgeInsets.all(2.0),
-//                                    child: SizedBox(
-//                                      width: sizeBoxWidth,
-//                                      child: Text(
-//                                        appData
-//                                            .testExecutiveAnimalNamingResponseEquivocal,
-//                                        textAlign: TextAlign.center,
-//                                        style: TextStyle(fontSize: 10.0),
-//                                      ),
-//                                    ),
-//                                  ),
-//                                  Padding(
-//                                    padding: const EdgeInsets.all(2.0),
-//                                    child: SizedBox(
-//                                      width: sizeBoxWidth,
-//                                      child: Text(
-//                                        appData
-//                                            .testExecutiveAnimalNamingResponseImpaired,
-//                                        textAlign: TextAlign.center,
-//                                        style: TextStyle(fontSize: 10.0),
-//                                      ),
-//                                    ),
-//                                  ),
-//                                ],
-//                              )
-//                            ],
-//                          ),
                           ],
                         ),
                       ),
@@ -587,9 +474,12 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> with Tick
                                       trialOneScore: widget.trialOneScore,
                                       trialTwoScore: widget.trialTwoScore,
                                       trialThreeScore: widget.trialThreeScore,
-                                      visuospatialPraxisImage1: widget.visuospatialPraxisImage1,
-                                      visuospatialPraxisImage2: widget.visuospatialPraxisImage2,
-                                      visuospatialPraxisImage3: widget.visuospatialPraxisImage3,
+                                      visuospatialPraxisImage1:
+                                          widget.visuospatialPraxisImage1,
+                                      visuospatialPraxisImage2:
+                                          widget.visuospatialPraxisImage2,
+                                      visuospatialPraxisImage3:
+                                          widget.visuospatialPraxisImage3,
                                       attention: widget.attention,
                                       executiveAnimalNaming: _radioValue,
                                     ));
@@ -610,10 +500,6 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> with Tick
     );
   }
 
-
-
-
-
   void _handleRadioValueChange(int value) {
     setState(() {
       _radioValue = value;
@@ -625,11 +511,9 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> with Tick
     int _score1 = prefs.getInt("executiveAnimalNaming");
     int _score2 = prefs.getInt("counter");
 
-
     setState(() {
       _radioValue = _score1;
       _counter = _score2;
-
     });
   }
 
@@ -638,7 +522,6 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> with Tick
 
     prefs.setInt("executiveAnimalNaming", _radioValue);
     prefs.setInt("counter", _counter);
-
 
     return true;
   }
