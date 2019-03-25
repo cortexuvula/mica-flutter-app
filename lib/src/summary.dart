@@ -71,7 +71,7 @@ class TestSummary extends StatefulWidget {
       this.shorttermMemoryVisualImage2,
       this.shorttermMemoryVisualImage3,
       this.anomiaAgnosia,
-        this.agnosia,
+      this.agnosia,
       this.executive,
       this.spokenLanguage})
       : super(key: key);
@@ -81,7 +81,6 @@ class TestSummary extends StatefulWidget {
 }
 
 class _TestSummaryState extends State<TestSummary> {
-
   var format = DateFormat('d MMM y');
   Color attentionColor = Colors.green;
   Color languageColor = Colors.green;
@@ -119,12 +118,6 @@ class _TestSummaryState extends State<TestSummary> {
               ),
             ),
             actions: <Widget>[
-//              IconButton(
-//                icon: Icon(Icons.print),
-//                tooltip: "Print",
-//                onPressed: () {
-//                },
-//              ),
               IconButton(
                   icon: Icon(Icons.share),
                   tooltip: "Share Summary",
@@ -875,7 +868,7 @@ class _TestSummaryState extends State<TestSummary> {
     }
   }
 
-  Color combineScoresVisualShortTermMemoryColor () {
+  Color combineScoresVisualShortTermMemoryColor() {
     int score1 = 3 - widget.shorttermMemoryVisualImage1;
     int score2 = 3 - widget.shorttermMemoryVisualImage2;
     int score3 = 3 - widget.shorttermMemoryVisualImage3;
@@ -883,21 +876,15 @@ class _TestSummaryState extends State<TestSummary> {
     int _combineScore = score1 + score2 + score3;
 
     if (_combineScore > 5) {
-     
-        
-        return Colors.green;
-     
+      return Colors.green;
     } else if (_combineScore < 5) {
       return Colors.red;
-        
-     
     } else {
-
-  return Colors.yellow;
+      return Colors.yellow;
     }
   }
 
-  Color combineScoresPraxisMemoryColor () {
+  Color combineScoresPraxisMemoryColor() {
     int score1 = 3 - widget.visuospatialPraxisImage1;
     int score2 = 3 - widget.visuospatialPraxisImage2;
     int score3 = 3 - widget.visuospatialPraxisImage3;
@@ -905,22 +892,13 @@ class _TestSummaryState extends State<TestSummary> {
     int _combineScore = score1 + score2 + score3;
 
     if (_combineScore > 5) {
-
-
       return Colors.green;
-
     } else if (_combineScore < 5) {
       return Colors.red;
-
-
     } else {
-
       return Colors.yellow;
     }
   }
-  
-  
-  
 
   Widget domainReport() {
     return ListView(
@@ -936,7 +914,6 @@ class _TestSummaryState extends State<TestSummary> {
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
-
                 ),
                 textAlign: TextAlign.center,
               ),
@@ -964,13 +941,11 @@ class _TestSummaryState extends State<TestSummary> {
 //                ),
 //              ),
               trailing: Container(
-
                 width: 130.0,
                 height: 50.0,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(10.0)
-                ),
+                    borderRadius: BorderRadius.circular(10.0)),
                 child: Padding(
                   padding: const EdgeInsets.all(2.0),
                   child: Row(
@@ -996,7 +971,8 @@ class _TestSummaryState extends State<TestSummary> {
         ),
         Card(
           elevation: 10.0,
-          color: languageCardColor(widget.spokenLanguage, widget.languageComprehensionRadioValue, widget.executive),
+          color: languageCardColor(widget.spokenLanguage,
+              widget.languageComprehensionRadioValue, widget.executive),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
@@ -1019,8 +995,7 @@ class _TestSummaryState extends State<TestSummary> {
                 height: 50.0,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(10.0)
-                ),
+                    borderRadius: BorderRadius.circular(10.0)),
                 child: Padding(
                   padding: const EdgeInsets.all(2.0),
                   child: Row(
@@ -1032,7 +1007,8 @@ class _TestSummaryState extends State<TestSummary> {
                       ),
                       Icon(
                         Icons.brightness_1,
-                        color: radioValueResultToColor(widget.languageComprehensionRadioValue),
+                        color: radioValueResultToColor(
+                            widget.languageComprehensionRadioValue),
                       ),
                       Icon(
                         Icons.brightness_1,
@@ -1080,8 +1056,7 @@ class _TestSummaryState extends State<TestSummary> {
                 height: 50.0,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(10.0)
-                ),
+                    borderRadius: BorderRadius.circular(10.0)),
                 child: Padding(
                   padding: const EdgeInsets.all(2.0),
                   child: Row(
@@ -1108,7 +1083,12 @@ class _TestSummaryState extends State<TestSummary> {
         ),
         Card(
           elevation: 10.0,
-          color: verbalShortTermMemory(widget.trialTwoScore, widget.trialThreeScore, widget.shorttermMemoryVerbal, widget.tenWordDelay, widget.scoreVerbalRecognitionMemoryTenWords),
+          color: verbalShortTermMemory(
+              widget.trialTwoScore,
+              widget.trialThreeScore,
+              widget.shorttermMemoryVerbal,
+              widget.tenWordDelay,
+              widget.scoreVerbalRecognitionMemoryTenWords),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
@@ -1130,10 +1110,8 @@ class _TestSummaryState extends State<TestSummary> {
                 width: 130.0,
                 height: 50.0,
                 decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10.0)
-                ),
-                
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10.0)),
                 child: Padding(
                   padding: const EdgeInsets.all(2.0),
                   child: Row(
@@ -1149,7 +1127,8 @@ class _TestSummaryState extends State<TestSummary> {
                       ),
                       Icon(
                         Icons.brightness_1,
-                        color: radioValueResultToColor(widget.shorttermMemoryVerbal),
+                        color: radioValueResultToColor(
+                            widget.shorttermMemoryVerbal),
                       ),
                       Icon(
                         Icons.brightness_1,
@@ -1157,7 +1136,8 @@ class _TestSummaryState extends State<TestSummary> {
                       ),
                       Icon(
                         Icons.brightness_1,
-                        color: valueDelayResultToColor(widget.scoreVerbalRecognitionMemoryTenWords),
+                        color: valueDelayResultToColor(
+                            widget.scoreVerbalRecognitionMemoryTenWords),
                       ),
                     ],
                   ),
@@ -1205,8 +1185,7 @@ class _TestSummaryState extends State<TestSummary> {
                 height: 50.0,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(10.0)
-                ),
+                    borderRadius: BorderRadius.circular(10.0)),
                 child: Padding(
                   padding: const EdgeInsets.all(2.0),
                   child: Row(
@@ -1216,7 +1195,6 @@ class _TestSummaryState extends State<TestSummary> {
                         Icons.brightness_1,
                         color: combineScoresVisualShortTermMemoryColor(),
                       ),
-
                     ],
                   ),
                 ),
@@ -1263,8 +1241,7 @@ class _TestSummaryState extends State<TestSummary> {
                 height: 50.0,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(10.0)
-                ),
+                    borderRadius: BorderRadius.circular(10.0)),
                 child: Padding(
                   padding: const EdgeInsets.all(2.0),
                   child: Row(
@@ -1282,7 +1259,6 @@ class _TestSummaryState extends State<TestSummary> {
                         Icons.brightness_1,
                         color: combineScoresPraxisMemoryColor(),
                       ),
-
                     ],
                   ),
                 ),
@@ -1330,8 +1306,7 @@ class _TestSummaryState extends State<TestSummary> {
                 height: 50.0,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(10.0)
-                ),
+                    borderRadius: BorderRadius.circular(10.0)),
                 child: Padding(
                   padding: const EdgeInsets.all(2.0),
                   child: Row(
@@ -1341,7 +1316,6 @@ class _TestSummaryState extends State<TestSummary> {
                         Icons.brightness_1,
                         color: combineScoresPraxisMemoryColor(),
                       ),
-
                       Icon(
                         Icons.brightness_1,
                         color: radioValueResultToColor(widget.anomiaAgnosia),
@@ -1392,8 +1366,7 @@ class _TestSummaryState extends State<TestSummary> {
                 height: 50.0,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(10.0)
-                ),
+                    borderRadius: BorderRadius.circular(10.0)),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Row(
@@ -1401,7 +1374,8 @@ class _TestSummaryState extends State<TestSummary> {
                     children: <Widget>[
                       Icon(
                         Icons.brightness_1,
-                        color: radioValueResultToColor(widget.executiveAnimalNaming),
+                        color: radioValueResultToColor(
+                            widget.executiveAnimalNaming),
                       ),
                     ],
                   ),
@@ -1418,8 +1392,6 @@ class _TestSummaryState extends State<TestSummary> {
             ),
           ),
         ),
-
-
       ],
     );
   }
@@ -1448,11 +1420,16 @@ class _TestSummaryState extends State<TestSummary> {
 
     return _color;
   }
-  
-  Color languageCardColor(int valueSpokenLanguage, int valueComprehension, int valueExecutive) {
-    if (valueSpokenLanguage == 2 || valueComprehension == 2 || valueExecutive == 2) {
+
+  Color languageCardColor(
+      int valueSpokenLanguage, int valueComprehension, int valueExecutive) {
+    if (valueSpokenLanguage == 2 ||
+        valueComprehension == 2 ||
+        valueExecutive == 2) {
       return Colors.red;
-    } else if (valueSpokenLanguage == 1 || valueComprehension == 1 || valueExecutive == 1) {
+    } else if (valueSpokenLanguage == 1 ||
+        valueComprehension == 1 ||
+        valueExecutive == 1) {
       return Colors.yellow;
     } else {
       return Colors.green;
@@ -1469,10 +1446,24 @@ class _TestSummaryState extends State<TestSummary> {
     }
   }
 
-  Color verbalShortTermMemory(valuetrialTwoScore, valuetrialThreeScore, valueshorttermMemoryVerbal, valuetenWordDelay, valuescoreVerbalRecognitionMemoryTenWords,) {
-    if (valuetrialTwoScore < 5 || valuetrialThreeScore < 5 || valueshorttermMemoryVerbal == 2 || valuetenWordDelay < 5 || valuescoreVerbalRecognitionMemoryTenWords < 5) {
+  Color verbalShortTermMemory(
+    valuetrialTwoScore,
+    valuetrialThreeScore,
+    valueshorttermMemoryVerbal,
+    valuetenWordDelay,
+    valuescoreVerbalRecognitionMemoryTenWords,
+  ) {
+    if (valuetrialTwoScore < 5 ||
+        valuetrialThreeScore < 5 ||
+        valueshorttermMemoryVerbal == 2 ||
+        valuetenWordDelay < 5 ||
+        valuescoreVerbalRecognitionMemoryTenWords < 5) {
       return Colors.red;
-    } else if (valuetrialTwoScore == 5 || valuetrialThreeScore == 5 || valueshorttermMemoryVerbal == 1 || valuetenWordDelay == 5 || valuescoreVerbalRecognitionMemoryTenWords == 5) {
+    } else if (valuetrialTwoScore == 5 ||
+        valuetrialThreeScore == 5 ||
+        valueshorttermMemoryVerbal == 1 ||
+        valuetenWordDelay == 5 ||
+        valuescoreVerbalRecognitionMemoryTenWords == 5) {
       return Colors.yellow;
     } else {
       return Colors.green;
@@ -1487,16 +1478,10 @@ class _TestSummaryState extends State<TestSummary> {
     int _combineScore = score1 + score2 + score3;
 
     if (_combineScore > 5) {
-
-
       return Colors.green;
-
     } else if (_combineScore < 5) {
       return Colors.red;
-
-
     } else {
-
       return Colors.yellow;
     }
   }
@@ -1508,9 +1493,13 @@ class _TestSummaryState extends State<TestSummary> {
 
     int _combineScore = score1 + score2 + score3;
 
-    if (_combineScore < 5 || widget.praxisLeft == 2 || widget.praxisRight == 2) {
+    if (_combineScore < 5 ||
+        widget.praxisLeft == 2 ||
+        widget.praxisRight == 2) {
       return Colors.red;
-    } else if (_combineScore == 5 || widget.praxisLeft == 1 || widget.praxisRight == 1) {
+    } else if (_combineScore == 5 ||
+        widget.praxisLeft == 1 ||
+        widget.praxisRight == 1) {
       return Colors.yellow;
     } else {
       return Colors.green;
@@ -1532,8 +1521,8 @@ class _TestSummaryState extends State<TestSummary> {
       return Colors.green;
     }
   }
-  
-  Color executiveFunctionCarcColor(int _radioValue){
+
+  Color executiveFunctionCarcColor(int _radioValue) {
     Color _color;
     switch (_radioValue) {
       case 0:
@@ -1630,7 +1619,7 @@ class _TestSummaryState extends State<TestSummary> {
 
     return shareDoc;
   }
-  
+
   String ConvertResponseToString(String response) {
     if (response == "N") {
       return "Normal";

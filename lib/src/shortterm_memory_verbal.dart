@@ -30,10 +30,10 @@ class ShortTermMemoryVerbal extends StatefulWidget {
       this.languageComprehensionRadioValue,
       this.trialOneScore,
       this.trialTwoScore,
-        this.trialThreeScore,
-        this.visuospatialPraxisImage1,
-        this.visuospatialPraxisImage2,
-        this.visuospatialPraxisImage3,
+      this.trialThreeScore,
+      this.visuospatialPraxisImage1,
+      this.visuospatialPraxisImage2,
+      this.visuospatialPraxisImage3,
       this.attention,
       this.executiveAnimalNaming,
       this.executiveLuria,
@@ -54,7 +54,6 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
   bool _valueMonth = false;
   bool _valueCity = false;
   bool _valuePlace = false;
-
 
   @override
   void initState() {
@@ -119,19 +118,6 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
-//                          Text(
-//                            appData.testDescription,
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.w500,
-//                              fontSize: 20.0,
-//                              decoration: TextDecoration.underline,
-//                            ),
-//                          ),
-//                          SizedBox(
-//                            height: 5.0,
-//                          ),
                             Text(
                               appData.testShortTermMemoryDetails,
                               textAlign: TextAlign.center,
@@ -157,19 +143,6 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
-//                          Text(
-//                            appData.testToPatient,
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.w500,
-//                              fontSize: 20.0,
-//                              decoration: TextDecoration.underline,
-//                            ),
-//                          ),
-//                          SizedBox(
-//                            height: 5.0,
-//                          ),
                             Text(
                               appData.testShortTermMemoryToPatient,
                               textAlign: TextAlign.center,
@@ -195,7 +168,6 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
-
                             Row(
                               children: <Widget>[
                                 Row(
@@ -233,7 +205,6 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                 ),
                               ],
                             ),
-
                             Row(
                               children: <Widget>[
                                 Row(
@@ -271,7 +242,6 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                 ),
                               ],
                             ),
-
                             Row(
                               children: <Widget>[
                                 Checkbox(
@@ -304,19 +274,6 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
-//                          Text(
-//                            appData.testResponse,
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.w500,
-//                              fontSize: 20.0,
-//                              decoration: TextDecoration.underline,
-//                            ),
-//                          ),
-//                          SizedBox(
-//                            height: 5.0,
-//                          ),
                             Text(
                               appData.testShortTermMemoryResponse,
                               textAlign: TextAlign.center,
@@ -330,102 +287,97 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                             ),
                             Table(
                               border: TableBorder.all(),
-                              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                              defaultVerticalAlignment:
+                                  TableCellVerticalAlignment.middle,
                               columnWidths: {
                                 0: FlexColumnWidth(0.3),
                                 1: FlexColumnWidth(0.3),
                                 2: FlexColumnWidth(0.34)
                               },
                               children: [
-                                TableRow(
-                                    children: [
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 0,
-                                            groupValue: _radioValue,
-                                            onChanged: _handleRadioValueChange,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "Normal",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 10.0,
-                                            ),
-                                          ),
-                                        ],
+                                TableRow(children: [
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 0,
+                                        groupValue: _radioValue,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
                                       ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 1,
-                                            groupValue: _radioValue,
-                                            onChanged: _handleRadioValueChange,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "Equivocal",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 10.0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 2,
-                                            groupValue: _radioValue,
-                                            onChanged: _handleRadioValueChange,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "Impaired",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 10.0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ]
-                                ),
-                                TableRow(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          appData
-                                              .testShortTermMemoryResponseNormal,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 10.0),
+                                      Text(
+                                        "Normal",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 10.0,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          appData
-                                              .testShortTermMemoryResponseEquivocal,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 10.0),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 1,
+                                        groupValue: _radioValue,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Equivocal",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 10.0,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          appData
-                                              .testShortTermMemoryResponseImpaired,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 10.0),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 2,
+                                        groupValue: _radioValue,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Impaired",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 10.0,
                                         ),
                                       ),
-                                    ]
-                                )
+                                    ],
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData.testShortTermMemoryResponseNormal,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 10.0),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData
+                                          .testShortTermMemoryResponseEquivocal,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 10.0),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData
+                                          .testShortTermMemoryResponseImpaired,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 10.0),
+                                    ),
+                                  ),
+                                ])
                               ],
                             ),
-
                           ],
                         ),
                       ),
@@ -444,25 +396,8 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                         child: RaisedButton(
                           elevation: 10.0,
                           onPressed: () {
-
-//                            if (_valueDate) {
-//                              score += 1;
-//                            }
-//                            if (_valueDay) {
-//                              score += 1;
-//                            }
-//                            if (_valueMonth) {
-//                              score += 1;
-//                            }
-//                            if (_valueCity) {
-//                              score += 1;
-//                            }
-//                            if (_valuePlace) {
-//                              score += 1;
-//                            }
                             var router = new MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    new Praxis(
+                                builder: (BuildContext context) => new Praxis(
                                       patientName: widget.patientName,
                                       assessorName: widget.assessorName,
                                       handedness: widget.handedness,
@@ -472,11 +407,15 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                       trialOneScore: widget.trialOneScore,
                                       trialTwoScore: widget.trialTwoScore,
                                       trialThreeScore: widget.trialThreeScore,
-                                      visuospatialPraxisImage1: widget.visuospatialPraxisImage1,
-                                      visuospatialPraxisImage2: widget.visuospatialPraxisImage2,
-                                      visuospatialPraxisImage3: widget.visuospatialPraxisImage3,
+                                      visuospatialPraxisImage1:
+                                          widget.visuospatialPraxisImage1,
+                                      visuospatialPraxisImage2:
+                                          widget.visuospatialPraxisImage2,
+                                      visuospatialPraxisImage3:
+                                          widget.visuospatialPraxisImage3,
                                       attention: widget.attention,
-                                      executiveAnimalNaming: widget.executiveAnimalNaming,
+                                      executiveAnimalNaming:
+                                          widget.executiveAnimalNaming,
                                       executiveLuria: widget.executiveLuria,
                                       executiveSerial: widget.executiveSerial,
                                       shorttermMemoryVerbal: _radioValue,
@@ -611,7 +550,6 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
     prefs.setBool("_valueDay", _valueDay);
     prefs.setBool("_valuePlace", _valuePlace);
     prefs.setBool("_valueCity", _valueCity);
-
 
     return true;
   }

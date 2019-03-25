@@ -19,21 +19,20 @@ class Attention extends StatefulWidget {
   int visuospatialPraxisImage2;
   int visuospatialPraxisImage3;
 
-  Attention(
-      {Key key,
-      this.patientName,
-      this.assessorName,
-      this.handedness,
-      this.assessmentDate,
-      this.languageComprehensionRadioValue,
-      this.trialOneScore,
-      this.trialTwoScore,
-        this.trialThreeScore,
-        this.visuospatialPraxisImage1,
-        this.visuospatialPraxisImage2,
-        this.visuospatialPraxisImage3,
-      })
-      : super(key: key);
+  Attention({
+    Key key,
+    this.patientName,
+    this.assessorName,
+    this.handedness,
+    this.assessmentDate,
+    this.languageComprehensionRadioValue,
+    this.trialOneScore,
+    this.trialTwoScore,
+    this.trialThreeScore,
+    this.visuospatialPraxisImage1,
+    this.visuospatialPraxisImage2,
+    this.visuospatialPraxisImage3,
+  }) : super(key: key);
 
   @override
   _AttentionState createState() => _AttentionState();
@@ -60,7 +59,6 @@ class _AttentionState extends State<Attention> {
   int wrongTap = 0;
   var correctSelectedColor = Colors.green;
   var wrongSelectedColor = Colors.red;
-
 
   @override
   void initState() {
@@ -137,7 +135,6 @@ class _AttentionState extends State<Attention> {
                       ),
                     ),
                   ),
-
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
@@ -180,8 +177,8 @@ class _AttentionState extends State<Attention> {
                             childAspectRatio: 1.2,
                             crossAxisSpacing: 5.0,
                             mainAxisSpacing: 5.0,
-                            children: List.generate(appData.attentionList.length,
-                                (index) {
+                            children: List.generate(
+                                appData.attentionList.length, (index) {
                               tapCorrect.add(false);
                               tapWrong.add(false);
                               correctCheck.add(false);
@@ -189,13 +186,12 @@ class _AttentionState extends State<Attention> {
 
                               return Stack(
                                 children: <Widget>[
-
-
                                   FlatButton(
                                     onPressed: () {
                                       if (!tapWrong[index] &&
                                           !tapCorrect[index]) {
-                                        if (appData.attentionList[index] == "A") {
+                                        if (appData.attentionList[index] ==
+                                            "A") {
                                           setState(() {
                                             tapCorrect[index] = true;
                                             correctTap += 1;
@@ -204,7 +200,8 @@ class _AttentionState extends State<Attention> {
                                             correctCheck[index] = true;
                                           });
                                         }
-                                        if (appData.attentionList[index] != "A") {
+                                        if (appData.attentionList[index] !=
+                                            "A") {
                                           setState(() {
                                             tapWrong[index] = true;
                                             wrongTap += 1;
@@ -220,7 +217,6 @@ class _AttentionState extends State<Attention> {
                                           });
                                         }
                                       }
-
                                     },
 //                                  onDoubleTap: () {
 //                                    setState(() {
@@ -248,22 +244,22 @@ class _AttentionState extends State<Attention> {
                                         onTap: () {
                                           print("hello tap");
                                           if (correctCheck[index]) {
-                                              setState(() {
-                                                correctCheck[index] = true;
-                                                tapCorrect[index] = false;
-                                                tapWrong[index] = true;
-                                                correctTap -= 1;
-                                                wrongTap += 1;
-                                                letterTapButtonColor[index] =
-                                                    Colors.red;
-                                                if (wrongTap == 1) {
-                                                  _radioValue = 1;
-                                                } else if (wrongTap > 1) {
-                                                  _radioValue = 2;
-                                                } else if (wrongTap < 1) {
-                                                  _radioValue = 0;
-                                                }
-                                              });
+                                            setState(() {
+                                              correctCheck[index] = true;
+                                              tapCorrect[index] = false;
+                                              tapWrong[index] = true;
+                                              correctTap -= 1;
+                                              wrongTap += 1;
+                                              letterTapButtonColor[index] =
+                                                  Colors.red;
+                                              if (wrongTap == 1) {
+                                                _radioValue = 1;
+                                              } else if (wrongTap > 1) {
+                                                _radioValue = 2;
+                                              } else if (wrongTap < 1) {
+                                                _radioValue = 0;
+                                              }
+                                            });
                                           }
 //                                        setState(() {
 //                                          tapCorrect[index] = false;
@@ -272,7 +268,6 @@ class _AttentionState extends State<Attention> {
 //                                              Colors.cyan.shade200;
 //                                        });
                                         },
-
                                       ),
                                     ),
                                   ),
@@ -311,7 +306,6 @@ class _AttentionState extends State<Attention> {
                           ),
                         ),
                       ),
-
                     ),
                   ),
                   SizedBox(
@@ -394,7 +388,8 @@ class _AttentionState extends State<Attention> {
                                   fontSize: 15.0),
                             ),
                             Table(
-                              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                              defaultVerticalAlignment:
+                                  TableCellVerticalAlignment.middle,
                               border: TableBorder.all(),
                               columnWidths: {
                                 0: FlexColumnWidth(0.3),
@@ -402,100 +397,93 @@ class _AttentionState extends State<Attention> {
                                 2: FlexColumnWidth(0.34)
                               },
                               children: [
-                                TableRow(
-                                  children: [
-                                    Row(
-                                      children: <Widget>[
-                                        Radio(
-                                          value: 0,
-                                          groupValue: _radioValue,
-                                          onChanged: _handleRadioValueChange,
-                                          activeColor: Colors.white,
-                                        ),
-                                        Text(
-                                          "Normal",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 10.0,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: <Widget>[
-                                        Radio(
-                                          value: 1,
-                                          groupValue: _radioValue,
-                                          onChanged: _handleRadioValueChange,
-                                          activeColor: Colors.white,
-                                        ),
-                                        Text(
-                                          "Equivocal",
-
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 10.0,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Row(
-                                      children: <Widget>[
-                                        Radio(
-                                          value: 2,
-                                          groupValue: _radioValue,
-                                          onChanged: _handleRadioValueChange,
-                                          activeColor: Colors.white,
-                                        ),
-                                        Text(
-                                          "Impaired",
-                                          style: TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 10.0,
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  ]
-                                ),
-                                TableRow(
-
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        appData.testAttentionResponseNormal,
+                                TableRow(children: [
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 0,
+                                        groupValue: _radioValue,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Normal",
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 10.0,
                                         ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        appData.testAttentionResponseEquivocal,
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 1,
+                                        groupValue: _radioValue,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Equivocal",
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 10.0,
                                         ),
                                       ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        appData.testAttentionResponseImpaired,
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 2,
+                                        groupValue: _radioValue,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Impaired",
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 10.0,
                                         ),
                                       ),
+                                    ],
+                                  )
+                                ]),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData.testAttentionResponseNormal,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 10.0,
+                                      ),
                                     ),
-                                  ]
-                                )
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData.testAttentionResponseEquivocal,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 10.0,
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData.testAttentionResponseImpaired,
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 10.0,
+                                      ),
+                                    ),
+                                  ),
+                                ])
                               ],
                             ),
-
                           ],
                         ),
                       ),
@@ -526,9 +514,12 @@ class _AttentionState extends State<Attention> {
                                       trialOneScore: widget.trialOneScore,
                                       trialTwoScore: widget.trialTwoScore,
                                       trialThreeScore: widget.trialThreeScore,
-                                      visuospatialPraxisImage1: widget.visuospatialPraxisImage1,
-                                      visuospatialPraxisImage2: widget.visuospatialPraxisImage2,
-                                      visuospatialPraxisImage3: widget.visuospatialPraxisImage3,
+                                      visuospatialPraxisImage1:
+                                          widget.visuospatialPraxisImage1,
+                                      visuospatialPraxisImage2:
+                                          widget.visuospatialPraxisImage2,
+                                      visuospatialPraxisImage3:
+                                          widget.visuospatialPraxisImage3,
                                       attention: _radioValue,
                                     ));
                             Navigator.of(context).pushAndRemoveUntil(
@@ -575,7 +566,6 @@ class _AttentionState extends State<Attention> {
     tapWrongList = prefs.getStringList("tapWrong");
     correctCheckList = prefs.getStringList("correctCheck");
 
-
     for (var i = 0; i < 26; i++) {
       if (letterTapButtonColorList[i] == "cyan") {
         _letterTapButtonColor.add(Colors.cyan.shade200);
@@ -600,7 +590,6 @@ class _AttentionState extends State<Attention> {
         _correctCheck.add(true);
       }
     }
-
     setState(() {
       _radioValue = _score1;
       correctTap = _score2;
@@ -609,9 +598,6 @@ class _AttentionState extends State<Attention> {
       tapCorrect = _tapCorrect;
       tapWrong = _tapWrong;
       correctCheck = _correctCheck;
-
-
-
     });
   }
 

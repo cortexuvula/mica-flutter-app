@@ -5,7 +5,6 @@ import 'package:mica/src/shortterm_memory_verbal.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ExecutiveSerial extends StatefulWidget {
-
   String patientName;
   String assessorName;
   String handedness;
@@ -23,20 +22,20 @@ class ExecutiveSerial extends StatefulWidget {
 
   ExecutiveSerial(
       {Key key,
-        this.patientName,
-        this.assessorName,
-        this.handedness,
-        this.assessmentDate,
-        this.languageComprehensionRadioValue,
-        this.trialOneScore,
-        this.trialTwoScore,
-        this.trialThreeScore,
-        this.visuospatialPraxisImage1,
-        this.visuospatialPraxisImage2,
-        this.visuospatialPraxisImage3,
-        this.attention,
-        this.executiveAnimalNaming,
-        this.executiveLuria})
+      this.patientName,
+      this.assessorName,
+      this.handedness,
+      this.assessmentDate,
+      this.languageComprehensionRadioValue,
+      this.trialOneScore,
+      this.trialTwoScore,
+      this.trialThreeScore,
+      this.visuospatialPraxisImage1,
+      this.visuospatialPraxisImage2,
+      this.visuospatialPraxisImage3,
+      this.attention,
+      this.executiveAnimalNaming,
+      this.executiveLuria})
       : super(key: key);
 
   @override
@@ -62,7 +61,6 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
   bool septemberTapped = false;
   bool augustTapped = false;
   bool julyTapped = false;
-
 
   @override
   void initState() {
@@ -102,8 +100,8 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                 onPressed: () {
                   var router = new MaterialPageRoute(
                       builder: (BuildContext context) => new Home(
-                        viewedDisclaimer: true,
-                      ));
+                            viewedDisclaimer: true,
+                          ));
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -118,41 +116,28 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                Container(
-                  width: _width * 0.9,
-                  child: Card(
-                    elevation: 10.0,
-                    color: Colors.deepPurple.shade300,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: <Widget>[
-//                          Text(
-//                            appData.testDescription,
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.w500,
-//                              fontSize: 20.0,
-//                              decoration: TextDecoration.underline,
-//                            ),
-//                          ),
-//                          SizedBox(
-//                            height: 5.0,
-//                          ),
-                          Text(
-                            appData.testExecutiveSerialDetails,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15.0),
-                          ),
-                        ],
+                  Container(
+                    width: _width * 0.9,
+                    child: Card(
+                      elevation: 10.0,
+                      color: Colors.deepPurple.shade300,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                              appData.testExecutiveSerialDetails,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15.0),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
@@ -165,19 +150,6 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
-//                          Text(
-//                            appData.testToPatient,
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.w500,
-//                              fontSize: 20.0,
-//                              decoration: TextDecoration.underline,
-//                            ),
-//                          ),
-//                          SizedBox(
-//                            height: 5.0,
-//                          ),
                             Text(
                               appData.testExecutiveSerialToPatient,
                               textAlign: TextAlign.center,
@@ -203,171 +175,176 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
-                            Text("Tap to score",
+                            Text(
+                              "Tap to score",
                               style: TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
                             ),
                             Table(
-
-                              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                              defaultVerticalAlignment:
+                                  TableCellVerticalAlignment.middle,
                               columnWidths: {
                                 0: FlexColumnWidth(0.5),
                                 1: FlexColumnWidth(0.5),
-
                               },
                               children: [
-                                TableRow(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: FlatButton(
-                                        child: Text("December"),
-                                        onPressed: () {
-                                          if (!decemberTapped) {
-                                            setState(() {
-                                              decembermonthButtonColor = Colors.green;
-                                              decemberTapped = true;
-                                              score += 1;
-                                            });
-                                          } else if (decemberTapped) {
-                                            setState(() {
-                                              decembermonthButtonColor = Colors.yellow;
-                                              decemberTapped = false;
-                                              score -= 1;
-                                            });
-                                          }
-                                          setRadioValue();
-                                        },
-                                        color: decembermonthButtonColor,
-                                      ),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: FlatButton(
+                                      child: Text("December"),
+                                      onPressed: () {
+                                        if (!decemberTapped) {
+                                          setState(() {
+                                            decembermonthButtonColor =
+                                                Colors.green;
+                                            decemberTapped = true;
+                                            score += 1;
+                                          });
+                                        } else if (decemberTapped) {
+                                          setState(() {
+                                            decembermonthButtonColor =
+                                                Colors.yellow;
+                                            decemberTapped = false;
+                                            score -= 1;
+                                          });
+                                        }
+                                        setRadioValue();
+                                      },
+                                      color: decembermonthButtonColor,
                                     ),
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: FlatButton(
-                                        child: Text("November"),
-                                        onPressed: () {
-                                          if (!novemberTapped) {
-                                            setState(() {
-                                              novembermonthButtonColor = Colors.green;
-                                              novemberTapped = true;
-                                              score += 1;
-                                            });
-                                          } else if (novemberTapped) {
-                                            setState(() {
-                                              novembermonthButtonColor = Colors.yellow;
-                                              novemberTapped = false;
-                                              score -= 1;
-                                            });
-                                          }
-                                          setRadioValue();
-                                        },
-                                        color: novembermonthButtonColor,
-                                      ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: FlatButton(
+                                      child: Text("November"),
+                                      onPressed: () {
+                                        if (!novemberTapped) {
+                                          setState(() {
+                                            novembermonthButtonColor =
+                                                Colors.green;
+                                            novemberTapped = true;
+                                            score += 1;
+                                          });
+                                        } else if (novemberTapped) {
+                                          setState(() {
+                                            novembermonthButtonColor =
+                                                Colors.yellow;
+                                            novemberTapped = false;
+                                            score -= 1;
+                                          });
+                                        }
+                                        setRadioValue();
+                                      },
+                                      color: novembermonthButtonColor,
                                     ),
-                                  ]
-                                ),
-                                TableRow(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: FlatButton(
-                                          child: Text("October"),
-                                          onPressed: () {
-                                            if (!octoberTapped) {
-                                              setState(() {
-                                                octobermonthButtonColor = Colors.green;
-                                                octoberTapped = true;
-                                                score += 1;
-                                              });
-                                            } else if (octoberTapped) {
-                                              setState(() {
-                                                octobermonthButtonColor = Colors.yellow;
-                                                octoberTapped = false;
-                                                score -= 1;
-                                              });
-                                            }
-                                            setRadioValue();
-                                          },
-                                          color: octobermonthButtonColor,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: FlatButton(
-                                          child: Text("September"),
-                                          onPressed: () {
-                                            if (!septemberTapped) {
-                                              setState(() {
-                                                septembermonthButtonColor = Colors.green;
-                                                septemberTapped = true;
-                                                score += 1;
-                                              });
-                                            } else if (septemberTapped) {
-                                              setState(() {
-                                                septembermonthButtonColor = Colors.yellow;
-                                                septemberTapped = false;
-                                                score -= 1;
-                                              });
-                                            }
-                                            setRadioValue();
-                                          },
-                                          color: septembermonthButtonColor,
-                                        ),
-                                      ),
-                                    ]
-                                ),
-                                TableRow(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: FlatButton(
-                                          child: Text("August"),
-                                          onPressed: () {
-                                            if (!augustTapped) {
-                                              setState(() {
-                                                augustmonthButtonColor = Colors.green;
-                                                augustTapped = true;
-                                                score += 1;
-                                              });
-                                            } else if (augustTapped) {
-                                              setState(() {
-                                                augustmonthButtonColor = Colors.yellow;
-                                                augustTapped = false;
-                                                score -= 1;
-                                              });
-                                            }
-                                            setRadioValue();
-                                          },
-                                          color: augustmonthButtonColor,
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: FlatButton(
-                                          child: Text("July"),
-                                          onPressed: () {
-                                            if (!julyTapped) {
-                                              setState(() {
-                                                julymonthButtonColor = Colors.green;
-                                                julyTapped = true;
-                                                score += 1;
-                                              });
-                                            } else if (julyTapped) {
-                                              setState(() {
-                                                julymonthButtonColor = Colors.yellow;
-                                                julyTapped = false;
-                                                score -= 1;
-                                              });
-                                            }
-                                            setRadioValue();
-                                          },
-                                          color: julymonthButtonColor,
-                                        ),
-                                      ),
-                                    ]
-                                )
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: FlatButton(
+                                      child: Text("October"),
+                                      onPressed: () {
+                                        if (!octoberTapped) {
+                                          setState(() {
+                                            octobermonthButtonColor =
+                                                Colors.green;
+                                            octoberTapped = true;
+                                            score += 1;
+                                          });
+                                        } else if (octoberTapped) {
+                                          setState(() {
+                                            octobermonthButtonColor =
+                                                Colors.yellow;
+                                            octoberTapped = false;
+                                            score -= 1;
+                                          });
+                                        }
+                                        setRadioValue();
+                                      },
+                                      color: octobermonthButtonColor,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: FlatButton(
+                                      child: Text("September"),
+                                      onPressed: () {
+                                        if (!septemberTapped) {
+                                          setState(() {
+                                            septembermonthButtonColor =
+                                                Colors.green;
+                                            septemberTapped = true;
+                                            score += 1;
+                                          });
+                                        } else if (septemberTapped) {
+                                          setState(() {
+                                            septembermonthButtonColor =
+                                                Colors.yellow;
+                                            septemberTapped = false;
+                                            score -= 1;
+                                          });
+                                        }
+                                        setRadioValue();
+                                      },
+                                      color: septembermonthButtonColor,
+                                    ),
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: FlatButton(
+                                      child: Text("August"),
+                                      onPressed: () {
+                                        if (!augustTapped) {
+                                          setState(() {
+                                            augustmonthButtonColor =
+                                                Colors.green;
+                                            augustTapped = true;
+                                            score += 1;
+                                          });
+                                        } else if (augustTapped) {
+                                          setState(() {
+                                            augustmonthButtonColor =
+                                                Colors.yellow;
+                                            augustTapped = false;
+                                            score -= 1;
+                                          });
+                                        }
+                                        setRadioValue();
+                                      },
+                                      color: augustmonthButtonColor,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: FlatButton(
+                                      child: Text("July"),
+                                      onPressed: () {
+                                        if (!julyTapped) {
+                                          setState(() {
+                                            julymonthButtonColor = Colors.green;
+                                            julyTapped = true;
+                                            score += 1;
+                                          });
+                                        } else if (julyTapped) {
+                                          setState(() {
+                                            julymonthButtonColor =
+                                                Colors.yellow;
+                                            julyTapped = false;
+                                            score -= 1;
+                                          });
+                                        }
+                                        setRadioValue();
+                                      },
+                                      color: julymonthButtonColor,
+                                    ),
+                                  ),
+                                ])
                               ],
                             )
                           ],
@@ -400,213 +377,97 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                             ),
                             Table(
                               border: TableBorder.all(),
-                              defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                              defaultVerticalAlignment:
+                                  TableCellVerticalAlignment.middle,
                               columnWidths: {
                                 0: FlexColumnWidth(0.3),
                                 1: FlexColumnWidth(0.3),
                                 2: FlexColumnWidth(0.34)
                               },
                               children: [
-                                TableRow(
-                                    children: [
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 0,
-                                            groupValue: _radioValue,
-                                            onChanged: _handleRadioValueChange,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "Normal",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 10.0,
-                                            ),
-                                          ),
-                                        ],
+                                TableRow(children: [
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 0,
+                                        groupValue: _radioValue,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
                                       ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 1,
-                                            groupValue: _radioValue,
-                                            onChanged: _handleRadioValueChange,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "Equivocal",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 10.0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      Row(
-                                        children: <Widget>[
-                                          Radio(
-                                            value: 2,
-                                            groupValue: _radioValue,
-                                            onChanged: _handleRadioValueChange,
-                                            activeColor: Colors.white,
-                                          ),
-                                          Text(
-                                            "Impaired",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 10.0,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ]
-                                ),
-                                TableRow(
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          appData
-                                              .testExecutiveSerialResponseNormal,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 10.0),
+                                      Text(
+                                        "Normal",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 10.0,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          appData
-                                              .testExecutiveSerialResponseEquivocal,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 10.0),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 1,
+                                        groupValue: _radioValue,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Equivocal",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 10.0,
                                         ),
                                       ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Text(
-                                          appData
-                                              .testExecutiveSerialResponseImpaired,
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(fontSize: 10.0),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 2,
+                                        groupValue: _radioValue,
+                                        onChanged: _handleRadioValueChange,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Impaired",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 10.0,
                                         ),
                                       ),
-                                    ]
-                                )
+                                    ],
+                                  ),
+                                ]),
+                                TableRow(children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData.testExecutiveSerialResponseNormal,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 10.0),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData
+                                          .testExecutiveSerialResponseEquivocal,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 10.0),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      appData
+                                          .testExecutiveSerialResponseImpaired,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(fontSize: 10.0),
+                                    ),
+                                  ),
+                                ])
                               ],
                             ),
-//                          Column(
-//                            crossAxisAlignment: CrossAxisAlignment.start,
-//                            children: <Widget>[
-//                              Row(
-//                                mainAxisAlignment: MainAxisAlignment.center,
-//                                children: <Widget>[
-//                                  SizedBox(
-//                                    width: sizeBoxWidth,
-//                                    child: Row(
-//                                      children: <Widget>[
-//                                        Radio(
-//                                          value: 0,
-//                                          groupValue: _radioValue,
-//                                          onChanged: _handleRadioValueChange,
-//                                          activeColor: Colors.white,
-//                                        ),
-//                                        Text(
-//                                          "Normal",
-//                                          style: TextStyle(
-//                                            color: Colors.black,
-//                                            fontSize: 10.0,
-//                                          ),
-//                                        ),
-//                                      ],
-//                                    ),
-//                                  ),
-//                                  SizedBox(
-//                                    width: sizeBoxWidth,
-//                                    child: Row(
-//                                      children: <Widget>[
-//                                        Radio(
-//                                          value: 1,
-//                                          groupValue: _radioValue,
-//                                          onChanged: _handleRadioValueChange,
-//                                          activeColor: Colors.white,
-//                                        ),
-//                                        Text(
-//                                          "Equivocal",
-//                                          style: TextStyle(
-//                                            color: Colors.black,
-//                                            fontSize: 10.0,
-//                                          ),
-//                                        ),
-//                                      ],
-//                                    ),
-//                                  ),
-//                                  SizedBox(
-//                                    width: sizeBoxWidth,
-//                                    child: Row(
-//                                      children: <Widget>[
-//                                        Radio(
-//                                          value: 2,
-//                                          groupValue: _radioValue,
-//                                          onChanged: _handleRadioValueChange,
-//                                          activeColor: Colors.white,
-//                                        ),
-//                                        Text(
-//                                          "Impaired",
-//                                          style: TextStyle(
-//                                            color: Colors.black,
-//                                            fontSize: 10.0,
-//                                          ),
-//                                        ),
-//                                      ],
-//                                    ),
-//                                  )
-//                                ],
-//                              ),
-//                              Row(
-//                                mainAxisAlignment: MainAxisAlignment.center,
-//                                crossAxisAlignment: CrossAxisAlignment.start,
-//                                children: <Widget>[
-//                                  Padding(
-//                                    padding: const EdgeInsets.all(2.0),
-//                                    child: SizedBox(
-//                                      width: sizeBoxWidth,
-//                                      child: Text(
-//                                        appData
-//                                            .testExecutiveSerialResponseNormal,
-//                                        textAlign: TextAlign.center,
-//                                        style: TextStyle(fontSize: 10.0),
-//                                      ),
-//                                    ),
-//                                  ),
-//                                  Padding(
-//                                    padding: const EdgeInsets.all(2.0),
-//                                    child: SizedBox(
-//                                      width: sizeBoxWidth,
-//                                      child: Text(
-//                                        appData
-//                                            .testExecutiveSerialResponseEquivocal,
-//                                        textAlign: TextAlign.center,
-//                                        style: TextStyle(fontSize: 10.0),
-//                                      ),
-//                                    ),
-//                                  ),
-//                                  Padding(
-//                                    padding: const EdgeInsets.all(2.0),
-//                                    child: SizedBox(
-//                                      width: sizeBoxWidth,
-//                                      child: Text(
-//                                        appData
-//                                            .testExecutiveSerialResponseImpaired,
-//                                        textAlign: TextAlign.center,
-//                                        style: TextStyle(fontSize: 10.0),
-//                                      ),
-//                                    ),
-//                                  ),
-//                                ],
-//                              )
-//                            ],
-//                          ),
                           ],
                         ),
                       ),
@@ -627,24 +488,28 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                           onPressed: () {
                             var router = new MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                new ShortTermMemoryVerbal(
-                                  patientName: widget.patientName,
-                                  assessorName: widget.assessorName,
-                                  handedness: widget.handedness,
-                                  assessmentDate: widget.assessmentDate,
-                                  languageComprehensionRadioValue: widget
-                                      .languageComprehensionRadioValue,
-                                  trialOneScore: widget.trialOneScore,
-                                  trialTwoScore: widget.trialTwoScore,
-                                  trialThreeScore: widget.trialThreeScore,
-                                  visuospatialPraxisImage1: widget.visuospatialPraxisImage1,
-                                  visuospatialPraxisImage2: widget.visuospatialPraxisImage2,
-                                  visuospatialPraxisImage3: widget.visuospatialPraxisImage3,
-                                  attention: widget.attention,
-                                  executiveAnimalNaming: widget.executiveAnimalNaming,
-                                  executiveLuria: widget.executiveLuria,
-                                  executiveSerial: _radioValue,
-                                ));
+                                    new ShortTermMemoryVerbal(
+                                      patientName: widget.patientName,
+                                      assessorName: widget.assessorName,
+                                      handedness: widget.handedness,
+                                      assessmentDate: widget.assessmentDate,
+                                      languageComprehensionRadioValue: widget
+                                          .languageComprehensionRadioValue,
+                                      trialOneScore: widget.trialOneScore,
+                                      trialTwoScore: widget.trialTwoScore,
+                                      trialThreeScore: widget.trialThreeScore,
+                                      visuospatialPraxisImage1:
+                                          widget.visuospatialPraxisImage1,
+                                      visuospatialPraxisImage2:
+                                          widget.visuospatialPraxisImage2,
+                                      visuospatialPraxisImage3:
+                                          widget.visuospatialPraxisImage3,
+                                      attention: widget.attention,
+                                      executiveAnimalNaming:
+                                          widget.executiveAnimalNaming,
+                                      executiveLuria: widget.executiveLuria,
+                                      executiveSerial: _radioValue,
+                                    ));
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
@@ -690,7 +555,8 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int _score1 = prefs.getInt("executiveSerial");
     int _score2 = prefs.getInt("score");
-    executiveSerialButtonColor = prefs.getStringList("executiveSerialButtonColor");
+    executiveSerialButtonColor =
+        prefs.getStringList("executiveSerialButtonColor");
 
     List<Color> buttonColor = [];
     List<bool> buttonTapped = [];
@@ -704,8 +570,6 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
         buttonTapped.add(true);
       }
     }
-
-
 
     setState(() {
       _radioValue = _score1;
@@ -724,7 +588,6 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
       julyTapped = buttonTapped[5];
 
       score = _score2;
-
     });
   }
 
@@ -768,7 +631,6 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
     prefs.setInt("score", score);
 
     prefs.setStringList("executiveSerialButtonColor", saveButtonColor);
-
 
     return true;
   }

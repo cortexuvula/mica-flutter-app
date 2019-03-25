@@ -38,10 +38,8 @@ class _ResourceVideoPDFState extends State<ResourceVideoPDF> {
                   child: RaisedButton(
                     elevation: 10.0,
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => PDFScreen()));
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => PDFScreen()));
                     },
                     child: Text("Written Instructions"),
                   ),

@@ -8,7 +8,6 @@ class MicaApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-
       title: "Midlands Cognitive Assessment",
       home: new LoadingScreen(),
       theme: ThemeData(
@@ -17,7 +16,6 @@ class MicaApp extends StatelessWidget {
           splashColor: Color(0xFFaba9e9),
           backgroundColor: Color(0xFFaba9e9),
           scaffoldBackgroundColor: Color(0xFFcbc9ff),
-          //ecf4f3
           buttonColor: Color(0xFF9795cf),
           dialogBackgroundColor: Color(0xFFcbc9ff),
           cardColor: Colors.white),

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 
-
 class AttentionConcentration extends StatefulWidget {
-
-
   int attention;
 
   AttentionConcentration({Key key, this.attention}) : super(key: key);
@@ -13,10 +10,8 @@ class AttentionConcentration extends StatefulWidget {
 }
 
 class _AttentionConcentrationState extends State<AttentionConcentration> {
-
   Color cardColor;
   String result = "";
-
 
   @override
   void initState() {
@@ -53,14 +48,20 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
             color: cardColor,
             elevation: 10.0,
             child: ListTile(
-              title: Text("Vigilance Test",style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),),
-              trailing: Text(result,style: TextStyle(
-                color: Colors.black,
-                fontWeight: FontWeight.w500,
-              ),),
+              title: Text(
+                "Vigilance Test",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              trailing: Text(
+                result,
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
             ),
           )
         ],
@@ -68,29 +69,32 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
     );
   }
 
-  radio3ButtonValueToString (int value) {
+  radio3ButtonValueToString(int value) {
     switch (value) {
-      case 0: {
-        setState(() {
-          cardColor = Colors.green;
-          result = "Normal";
-        });
-        break;
-      }
-      case 1: {
-        setState(() {
-          cardColor = Colors.yellow;
-          result = "Equivocal";
-        });
-        break;
-      }
-      case 2: {
-        setState(() {
-          cardColor = Colors.red;
-          result = "Impaired";
-        });
-        break;
-      }
+      case 0:
+        {
+          setState(() {
+            cardColor = Colors.green;
+            result = "Normal";
+          });
+          break;
+        }
+      case 1:
+        {
+          setState(() {
+            cardColor = Colors.yellow;
+            result = "Equivocal";
+          });
+          break;
+        }
+      case 2:
+        {
+          setState(() {
+            cardColor = Colors.red;
+            result = "Impaired";
+          });
+          break;
+        }
     }
   }
 }

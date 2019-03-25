@@ -129,7 +129,8 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                appData.instructionsTenWordRecallTrialOnePaient1,
+                                appData
+                                    .instructionsTenWordRecallTrialOnePaient1,
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w500,
@@ -166,7 +167,8 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                appData.instructionsTenWordRecallTrialOnePatient2,
+                                appData
+                                    .instructionsTenWordRecallTrialOnePatient2,
                                 style: TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w500,
@@ -274,8 +276,6 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
     );
   }
 
-
-
   void getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int _score = prefs.getInt("trialOneScore");
@@ -287,9 +287,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
           wordButtonColor[i] = Colors.green;
         });
       }
-
     }
-
     setState(() {
       scoreTenWordRecallTrialOne = _score;
     });
@@ -312,5 +310,4 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
 
     return true;
   }
-
 }
