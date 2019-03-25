@@ -17,10 +17,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
-
-
-
   @override
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
@@ -46,7 +42,6 @@ class _HomeState extends State<Home> {
         ),
         body: ListView(
           children: <Widget>[
-
             Container(
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -154,7 +149,8 @@ class _HomeState extends State<Home> {
 //                              Navigator.pushNamed(
 //                                  context, "/patient_information");
                               var router = new MaterialPageRoute(
-                                  builder: (BuildContext context) => new PatientInformation());
+                                  builder: (BuildContext context) =>
+                                      new PatientInformation());
                               Navigator.of(context).pushAndRemoveUntil(
                                   router, (Route<dynamic> route) => false);
                             },
@@ -219,8 +215,7 @@ class _HomeState extends State<Home> {
   }
 
   _launchURL() async {
-    const url =
-        'http://neoncortex.net/wp-content/mca/bca.pdf';
+    const url = 'http://neoncortex.net/wp-content/mca/bca.pdf';
     if (await canLaunch(url)) {
       await launch(url);
     } else {
@@ -234,7 +229,7 @@ class _HomeState extends State<Home> {
     saveInitialData();
   }
 
-  void saveInitialData () async {
+  void saveInitialData() async {
 //    String patientName;
 //    String assessorName;
 //    String handedness;
@@ -292,7 +287,7 @@ class _HomeState extends State<Home> {
       word3ButtonColor.add("yellow");
     }
     prefs.setStringList("trial3wordButtonColor", word3ButtonColor);
-    
+
     //screen 5
     prefs.setInt("visuospatialPraxisImage1", 0);
     prefs.setInt("visuospatialPraxisImage2", 0);
@@ -308,7 +303,6 @@ class _HomeState extends State<Home> {
     List<String> tapCorrect = [];
     List<String> tapWrong = [];
     List<String> correctCheck = [];
-
 
     for (var i = 0; i < 26; i++) {
       tapCorrect.add("false");
@@ -328,7 +322,7 @@ class _HomeState extends State<Home> {
 
     //screen 8
     prefs.setInt("executiveLuria", 0);
-    
+
     //screen 9
     List<String> executiveSerialButtonColor = [];
     for (var i = 0; i < 6; i++) {
@@ -336,7 +330,8 @@ class _HomeState extends State<Home> {
     }
     prefs.setInt("executiveSerial", 2);
     prefs.setInt("score", 0);
-    prefs.setStringList("executiveSerialButtonColor", executiveSerialButtonColor);
+    prefs.setStringList(
+        "executiveSerialButtonColor", executiveSerialButtonColor);
 
     //screen 10
     prefs.setInt("shorttermMemoryVerbal", 2);
@@ -389,6 +384,4 @@ class _HomeState extends State<Home> {
     //screen 17
     prefs.setInt("spokenLanguage", 0);
   }
-  
- 
 }
