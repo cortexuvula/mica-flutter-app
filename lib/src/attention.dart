@@ -182,10 +182,10 @@ class _AttentionState extends State<Attention> {
                             mainAxisSpacing: 5.0,
                             children: List.generate(appData.attentionList.length,
                                 (index) {
-//                              tapCorrect.add(false);
-//                              tapWrong.add(false);
-//                              correctCheck.add(false);
-//                              letterTapButtonColor.add(Colors.cyan.shade200);
+                              tapCorrect.add(false);
+                              tapWrong.add(false);
+                              correctCheck.add(false);
+                              letterTapButtonColor.add(Colors.cyan.shade200);
 
                               return Stack(
                                 children: <Widget>[
@@ -565,6 +565,11 @@ class _AttentionState extends State<Attention> {
     List<String> tapWrongList = [];
     List<String> correctCheckList = [];
 
+    List<bool> _tapCorrect = [];
+    List<Color> _letterTapButtonColor = [];
+    List<bool> _tapWrong = [];
+    List<bool> _correctCheck = [];
+
     letterTapButtonColorList = prefs.getStringList("letterTapButtonColor");
     tapCorrectList = prefs.getStringList("tapCorrect");
     tapWrongList = prefs.getStringList("tapWrong");
@@ -573,26 +578,26 @@ class _AttentionState extends State<Attention> {
 
     for (var i = 0; i < 26; i++) {
       if (letterTapButtonColorList[i] == "cyan") {
-        letterTapButtonColor.add(Colors.cyan.shade200);
+        _letterTapButtonColor.add(Colors.cyan.shade200);
       } else if (letterTapButtonColorList[i] == "green") {
-        letterTapButtonColor.add(Colors.green);
+        _letterTapButtonColor.add(Colors.green);
       } else {
-        letterTapButtonColor.add(Colors.red);
+        _letterTapButtonColor.add(Colors.red);
       }
       if (tapCorrectList[i] == "false") {
-        tapCorrect.add(false);
+        _tapCorrect.add(false);
       } else {
-        tapCorrect.add(true);
+        _tapCorrect.add(true);
       }
       if (tapWrongList[i] == "false") {
-        tapWrong.add(false);
+        _tapWrong.add(false);
       } else {
-        tapWrong.add(true);
+        _tapWrong.add(true);
       }
       if (correctCheckList[i] == "false") {
-        correctCheck.add(false);
+        _correctCheck.add(false);
       } else {
-        correctCheck.add(true);
+        _correctCheck.add(true);
       }
     }
 
@@ -600,6 +605,11 @@ class _AttentionState extends State<Attention> {
       _radioValue = _score1;
       correctTap = _score2;
       wrongTap = _score3;
+      letterTapButtonColor = _letterTapButtonColor;
+      tapCorrect = _tapCorrect;
+      tapWrong = _tapWrong;
+      correctCheck = _correctCheck;
+
 
 
     });

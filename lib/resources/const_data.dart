@@ -126,7 +126,7 @@ const List<String> tenWordMemoryList = [
 const String testTenWordRecallTrialOne = "Working Memory";
 const String testTenWordRecallTrialOneSubtitle = "Verbal Trial 1";
 const String instructionsTenWordRecallTrialOnePaient1 =
-    "\"I am going to read you a list of 10 words. Remember these words, as I will ask you what you can remember afterwards. Please repeat each word after I have said it, so that I can be sure that you heard it correctly. Do you understand? Are you ready? Let's go!\"";
+    "\"I am going to read you a list of 10 words. Remember these words, as I will ask you what you can remember afterwards. Please repeat each word after I have said it, so that I can be sure that you have heard it correctly. Do you understand? Are you ready? Let's go!\"";
 const String instructionsTenWordRecallTrialOneHealthworker1 =
     "If the patient does not repeat the word say: \“Please repeat the word.\” Read the words from left to right. Carry on with the rest of the list.";
 const String instructionsTenWordRecallTrialOnePatient2 =
@@ -159,7 +159,7 @@ const String instructionsTenWordRecallTrialThreePatient2 =
 const String testVisuospatialPraxis = "Agnosia and Apraxia";
 const String testVisuospatialPraxisSubtitle = "Line Drawing Copy";
 const String testVisuospatialPraxisDetails =
-    "Assess the ability to copy line drawings. Click on the images to enlarge image before displaying to patient. Do not warn about the delayed recall of these drawings.";
+    "Assess the ability to copy line drawings. Click on the images to enlarge them before displaying to patient. Do not warn about delayed recall of these drawings.";
 const String testVisuospatialPraxisToPatient = "\"Copy these drawings.\"";
 const String testVisuospatialPraxisResponse =
     " Do not warn about delayed recall.";
@@ -241,7 +241,7 @@ const String instructionsWordRecognitionHealthworker4 = ".)";
 const String testShortTermMemoryVisual = "Short-Term Memory";
 const String testShortTermMemoryVisualSubtitle = "Visual Recall";
 const String testShortTermMemoryVisualDetails = "Visual recall.";
-const String testShortTermMemoryVisualToPatient = "\“Earlier, you copied three pictures, can you remember them? Can you draw them here?\”";
+const String testShortTermMemoryVisualToPatient = "\“Earlier, you copied three pictures. Can you remember them? Can you draw them here?\”";
 const String testShortTermMemoryVisualResponse = "Provide the patient with a blank sheet of paper.";
 const String testShortTermMemoryVisualResponseNormal = "no mistakes";
 const String testShortTermMemoryVisualResponseEquivocal = "few omissions";
@@ -250,7 +250,7 @@ const String testShortTermMemoryVisualResponseFubar = "a failure to recall anyth
 
 const String testAnomiaAgnosia = "Anomia & Agnosia";
 const String testAnomiaAgnosiaSubtitle = "";
-const String testAnomiaAgnosiaDetails = "Anomia: Cannot name picture.\nAgnosia: Cannot describe object.\n Click on image to enlarge image.";
+const String testAnomiaAgnosiaDetails = "Anomia: Cannot name picture.\nAgnosia: Cannot describe object.\n Click on image to enlarge it.";
 const String testAnomiaAgnosiaToPatient = "\"Name the following pictures.\”";
 const String testAnomiaAgnosiaResponse = "Anomia: Cannot name picture.";
 const String testAnomiaAgnosiaResponse2 = "Agnosia: Cannot describe object.";
