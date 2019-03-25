@@ -324,6 +324,7 @@ class _HomeState extends State<Home> {
 
     //screen 7
     prefs.setInt("executiveAnimalNaming", 2);
+    prefs.setInt("counter", 0);
 
     //screen 8
     prefs.setInt("executiveLuria", 0);

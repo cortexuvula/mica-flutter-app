@@ -278,7 +278,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> with Tick
                                 children: <Widget>[
                                   Expanded(
                                     child: Container(
-                                      height: 50.0,
+                                      height: 75.0,
                                       color: Colors.white,
                                       child: Center(
                                         child: Text(
@@ -293,24 +293,55 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> with Tick
                                     ),
                                   ),
                                   Container(
-                                    height: 50.0,
-                                    child: FlatButton(
+                                    height: 75.0,
+                                    color: Colors.cyan.shade200,
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Container(
+                                            color: Colors.cyan.shade200,
+                                            child: Text("Tap to count Words",
+                                              style: TextStyle(fontWeight: FontWeight.w500,),
+                                            ),),
+                                        Row(
+                                          children: <Widget>[
+                                            FlatButton(
 
-                                        color: Colors.cyan.shade200,
-                                        onPressed: () {
-                                          setState(() {
-                                            _counter += 1;
-                                            if (_counter >= 12 && _counter <= 14) {
-                                              _radioValue = 1;
-                                            }
-                                            if (_counter > 14) {
-                                              _radioValue = 0;
-                                            }
-                                          });
-                                        },
-                                        child: Text("Tap to Count Words",
-                                          style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
-                                        )
+                                                color: Colors.cyan.shade200,
+                                                onPressed: () {
+                                                  setState(() {
+                                                    _counter += 1;
+                                                    if (_counter >= 12 && _counter <= 14) {
+                                                      _radioValue = 1;
+                                                    }
+                                                    if (_counter > 14) {
+                                                      _radioValue = 0;
+                                                    }
+                                                  });
+                                                },
+                                                child: Icon(Icons.add,)
+                                            ),
+                                            FlatButton(
+
+                                                color: Colors.cyan.shade200,
+                                                onPressed: () {
+                                                  if (_counter > 0) {
+                                                    _counter -= 1;
+                                                  }
+                                                  setState(() {
+                                                    if (_counter >= 12 && _counter <= 14) {
+                                                      _radioValue = 1;
+                                                    }
+                                                    if (_counter > 14) {
+                                                      _radioValue = 0;
+                                                    }
+                                                  });
+                                                },
+                                                child: Icon(Icons.remove,)
+                                            ),
+                                          ],
+                                        ),
+                                      ],
                                     ),
                                   )
                                 ],
@@ -592,10 +623,12 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> with Tick
   void getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int _score1 = prefs.getInt("executiveAnimalNaming");
+    int _score2 = prefs.getInt("counter");
 
 
     setState(() {
       _radioValue = _score1;
+      _counter = _score2;
 
     });
   }
@@ -604,6 +637,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming> with Tick
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     prefs.setInt("executiveAnimalNaming", _radioValue);
+    prefs.setInt("counter", _counter);
 
 
     return true;
