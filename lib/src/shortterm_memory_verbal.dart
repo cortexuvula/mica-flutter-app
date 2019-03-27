@@ -522,7 +522,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
   void getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int _score1 = prefs.getInt("shorttermMemoryVerbal");
-    int _score2 = prefs.getInt("score");
+    int _score2 = prefs.getInt("shorttermMemoryVerbal_score");
     bool date = prefs.getBool("_valueDate");
     bool month = prefs.getBool("_valueMonth");
     bool day = prefs.getBool("_valueDay");
@@ -544,7 +544,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     prefs.setInt("shorttermMemoryVerbal", _radioValue);
-    prefs.setInt("score", score);
+    prefs.setInt("shorttermMemoryVerbal_score", score);
     prefs.setBool("_valueDate", _valueDate);
     prefs.setBool("_valueMonth", _valueMonth);
     prefs.setBool("_valueDay", _valueDay);

@@ -127,13 +127,13 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                     width: _width * 0.9,
                     child: Card(
                       elevation: 10.0,
-                      color: Colors.deepPurple.shade300,
+                      color: Colors.yellowAccent.shade400,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testExecutiveAnimalNamingDetails,
+                              appData.testExecutiveAnimalNamingToPatient,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Colors.black,
@@ -152,13 +152,13 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                     width: _width * 0.9,
                     child: Card(
                       elevation: 10.0,
-                      color: Colors.yellowAccent.shade400,
+                      color: Colors.deepPurple.shade300,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testExecutiveAnimalNamingToPatient,
+                              appData.testExecutiveAnimalNamingDetails,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Colors.black,
