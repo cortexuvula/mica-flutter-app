@@ -26,6 +26,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
         title: ListTile(
           title: Text(
             "Attention & Concentration",
+            overflow: TextOverflow.ellipsis,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,

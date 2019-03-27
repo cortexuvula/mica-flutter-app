@@ -43,6 +43,7 @@ class ExecutiveLuria extends StatefulWidget {
 class _ExecutiveLuriaState extends State<ExecutiveLuria> {
   double sizeBoxHeight = 10.0;
   int _radioValue;
+  int _counter = 0;
 
   @override
   void initState() {
@@ -151,6 +152,92 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: <Widget>[
+                                  Expanded(
+                                    child: Container(
+                                      height: 75.0,
+                                      color: Colors.white,
+                                      child: Center(
+                                        child: Text(
+                                          "$_counter",
+                                          style: TextStyle(
+                                            fontSize: 20.0,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    height: 75.0,
+                                    color: Colors.cyan.shade200,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: <Widget>[
+                                        Container(
+                                          color: Colors.cyan.shade200,
+                                          child: Text(
+                                            "Tap to count Cycles",
+                                            style: TextStyle(
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          ),
+                                        ),
+                                        Row(
+                                          children: <Widget>[
+                                            FlatButton(
+                                                color: Colors.cyan.shade200,
+                                                onPressed: () {
+                                                  setState(() {
+                                                    _counter += 1;
+                                                    if (_counter >= 0 &&
+                                                        _counter <= 2) {
+                                                      _radioValue = 1;
+                                                    }
+                                                    if (_counter > 2) {
+                                                      _radioValue = 0;
+                                                    }
+                                                  });
+                                                },
+                                                child: Icon(
+                                                  Icons.add,
+                                                )),
+                                            FlatButton(
+                                                color: Colors.cyan.shade200,
+                                                onPressed: () {
+                                                  if (_counter > 0) {
+                                                    _counter -= 1;
+                                                  }
+                                                  setState(() {
+                                                    if (_counter >= 1 &&
+                                                        _counter <= 2) {
+                                                      _radioValue = 1;
+                                                    }
+                                                    if (_counter > 2) {
+                                                      _radioValue = 0;
+                                                    }
+                                                    if (_counter == 0) {
+                                                      _radioValue = 2;
+                                                    }
+                                                  });
+                                                },
+                                                child: Icon(
+                                                  Icons.remove,
+                                                )),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
                             Text(
                               appData.testExecutiveLuriaResponse,
                               textAlign: TextAlign.center,
@@ -319,9 +406,11 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
   void getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int _score1 = prefs.getInt("executiveLuria");
+    int _score2 = prefs.getInt("executiveLuria_score");
 
     setState(() {
       _radioValue = _score1;
+      _counter = _score2;
     });
   }
 
@@ -329,6 +418,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
     prefs.setInt("executiveLuria", _radioValue);
+    prefs.setInt("executiveLuria_score", _counter);
 
     return true;
   }

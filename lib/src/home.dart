@@ -287,7 +287,8 @@ class _HomeState extends State<Home> {
     prefs.setInt("counter", 0);
 
     //screen 8
-    prefs.setInt("executiveLuria", 0);
+    prefs.setInt("executiveLuria", 2);
+    prefs.setInt("executiveLuria_score", 0);
 
     //screen 9
     List<String> executiveSerialButtonColor = [];
@@ -295,13 +296,13 @@ class _HomeState extends State<Home> {
       executiveSerialButtonColor.add("yellow");
     }
     prefs.setInt("executiveSerial", 2);
-    prefs.setInt("score", 0);
+    prefs.setInt("executiveSerial_score", 0);
     prefs.setStringList(
         "executiveSerialButtonColor", executiveSerialButtonColor);
 
     //screen 10
     prefs.setInt("shorttermMemoryVerbal", 2);
-    prefs.setInt("score", 0);
+    prefs.setInt("shorttermMemoryVerbal_score", 0);
     prefs.setBool("_valueDate", false);
     prefs.setBool("_valueMonth", false);
     prefs.setBool("_valueDay", false);

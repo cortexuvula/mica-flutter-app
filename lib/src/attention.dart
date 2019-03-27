@@ -76,6 +76,7 @@ class _AttentionState extends State<Attention> {
           title: ListTile(
             title: Text(
               appData.testAttention,
+              overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,

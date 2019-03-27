@@ -120,6 +120,31 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                     width: _width * 0.9,
                     child: Card(
                       elevation: 10.0,
+                      color: Colors.yellowAccent.shade400,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                              appData.testExecutiveSerialToPatient1,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: sizeBoxHeight,
+                  ),
+                  Container(
+                    width: _width * 0.9,
+                    child: Card(
+                      elevation: 10.0,
                       color: Colors.deepPurple.shade300,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -151,7 +176,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testExecutiveSerialToPatient,
+                              appData.testExecutiveSerialToPatient2,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Colors.black,
@@ -554,7 +579,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
   void getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int _score1 = prefs.getInt("executiveSerial");
-    int _score2 = prefs.getInt("score");
+    int _score2 = prefs.getInt("executiveSerial_score");
     executiveSerialButtonColor =
         prefs.getStringList("executiveSerialButtonColor");
 
@@ -628,7 +653,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
     }
 
     prefs.setInt("executiveSerial", _radioValue);
-    prefs.setInt("score", score);
+    prefs.setInt("executiveSerial_score", score);
 
     prefs.setStringList("executiveSerialButtonColor", saveButtonColor);
 
