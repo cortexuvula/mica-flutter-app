@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/src/clinical_case/clinical_select.dart';
+import 'package:mica/src/domain_testing/domain_select.dart';
 import 'package:mica/src/home.dart';
+import 'package:mica/src/resource_page.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Welcome extends StatefulWidget {
   @override
@@ -12,18 +16,18 @@ class _WelcomeState extends State<Welcome> {
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
     return Scaffold(
-        body: Center(
-          child: Column(
+        body: ListView(children: <Widget>[
+          Column(
             children: <Widget>[
               SizedBox(
-                height: 50.0,
+                height: 20.0,
               ),
               Hero(
                   tag: "logo",
                   child: Image.asset(
                     "./images/logo512.png",
-                    height: 200.0,
-                    width: 200.0,
+                    height: 50.0,
+                    width: 50.0,
                   )),
               SizedBox(
                 height: 20.0,
@@ -35,7 +39,10 @@ class _WelcomeState extends State<Welcome> {
                   color: Colors.white,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text(appData.disclaimer2),
+                    child: Text(
+                      appData.welcomeTitle,
+                      textAlign: TextAlign.center,
+                    ),
                   ),
                 ),
               ),
@@ -46,24 +53,150 @@ class _WelcomeState extends State<Welcome> {
                   color: Colors.white,
                   child: Padding(
                     padding: const EdgeInsets.all(20.0),
-                    child: RaisedButton(
-                      elevation: 10.0,
-                      onPressed: () {
-                        var router = new MaterialPageRoute(
-                            builder: (BuildContext context) => new Home(
-                                  viewedDisclaimer: false,
-                                ));
-                        Navigator.of(context).pushAndRemoveUntil(
-                            router, (Route<dynamic> route) => false);
-                      },
-                      child: Text("Accept Disclaimer"),
+                    child: Column(
+                      children: <Widget>[
+                        RaisedButton(
+                          elevation: 10.0,
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Home()));
+                          },
+                          child: Text(appData.welcomeButtonOption1),
+                        ),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Text(appData.welcomeOption1),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: _width * 0.9,
+                child: Card(
+                  elevation: 10.0,
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      children: <Widget>[
+                        RaisedButton(
+                          elevation: 10.0,
+                          onPressed: () {
+                            var router = new MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    new DomainSelect());
+                            Navigator.of(context).pushAndRemoveUntil(
+                                router, (Route<dynamic> route) => true);
+                          },
+                          child: Text(appData.welcomeButtonOption2),
+                        ),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Text(appData.welcomeOption2),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: _width * 0.9,
+                child: Card(
+                  elevation: 10.0,
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      children: <Widget>[
+                        RaisedButton(
+                          elevation: 10.0,
+                          onPressed: () {
+                            var router = new MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    new ClinicalSelect());
+                            Navigator.of(context).pushAndRemoveUntil(
+                                router, (Route<dynamic> route) => true);
+                          },
+                          child: Text(appData.welcomeButtonOption3),
+                        ),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Text(appData.welcomeOption3),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: _width * 0.9,
+                child: Card(
+                  elevation: 10.0,
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      children: <Widget>[
+                        RaisedButton(
+                          elevation: 10.0,
+                          onPressed: () {
+                            _launchURL();
+                          },
+                          child: Text(appData.welcomeButtonOption4),
+                        ),
+                        // SizedBox(
+                        //   height: 5.0,
+                        // ),
+                        // Text(appData.welcomeOption3),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: _width * 0.9,
+                child: Card(
+                  elevation: 10.0,
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      children: <Widget>[
+                        RaisedButton(
+                          elevation: 10.0,
+                          onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ResourcePage()));
+                          },
+                          child: Text(appData.welcomeButtonOption5),
+                        ),
+                        // SizedBox(
+                        //   height: 5.0,
+                        // ),
+                        // Text(appData.welcomeOption3),
+                      ],
                     ),
                   ),
                 ),
               )
             ],
           ),
-        ),
+        ]),
         backgroundColor: Theme.of(context).backgroundColor);
+  }
+
+  _launchURL() async {
+    const url = 'http://neoncortex.net/wp-content/mca/bca.pdf';
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }
