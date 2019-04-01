@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
     return WillPopScope(
-      onWillPop: () async => false,
+      onWillPop: () async => true,
       child: Scaffold(
         appBar: AppBar(
           title: ListTile(
@@ -159,48 +159,48 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
-                Container(
-                  width: _width * 0.9,
-                  child: Card(
-                    elevation: 10.0,
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: RaisedButton(
-                        elevation: 10.0,
-                        onPressed: () async {
-                          print("PDF tapped");
+                // Container(
+                //   width: _width * 0.9,
+                //   child: Card(
+                //     elevation: 10.0,
+                //     color: Colors.white,
+                //     child: Padding(
+                //       padding: const EdgeInsets.all(20.0),
+                //       child: RaisedButton(
+                //         elevation: 10.0,
+                //         onPressed: () async {
+                //           print("PDF tapped");
 
-                          _launchURL();
-                        },
-                        child: Text(appData.resourceButtonBooklet),
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 5.0,
-                ),
-                Container(
-                  width: _width * 0.9,
-                  child: Card(
-                    elevation: 10.0,
-                    color: Colors.white,
-                    child: Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: RaisedButton(
-                        elevation: 10.0,
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => ResourcePage()));
-                        },
-                        child: Text(appData.resourceButtonVideo),
-                      ),
-                    ),
-                  ),
-                )
+                //           _launchURL();
+                //         },
+                //         child: Text(appData.resourceButtonBooklet),
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 5.0,
+                // ),
+                // Container(
+                //   width: _width * 0.9,
+                //   child: Card(
+                //     elevation: 10.0,
+                //     color: Colors.white,
+                //     child: Padding(
+                //       padding: const EdgeInsets.all(20.0),
+                //       child: RaisedButton(
+                //         elevation: 10.0,
+                //         onPressed: () {
+                //           Navigator.push(
+                //               context,
+                //               MaterialPageRoute(
+                //                   builder: (context) => ResourcePage()));
+                //         },
+                //         child: Text(appData.resourceButtonVideo),
+                //       ),
+                //     ),
+                //   ),
+                // )
               ],
             ))
           ],
