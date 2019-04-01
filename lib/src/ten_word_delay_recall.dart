@@ -161,17 +161,20 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
                         SizedBox(
                           height: 5.0,
                         ),
-                        Card(
-                          elevation: 10.0,
-                          color: Colors.deepPurple.shade300,
-                          child: Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              appData.instructionDelayedRecallHealthworker1,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 15.0),
+                        Container(
+                          width: _width * 0.9,
+                          child: Card(
+                            elevation: 10.0,
+                            color: Colors.deepPurple.shade300,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                appData.instructionDelayedRecallHealthworker1,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: 15.0),
+                              ),
                             ),
                           ),
                         ),
