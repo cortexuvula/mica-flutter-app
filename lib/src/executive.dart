@@ -157,6 +157,31 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                     width: _width * 0.9,
                     child: Card(
                       elevation: 10.0,
+                      color: Colors.yellowAccent.shade400,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                              appData.testExecutiveToPatient,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: sizeBoxHeight,
+                  ),
+                  Container(
+                    width: _width * 0.9,
+                    child: Card(
+                      elevation: 10.0,
                       color: Colors.deepPurple.shade300,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -180,6 +205,7 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                                   children: <Widget>[
                                     Container(
                                       width: _width * 0.35,
+                                      height: 100.0,
                                       child: Image.asset(
                                         "./images/hash.png",
                                         fit: BoxFit.contain,
@@ -187,6 +213,7 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                                     ),
                                     Container(
                                       width: _width * 0.35,
+                                      height: 100.0,
                                       child: Image.asset(
                                         "./images/steps.png",
                                         fit: BoxFit.contain,
@@ -214,7 +241,7 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testExecutiveToPatient,
+                              appData.testExecutiveToPatient2,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Colors.black,

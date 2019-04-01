@@ -126,31 +126,6 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                     width: _width * 0.9,
                     child: Card(
                       elevation: 10.0,
-                      color: Colors.deepPurple.shade300,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: <Widget>[
-                            Text(
-                              appData.testShortTermMemoryVisualDetails,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 15.0),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: sizeBoxHeight,
-                  ),
-                  Container(
-                    width: _width * 0.9,
-                    child: Card(
-                      elevation: 10.0,
                       color: Colors.yellowAccent.shade400,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
@@ -171,6 +146,31 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
 //                          ),
                             Text(
                               appData.testShortTermMemoryVisualToPatient,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 15.0),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: sizeBoxHeight,
+                  ),
+                  Container(
+                    width: _width * 0.9,
+                    child: Card(
+                      elevation: 10.0,
+                      color: Colors.deepPurple.shade300,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Column(
+                          children: <Widget>[
+                            Text(
+                              appData.testShortTermMemoryVisualDetails,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Colors.black,
@@ -271,17 +271,17 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
 //                          SizedBox(
 //                            height: 5.0,
 //                          ),
-                            Text(
-                              appData.testShortTermMemoryVisualResponse,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 15.0),
-                            ),
-                            SizedBox(
-                              height: 5.0,
-                            ),
+                            // Text(
+                            //   appData.testShortTermMemoryVisualResponse,
+                            //   textAlign: TextAlign.center,
+                            //   style: TextStyle(
+                            //       color: Colors.black,
+                            //       fontWeight: FontWeight.w500,
+                            //       fontSize: 15.0),
+                            // ),
+                            // SizedBox(
+                            //   height: 5.0,
+                            // ),
                             Table(
                               border: TableBorder.all(),
                               defaultVerticalAlignment:

@@ -111,13 +111,13 @@ class _PraxisState extends State<Praxis> {
                     width: _width * 0.9,
                     child: Card(
                       elevation: 10.0,
-                      color: Colors.deepPurple.shade300,
+                      color: Colors.yellowAccent.shade400,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testPraxisDetails,
+                              appData.testPraxisToPatient,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Colors.black,
@@ -136,13 +136,13 @@ class _PraxisState extends State<Praxis> {
                     width: _width * 0.9,
                     child: Card(
                       elevation: 10.0,
-                      color: Colors.yellowAccent.shade400,
+                      color: Colors.deepPurple.shade300,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testPraxisToPatient,
+                              appData.testPraxisDetails,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Colors.black,

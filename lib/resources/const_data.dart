@@ -22,7 +22,7 @@ const String startTesting =
 const String testLanguageComprehension = "Language";
 const String testLanguageComprehensionSubtitle = "Comprehension";
 const String testLanguageComprehensionDetails =
-    "Evaluate comprehension by using a 3-stage command.";
+    "Evaluate comprehension by using a 3-stage command. Intact basic comprehension ensures good compliance with the test procedures that follow.";
 const String testLanguageComprehensionToPatient =
     "\"Can you point with your finger to the ceiling, the floor and the door.\"";
 const String testLanguageComprehensionResponse =
@@ -171,7 +171,7 @@ const String testVisuospatialPraxisResponseEquivocal =
 const String testVisuospatialPraxisResponseImpaired = "1 Point = Poor";
 const String testVisuospatialPraxisResponseFubar = "0 Point = No drawing";
 
-const String testAttention = "Attention and Concentration";
+const String testAttention = "Attention";
 const String testAttentionSubtitle = "Vigilance Task";
 const String testAttentionDetails =
     "Tap on a letter when patient taps. Double tap on A when patient does not tap on hearing the letter A.";
@@ -234,31 +234,32 @@ const String testPraxisDetails = "Test both hands.";
 const String testPraxisToPatient =
     "\“Take this pen and rotate it with your fingers as fast as you can.\”";
 const String testPraxisResponse = "";
-const String testPraxisResponseNormal = "no errors";
-const String testPraxisResponseEquivocal = "some difficulty";
-const String testPraxisResponseImpaired = "clear difficulty";
+const String testPraxisResponseNormal = "No errors";
+const String testPraxisResponseEquivocal = "Some difficulty";
+const String testPraxisResponseImpaired = "Clear difficulty";
 
 const String testTenWordDelayedRecall = "Short-Term Memory";
 const String testTenWordDelayedRecallSubtitle = "Verbal Delayed Recall";
 const String instructionDelayedRecallPatient1 =
-    "To Patient: \“What were the words I asked you to remember earlier?\”";
+    "\“What were the words I asked you to remember earlier?\”";
 const String instructionDelayedRecallHealthworker1 =
-    "Healthworker: Tap on each word correctly recalled:";
+    "Tap on each word correctly recalled:";
 
 const String testTenWordRecognition = "Short-Term Memory";
 const String testTenWordRecognitionSubtitle = "Verbal Recognition";
 const String instructionsWordRecognitionHealthworker1 =
-    "Healthworker: Scroll down to see all the words.";
+    "Scroll down to see all the words.";
 const String instructionsWordRecognitionPatient1 =
-    "To Patient: \"I am now going to read a list of words. Some of the words are from the list that I asked you to remember and some of the words are new. Say yes if you recognise the word and no if it was not in the list I asked you to memorise. If you don’t know the answer just guess.\"";
+    "\"I am now going to read a list of words. Some of the words are from the list that I asked you to remember and some of the words are new. Say yes if you recognise the word and no if it was not in the list I asked you to memorise. If you don’t know the answer just guess.\"";
 const String instructionsWordRecognitionHealthworker2 =
-    "Healthworker: The instructions may be repeated if forgotten.To select correct responses, tap on Yes or No for each word. (Words from the original memory list are in";
+    "The instructions may be repeated if forgotten.To select correct responses, tap on Yes or No for each word. (Words from the original memory list are in";
 const String instructionsWordRecognitionHealthworker3 = " BOLD";
 const String instructionsWordRecognitionHealthworker4 = ".)";
 
 const String testShortTermMemoryVisual = "Short-Term Memory";
 const String testShortTermMemoryVisualSubtitle = "Visual Recall";
-const String testShortTermMemoryVisualDetails = "Visual recall.";
+const String testShortTermMemoryVisualDetails =
+    "Provide the patient with a blank sheet of paper.";
 const String testShortTermMemoryVisualToPatient =
     "\“Earlier, you copied three pictures. Can you remember them? Can you draw them here?\”";
 const String testShortTermMemoryVisualResponse =
@@ -272,7 +273,7 @@ const String testShortTermMemoryVisualResponseFubar =
 const String testAnomiaAgnosia = "Anomia & Agnosia";
 const String testAnomiaAgnosiaSubtitle = "";
 const String testAnomiaAgnosiaDetails =
-    "Anomia: Cannot name picture.\nAgnosia: Cannot describe object.\n Click on image to enlarge it.";
+    "Click on the images to enlarge. If unable to name, ask for a description or how to use object. If able to describe then evaluate naming impairment further by giving the first syllable of the word.";
 const String testAnomiaAgnosiaToPatient = "\"Name the following pictures.\”";
 const String testAnomiaAgnosiaResponse = "Anomia: Cannot name picture.";
 const String testAnomiaAgnosiaResponse2 = "Agnosia: Cannot describe object.";
@@ -293,7 +294,9 @@ const String testExecutiveSubtitle = "Design Fluency";
 const String testExecutiveDetails =
     "Draw the following two examples on the same paper that the patient will use. Count the lines from 1 - 4 while you are drawing.";
 const String testExecutiveToPatient =
-    "\“You have one minute to draw anything using four lines. The drawings must be different and I must be able to count the lines. I will give you two examples. Do you have any questions? Your minute starts now.\”";
+    "\“You have one minute to draw anything using four lines. The drawings must be different and I must be able to count the lines. I will give you two examples.\”";
+const String testExecutiveToPatient2 =
+    "\"Do you have any questions? Your minute starts now.\"";
 const String testExecutiveResponse = "";
 const String testExecutiveResponseNormal = "7 drawings";
 const String testExecutiveResponseEquivocal = "5 - 7 drawings";
