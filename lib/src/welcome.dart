@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
-import 'package:mica/src/welcome.dart';
+import 'package:mica/src/home.dart';
 
-class LoadingScreen extends StatefulWidget {
+class Welcome extends StatefulWidget {
   @override
-  _LoadingScreenState createState() => _LoadingScreenState();
+  _WelcomeState createState() => _WelcomeState();
 }
 
-class _LoadingScreenState extends State<LoadingScreen> {
+class _WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
@@ -50,7 +50,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
                       elevation: 10.0,
                       onPressed: () {
                         var router = new MaterialPageRoute(
-                            builder: (BuildContext context) => new Welcome());
+                            builder: (BuildContext context) => new Home(
+                                  viewedDisclaimer: false,
+                                ));
                         Navigator.of(context).pushAndRemoveUntil(
                             router, (Route<dynamic> route) => false);
                       },
