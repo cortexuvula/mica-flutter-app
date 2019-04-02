@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/home.dart';
 import 'package:mica/src/ten_word_recognition.dart';
+import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TenWordDelayedRecall extends StatefulWidget {
@@ -98,9 +99,7 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
                 icon: Icon(Icons.clear),
                 onPressed: () {
                   var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Home(
-                            viewedDisclaimer: true,
-                          ));
+                      builder: (BuildContext context) => new Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -119,20 +118,6 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-//                    Padding(padding: EdgeInsets.all(8.0)),
-//                    Row(
-//                      mainAxisAlignment: MainAxisAlignment.center,
-//                      children: <Widget>[
-//                        Text(
-//                          "Instructions",
-//                          style: TextStyle(
-//                              fontSize: 18.0,
-//                              fontWeight: FontWeight.w500,
-//                              decoration: TextDecoration.underline),
-//                        ),
-//                      ],
-//                    ),
-//                    Padding(padding: EdgeInsets.all(4.0)),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
@@ -157,7 +142,6 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
                             ),
                           ),
                         ),
-//                    Padding(padding: EdgeInsets.all(8.0)),
                         SizedBox(
                           height: 5.0,
                         ),

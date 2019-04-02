@@ -65,14 +65,7 @@ class _ShowImageAnomiaState extends State<ShowImageAnomia> {
     print("This is the image ${widget.imageNumber}");
     var _width = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: AppBar(
-//        actions: <Widget>[
-//          IconButton(icon: Icon(Icons.clear),
-//              onPressed: () {
-//                Navigator.pop(context);
-//              })
-//        ],
-            ),
+        appBar: AppBar(),
         body: PageView(
           children: <Widget>[
             Container(
@@ -111,17 +104,6 @@ class _ShowImageAnomiaState extends State<ShowImageAnomia> {
               ),
             ),
           ],
-        )
-//      Center(
-//        child: Container(
-//          width: _width * 0.9,
-//          child: Image.asset(
-//            appData.imageURLPraxis[widget.imageNumber],
-//            fit: BoxFit.fitWidth,
-//          ),
-//        ),
-//
-//      ),
-        );
+        ));
   }
 }

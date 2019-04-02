@@ -10,6 +10,7 @@ import 'package:mica/src/domain_results/verbal_working_memory.dart';
 import 'package:mica/src/domain_results/visual_short_term_memory.dart';
 import 'package:mica/src/home.dart';
 import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/src/welcome.dart';
 import 'package:share/share.dart';
 
 class TestSummary extends StatefulWidget {
@@ -130,9 +131,7 @@ class _TestSummaryState extends State<TestSummary> {
                 tooltip: "Go Home",
                 onPressed: () {
                   var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Home(
-                            viewedDisclaimer: true,
-                          ));
+                      builder: (BuildContext context) => new Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 },
