@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
-import 'package:mica/src/domain_testing/attention_concentration.dart';
-
+import 'package:mica/src/domain_testing/domain_attention_concentration.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mica/src/welcome.dart';
 
 class DomainSelect extends StatefulWidget {
@@ -10,6 +10,12 @@ class DomainSelect extends StatefulWidget {
 }
 
 class _DomainSelectState extends State<DomainSelect> {
+  @override
+  void initState() {
+    super.initState();
+    saveInitialData();
+  }
+
   @override
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
@@ -213,5 +219,32 @@ class _DomainSelectState extends State<DomainSelect> {
         ),
       ]),
     );
+  }
+
+  void saveInitialData() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    // Vigilance
+    prefs.setInt("domain_attention", 0);
+    prefs.setInt("domain_correctTap", 0);
+    prefs.setInt("domain_wrongTap", 0);
+
+    List<String> letterTapButtonColor = [];
+
+    List<String> tapCorrect = [];
+    List<String> tapWrong = [];
+    List<String> correctCheck = [];
+
+    for (var i = 0; i < 26; i++) {
+      tapCorrect.add("false");
+      tapWrong.add("false");
+      correctCheck.add("false");
+      letterTapButtonColor.add("cyan");
+    }
+
+    prefs.setStringList("domain_letterTapButtonColor", letterTapButtonColor);
+    prefs.setStringList("domain_tapCorrect", tapCorrect);
+    prefs.setStringList("domain_tapWrong", tapWrong);
+    prefs.setStringList("domain_correctCheck", correctCheck);
   }
 }
