@@ -176,7 +176,7 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
     );
   }
 
-  String valueTrial2ResultToString(int _valueTotal) {
+  valueTrial2ResultToString(int _valueTotal) {
     switch (_valueTotal > 6) {
       case true:
         {
@@ -204,7 +204,7 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
     }
   }
 
-  String valueTrial3ResultToString(int _valueTotal) {
+  valueTrial3ResultToString(int _valueTotal) {
     switch (_valueTotal > 7) {
       case true:
         {
@@ -232,7 +232,7 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
     }
   }
 
-  String valueOrientationResultToString(int _valueTotal) {
+  valueOrientationResultToString(int _valueTotal) {
     switch (_valueTotal) {
       case 0:
         {
@@ -261,7 +261,7 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
     }
   }
 
-  String valueRecallResultToString(int _valueTotal) {
+  valueRecallResultToString(int _valueTotal) {
     switch (_valueTotal > 5) {
       case true:
         {
@@ -289,7 +289,7 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
     }
   }
 
-  String valueRecogResultToString(int _valueTotal) {
+  valueRecogResultToString(int _valueTotal) {
     switch (_valueTotal > 5) {
       case true:
         {

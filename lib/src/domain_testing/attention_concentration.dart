@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
-import 'package:mica/src/domain_testing/attention_concentration.dart';
-
 import 'package:mica/src/welcome.dart';
 
-class DomainSelect extends StatefulWidget {
+class AttentionConcentration extends StatefulWidget {
   @override
-  _DomainSelectState createState() => _DomainSelectState();
+  _AttentionConcentrationState createState() => _AttentionConcentrationState();
 }
 
-class _DomainSelectState extends State<DomainSelect> {
+class _AttentionConcentrationState extends State<AttentionConcentration> {
   @override
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
@@ -48,12 +46,14 @@ class _DomainSelectState extends State<DomainSelect> {
                         elevation: 10.0,
                         onPressed: () {
                           var router = new MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  new AttentionConcentration());
+                              builder: (BuildContext context) => new Welcome());
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => true);
                         },
-                        child: Text(appData.domainSelectButton1),
+                        child: Text(
+                          appData.attentionConcentrationButton1,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ],
                   ),
@@ -77,7 +77,10 @@ class _DomainSelectState extends State<DomainSelect> {
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => true);
                         },
-                        child: Text(appData.domainSelectButton2),
+                        child: Text(
+                          appData.attentionConcentrationButton2,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ],
                   ),
@@ -101,7 +104,10 @@ class _DomainSelectState extends State<DomainSelect> {
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => true);
                         },
-                        child: Text(appData.domainSelectButton3),
+                        child: Text(
+                          appData.attentionConcentrationButton3,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ],
                   ),
@@ -125,7 +131,10 @@ class _DomainSelectState extends State<DomainSelect> {
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => true);
                         },
-                        child: Text(appData.domainSelectButton4),
+                        child: Text(
+                          appData.attentionConcentrationButton4,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ],
                   ),
@@ -149,31 +158,10 @@ class _DomainSelectState extends State<DomainSelect> {
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => true);
                         },
-                        child: Text(appData.domainSelectButton5),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            Container(
-              width: _width * 0.9,
-              child: Card(
-                elevation: 10.0,
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: <Widget>[
-                      RaisedButton(
-                        elevation: 10.0,
-                        onPressed: () {
-                          var router = new MaterialPageRoute(
-                              builder: (BuildContext context) => new Welcome());
-                          Navigator.of(context).pushAndRemoveUntil(
-                              router, (Route<dynamic> route) => true);
-                        },
-                        child: Text(appData.domainSelectButton6),
+                        child: Text(
+                          appData.attentionConcentrationButton5,
+                          textAlign: TextAlign.center,
+                        ),
                       ),
                     ],
                   ),

@@ -69,7 +69,7 @@ class _VerbalWorkingMemoryState extends State<VerbalWorkingMemory> {
     );
   }
 
-  String valueTrial12ResultToString(int _valueTotal) {
+  valueTrial12ResultToString(int _valueTotal) {
     switch (_valueTotal > 6) {
       case true:
         {

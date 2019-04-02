@@ -362,3 +362,30 @@ const String welcomeButtonOption2 = "Domains";
 const String welcomeButtonOption3 = "Clinical Case";
 const String welcomeButtonOption4 = "Bedside Cognitive Assessment Booklet";
 const String welcomeButtonOption5 = "Educational Videos";
+
+const String domainSelectButton1 = "Attention and Concentration";
+const String domainSelectButton2 = "Language";
+const String domainSelectButton3 = "Memory";
+const String domainSelectButton4 = "Praxis";
+const String domainSelectButton5 = "Gnosis";
+const String domainSelectButton6 = "Executive functions";
+
+const String clinicalSelectButton1 = "Alzheimer's disease";
+const String clinicalSelectButton2 =
+    "Early or mild: Memory, language, praxis and gnosis";
+const String clinicalSelectButton3 = "Bedside Batteries: MICA, ACEIII, MOCA";
+const String clinicalSelectButton4 = "Moderate: MMSE";
+const String clinicalSelectButton5 = "Vascular dementia";
+const String clinicalSelectButton6 = "Executive functioning and memory";
+const String clinicalSelectButton7 = "Schizophrenia";
+const String clinicalSelectButton8 = "Working memory and executive functioning";
+const String clinicalSelectButton9 = "Depression";
+const String clinicalSelectButton10 =
+    "Attention and concentration, and executive functioning";
+
+const String attentionConcentrationButton1 = "Vigilance test";
+const String attentionConcentrationButton2 =
+    "Spelling of a 5 letter word backwards";
+const String attentionConcentrationButton3 = "Serial 7s or 3s";
+const String attentionConcentrationButton4 = "Digit span";
+const String attentionConcentrationButton5 = "Observation";
