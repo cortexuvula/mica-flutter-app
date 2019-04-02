@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/home.dart';
 import 'package:mica/src/ten_word_recall_task_trial_two.dart';
+import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TenWordRecallTrialOne extends StatefulWidget {
@@ -76,9 +77,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                 icon: Icon(Icons.clear),
                 onPressed: () {
                   var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Home(
-                            viewedDisclaimer: true,
-                          ));
+                      builder: (BuildContext context) => new Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -98,20 +97,6 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
                         children: <Widget>[
-//                        Padding(padding: EdgeInsets.all(8.0)),
-//                        Row(
-//                          mainAxisAlignment: MainAxisAlignment.center,
-//                          children: <Widget>[
-//                            Text(
-//                              "Instructions",
-//                              style: TextStyle(
-//                                  fontSize: 18.0,
-//                                  fontWeight: FontWeight.w500,
-//                                  decoration: TextDecoration.underline),
-//                            ),
-//                          ],
-//                        ),
-//                        Padding(padding: EdgeInsets.all(4.0)),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
@@ -122,7 +107,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                               ),
                             ],
                           ),
-//                        Padding(padding: EdgeInsets.all(8.0)),
+
                           Card(
                             elevation: 10.0,
                             color: Colors.yellowAccent.shade400,

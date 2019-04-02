@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/home.dart';
 import 'package:mica/src/ten_word_recall_task_trial_one.dart';
+import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LanguageComprehension extends StatefulWidget {
@@ -59,9 +60,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                 icon: Icon(Icons.clear),
                 onPressed: () {
                   var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Home(
-                            viewedDisclaimer: true,
-                          ));
+                      builder: (BuildContext context) => new Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })

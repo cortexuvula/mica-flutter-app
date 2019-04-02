@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/anomia_agnosia.dart';
 import 'package:mica/src/home.dart';
+import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ShortTermMemoryVisual extends StatefulWidget {
@@ -105,9 +106,7 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                 icon: Icon(Icons.clear),
                 onPressed: () {
                   var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Home(
-                            viewedDisclaimer: true,
-                          ));
+                      builder: (BuildContext context) => new Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -131,19 +130,6 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
-//                          Text(
-//                            appData.testToPatient,
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.w500,
-//                              fontSize: 20.0,
-//                              decoration: TextDecoration.underline,
-//                            ),
-//                          ),
-//                          SizedBox(
-//                            height: 5.0,
-//                          ),
                             Text(
                               appData.testShortTermMemoryVisualToPatient,
                               textAlign: TextAlign.center,
@@ -223,25 +209,6 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                               ),
                             ],
                           ),
-//                        child: ListView(
-//                          scrollDirection: Axis.horizontal,
-//
-//
-//                          children: <Widget>[
-//                            GestureDetector(
-//                              child: Image.asset("./images/block_one.png",
-//                              fit: BoxFit.fitWidth,
-//                              ),
-//                              onTap: () => debugPrint("tapped"),
-//                            ),
-//                            Image.asset("./images/block_two.png",
-//                              fit: BoxFit.fitWidth,
-//                            ),
-//                            Image.asset("./images/block_three.png",
-//                              fit: BoxFit.fitWidth,
-//                            ),
-//                          ],
-//                        ),
                         ),
                       ),
                     ),
@@ -258,30 +225,6 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
-//                          Text(
-//                            appData.testResponse,
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.w500,
-//                              fontSize: 20.0,
-//                              decoration: TextDecoration.underline,
-//                            ),
-//                          ),
-//                          SizedBox(
-//                            height: 5.0,
-//                          ),
-                            // Text(
-                            //   appData.testShortTermMemoryVisualResponse,
-                            //   textAlign: TextAlign.center,
-                            //   style: TextStyle(
-                            //       color: Colors.black,
-                            //       fontWeight: FontWeight.w500,
-                            //       fontSize: 15.0),
-                            // ),
-                            // SizedBox(
-                            //   height: 5.0,
-                            // ),
                             Table(
                               border: TableBorder.all(),
                               defaultVerticalAlignment:

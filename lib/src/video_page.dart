@@ -59,18 +59,6 @@ class _VideoPageState extends State<VideoPage> {
           controller: _chewieController,
         ),
       ),
-//      floatingActionButton: FloatingActionButton(
-//        onPressed: () {
-//          setState(() {
-//            _controller.value.isPlaying
-//                ? _controller.pause()
-//                : _controller.play();
-//          });
-//        },
-//        child: Icon(
-//          _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-//        ),
-//      ),
     );
   }
 }

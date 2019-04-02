@@ -3,6 +3,7 @@ import 'package:mica/src/attention.dart';
 import 'package:mica/src/home.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/show_image.dart';
+import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class VisuospatialPraxis extends StatefulWidget {
@@ -82,9 +83,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                 icon: Icon(Icons.clear),
                 onPressed: () {
                   var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Home(
-                            viewedDisclaimer: true,
-                          ));
+                      builder: (BuildContext context) => new Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })

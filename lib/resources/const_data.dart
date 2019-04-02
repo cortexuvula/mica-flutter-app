@@ -389,3 +389,6 @@ const String attentionConcentrationButton2 =
 const String attentionConcentrationButton3 = "Serial 7s or 3s";
 const String attentionConcentrationButton4 = "Digit span";
 const String attentionConcentrationButton5 = "Observation";
+
+const String funFactAttentionConcentration =
+    "It is possible to assess attention and concentration by observing the patient’s quality of interaction during mental status examination. However, this provides only a rough estimate and is a precursor for further testing.";
