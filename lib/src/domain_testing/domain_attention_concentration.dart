@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/src/domain_testing/domain_patient_information.dart';
 import 'package:mica/src/welcome.dart';
+
+final String VIGILANCE = "Vigilance";
 
 class AttentionConcentration extends StatefulWidget {
   @override
@@ -46,7 +49,10 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                         elevation: 10.0,
                         onPressed: () {
                           var router = new MaterialPageRoute(
-                              builder: (BuildContext context) => new Welcome());
+                              builder: (BuildContext context) =>
+                                  new DomainPatientInformation(
+                                    testName: VIGILANCE,
+                                  ));
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => true);
                         },
