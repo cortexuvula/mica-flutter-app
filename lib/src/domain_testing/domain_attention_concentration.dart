@@ -14,11 +14,20 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
   @override
   Widget build(BuildContext context) {
     var _width = MediaQuery.of(context).size.width;
+    double _height = 20.0;
     return Scaffold(
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            appData.appName,
+            appData.domain_attention_title,
+            style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+                fontSize: 15.0),
+            textAlign: TextAlign.start,
+          ),
+          subtitle: Text(
+            appData.domain_attention_subtitle,
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -28,13 +37,18 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
         ),
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.info_outline),
-              onPressed: () => debugPrint("info")),
+              icon: Icon(Icons.clear),
+              onPressed: () {
+                var router = new MaterialPageRoute(
+                    builder: (BuildContext context) => new Welcome());
+                Navigator.of(context).pushAndRemoveUntil(
+                    router, (Route<dynamic> route) => false);
+              })
         ],
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
               width: _width * 0.9,
@@ -45,26 +59,32 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: <Widget>[
-                      RaisedButton(
-                        elevation: 10.0,
-                        onPressed: () {
-                          var router = new MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  new DomainPatientInformation(
-                                    testName: VIGILANCE,
-                                  ));
-                          Navigator.of(context).pushAndRemoveUntil(
-                              router, (Route<dynamic> route) => true);
-                        },
-                        child: Text(
-                          appData.attentionConcentrationButton1,
-                          textAlign: TextAlign.center,
+                      Container(
+                        width: _width * 0.8,
+                        child: RaisedButton(
+                          elevation: 10.0,
+                          onPressed: () {
+                            var router = new MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    new DomainPatientInformation(
+                                      testName: VIGILANCE,
+                                    ));
+                            Navigator.of(context).pushAndRemoveUntil(
+                                router, (Route<dynamic> route) => true);
+                          },
+                          child: Text(
+                            appData.attentionConcentrationButton1,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: _height,
             ),
             Container(
               width: _width * 0.9,
@@ -75,23 +95,30 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: <Widget>[
-                      RaisedButton(
-                        elevation: 10.0,
-                        onPressed: () {
-                          var router = new MaterialPageRoute(
-                              builder: (BuildContext context) => new Welcome());
-                          Navigator.of(context).pushAndRemoveUntil(
-                              router, (Route<dynamic> route) => true);
-                        },
-                        child: Text(
-                          appData.attentionConcentrationButton2,
-                          textAlign: TextAlign.center,
+                      Container(
+                        width: _width * 0.8,
+                        child: RaisedButton(
+                          elevation: 10.0,
+                          onPressed: () {
+                            var router = new MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    new Welcome());
+                            Navigator.of(context).pushAndRemoveUntil(
+                                router, (Route<dynamic> route) => true);
+                          },
+                          child: Text(
+                            appData.attentionConcentrationButton2,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: _height,
             ),
             Container(
               width: _width * 0.9,
@@ -102,23 +129,30 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: <Widget>[
-                      RaisedButton(
-                        elevation: 10.0,
-                        onPressed: () {
-                          var router = new MaterialPageRoute(
-                              builder: (BuildContext context) => new Welcome());
-                          Navigator.of(context).pushAndRemoveUntil(
-                              router, (Route<dynamic> route) => true);
-                        },
-                        child: Text(
-                          appData.attentionConcentrationButton3,
-                          textAlign: TextAlign.center,
+                      Container(
+                        width: _width * 0.8,
+                        child: RaisedButton(
+                          elevation: 10.0,
+                          onPressed: () {
+                            var router = new MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    new Welcome());
+                            Navigator.of(context).pushAndRemoveUntil(
+                                router, (Route<dynamic> route) => true);
+                          },
+                          child: Text(
+                            appData.attentionConcentrationButton3,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: _height,
             ),
             Container(
               width: _width * 0.9,
@@ -129,23 +163,30 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: <Widget>[
-                      RaisedButton(
-                        elevation: 10.0,
-                        onPressed: () {
-                          var router = new MaterialPageRoute(
-                              builder: (BuildContext context) => new Welcome());
-                          Navigator.of(context).pushAndRemoveUntil(
-                              router, (Route<dynamic> route) => true);
-                        },
-                        child: Text(
-                          appData.attentionConcentrationButton4,
-                          textAlign: TextAlign.center,
+                      Container(
+                        width: _width * 0.8,
+                        child: RaisedButton(
+                          elevation: 10.0,
+                          onPressed: () {
+                            var router = new MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    new Welcome());
+                            Navigator.of(context).pushAndRemoveUntil(
+                                router, (Route<dynamic> route) => true);
+                          },
+                          child: Text(
+                            appData.attentionConcentrationButton4,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                     ],
                   ),
                 ),
               ),
+            ),
+            SizedBox(
+              height: _height,
             ),
             Container(
               width: _width * 0.9,
@@ -156,17 +197,21 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: <Widget>[
-                      RaisedButton(
-                        elevation: 10.0,
-                        onPressed: () {
-                          var router = new MaterialPageRoute(
-                              builder: (BuildContext context) => new Welcome());
-                          Navigator.of(context).pushAndRemoveUntil(
-                              router, (Route<dynamic> route) => true);
-                        },
-                        child: Text(
-                          appData.attentionConcentrationButton5,
-                          textAlign: TextAlign.center,
+                      Container(
+                        width: _width * 0.8,
+                        child: RaisedButton(
+                          elevation: 10.0,
+                          onPressed: () {
+                            var router = new MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    new Welcome());
+                            Navigator.of(context).pushAndRemoveUntil(
+                                router, (Route<dynamic> route) => true);
+                          },
+                          child: Text(
+                            appData.attentionConcentrationButton5,
+                            textAlign: TextAlign.center,
+                          ),
                         ),
                       ),
                     ],

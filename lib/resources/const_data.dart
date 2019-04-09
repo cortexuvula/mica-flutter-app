@@ -370,25 +370,30 @@ const String domainSelectButton4 = "Praxis";
 const String domainSelectButton5 = "Gnosis";
 const String domainSelectButton6 = "Executive functions";
 
-const String clinicalSelectButton1 = "Alzheimer's disease";
-const String clinicalSelectButton2 =
-    "Early or mild: Memory, language, praxis and gnosis";
-const String clinicalSelectButton3 = "Bedside Batteries: MICA, ACEIII, MOCA";
-const String clinicalSelectButton4 = "Moderate: MMSE";
-const String clinicalSelectButton5 = "Vascular dementia";
-const String clinicalSelectButton6 = "Executive functioning and memory";
-const String clinicalSelectButton7 = "Schizophrenia";
-const String clinicalSelectButton8 = "Working memory and executive functioning";
-const String clinicalSelectButton9 = "Depression";
-const String clinicalSelectButton10 =
-    "Attention and concentration, and executive functioning";
+const String clinicalSelect_title = "Clinical Cases";
 
-const String attentionConcentrationButton1 = "Vigilance test";
+const String clinicalSelectButton1 = "Early or Mild Alzheimer's disease";
+const String clinicalSelectButton2 = "Moderate Alzheimer's disease";
+const String clinicalSelectButton3 = "Vascular dementia";
+const String clinicalSelectButton4 = "Schizophrenia";
+const String clinicalSelectButton5 = "Depression";
+// const String clinicalSelectButton6 = "Executive functioning and memory";
+// const String clinicalSelectButton7 = "Schizophrenia";
+// const String clinicalSelectButton8 = "Working memory and executive functioning";
+// const String clinicalSelectButton9 = "Depression";
+// const String clinicalSelectButton10 =
+//     "Attention and concentration, and executive functioning";
+
+const String attentionConcentrationButton1 = "1. Vigilance test";
 const String attentionConcentrationButton2 =
-    "Spelling of a 5 letter word backwards";
-const String attentionConcentrationButton3 = "Serial 7s or 3s";
-const String attentionConcentrationButton4 = "Digit span";
-const String attentionConcentrationButton5 = "Observation";
+    "2. Spelling of a 5 letter word backwards";
+const String attentionConcentrationButton3 = "3. Serial 7s or 3s";
+const String attentionConcentrationButton4 = "4. Digit span";
+const String attentionConcentrationButton5 = "5. Observation";
 
-const String funFactAttentionConcentration =
-    "It is possible to assess attention and concentration by observing the patient’s quality of interaction during mental status examination. However, this provides only a rough estimate and is a precursor for further testing.";
+const String domain_select = "Domain Select";
+const String domain_select_info =
+    "Select a cognitive domain below to see how to assess for it.";
+
+const String domain_attention_title = "Assessment of Attention";
+const String domain_attention_subtitle = "and Concentration";

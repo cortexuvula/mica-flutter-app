@@ -55,20 +55,33 @@ class _WelcomeState extends State<Welcome> {
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
                       children: <Widget>[
-                        RaisedButton(
-                          elevation: 10.0,
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Home()));
-                          },
-                          child: Text(appData.welcomeButtonOption1),
+                        Container(
+                          width: _width * 0.8,
+                          child: RaisedButton(
+                            elevation: 10.0,
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Home()));
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: <Widget>[
+                                  Text(appData.welcomeButtonOption1),
+                                  SizedBox(
+                                    height: 5.0,
+                                  ),
+                                  Text(
+                                    appData.welcomeOption1,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        Text(appData.welcomeOption1),
                       ],
                     ),
                   ),
@@ -83,21 +96,34 @@ class _WelcomeState extends State<Welcome> {
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
                       children: <Widget>[
-                        RaisedButton(
-                          elevation: 10.0,
-                          onPressed: () {
-                            var router = new MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    new DomainSelect());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
-                          },
-                          child: Text(appData.welcomeButtonOption2),
+                        Container(
+                          width: _width * 0.8,
+                          child: RaisedButton(
+                            elevation: 10.0,
+                            onPressed: () {
+                              var router = new MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      new DomainSelect());
+                              Navigator.of(context).pushAndRemoveUntil(
+                                  router, (Route<dynamic> route) => true);
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: <Widget>[
+                                  Text(appData.welcomeButtonOption2),
+                                  SizedBox(
+                                    height: 5.0,
+                                  ),
+                                  Text(
+                                    appData.welcomeOption2,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        Text(appData.welcomeOption2),
                       ],
                     ),
                   ),
@@ -112,21 +138,34 @@ class _WelcomeState extends State<Welcome> {
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
                       children: <Widget>[
-                        RaisedButton(
-                          elevation: 10.0,
-                          onPressed: () {
-                            var router = new MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    new ClinicalSelect());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
-                          },
-                          child: Text(appData.welcomeButtonOption3),
+                        Container(
+                          width: _width * 0.8,
+                          child: RaisedButton(
+                            elevation: 10.0,
+                            onPressed: () {
+                              var router = new MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      new ClinicalSelect());
+                              Navigator.of(context).pushAndRemoveUntil(
+                                  router, (Route<dynamic> route) => true);
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: <Widget>[
+                                  Text(appData.welcomeButtonOption3),
+                                  SizedBox(
+                                    height: 5.0,
+                                  ),
+                                  Text(
+                                    appData.welcomeOption3,
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
-                        SizedBox(
-                          height: 5.0,
-                        ),
-                        Text(appData.welcomeOption3),
                       ],
                     ),
                   ),
@@ -141,17 +180,16 @@ class _WelcomeState extends State<Welcome> {
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
                       children: <Widget>[
-                        RaisedButton(
-                          elevation: 10.0,
-                          onPressed: () {
-                            _launchURL();
-                          },
-                          child: Text(appData.welcomeButtonOption4),
+                        Container(
+                          width: _width * 0.8,
+                          child: RaisedButton(
+                            elevation: 10.0,
+                            onPressed: () {
+                              _launchURL();
+                            },
+                            child: Text(appData.welcomeButtonOption4),
+                          ),
                         ),
-                        // SizedBox(
-                        //   height: 5.0,
-                        // ),
-                        // Text(appData.welcomeOption3),
                       ],
                     ),
                   ),
@@ -166,15 +204,18 @@ class _WelcomeState extends State<Welcome> {
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
                       children: <Widget>[
-                        RaisedButton(
-                          elevation: 10.0,
-                          onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ResourcePage()));
-                          },
-                          child: Text(appData.welcomeButtonOption5),
+                        Container(
+                          width: _width * 0.8,
+                          child: RaisedButton(
+                            elevation: 10.0,
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ResourcePage()));
+                            },
+                            child: Text(appData.welcomeButtonOption5),
+                          ),
                         ),
                         // SizedBox(
                         //   height: 5.0,
@@ -192,7 +233,7 @@ class _WelcomeState extends State<Welcome> {
   }
 
   _launchURL() async {
-    const url = 'http://neoncortex.net/wp-content/mca/bca.pdf';
+    const url = 'https://neoncortex.net/wp-content/mca/bca.pdf';
     if (await canLaunch(url)) {
       await launch(url);
     } else {

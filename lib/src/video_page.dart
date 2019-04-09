@@ -21,9 +21,9 @@ class _VideoPageState extends State<VideoPage> {
   @override
   void initState() {
     super.initState();
-    print('https://vimeo.com/${widget.videoURL}');
+    // print('https://vimeo.com/${widget.videoURL}');
     videoPlayerController = VideoPlayerController.network(
-        'http://neoncortex.net/wp-content/mca/${widget.videoURL}');
+        'https://neoncortex.net/wp-content/mca/${widget.videoURL}');
     _chewieController = ChewieController(
       videoPlayerController: videoPlayerController,
       aspectRatio: 3 / 2,
