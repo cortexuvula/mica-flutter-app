@@ -40,7 +40,7 @@ class _WelcomeState extends State<Welcome> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      appData.welcomeTitle,
+                      appData.welcomeTitle.toUpperCase(),
                       textAlign: TextAlign.center,
                     ),
                   ),
