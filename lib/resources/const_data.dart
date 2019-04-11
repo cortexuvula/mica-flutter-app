@@ -352,14 +352,14 @@ const String resourceButtonVideo = "Educational Videos";
 
 const String welcomeTitle = "Welcome, what would you like to do today?";
 const String welcomeOption1 =
-    "Administer the Midland Cognitive Assessment (MICA). A 15 minute cognitive assessment tool that covers most OF the important cognitive domains.";
+    "Administer the Midland Cognitive Assessment (MICA). A 15 minute cognitive assessment tool that covers most of the important cognitive domains.";
 const String welcomeOption2 = "Assess specific cognitive domain(s)";
 const String welcomeOption3 =
     "Learn more about the assessment of patients with specific clinical presentations.";
 
 const String welcomeButtonOption1 = "MICA";
 const String welcomeButtonOption2 = "Domains";
-const String welcomeButtonOption3 = "Clinical Case";
+const String welcomeButtonOption3 = "Clinical Cases";
 const String welcomeButtonOption4 = "Bedside Cognitive Assessment Booklet";
 const String welcomeButtonOption5 = "Educational Videos";
 

@@ -2,9 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/patient_information.dart';
-import 'package:mica/src/resource_page.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:dart_ping/dart_ping.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {

@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import 'dart:async';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/domain_testing/vigilance.dart';
-import 'package:mica/src/language_comprehension.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
