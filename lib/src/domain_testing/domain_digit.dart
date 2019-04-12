@@ -2,14 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/welcome.dart';
 
-class SerialSeven extends StatefulWidget {
+class Digit extends StatefulWidget {
   @override
-  _SerialSevenState createState() => _SerialSevenState();
+  _DigitState createState() => _DigitState();
 }
 
-class _SerialSevenState extends State<SerialSeven> {
+class _DigitState extends State<Digit> {
   double sizeBoxHeight = 10.0;
-  int _radioValue = 0;
+  int _radioValue = 2;
+
+  bool number1 = false;
+  bool number2 = false;
+  bool number3 = false;
+  bool number4 = false;
+
+  int correctCount = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +25,7 @@ class _SerialSevenState extends State<SerialSeven> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            appData.domain_serial_title,
+            appData.domain_digit_title,
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -47,32 +54,6 @@ class _SerialSevenState extends State<SerialSeven> {
       ),
       body: ListView(
         children: <Widget>[
-          ExpansionTile(),
-          SizedBox(
-            height: sizeBoxHeight,
-          ),
-          Container(
-            width: _width * 0.9,
-            child: Card(
-              elevation: 10.0,
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      "Serial 7's",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 35.0),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
           SizedBox(
             height: sizeBoxHeight,
           ),
@@ -86,7 +67,7 @@ class _SerialSevenState extends State<SerialSeven> {
                 child: Column(
                   children: <Widget>[
                     Text(
-                      appData.domain_serial_seven_patient,
+                      appData.domain_digit_patient,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.black,
@@ -111,7 +92,7 @@ class _SerialSevenState extends State<SerialSeven> {
                 child: Column(
                   children: <Widget>[
                     Text(
-                      appData.domain_serial_seven_examiner,
+                      appData.domain_digit_examiner,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                           color: Colors.black,
@@ -133,42 +114,24 @@ class _SerialSevenState extends State<SerialSeven> {
               color: Colors.yellowAccent.shade400,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      appData.domain_serial_seven_patinet2,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15.0),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: sizeBoxHeight,
-          ),
-          Container(
-            width: _width * 0.9,
-            child: Card(
-              elevation: 10.0,
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      "Serial 3's",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 35.0),
-                    ),
-                  ],
+                child: ListTile(
+                  title: Text(
+                    appData.domain_digit_numbers1,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 15.0),
+                  ),
+                  trailing: IconButton(
+                    icon: Icon(Icons.check_box),
+                    color: number1 ? Colors.green : Colors.black,
+                    onPressed: () {
+                      setState(() {
+                        changeRadio(number1);
+                        number1 = !number1;
+                      });
+                    },
+                  ),
                 ),
               ),
             ),
@@ -183,42 +146,24 @@ class _SerialSevenState extends State<SerialSeven> {
               color: Colors.yellowAccent.shade400,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      appData.domain_serial_three_patient,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15.0),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: sizeBoxHeight,
-          ),
-          Container(
-            width: _width * 0.9,
-            child: Card(
-              elevation: 10.0,
-              color: Colors.deepPurple.shade300,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      appData.domain_serial_three_examiner,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15.0),
-                    ),
-                  ],
+                child: ListTile(
+                  title: Text(
+                    appData.domain_digit_numbers2,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 15.0),
+                  ),
+                  trailing: IconButton(
+                    icon: Icon(Icons.check_box),
+                    color: number2 ? Colors.green : Colors.black,
+                    onPressed: () {
+                      setState(() {
+                        changeRadio(number2);
+                        number2 = !number2;
+                      });
+                    },
+                  ),
                 ),
               ),
             ),
@@ -233,17 +178,56 @@ class _SerialSevenState extends State<SerialSeven> {
               color: Colors.yellowAccent.shade400,
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      appData.domain_serial_three_patinet2,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15.0),
-                    ),
-                  ],
+                child: ListTile(
+                  title: Text(
+                    appData.domain_digit_numbers3,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 15.0),
+                  ),
+                  trailing: IconButton(
+                    icon: Icon(Icons.check_box),
+                    color: number3 ? Colors.green : Colors.black,
+                    onPressed: () {
+                      setState(() {
+                        changeRadio(number3);
+                        number3 = !number3;
+                      });
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: sizeBoxHeight,
+          ),
+          Container(
+            width: _width * 0.9,
+            child: Card(
+              elevation: 10.0,
+              color: Colors.yellowAccent.shade400,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  title: Text(
+                    appData.domain_digit_numbers4,
+                    style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500,
+                        fontSize: 15.0),
+                  ),
+                  trailing: IconButton(
+                    icon: Icon(Icons.check_box),
+                    color: number4 ? Colors.green : Colors.black,
+                    onPressed: () {
+                      setState(() {
+                        changeRadio(number4);
+                        number4 = !number4;
+                      });
+                    },
+                  ),
                 ),
               ),
             ),
@@ -402,5 +386,30 @@ class _SerialSevenState extends State<SerialSeven> {
     setState(() {
       _radioValue = value;
     });
+  }
+
+  void changeRadio(bool number) {
+    if (!number) {
+      setState(() {
+        correctCount += 1;
+      });
+    } else {
+      setState(() {
+        correctCount -= 1;
+      });
+    }
+    if (correctCount == 3) {
+      setState(() {
+        _radioValue = 1;
+      });
+    } else if (correctCount == 4) {
+      setState(() {
+        _radioValue = 0;
+      });
+    } else {
+      setState(() {
+        _radioValue = 2;
+      });
+    }
   }
 }
