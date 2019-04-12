@@ -54,329 +54,333 @@ class _DigitState extends State<Digit> {
       ),
       body: ListView(
         children: <Widget>[
-          SizedBox(
-            height: sizeBoxHeight,
-          ),
-          Container(
-            width: _width * 0.9,
-            child: Card(
-              elevation: 10.0,
-              color: Colors.yellowAccent.shade400,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      appData.domain_digit_patient,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15.0),
-                    ),
-                  ],
-                ),
+          Column(
+            children: <Widget>[
+              SizedBox(
+                height: sizeBoxHeight,
               ),
-            ),
-          ),
-          SizedBox(
-            height: sizeBoxHeight,
-          ),
-          Container(
-            width: _width * 0.9,
-            child: Card(
-              elevation: 10.0,
-              color: Colors.deepPurple.shade300,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      appData.domain_digit_examiner,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15.0),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: sizeBoxHeight,
-          ),
-          Container(
-            width: _width * 0.9,
-            child: Card(
-              elevation: 10.0,
-              color: Colors.yellowAccent.shade400,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  title: Text(
-                    appData.domain_digit_numbers1,
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15.0),
-                  ),
-                  trailing: IconButton(
-                    icon: Icon(Icons.check_box),
-                    color: number1 ? Colors.green : Colors.black,
-                    onPressed: () {
-                      setState(() {
-                        changeRadio(number1);
-                        number1 = !number1;
-                      });
-                    },
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: sizeBoxHeight,
-          ),
-          Container(
-            width: _width * 0.9,
-            child: Card(
-              elevation: 10.0,
-              color: Colors.yellowAccent.shade400,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  title: Text(
-                    appData.domain_digit_numbers2,
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15.0),
-                  ),
-                  trailing: IconButton(
-                    icon: Icon(Icons.check_box),
-                    color: number2 ? Colors.green : Colors.black,
-                    onPressed: () {
-                      setState(() {
-                        changeRadio(number2);
-                        number2 = !number2;
-                      });
-                    },
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: sizeBoxHeight,
-          ),
-          Container(
-            width: _width * 0.9,
-            child: Card(
-              elevation: 10.0,
-              color: Colors.yellowAccent.shade400,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  title: Text(
-                    appData.domain_digit_numbers3,
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15.0),
-                  ),
-                  trailing: IconButton(
-                    icon: Icon(Icons.check_box),
-                    color: number3 ? Colors.green : Colors.black,
-                    onPressed: () {
-                      setState(() {
-                        changeRadio(number3);
-                        number3 = !number3;
-                      });
-                    },
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: sizeBoxHeight,
-          ),
-          Container(
-            width: _width * 0.9,
-            child: Card(
-              elevation: 10.0,
-              color: Colors.yellowAccent.shade400,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  title: Text(
-                    appData.domain_digit_numbers4,
-                    style: TextStyle(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500,
-                        fontSize: 15.0),
-                  ),
-                  trailing: IconButton(
-                    icon: Icon(Icons.check_box),
-                    color: number4 ? Colors.green : Colors.black,
-                    onPressed: () {
-                      setState(() {
-                        changeRadio(number4);
-                        number4 = !number4;
-                      });
-                    },
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: sizeBoxHeight,
-          ),
-          Container(
-            width: _width * 0.9,
-            child: Card(
-              elevation: 10.0,
-              color: Colors.green,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    // Text(
-                    //   appData.testAttentionResponse,
-                    //   textAlign: TextAlign.center,
-                    //   style: TextStyle(
-                    //       color: Colors.black,
-                    //       fontWeight: FontWeight.w500,
-                    //       fontSize: 15.0),
-                    // ),
-                    Table(
-                      defaultVerticalAlignment:
-                          TableCellVerticalAlignment.middle,
-                      border: TableBorder.all(),
-                      columnWidths: {
-                        0: FlexColumnWidth(0.3),
-                        1: FlexColumnWidth(0.3),
-                        2: FlexColumnWidth(0.34)
-                      },
-                      children: [
-                        TableRow(children: [
-                          Row(
-                            children: <Widget>[
-                              Radio(
-                                value: 0,
-                                groupValue: _radioValue,
-                                onChanged: _handleRadioValueChange,
-                                activeColor: Colors.white,
-                              ),
-                              Text(
-                                "Normal",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 10.0,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: <Widget>[
-                              Radio(
-                                value: 1,
-                                groupValue: _radioValue,
-                                onChanged: _handleRadioValueChange,
-                                activeColor: Colors.white,
-                              ),
-                              Text(
-                                "Equivocal",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 10.0,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: <Widget>[
-                              Radio(
-                                value: 2,
-                                groupValue: _radioValue,
-                                onChanged: _handleRadioValueChange,
-                                activeColor: Colors.white,
-                              ),
-                              Text(
-                                "Impaired",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 10.0,
-                                ),
-                              ),
-                            ],
-                          )
-                        ]),
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              appData.testAttentionResponseNormal,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 10.0,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              appData.testAttentionResponseEquivocal,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 10.0,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              appData.testAttentionResponseImpaired,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 10.0,
-                              ),
-                            ),
-                          ),
-                        ])
+              Container(
+                width: _width * 0.9,
+                child: Card(
+                  elevation: 10.0,
+                  color: Colors.yellowAccent.shade400,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          appData.domain_digit_patient,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 15.0),
+                        ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
               ),
-            ),
-          ),
-          SizedBox(
-            height: sizeBoxHeight,
-          ),
-          Container(
-            width: _width * 0.9,
-            child: Card(
-              elevation: 10.0,
-              color: Colors.white,
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: RaisedButton(
+              SizedBox(
+                height: sizeBoxHeight,
+              ),
+              Container(
+                width: _width * 0.9,
+                child: Card(
                   elevation: 10.0,
-                  onPressed: () {
-                    var router = new MaterialPageRoute(
-                        builder: (BuildContext context) => new Welcome());
-                    Navigator.of(context).pushAndRemoveUntil(
-                        router, (Route<dynamic> route) => true);
-                  },
-                  child: Text("Testing Completed"),
+                  color: Colors.deepPurple.shade300,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          appData.domain_digit_examiner,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 15.0),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
-          )
+              SizedBox(
+                height: sizeBoxHeight,
+              ),
+              Container(
+                width: _width * 0.9,
+                child: Card(
+                  elevation: 10.0,
+                  color: Colors.yellowAccent.shade400,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      title: Text(
+                        appData.domain_digit_numbers1,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15.0),
+                      ),
+                      trailing: IconButton(
+                        icon: Icon(Icons.check_box),
+                        color: number1 ? Colors.green : Colors.black,
+                        onPressed: () {
+                          setState(() {
+                            changeRadio(number1);
+                            number1 = !number1;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: sizeBoxHeight,
+              ),
+              Container(
+                width: _width * 0.9,
+                child: Card(
+                  elevation: 10.0,
+                  color: Colors.yellowAccent.shade400,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      title: Text(
+                        appData.domain_digit_numbers2,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15.0),
+                      ),
+                      trailing: IconButton(
+                        icon: Icon(Icons.check_box),
+                        color: number2 ? Colors.green : Colors.black,
+                        onPressed: () {
+                          setState(() {
+                            changeRadio(number2);
+                            number2 = !number2;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: sizeBoxHeight,
+              ),
+              Container(
+                width: _width * 0.9,
+                child: Card(
+                  elevation: 10.0,
+                  color: Colors.yellowAccent.shade400,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      title: Text(
+                        appData.domain_digit_numbers3,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15.0),
+                      ),
+                      trailing: IconButton(
+                        icon: Icon(Icons.check_box),
+                        color: number3 ? Colors.green : Colors.black,
+                        onPressed: () {
+                          setState(() {
+                            changeRadio(number3);
+                            number3 = !number3;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: sizeBoxHeight,
+              ),
+              Container(
+                width: _width * 0.9,
+                child: Card(
+                  elevation: 10.0,
+                  color: Colors.yellowAccent.shade400,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ListTile(
+                      title: Text(
+                        appData.domain_digit_numbers4,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15.0),
+                      ),
+                      trailing: IconButton(
+                        icon: Icon(Icons.check_box),
+                        color: number4 ? Colors.green : Colors.black,
+                        onPressed: () {
+                          setState(() {
+                            changeRadio(number4);
+                            number4 = !number4;
+                          });
+                        },
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: sizeBoxHeight,
+              ),
+              Container(
+                width: _width * 0.9,
+                child: Card(
+                  elevation: 10.0,
+                  color: Colors.green,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: <Widget>[
+                        // Text(
+                        //   appData.testAttentionResponse,
+                        //   textAlign: TextAlign.center,
+                        //   style: TextStyle(
+                        //       color: Colors.black,
+                        //       fontWeight: FontWeight.w500,
+                        //       fontSize: 15.0),
+                        // ),
+                        Table(
+                          defaultVerticalAlignment:
+                              TableCellVerticalAlignment.middle,
+                          border: TableBorder.all(),
+                          columnWidths: {
+                            0: FlexColumnWidth(0.3),
+                            1: FlexColumnWidth(0.3),
+                            2: FlexColumnWidth(0.34)
+                          },
+                          children: [
+                            TableRow(children: [
+                              Row(
+                                children: <Widget>[
+                                  Radio(
+                                    value: 0,
+                                    groupValue: _radioValue,
+                                    onChanged: _handleRadioValueChange,
+                                    activeColor: Colors.white,
+                                  ),
+                                  Text(
+                                    "Normal",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 10.0,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  Radio(
+                                    value: 1,
+                                    groupValue: _radioValue,
+                                    onChanged: _handleRadioValueChange,
+                                    activeColor: Colors.white,
+                                  ),
+                                  Text(
+                                    "Equivocal",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 10.0,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  Radio(
+                                    value: 2,
+                                    groupValue: _radioValue,
+                                    onChanged: _handleRadioValueChange,
+                                    activeColor: Colors.white,
+                                  ),
+                                  Text(
+                                    "Impaired",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 10.0,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ]),
+                            TableRow(children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  appData.testAttentionResponseNormal,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 10.0,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  appData.testAttentionResponseEquivocal,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 10.0,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  appData.testAttentionResponseImpaired,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 10.0,
+                                  ),
+                                ),
+                              ),
+                            ])
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: sizeBoxHeight,
+              ),
+              Container(
+                width: _width * 0.9,
+                child: Card(
+                  elevation: 10.0,
+                  color: Colors.white,
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: RaisedButton(
+                      elevation: 10.0,
+                      onPressed: () {
+                        var router = new MaterialPageRoute(
+                            builder: (BuildContext context) => new Welcome());
+                        Navigator.of(context).pushAndRemoveUntil(
+                            router, (Route<dynamic> route) => true);
+                      },
+                      child: Text("Testing Completed"),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ],
       ),
     );
