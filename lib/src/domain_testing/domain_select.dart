@@ -56,14 +56,6 @@ class _DomainSelectState extends State<DomainSelect> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: <Widget>[
-                      // Padding(
-                      //   padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
-                      //   child: Text(
-                      //     "Fun Fact",
-                      //     style: TextStyle(fontWeight: FontWeight.w500),
-                      //     textAlign: TextAlign.center,
-                      //   ),
-                      // ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(

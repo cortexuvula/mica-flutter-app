@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
-import 'package:mica/src/domain_testing/domain_patient_information.dart';
+import 'package:mica/src/domain_testing/domain_serial_seven.dart';
+import 'package:mica/src/domain_testing/domain_vigilance.dart';
+import 'package:mica/src/domain_testing/spell_word.dart';
 import 'package:mica/src/welcome.dart';
 
 final String VIGILANCE = "Vigilance";
@@ -66,9 +68,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                           onPressed: () {
                             var router = new MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    new DomainPatientInformation(
-                                      testName: VIGILANCE,
-                                    ));
+                                    new DomainVigilance());
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
@@ -102,7 +102,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                           onPressed: () {
                             var router = new MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    new Welcome());
+                                    new SpellWordBarkwards());
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
@@ -136,7 +136,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                           onPressed: () {
                             var router = new MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    new Welcome());
+                                    new SerialSeven());
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
