@@ -124,6 +124,13 @@ class _DigitState extends State<Digit> {
                             fontWeight: FontWeight.w500,
                             fontSize: 15.0),
                       ),
+                      subtitle: Text(
+                        appData.domain_digit_numbers1_sub,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15.0),
+                      ),
                       trailing: IconButton(
                         icon: Icon(Icons.check_box),
                         color: number1 ? Colors.green : Colors.black,
@@ -151,6 +158,13 @@ class _DigitState extends State<Digit> {
                     child: ListTile(
                       title: Text(
                         appData.domain_digit_numbers2,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15.0),
+                      ),
+                      subtitle: Text(
+                        appData.domain_digit_numbers2_sub,
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w500,
@@ -188,6 +202,13 @@ class _DigitState extends State<Digit> {
                             fontWeight: FontWeight.w500,
                             fontSize: 15.0),
                       ),
+                      subtitle: Text(
+                        appData.domain_digit_numbers3_sub,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15.0),
+                      ),
                       trailing: IconButton(
                         icon: Icon(Icons.check_box),
                         color: number3 ? Colors.green : Colors.black,
@@ -215,6 +236,13 @@ class _DigitState extends State<Digit> {
                     child: ListTile(
                       title: Text(
                         appData.domain_digit_numbers4,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 15.0),
+                      ),
+                      subtitle: Text(
+                        appData.domain_digit_numbers4_sub,
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w500,

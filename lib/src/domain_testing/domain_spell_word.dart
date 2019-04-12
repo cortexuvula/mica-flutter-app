@@ -47,226 +47,230 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
       ),
       body: ListView(
         children: <Widget>[
-          SizedBox(
-            height: sizeBoxHeight,
-          ),
-          Container(
-            width: _width * 0.9,
-            child: Card(
-              elevation: 10.0,
-              color: Colors.yellowAccent.shade400,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      appData.domain_spell_word_patient,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15.0),
-                    ),
-                  ],
-                ),
+          Column(
+            children: <Widget>[
+              SizedBox(
+                height: sizeBoxHeight,
               ),
-            ),
-          ),
-          SizedBox(
-            height: sizeBoxHeight,
-          ),
-          Container(
-            width: _width * 0.9,
-            child: Card(
-              elevation: 10.0,
-              color: Colors.white,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      "Right",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 50.0),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: sizeBoxHeight,
-          ),
-          Container(
-            width: _width * 0.9,
-            child: Card(
-              elevation: 10.0,
-              color: Colors.yellowAccent.shade400,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    Text(
-                      appData.domain_spell_word,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w500,
-                          fontSize: 15.0),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: sizeBoxHeight,
-          ),
-          Container(
-            width: _width * 0.9,
-            child: Card(
-              elevation: 10.0,
-              color: Colors.green,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Column(
-                  children: <Widget>[
-                    // Text(
-                    //   appData.testAttentionResponse,
-                    //   textAlign: TextAlign.center,
-                    //   style: TextStyle(
-                    //       color: Colors.black,
-                    //       fontWeight: FontWeight.w500,
-                    //       fontSize: 15.0),
-                    // ),
-                    Table(
-                      defaultVerticalAlignment:
-                          TableCellVerticalAlignment.middle,
-                      border: TableBorder.all(),
-                      columnWidths: {
-                        0: FlexColumnWidth(0.3),
-                        1: FlexColumnWidth(0.3),
-                        2: FlexColumnWidth(0.34)
-                      },
-                      children: [
-                        TableRow(children: [
-                          Row(
-                            children: <Widget>[
-                              Radio(
-                                value: 0,
-                                groupValue: _radioValue,
-                                onChanged: _handleRadioValueChange,
-                                activeColor: Colors.white,
-                              ),
-                              Text(
-                                "Normal",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 10.0,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: <Widget>[
-                              Radio(
-                                value: 1,
-                                groupValue: _radioValue,
-                                onChanged: _handleRadioValueChange,
-                                activeColor: Colors.white,
-                              ),
-                              Text(
-                                "Equivocal",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 10.0,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            children: <Widget>[
-                              Radio(
-                                value: 2,
-                                groupValue: _radioValue,
-                                onChanged: _handleRadioValueChange,
-                                activeColor: Colors.white,
-                              ),
-                              Text(
-                                "Impaired",
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 10.0,
-                                ),
-                              ),
-                            ],
-                          )
-                        ]),
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              appData.testAttentionResponseNormal,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 10.0,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              appData.testAttentionResponseEquivocal,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 10.0,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              appData.testAttentionResponseImpaired,
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 10.0,
-                              ),
-                            ),
-                          ),
-                        ])
+              Container(
+                width: _width * 0.9,
+                child: Card(
+                  elevation: 10.0,
+                  color: Colors.yellowAccent.shade400,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          appData.domain_spell_word_patient,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 15.0),
+                        ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
               ),
-            ),
-          ),
-          SizedBox(
-            height: sizeBoxHeight,
-          ),
-          Container(
-            width: _width * 0.9,
-            child: Card(
-              elevation: 10.0,
-              color: Colors.white,
-              child: Padding(
-                padding: EdgeInsets.all(8.0),
-                child: RaisedButton(
+              SizedBox(
+                height: sizeBoxHeight,
+              ),
+              Container(
+                width: _width * 0.9,
+                child: Card(
                   elevation: 10.0,
-                  onPressed: () {
-                    var router = new MaterialPageRoute(
-                        builder: (BuildContext context) => new Welcome());
-                    Navigator.of(context).pushAndRemoveUntil(
-                        router, (Route<dynamic> route) => true);
-                  },
-                  child: Text("Testing Completed"),
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          "Right",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 50.0),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
-          )
+              SizedBox(
+                height: sizeBoxHeight,
+              ),
+              Container(
+                width: _width * 0.9,
+                child: Card(
+                  elevation: 10.0,
+                  color: Colors.yellowAccent.shade400,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          appData.domain_spell_word,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 15.0),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: sizeBoxHeight,
+              ),
+              Container(
+                width: _width * 0.9,
+                child: Card(
+                  elevation: 10.0,
+                  color: Colors.green,
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      children: <Widget>[
+                        // Text(
+                        //   appData.testAttentionResponse,
+                        //   textAlign: TextAlign.center,
+                        //   style: TextStyle(
+                        //       color: Colors.black,
+                        //       fontWeight: FontWeight.w500,
+                        //       fontSize: 15.0),
+                        // ),
+                        Table(
+                          defaultVerticalAlignment:
+                              TableCellVerticalAlignment.middle,
+                          border: TableBorder.all(),
+                          columnWidths: {
+                            0: FlexColumnWidth(0.3),
+                            1: FlexColumnWidth(0.3),
+                            2: FlexColumnWidth(0.34)
+                          },
+                          children: [
+                            TableRow(children: [
+                              Row(
+                                children: <Widget>[
+                                  Radio(
+                                    value: 0,
+                                    groupValue: _radioValue,
+                                    onChanged: _handleRadioValueChange,
+                                    activeColor: Colors.white,
+                                  ),
+                                  Text(
+                                    "Normal",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 10.0,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  Radio(
+                                    value: 1,
+                                    groupValue: _radioValue,
+                                    onChanged: _handleRadioValueChange,
+                                    activeColor: Colors.white,
+                                  ),
+                                  Text(
+                                    "Equivocal",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 10.0,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Row(
+                                children: <Widget>[
+                                  Radio(
+                                    value: 2,
+                                    groupValue: _radioValue,
+                                    onChanged: _handleRadioValueChange,
+                                    activeColor: Colors.white,
+                                  ),
+                                  Text(
+                                    "Impaired",
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 10.0,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ]),
+                            TableRow(children: [
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  appData.testAttentionResponseNormal,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 10.0,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  appData.testAttentionResponseEquivocal,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 10.0,
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  appData.testAttentionResponseImpaired,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 10.0,
+                                  ),
+                                ),
+                              ),
+                            ])
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: sizeBoxHeight,
+              ),
+              Container(
+                width: _width * 0.9,
+                child: Card(
+                  elevation: 10.0,
+                  color: Colors.white,
+                  child: Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: RaisedButton(
+                      elevation: 10.0,
+                      onPressed: () {
+                        var router = new MaterialPageRoute(
+                            builder: (BuildContext context) => new Welcome());
+                        Navigator.of(context).pushAndRemoveUntil(
+                            router, (Route<dynamic> route) => true);
+                      },
+                      child: Text("Testing Completed"),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ],
       ),
     );

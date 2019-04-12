@@ -420,9 +420,13 @@ const String domain_digit_patient =
     "\“I will now say a series of numbers and would like you to repeat them. Are you ready? 4 9 3.\”";
 const String domain_digit_examiner =
     "Note the response and continue by increasing the series with an extra number until a sequence of 7 is reached. Most individuals can repeat a sequence of 6-8 random digits. If a patient fails the sequence then repeat it with another random sequence of the same length.";
-const String domain_digit_numbers1 = "\“5 4 8 1” if required: “6 4 1 7\”";
-const String domain_digit_numbers2 = "\“5 3 9 5 3” if required: “9 6 3 8 4\”";
-const String domain_digit_numbers3 =
-    "\“8 6 3 2 8 5” if required: “5 2 9 7 4 3\”";
-const String domain_digit_numbers4 =
-    "\“2 8 5 4 8 4 2” if required: “3 7 4 2 8 4 1\”";
+const String domain_digit_numbers1 = "\“5 4 8 1\”";
+const String domain_digit_numbers1_sub = "if required: \“6 4 1 7\”";
+const String domain_digit_numbers2 = "\“5 3 9 5 3\”";
+const String domain_digit_numbers2_sub = "if required: \“9 6 3 8 4\”";
+const String domain_digit_numbers3 = "\“8 6 3 2 8 5\”";
+const String domain_digit_numbers3_sub = "if required: \“5 2 9 7 4 3\”";
+const String domain_digit_numbers4 = "\“2 8 5 4 8 4 2\”";
+const String domain_digit_numbers4_sub = "if required: \“3 7 4 2 8 4 1\”";
+
+const String domain_language_title = "Language";
