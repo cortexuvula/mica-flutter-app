@@ -397,3 +397,19 @@ const String domain_select_info =
 
 const String domain_attention_title = "Assessment of Attention";
 const String domain_attention_subtitle = "and Concentration";
+
+const String domain_spell_word = "Good. Now spell it backwards.";
+const String domain_spell_word_patient = "\“Spell the following word: right\”";
+
+const String domain_serial_seven_patient =
+    "\“Subtract seven from one hundred.\”";
+const String domain_serial_seven_examiner = "Wait for the response.";
+const String domain_serial_seven_patinet2 =
+    "\“Now subtract seven again and continue to do this until I ask you to stop.\”";
+
+const String domain_serial_three_patient = "\“Subtract three from twenty.\”";
+
+const String domain_serial_three_examiner = "Wait for the response.";
+const String domain_serial_three_patinet2 =
+    "\“Now subtract three again and continue to do this until I ask you to stop.\”";
+const String domain_serial_title = "Serial 7's And 3's";

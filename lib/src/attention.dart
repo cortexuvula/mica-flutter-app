@@ -364,19 +364,6 @@ class _AttentionState extends State<Attention> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
-//                          Text(
-//                            appData.testResponse,
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.w500,
-//                              fontSize: 20.0,
-//                              decoration: TextDecoration.underline,
-//                            ),
-//                          ),
-//                          SizedBox(
-//                            height: 5.0,
-//                          ),
                             Text(
                               appData.testAttentionResponse,
                               textAlign: TextAlign.center,
