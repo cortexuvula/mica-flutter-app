@@ -18,21 +18,21 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            appData.domain_attention_title,
+            appData.domain_spell_word_title,
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
                 fontSize: 15.0),
             textAlign: TextAlign.start,
           ),
-          subtitle: Text(
-            appData.domain_attention_subtitle,
-            style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-                fontSize: 15.0),
-            textAlign: TextAlign.start,
-          ),
+          // subtitle: Text(
+          //   appData.domain_attention_subtitle,
+          //   style: TextStyle(
+          //       color: Colors.white,
+          //       fontWeight: FontWeight.w500,
+          //       fontSize: 15.0),
+          //   textAlign: TextAlign.start,
+          // ),
         ),
         actions: <Widget>[
           IconButton(
