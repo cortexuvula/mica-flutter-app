@@ -367,7 +367,7 @@ class _TestSummaryState extends State<TestSummary> {
                           Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              valueTrial12ResultToString(widget.attention),
+                              radioValueResultToString(widget.attention),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -1544,6 +1544,16 @@ class _TestSummaryState extends State<TestSummary> {
     return _color;
   }
 
+  int visualShortTermMemoryCardCToResult() {
+    int score1 = 3 - widget.shorttermMemoryVisualImage1;
+    int score2 = 3 - widget.shorttermMemoryVisualImage2;
+    int score3 = 3 - widget.shorttermMemoryVisualImage3;
+
+    int _combineScore = score1 + score2 + score3;
+
+    return _combineScore;
+  }
+
   String shareDoc() {
     String shareDoc = "Disclaimer: ${appData.disclaimer2} \n\n";
 
@@ -1569,13 +1579,13 @@ class _TestSummaryState extends State<TestSummary> {
         "Short-term Memory Verbal Trial 2: 10 Word Recall\nN > 6, E = 5 - 6, I < 5\nRaw score: ${widget.trialTwoScore}/10\n${ConvertResponseToString(valueTrial12ResultToString(widget.trialTwoScore))}\n\n";
 
     shareDoc +=
-        "Short-term Memory Verbal Trial 3: 10 Word Recall\nN > 7, E = 5 - 7,I < 5\nRaw score: ${widget.trialThreeScore}/10\n${ConvertResponseToString(valueTrial3ResultToString(widget.trialThreeScore))}\n\n";
+        "Short-term Memory Verbal Trial 3: 10 Word Recall\nN > 7, E = 5 - 7, I < 5\nRaw score: ${widget.trialThreeScore}/10\n${ConvertResponseToString(valueTrial3ResultToString(widget.trialThreeScore))}\n\n";
 
     shareDoc +=
-        "Visuospatial & Praxis: Line Drawing Copy\nN > 6, E = 6, I < 6\n${ConvertResponseToString(valueVisualResultToString())}\n\n";
+        "Visuospatial & Praxis: Line Drawing Copy\nN > 6, E = 6, I < 6\nRaw score: ${visualShortTermMemoryCardCToResult()}/9\n${ConvertResponseToString(valueVisualResultToString())}\n\n";
 
     shareDoc +=
-        "Attention: Vigilance Test\nN = no mistakes, E = one mistake and I = > 1 mistake\n${ConvertResponseToString(valueTrial12ResultToString(widget.attention))}\n\n";
+        "Attention: Vigilance Test\nN = no mistakes, E = one mistake and I = > 1 mistake\n${ConvertResponseToString(radioValueResultToString(widget.attention))}\n\n";
 
     shareDoc +=
         "Executive: Animal Naming Task\n>14 = N, 12 - 14 = E,  < 12 = I\n${ConvertResponseToString(radioValueResultToString(widget.executiveAnimalNaming))}\n\n";
@@ -1602,7 +1612,7 @@ class _TestSummaryState extends State<TestSummary> {
         "Short-Term Memory Verbal  Recognition: Total Score\nN > 5, E = 5, I < 5\nRaw score: ${widget.scoreVerbalRecognitionMemoryTenWordsInList}/10\n${ConvertResponseToString(valueDelayResultToString(widget.scoreVerbalRecognitionMemoryTenWordsInList))}\n\n";
 
     shareDoc +=
-        "Short-Term Memory Visual: Line Drawing Recall\nN > 5, E = 5, I < 5\n${ConvertResponseToString(valueDelayResultToString(widget.shorttermMemoryVisualImage1 + widget.shorttermMemoryVisualImage2 + widget.shorttermMemoryVisualImage3))}\n\n";
+        "Short-Term Memory Visual: Line Drawing Recall\nN > 5, E = 5, I < 5\n${ConvertResponseToString(valueDelayResultToString(9 - (widget.shorttermMemoryVisualImage1 + widget.shorttermMemoryVisualImage2 + widget.shorttermMemoryVisualImage3)))}\n\n";
 
     shareDoc +=
         "Anomia: Naming Line Drawings\nN = all correct, E = 1 error, I > 1 error\n${ConvertResponseToString(radioValueResultToString(widget.anomiaAgnosia))}\n\n";
