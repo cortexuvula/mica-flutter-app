@@ -8,40 +8,39 @@ import 'package:mica/src/domain_results/praxis.dart';
 import 'package:mica/src/domain_results/verbal_shortterm_memory.dart';
 import 'package:mica/src/domain_results/verbal_working_memory.dart';
 import 'package:mica/src/domain_results/visual_short_term_memory.dart';
-import 'package:mica/src/home.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/welcome.dart';
 import 'package:share/share.dart';
 
 class TestSummary extends StatefulWidget {
-  String patientName;
-  String assessorName;
-  String handedness;
-  DateTime assessmentDate;
-  int languageComprehensionRadioValue;
-  int trialOneScore;
-  int trialTwoScore;
-  int trialThreeScore;
-  int visuospatialPraxisImage1;
-  int visuospatialPraxisImage2;
-  int visuospatialPraxisImage3;
-  int attention;
-  int executiveAnimalNaming;
-  int executiveLuria;
-  int executiveSerial;
-  int shorttermMemoryVerbal;
-  int praxisRight;
-  int praxisLeft;
-  int tenWordDelay;
-  int scoreVerbalRecognitionMemoryTenWords;
-  int scoreVerbalRecognitionMemoryTenWordsInList;
-  int scoreVerbalRecognitionMemoryTenWordsNotInList;
-  int shorttermMemoryVisualImage1;
-  int shorttermMemoryVisualImage2;
-  int shorttermMemoryVisualImage3;
-  int anomiaAgnosia;
-  int agnosia;
-  int executive;
+  final String patientName;
+  final String assessorName;
+  final String handedness;
+  final DateTime assessmentDate;
+  final int languageComprehensionRadioValue;
+  final int trialOneScore;
+  final int trialTwoScore;
+  final int trialThreeScore;
+  final int visuospatialPraxisImage1;
+  final int visuospatialPraxisImage2;
+  final int visuospatialPraxisImage3;
+  final int attention;
+  final int executiveAnimalNaming;
+  final int executiveLuria;
+  final int executiveSerial;
+  final int shorttermMemoryVerbal;
+  final int praxisRight;
+  final int praxisLeft;
+  final int tenWordDelay;
+  final int scoreVerbalRecognitionMemoryTenWords;
+  final int scoreVerbalRecognitionMemoryTenWordsInList;
+  final int scoreVerbalRecognitionMemoryTenWordsNotInList;
+  final int shorttermMemoryVisualImage1;
+  final int shorttermMemoryVisualImage2;
+  final int shorttermMemoryVisualImage3;
+  final int anomiaAgnosia;
+  final int agnosia;
+  final int executive;
   int spokenLanguage;
 
   TestSummary(
@@ -235,9 +234,10 @@ class _TestSummaryState extends State<TestSummary> {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-//                              child: Text("${widget.languageComprehensionRadioValue}",
-//                                textAlign: TextAlign.center,
-//                              ),
+                            child: Text(
+                              "${3 - widget.languageComprehensionRadioValue}",
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -609,9 +609,10 @@ class _TestSummaryState extends State<TestSummary> {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-//                                child: Text("${widget.anomiaAgnosia}",
-//                                  textAlign: TextAlign.center,
-//                                ),
+                            child: Text(
+                              "${3 - widget.anomiaAgnosia}",
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -634,9 +635,10 @@ class _TestSummaryState extends State<TestSummary> {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-//                                child: Text("${widget.anomiaAgnosia}",
-//                                  textAlign: TextAlign.center,
-//                                ),
+                            child: Text(
+                              "${3 - widget.agnosia}",
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -682,9 +684,10 @@ class _TestSummaryState extends State<TestSummary> {
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-//                                child: Text("${widget.spokenLanguage}",
-//                                  textAlign: TextAlign.center,
-//                                ),
+                            child: Text(
+                              "${3 - widget.spokenLanguage}",
+                              textAlign: TextAlign.center,
+                            ),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -1573,13 +1576,13 @@ class _TestSummaryState extends State<TestSummary> {
         "Language Comprehension: 3 Stage Command\nRaw score: ${3 - widget.languageComprehensionRadioValue}/3\n${ConvertResponseToString(radioValueResultToString(widget.languageComprehensionRadioValue))}\n\n";
 
     shareDoc +=
-        "Working Memory VerbalTrial 1: 10 Word Recall\nN > 6, E = 5 - 6, I < 5\nRaw score: ${widget.trialOneScore}/10\n${ConvertResponseToString(valueTrial12ResultToString(widget.trialOneScore))}\n\n";
+        "Working Memory VerbalTrial 1: Ten Word Recall\nN > 6, E = 5 - 6, I < 5\nRaw score: ${widget.trialOneScore}/10\n${ConvertResponseToString(valueTrial12ResultToString(widget.trialOneScore))}\n\n";
 
     shareDoc +=
-        "Short-term Memory Verbal Trial 2: 10 Word Recall\nN > 6, E = 5 - 6, I < 5\nRaw score: ${widget.trialTwoScore}/10\n${ConvertResponseToString(valueTrial12ResultToString(widget.trialTwoScore))}\n\n";
+        "Short-term Memory Verbal Trial 2: Ten Word Recall\nN > 6, E = 5 - 6, I < 5\nRaw score: ${widget.trialTwoScore}/10\n${ConvertResponseToString(valueTrial12ResultToString(widget.trialTwoScore))}\n\n";
 
     shareDoc +=
-        "Short-term Memory Verbal Trial 3: 10 Word Recall\nN > 7, E = 5 - 7, I < 5\nRaw score: ${widget.trialThreeScore}/10\n${ConvertResponseToString(valueTrial3ResultToString(widget.trialThreeScore))}\n\n";
+        "Short-term Memory Verbal Trial 3: Ten Word Recall\nN > 7, E = 5 - 7, I < 5\nRaw score: ${widget.trialThreeScore}/10\n${ConvertResponseToString(valueTrial3ResultToString(widget.trialThreeScore))}\n\n";
 
     shareDoc +=
         "Visuospatial & Praxis: Line Drawing Copy\nN > 6, E = 6, I < 6\nRaw score: ${visualShortTermMemoryCardCToResult()}/9\n${ConvertResponseToString(valueVisualResultToString())}\n\n";
