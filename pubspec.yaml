@@ -29,6 +29,7 @@ dependencies:
   dart_ping: ^1.0.0
   shared_preferences: ^0.5.1+2
   countdown: ^0.1.0
+  simple_animations: ^1.1.0
 
 
 
