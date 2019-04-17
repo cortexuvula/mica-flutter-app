@@ -22,8 +22,11 @@ class Executive extends StatefulWidget {
   int executiveAnimalNaming;
   int executiveAnimalNamingCount;
   int executiveLuria;
+  int executiveLuriaScore;
   int executiveSerial;
+  int executiveSerialScore;
   int shorttermMemoryVerbal;
+  int shorttermMemoryVerbalScore;
   int praxisRight;
   int praxisLeft;
   int tenWordDelay;
@@ -55,8 +58,11 @@ class Executive extends StatefulWidget {
       this.executiveAnimalNaming,
       this.executiveAnimalNamingCount,
       this.executiveLuria,
+      this.executiveLuriaScore,
       this.executiveSerial,
+      this.executiveSerialScore,
       this.shorttermMemoryVerbal,
+      this.shorttermMemoryVerbalScore,
       this.praxisRight,
       this.praxisLeft,
       this.tenWordDelay,
@@ -471,11 +477,17 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                                       executiveAnimalNamingCount:
                                           widget.executiveAnimalNamingCount,
                                       executiveLuria: widget.executiveLuria,
+                                      executiveLuriaScore:
+                                          widget.executiveLuriaScore,
                                       executiveSerial: widget.executiveSerial,
+                                      executiveSerialScore:
+                                          widget.executiveSerialScore,
                                       praxisRight: widget.praxisRight,
                                       praxisLeft: widget.praxisLeft,
                                       shorttermMemoryVerbal:
                                           widget.shorttermMemoryVerbal,
+                                      shorttermMemoryVerbalScore:
+                                          widget.shorttermMemoryVerbalScore,
                                       tenWordDelay: widget.tenWordDelay,
                                       scoreVerbalRecognitionMemoryTenWords: widget
                                           .scoreVerbalRecognitionMemoryTenWords,

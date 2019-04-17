@@ -388,6 +388,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                       executiveAnimalNamingCount:
                                           widget.executiveAnimalNamingCount,
                                       executiveLuria: _radioValue,
+                                      executiveLuriaScore: _counter,
                                     ));
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);

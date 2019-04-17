@@ -28,10 +28,13 @@ class TestSummary extends StatefulWidget {
   final int attentionCorrect;
   final int attentionMistakes;
   final int executiveAnimalNaming;
-  int executiveAnimalNamingCount;
+  final int executiveAnimalNamingCount;
   final int executiveLuria;
+  final int executiveLuriaScore;
   final int executiveSerial;
+  final int executiveSerialScore;
   final int shorttermMemoryVerbal;
+  final int shorttermMemoryVerbalScore;
   final int praxisRight;
   final int praxisLeft;
   final int tenWordDelay;
@@ -65,8 +68,11 @@ class TestSummary extends StatefulWidget {
       this.executiveAnimalNaming,
       this.executiveAnimalNamingCount,
       this.executiveLuria,
+      this.executiveLuriaScore,
       this.executiveSerial,
+      this.executiveSerialScore,
       this.shorttermMemoryVerbal,
+      this.shorttermMemoryVerbalScore,
       this.praxisRight,
       this.praxisLeft,
       this.tenWordDelay,
@@ -1600,13 +1606,13 @@ class _TestSummaryState extends State<TestSummary> {
         "Executive: Animal Naming Task\n>14 = N, 12 - 14 = E,  < 12 = I\nRaw score: ${widget.executiveAnimalNamingCount} Animals Named\n${ConvertResponseToString(radioValueResultToString(widget.executiveAnimalNaming))}\n\n";
 
     shareDoc +=
-        "Executive: Luria Alternating Hand Movements\nN =  3 cycles without mistakes, E = able to do 1 - 2 cycles, I = unable to complete task\n${ConvertResponseToString(radioValueResultToString(widget.executiveLuria))}\n\n";
+        "Executive: Luria Alternating Hand Movements\nN =  3 cycles without mistakes, E = able to do 1 - 2 cycles, I = unable to complete task\nRaw score: ${widget.executiveLuriaScore} Hand Movements\n${ConvertResponseToString(radioValueResultToString(widget.executiveLuria))}\n\n";
 
     shareDoc +=
-        "Executive: Serial Order Reversal Task\nN = no errors, E = 1 error, I >1 error\n${ConvertResponseToString(radioValueResultToString(widget.executiveSerial))}\n\n";
+        "Executive: Serial Order Reversal Task\nN = no errors, E = 1 error, I >1 error\nRaw score: ${widget.executiveSerialScore}/6\n${ConvertResponseToString(radioValueResultToString(widget.executiveSerial))}\n\n";
 
     shareDoc +=
-        "Short-Term Memory Verbal Recall: Orientation\nN = 5, E = 4, I < 4\n${ConvertResponseToString(radioValueResultToString(widget.shorttermMemoryVerbal))}\n\n";
+        "Short-Term Memory Verbal Recall: Orientation\nN = 5, E = 4, I < 4\nRaw score: ${widget.shorttermMemoryVerbalScore}/5\n${ConvertResponseToString(radioValueResultToString(widget.shorttermMemoryVerbal))}\n\n";
 
     shareDoc +=
         "Praxis: Finger-hand Dexterity: Right\nN = no errors, E = some difficulty, I = clear difficulty\nRaw score: ${3 - widget.praxisRight}/3\n${ConvertResponseToString(radioValueResultToString(widget.praxisRight))}\n\n";
