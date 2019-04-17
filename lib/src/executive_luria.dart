@@ -17,7 +17,10 @@ class ExecutiveLuria extends StatefulWidget {
   int visuospatialPraxisImage2;
   int visuospatialPraxisImage3;
   int attention;
+  int attentionCorrect;
+  int attentionMistakes;
   int executiveAnimalNaming;
+  int executiveAnimalNamingCount;
 
   ExecutiveLuria(
       {Key key,
@@ -33,7 +36,10 @@ class ExecutiveLuria extends StatefulWidget {
       this.visuospatialPraxisImage2,
       this.visuospatialPraxisImage3,
       this.attention,
-      this.executiveAnimalNaming})
+      this.attentionCorrect,
+      this.attentionMistakes,
+      this.executiveAnimalNaming,
+      this.executiveAnimalNamingCount})
       : super(key: key);
 
   @override
@@ -374,8 +380,13 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                       visuospatialPraxisImage3:
                                           widget.visuospatialPraxisImage3,
                                       attention: widget.attention,
+                                      attentionCorrect: widget.attentionCorrect,
+                                      attentionMistakes:
+                                          widget.attentionMistakes,
                                       executiveAnimalNaming:
                                           widget.executiveAnimalNaming,
+                                      executiveAnimalNamingCount:
+                                          widget.executiveAnimalNamingCount,
                                       executiveLuria: _radioValue,
                                     ));
                             Navigator.of(context).pushAndRemoveUntil(
