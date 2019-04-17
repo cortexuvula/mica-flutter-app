@@ -21,6 +21,7 @@ class ExecutiveSerial extends StatefulWidget {
   int attentionMistakes;
   int executiveAnimalNaming;
   int executiveLuria;
+  int executiveLuriaScore;
   int executiveAnimalNamingCount;
 
   ExecutiveSerial(
@@ -41,7 +42,8 @@ class ExecutiveSerial extends StatefulWidget {
       this.attentionMistakes,
       this.executiveAnimalNaming,
       this.executiveAnimalNamingCount,
-      this.executiveLuria})
+      this.executiveLuria,
+      this.executiveLuriaScore})
       : super(key: key);
 
   @override
@@ -542,7 +544,10 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                       executiveAnimalNamingCount:
                                           widget.executiveAnimalNamingCount,
                                       executiveLuria: widget.executiveLuria,
+                                      executiveLuriaScore:
+                                          widget.executiveLuriaScore,
                                       executiveSerial: _radioValue,
+                                      executiveSerialScore: score,
                                     ));
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);

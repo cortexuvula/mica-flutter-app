@@ -23,7 +23,9 @@ class ShortTermMemoryVerbal extends StatefulWidget {
   int executiveAnimalNaming;
   int executiveAnimalNamingCount;
   int executiveLuria;
+  int executiveLuriaScore;
   int executiveSerial;
+  int executiveSerialScore;
 
   ShortTermMemoryVerbal(
       {Key key,
@@ -44,7 +46,9 @@ class ShortTermMemoryVerbal extends StatefulWidget {
       this.executiveAnimalNaming,
       this.executiveAnimalNamingCount,
       this.executiveLuria,
-      this.executiveSerial})
+      this.executiveLuriaScore,
+      this.executiveSerial,
+      this.executiveSerialScore})
       : super(key: key);
 
   @override
@@ -427,8 +431,13 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                       executiveAnimalNamingCount:
                                           widget.executiveAnimalNamingCount,
                                       executiveLuria: widget.executiveLuria,
+                                      executiveLuriaScore:
+                                          widget.executiveLuriaScore,
                                       executiveSerial: widget.executiveSerial,
+                                      executiveSerialScore:
+                                          widget.executiveSerialScore,
                                       shorttermMemoryVerbal: _radioValue,
+                                      shorttermMemoryVerbalScore: score,
                                     ));
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);

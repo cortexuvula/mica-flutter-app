@@ -23,8 +23,11 @@ class Praxis extends StatefulWidget {
   int executiveAnimalNaming;
   int executiveAnimalNamingCount;
   int executiveLuria;
+  int executiveLuriaScore;
   int executiveSerial;
+  int executiveSerialScore;
   int shorttermMemoryVerbal;
+  int shorttermMemoryVerbalScore;
 
   Praxis(
       {Key key,
@@ -45,8 +48,11 @@ class Praxis extends StatefulWidget {
       this.executiveAnimalNaming,
       this.executiveAnimalNamingCount,
       this.executiveLuria,
+      this.executiveLuriaScore,
       this.executiveSerial,
-      this.shorttermMemoryVerbal})
+      this.executiveSerialScore,
+      this.shorttermMemoryVerbal,
+      this.shorttermMemoryVerbalScore})
       : super(key: key);
 
   @override
@@ -403,9 +409,15 @@ class _PraxisState extends State<Praxis> {
                                       executiveAnimalNamingCount:
                                           widget.executiveAnimalNamingCount,
                                       executiveLuria: widget.executiveLuria,
+                                      executiveLuriaScore:
+                                          widget.executiveLuriaScore,
                                       executiveSerial: widget.executiveSerial,
+                                      executiveSerialScore:
+                                          widget.executiveSerialScore,
                                       shorttermMemoryVerbal:
                                           widget.shorttermMemoryVerbal,
+                                      shorttermMemoryVerbalScore:
+                                          widget.shorttermMemoryVerbalScore,
                                       praxisRight: _radioValueRight,
                                       praxisLeft: _radioValueLeft,
                                     ));
