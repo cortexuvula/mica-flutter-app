@@ -18,6 +18,8 @@ class ExecutiveAnimalNaming extends StatefulWidget {
   int visuospatialPraxisImage2;
   int visuospatialPraxisImage3;
   int attention;
+  int attentionCorrect;
+  int attentionMistakes;
 
   ExecutiveAnimalNaming(
       {Key key,
@@ -32,7 +34,9 @@ class ExecutiveAnimalNaming extends StatefulWidget {
       this.visuospatialPraxisImage1,
       this.visuospatialPraxisImage2,
       this.visuospatialPraxisImage3,
-      this.attention})
+      this.attention,
+      this.attentionCorrect,
+      this.attentionMistakes})
       : super(key: key);
 
   @override
@@ -453,7 +457,11 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                       visuospatialPraxisImage3:
                                           widget.visuospatialPraxisImage3,
                                       attention: widget.attention,
+                                      attentionCorrect: widget.attentionCorrect,
+                                      attentionMistakes:
+                                          widget.attentionMistakes,
                                       executiveAnimalNaming: _radioValue,
+                                      executiveAnimalNamingCount: _counter,
                                     ));
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);

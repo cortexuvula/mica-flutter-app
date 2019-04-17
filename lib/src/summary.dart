@@ -25,7 +25,10 @@ class TestSummary extends StatefulWidget {
   final int visuospatialPraxisImage2;
   final int visuospatialPraxisImage3;
   final int attention;
+  final int attentionCorrect;
+  final int attentionMistakes;
   final int executiveAnimalNaming;
+  int executiveAnimalNamingCount;
   final int executiveLuria;
   final int executiveSerial;
   final int shorttermMemoryVerbal;
@@ -57,7 +60,10 @@ class TestSummary extends StatefulWidget {
       this.visuospatialPraxisImage2,
       this.visuospatialPraxisImage3,
       this.attention,
+      this.attentionCorrect,
+      this.attentionMistakes,
       this.executiveAnimalNaming,
+      this.executiveAnimalNamingCount,
       this.executiveLuria,
       this.executiveSerial,
       this.shorttermMemoryVerbal,
@@ -1588,10 +1594,10 @@ class _TestSummaryState extends State<TestSummary> {
         "Visuospatial & Praxis: Line Drawing Copy\nN > 6, E = 6, I < 6\nRaw score: ${visualShortTermMemoryCardCToResult()}/9\n${ConvertResponseToString(valueVisualResultToString())}\n\n";
 
     shareDoc +=
-        "Attention: Vigilance Test\nN = no mistakes, E = one mistake and I = > 1 mistake\n${ConvertResponseToString(radioValueResultToString(widget.attention))}\n\n";
+        "Attention: Vigilance Test\nN = no mistakes, E = one mistake and I = > 1 mistake\nRaw score: ${widget.attentionCorrect} Correct Taps\nRaw score: ${widget.attentionMistakes} Incorrect Taps\n${ConvertResponseToString(radioValueResultToString(widget.attention))}\n\n";
 
     shareDoc +=
-        "Executive: Animal Naming Task\n>14 = N, 12 - 14 = E,  < 12 = I\n${ConvertResponseToString(radioValueResultToString(widget.executiveAnimalNaming))}\n\n";
+        "Executive: Animal Naming Task\n>14 = N, 12 - 14 = E,  < 12 = I\nRaw score: ${widget.executiveAnimalNamingCount} Animals Named\n${ConvertResponseToString(radioValueResultToString(widget.executiveAnimalNaming))}\n\n";
 
     shareDoc +=
         "Executive: Luria Alternating Hand Movements\nN =  3 cycles without mistakes, E = able to do 1 - 2 cycles, I = unable to complete task\n${ConvertResponseToString(radioValueResultToString(widget.executiveLuria))}\n\n";

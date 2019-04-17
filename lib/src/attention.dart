@@ -506,6 +506,8 @@ class _AttentionState extends State<Attention> {
                                       visuospatialPraxisImage3:
                                           widget.visuospatialPraxisImage3,
                                       attention: _radioValue,
+                                      attentionCorrect: correctTap,
+                                      attentionMistakes: wrongTap,
                                     ));
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);

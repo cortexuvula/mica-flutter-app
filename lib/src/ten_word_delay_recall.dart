@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
-import 'package:mica/src/home.dart';
 import 'package:mica/src/ten_word_recognition.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,7 +17,10 @@ class TenWordDelayedRecall extends StatefulWidget {
   int visuospatialPraxisImage2;
   int visuospatialPraxisImage3;
   int attention;
+  int attentionCorrect;
+  int attentionMistakes;
   int executiveAnimalNaming;
+  int executiveAnimalNamingCount;
   int executiveLuria;
   int executiveSerial;
   int shorttermMemoryVerbal;
@@ -39,7 +41,10 @@ class TenWordDelayedRecall extends StatefulWidget {
       this.visuospatialPraxisImage2,
       this.visuospatialPraxisImage3,
       this.attention,
+      this.attentionCorrect,
+      this.attentionMistakes,
       this.executiveAnimalNaming,
+      this.executiveAnimalNamingCount,
       this.executiveLuria,
       this.executiveSerial,
       this.shorttermMemoryVerbal,
@@ -235,8 +240,12 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
                                     visuospatialPraxisImage3:
                                         widget.visuospatialPraxisImage3,
                                     attention: widget.attention,
+                                    attentionCorrect: widget.attentionCorrect,
+                                    attentionMistakes: widget.attentionMistakes,
                                     executiveAnimalNaming:
                                         widget.executiveAnimalNaming,
+                                    executiveAnimalNamingCount:
+                                        widget.executiveAnimalNamingCount,
                                     executiveLuria: widget.executiveLuria,
                                     executiveSerial: widget.executiveSerial,
                                     praxisRight: widget.praxisRight,

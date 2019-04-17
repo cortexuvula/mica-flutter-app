@@ -17,8 +17,11 @@ class ExecutiveSerial extends StatefulWidget {
   int visuospatialPraxisImage2;
   int visuospatialPraxisImage3;
   int attention;
+  int attentionCorrect;
+  int attentionMistakes;
   int executiveAnimalNaming;
   int executiveLuria;
+  int executiveAnimalNamingCount;
 
   ExecutiveSerial(
       {Key key,
@@ -34,7 +37,10 @@ class ExecutiveSerial extends StatefulWidget {
       this.visuospatialPraxisImage2,
       this.visuospatialPraxisImage3,
       this.attention,
+      this.attentionCorrect,
+      this.attentionMistakes,
       this.executiveAnimalNaming,
+      this.executiveAnimalNamingCount,
       this.executiveLuria})
       : super(key: key);
 
@@ -528,8 +534,13 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                       visuospatialPraxisImage3:
                                           widget.visuospatialPraxisImage3,
                                       attention: widget.attention,
+                                      attentionCorrect: widget.attentionCorrect,
+                                      attentionMistakes:
+                                          widget.attentionMistakes,
                                       executiveAnimalNaming:
                                           widget.executiveAnimalNaming,
+                                      executiveAnimalNamingCount:
+                                          widget.executiveAnimalNamingCount,
                                       executiveLuria: widget.executiveLuria,
                                       executiveSerial: _radioValue,
                                     ));
