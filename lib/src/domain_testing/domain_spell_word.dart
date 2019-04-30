@@ -81,38 +81,13 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
                 width: _width * 0.9,
                 child: Card(
                   elevation: 10.0,
-                  color: Colors.white,
+                  color: Colors.deepPurple.shade300,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: <Widget>[
                         Text(
-                          "Right",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.black,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 50.0),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                height: sizeBoxHeight,
-              ),
-              Container(
-                width: _width * 0.9,
-                child: Card(
-                  elevation: 10.0,
-                  color: Colors.yellowAccent.shade400,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      children: <Widget>[
-                        Text(
-                          appData.domain_spell_word,
+                          appData.domain_spell_word_alternative,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.black,
@@ -127,6 +102,31 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
               SizedBox(
                 height: sizeBoxHeight,
               ),
+              // Container(
+              //   width: _width * 0.9,
+              //   child: Card(
+              //     elevation: 10.0,
+              //     color: Colors.yellowAccent.shade400,
+              //     child: Padding(
+              //       padding: const EdgeInsets.all(8.0),
+              //       child: Column(
+              //         children: <Widget>[
+              //           Text(
+              //             appData.domain_spell_word,
+              //             textAlign: TextAlign.center,
+              //             style: TextStyle(
+              //                 color: Colors.black,
+              //                 fontWeight: FontWeight.w500,
+              //                 fontSize: 15.0),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(
+              //   height: sizeBoxHeight,
+              // ),
               Container(
                 width: _width * 0.9,
                 child: Card(
