@@ -491,7 +491,7 @@ class _DomainVigilanceState extends State<DomainVigilance> {
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: Text("Testing Completed"),
+                          child: Text(appData.domain_test_complete_button),
                         ),
                       ),
                     ),

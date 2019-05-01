@@ -402,7 +402,7 @@ class _DigitState extends State<Digit> {
                         Navigator.of(context).pushAndRemoveUntil(
                             router, (Route<dynamic> route) => true);
                       },
-                      child: Text("Testing Completed"),
+                      child: Text(appData.domain_test_complete_button),
                     ),
                   ),
                 ),
