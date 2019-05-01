@@ -433,3 +433,5 @@ const String domain_digit_numbers4 = "\“2 8 5 4 8 4 2\”";
 const String domain_digit_numbers4_sub = "if required: \“3 7 4 2 8 4 1\”";
 
 const String domain_language_title = "Language";
+
+const String domain_test_complete_button = "Task Completed";
