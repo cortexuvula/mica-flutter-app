@@ -4,6 +4,8 @@ import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'domain_attention_concentration.dart';
+
 class DomainVigilance extends StatefulWidget {
   String patientName;
   String assessorName;
@@ -487,7 +489,7 @@ class _DomainVigilanceState extends State<DomainVigilance> {
                           onPressed: () {
                             var router = new MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    new Welcome());
+                                    new AttentionConcentration());
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },

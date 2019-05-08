@@ -178,7 +178,7 @@ const String testAttentionDetails =
 const String testAttentionToPatient =
     "\"I am going to read you a long series of letters. Whenever you hear the letter A, tap your hand like this.\” Indicate tapping movement. For all other letters do not tap.";
 const String testAttentionResponse = "A mistake is an omission or inclusion.";
-const String testAttentionResponseNormal = "no mistakes.";
+const String testAttentionResponseNormal = "No mistakes.";
 const String testAttentionResponseEquivocal = "1 mistake.";
 const String testAttentionResponseImpaired = "> 1 mistake.";
 
@@ -402,7 +402,7 @@ const String domain_spell_word = "\"Good. Now spell it backwards.\"";
 const String domain_spell_word_patient =
     "\“Spell the following word: RIGHT\”\n\"Good. Now spell it backwards.\"";
 const String domain_spell_word_alternative =
-    "Alternative words: April, March or Purple";
+    "Alternative words: April or March";
 
 const String domain_serial_seven_patient =
     "\“Subtract seven from one hundred.\”";
@@ -435,3 +435,8 @@ const String domain_digit_numbers4_sub = "if required: \“3 7 4 2 8 4 1\”";
 const String domain_language_title = "Language";
 
 const String domain_test_complete_button = "Task Completed";
+
+const String domain_observation_title = "Attention";
+const String domain_observation_subtitle = "Observation";
+const String domain_observation_examiner =
+    "It is possible to assess attention and concentration by observing the patient’s quality of interaction during mental status examination. However, this provides only a rough estimate and is usually a precursor for further testing.";
