@@ -5,6 +5,8 @@ import 'package:mica/src/ten_word_recall_task_trial_one.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'domain_attention_concentration.dart';
+
 class DomainLanguage extends StatefulWidget {
   @override
   _DomainLanguageState createState() => _DomainLanguageState();
@@ -23,7 +25,7 @@ class _DomainLanguageState extends State<DomainLanguage> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            appData.testLanguageComprehension,
+            appData.domain_observation_title,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,
@@ -31,7 +33,7 @@ class _DomainLanguageState extends State<DomainLanguage> {
             textAlign: TextAlign.start,
           ),
           subtitle: Text(
-            appData.testLanguageComprehensionSubtitle,
+            appData.domain_observation_subtitle,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w300,
@@ -69,7 +71,7 @@ class _DomainLanguageState extends State<DomainLanguage> {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            appData.testLanguageComprehensionDetails,
+                            appData.domain_observation_examiner,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -84,28 +86,28 @@ class _DomainLanguageState extends State<DomainLanguage> {
                 SizedBox(
                   height: sizeBoxHeight,
                 ),
-                Container(
-                  width: _width * 0.9,
-                  child: Card(
-                    elevation: 10.0,
-                    color: Colors.yellowAccent.shade400,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Column(
-                        children: <Widget>[
-                          Text(
-                            appData.testLanguageComprehensionToPatient,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.w500,
-                                fontSize: 15.0),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
+                // Container(
+                //   width: _width * 0.9,
+                //   child: Card(
+                //     elevation: 10.0,
+                //     color: Colors.yellowAccent.shade400,
+                //     child: Padding(
+                //       padding: const EdgeInsets.all(8.0),
+                //       child: Column(
+                //         children: <Widget>[
+                //           Text(
+                //             appData.testLanguageComprehensionToPatient,
+                //             textAlign: TextAlign.center,
+                //             style: TextStyle(
+                //                 color: Colors.black,
+                //                 fontWeight: FontWeight.w500,
+                //                 fontSize: 15.0),
+                //           ),
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                // ),
                 SizedBox(
                   height: sizeBoxHeight,
                 ),
@@ -185,35 +187,35 @@ class _DomainLanguageState extends State<DomainLanguage> {
                                   ],
                                 ),
                               ]),
-                              TableRow(children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    appData
-                                        .testLanguageComprehensionResponseNormal,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 10.0),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    appData
-                                        .testLanguageComprehensionResponseEquivocal,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 10.0),
-                                  ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Text(
-                                    appData
-                                        .testLanguageComprehensionResponseImpaired,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(fontSize: 10.0),
-                                  ),
-                                ),
-                              ])
+                              // TableRow(children: [
+                              //   Padding(
+                              //     padding: const EdgeInsets.all(8.0),
+                              //     child: Text(
+                              //       appData
+                              //           .testLanguageComprehensionResponseNormal,
+                              //       textAlign: TextAlign.center,
+                              //       style: TextStyle(fontSize: 10.0),
+                              //     ),
+                              //   ),
+                              //   Padding(
+                              //     padding: const EdgeInsets.all(8.0),
+                              //     child: Text(
+                              //       appData
+                              //           .testLanguageComprehensionResponseEquivocal,
+                              //       textAlign: TextAlign.center,
+                              //       style: TextStyle(fontSize: 10.0),
+                              //     ),
+                              //   ),
+                              //   Padding(
+                              //     padding: const EdgeInsets.all(8.0),
+                              //     child: Text(
+                              //       appData
+                              //           .testLanguageComprehensionResponseImpaired,
+                              //       textAlign: TextAlign.center,
+                              //       style: TextStyle(fontSize: 10.0),
+                              //     ),
+                              //   ),
+                              // ])
                             ],
                           ),
                         ],
@@ -235,7 +237,8 @@ class _DomainLanguageState extends State<DomainLanguage> {
                         elevation: 10.0,
                         onPressed: () {
                           var router = new MaterialPageRoute(
-                              builder: (BuildContext context) => new Welcome());
+                              builder: (BuildContext context) =>
+                                  new AttentionConcentration());
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => true);
                         },

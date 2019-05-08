@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/welcome.dart';
 
+import 'domain_attention_concentration.dart';
+
 class SpellWordBarkwards extends StatefulWidget {
   @override
   _SpellWordBarkwardsState createState() => _SpellWordBarkwardsState();
@@ -260,7 +262,8 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
                       elevation: 10.0,
                       onPressed: () {
                         var router = new MaterialPageRoute(
-                            builder: (BuildContext context) => new Welcome());
+                            builder: (BuildContext context) =>
+                                new AttentionConcentration());
                         Navigator.of(context).pushAndRemoveUntil(
                             router, (Route<dynamic> route) => true);
                       },
