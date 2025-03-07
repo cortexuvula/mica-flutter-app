@@ -1,93 +1,90 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
-import 'package:mica/src/home.dart';
 import 'package:mica/src/summary.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SpokenLanguage extends StatefulWidget {
-  String patientName;
-  String assessorName;
-  String handedness;
-  DateTime assessmentDate;
-  int languageComprehensionRadioValue;
-  int trialOneScore;
-  int trialTwoScore;
-  int trialThreeScore;
-  int visuospatialPraxisImage1;
-  int visuospatialPraxisImage2;
-  int visuospatialPraxisImage3;
-  int attention;
-  int attentionCorrect;
-  int attentionMistakes;
-  int executiveAnimalNaming;
-  int executiveAnimalNamingCount;
-  int executiveLuria;
-  int executiveLuriaScore;
-  int executiveSerial;
-  int executiveSerialScore;
-  int shorttermMemoryVerbal;
-  int shorttermMemoryVerbalScore;
-  int praxisRight;
-  int praxisLeft;
-  int tenWordDelay;
-  int scoreVerbalRecognitionMemoryTenWords;
-  int scoreVerbalRecognitionMemoryTenWordsInList;
-  int scoreVerbalRecognitionMemoryTenWordsNotInList;
-  int shorttermMemoryVisualImage1;
-  int shorttermMemoryVisualImage2;
-  int shorttermMemoryVisualImage3;
-  int anomiaAgnosia;
-  int agnosia;
-  int executive;
+  final String patientName;
+  final String assessorName;
+  final String handedness;
+  final DateTime assessmentDate;
+  final int languageComprehensionRadioValue;
+  final int trialOneScore;
+  final int trialTwoScore;
+  final int trialThreeScore;
+  final int visuospatialPraxisImage1;
+  final int visuospatialPraxisImage2;
+  final int visuospatialPraxisImage3;
+  final int attention;
+  final int attentionCorrect;
+  final int attentionMistakes;
+  final int executiveAnimalNaming;
+  final int executiveAnimalNamingCount;
+  final int executiveLuria;
+  final int executiveLuriaScore;
+  final int executiveSerial;
+  final int executiveSerialScore;
+  final int shorttermMemoryVerbal;
+  final int shorttermMemoryVerbalScore;
+  final int praxisRight;
+  final int praxisLeft;
+  final int tenWordDelay;
+  final int scoreVerbalRecognitionMemoryTenWords;
+  final int scoreVerbalRecognitionMemoryTenWordsInList;
+  final int scoreVerbalRecognitionMemoryTenWordsNotInList;
+  final int shorttermMemoryVisualImage1;
+  final int shorttermMemoryVisualImage2;
+  final int shorttermMemoryVisualImage3;
+  final int anomiaAgnosia;
+  final int agnosia;
+  final int executive;
 
-  SpokenLanguage(
-      {Key key,
-      this.patientName,
-      this.assessorName,
-      this.handedness,
-      this.assessmentDate,
-      this.languageComprehensionRadioValue,
-      this.trialOneScore,
-      this.trialTwoScore,
-      this.trialThreeScore,
-      this.visuospatialPraxisImage1,
-      this.visuospatialPraxisImage2,
-      this.visuospatialPraxisImage3,
-      this.attention,
-      this.attentionCorrect,
-      this.attentionMistakes,
-      this.executiveAnimalNaming,
-      this.executiveAnimalNamingCount,
-      this.executiveLuria,
-      this.executiveLuriaScore,
-      this.executiveSerial,
-      this.executiveSerialScore,
-      this.shorttermMemoryVerbal,
-      this.shorttermMemoryVerbalScore,
-      this.praxisRight,
-      this.praxisLeft,
-      this.tenWordDelay,
-      this.scoreVerbalRecognitionMemoryTenWords,
-      this.scoreVerbalRecognitionMemoryTenWordsInList,
-      this.scoreVerbalRecognitionMemoryTenWordsNotInList,
-      this.shorttermMemoryVisualImage1,
-      this.shorttermMemoryVisualImage2,
-      this.shorttermMemoryVisualImage3,
-      this.anomiaAgnosia,
-      this.agnosia,
-      this.executive})
-      : super(key: key);
+  const SpokenLanguage({
+      super.key,
+      required this.patientName,
+      required this.assessorName,
+      required this.handedness,
+      required this.assessmentDate,
+      required this.languageComprehensionRadioValue,
+      required this.trialOneScore,
+      required this.trialTwoScore,
+      required this.trialThreeScore,
+      required this.visuospatialPraxisImage1,
+      required this.visuospatialPraxisImage2,
+      required this.visuospatialPraxisImage3,
+      required this.attention,
+      required this.attentionCorrect,
+      required this.attentionMistakes,
+      required this.executiveAnimalNaming,
+      required this.executiveAnimalNamingCount,
+      required this.executiveLuria,
+      required this.executiveLuriaScore,
+      required this.executiveSerial,
+      required this.executiveSerialScore,
+      required this.shorttermMemoryVerbal,
+      required this.shorttermMemoryVerbalScore,
+      required this.praxisRight,
+      required this.praxisLeft,
+      required this.tenWordDelay,
+      required this.scoreVerbalRecognitionMemoryTenWords,
+      required this.scoreVerbalRecognitionMemoryTenWordsInList,
+      required this.scoreVerbalRecognitionMemoryTenWordsNotInList,
+      required this.shorttermMemoryVisualImage1,
+      required this.shorttermMemoryVisualImage2,
+      required this.shorttermMemoryVisualImage3,
+      required this.anomiaAgnosia,
+      required this.agnosia,
+      required this.executive});
 
   @override
   _SpokenLanguageState createState() => _SpokenLanguageState();
 }
 
 class _SpokenLanguageState extends State<SpokenLanguage> {
-  double sizeBoxHeight = 10.0;
+  final double sizeBoxHeight = 10.0;
 
-  int _radioValue;
+  late int _radioValue;
   int imageNumber = 0;
 
   String displayImage = appData.imageURL[0];
@@ -103,16 +100,23 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
-    var sizeBoxWidth = (_width * 0.8) / 3;
-    return WillPopScope(
-      onWillPop: savePrefData,
+    var width = MediaQuery.of(context).size.width;
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (didPop) return;
+        
+        final shouldPop = await savePrefData();
+        if (shouldPop) {
+          Navigator.of(context).pop();
+        }
+      },
       child: Scaffold(
         appBar: AppBar(
           title: ListTile(
             title: Text(
               appData.testSpokenLanguage,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
               ),
@@ -120,7 +124,7 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
             ),
             subtitle: Text(
               appData.testSpokenLanguageSubtitle,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
               ),
@@ -129,10 +133,10 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
           ),
           actions: <Widget>[
             IconButton(
-                icon: Icon(Icons.clear),
+                icon: const Icon(Icons.clear),
                 onPressed: () {
-                  var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Welcome());
+                  var router = MaterialPageRoute(
+                      builder: (BuildContext context) => const Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -147,85 +151,8 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-//                Container(
-//                  width: _width * 0.9,
-//                  child: Card(
-//                    elevation: 10.0,
-//                    color: Colors.deepPurple.shade300,
-//                    child: Padding(
-//                      padding: const EdgeInsets.all(8.0),
-//                      child: Column(
-//                        children: <Widget>[
-//                          Text(
-//                            appData.testDescription,
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.w500,
-//                              fontSize: 20.0,
-//                              decoration: TextDecoration.underline,
-//                            ),
-//                          ),
-//                          SizedBox(
-//                            height: 5.0,
-//                          ),
-//                          Text(
-//                            appData.testSpokenLanguageDetails,
-//                            textAlign: TextAlign.center,
-//                            style: TextStyle(
-//                                color: Colors.black,
-//                                fontWeight: FontWeight.w500,
-//                                fontSize: 15.0),
-//                          ),
-//                        ],
-//                      ),
-//                    ),
-//                  ),
-//                ),
-//                SizedBox(
-//                  height: sizeBoxHeight,
-//                ),
-//                Container(
-//                  width: _width * 0.9,
-//                  child: Card(
-//                    elevation: 10.0,
-//                    color: Colors.yellowAccent.shade400,
-//                    child: Padding(
-//                      padding: const EdgeInsets.all(8.0),
-//                      child: Column(
-//                        children: <Widget>[
-//                          Text(
-//                            appData.testToPatient,
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.w500,
-//                              fontSize: 20.0,
-//                              decoration: TextDecoration.underline,
-//                            ),
-//                          ),
-//                          SizedBox(
-//                            height: 5.0,
-//                          ),
-//                          Text(
-//                            appData.testSpokenLanguageToPatient,
-//                            textAlign: TextAlign.center,
-//                            style: TextStyle(
-//                                color: Colors.black,
-//                                fontWeight: FontWeight.w500,
-//                                fontSize: 15.0),
-//                          ),
-//                        ],
-//                      ),
-//                    ),
-//                  ),
-//                ),
-//
-//                SizedBox(
-//                  height: sizeBoxHeight,
-//                ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.green,
@@ -233,23 +160,10 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
-//                          Text(
-//                            appData.testResponse,
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.w500,
-//                              fontSize: 20.0,
-//                              decoration: TextDecoration.underline,
-//                            ),
-//                          ),
-//                          SizedBox(
-//                            height: 5.0,
-//                          ),
                             Text(
                               appData.testSpokenLanguageResponse,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
@@ -258,7 +172,7 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                               border: TableBorder.all(),
                               defaultVerticalAlignment:
                                   TableCellVerticalAlignment.middle,
-                              columnWidths: {
+                              columnWidths: const {
                                 0: FlexColumnWidth(0.3),
                                 1: FlexColumnWidth(0.3),
                                 2: FlexColumnWidth(0.34)
@@ -267,13 +181,17 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                                 TableRow(children: [
                                   Row(
                                     children: <Widget>[
-                                      Radio(
+                                      Radio<int>(
                                         value: 0,
                                         groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
+                                        onChanged: (int? value) {
+                                          if (value != null) {
+                                            _handleRadioValueChange(value);
+                                          }
+                                        },
                                         activeColor: Colors.white,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Normal",
                                         style: TextStyle(
                                           color: Colors.black,
@@ -284,13 +202,17 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                                   ),
                                   Row(
                                     children: <Widget>[
-                                      Radio(
+                                      Radio<int>(
                                         value: 1,
                                         groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
+                                        onChanged: (int? value) {
+                                          if (value != null) {
+                                            _handleRadioValueChange(value);
+                                          }
+                                        },
                                         activeColor: Colors.white,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Equivocal",
                                         style: TextStyle(
                                           color: Colors.black,
@@ -301,13 +223,17 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                                   ),
                                   Row(
                                     children: <Widget>[
-                                      Radio(
+                                      Radio<int>(
                                         value: 2,
                                         groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
+                                        onChanged: (int? value) {
+                                          if (value != null) {
+                                            _handleRadioValueChange(value);
+                                          }
+                                        },
                                         activeColor: Colors.white,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Impaired",
                                         style: TextStyle(
                                           color: Colors.black,
@@ -323,7 +249,7 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                                     child: Text(
                                       appData.testSpokenLanguageResponseNormal,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                   Padding(
@@ -332,7 +258,7 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                                       appData
                                           .testSpokenLanguageResponseEquivocal,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                   Padding(
@@ -341,158 +267,12 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                                       appData
                                           .testSpokenLanguageResponseImpaired,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                 ])
                               ],
                             ),
-//                          Column(
-//                            crossAxisAlignment: CrossAxisAlignment.start,
-//                            children: <Widget>[
-//                              Row(
-//                                children: <Widget>[
-//                                  SizedBox(
-//                                    width: sizeBoxWidth,
-//                                    child: Row(
-//                                      children: <Widget>[
-//                                        Radio(
-//                                          value: 0,
-//                                          groupValue: _radioValue,
-//                                          onChanged: _handleRadioValueChange,
-//                                          activeColor: Colors.white,
-//                                        ),
-//                                        Text(
-//                                          "Normal",
-//                                          style: TextStyle(
-//                                              color: Colors.black,
-//                                              fontSize: 10.0),
-//                                        ),
-//                                      ],
-//                                    ),
-//                                  ),
-//                                  SizedBox(
-//                                    width: sizeBoxWidth,
-//                                    child: Row(
-//                                      children: <Widget>[
-//                                        Radio(
-//                                          value: 1,
-//                                          groupValue: _radioValue,
-//                                          onChanged: _handleRadioValueChange,
-//                                          activeColor: Colors.white,
-//                                        ),
-//                                        Text(
-//                                          "Equivocal",
-//                                          style: TextStyle(
-//                                              color: Colors.black,
-//                                              fontSize: 10.0),
-//                                          overflow: TextOverflow.ellipsis,
-//                                        ),
-//                                      ],
-//                                    ),
-//                                  ),
-//                                  SizedBox(
-//                                    width: sizeBoxWidth,
-//                                    child: Row(
-//                                      children: <Widget>[
-//                                        Radio(
-//                                          value: 2,
-//                                          groupValue: _radioValue,
-//                                          onChanged: _handleRadioValueChange,
-//                                          activeColor: Colors.white,
-//                                        ),
-//                                        Text(
-//                                          "Impaired",
-//                                          style: TextStyle(
-//                                              color: Colors.black,
-//                                              fontSize: 10.0),
-//                                        ),
-//                                      ],
-//                                    ),
-//                                  )
-//                                ],
-//                              ),
-//                              Row(
-//                                mainAxisAlignment: MainAxisAlignment.center,
-//                                crossAxisAlignment: CrossAxisAlignment.start,
-//                                children: <Widget>[
-//                                  Padding(
-//                                    padding: const EdgeInsets.all(2.0),
-//                                    child: SizedBox(
-//                                      width: sizeBoxWidth,
-//                                      child: Text(
-//                                        appData.testSpokenLanguageResponseNormal,
-//                                        textAlign: TextAlign.center,
-//                                        style: TextStyle(fontSize: 10.0),
-//                                      ),
-//                                    ),
-//                                  ),
-//                                  Padding(
-//                                    padding: const EdgeInsets.all(2.0),
-//                                    child: SizedBox(
-//                                      width: sizeBoxWidth,
-//                                      child: Text(
-//                                        appData
-//                                            .testSpokenLanguageResponseEquivocal,
-//                                        textAlign: TextAlign.center,
-//                                        style: TextStyle(fontSize: 10.0),
-//                                      ),
-//                                    ),
-//                                  ),
-//                                  Padding(
-//                                    padding: const EdgeInsets.all(2.0),
-//                                    child: SizedBox(
-//                                      width: sizeBoxWidth,
-//                                      child: Text(
-//                                        appData
-//                                            .testSpokenLanguageResponseImpaired,
-//                                        textAlign: TextAlign.center,
-//                                        style: TextStyle(fontSize: 10.0),
-//                                      ),
-//                                    ),
-//                                  ),
-//                                ],
-//                              )
-//                            ],
-//                          ),
-//                          Column(
-//                            crossAxisAlignment: CrossAxisAlignment.center,
-//                            children: <Widget>[
-//                              Row(
-//                                mainAxisAlignment:
-//                                    MainAxisAlignment.spaceEvenly,
-//                                children: <Widget>[
-//                                  Text(
-//                                    appData.testAttentionResponseNormal,
-//                                    style: TextStyle(
-//                                      color: Colors.black,
-//                                      fontSize: 10.0,
-//                                    ),
-//                                  ),
-//                                  Text(
-//                                    appData.testAnomiaAgnosiaResponseEquivocal,
-//                                    style: TextStyle(
-//                                      color: Colors.black,
-//                                      fontSize: 10.0,
-//                                    ),
-//                                  ),
-//                                ],
-//                              ),
-//                              Row(
-//                                mainAxisAlignment:
-//                                    MainAxisAlignment.spaceEvenly,
-//                                children: <Widget>[
-//                                  Text(
-//                                    appData.testAnomiaAgnosiaResponseImpaired,
-//                                    style: TextStyle(
-//                                      color: Colors.black,
-//                                      fontSize: 10.0,
-//                                    ),
-//                                  ),
-//                                ],
-//                              ),
-//                            ],
-//                          ),
                           ],
                         ),
                       ),
@@ -501,19 +281,21 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: RaisedButton(
-                          elevation: 10.0,
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            elevation: 10.0,
+                          ),
                           onPressed: () {
-                            var router = new MaterialPageRoute(
+                            var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    new TestSummary(
+                                    TestSummary(
                                       patientName: widget.patientName,
                                       assessorName: widget.assessorName,
                                       handedness: widget.handedness,
@@ -572,7 +354,7 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: Text("Continue with Testing"),
+                          child: const Text("Continue with Testing"),
                         ),
                       ),
                     ),
@@ -594,9 +376,9 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
 
   void getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int _setRadioPref = prefs.getInt("spokenLanguage");
+    int? setRadioPref = prefs.getInt("spokenLanguage");
     setState(() {
-      _radioValue = _setRadioPref;
+      _radioValue = setRadioPref ?? 0;
     });
   }
 

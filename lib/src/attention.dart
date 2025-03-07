@@ -6,20 +6,20 @@ import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Attention extends StatefulWidget {
-  String patientName;
-  String assessorName;
-  String handedness;
-  DateTime assessmentDate;
-  int languageComprehensionRadioValue;
-  int trialOneScore;
-  int trialTwoScore;
-  int trialThreeScore;
-  int visuospatialPraxisImage1;
-  int visuospatialPraxisImage2;
-  int visuospatialPraxisImage3;
+  final String? patientName;
+  final String? assessorName;
+  final String? handedness;
+  final DateTime? assessmentDate;
+  final int? languageComprehensionRadioValue;
+  final int? trialOneScore;
+  final int? trialTwoScore;
+  final int? trialThreeScore;
+  final int? visuospatialPraxisImage1;
+  final int? visuospatialPraxisImage2;
+  final int? visuospatialPraxisImage3;
 
-  Attention({
-    Key key,
+  const Attention({
+    super.key,
     this.patientName,
     this.assessorName,
     this.handedness,
@@ -31,16 +31,16 @@ class Attention extends StatefulWidget {
     this.visuospatialPraxisImage1,
     this.visuospatialPraxisImage2,
     this.visuospatialPraxisImage3,
-  }) : super(key: key);
+  });
 
   @override
   _AttentionState createState() => _AttentionState();
 }
 
 class _AttentionState extends State<Attention> {
-  Timer timer;
+  Timer? timer;
 
-  int _radioValue;
+  int? _radioValue;
   double sizeBoxHeight = 10.0;
   int sequenceIndex = 0;
   bool sequenceInMotion = false;
@@ -67,16 +67,21 @@ class _AttentionState extends State<Attention> {
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
-    return WillPopScope(
-      onWillPop: savePrefData,
+    var width = MediaQuery.of(context).size.width;
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (!didPop) {
+          await savePrefData();
+        }
+      },
       child: Scaffold(
         appBar: AppBar(
           title: ListTile(
             title: Text(
               appData.testAttention,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
               ),
@@ -84,7 +89,7 @@ class _AttentionState extends State<Attention> {
             ),
             subtitle: Text(
               appData.testAttentionSubtitle,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
               ),
@@ -93,10 +98,10 @@ class _AttentionState extends State<Attention> {
           ),
           actions: <Widget>[
             IconButton(
-                icon: Icon(Icons.clear),
+                icon: const Icon(Icons.clear),
                 onPressed: () {
-                  var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Welcome());
+                  var router = MaterialPageRoute(
+                      builder: (BuildContext context) => const Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -111,8 +116,8 @@ class _AttentionState extends State<Attention> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.yellowAccent.shade400,
@@ -123,7 +128,7 @@ class _AttentionState extends State<Attention> {
                             Text(
                               appData.testAttentionToPatient,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
@@ -136,8 +141,8 @@ class _AttentionState extends State<Attention> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.deepPurple.shade300,
@@ -148,7 +153,7 @@ class _AttentionState extends State<Attention> {
                             Text(
                               appData.testAttentionDetails,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
@@ -161,47 +166,81 @@ class _AttentionState extends State<Attention> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     height: 200.0,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.white,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          child: GridView.count(
-                            crossAxisCount: 7,
-                            childAspectRatio: 1.2,
-                            crossAxisSpacing: 5.0,
-                            mainAxisSpacing: 5.0,
-                            children: List.generate(
-                                appData.attentionList.length, (index) {
-                              tapCorrect.add(false);
-                              tapWrong.add(false);
-                              correctCheck.add(false);
-                              letterTapButtonColor.add(Colors.cyan.shade200);
+                        child: GridView.count(
+                          crossAxisCount: 7,
+                          childAspectRatio: 1.2,
+                          crossAxisSpacing: 5.0,
+                          mainAxisSpacing: 5.0,
+                          children: List.generate(
+                              appData.attentionList.length, (index) {
+                            tapCorrect.add(false);
+                            tapWrong.add(false);
+                            correctCheck.add(false);
+                            letterTapButtonColor.add(Colors.cyan.shade200);
 
-                              return Stack(
-                                children: <Widget>[
-                                  FlatButton(
-                                    onPressed: () {
-                                      if (!tapWrong[index] &&
-                                          !tapCorrect[index]) {
-                                        if (appData.attentionList[index] ==
-                                            "A") {
+                            return Stack(
+                              children: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    if (!tapWrong[index] &&
+                                        !tapCorrect[index]) {
+                                      if (appData.attentionList[index] ==
+                                          "A") {
+                                        setState(() {
+                                          tapCorrect[index] = true;
+                                          correctTap += 1;
+                                          letterTapButtonColor[index] =
+                                              Colors.green;
+                                          correctCheck[index] = true;
+                                        });
+                                      }
+                                      if (appData.attentionList[index] !=
+                                          "A") {
+                                        setState(() {
+                                          tapWrong[index] = true;
+                                          wrongTap += 1;
+                                          letterTapButtonColor[index] =
+                                              Colors.red;
+                                          if (wrongTap == 1) {
+                                            _radioValue = 1;
+                                          } else if (wrongTap > 1) {
+                                            _radioValue = 2;
+                                          } else if (wrongTap < 1) {
+                                            _radioValue = 0;
+                                          }
+                                        });
+                                      }
+                                    }
+                                  },
+                                  child: Text(appData.attentionList[index]),
+                                ),
+                                Center(
+                                  child: Container(
+                                    child: GestureDetector(
+                                      child: tapCorrect[index]
+                                          ? Container(
+                                              child: Icon(
+                                                Icons.check,
+                                                color: Colors.white,
+                                              ),
+                                            )
+                                          : Container(),
+                                      onTap: () {
+                                        print("hello tap");
+                                        if (correctCheck[index]) {
                                           setState(() {
-                                            tapCorrect[index] = true;
-                                            correctTap += 1;
-                                            letterTapButtonColor[index] =
-                                                Colors.green;
                                             correctCheck[index] = true;
-                                          });
-                                        }
-                                        if (appData.attentionList[index] !=
-                                            "A") {
-                                          setState(() {
+                                            tapCorrect[index] = false;
                                             tapWrong[index] = true;
+                                            correctTap -= 1;
                                             wrongTap += 1;
                                             letterTapButtonColor[index] =
                                                 Colors.red;
@@ -214,94 +253,42 @@ class _AttentionState extends State<Attention> {
                                             }
                                           });
                                         }
-                                      }
-                                    },
-//                                  onDoubleTap: () {
-//                                    setState(() {
-//                                      tapWrong[index] = false;
-//                                      wrongTap += 1;
-//                                      letterTapButtonColor[index] =
-//                                          Colors.red;
-//                                    });
-//                                  },
-                                    color: letterTapButtonColor[index],
-                                    child:
-                                        Text("${appData.attentionList[index]}"),
+                                      },
+                                    ),
                                   ),
-                                  Center(
-                                    child: Container(
-                                      child: GestureDetector(
-                                        child: tapCorrect[index]
-                                            ? Container(
-                                                child: Icon(
-                                                  Icons.check,
-                                                  color: Colors.white,
-                                                ),
-                                              )
-                                            : Container(),
-                                        onTap: () {
-                                          print("hello tap");
-                                          if (correctCheck[index]) {
-                                            setState(() {
-                                              correctCheck[index] = true;
-                                              tapCorrect[index] = false;
-                                              tapWrong[index] = true;
-                                              correctTap -= 1;
-                                              wrongTap += 1;
-                                              letterTapButtonColor[index] =
-                                                  Colors.red;
-                                              if (wrongTap == 1) {
-                                                _radioValue = 1;
-                                              } else if (wrongTap > 1) {
-                                                _radioValue = 2;
-                                              } else if (wrongTap < 1) {
-                                                _radioValue = 0;
-                                              }
-                                            });
+                                ),
+                                Center(
+                                  child: Container(
+                                    child: GestureDetector(
+                                      child: tapWrong[index]
+                                          ? Container(
+                                              child: Icon(
+                                                Icons.clear,
+                                                color: Colors.white,
+                                              ),
+                                            )
+                                          : Container(),
+                                      onTap: () {
+                                        setState(() {
+                                          tapWrong[index] = false;
+                                          wrongTap -= 1;
+                                          letterTapButtonColor[index] =
+                                              Colors.cyan.shade200;
+                                          if (wrongTap == 1) {
+                                            _radioValue = 1;
+                                          } else if (wrongTap > 1) {
+                                            _radioValue = 2;
+                                          } else if (wrongTap < 1) {
+                                            _radioValue = 0;
                                           }
-//                                        setState(() {
-//                                          tapCorrect[index] = false;
-//                                          correctTap -= 1;
-//                                          letterTapButtonColor[index] =
-//                                              Colors.cyan.shade200;
-//                                        });
-                                        },
-                                      ),
+                                        });
+                                      },
                                     ),
                                   ),
-                                  Center(
-                                    child: Container(
-                                      child: GestureDetector(
-                                        child: tapWrong[index]
-                                            ? Container(
-                                                child: Icon(
-                                                  Icons.clear,
-                                                  color: Colors.white,
-                                                ),
-                                              )
-                                            : Container(),
-                                        onTap: () {
-                                          setState(() {
-                                            tapWrong[index] = false;
-                                            wrongTap -= 1;
-                                            letterTapButtonColor[index] =
-                                                Colors.cyan.shade200;
-                                            if (wrongTap == 1) {
-                                              _radioValue = 1;
-                                            } else if (wrongTap > 1) {
-                                              _radioValue = 2;
-                                            } else if (wrongTap < 1) {
-                                              _radioValue = 0;
-                                            }
-                                          });
-                                        },
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              );
-                            }),
-                          ),
+                                )
+                              ],
+                            );
+                          }),
                         ),
                       ),
                     ),
@@ -309,8 +296,8 @@ class _AttentionState extends State<Attention> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.white,
@@ -321,28 +308,28 @@ class _AttentionState extends State<Attention> {
                           children: <Widget>[
                             Text(
                               "Correct: ",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.green,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 25.0),
                             ),
                             Text(
                               "$correctTap",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.green,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 25.0),
                             ),
                             Text(
                               "Mistakes: ",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.red,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 25.0),
                             ),
                             Text(
                               "$wrongTap",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.red,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 25.0),
@@ -355,8 +342,8 @@ class _AttentionState extends State<Attention> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.green,
@@ -367,7 +354,7 @@ class _AttentionState extends State<Attention> {
                             Text(
                               appData.testAttentionResponse,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
@@ -393,7 +380,7 @@ class _AttentionState extends State<Attention> {
                                       ),
                                       Text(
                                         "Normal",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.black,
                                           fontSize: 10.0,
                                         ),
@@ -410,7 +397,7 @@ class _AttentionState extends State<Attention> {
                                       ),
                                       Text(
                                         "Equivocal",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.black,
                                           fontSize: 10.0,
                                         ),
@@ -427,7 +414,7 @@ class _AttentionState extends State<Attention> {
                                       ),
                                       Text(
                                         "Impaired",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.black,
                                           fontSize: 10.0,
                                         ),
@@ -440,7 +427,7 @@ class _AttentionState extends State<Attention> {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
                                       appData.testAttentionResponseNormal,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
                                       ),
@@ -450,7 +437,7 @@ class _AttentionState extends State<Attention> {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
                                       appData.testAttentionResponseEquivocal,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
                                       ),
@@ -460,7 +447,7 @@ class _AttentionState extends State<Attention> {
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
                                       appData.testAttentionResponseImpaired,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
                                       ),
@@ -477,42 +464,42 @@ class _AttentionState extends State<Attention> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: RaisedButton(
-                          elevation: 10.0,
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton(
                           onPressed: () {
-                            var router = new MaterialPageRoute(
+                            var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    new ExecutiveAnimalNaming(
-                                      patientName: widget.patientName,
-                                      assessorName: widget.assessorName,
-                                      handedness: widget.handedness,
-                                      assessmentDate: widget.assessmentDate,
+                                    ExecutiveAnimalNaming(
+                                      patientName: widget.patientName ?? '',
+                                      assessorName: widget.assessorName ?? '',
+                                      handedness: widget.handedness ?? '',
+                                      assessmentDate: widget.assessmentDate ?? DateTime.now(),
                                       languageComprehensionRadioValue: widget
-                                          .languageComprehensionRadioValue,
-                                      trialOneScore: widget.trialOneScore,
-                                      trialTwoScore: widget.trialTwoScore,
-                                      trialThreeScore: widget.trialThreeScore,
+                                              .languageComprehensionRadioValue ??
+                                          0,
+                                      trialOneScore: widget.trialOneScore ?? 0,
+                                      trialTwoScore: widget.trialTwoScore ?? 0,
+                                      trialThreeScore: widget.trialThreeScore ?? 0,
                                       visuospatialPraxisImage1:
-                                          widget.visuospatialPraxisImage1,
+                                          widget.visuospatialPraxisImage1 ?? 0,
                                       visuospatialPraxisImage2:
-                                          widget.visuospatialPraxisImage2,
+                                          widget.visuospatialPraxisImage2 ?? 0,
                                       visuospatialPraxisImage3:
-                                          widget.visuospatialPraxisImage3,
-                                      attention: _radioValue,
+                                          widget.visuospatialPraxisImage3 ?? 0,
+                                      attention: _radioValue ?? 0,
                                       attentionCorrect: correctTap,
                                       attentionMistakes: wrongTap,
                                     ));
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: Text("Continue with Testing"),
+                          child: const Text("Continue with Testing"),
                         ),
                       ),
                     ),
@@ -526,7 +513,7 @@ class _AttentionState extends State<Attention> {
     );
   }
 
-  void _handleRadioValueChange(int value) {
+  void _handleRadioValueChange(int? value) {
     setState(() {
       _radioValue = value;
     });
@@ -534,64 +521,98 @@ class _AttentionState extends State<Attention> {
 
   void getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int _score1 = prefs.getInt("attention");
-    int _score2 = prefs.getInt("correctTap");
-    int _score3 = prefs.getInt("wrongTap");
+    int? score1 = prefs.getInt("attention");
+    int? score2 = prefs.getInt("correctTap");
+    int? score3 = prefs.getInt("wrongTap");
 
     List<String> tapCorrectList = [];
     List<String> letterTapButtonColorList = [];
     List<String> tapWrongList = [];
     List<String> correctCheckList = [];
 
-    List<bool> _tapCorrect = [];
-    List<Color> _letterTapButtonColor = [];
-    List<bool> _tapWrong = [];
-    List<bool> _correctCheck = [];
+    List<bool> tapCorrect = [];
+    List<Color> letterTapButtonColor = [];
+    List<bool> tapWrong = [];
+    List<bool> correctCheck = [];
 
-    letterTapButtonColorList = prefs.getStringList("letterTapButtonColor");
-    tapCorrectList = prefs.getStringList("tapCorrect");
-    tapWrongList = prefs.getStringList("tapWrong");
-    correctCheckList = prefs.getStringList("correctCheck");
+    letterTapButtonColorList = prefs.getStringList("letterTapButtonColor") ?? [];
+    tapCorrectList = prefs.getStringList("tapCorrect") ?? [];
+    tapWrongList = prefs.getStringList("tapWrong") ?? [];
+    correctCheckList = prefs.getStringList("correctCheck") ?? [];
 
-    for (var i = 0; i < 26; i++) {
-      if (letterTapButtonColorList[i] == "cyan") {
-        _letterTapButtonColor.add(Colors.cyan.shade200);
-      } else if (letterTapButtonColorList[i] == "green") {
-        _letterTapButtonColor.add(Colors.green);
-      } else {
-        _letterTapButtonColor.add(Colors.red);
+    // Ensure lists have expected length
+    if (letterTapButtonColorList.isEmpty ||
+        tapCorrectList.isEmpty ||
+        tapWrongList.isEmpty ||
+        correctCheckList.isEmpty) {
+      // Initialize with default values if lists are empty
+      for (var i = 0; i < 26; i++) {
+        letterTapButtonColor.add(Colors.cyan.shade200);
+        tapCorrect.add(false);
+        tapWrong.add(false);
+        correctCheck.add(false);
       }
-      if (tapCorrectList[i] == "false") {
-        _tapCorrect.add(false);
-      } else {
-        _tapCorrect.add(true);
-      }
-      if (tapWrongList[i] == "false") {
-        _tapWrong.add(false);
-      } else {
-        _tapWrong.add(true);
-      }
-      if (correctCheckList[i] == "false") {
-        _correctCheck.add(false);
-      } else {
-        _correctCheck.add(true);
+    } else {
+      for (var i = 0; i < 26; i++) {
+        if (i < letterTapButtonColorList.length) {
+          if (letterTapButtonColorList[i] == "cyan") {
+            letterTapButtonColor.add(Colors.cyan.shade200);
+          } else if (letterTapButtonColorList[i] == "green") {
+            letterTapButtonColor.add(Colors.green);
+          } else {
+            letterTapButtonColor.add(Colors.red);
+          }
+        } else {
+          letterTapButtonColor.add(Colors.cyan.shade200);
+        }
+
+        if (i < tapCorrectList.length) {
+          if (tapCorrectList[i] == "false") {
+            tapCorrect.add(false);
+          } else {
+            tapCorrect.add(true);
+          }
+        } else {
+          tapCorrect.add(false);
+        }
+
+        if (i < tapWrongList.length) {
+          if (tapWrongList[i] == "false") {
+            tapWrong.add(false);
+          } else {
+            tapWrong.add(true);
+          }
+        } else {
+          tapWrong.add(false);
+        }
+
+        if (i < correctCheckList.length) {
+          if (correctCheckList[i] == "false") {
+            correctCheck.add(false);
+          } else {
+            correctCheck.add(true);
+          }
+        } else {
+          correctCheck.add(false);
+        }
       }
     }
+
     setState(() {
-      _radioValue = _score1;
-      correctTap = _score2;
-      wrongTap = _score3;
-      letterTapButtonColor = _letterTapButtonColor;
-      tapCorrect = _tapCorrect;
-      tapWrong = _tapWrong;
-      correctCheck = _correctCheck;
+      _radioValue = score1;
+      correctTap = score2 ?? 0;
+      wrongTap = score3 ?? 0;
+      letterTapButtonColor = letterTapButtonColor;
+      tapCorrect = tapCorrect;
+      tapWrong = tapWrong;
+      correctCheck = correctCheck;
     });
   }
 
   Future<bool> savePrefData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    prefs.setInt("attention", _radioValue);
+    prefs.setInt("attention", _radioValue ?? 0);
     prefs.setInt("correctTap", correctTap);
     prefs.setInt("wrongTap", wrongTap);
 

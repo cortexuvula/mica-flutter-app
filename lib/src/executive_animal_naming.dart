@@ -6,38 +6,38 @@ import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ExecutiveAnimalNaming extends StatefulWidget {
-  String patientName;
-  String assessorName;
-  String handedness;
-  DateTime assessmentDate;
-  int languageComprehensionRadioValue;
-  int trialOneScore;
-  int trialTwoScore;
-  int trialThreeScore;
-  int visuospatialPraxisImage1;
-  int visuospatialPraxisImage2;
-  int visuospatialPraxisImage3;
-  int attention;
-  int attentionCorrect;
-  int attentionMistakes;
+  final String patientName;
+  final String assessorName;
+  final String handedness;
+  final DateTime assessmentDate;
+  final int languageComprehensionRadioValue;
+  final int trialOneScore;
+  final int trialTwoScore;
+  final int trialThreeScore;
+  final int visuospatialPraxisImage1;
+  final int visuospatialPraxisImage2;
+  final int visuospatialPraxisImage3;
+  final int attention;
+  final int attentionCorrect;
+  final int attentionMistakes;
 
-  ExecutiveAnimalNaming(
-      {Key key,
-      this.patientName,
-      this.assessorName,
-      this.handedness,
-      this.assessmentDate,
-      this.languageComprehensionRadioValue,
-      this.trialOneScore,
-      this.trialTwoScore,
-      this.trialThreeScore,
-      this.visuospatialPraxisImage1,
-      this.visuospatialPraxisImage2,
-      this.visuospatialPraxisImage3,
-      this.attention,
-      this.attentionCorrect,
-      this.attentionMistakes})
-      : super(key: key);
+  const ExecutiveAnimalNaming({
+    super.key,
+    required this.patientName,
+    required this.assessorName,
+    required this.handedness,
+    required this.assessmentDate,
+    required this.languageComprehensionRadioValue,
+    required this.trialOneScore,
+    required this.trialTwoScore,
+    required this.trialThreeScore,
+    required this.visuospatialPraxisImage1,
+    required this.visuospatialPraxisImage2,
+    required this.visuospatialPraxisImage3,
+    required this.attention,
+    required this.attentionCorrect,
+    required this.attentionMistakes,
+  });
 
   @override
   _ExecutiveAnimalNamingState createState() => _ExecutiveAnimalNamingState();
@@ -46,19 +46,19 @@ class ExecutiveAnimalNaming extends StatefulWidget {
 class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
     with TickerProviderStateMixin {
   double sizeBoxHeight = 10.0;
-  int _radioValue;
+  int _radioValue = 2; // Default value
   int _counter = 0;
   int startSeconds = 60;
 
   String buttonText = "Start";
 
-  AnimationController clockController;
+  late AnimationController clockController;
 
   bool isCountingDown = false;
   bool counterStarted = false;
 
   String get timerString {
-    Duration duration = clockController.duration * clockController.value;
+    Duration duration = clockController.duration! * clockController.value;
     return '${duration.inMinutes}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
 
@@ -80,17 +80,24 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
-    var sizeBoxWidth = (_width * 0.8) / 3;
+    var width = MediaQuery.of(context).size.width;
 
-    return WillPopScope(
-      onWillPop: savePrefData,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (!didPop) {
+          final shouldPop = await savePrefData();
+          if (shouldPop && context.mounted) {
+            Navigator.of(context).pop();
+          }
+        }
+      },
       child: Scaffold(
         appBar: AppBar(
           title: ListTile(
             title: Text(
               appData.testExecutiveAnimalNaming,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
               ),
@@ -98,7 +105,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
             ),
             subtitle: Text(
               appData.testExecutiveAnimalNamingSubtitle,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
               ),
@@ -107,10 +114,10 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
           ),
           actions: <Widget>[
             IconButton(
-                icon: Icon(Icons.clear),
+                icon: const Icon(Icons.clear),
                 onPressed: () {
-                  var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Welcome());
+                  var router = MaterialPageRoute(
+                      builder: (BuildContext context) => const Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -125,15 +132,15 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.yellowAccent.shade400,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
-                          children: <Widget>[
+                          children: const <Widget>[
                             Text(
                               appData.testExecutiveAnimalNamingToPatient,
                               textAlign: TextAlign.center,
@@ -150,15 +157,15 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.deepPurple.shade300,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
-                          children: <Widget>[
+                          children: const <Widget>[
                             Text(
                               appData.testExecutiveAnimalNamingDetails,
                               textAlign: TextAlign.center,
@@ -175,8 +182,8 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.deepPurple.shade300,
@@ -189,20 +196,23 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                               child: AnimatedBuilder(
                                   animation: clockController,
                                   builder:
-                                      (BuildContext context, Widget child) {
-                                    return new Text(
+                                      (BuildContext context, Widget? child) {
+                                    return Text(
                                       timerString,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 20.0,
                                           fontWeight: FontWeight.w500),
                                     );
                                   }),
                             ),
-                            Container(
+                            SizedBox(
                               width: 150.0,
-                              child: FlatButton(
-                                  color: Colors.cyan.shade200,
+                              child: TextButton(
+                                  style: TextButton.styleFrom(
+                                    foregroundColor: Colors.black,
+                                    backgroundColor: Colors.cyan.shade200,
+                                  ),
                                   onPressed: () {
                                     if (clockController.isAnimating) {
                                       clockController.stop();
@@ -220,8 +230,8 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                     }
                                   },
                                   child: Text(
-                                    "$buttonText",
-                                    style: TextStyle(
+                                    buttonText,
+                                    style: const TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.w500),
                                   )),
@@ -231,11 +241,11 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10.0,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.green,
@@ -255,7 +265,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                       child: Center(
                                         child: Text(
                                           "$_counter",
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 20.0,
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -273,7 +283,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                       children: <Widget>[
                                         Container(
                                           color: Colors.cyan.shade200,
-                                          child: Text(
+                                          child: const Text(
                                             "Tap to count Words",
                                             style: TextStyle(
                                               fontWeight: FontWeight.w500,
@@ -282,8 +292,11 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                         ),
                                         Row(
                                           children: <Widget>[
-                                            FlatButton(
-                                                color: Colors.cyan.shade200,
+                                            TextButton(
+                                                style: TextButton.styleFrom(
+                                                  foregroundColor: Colors.black,
+                                                  backgroundColor: Colors.cyan.shade200,
+                                                ),
                                                 onPressed: () {
                                                   setState(() {
                                                     _counter += 1;
@@ -296,11 +309,14 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                                     }
                                                   });
                                                 },
-                                                child: Icon(
+                                                child: const Icon(
                                                   Icons.add,
                                                 )),
-                                            FlatButton(
-                                                color: Colors.cyan.shade200,
+                                            TextButton(
+                                                style: TextButton.styleFrom(
+                                                  foregroundColor: Colors.black,
+                                                  backgroundColor: Colors.cyan.shade200,
+                                                ),
                                                 onPressed: () {
                                                   if (_counter > 0) {
                                                     _counter -= 1;
@@ -315,7 +331,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                                     }
                                                   });
                                                 },
-                                                child: Icon(
+                                                child: const Icon(
                                                   Icons.remove,
                                                 )),
                                           ],
@@ -330,7 +346,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                               border: TableBorder.all(),
                               defaultVerticalAlignment:
                                   TableCellVerticalAlignment.middle,
-                              columnWidths: {
+                              columnWidths: const {
                                 0: FlexColumnWidth(0.3),
                                 1: FlexColumnWidth(0.3),
                                 2: FlexColumnWidth(0.34)
@@ -339,13 +355,13 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                 TableRow(children: [
                                   Row(
                                     children: <Widget>[
-                                      Radio(
+                                      Radio<int>(
                                         value: 0,
                                         groupValue: _radioValue,
                                         onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Normal",
                                         style: TextStyle(
                                           color: Colors.black,
@@ -356,13 +372,13 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                   ),
                                   Row(
                                     children: <Widget>[
-                                      Radio(
+                                      Radio<int>(
                                         value: 1,
                                         groupValue: _radioValue,
                                         onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Equivocal",
                                         style: TextStyle(
                                           color: Colors.black,
@@ -373,13 +389,13 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                   ),
                                   Row(
                                     children: <Widget>[
-                                      Radio(
+                                      Radio<int>(
                                         value: 2,
                                         groupValue: _radioValue,
                                         onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Impaired",
                                         style: TextStyle(
                                           color: Colors.black,
@@ -396,7 +412,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                       appData
                                           .testExecutiveAnimalNamingResponseNormal,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                   Padding(
@@ -405,7 +421,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                       appData
                                           .testExecutiveAnimalNamingResponseEquivocal,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                   Padding(
@@ -414,7 +430,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                       appData
                                           .testExecutiveAnimalNamingResponseImpaired,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                 ])
@@ -425,52 +441,51 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: sizeBoxHeight,
+                  const SizedBox(
+                    height: 60.0,
                   ),
-                  Container(
-                    width: _width * 0.9,
-                    child: Card(
-                      elevation: 10.0,
-                      color: Colors.white,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: RaisedButton(
-                          elevation: 10.0,
-                          onPressed: () {
-                            var router = new MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    new ExecutiveLuria(
-                                      patientName: widget.patientName,
-                                      assessorName: widget.assessorName,
-                                      handedness: widget.handedness,
-                                      assessmentDate: widget.assessmentDate,
-                                      languageComprehensionRadioValue: widget
-                                          .languageComprehensionRadioValue,
-                                      trialOneScore: widget.trialOneScore,
-                                      trialTwoScore: widget.trialTwoScore,
-                                      trialThreeScore: widget.trialThreeScore,
-                                      visuospatialPraxisImage1:
-                                          widget.visuospatialPraxisImage1,
-                                      visuospatialPraxisImage2:
-                                          widget.visuospatialPraxisImage2,
-                                      visuospatialPraxisImage3:
-                                          widget.visuospatialPraxisImage3,
-                                      attention: widget.attention,
-                                      attentionCorrect: widget.attentionCorrect,
-                                      attentionMistakes:
-                                          widget.attentionMistakes,
-                                      executiveAnimalNaming: _radioValue,
-                                      executiveAnimalNamingCount: _counter,
-                                    ));
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
-                          },
-                          child: Text("Continue with Testing"),
+                  SizedBox(
+                    width: width * 0.6,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.cyan.shade200,
+                      ),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ExecutiveLuria(
+                              patientName: widget.patientName,
+                              assessorName: widget.assessorName,
+                              handedness: widget.handedness,
+                              assessmentDate: widget.assessmentDate,
+                              languageComprehensionRadioValue:
+                                  widget.languageComprehensionRadioValue,
+                              trialOneScore: widget.trialOneScore,
+                              trialTwoScore: widget.trialTwoScore,
+                              trialThreeScore: widget.trialThreeScore,
+                              visuospatialPraxisImage1: widget.visuospatialPraxisImage1,
+                              visuospatialPraxisImage2: widget.visuospatialPraxisImage2,
+                              visuospatialPraxisImage3: widget.visuospatialPraxisImage3,
+                              attention: widget.attention,
+                              attentionCorrect: widget.attentionCorrect,
+                              attentionMistakes: widget.attentionMistakes,
+                              executiveAnimalNaming: _radioValue,
+                              executiveAnimalNamingCount: _counter,
+                            ),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        'NEXT',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -480,29 +495,32 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
     );
   }
 
-  void _handleRadioValueChange(int value) {
-    setState(() {
-      _radioValue = value;
-    });
+  void _handleRadioValueChange(int? value) {
+    if (value != null) {
+      setState(() {
+        _radioValue = value;
+      });
+    }
   }
 
-  void getPrefsData() async {
+  setPrefsData(bool shouldReturnTrue) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int _score1 = prefs.getInt("executiveAnimalNaming");
-    int _score2 = prefs.getInt("counter");
-
-    setState(() {
-      _radioValue = _score1;
-      _counter = _score2;
-    });
+    await prefs.setInt("executiveAnimalNaming", _radioValue);
+    await prefs.setInt("executiveAnimalNamingCount", _counter);
+    return shouldReturnTrue;
   }
 
   Future<bool> savePrefData() async {
+    return setPrefsData(true);
+  }
+
+  getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    prefs.setInt("executiveAnimalNaming", _radioValue);
-    prefs.setInt("counter", _counter);
-
-    return true;
+    setState(() {
+      var execNameVal = prefs.getInt("executiveAnimalNaming");
+      var execNameCount = prefs.getInt("executiveAnimalNamingCount");
+      if (execNameVal != null) _radioValue = execNameVal;
+      if (execNameCount != null) _counter = execNameCount;
+    });
   }
 }

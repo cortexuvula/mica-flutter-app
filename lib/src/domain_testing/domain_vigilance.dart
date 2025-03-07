@@ -7,27 +7,27 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'domain_attention_concentration.dart';
 
 class DomainVigilance extends StatefulWidget {
-  String patientName;
-  String assessorName;
-  String handedness;
-  DateTime assessmentDate;
+  final String? patientName;
+  final String? assessorName;
+  final String? handedness;
+  final DateTime? assessmentDate;
 
-  DomainVigilance({
-    Key key,
+  const DomainVigilance({
+    super.key,
     this.patientName,
     this.assessorName,
     this.handedness,
     this.assessmentDate,
-  }) : super(key: key);
+  });
 
   @override
   _DomainVigilanceState createState() => _DomainVigilanceState();
 }
 
 class _DomainVigilanceState extends State<DomainVigilance> {
-  Timer timer;
+  Timer? timer;
 
-  int _radioValue;
+  int _radioValue = 0;
   double sizeBoxHeight = 10.0;
   int sequenceIndex = 0;
   bool sequenceInMotion = false;
@@ -54,9 +54,14 @@ class _DomainVigilanceState extends State<DomainVigilance> {
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
-    return WillPopScope(
-      onWillPop: savePrefData,
+    var width = MediaQuery.of(context).size.width;
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (!didPop) {
+          await savePrefData();
+        }
+      },
       child: Scaffold(
         appBar: AppBar(
           title: ListTile(
@@ -82,8 +87,8 @@ class _DomainVigilanceState extends State<DomainVigilance> {
             IconButton(
                 icon: Icon(Icons.clear),
                 onPressed: () {
-                  var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Welcome());
+                  var router = MaterialPageRoute(
+                      builder: (BuildContext context) => Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -98,8 +103,8 @@ class _DomainVigilanceState extends State<DomainVigilance> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.yellowAccent.shade400,
@@ -123,8 +128,8 @@ class _DomainVigilanceState extends State<DomainVigilance> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.deepPurple.shade300,
@@ -148,8 +153,8 @@ class _DomainVigilanceState extends State<DomainVigilance> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     height: 200.0,
                     child: Card(
                       elevation: 10.0,
@@ -171,23 +176,21 @@ class _DomainVigilanceState extends State<DomainVigilance> {
 
                               return Stack(
                                 children: <Widget>[
-                                  FlatButton(
+                                  TextButton(
                                     onPressed: () {
-                                      if (!tapWrong[index] &&
-                                          !tapCorrect[index]) {
-                                        if (appData.attentionList[index] ==
-                                            "A") {
-                                          setState(() {
+                                      setState(() {
+                                        if (!tapWrong[index] &&
+                                            !tapCorrect[index]) {
+                                          if (appData.attentionList[index] ==
+                                              "A") {
                                             tapCorrect[index] = true;
                                             correctTap += 1;
                                             letterTapButtonColor[index] =
                                                 Colors.green;
                                             correctCheck[index] = true;
-                                          });
-                                        }
-                                        if (appData.attentionList[index] !=
-                                            "A") {
-                                          setState(() {
+                                          }
+                                          if (appData.attentionList[index] !=
+                                              "A") {
                                             tapWrong[index] = true;
                                             wrongTap += 1;
                                             letterTapButtonColor[index] =
@@ -199,21 +202,16 @@ class _DomainVigilanceState extends State<DomainVigilance> {
                                             } else if (wrongTap < 1) {
                                               _radioValue = 0;
                                             }
-                                          });
+                                          }
                                         }
-                                      }
+                                      });
                                     },
-//                                  onDoubleTap: () {
-//                                    setState(() {
-//                                      tapWrong[index] = false;
-//                                      wrongTap += 1;
-//                                      letterTapButtonColor[index] =
-//                                          Colors.red;
-//                                    });
-//                                  },
-                                    color: letterTapButtonColor[index],
+                                    style: ButtonStyle(
+                                      backgroundColor: WidgetStateProperty.all(
+                                          letterTapButtonColor[index]),
+                                    ),
                                     child:
-                                        Text("${appData.attentionList[index]}"),
+                                        Text(appData.attentionList[index]),
                                   ),
                                   Center(
                                     child: Container(
@@ -296,8 +294,8 @@ class _DomainVigilanceState extends State<DomainVigilance> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.white,
@@ -342,8 +340,8 @@ class _DomainVigilanceState extends State<DomainVigilance> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.green,
@@ -477,19 +475,18 @@ class _DomainVigilanceState extends State<DomainVigilance> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.white,
                       child: Padding(
                         padding: EdgeInsets.all(8.0),
-                        child: RaisedButton(
-                          elevation: 10.0,
+                        child: ElevatedButton(
                           onPressed: () {
-                            var router = new MaterialPageRoute(
+                            var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    new AttentionConcentration());
+                                    AttentionConcentration());
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
@@ -507,66 +504,85 @@ class _DomainVigilanceState extends State<DomainVigilance> {
     );
   }
 
-  void _handleRadioValueChange(int value) {
+  void _handleRadioValueChange(int? value) {
     setState(() {
-      _radioValue = value;
+      _radioValue = value ?? 0;
     });
   }
 
   void getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int _score1 = prefs.getInt("domain_attention");
-    int _score2 = prefs.getInt("domain_correctTap");
-    int _score3 = prefs.getInt("domain_wrongTap");
+    int? score1 = prefs.getInt("domain_attention");
+    int? score2 = prefs.getInt("domain_correctTap");
+    int? score3 = prefs.getInt("domain_wrongTap");
 
     List<String> tapCorrectList = [];
     List<String> letterTapButtonColorList = [];
     List<String> tapWrongList = [];
     List<String> correctCheckList = [];
 
-    List<bool> _tapCorrect = [];
-    List<Color> _letterTapButtonColor = [];
-    List<bool> _tapWrong = [];
-    List<bool> _correctCheck = [];
+    List<bool> tapCorrect = [];
+    List<Color> letterTapButtonColor = [];
+    List<bool> tapWrong = [];
+    List<bool> correctCheck = [];
 
     letterTapButtonColorList =
-        prefs.getStringList("domain_letterTapButtonColor");
-    tapCorrectList = prefs.getStringList("domain_tapCorrect");
-    tapWrongList = prefs.getStringList("domain_tapWrong");
-    correctCheckList = prefs.getStringList("domain_correctCheck");
+        prefs.getStringList("domain_letterTapButtonColor") ?? [];
+    tapCorrectList = prefs.getStringList("domain_tapCorrect") ?? [];
+    tapWrongList = prefs.getStringList("domain_tapWrong") ?? [];
+    correctCheckList = prefs.getStringList("domain_correctCheck") ?? [];
 
     for (var i = 0; i < 26; i++) {
-      if (letterTapButtonColorList[i] == "cyan") {
-        _letterTapButtonColor.add(Colors.cyan.shade200);
-      } else if (letterTapButtonColorList[i] == "green") {
-        _letterTapButtonColor.add(Colors.green);
+      if (letterTapButtonColorList.length > i) {
+        if (letterTapButtonColorList[i] == "cyan") {
+          letterTapButtonColor.add(Colors.cyan.shade200);
+        } else if (letterTapButtonColorList[i] == "green") {
+          letterTapButtonColor.add(Colors.green);
+        } else {
+          letterTapButtonColor.add(Colors.red);
+        }
       } else {
-        _letterTapButtonColor.add(Colors.red);
+        letterTapButtonColor.add(Colors.cyan.shade200);
       }
-      if (tapCorrectList[i] == "false") {
-        _tapCorrect.add(false);
+
+      if (tapCorrectList.length > i) {
+        if (tapCorrectList[i] == "false") {
+          tapCorrect.add(false);
+        } else {
+          tapCorrect.add(true);
+        }
       } else {
-        _tapCorrect.add(true);
+        tapCorrect.add(false);
       }
-      if (tapWrongList[i] == "false") {
-        _tapWrong.add(false);
+
+      if (tapWrongList.length > i) {
+        if (tapWrongList[i] == "false") {
+          tapWrong.add(false);
+        } else {
+          tapWrong.add(true);
+        }
       } else {
-        _tapWrong.add(true);
+        tapWrong.add(false);
       }
-      if (correctCheckList[i] == "false") {
-        _correctCheck.add(false);
+
+      if (correctCheckList.length > i) {
+        if (correctCheckList[i] == "false") {
+          correctCheck.add(false);
+        } else {
+          correctCheck.add(true);
+        }
       } else {
-        _correctCheck.add(true);
+        correctCheck.add(false);
       }
     }
     setState(() {
-      _radioValue = _score1;
-      correctTap = _score2;
-      wrongTap = _score3;
-      letterTapButtonColor = _letterTapButtonColor;
-      tapCorrect = _tapCorrect;
-      tapWrong = _tapWrong;
-      correctCheck = _correctCheck;
+      _radioValue = score1 ?? 0;
+      correctTap = score2 ?? 0;
+      wrongTap = score3 ?? 0;
+      letterTapButtonColor = letterTapButtonColor;
+      tapCorrect = tapCorrect;
+      tapWrong = tapWrong;
+      correctCheck = correctCheck;
     });
   }
 

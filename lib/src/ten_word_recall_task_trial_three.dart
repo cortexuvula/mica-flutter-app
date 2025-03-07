@@ -1,29 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
-import 'package:mica/src/home.dart';
 import 'package:mica/src/visuospatial_praxis.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TenWordRecallTrialThree extends StatefulWidget {
-  String patientName;
-  String assessorName;
-  String handedness;
-  DateTime assessmentDate;
-  int languageComprehensionRadioValue;
-  int trialOneScore;
-  int trialTwoScore;
+  final String patientName;
+  final String assessorName;
+  final String handedness;
+  final DateTime assessmentDate;
+  final int languageComprehensionRadioValue;
+  final int trialOneScore;
+  final int trialTwoScore;
 
-  TenWordRecallTrialThree(
-      {Key key,
-      this.patientName,
-      this.assessorName,
-      this.handedness,
-      this.assessmentDate,
-      this.languageComprehensionRadioValue,
-      this.trialOneScore,
-      this.trialTwoScore})
-      : super(key: key);
+  const TenWordRecallTrialThree({
+      super.key,
+      required this.patientName,
+      required this.assessorName,
+      required this.handedness,
+      required this.assessmentDate,
+      required this.languageComprehensionRadioValue,
+      required this.trialOneScore,
+      required this.trialTwoScore});
 
   @override
   _TenWordRecallTrialThreeState createState() =>
@@ -33,7 +31,7 @@ class TenWordRecallTrialThree extends StatefulWidget {
 class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
   List<Color> wordButtonColor = [];
   List<String> wordColor = [];
-  int scoreTenWordRecallTrialThree;
+  late int scoreTenWordRecallTrialThree = 0;
   bool activeContinueButton = false;
 
   @override
@@ -47,13 +45,20 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
+    var width = MediaQuery.of(context).size.width;
     var screenHeightInfo =
         (MediaQuery.of(context).size.height * 0.3).floorToDouble();
     var screenHeightWords =
         (MediaQuery.of(context).size.height * 0.45).floorToDouble();
-    return WillPopScope(
-      onWillPop: savePrefData,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (didPop) return;
+        final shouldPop = await savePrefData();
+        if (shouldPop && context.mounted) {
+          Navigator.of(context).pop();
+        }
+      },
       child: Scaffold(
         appBar: AppBar(
           title: ListTile(
@@ -78,8 +83,8 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
             IconButton(
                 icon: Icon(Icons.clear),
                 onPressed: () {
-                  var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Welcome());
+                  var router = MaterialPageRoute(
+                      builder: (BuildContext context) => Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -98,6 +103,7 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
 //                        Padding(padding: EdgeInsets.all(8.0)),
 //                        Row(
@@ -196,7 +202,6 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
                             ),
                           ),
                         ],
-                        crossAxisAlignment: CrossAxisAlignment.start,
                       ),
                     ),
                   )
@@ -214,8 +219,11 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
                     crossAxisSpacing: 20.0,
                     mainAxisSpacing: 20.0,
                     children: List.generate(10, (index) {
-                      return FlatButton(
-                        color: wordButtonColor[index],
+                      return TextButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: wordButtonColor[index],
+                          foregroundColor: Colors.black,
+                        ),
                         onPressed: () {
                           setState(() {
                             if (wordButtonColor[index] ==
@@ -233,68 +241,77 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
                             }
                           });
                         },
-                        child: Text("${appData.tenWordRecallList3[index]}"),
+                        child: Text(appData.tenWordRecallList3[index]),
                       );
                     })),
               ),
             ),
-            Container(
-                width: _width * 0.9,
+            SizedBox(
+                width: width * 0.9,
                 child: Card(
                   elevation: 10.0,
                   color: Colors.white,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: RaisedButton(
-                        elevation: 10.0,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          elevation: 10.0,
+                        ),
+                        onPressed: activeContinueButton
+                            ? () {
+                                var router = MaterialPageRoute(
+                                    builder: (BuildContext context) =>
+                                        VisuospatialPraxis(
+                                          patientName: widget.patientName,
+                                          assessorName: widget.assessorName,
+                                          handedness: widget.handedness,
+                                          assessmentDate: widget.assessmentDate,
+                                          languageComprehensionRadioValue:
+                                              widget.languageComprehensionRadioValue,
+                                          trialOneScore: widget.trialOneScore,
+                                          trialTwoScore: widget.trialTwoScore,
+                                          trialThreeScore:
+                                              scoreTenWordRecallTrialThree,
+                                        ));
+                                Navigator.of(context).pushAndRemoveUntil(
+                                    router, (Route<dynamic> route) => true);
+                              }
+                            : null,
                         child: Text(
                           "Continue",
                           overflow: TextOverflow.clip,
-                        ),
-                        //onPressed: () => debugPrint("hello"),
-                        onPressed: () {
-                          var router = new MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  new VisuospatialPraxis(
-                                    patientName: widget.patientName,
-                                    assessorName: widget.assessorName,
-                                    handedness: widget.handedness,
-                                    assessmentDate: widget.assessmentDate,
-                                    languageComprehensionRadioValue:
-                                        widget.languageComprehensionRadioValue,
-                                    trialOneScore: widget.trialOneScore,
-                                    trialTwoScore: widget.trialTwoScore,
-                                    trialThreeScore:
-                                        scoreTenWordRecallTrialThree,
-                                  ));
-                          Navigator.of(context).pushAndRemoveUntil(
-                              router, (Route<dynamic> route) => true);
-                        }),
+                        )),
                   ),
                 )),
           ],
         ),
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.surface,
       ),
     );
   }
 
   void getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int _score = prefs.getInt("trialThreeScore");
-    wordColor = prefs.getStringList("trial3wordButtonColor");
-
-    for (var i = 0; i < 10; i++) {
-      if (wordColor[i] == "green") {
-        setState(() {
-          wordButtonColor[i] = Colors.green;
-        });
+    int? score = prefs.getInt("trialThreeScore");
+    List<String>? tempWordColor = prefs.getStringList("trial3wordButtonColor");
+    
+    if (tempWordColor != null) {
+      wordColor = tempWordColor;
+      
+      for (var i = 0; i < 10; i++) {
+        if (i < wordColor.length && wordColor[i] == "green") {
+          setState(() {
+            wordButtonColor[i] = Colors.green;
+          });
+        }
       }
     }
 
-    setState(() {
-      scoreTenWordRecallTrialThree = _score;
-    });
+    if (score != null) {
+      setState(() {
+        scoreTenWordRecallTrialThree = score;
+      });
+    }
   }
 
   Future<bool> savePrefData() async {

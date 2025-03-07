@@ -7,6 +7,8 @@ import 'package:mica/src/resource_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class Welcome extends StatefulWidget {
+  const Welcome({super.key});
+  
   @override
   _WelcomeState createState() => _WelcomeState();
 }
@@ -14,12 +16,12 @@ class Welcome extends StatefulWidget {
 class _WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
         body: ListView(children: <Widget>[
           Column(
             children: <Widget>[
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
               Hero(
@@ -29,11 +31,11 @@ class _WelcomeState extends State<Welcome> {
                     height: 50.0,
                     width: 50.0,
                   )),
-              SizedBox(
+              const SizedBox(
                 height: 20.0,
               ),
-              Container(
-                width: _width * 0.9,
+              SizedBox(
+                width: width * 0.9,
                 child: Card(
                   elevation: 10.0,
                   color: Colors.white,
@@ -46,8 +48,8 @@ class _WelcomeState extends State<Welcome> {
                   ),
                 ),
               ),
-              Container(
-                width: _width * 0.9,
+              SizedBox(
+                width: width * 0.9,
                 child: Card(
                   elevation: 10.0,
                   color: Colors.white,
@@ -55,22 +57,25 @@ class _WelcomeState extends State<Welcome> {
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
                       children: <Widget>[
-                        Container(
-                          width: _width * 0.8,
-                          child: RaisedButton(
-                            elevation: 10.0,
+                        SizedBox(
+                          width: width * 0.8,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              elevation: 10.0,
+                              backgroundColor: Theme.of(context).colorScheme.secondary,
+                            ),
                             onPressed: () {
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Home()));
+                                      builder: (context) => const Home()));
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: <Widget>[
                                   Text(appData.welcomeButtonOption1),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5.0,
                                   ),
                                   Text(
@@ -87,8 +92,8 @@ class _WelcomeState extends State<Welcome> {
                   ),
                 ),
               ),
-              Container(
-                width: _width * 0.9,
+              SizedBox(
+                width: width * 0.9,
                 child: Card(
                   elevation: 10.0,
                   color: Colors.white,
@@ -96,14 +101,17 @@ class _WelcomeState extends State<Welcome> {
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
                       children: <Widget>[
-                        Container(
-                          width: _width * 0.8,
-                          child: RaisedButton(
-                            elevation: 10.0,
+                        SizedBox(
+                          width: width * 0.8,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              elevation: 10.0,
+                              backgroundColor: Theme.of(context).colorScheme.secondary,
+                            ),
                             onPressed: () {
-                              var router = new MaterialPageRoute(
+                              var router = MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      new DomainSelect());
+                                      const DomainSelect());
                               Navigator.of(context).pushAndRemoveUntil(
                                   router, (Route<dynamic> route) => true);
                             },
@@ -112,7 +120,7 @@ class _WelcomeState extends State<Welcome> {
                               child: Column(
                                 children: <Widget>[
                                   Text(appData.welcomeButtonOption2),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5.0,
                                   ),
                                   Text(
@@ -129,8 +137,8 @@ class _WelcomeState extends State<Welcome> {
                   ),
                 ),
               ),
-              Container(
-                width: _width * 0.9,
+              SizedBox(
+                width: width * 0.9,
                 child: Card(
                   elevation: 10.0,
                   color: Colors.white,
@@ -138,14 +146,17 @@ class _WelcomeState extends State<Welcome> {
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
                       children: <Widget>[
-                        Container(
-                          width: _width * 0.8,
-                          child: RaisedButton(
-                            elevation: 10.0,
+                        SizedBox(
+                          width: width * 0.8,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              elevation: 10.0,
+                              backgroundColor: Theme.of(context).colorScheme.secondary,
+                            ),
                             onPressed: () {
-                              var router = new MaterialPageRoute(
+                              var router = MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      new ClinicalSelect());
+                                      const ClinicalSelect());
                               Navigator.of(context).pushAndRemoveUntil(
                                   router, (Route<dynamic> route) => true);
                             },
@@ -154,7 +165,7 @@ class _WelcomeState extends State<Welcome> {
                               child: Column(
                                 children: <Widget>[
                                   Text(appData.welcomeButtonOption3),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5.0,
                                   ),
                                   Text(
@@ -171,8 +182,8 @@ class _WelcomeState extends State<Welcome> {
                   ),
                 ),
               ),
-              Container(
-                width: _width * 0.9,
+              SizedBox(
+                width: width * 0.9,
                 child: Card(
                   elevation: 10.0,
                   color: Colors.white,
@@ -180,10 +191,13 @@ class _WelcomeState extends State<Welcome> {
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
                       children: <Widget>[
-                        Container(
-                          width: _width * 0.8,
-                          child: RaisedButton(
-                            elevation: 10.0,
+                        SizedBox(
+                          width: width * 0.8,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              elevation: 10.0,
+                              backgroundColor: Theme.of(context).colorScheme.secondary,
+                            ),
                             onPressed: () {
                               _launchURL();
                             },
@@ -195,8 +209,8 @@ class _WelcomeState extends State<Welcome> {
                   ),
                 ),
               ),
-              Container(
-                width: _width * 0.9,
+              SizedBox(
+                width: width * 0.9,
                 child: Card(
                   elevation: 10.0,
                   color: Colors.white,
@@ -204,10 +218,13 @@ class _WelcomeState extends State<Welcome> {
                     padding: const EdgeInsets.all(20.0),
                     child: Column(
                       children: <Widget>[
-                        Container(
-                          width: _width * 0.8,
-                          child: RaisedButton(
-                            elevation: 10.0,
+                        SizedBox(
+                          width: width * 0.8,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              elevation: 10.0,
+                              backgroundColor: Theme.of(context).colorScheme.secondary,
+                            ),
                             onPressed: () {
                               Navigator.push(
                                   context,
@@ -217,10 +234,6 @@ class _WelcomeState extends State<Welcome> {
                             child: Text(appData.welcomeButtonOption5),
                           ),
                         ),
-                        // SizedBox(
-                        //   height: 5.0,
-                        // ),
-                        // Text(appData.welcomeOption3),
                       ],
                     ),
                   ),
@@ -229,15 +242,13 @@ class _WelcomeState extends State<Welcome> {
             ],
           ),
         ]),
-        backgroundColor: Theme.of(context).backgroundColor);
+        backgroundColor: Theme.of(context).colorScheme.surface);
   }
 
   _launchURL() async {
-    const url = 'https://neoncortex.net/wp-content/mca/bca.pdf';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
+    final Uri url = Uri.parse('https://www.neoncortex.net/');
+    if (!await launchUrl(url)) {
+      throw Exception('Could not launch $url');
     }
   }
 }

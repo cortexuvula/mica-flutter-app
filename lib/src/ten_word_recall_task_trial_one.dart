@@ -1,25 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
-import 'package:mica/src/home.dart';
 import 'package:mica/src/ten_word_recall_task_trial_two.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TenWordRecallTrialOne extends StatefulWidget {
-  String patientName;
-  String assessorName;
-  String handedness;
-  DateTime assessmentDate;
-  int languageComprehensionRadioValue;
+  final String patientName;
+  final String assessorName;
+  final String handedness;
+  final DateTime assessmentDate;
+  final int languageComprehensionRadioValue;
 
-  TenWordRecallTrialOne(
-      {Key key,
-      this.patientName,
-      this.assessorName,
-      this.handedness,
-      this.assessmentDate,
-      this.languageComprehensionRadioValue})
-      : super(key: key);
+  const TenWordRecallTrialOne({
+      super.key,
+      required this.patientName,
+      required this.assessorName,
+      required this.handedness,
+      required this.assessmentDate,
+      required this.languageComprehensionRadioValue});
 
   @override
   _TenWordRecallTrialOneState createState() => _TenWordRecallTrialOneState();
@@ -27,37 +25,48 @@ class TenWordRecallTrialOne extends StatefulWidget {
 
 class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
     with SingleTickerProviderStateMixin {
-  List<Color> wordButtonColor = [];
-  List<String> wordColor = [];
-  int scoreTenWordRecallTrialOne;
+  final List<Color> wordButtonColor = [];
+  final List<String> wordColor = [];
+  late int scoreTenWordRecallTrialOne;
 
   bool activeContinueButton = false;
 
   @override
   void initState() {
     super.initState();
+    
+    scoreTenWordRecallTrialOne = 0;
 
     for (var i = 0; i < 10; i++) {
       wordButtonColor.add(Colors.yellowAccent.shade100);
+      wordColor.add('yellow');
     }
     getPrefsData();
   }
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
+    var width = MediaQuery.of(context).size.width;
     var screenHeightInfo =
         (MediaQuery.of(context).size.height * 0.3).floorToDouble();
     var screenHeightWords =
         (MediaQuery.of(context).size.height * 0.45).floorToDouble();
-    return WillPopScope(
-      onWillPop: savePrefData,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (didPop) return;
+        
+        final bool shouldPop = await savePrefData();
+        if (shouldPop && context.mounted) {
+          Navigator.of(context).pop();
+        }
+      },
       child: Scaffold(
         appBar: AppBar(
           title: ListTile(
             title: Text(
               appData.testTenWordRecallTrialOne,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
               ),
@@ -65,7 +74,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
             ),
             subtitle: Text(
               appData.testTenWordRecallTrialOneSubtitle,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
               ),
@@ -74,10 +83,10 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
           ),
           actions: <Widget>[
             IconButton(
-                icon: Icon(Icons.clear),
+                icon: const Icon(Icons.clear),
                 onPressed: () {
-                  var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Welcome());
+                  var router = MaterialPageRoute(
+                      builder: (BuildContext context) => const Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -88,7 +97,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
             SizedBox(
               height: screenHeightInfo,
               child: ListView(
-                padding: EdgeInsets.fromLTRB(32.0, 8.0, 32.0, 8.0),
+                padding: const EdgeInsets.fromLTRB(32.0, 8.0, 32.0, 8.0),
                 children: <Widget>[
                   Card(
                     elevation: 10.0,
@@ -96,10 +105,11 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
+                            children: const <Widget>[
                               Text(
                                 "Scroll down to reveal more instructions",
                                 style: TextStyle(
@@ -116,7 +126,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                               child: Text(
                                 appData
                                     .instructionsTenWordRecallTrialOnePaient1,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w500,
                                     fontSize: 15.0),
@@ -124,7 +134,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                             ),
                           ),
 //                    Padding(padding: EdgeInsets.all(8.0)),
-                          SizedBox(
+                          const SizedBox(
                             height: 5.0,
                           ),
                           Card(
@@ -135,7 +145,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                               child: Text(
                                 appData
                                     .instructionsTenWordRecallTrialOneHealthworker1,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w500,
                                     fontSize: 15.0),
@@ -143,7 +153,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                             ),
                           ),
 //                    Padding(padding: EdgeInsets.all(8.0)),
-                          SizedBox(
+                          const SizedBox(
                             height: 5.0,
                           ),
                           Card(
@@ -154,14 +164,14 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                               child: Text(
                                 appData
                                     .instructionsTenWordRecallTrialOnePatient2,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w500,
                                     fontSize: 15.0),
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 5.0,
                           ),
 
@@ -173,7 +183,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                               child: Text(
                                 appData
                                     .instructionsTenWordRecallTrialOneHealthworker2,
-                                style: TextStyle(
+                                style: const TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w500,
                                     fontSize: 15.0),
@@ -181,7 +191,6 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                             ),
                           ),
                         ],
-                        crossAxisAlignment: CrossAxisAlignment.start,
                       ),
                     ),
                   )
@@ -195,12 +204,14 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                     addRepaintBoundaries: true,
                     crossAxisCount: 2,
                     childAspectRatio: 4.5,
-                    padding: EdgeInsets.fromLTRB(32.0, 16.0, 32.0, 0.0),
+                    padding: const EdgeInsets.fromLTRB(32.0, 16.0, 32.0, 0.0),
                     crossAxisSpacing: 20.0,
                     mainAxisSpacing: 20.0,
                     children: List.generate(10, (index) {
-                      return FlatButton(
-                        color: wordButtonColor[index],
+                      return TextButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: wordButtonColor[index],
+                        ),
                         onPressed: () {
                           setState(() {
                             if (wordButtonColor[index] ==
@@ -218,29 +229,31 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                             }
                           });
                         },
-                        child: Text("${appData.tenWordRecallList[index]}"),
+                        child: Text(appData.tenWordRecallList[index]),
                       );
                     })),
               ),
             ),
-            Container(
-                width: _width * 0.9,
+            SizedBox(
+                width: width * 0.9,
                 child: Card(
                   elevation: 10.0,
                   color: Colors.white,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: RaisedButton(
-                        elevation: 10.0,
-                        child: Text(
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          elevation: 10.0,
+                        ),
+                        child: const Text(
                           "Continue",
                           overflow: TextOverflow.clip,
                         ),
                         //onPressed: () => debugPrint("hello"),
                         onPressed: () {
-                          var router = new MaterialPageRoute(
+                          var router = MaterialPageRoute(
                               builder: (BuildContext context) =>
-                                  new TenWordRecallTrialTwo(
+                                  TenWordRecallTrialTwo(
                                     patientName: widget.patientName,
                                     assessorName: widget.assessorName,
                                     handedness: widget.handedness,
@@ -256,26 +269,32 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                 )),
           ],
         ),
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.surface,
       ),
     );
   }
 
   void getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int _score = prefs.getInt("trialOneScore");
-    wordColor = prefs.getStringList("trial1wordButtonColor");
+    int? score = prefs.getInt("trialOneScore");
+    List<String>? tempWordColor = prefs.getStringList("trial1wordButtonColor");
 
-    for (var i = 0; i < 10; i++) {
-      if (wordColor[i] == "green") {
-        setState(() {
-          wordButtonColor[i] = Colors.green;
-        });
+    if (tempWordColor != null) {
+      for (var i = 0; i < 10; i++) {
+        if (i < tempWordColor.length && tempWordColor[i] == "green") {
+          setState(() {
+            wordButtonColor[i] = Colors.green;
+            wordColor[i] = "green";
+          });
+        }
       }
     }
-    setState(() {
-      scoreTenWordRecallTrialOne = _score;
-    });
+    
+    if (score != null) {
+      setState(() {
+        scoreTenWordRecallTrialOne = score;
+      });
+    }
   }
 
   Future<bool> savePrefData() async {

@@ -10,8 +10,9 @@ import 'package:mica/src/domain_results/verbal_working_memory.dart';
 import 'package:mica/src/domain_results/visual_short_term_memory.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/welcome.dart';
-import 'package:share/share.dart';
+import 'package:share_plus/share_plus.dart';
 
+@immutable
 class TestSummary extends StatefulWidget {
   final String patientName;
   final String assessorName;
@@ -47,46 +48,45 @@ class TestSummary extends StatefulWidget {
   final int anomiaAgnosia;
   final int agnosia;
   final int executive;
-  int spokenLanguage;
+  final int spokenLanguage;
 
-  TestSummary(
-      {Key key,
-      this.patientName,
-      this.assessorName,
-      this.handedness,
-      this.assessmentDate,
-      this.languageComprehensionRadioValue,
-      this.trialOneScore,
-      this.trialTwoScore,
-      this.trialThreeScore,
-      this.visuospatialPraxisImage1,
-      this.visuospatialPraxisImage2,
-      this.visuospatialPraxisImage3,
-      this.attention,
-      this.attentionCorrect,
-      this.attentionMistakes,
-      this.executiveAnimalNaming,
-      this.executiveAnimalNamingCount,
-      this.executiveLuria,
-      this.executiveLuriaScore,
-      this.executiveSerial,
-      this.executiveSerialScore,
-      this.shorttermMemoryVerbal,
-      this.shorttermMemoryVerbalScore,
-      this.praxisRight,
-      this.praxisLeft,
-      this.tenWordDelay,
-      this.scoreVerbalRecognitionMemoryTenWords,
-      this.scoreVerbalRecognitionMemoryTenWordsInList,
-      this.scoreVerbalRecognitionMemoryTenWordsNotInList,
-      this.shorttermMemoryVisualImage1,
-      this.shorttermMemoryVisualImage2,
-      this.shorttermMemoryVisualImage3,
-      this.anomiaAgnosia,
-      this.agnosia,
-      this.executive,
-      this.spokenLanguage})
-      : super(key: key);
+  const TestSummary({
+    super.key,
+    required this.patientName,
+    required this.assessorName,
+    required this.handedness,
+    required this.assessmentDate,
+    required this.languageComprehensionRadioValue,
+    required this.trialOneScore,
+    required this.trialTwoScore,
+    required this.trialThreeScore,
+    required this.visuospatialPraxisImage1,
+    required this.visuospatialPraxisImage2,
+    required this.visuospatialPraxisImage3,
+    required this.attention,
+    required this.attentionCorrect,
+    required this.attentionMistakes,
+    required this.executiveAnimalNaming,
+    required this.executiveAnimalNamingCount,
+    required this.executiveLuria,
+    required this.executiveLuriaScore,
+    required this.executiveSerial,
+    required this.executiveSerialScore,
+    required this.shorttermMemoryVerbal,
+    required this.shorttermMemoryVerbalScore,
+    required this.praxisRight,
+    required this.praxisLeft,
+    required this.tenWordDelay,
+    required this.scoreVerbalRecognitionMemoryTenWords,
+    required this.scoreVerbalRecognitionMemoryTenWordsInList,
+    required this.scoreVerbalRecognitionMemoryTenWordsNotInList,
+    required this.shorttermMemoryVisualImage1,
+    required this.shorttermMemoryVisualImage2,
+    required this.shorttermMemoryVisualImage3,
+    required this.anomiaAgnosia,
+    required this.agnosia,
+    required this.executive,
+    required this.spokenLanguage});
 
   @override
   _TestSummaryState createState() => _TestSummaryState();
@@ -105,7 +105,6 @@ class _TestSummaryState extends State<TestSummary> {
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
     return DefaultTabController(
       length: 2,
       initialIndex: 0,
@@ -141,8 +140,8 @@ class _TestSummaryState extends State<TestSummary> {
                 icon: Icon(Icons.home),
                 tooltip: "Go Home",
                 onPressed: () {
-                  var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Welcome());
+                  var router = MaterialPageRoute(
+                      builder: (BuildContext context) => Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 },
@@ -164,7 +163,7 @@ class _TestSummaryState extends State<TestSummary> {
   }
 
   Widget fullReport() {
-    var _width = MediaQuery.of(context).size.width;
+    var width = MediaQuery.of(context).size.width;
     return ListView(
       children: <Widget>[
         Column(
@@ -175,8 +174,8 @@ class _TestSummaryState extends State<TestSummary> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(
-                width: _width,
+              child: SizedBox(
+                width: width,
                 child: Card(
                   elevation: 10.0,
                   child: Padding(
@@ -236,8 +235,8 @@ class _TestSummaryState extends State<TestSummary> {
                         TableRow(children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child:
-                                Text("Language Comprehension: 3 Stage Command"),
+                            child: Text(
+                                "Language Comprehension: 3 Stage Command"),
                           ),
                           Padding(
                             padding: const EdgeInsets.all(8.0),
@@ -721,92 +720,66 @@ class _TestSummaryState extends State<TestSummary> {
     );
   }
 
-  String radioValueResultToString(int _radioValue) {
-    switch (_radioValue) {
+  String radioValueResultToString(int radioValue) {
+    switch (radioValue) {
       case 0:
-        {
-          return "N";
-        }
+        return "N";
       case 1:
-        {
-          return "E";
-        }
+        return "E";
       case 2:
-        {
-          return "I";
-        }
+        return "I";
+      default:
+        return "N";
     }
   }
 
-  Color radioValueResultToColor(int _radioValue) {
-    switch (_radioValue) {
+  Color radioValueResultToColor(int radioValue) {
+    switch (radioValue) {
       case 0:
-        {
-          return Colors.green;
-        }
+        return Colors.green;
       case 1:
-        {
-          return Colors.yellow;
-        }
+        return Colors.yellow;
       case 2:
-        {
-          return Colors.red;
-        }
+        return Colors.red;
+      default:
+        return Colors.green;
     }
   }
 
-  String valueTrial12ResultToString(int _valueTotal) {
-    switch (_valueTotal > 6) {
-      case true:
-        {
-          return "N";
-        }
-      case false:
-        {
-          if (_valueTotal < 5) {
-            return "I";
-          }
-          return "E";
-        }
-    }
-  }
-
-  Color valueTrial12ResultToColor(int _valueTotal) {
-    Color _color;
-    switch (_valueTotal > 6) {
-      case true:
-        {
-          _color = Colors.green;
-          break;
-        }
-      case false:
-        {
-          if (_valueTotal < 5) {
-            _color = Colors.red;
-          } else {
-            _color = Colors.yellow;
-          }
-
-          break;
-        }
-    }
-    return _color;
-  }
-
-  String valueTrial3ResultToString(int _valueTotal) {
-    if (_valueTotal > 7) {
+  String valueTrial12ResultToString(int valueTotal) {
+    if (valueTotal > 6) {
       return "N";
-    } else if (_valueTotal < 5) {
+    } else if (valueTotal < 5) {
       return "I";
     } else {
       return "E";
     }
   }
 
-  Color valueTrial3ResultToColor(int _valueTotal) {
-    if (_valueTotal > 7) {
+  Color valueTrial12ResultToColor(int valueTotal) {
+    if (valueTotal > 6) {
       return Colors.green;
-    } else if (_valueTotal < 5) {
+    } else if (valueTotal < 5) {
+      return Colors.red;
+    } else {
+      return Colors.yellow;
+    }
+  }
+
+  String valueTrial3ResultToString(int valueTotal) {
+    if (valueTotal > 7) {
+      return "N";
+    } else if (valueTotal < 5) {
+      return "I";
+    } else {
+      return "E";
+    }
+  }
+
+  Color valueTrial3ResultToColor(int valueTotal) {
+    if (valueTotal > 7) {
+      return Colors.green;
+    } else if (valueTotal < 5) {
       return Colors.red;
     } else {
       return Colors.yellow;
@@ -818,67 +791,44 @@ class _TestSummaryState extends State<TestSummary> {
     int score2 = 3 - widget.visuospatialPraxisImage2;
     int score3 = 3 - widget.visuospatialPraxisImage3;
 
-    int _combineScore = score1 + score2 + score3;
-    switch (_combineScore > 6) {
-      case true:
-        {
-          return "N";
-        }
-      case false:
-        {
-          if (_combineScore < 6) {
-            return "I";
-          }
-          return "E";
-        }
+    int combineScore = score1 + score2 + score3;
+    
+    if (combineScore > 6) {
+      return "N";
+    } else if (combineScore < 6) {
+      return "I";
+    } else {
+      return "E";
     }
   }
 
-  Color valueVisualResultToColor(int _valueTotal) {
-    switch (_valueTotal > 6) {
-      case true:
-        {
-          return Colors.green;
-        }
-      case false:
-        {
-          if (_valueTotal < 6) {
-            return Colors.red;
-          }
-          return Colors.yellow;
-        }
+  Color valueVisualResultToColor(int valueTotal) {
+    if (valueTotal > 6) {
+      return Colors.green;
+    } else if (valueTotal < 6) {
+      return Colors.red;
+    } else {
+      return Colors.yellow;
     }
   }
 
-  String valueDelayResultToString(int _valueTotal) {
-    switch (_valueTotal > 5) {
-      case true:
-        {
-          return "N";
-        }
-      case false:
-        {
-          if (_valueTotal < 5) {
-            return "I";
-          }
-          return "E";
-        }
+  String valueDelayResultToString(int valueTotal) {
+    if (valueTotal > 5) {
+      return "N";
+    } else if (valueTotal < 5) {
+      return "I";
+    } else {
+      return "E";
     }
   }
 
-  Color valueDelayResultToColor(int _valueTotal) {
-    switch (_valueTotal > 5) {
-      case true:
-        {
-          return Colors.green;
-        }
-      case false:
-        {
-          if (_valueTotal < 5) {
-            return Colors.red;
-          }
-          return Colors.yellow;
-        }
+  Color valueDelayResultToColor(int valueTotal) {
+    if (valueTotal > 5) {
+      return Colors.green;
+    } else if (valueTotal < 5) {
+      return Colors.red;
+    } else {
+      return Colors.yellow;
     }
   }
 
@@ -887,11 +837,11 @@ class _TestSummaryState extends State<TestSummary> {
     int score2 = 3 - widget.shorttermMemoryVisualImage2;
     int score3 = 3 - widget.shorttermMemoryVisualImage3;
 
-    int _combineScore = score1 + score2 + score3;
+    int combineScore = score1 + score2 + score3;
 
-    if (_combineScore > 5) {
+    if (combineScore > 5) {
       return Colors.green;
-    } else if (_combineScore < 5) {
+    } else if (combineScore < 5) {
       return Colors.red;
     } else {
       return Colors.yellow;
@@ -903,11 +853,11 @@ class _TestSummaryState extends State<TestSummary> {
     int score2 = 3 - widget.visuospatialPraxisImage2;
     int score3 = 3 - widget.visuospatialPraxisImage3;
 
-    int _combineScore = score1 + score2 + score3;
+    int combineScore = score1 + score2 + score3;
 
-    if (_combineScore > 5) {
+    if (combineScore > 5) {
       return Colors.green;
-    } else if (_combineScore < 5) {
+    } else if (combineScore < 5) {
       return Colors.red;
     } else {
       return Colors.yellow;
@@ -972,9 +922,9 @@ class _TestSummaryState extends State<TestSummary> {
                 ),
               ),
               onTap: () {
-                var router = new MaterialPageRoute(
+                var router = MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        new AttentionConcentration(
+                        AttentionConcentration(
                           attention: widget.attention,
                         ));
                 Navigator.of(context)
@@ -985,8 +935,8 @@ class _TestSummaryState extends State<TestSummary> {
         ),
         Card(
           elevation: 10.0,
-          color: languageCardColor(widget.spokenLanguage,
-              widget.languageComprehensionRadioValue, widget.executive),
+          color: languageCardColor(
+              widget.spokenLanguage, widget.languageComprehensionRadioValue, widget.executive),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
@@ -1033,8 +983,8 @@ class _TestSummaryState extends State<TestSummary> {
                 ),
               ),
               onTap: () {
-                var router = new MaterialPageRoute(
-                    builder: (BuildContext context) => new Language(
+                var router = MaterialPageRoute(
+                    builder: (BuildContext context) => Language(
                           spokenLanguage: widget.spokenLanguage,
                           comprehension: widget.languageComprehensionRadioValue,
                           drawLine: widget.executive,
@@ -1085,8 +1035,8 @@ class _TestSummaryState extends State<TestSummary> {
                 ),
               ),
               onTap: () {
-                var router = new MaterialPageRoute(
-                    builder: (BuildContext context) => new VerbalWorkingMemory(
+                var router = MaterialPageRoute(
+                    builder: (BuildContext context) => VerbalWorkingMemory(
                           trialOneScore: widget.trialOneScore,
                         ));
                 Navigator.of(context)
@@ -1098,11 +1048,12 @@ class _TestSummaryState extends State<TestSummary> {
         Card(
           elevation: 10.0,
           color: verbalShortTermMemory(
-              widget.trialTwoScore,
-              widget.trialThreeScore,
-              widget.shorttermMemoryVerbal,
-              widget.tenWordDelay,
-              widget.scoreVerbalRecognitionMemoryTenWords),
+            widget.trialTwoScore,
+            widget.trialThreeScore,
+            widget.shorttermMemoryVerbal,
+            widget.tenWordDelay,
+            widget.scoreVerbalRecognitionMemoryTenWords,
+          ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: ListTile(
@@ -1158,9 +1109,9 @@ class _TestSummaryState extends State<TestSummary> {
                 ),
               ),
               onTap: () {
-                var router = new MaterialPageRoute(
+                var router = MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        new VerbalShortTermMemory(
+                        VerbalShortTermMemory(
                           trialTwoScore: widget.trialTwoScore,
                           trialThreeScore: widget.trialThreeScore,
                           orientation: widget.shorttermMemoryVerbal,
@@ -1214,9 +1165,9 @@ class _TestSummaryState extends State<TestSummary> {
                 ),
               ),
               onTap: () {
-                var router = new MaterialPageRoute(
+                var router = MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        new VisualShortTermMemory(
+                        VisualShortTermMemory(
                           shorttermMemoryVisualImage1:
                               widget.shorttermMemoryVisualImage1,
                           shorttermMemoryVisualImage2:
@@ -1278,8 +1229,8 @@ class _TestSummaryState extends State<TestSummary> {
                 ),
               ),
               onTap: () {
-                var router = new MaterialPageRoute(
-                    builder: (BuildContext context) => new Praxis(
+                var router = MaterialPageRoute(
+                    builder: (BuildContext context) => Praxis(
                           praxisRight: widget.praxisRight,
                           praxisLeft: widget.praxisLeft,
                           visuospatialPraxisImage1:
@@ -1339,8 +1290,8 @@ class _TestSummaryState extends State<TestSummary> {
                 ),
               ),
               onTap: () {
-                var router = new MaterialPageRoute(
-                    builder: (BuildContext context) => new Gnosis(
+                var router = MaterialPageRoute(
+                    builder: (BuildContext context) => Gnosis(
                           visuospatialPraxisImage1:
                               widget.visuospatialPraxisImage1,
                           visuospatialPraxisImage2:
@@ -1396,8 +1347,8 @@ class _TestSummaryState extends State<TestSummary> {
                 ),
               ),
               onTap: () {
-                var router = new MaterialPageRoute(
-                    builder: (BuildContext context) => new ExecutiveFunctions(
+                var router = MaterialPageRoute(
+                    builder: (BuildContext context) => ExecutiveFunctions(
                           executiveAnimalNaming: widget.executiveAnimalNaming,
                         ));
                 Navigator.of(context)
@@ -1412,27 +1363,17 @@ class _TestSummaryState extends State<TestSummary> {
 
   // Card Colors
 
-  Color attentionCardColor(int _radioValue) {
-    Color _color;
-    switch (_radioValue) {
+  Color attentionCardColor(int radioValue) {
+    switch (radioValue) {
       case 0:
-        {
-          _color = Colors.green;
-          break;
-        }
+        return Colors.green;
       case 1:
-        {
-          _color = Colors.yellow;
-          break;
-        }
+        return Colors.yellow;
       case 2:
-        {
-          _color = Colors.red;
-          break;
-        }
+        return Colors.red;
+      default:
+        return Colors.green;
     }
-
-    return _color;
   }
 
   Color languageCardColor(
@@ -1461,11 +1402,11 @@ class _TestSummaryState extends State<TestSummary> {
   }
 
   Color verbalShortTermMemory(
-    valuetrialTwoScore,
-    valuetrialThreeScore,
-    valueshorttermMemoryVerbal,
-    valuetenWordDelay,
-    valuescoreVerbalRecognitionMemoryTenWords,
+    int valuetrialTwoScore,
+    int valuetrialThreeScore,
+    int valueshorttermMemoryVerbal,
+    int valuetenWordDelay,
+    int valuescoreVerbalRecognitionMemoryTenWords,
   ) {
     if (valuetrialTwoScore < 5 ||
         valuetrialThreeScore < 5 ||
@@ -1489,11 +1430,11 @@ class _TestSummaryState extends State<TestSummary> {
     int score2 = 3 - widget.shorttermMemoryVisualImage2;
     int score3 = 3 - widget.shorttermMemoryVisualImage3;
 
-    int _combineScore = score1 + score2 + score3;
+    int combineScore = score1 + score2 + score3;
 
-    if (_combineScore > 5) {
+    if (combineScore > 5) {
       return Colors.green;
-    } else if (_combineScore < 5) {
+    } else if (combineScore < 5) {
       return Colors.red;
     } else {
       return Colors.yellow;
@@ -1505,13 +1446,13 @@ class _TestSummaryState extends State<TestSummary> {
     int score2 = 3 - widget.visuospatialPraxisImage2;
     int score3 = 3 - widget.visuospatialPraxisImage3;
 
-    int _combineScore = score1 + score2 + score3;
+    int combineScore = score1 + score2 + score3;
 
-    if (_combineScore < 5 ||
+    if (combineScore < 5 ||
         widget.praxisLeft == 2 ||
         widget.praxisRight == 2) {
       return Colors.red;
-    } else if (_combineScore == 5 ||
+    } else if (combineScore == 5 ||
         widget.praxisLeft == 1 ||
         widget.praxisRight == 1) {
       return Colors.yellow;
@@ -1525,38 +1466,28 @@ class _TestSummaryState extends State<TestSummary> {
     int score2 = 3 - widget.visuospatialPraxisImage2;
     int score3 = 3 - widget.visuospatialPraxisImage3;
 
-    int _combineScore = score1 + score2 + score3;
+    int combineScore = score1 + score2 + score3;
 
-    if (_combineScore < 5 || widget.anomiaAgnosia == 2) {
+    if (combineScore < 5 || widget.anomiaAgnosia == 2) {
       return Colors.red;
-    } else if (_combineScore == 5 || widget.anomiaAgnosia == 1) {
+    } else if (combineScore == 5 || widget.anomiaAgnosia == 1) {
       return Colors.yellow;
     } else {
       return Colors.green;
     }
   }
 
-  Color executiveFunctionCarcColor(int _radioValue) {
-    Color _color;
-    switch (_radioValue) {
+  Color executiveFunctionCarcColor(int radioValue) {
+    switch (radioValue) {
       case 0:
-        {
-          _color = Colors.green;
-          break;
-        }
+        return Colors.green;
       case 1:
-        {
-          _color = Colors.yellow;
-          break;
-        }
+        return Colors.yellow;
       case 2:
-        {
-          _color = Colors.red;
-          break;
-        }
+        return Colors.red;
+      default:
+        return Colors.green;
     }
-
-    return _color;
   }
 
   int visualShortTermMemoryCardCToResult() {
@@ -1564,9 +1495,9 @@ class _TestSummaryState extends State<TestSummary> {
     int score2 = 3 - widget.shorttermMemoryVisualImage2;
     int score3 = 3 - widget.shorttermMemoryVisualImage3;
 
-    int _combineScore = score1 + score2 + score3;
+    int combineScore = score1 + score2 + score3;
 
-    return _combineScore;
+    return combineScore;
   }
 
   String shareDoc() {
@@ -1606,10 +1537,10 @@ class _TestSummaryState extends State<TestSummary> {
         "Executive: Animal Naming Task\n>14 = N, 12 - 14 = E,  < 12 = I\nRaw score: ${widget.executiveAnimalNamingCount} Animals Named\n${ConvertResponseToString(radioValueResultToString(widget.executiveAnimalNaming))}\n\n";
 
     shareDoc +=
-        "Executive: Luria Alternating Hand Movements\nN =  3 cycles without mistakes, E = able to do 1 - 2 cycles, I = unable to complete task\nRaw score: ${widget.executiveLuriaScore} Hand Movements\n${ConvertResponseToString(radioValueResultToString(widget.executiveLuria))}\n\n";
+        "Executive: Luria Alternating Hand Movements\nN =  3 cycles without mistakes; E = able to do 1 - 2 cycles; I = unable to complete task\nRaw score: ${widget.executiveLuriaScore} Hand Movements\n${ConvertResponseToString(radioValueResultToString(widget.executiveLuria))}\n\n";
 
     shareDoc +=
-        "Executive: Serial Order Reversal Task\nN = no errors, E = 1 error, I >1 error\nRaw score: ${widget.executiveSerialScore}/6\n${ConvertResponseToString(radioValueResultToString(widget.executiveSerial))}\n\n";
+        "Executive: Serial Order Reversal Task\nN = no errors; E = 1 error; I >1 error\nRaw score: ${widget.executiveSerialScore}/6\n${ConvertResponseToString(radioValueResultToString(widget.executiveSerial))}\n\n";
 
     shareDoc +=
         "Short-Term Memory Verbal Recall: Orientation\nN = 5, E = 4, I < 4\nRaw score: ${widget.shorttermMemoryVerbalScore}/5\n${ConvertResponseToString(radioValueResultToString(widget.shorttermMemoryVerbal))}\n\n";

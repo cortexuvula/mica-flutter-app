@@ -1,26 +1,30 @@
 import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:simple_animations/simple_animations/controlled_animation.dart';
+import 'package:simple_animations/simple_animations.dart';
 
 class AnimatedWave extends StatelessWidget {
   final double height;
   final double speed;
   final double offset;
 
-  AnimatedWave({this.height, this.speed, this.offset = 0.0});
+  const AnimatedWave({
+    super.key, 
+    required this.height, 
+    required this.speed, 
+    this.offset = 0.0
+  });
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      return Container(
+      return SizedBox(
         height: height,
         width: constraints.biggest.width,
-        child: ControlledAnimation(
-            playback: Playback.LOOP,
-            duration: Duration(milliseconds: (5000 / speed).round()),
+        child: CustomAnimationBuilder<double>(
             tween: Tween(begin: 0.0, end: 2 * pi),
-            builder: (context, value) {
+            duration: Duration(milliseconds: (5000 / speed).round()),
+            control: Control.loop,
+            builder: (context, value, child) {
               return CustomPaint(
                 foregroundPainter: CurvePainter(value + offset),
               );

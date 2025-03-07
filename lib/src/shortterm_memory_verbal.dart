@@ -6,65 +6,63 @@ import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ShortTermMemoryVerbal extends StatefulWidget {
-  String patientName;
-  String assessorName;
-  String handedness;
-  DateTime assessmentDate;
-  int languageComprehensionRadioValue;
-  int trialOneScore;
-  int trialTwoScore;
-  int trialThreeScore;
-  int visuospatialPraxisImage1;
-  int visuospatialPraxisImage2;
-  int visuospatialPraxisImage3;
-  int attention;
-  int attentionCorrect;
-  int attentionMistakes;
-  int executiveAnimalNaming;
-  int executiveAnimalNamingCount;
-  int executiveLuria;
-  int executiveLuriaScore;
-  int executiveSerial;
-  int executiveSerialScore;
+  final String patientName;
+  final String assessorName;
+  final String handedness;
+  final DateTime assessmentDate;
+  final int languageComprehensionRadioValue;
+  final int trialOneScore;
+  final int trialTwoScore;
+  final int trialThreeScore;
+  final int visuospatialPraxisImage1;
+  final int visuospatialPraxisImage2;
+  final int visuospatialPraxisImage3;
+  final int attention;
+  final int attentionCorrect;
+  final int attentionMistakes;
+  final int executiveAnimalNaming;
+  final int executiveAnimalNamingCount;
+  final int executiveLuria;
+  final int executiveLuriaScore;
+  final int executiveSerial;
+  final int executiveSerialScore;
 
-  ShortTermMemoryVerbal(
-      {Key key,
-      this.patientName,
-      this.assessorName,
-      this.handedness,
-      this.assessmentDate,
-      this.languageComprehensionRadioValue,
-      this.trialOneScore,
-      this.trialTwoScore,
-      this.trialThreeScore,
-      this.visuospatialPraxisImage1,
-      this.visuospatialPraxisImage2,
-      this.visuospatialPraxisImage3,
-      this.attention,
-      this.attentionCorrect,
-      this.attentionMistakes,
-      this.executiveAnimalNaming,
-      this.executiveAnimalNamingCount,
-      this.executiveLuria,
-      this.executiveLuriaScore,
-      this.executiveSerial,
-      this.executiveSerialScore})
-      : super(key: key);
+  const ShortTermMemoryVerbal({
+    super.key,
+    required this.patientName,
+    required this.assessorName,
+    required this.handedness,
+    required this.assessmentDate,
+    required this.languageComprehensionRadioValue,
+    required this.trialOneScore,
+    required this.trialTwoScore,
+    required this.trialThreeScore,
+    required this.visuospatialPraxisImage1,
+    required this.visuospatialPraxisImage2,
+    required this.visuospatialPraxisImage3,
+    required this.attention,
+    required this.attentionCorrect,
+    required this.attentionMistakes,
+    required this.executiveAnimalNaming,
+    required this.executiveAnimalNamingCount,
+    required this.executiveLuria,
+    required this.executiveLuriaScore,
+    required this.executiveSerial,
+    required this.executiveSerialScore,
+  });
 
   @override
   _ShortTermMemoryVerbalState createState() => _ShortTermMemoryVerbalState();
 }
 
 class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
-  double sizeBoxHeight = 10.0;
-  int _radioValue;
-  int score;
-
+  int _radioValue = 0;
+  int score = 0;
   bool _valueDate = false;
-  bool _valueDay = false;
   bool _valueMonth = false;
-  bool _valueCity = false;
+  bool _valueDay = false;
   bool _valuePlace = false;
+  bool _valueCity = false;
 
   @override
   void initState() {
@@ -74,105 +72,78 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
-    var sizeBoxWidth = (_width * 0.8) / 3;
-    return WillPopScope(
-      onWillPop: savePrefData,
+    double width = MediaQuery.of(context).size.width;
+    double sizeBoxHeight = 20.0;
+
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (didPop) {
+          return;
+        }
+        
+        await savePrefData();
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => Welcome(),
+          ),
+        );
+      },
       child: Scaffold(
         appBar: AppBar(
-          title: ListTile(
-            title: Text(
-              appData.testShortTermMemory,
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w500,
-              ),
-              textAlign: TextAlign.start,
-            ),
-            subtitle: Text(
-              appData.testShortTermMemorySubtitle,
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w300,
-              ),
-              textAlign: TextAlign.start,
+          automaticallyImplyLeading: false,
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          title: const Text(
+            "Short-term Memory: Verbal",
+            style: TextStyle(
+              color: Colors.white,
             ),
           ),
-          actions: <Widget>[
-            IconButton(
-                icon: Icon(Icons.clear),
-                onPressed: () {
-                  var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Welcome());
-                  Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => false);
-                })
-          ],
+          leading: IconButton(
+            icon: const Icon(
+              Icons.home,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              savePrefData();
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Home(),
+                ),
+              );
+            },
+          ),
         ),
         body: ListView(
           children: <Widget>[
-            Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  SizedBox(
-                    height: sizeBoxHeight,
+            Column(
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 12.0,
+                    left: 12.0,
+                    right: 12.0,
+                    bottom: 12.0,
                   ),
-                  Container(
-                    width: _width * 0.9,
-                    child: Card(
-                      elevation: 10.0,
-                      color: Colors.deepPurple.shade300,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: <Widget>[
-                            Text(
-                              appData.testShortTermMemoryDetails,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 15.0),
-                            ),
-                          ],
-                        ),
-                      ),
+                  child: Text(
+                    appData.testShortTermMemory,
+                    textAlign: TextAlign.left,
+                    style: const TextStyle(
+                      fontSize: 16.0,
                     ),
                   ),
-                  SizedBox(
-                    height: sizeBoxHeight,
-                  ),
-                  Container(
-                    width: _width * 0.9,
-                    child: Card(
-                      elevation: 10.0,
-                      color: Colors.yellowAccent.shade400,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: <Widget>[
-                            Text(
-                              appData.testShortTermMemoryToPatient,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 15.0),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: sizeBoxHeight,
-                  ),
-                  Container(
-                    width: _width * 0.9,
-                    child: Card(
-                      elevation: 10.0,
-                      color: Colors.white,
+                ),
+                SizedBox(
+                  height: sizeBoxHeight,
+                ),
+                SizedBox(
+                  width: width * 0.9,
+                  child: Card(
+                    elevation: 10.0,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
@@ -183,10 +154,10 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                   children: <Widget>[
                                     Checkbox(
                                       value: _valueDate,
-                                      onChanged: _valueDateChanged,
+                                      onChanged: (bool? value) => _valueDateChanged(value ?? false),
                                       activeColor: Colors.green,
                                     ),
-                                    Text(
+                                    const Text(
                                       "Date",
                                       style: TextStyle(
                                         color: Colors.black,
@@ -201,10 +172,10 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                   children: <Widget>[
                                     Checkbox(
                                       value: _valueMonth,
-                                      onChanged: _valueMonthChanged,
+                                      onChanged: (bool? value) => _valueMonthChanged(value ?? false),
                                       activeColor: Colors.green,
                                     ),
-                                    Text(
+                                    const Text(
                                       "Month",
                                       style: TextStyle(
                                         color: Colors.black,
@@ -220,10 +191,10 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                   children: <Widget>[
                                     Checkbox(
                                       value: _valueDay,
-                                      onChanged: _valueDayChanged,
+                                      onChanged: (bool? value) => _valueDayChanged(value ?? false),
                                       activeColor: Colors.green,
                                     ),
-                                    Text(
+                                    const Text(
                                       "Day",
                                       style: TextStyle(
                                         color: Colors.black,
@@ -238,10 +209,10 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                   children: <Widget>[
                                     Checkbox(
                                       value: _valuePlace,
-                                      onChanged: _valuePlaceChanged,
+                                      onChanged: (bool? value) => _valuePlaceChanged(value ?? false),
                                       activeColor: Colors.green,
                                     ),
-                                    Text(
+                                    const Text(
                                       "Place",
                                       style: TextStyle(
                                         color: Colors.black,
@@ -255,10 +226,10 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                               children: <Widget>[
                                 Checkbox(
                                   value: _valueCity,
-                                  onChanged: _valueCityChanged,
+                                  onChanged: (bool? value) => _valueCityChanged(value ?? false),
                                   activeColor: Colors.green,
                                 ),
-                                Text(
+                                const Text(
                                   "City",
                                   style: TextStyle(
                                     color: Colors.black,
@@ -271,49 +242,51 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: sizeBoxHeight,
-                  ),
-                  Container(
-                    width: _width * 0.9,
-                    child: Card(
-                      elevation: 10.0,
-                      color: Colors.green,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Column(
-                          children: <Widget>[
-                            Text(
-                              appData.testShortTermMemoryResponse,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 15.0),
-                            ),
-                            SizedBox(
-                              height: 5.0,
-                            ),
-                            Table(
-                              border: TableBorder.all(),
-                              defaultVerticalAlignment:
-                                  TableCellVerticalAlignment.middle,
-                              columnWidths: {
-                                0: FlexColumnWidth(0.3),
-                                1: FlexColumnWidth(0.3),
-                                2: FlexColumnWidth(0.34)
-                              },
-                              children: [
-                                TableRow(children: [
+                ),
+                SizedBox(
+                  height: sizeBoxHeight,
+                ),
+                SizedBox(
+                  width: width * 0.9,
+                  child: Card(
+                    elevation: 10.0,
+                    color: Colors.green,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        children: <Widget>[
+                          const Text(
+                            appData.testShortTermMemoryResponse,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 15.0),
+                          ),
+                          SizedBox(
+                            height: 5.0,
+                          ),
+                          Table(
+                            border: TableBorder.all(),
+                            defaultVerticalAlignment:
+                                TableCellVerticalAlignment.middle,
+                            columnWidths: const {
+                              0: FlexColumnWidth(0.3),
+                              1: FlexColumnWidth(0.3),
+                              2: FlexColumnWidth(0.34)
+                            },
+                            children: [
+                              TableRow(
+                                children: [
                                   Row(
                                     children: <Widget>[
                                       Radio(
                                         value: 0,
                                         groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
+                                        onChanged: (int? value) => _handleRadioValueChange(value ?? 0),
                                         activeColor: Colors.white,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Normal",
                                         style: TextStyle(
                                           color: Colors.black,
@@ -327,10 +300,10 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                       Radio(
                                         value: 1,
                                         groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
+                                        onChanged: (int? value) => _handleRadioValueChange(value ?? 0),
                                         activeColor: Colors.white,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Equivocal",
                                         style: TextStyle(
                                           color: Colors.black,
@@ -344,10 +317,10 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                       Radio(
                                         value: 2,
                                         groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
+                                        onChanged: (int? value) => _handleRadioValueChange(value ?? 0),
                                         activeColor: Colors.white,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Impaired",
                                         style: TextStyle(
                                           color: Colors.black,
@@ -356,14 +329,16 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                       ),
                                     ],
                                   ),
-                                ]),
-                                TableRow(children: [
+                                ],
+                              ),
+                              TableRow(
+                                children: [
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
                                       appData.testShortTermMemoryResponseNormal,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                   Padding(
@@ -372,7 +347,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                       appData
                                           .testShortTermMemoryResponseEquivocal,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                   Padding(
@@ -381,74 +356,73 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                       appData
                                           .testShortTermMemoryResponseImpaired,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
-                                ])
-                              ],
-                            ),
-                          ],
-                        ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: sizeBoxHeight,
-                  ),
-                  Container(
-                    width: _width * 0.9,
-                    child: Card(
-                      elevation: 10.0,
-                      color: Colors.white,
-                      child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: RaisedButton(
-                          elevation: 10.0,
-                          onPressed: () {
-                            var router = new MaterialPageRoute(
-                                builder: (BuildContext context) => new Praxis(
-                                      patientName: widget.patientName,
-                                      assessorName: widget.assessorName,
-                                      handedness: widget.handedness,
-                                      assessmentDate: widget.assessmentDate,
-                                      languageComprehensionRadioValue: widget
-                                          .languageComprehensionRadioValue,
-                                      trialOneScore: widget.trialOneScore,
-                                      trialTwoScore: widget.trialTwoScore,
-                                      trialThreeScore: widget.trialThreeScore,
-                                      visuospatialPraxisImage1:
-                                          widget.visuospatialPraxisImage1,
-                                      visuospatialPraxisImage2:
-                                          widget.visuospatialPraxisImage2,
-                                      visuospatialPraxisImage3:
-                                          widget.visuospatialPraxisImage3,
-                                      attention: widget.attention,
-                                      attentionCorrect: widget.attentionCorrect,
-                                      attentionMistakes:
-                                          widget.attentionMistakes,
-                                      executiveAnimalNaming:
-                                          widget.executiveAnimalNaming,
-                                      executiveAnimalNamingCount:
-                                          widget.executiveAnimalNamingCount,
-                                      executiveLuria: widget.executiveLuria,
-                                      executiveLuriaScore:
-                                          widget.executiveLuriaScore,
-                                      executiveSerial: widget.executiveSerial,
-                                      executiveSerialScore:
-                                          widget.executiveSerialScore,
-                                      shorttermMemoryVerbal: _radioValue,
-                                      shorttermMemoryVerbalScore: score,
-                                    ));
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
-                          },
-                          child: Text("Continue with Testing"),
-                        ),
+                ),
+                SizedBox(
+                  height: sizeBoxHeight,
+                ),
+                SizedBox(
+                  width: width * 0.9,
+                  child: Card(
+                    elevation: 10.0,
+                    color: Colors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          var router = MaterialPageRoute(
+                              builder: (BuildContext context) => Praxis(
+                                    patientName: widget.patientName,
+                                    assessorName: widget.assessorName,
+                                    handedness: widget.handedness,
+                                    assessmentDate: widget.assessmentDate,
+                                    languageComprehensionRadioValue: widget
+                                        .languageComprehensionRadioValue,
+                                    trialOneScore: widget.trialOneScore,
+                                    trialTwoScore: widget.trialTwoScore,
+                                    trialThreeScore: widget.trialThreeScore,
+                                    visuospatialPraxisImage1:
+                                        widget.visuospatialPraxisImage1,
+                                    visuospatialPraxisImage2:
+                                        widget.visuospatialPraxisImage2,
+                                    visuospatialPraxisImage3:
+                                        widget.visuospatialPraxisImage3,
+                                    attention: widget.attention,
+                                    attentionCorrect: widget.attentionCorrect,
+                                    attentionMistakes:
+                                        widget.attentionMistakes,
+                                    executiveAnimalNaming:
+                                        widget.executiveAnimalNaming,
+                                    executiveAnimalNamingCount:
+                                        widget.executiveAnimalNamingCount,
+                                    executiveLuria: widget.executiveLuria,
+                                    executiveLuriaScore:
+                                        widget.executiveLuriaScore,
+                                    executiveSerial: widget.executiveSerial,
+                                    executiveSerialScore:
+                                        widget.executiveSerialScore,
+                                    shorttermMemoryVerbal: _radioValue,
+                                    shorttermMemoryVerbalScore: score,
+                                  ));
+                          Navigator.of(context).pushAndRemoveUntil(
+                              router, (Route<dynamic> route) => true);
+                        },
+                        child: const Text("Continue with Testing"),
                       ),
                     ),
-                  )
-                ],
-              ),
+                  ),
+                )
+              ],
             ),
           ],
         ),
@@ -540,22 +514,22 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
 
   void getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int _score1 = prefs.getInt("shorttermMemoryVerbal");
-    int _score2 = prefs.getInt("shorttermMemoryVerbal_score");
-    bool date = prefs.getBool("_valueDate");
-    bool month = prefs.getBool("_valueMonth");
-    bool day = prefs.getBool("_valueDay");
-    bool place = prefs.getBool("_valuePlace");
-    bool city = prefs.getBool("_valueCity");
+    int? score1 = prefs.getInt("shorttermMemoryVerbal");
+    int? score2 = prefs.getInt("shorttermMemoryVerbal_score");
+    bool? date = prefs.getBool("_valueDate");
+    bool? month = prefs.getBool("_valueMonth");
+    bool? day = prefs.getBool("_valueDay");
+    bool? place = prefs.getBool("_valuePlace");
+    bool? city = prefs.getBool("_valueCity");
 
     setState(() {
-      _radioValue = _score1;
-      _valueDate = date;
-      _valueMonth = month;
-      _valueDay = day;
-      _valuePlace = place;
-      _valueCity = city;
-      score = _score2;
+      _radioValue = score1 ?? 0;
+      _valueDate = date ?? false;
+      _valueMonth = month ?? false;
+      _valueDay = day ?? false;
+      _valuePlace = place ?? false;
+      _valueCity = city ?? false;
+      score = score2 ?? 0;
     });
   }
 

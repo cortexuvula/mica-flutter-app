@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 
 class ExecutiveFunctions extends StatefulWidget {
-  int executiveAnimalNaming;
+  final int executiveAnimalNaming;
 
-  ExecutiveFunctions({Key key, this.executiveAnimalNaming}) : super(key: key);
+  const ExecutiveFunctions({
+    super.key, 
+    required this.executiveAnimalNaming
+  });
 
   @override
   _ExecutiveFunctionsState createState() => _ExecutiveFunctionsState();
 }
 
 class _ExecutiveFunctionsState extends State<ExecutiveFunctions> {
-  Color cardColorAnimalNaming;
+  late Color cardColorAnimalNaming;
   String resultAnimalNaming = "";
 
   @override
@@ -25,7 +28,7 @@ class _ExecutiveFunctionsState extends State<ExecutiveFunctions> {
     return Scaffold(
       appBar: AppBar(
         title: ListTile(
-          title: Text(
+          title: const Text(
             "Executive Function",
             style: TextStyle(
               color: Colors.white,
@@ -33,7 +36,7 @@ class _ExecutiveFunctionsState extends State<ExecutiveFunctions> {
             ),
             textAlign: TextAlign.start,
           ),
-          subtitle: Text(
+          subtitle: const Text(
             "",
             style: TextStyle(
               color: Colors.white,
@@ -49,7 +52,7 @@ class _ExecutiveFunctionsState extends State<ExecutiveFunctions> {
             color: cardColorAnimalNaming,
             elevation: 10.0,
             child: ListTile(
-              title: Text(
+              title: const Text(
                 "Executive: Animal Naming Task",
                 style: TextStyle(
                   color: Colors.black,
@@ -58,7 +61,7 @@ class _ExecutiveFunctionsState extends State<ExecutiveFunctions> {
               ),
               trailing: Text(
                 resultAnimalNaming,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
                 ),
@@ -70,7 +73,7 @@ class _ExecutiveFunctionsState extends State<ExecutiveFunctions> {
     );
   }
 
-  radio3ButtonValueToStringAnimalNaming(int value) {
+  void radio3ButtonValueToStringAnimalNaming(int value) {
     switch (value) {
       case 0:
         {

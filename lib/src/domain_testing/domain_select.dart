@@ -5,6 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mica/src/welcome.dart';
 
 class DomainSelect extends StatefulWidget {
+  const DomainSelect({super.key});
+
   @override
   _DomainSelectState createState() => _DomainSelectState();
 }
@@ -18,14 +20,14 @@ class _DomainSelectState extends State<DomainSelect> {
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
-    double _height = 10.0;
+    var width = MediaQuery.of(context).size.width;
+    double height = 10.0;
     return Scaffold(
       appBar: AppBar(
         title: ListTile(
           title: Text(
             appData.domain_select,
-            style: TextStyle(
+            style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
                 fontSize: 15.0),
@@ -34,10 +36,10 @@ class _DomainSelectState extends State<DomainSelect> {
         ),
         actions: <Widget>[
           IconButton(
-              icon: Icon(Icons.clear),
+              icon: const Icon(Icons.clear),
               onPressed: () {
-                var router = new MaterialPageRoute(
-                    builder: (BuildContext context) => new Welcome());
+                var router = MaterialPageRoute(
+                    builder: (BuildContext context) => const Welcome());
                 Navigator.of(context).pushAndRemoveUntil(
                     router, (Route<dynamic> route) => false);
               })
@@ -47,8 +49,8 @@ class _DomainSelectState extends State<DomainSelect> {
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            Container(
-              width: _width * 0.9,
+            SizedBox(
+              width: width * 0.9,
               child: Card(
                 elevation: 10.0,
                 color: Colors.white,
@@ -61,7 +63,7 @@ class _DomainSelectState extends State<DomainSelect> {
                         child: Text(
                           appData.domain_select_info.toUpperCase(),
                           textAlign: TextAlign.center,
-                          style: TextStyle(fontWeight: FontWeight.w500),
+                          style: const TextStyle(fontWeight: FontWeight.w500),
                         ),
                       ),
                     ],
@@ -70,10 +72,10 @@ class _DomainSelectState extends State<DomainSelect> {
               ),
             ),
             SizedBox(
-              height: _height,
+              height: height,
             ),
-            Container(
-              width: _width * 0.9,
+            SizedBox(
+              width: width * 0.9,
               child: Card(
                 elevation: 10.0,
                 color: Colors.white,
@@ -81,14 +83,17 @@ class _DomainSelectState extends State<DomainSelect> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: <Widget>[
-                      Container(
-                        width: _width * 0.8,
-                        child: RaisedButton(
-                          elevation: 10.0,
+                      SizedBox(
+                        width: width * 0.8,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            elevation: 10.0,
+                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                          ),
                           onPressed: () {
-                            var router = new MaterialPageRoute(
+                            var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    new AttentionConcentration());
+                                    AttentionConcentration());
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
@@ -101,10 +106,10 @@ class _DomainSelectState extends State<DomainSelect> {
               ),
             ),
             SizedBox(
-              height: _height,
+              height: height,
             ),
-            Container(
-              width: _width * 0.9,
+            SizedBox(
+              width: width * 0.9,
               child: Card(
                 elevation: 10.0,
                 color: Colors.white,
@@ -112,14 +117,17 @@ class _DomainSelectState extends State<DomainSelect> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: <Widget>[
-                      Container(
-                        width: _width * 0.8,
-                        child: RaisedButton(
-                          elevation: 10.0,
+                      SizedBox(
+                        width: width * 0.8,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            elevation: 10.0,
+                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                          ),
                           onPressed: () {
-                            var router = new MaterialPageRoute(
+                            var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    new Welcome());
+                                    const Welcome());
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
@@ -132,10 +140,10 @@ class _DomainSelectState extends State<DomainSelect> {
               ),
             ),
             SizedBox(
-              height: _height,
+              height: height,
             ),
-            Container(
-              width: _width * 0.9,
+            SizedBox(
+              width: width * 0.9,
               child: Card(
                 elevation: 10.0,
                 color: Colors.white,
@@ -143,14 +151,17 @@ class _DomainSelectState extends State<DomainSelect> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: <Widget>[
-                      Container(
-                        width: _width * 0.8,
-                        child: RaisedButton(
-                          elevation: 10.0,
+                      SizedBox(
+                        width: width * 0.8,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            elevation: 10.0,
+                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                          ),
                           onPressed: () {
-                            var router = new MaterialPageRoute(
+                            var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    new Welcome());
+                                    const Welcome());
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
@@ -163,10 +174,10 @@ class _DomainSelectState extends State<DomainSelect> {
               ),
             ),
             SizedBox(
-              height: _height,
+              height: height,
             ),
-            Container(
-              width: _width * 0.9,
+            SizedBox(
+              width: width * 0.9,
               child: Card(
                 elevation: 10.0,
                 color: Colors.white,
@@ -174,14 +185,17 @@ class _DomainSelectState extends State<DomainSelect> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: <Widget>[
-                      Container(
-                        width: _width * 0.8,
-                        child: RaisedButton(
-                          elevation: 10.0,
+                      SizedBox(
+                        width: width * 0.8,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            elevation: 10.0,
+                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                          ),
                           onPressed: () {
-                            var router = new MaterialPageRoute(
+                            var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    new Welcome());
+                                    const Welcome());
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
@@ -194,10 +208,10 @@ class _DomainSelectState extends State<DomainSelect> {
               ),
             ),
             SizedBox(
-              height: _height,
+              height: height,
             ),
-            Container(
-              width: _width * 0.9,
+            SizedBox(
+              width: width * 0.9,
               child: Card(
                 elevation: 10.0,
                 color: Colors.white,
@@ -205,14 +219,17 @@ class _DomainSelectState extends State<DomainSelect> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: <Widget>[
-                      Container(
-                        width: _width * 0.8,
-                        child: RaisedButton(
-                          elevation: 10.0,
+                      SizedBox(
+                        width: width * 0.8,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            elevation: 10.0,
+                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                          ),
                           onPressed: () {
-                            var router = new MaterialPageRoute(
+                            var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    new Welcome());
+                                    const Welcome());
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
@@ -225,10 +242,10 @@ class _DomainSelectState extends State<DomainSelect> {
               ),
             ),
             SizedBox(
-              height: _height,
+              height: height,
             ),
-            Container(
-              width: _width * 0.9,
+            SizedBox(
+              width: width * 0.9,
               child: Card(
                 elevation: 10.0,
                 color: Colors.white,
@@ -236,14 +253,17 @@ class _DomainSelectState extends State<DomainSelect> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: <Widget>[
-                      Container(
-                        width: _width * 0.8,
-                        child: RaisedButton(
-                          elevation: 10.0,
+                      SizedBox(
+                        width: width * 0.8,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            elevation: 10.0,
+                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                          ),
                           onPressed: () {
-                            var router = new MaterialPageRoute(
+                            var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    new Welcome());
+                                    const Welcome());
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
@@ -262,7 +282,7 @@ class _DomainSelectState extends State<DomainSelect> {
   }
 
   void saveInitialData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     // Vigilance
     prefs.setInt("domain_attention", 0);

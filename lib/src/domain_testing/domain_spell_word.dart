@@ -5,6 +5,8 @@ import 'package:mica/src/welcome.dart';
 import 'domain_attention_concentration.dart';
 
 class SpellWordBarkwards extends StatefulWidget {
+  const SpellWordBarkwards({super.key});
+
   @override
   _SpellWordBarkwardsState createState() => _SpellWordBarkwardsState();
 }
@@ -15,7 +17,7 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: ListTile(
@@ -40,8 +42,8 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
           IconButton(
               icon: Icon(Icons.clear),
               onPressed: () {
-                var router = new MaterialPageRoute(
-                    builder: (BuildContext context) => new Welcome());
+                var router = MaterialPageRoute(
+                    builder: (BuildContext context) => Welcome());
                 Navigator.of(context).pushAndRemoveUntil(
                     router, (Route<dynamic> route) => false);
               })
@@ -54,8 +56,8 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
               SizedBox(
                 height: sizeBoxHeight,
               ),
-              Container(
-                width: _width * 0.9,
+              SizedBox(
+                width: width * 0.9,
                 child: Card(
                   elevation: 10.0,
                   color: Colors.yellowAccent.shade400,
@@ -79,8 +81,8 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
               SizedBox(
                 height: sizeBoxHeight,
               ),
-              Container(
-                width: _width * 0.9,
+              SizedBox(
+                width: width * 0.9,
                 child: Card(
                   elevation: 10.0,
                   color: Colors.deepPurple.shade300,
@@ -129,8 +131,8 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
               // SizedBox(
               //   height: sizeBoxHeight,
               // ),
-              Container(
-                width: _width * 0.9,
+              SizedBox(
+                width: width * 0.9,
                 child: Card(
                   elevation: 10.0,
                   color: Colors.green,
@@ -251,19 +253,21 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
               SizedBox(
                 height: sizeBoxHeight,
               ),
-              Container(
-                width: _width * 0.9,
+              SizedBox(
+                width: width * 0.9,
                 child: Card(
                   elevation: 10.0,
                   color: Colors.white,
                   child: Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: RaisedButton(
-                      elevation: 10.0,
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        elevation: WidgetStateProperty.all(10.0),
+                      ),
                       onPressed: () {
-                        var router = new MaterialPageRoute(
+                        var router = MaterialPageRoute(
                             builder: (BuildContext context) =>
-                                new AttentionConcentration());
+                                AttentionConcentration());
                         Navigator.of(context).pushAndRemoveUntil(
                             router, (Route<dynamic> route) => true);
                       },
@@ -279,9 +283,9 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
     );
   }
 
-  void _handleRadioValueChange(int value) {
+  void _handleRadioValueChange(int? value) {
     setState(() {
-      _radioValue = value;
+      _radioValue = value ?? 0;
     });
   }
 }

@@ -3,6 +3,8 @@ import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/video_page.dart';
 
 class ResourcePage extends StatefulWidget {
+  const ResourcePage({super.key});
+
   @override
   _ResourcePageState createState() => _ResourcePageState();
 }
@@ -34,11 +36,11 @@ class _ResourcePageState extends State<ResourcePage> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => VideoPage(
-                                videoTitle: appData.videos[index]["title"],
-                                videoURL: appData.videos[index]["video"],
+                                videoTitle: appData.videos[index]["title"] ?? "",
+                                videoURL: appData.videos[index]["video"] ?? "",
                               )));
                 },
-                title: Text(appData.videos[index]["title"]),
+                title: Text(appData.videos[index]["title"] ?? ""),
               ),
             );
           }),

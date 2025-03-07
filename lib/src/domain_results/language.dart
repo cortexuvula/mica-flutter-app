@@ -1,31 +1,34 @@
 import 'package:flutter/material.dart';
 
 class Language extends StatefulWidget {
-  int spokenLanguage;
-  int comprehension;
-  int drawLine;
+  final int spokenLanguage;
+  final int comprehension;
+  final int drawLine;
 
-  Language({Key key, this.spokenLanguage, this.comprehension, this.drawLine})
-      : super(key: key);
+  const Language({
+    super.key, 
+    required this.spokenLanguage, 
+    required this.comprehension, 
+    required this.drawLine
+  });
 
   @override
   _LanguageState createState() => _LanguageState();
 }
 
 class _LanguageState extends State<Language> {
-  Color cardColorSpokenLanguage;
-  String resultSpokenLanguage = "";
+  late Color cardColorSpokenLanguage;
+  late String resultSpokenLanguage;
 
-  Color cardColorDrawLine;
-  String resultDrawLine = "";
+  late Color cardColorDrawLine;
+  late String resultDrawLine;
 
-  Color cardColorComprehension;
-  String resultComprehension = "";
+  late Color cardColorComprehension;
+  late String resultComprehension;
 
   @override
   void initState() {
     super.initState();
-    print(("${widget.spokenLanguage}"));
     radio3ButtonValueToStringSpokenLanguage(widget.spokenLanguage);
     radio3ButtonValueToStringComprehension(widget.comprehension);
     radio3ButtonValueToStringDrawLine(widget.drawLine);
@@ -35,7 +38,7 @@ class _LanguageState extends State<Language> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: ListTile(
+        title: const ListTile(
           title: Text(
             "Language",
             style: TextStyle(
@@ -60,7 +63,7 @@ class _LanguageState extends State<Language> {
             color: cardColorComprehension,
             elevation: 10.0,
             child: ListTile(
-              title: Text(
+              title: const Text(
                 "Comprehension",
                 style: TextStyle(
                   color: Colors.black,
@@ -69,7 +72,7 @@ class _LanguageState extends State<Language> {
               ),
               trailing: Text(
                 resultComprehension,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
                 ),
@@ -80,7 +83,7 @@ class _LanguageState extends State<Language> {
             color: cardColorSpokenLanguage,
             elevation: 10.0,
             child: ListTile(
-              title: Text(
+              title: const Text(
                 "Naming Line Drawings",
                 style: TextStyle(
                   color: Colors.black,
@@ -89,7 +92,7 @@ class _LanguageState extends State<Language> {
               ),
               trailing: Text(
                 resultDrawLine,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
                 ),
@@ -100,7 +103,7 @@ class _LanguageState extends State<Language> {
             color: cardColorDrawLine,
             elevation: 10.0,
             child: ListTile(
-              title: Text(
+              title: const Text(
                 "Spoken Language",
                 style: TextStyle(
                   color: Colors.black,
@@ -109,7 +112,7 @@ class _LanguageState extends State<Language> {
               ),
               trailing: Text(
                 resultSpokenLanguage,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
                 ),
@@ -121,7 +124,7 @@ class _LanguageState extends State<Language> {
     );
   }
 
-  radio3ButtonValueToStringSpokenLanguage(int value) {
+  void radio3ButtonValueToStringSpokenLanguage(int value) {
     switch (value) {
       case 0:
         {
@@ -150,7 +153,7 @@ class _LanguageState extends State<Language> {
     }
   }
 
-  radio3ButtonValueToStringComprehension(int value) {
+  void radio3ButtonValueToStringComprehension(int value) {
     switch (value) {
       case 0:
         {
@@ -179,7 +182,7 @@ class _LanguageState extends State<Language> {
     }
   }
 
-  radio3ButtonValueToStringDrawLine(int value) {
+  void radio3ButtonValueToStringDrawLine(int value) {
     switch (value) {
       case 0:
         {

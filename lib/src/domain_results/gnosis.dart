@@ -1,33 +1,35 @@
 import 'package:flutter/material.dart';
 
 class Gnosis extends StatefulWidget {
-  int visuospatialPraxisImage1;
-  int visuospatialPraxisImage2;
-  int visuospatialPraxisImage3;
-  int anomiaAgnosia;
+  final int visuospatialPraxisImage1;
+  final int visuospatialPraxisImage2;
+  final int visuospatialPraxisImage3;
+  final int anomiaAgnosia;
 
-  Gnosis(
-      {Key key,
-      this.visuospatialPraxisImage1,
-      this.visuospatialPraxisImage2,
-      this.visuospatialPraxisImage3,
-      this.anomiaAgnosia})
-      : super(key: key);
+  const Gnosis({
+    super.key,
+    required this.visuospatialPraxisImage1,
+    required this.visuospatialPraxisImage2,
+    required this.visuospatialPraxisImage3,
+    required this.anomiaAgnosia,
+  });
 
   @override
-  _GnosisState createState() => _GnosisState();
+  State<Gnosis> createState() => _GnosisState();
 }
 
 class _GnosisState extends State<Gnosis> {
-  String result = "Normal";
-  Color resultColor;
+  late String result;
+  late Color resultColor;
 
-  Color cardColorAgnosia;
-  String resultAgnosia = "";
+  late Color cardColorAgnosia;
+  late String resultAgnosia;
 
   @override
   void initState() {
     super.initState();
+    result = "Normal";
+    resultAgnosia = "";
 
     radio3ButtonValueToStringAgnosia(widget.anomiaAgnosia);
     combineScores();
@@ -38,7 +40,7 @@ class _GnosisState extends State<Gnosis> {
     return Scaffold(
       appBar: AppBar(
         title: ListTile(
-          title: Text(
+          title: const Text(
             "Gnosis",
             style: TextStyle(
               color: Colors.white,
@@ -46,7 +48,7 @@ class _GnosisState extends State<Gnosis> {
             ),
             textAlign: TextAlign.start,
           ),
-          subtitle: Text(
+          subtitle: const Text(
             "",
             style: TextStyle(
               color: Colors.white,
@@ -62,7 +64,7 @@ class _GnosisState extends State<Gnosis> {
             color: cardColorAgnosia,
             elevation: 10.0,
             child: ListTile(
-              title: Text(
+              title: const Text(
                 "Agnosia: Recognition of Line Drawings",
                 style: TextStyle(
                   color: Colors.black,
@@ -71,7 +73,7 @@ class _GnosisState extends State<Gnosis> {
               ),
               trailing: Text(
                 resultAgnosia,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
                 ),
@@ -82,7 +84,7 @@ class _GnosisState extends State<Gnosis> {
             color: resultColor,
             elevation: 10.0,
             child: ListTile(
-              title: Text(
+              title: const Text(
                 "Visuospatial & Praxis: Line Drawing Copy",
                 style: TextStyle(
                   color: Colors.black,
@@ -91,7 +93,7 @@ class _GnosisState extends State<Gnosis> {
               ),
               trailing: Text(
                 result,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
                 ),
@@ -103,7 +105,7 @@ class _GnosisState extends State<Gnosis> {
     );
   }
 
-  radio3ButtonValueToStringAgnosia(int value) {
+  void radio3ButtonValueToStringAgnosia(int value) {
     switch (value) {
       case 0:
         {
@@ -132,19 +134,19 @@ class _GnosisState extends State<Gnosis> {
     }
   }
 
-  combineScores() {
+  void combineScores() {
     int score1 = 3 - widget.visuospatialPraxisImage1;
     int score2 = 3 - widget.visuospatialPraxisImage2;
     int score3 = 3 - widget.visuospatialPraxisImage3;
 
-    int _combineScore = score1 + score2 + score3;
+    int combineScore = score1 + score2 + score3;
 
-    if (_combineScore > 5) {
+    if (combineScore > 5) {
       setState(() {
         resultColor = Colors.green;
         result = "Normal";
       });
-    } else if (_combineScore < 5) {
+    } else if (combineScore < 5) {
       setState(() {
         resultColor = Colors.red;
         result = "Impaired";
