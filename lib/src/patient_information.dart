@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
 import 'package:mica/resources/const_data.dart' as appData;
-import 'package:mica/src/home.dart';
+// import 'package:mica/src/home.dart';
 import 'package:mica/src/language_comprehension.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class PatientInformation extends StatefulWidget {
+  const PatientInformation({super.key});
+
   @override
   _PatientInformationState createState() => _PatientInformationState();
 }
@@ -15,7 +17,7 @@ class PatientInformation extends StatefulWidget {
 class _PatientInformationState extends State<PatientInformation> {
   final _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldState =
-      new GlobalKey<ScaffoldState>();
+      GlobalKey<ScaffoldState>();
 
   bool rememberAssessor = false;
 
@@ -43,7 +45,7 @@ class _PatientInformationState extends State<PatientInformation> {
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
         key: _scaffoldState,
         appBar: AppBar(
@@ -61,8 +63,8 @@ class _PatientInformationState extends State<PatientInformation> {
             IconButton(
                 icon: Icon(Icons.clear),
                 onPressed: () {
-                  var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Welcome());
+                  var router = MaterialPageRoute(
+                      builder: (BuildContext context) => Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -115,8 +117,10 @@ class _PatientInformationState extends State<PatientInformation> {
                             SizedBox(
                               width: 10.0,
                             ),
-                            FlatButton(
-                              color: Colors.white,
+                            TextButton(
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.white,
+                              ),
                               onPressed: () => _selectDate(context),
                               child: Text(format.format(selectedDate)),
                             ),
@@ -136,7 +140,9 @@ class _PatientInformationState extends State<PatientInformation> {
                             Radio(
                               value: 0,
                               groupValue: _radioValue,
-                              onChanged: _handleRadioValueChange,
+                              onChanged: (int? value) {
+                                _handleRadioValueChange(value ?? 0);
+                              },
                               activeColor: Colors.white,
                             ),
                             Text(
@@ -148,7 +154,9 @@ class _PatientInformationState extends State<PatientInformation> {
                             Radio(
                               value: 1,
                               groupValue: _radioValue,
-                              onChanged: _handleRadioValueChange,
+                              onChanged: (int? value) {
+                                _handleRadioValueChange(value ?? 0);
+                              },
                               activeColor: Colors.white,
                             ),
                             Text(
@@ -197,20 +205,20 @@ class _PatientInformationState extends State<PatientInformation> {
                     ],
                   ),
                 ),
-                Container(
-                  width: _width * 0.9,
+                SizedBox(
+                  width: width * 0.9,
                   child: Card(
                     elevation: 10.0,
                     color: Colors.white,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: RaisedButton(
+                      child: ElevatedButton(
                         onPressed: () {
-                          String _handed;
+                          String handed;
                           if (_radioValue == 0) {
-                            _handed = "Right";
+                            handed = "Right";
                           } else {
-                            _handed = "Left";
+                            handed = "Left";
                           }
                           if (myPatient.text == "") {
                             myPatient.text = "No Name Provided";
@@ -218,26 +226,25 @@ class _PatientInformationState extends State<PatientInformation> {
                           if (myAssessor.text == "") {
                             myAssessor.text = "No Name Provided";
                           }
-                          if (_formKey.currentState.validate()) {
+                          if (_formKey.currentState?.validate() ?? false) {
                             // If the form is valid, display a snackbar. In the real world, you'd
                             // often want to call a server or save the information in a database
-                            _scaffoldState.currentState.showSnackBar(
+                            ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(content: Text('Processing Data')));
 
                             setPrefs();
-                            var router = new MaterialPageRoute(
+                            var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    new LanguageComprehension(
+                                    LanguageComprehension(
                                       patientName: myPatient.text,
                                       assessorName: myAssessor.text,
-                                      handedness: _handed,
+                                      handedness: handed,
                                       assessmentDate: selectedDate,
                                     ));
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           }
                         },
-                        elevation: 10.0,
                         child: Text("Start Testing"),
                       ),
                     ),
@@ -256,7 +263,7 @@ class _PatientInformationState extends State<PatientInformation> {
   }
 
   Future<void> _selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         initialDate: selectedDate,
         firstDate: DateTime(2015, 8),
@@ -271,17 +278,17 @@ class _PatientInformationState extends State<PatientInformation> {
   void getPrefs() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
-      String assessor = prefs.getString("assessor");
-      bool remember = prefs.getBool("rememberAssessor");
+      String? assessor = prefs.getString("assessor");
+      bool? remember = prefs.getBool("rememberAssessor");
       if (assessor != null) {
-        if (remember) {
+        if (remember == true) {
           setState(() {
             myAssessor.text = assessor;
-            rememberAssessor = remember;
+            rememberAssessor = remember!;
           });
-        } else if (!remember) {
+        } else if (remember == false) {
           setState(() {
-            rememberAssessor = remember;
+            rememberAssessor = remember!;
           });
         }
       }

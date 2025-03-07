@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mica/resources/const_data.dart' as appData;
-import 'package:mica/src/ten_word_recall_task_trial_one.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 import 'domain_attention_concentration.dart';
 
 class DomainLanguage extends StatefulWidget {
+  const DomainLanguage({super.key});
+
   @override
   _DomainLanguageState createState() => _DomainLanguageState();
 }
@@ -19,8 +19,9 @@ class _DomainLanguageState extends State<DomainLanguage> {
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
-    var sizeBoxWidth = (_width * 0.8) / 3;
+    var width = MediaQuery.of(context).size.width;
+    // Remove unused variable
+    //var sizeBoxWidth = (_width * 0.8) / 3;
     return Scaffold(
       appBar: AppBar(
         title: ListTile(
@@ -45,8 +46,8 @@ class _DomainLanguageState extends State<DomainLanguage> {
           IconButton(
               icon: Icon(Icons.clear),
               onPressed: () {
-                var router = new MaterialPageRoute(
-                    builder: (BuildContext context) => new Welcome());
+                var router = MaterialPageRoute(
+                    builder: (BuildContext context) => Welcome());
                 Navigator.of(context).pushAndRemoveUntil(
                     router, (Route<dynamic> route) => false);
               })
@@ -61,8 +62,8 @@ class _DomainLanguageState extends State<DomainLanguage> {
                 SizedBox(
                   height: sizeBoxHeight,
                 ),
-                Container(
-                  width: _width * 0.9,
+                SizedBox(
+                  width: width * 0.9,
                   child: Card(
                     elevation: 10.0,
                     color: Colors.deepPurple.shade300,
@@ -111,8 +112,8 @@ class _DomainLanguageState extends State<DomainLanguage> {
                 SizedBox(
                   height: sizeBoxHeight,
                 ),
-                Container(
-                  width: _width * 0.9,
+                SizedBox(
+                  width: width * 0.9,
                   child: Card(
                     elevation: 10.0,
                     color: Colors.green,
@@ -226,19 +227,21 @@ class _DomainLanguageState extends State<DomainLanguage> {
                 SizedBox(
                   height: sizeBoxHeight,
                 ),
-                Container(
-                  width: _width * 0.9,
+                SizedBox(
+                  width: width * 0.9,
                   child: Card(
                     elevation: 10.0,
                     color: Colors.white,
                     child: Padding(
                       padding: EdgeInsets.all(8.0),
-                      child: RaisedButton(
-                        elevation: 10.0,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          elevation: 10.0,
+                        ),
                         onPressed: () {
-                          var router = new MaterialPageRoute(
+                          var router = MaterialPageRoute(
                               builder: (BuildContext context) =>
-                                  new AttentionConcentration());
+                                  AttentionConcentration());
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => true);
                         },
@@ -255,9 +258,9 @@ class _DomainLanguageState extends State<DomainLanguage> {
     );
   }
 
-  void _handleRadioValueChange(int value) {
+  void _handleRadioValueChange(int? value) {
     setState(() {
-      _radioValue = value;
+      _radioValue = value ?? 0;
     });
   }
 }

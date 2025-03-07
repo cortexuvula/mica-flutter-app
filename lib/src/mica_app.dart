@@ -1,27 +1,39 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/loading_screen.dart';
 import 'package:mica/src/patient_information.dart';
-import 'package:mica/src/show_image.dart';
 
 class MicaApp extends StatelessWidget {
+  const MicaApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Midlands Cognitive Assessment",
-      home: new LoadingScreen(),
+      home: const LoadingScreen(),
       theme: ThemeData(
-          primaryColor: Color(0xFF64638f),
-          accentColor: Color(0xFF9795cf),
-          splashColor: Color(0xFFaba9e9),
-          backgroundColor: Color(0xFFaba9e9),
-          scaffoldBackgroundColor: Color(0xFFcbc9ff),
-          buttonColor: Color(0xFF9795cf),
-          dialogBackgroundColor: Color(0xFFcbc9ff),
+          primaryColor: const Color(0xFF64638f),
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color(0xFF64638f),
+            primary: const Color(0xFF64638f),
+            secondary: const Color(0xFF9795cf),
+            surface: const Color(0xFFaba9e9), // Replacing backgroundColor
+          ),
+          splashColor: const Color(0xFFaba9e9),
+          scaffoldBackgroundColor: const Color(0xFFcbc9ff),
+          elevatedButtonTheme: ElevatedButtonThemeData(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF9795cf),
+            ),
+          ),
+          // Use DialogThemeData instead of dialogBackgroundColor
+          dialogTheme: const DialogTheme(
+            backgroundColor: Color(0xFFcbc9ff),
+          ),
           cardColor: Colors.white),
       routes: <String, WidgetBuilder>{
         '/patient_information': (BuildContext context) => PatientInformation(),
-        '/show_image': (BuildContext context) => ShowImage(),
+        // ShowImage requires parameters and is used with MaterialPageRoute directly
       },
     );
   }

@@ -9,9 +9,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 final String VIGILANCE = "Vigilance";
 
 class DomainPatientInformation extends StatefulWidget {
-  String testName;
+  final String testName;
 
-  DomainPatientInformation({Key key, this.testName}) : super(key: key);
+  const DomainPatientInformation({super.key, required this.testName});
 
   @override
   _DomainPatientInformationState createState() =>
@@ -21,7 +21,7 @@ class DomainPatientInformation extends StatefulWidget {
 class _DomainPatientInformationState extends State<DomainPatientInformation> {
   final _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldState =
-      new GlobalKey<ScaffoldState>();
+      GlobalKey<ScaffoldState>();
 
   bool rememberAssessor = false;
 
@@ -49,7 +49,7 @@ class _DomainPatientInformationState extends State<DomainPatientInformation> {
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
         key: _scaffoldState,
         appBar: AppBar(
@@ -67,8 +67,8 @@ class _DomainPatientInformationState extends State<DomainPatientInformation> {
             IconButton(
                 icon: Icon(Icons.clear),
                 onPressed: () {
-                  var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Welcome());
+                  var router = MaterialPageRoute(
+                      builder: (BuildContext context) => Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -121,8 +121,11 @@ class _DomainPatientInformationState extends State<DomainPatientInformation> {
                             SizedBox(
                               width: 10.0,
                             ),
-                            FlatButton(
-                              color: Colors.white,
+                            TextButton(
+                              style: TextButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                foregroundColor: Colors.black,
+                              ),
                               onPressed: () => _selectDate(context),
                               child: Text(format.format(selectedDate)),
                             ),
@@ -142,7 +145,7 @@ class _DomainPatientInformationState extends State<DomainPatientInformation> {
                             Radio(
                               value: 0,
                               groupValue: _radioValue,
-                              onChanged: _handleRadioValueChange,
+                              onChanged: (int? value) => _handleRadioValueChange(value ?? 0),
                               activeColor: Colors.white,
                             ),
                             Text(
@@ -154,7 +157,7 @@ class _DomainPatientInformationState extends State<DomainPatientInformation> {
                             Radio(
                               value: 1,
                               groupValue: _radioValue,
-                              onChanged: _handleRadioValueChange,
+                              onChanged: (int? value) => _handleRadioValueChange(value ?? 0),
                               activeColor: Colors.white,
                             ),
                             Text(
@@ -203,20 +206,24 @@ class _DomainPatientInformationState extends State<DomainPatientInformation> {
                     ],
                   ),
                 ),
-                Container(
-                  width: _width * 0.9,
+                SizedBox(
+                  width: width * 0.9,
                   child: Card(
                     elevation: 10.0,
                     color: Colors.white,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: RaisedButton(
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Theme.of(context).colorScheme.primary,
+                          foregroundColor: Colors.white,
+                        ),
                         onPressed: () {
-                          String _handed;
+                          String handed;
                           if (_radioValue == 0) {
-                            _handed = "Right";
+                            handed = "Right";
                           } else {
-                            _handed = "Left";
+                            handed = "Left";
                           }
                           if (myPatient.text == "") {
                             myPatient.text = "No Name Provided";
@@ -224,20 +231,19 @@ class _DomainPatientInformationState extends State<DomainPatientInformation> {
                           if (myAssessor.text == "") {
                             myAssessor.text = "No Name Provided";
                           }
-                          if (_formKey.currentState.validate()) {
+                          if (_formKey.currentState != null && _formKey.currentState!.validate()) {
                             // If the form is valid, display a snackbar. In the real world, you'd
                             // often want to call a server or save the information in a database
-                            _scaffoldState.currentState.showSnackBar(
+                            ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(content: Text('Processing Data')));
-
                             setPrefs();
                             if (widget.testName == VIGILANCE) {
-                              var router = new MaterialPageRoute(
+                              var router = MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      new DomainVigilance(
+                                      DomainVigilance(
                                         patientName: myPatient.text,
                                         assessorName: myAssessor.text,
-                                        handedness: _handed,
+                                        handedness: handed,
                                         assessmentDate: selectedDate,
                                       ));
                               Navigator.of(context).pushAndRemoveUntil(
@@ -245,7 +251,6 @@ class _DomainPatientInformationState extends State<DomainPatientInformation> {
                             }
                           }
                         },
-                        elevation: 10.0,
                         child: Text("Start Testing"),
                       ),
                     ),
@@ -264,7 +269,7 @@ class _DomainPatientInformationState extends State<DomainPatientInformation> {
   }
 
   Future<void> _selectDate(BuildContext context) async {
-    final DateTime picked = await showDatePicker(
+    final DateTime? picked = await showDatePicker(
         context: context,
         initialDate: selectedDate,
         firstDate: DateTime(2015, 8),
@@ -279,17 +284,17 @@ class _DomainPatientInformationState extends State<DomainPatientInformation> {
   void getPrefs() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     try {
-      String assessor = prefs.getString("assessor");
-      bool remember = prefs.getBool("rememberAssessor");
+      String? assessor = prefs.getString("assessor");
+      bool? remember = prefs.getBool("rememberAssessor");
       if (assessor != null) {
-        if (remember) {
+        if (remember ?? false) {
           setState(() {
             myAssessor.text = assessor;
-            rememberAssessor = remember;
+            rememberAssessor = remember ?? false;
           });
-        } else if (!remember) {
+        } else if (!(remember ?? false)) {
           setState(() {
-            rememberAssessor = remember;
+            rememberAssessor = remember ?? false;
           });
         }
       }

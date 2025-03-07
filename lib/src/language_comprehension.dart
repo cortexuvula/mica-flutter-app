@@ -6,18 +6,17 @@ import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LanguageComprehension extends StatefulWidget {
-  String patientName;
-  String assessorName;
-  String handedness;
-  DateTime assessmentDate;
+  final String patientName;
+  final String assessorName;
+  final String handedness;
+  final DateTime assessmentDate;
 
-  LanguageComprehension(
-      {Key key,
-      this.patientName,
-      this.assessorName,
-      this.handedness,
-      this.assessmentDate})
-      : super(key: key);
+  const LanguageComprehension({
+      super.key,
+      required this.patientName,
+      required this.assessorName,
+      required this.handedness,
+      required this.assessmentDate});
 
   @override
   _LanguageComprehensionState createState() => _LanguageComprehensionState();
@@ -25,15 +24,25 @@ class LanguageComprehension extends StatefulWidget {
 
 class _LanguageComprehensionState extends State<LanguageComprehension> {
   var format = DateFormat.yMMMMd();
-  int _radioValue;
+  int? _radioValue;
   double sizeBoxHeight = 10.0;
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
-    var sizeBoxWidth = (_width * 0.8) / 3;
-    return WillPopScope(
-      onWillPop: savePrefData,
+    var width = MediaQuery.of(context).size.width;
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (didPop) {
+          return;
+        }
+        await savePrefData();
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => Welcome(),
+          ),
+        );
+      },
       child: Scaffold(
         appBar: AppBar(
           title: ListTile(
@@ -58,8 +67,8 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
             IconButton(
                 icon: Icon(Icons.clear),
                 onPressed: () {
-                  var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Welcome());
+                  var router = MaterialPageRoute(
+                      builder: (BuildContext context) => Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -74,8 +83,8 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.deepPurple.shade300,
@@ -99,8 +108,8 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.yellowAccent.shade400,
@@ -124,8 +133,8 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.green,
@@ -158,7 +167,9 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                       Radio(
                                         value: 0,
                                         groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
+                                        onChanged: (int? value) {
+                                          _handleRadioValueChange(value);
+                                        },
                                         activeColor: Colors.white,
                                       ),
                                       Text(
@@ -174,7 +185,9 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                       Radio(
                                         value: 1,
                                         groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
+                                        onChanged: (int? value) {
+                                          _handleRadioValueChange(value);
+                                        },
                                         activeColor: Colors.white,
                                       ),
                                       Text(
@@ -191,7 +204,9 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                       Radio(
                                         value: 2,
                                         groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
+                                        onChanged: (int? value) {
+                                          _handleRadioValueChange(value);
+                                        },
                                         activeColor: Colors.white,
                                       ),
                                       Text(
@@ -242,25 +257,24 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.white,
                       child: Padding(
                         padding: EdgeInsets.all(8.0),
-                        child: RaisedButton(
-                          elevation: 10.0,
+                        child: ElevatedButton(
                           onPressed: () {
-                            var router = new MaterialPageRoute(
+                            var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    new TenWordRecallTrialOne(
+                                    TenWordRecallTrialOne(
                                       patientName: widget.patientName,
                                       assessorName: widget.assessorName,
                                       handedness: widget.handedness,
                                       assessmentDate: widget.assessmentDate,
                                       languageComprehensionRadioValue:
-                                          _radioValue,
+                                          _radioValue ?? 0,
                                     ));
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
@@ -279,7 +293,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
     );
   }
 
-  void _handleRadioValueChange(int value) {
+  void _handleRadioValueChange(int? value) {
     setState(() {
       _radioValue = value;
     });
@@ -293,16 +307,16 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
 
   void getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int _setRadioPref = prefs.getInt("languageComprehensionRadioValue");
+    int? setRadioPref = prefs.getInt("languageComprehensionRadioValue");
     setState(() {
-      _radioValue = _setRadioPref;
+      _radioValue = setRadioPref;
     });
   }
 
   Future<bool> savePrefData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    prefs.setInt("languageComprehensionRadioValue", _radioValue);
+    prefs.setInt("languageComprehensionRadioValue", _radioValue ?? 0);
 
     return true;
   }

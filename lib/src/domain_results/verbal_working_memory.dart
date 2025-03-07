@@ -1,21 +1,25 @@
 import 'package:flutter/material.dart';
 
 class VerbalWorkingMemory extends StatefulWidget {
-  int trialOneScore;
+  final int trialOneScore;
 
-  VerbalWorkingMemory({Key key, this.trialOneScore}) : super(key: key);
+  const VerbalWorkingMemory({
+    super.key, 
+    required this.trialOneScore
+  });
 
   @override
-  _VerbalWorkingMemoryState createState() => _VerbalWorkingMemoryState();
+  State<VerbalWorkingMemory> createState() => _VerbalWorkingMemoryState();
 }
 
 class _VerbalWorkingMemoryState extends State<VerbalWorkingMemory> {
-  Color resultColor;
-  String result = "Normal";
+  late Color resultColor;
+  late String result;
 
   @override
   void initState() {
     super.initState();
+    result = "Normal";
     valueTrial12ResultToString(widget.trialOneScore);
   }
 
@@ -24,7 +28,7 @@ class _VerbalWorkingMemoryState extends State<VerbalWorkingMemory> {
     return Scaffold(
       appBar: AppBar(
         title: ListTile(
-          title: Text(
+          title: const Text(
             "Verbal Working Memory",
             style: TextStyle(
               color: Colors.white,
@@ -32,7 +36,7 @@ class _VerbalWorkingMemoryState extends State<VerbalWorkingMemory> {
             ),
             textAlign: TextAlign.start,
           ),
-          subtitle: Text(
+          subtitle: const Text(
             "",
             style: TextStyle(
               color: Colors.white,
@@ -48,7 +52,7 @@ class _VerbalWorkingMemoryState extends State<VerbalWorkingMemory> {
             color: resultColor,
             elevation: 10.0,
             child: ListTile(
-              title: Text(
+              title: const Text(
                 "Working Memory Verbal Trial 1",
                 style: TextStyle(
                   color: Colors.black,
@@ -57,7 +61,7 @@ class _VerbalWorkingMemoryState extends State<VerbalWorkingMemory> {
               ),
               trailing: Text(
                 result,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
                 ),
@@ -69,8 +73,8 @@ class _VerbalWorkingMemoryState extends State<VerbalWorkingMemory> {
     );
   }
 
-  valueTrial12ResultToString(int _valueTotal) {
-    switch (_valueTotal > 6) {
+  void valueTrial12ResultToString(int valueTotal) {
+    switch (valueTotal > 6) {
       case true:
         {
           setState(() {
@@ -81,7 +85,7 @@ class _VerbalWorkingMemoryState extends State<VerbalWorkingMemory> {
         }
       case false:
         {
-          if (_valueTotal < 5) {
+          if (valueTotal < 5) {
             setState(() {
               result = "Impaired";
               resultColor = Colors.red;

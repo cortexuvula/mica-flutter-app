@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
 
 class VisualShortTermMemory extends StatefulWidget {
-  int shorttermMemoryVisualImage1;
-  int shorttermMemoryVisualImage2;
-  int shorttermMemoryVisualImage3;
+  final int shorttermMemoryVisualImage1;
+  final int shorttermMemoryVisualImage2;
+  final int shorttermMemoryVisualImage3;
 
-  VisualShortTermMemory({
-    Key key,
-    this.shorttermMemoryVisualImage1,
-    this.shorttermMemoryVisualImage2,
-    this.shorttermMemoryVisualImage3,
-  }) : super(key: key);
+  const VisualShortTermMemory({
+    super.key,
+    required this.shorttermMemoryVisualImage1,
+    required this.shorttermMemoryVisualImage2,
+    required this.shorttermMemoryVisualImage3,
+  });
 
   @override
-  _VisualShortTermMemoryState createState() => _VisualShortTermMemoryState();
+  State<VisualShortTermMemory> createState() => _VisualShortTermMemoryState();
 }
 
 class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
-  String result = "Normal";
-  Color resultColor;
+  late String result;
+  late Color resultColor;
 
   @override
   void initState() {
     super.initState();
+    result = "Normal";
     combineScores();
   }
 
@@ -31,7 +32,7 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
     return Scaffold(
       appBar: AppBar(
         title: ListTile(
-          title: Text(
+          title: const Text(
             "Visual Short-Term Memory",
             style: TextStyle(
               color: Colors.white,
@@ -39,7 +40,7 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
             ),
             textAlign: TextAlign.start,
           ),
-          subtitle: Text(
+          subtitle: const Text(
             "",
             style: TextStyle(
               color: Colors.white,
@@ -55,7 +56,7 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
             color: resultColor,
             elevation: 10.0,
             child: ListTile(
-              title: Text(
+              title: const Text(
                 "Short-Term Memory Visual: Line Drawing Recall",
                 style: TextStyle(
                   color: Colors.black,
@@ -64,7 +65,7 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
               ),
               trailing: Text(
                 result,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
                 ),
@@ -76,19 +77,19 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
     );
   }
 
-  combineScores() {
+  void combineScores() {
     int score1 = 3 - widget.shorttermMemoryVisualImage1;
     int score2 = 3 - widget.shorttermMemoryVisualImage2;
     int score3 = 3 - widget.shorttermMemoryVisualImage3;
 
-    int _combineScore = score1 + score2 + score3;
+    int combineScore = score1 + score2 + score3;
 
-    if (_combineScore > 5) {
+    if (combineScore > 5) {
       setState(() {
         resultColor = Colors.green;
         result = "Normal";
       });
-    } else if (_combineScore < 5) {
+    } else if (combineScore < 5) {
       setState(() {
         resultColor = Colors.red;
         result = "Impaired";

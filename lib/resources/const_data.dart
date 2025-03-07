@@ -129,9 +129,9 @@ const String testTenWordRecallTrialOneSubtitle = "Verbal Trial 1";
 const String instructionsTenWordRecallTrialOnePaient1 =
     "\"I am going to read you a list of 10 words. Remember these words, as I will ask you what you can remember afterwards. Please repeat each word after I have said it, so that I can be sure that you have heard it correctly. Do you understand? Are you ready? Let's go!\"";
 const String instructionsTenWordRecallTrialOneHealthworker1 =
-    "If the patient does not repeat the word say: \“Please repeat the word.\” Read the words from left to right. Carry on with the rest of the list.";
+    "If the patient does not repeat the word say: “Please repeat the word.” Read the words from left to right. Carry on with the rest of the list.";
 const String instructionsTenWordRecallTrialOnePatient2 =
-    "\“What were those words?\” ";
+    "“What were those words?” ";
 const String instructionsTenWordRecallTrialOneHealthworker2 =
     "Tap on each word correctly recalled.";
 
@@ -140,22 +140,22 @@ const String testTenWordRecallTrialTwoSubtitle = "Verbal Trial 2";
 const String instructionsTenWordRecallTrialTwoHealthworker1 =
     "Read the words aloud again from left to right, asking for repetition after every word.";
 const String instructionsTenWordRecallTrialTwoPatient1 =
-    "\“What were those words?\”";
+    "“What were those words?”";
 const String instructionsTenWordRecallTrialTwoHealthworker2 =
     "Tap on each word correctly recalled.";
 const String instructionsTenWordRecallTrialTwoPatient2 =
-    "\“Now try to remember the words because I will ask you again later.\"";
+    "“Now try to remember the words because I will ask you again later.\"";
 
 const String testTenWordRecallTrialThree = "Short-Term Memory";
 const String testTenWordRecallTrialThreeSubtitle = "Verbal Trial 3";
 const String instructionsTenWordRecallTrialThreeHealthworker1 =
     "Read the words aloud again from left to right, asking for repetition after every word.";
 const String instructionsTenWordRecallTrialThreePatient1 =
-    "\“What were those words?\”";
+    "“What were those words?”";
 const String instructionsTenWordRecallTrialThreeHealthworker2 =
     "Tap on each word correctly recalled.";
 const String instructionsTenWordRecallTrialThreePatient2 =
-    "\“Now try to remember the words because I will ask you again later.\"";
+    "“Now try to remember the words because I will ask you again later.\"";
 
 const String testVisuospatialPraxis = "Agnosia and Apraxia";
 const String testVisuospatialPraxisSubtitle = "Line Drawing Copy";
@@ -176,7 +176,7 @@ const String testAttentionSubtitle = "Vigilance Task";
 const String testAttentionDetails =
     "Tap on a letter when patient taps. Double tap on A when patient does not tap on hearing the letter A.";
 const String testAttentionToPatient =
-    "\"I am going to read you a long series of letters. Whenever you hear the letter A, tap your hand like this.\” Indicate tapping movement. For all other letters do not tap.";
+    "\"I am going to read you a long series of letters. Whenever you hear the letter A, tap your hand like this.” Indicate tapping movement. For all other letters do not tap.";
 const String testAttentionResponse = "A mistake is an omission or inclusion.";
 const String testAttentionResponseNormal = "No mistakes.";
 const String testAttentionResponseEquivocal = "1 mistake.";
@@ -187,7 +187,7 @@ const String testExecutiveAnimalNamingSubtitle = "Animal Naming Task";
 const String testExecutiveAnimalNamingDetails =
     "The patient can name mammals, birds, reptiles or fish. Repetitions are not scored.";
 const String testExecutiveAnimalNamingToPatient =
-    "\“I am going to give you one minute to name as many animals as possible.\”";
+    "“I am going to give you one minute to name as many animals as possible.”";
 const String testExecutiveAnimalNamingResponse = "";
 const String testExecutiveAnimalNamingResponseNormal = "> 14 Names";
 const String testExecutiveAnimalNamingResponseEquivocal = "12 - 14 Names";
@@ -197,7 +197,7 @@ const String testExecutiveLuria = "Executive";
 const String testExecutiveLuriaSubtitle = "Luria Alternating Hand Movements";
 const String testExecutiveLuriaDetails = "";
 const String testExecutiveLuriaToPatient =
-    "\"Place both hands on the table like I do. Watch me carefully because I want you to do the same as I am doing. Can you see that I am making a fist with one hand? Now swap the hands over. Can you do that as fast as you can?\”";
+    "\"Place both hands on the table like I do. Watch me carefully because I want you to do the same as I am doing. Can you see that I am making a fist with one hand? Now swap the hands over. Can you do that as fast as you can?”";
 const String testExecutiveLuriaResponse = "";
 const String testExecutiveLuriaResponseNormal = "3 cycles without any mistakes";
 const String testExecutiveLuriaResponseEquivocal = "1-2 cycles";
@@ -209,9 +209,9 @@ const String testExecutiveSerialSubtitle = "Serial Order Reversal Task";
 const String testExecutiveSerialDetails =
     "Allow person to complete the sequence January to December.";
 const String testExecutiveSerialToPatient1 =
-    "\”Say the months of the year starting with January.\"";
+    "”Say the months of the year starting with January.\"";
 const String testExecutiveSerialToPatient2 =
-    "\"Now start with December and go backwards.\”";
+    "\"Now start with December and go backwards.”";
 const String testExecutiveSerialResponse =
     "Stop the person when he reaches July or makes 2 or more mistakes.";
 const String testExecutiveSerialResponseNormal = "No errors";
@@ -232,7 +232,7 @@ const String testPraxis = "Praxis";
 const String testPraxisSubtitle = "";
 const String testPraxisDetails = "Test both hands.";
 const String testPraxisToPatient =
-    "\“Take this pen and rotate it with your fingers as fast as you can.\”";
+    "“Take this pen and rotate it with your fingers as fast as you can.”";
 const String testPraxisResponse = "";
 const String testPraxisResponseNormal = "No errors";
 const String testPraxisResponseEquivocal = "Some difficulty";
@@ -241,7 +241,7 @@ const String testPraxisResponseImpaired = "Clear difficulty";
 const String testTenWordDelayedRecall = "Short-Term Memory";
 const String testTenWordDelayedRecallSubtitle = "Verbal Delayed Recall";
 const String instructionDelayedRecallPatient1 =
-    "\“What were the words I asked you to remember earlier?\”";
+    "“What were the words I asked you to remember earlier?”";
 const String instructionDelayedRecallHealthworker1 =
     "Tap on each word correctly recalled:";
 
@@ -261,7 +261,7 @@ const String testShortTermMemoryVisualSubtitle = "Visual Recall";
 const String testShortTermMemoryVisualDetails =
     "Provide the patient with a blank sheet of paper.";
 const String testShortTermMemoryVisualToPatient =
-    "\“Earlier, you copied three pictures. Can you remember them? Can you draw them here?\”";
+    "“Earlier, you copied three pictures. Can you remember them? Can you draw them here?”";
 const String testShortTermMemoryVisualResponse =
     "Provide the patient with a blank sheet of paper.";
 const String testShortTermMemoryVisualResponseNormal = "no mistakes";
@@ -274,7 +274,7 @@ const String testAnomiaAgnosia = "Anomia & Agnosia";
 const String testAnomiaAgnosiaSubtitle = "";
 const String testAnomiaAgnosiaDetails =
     "Click on the images to enlarge. If unable to name, ask for a description or how to use object. If able to describe then evaluate naming impairment further by giving the first syllable of the word.";
-const String testAnomiaAgnosiaToPatient = "\"Name the following pictures.\”";
+const String testAnomiaAgnosiaToPatient = "\"Name the following pictures.”";
 const String testAnomiaAgnosiaResponse = "Anomia: Cannot name picture.";
 const String testAnomiaAgnosiaResponse2 = "Agnosia: Cannot describe object.";
 const String testAnomiaAgnosiaResponseNormal = "All correct";
@@ -294,7 +294,7 @@ const String testExecutiveSubtitle = "Design Fluency";
 const String testExecutiveDetails =
     "Draw the following two examples on the same paper that the patient will use. Count the lines from 1 - 4 while you are drawing.";
 const String testExecutiveToPatient =
-    "\“You have one minute to draw anything using four lines. The drawings must be different and I must be able to count the lines. I will give you two examples.\”";
+    "“You have one minute to draw anything using four lines. The drawings must be different and I must be able to count the lines. I will give you two examples.”";
 const String testExecutiveToPatient2 =
     "\"Do you have any questions? Your minute starts now.\"";
 const String testExecutiveResponse = "";
@@ -400,37 +400,37 @@ const String domain_attention_subtitle = "and Concentration";
 
 const String domain_spell_word = "\"Good. Now spell it backwards.\"";
 const String domain_spell_word_patient =
-    "\“Spell the following word: RIGHT\”\n\"Good. Now spell it backwards.\"";
+    "“Spell the following word: RIGHT”\n\"Good. Now spell it backwards.\"";
 const String domain_spell_word_alternative =
     "Alternative words: April or March";
 
 const String domain_serial_seven_patient =
-    "\“Subtract seven from one hundred.\”";
+    "“Subtract seven from one hundred.”";
 const String domain_serial_seven_examiner = "Wait for the response.";
 const String domain_serial_seven_patinet2 =
-    "\“Now subtract seven again and continue to do this until I ask you to stop.\”";
+    "“Now subtract seven again and continue to do this until I ask you to stop.”";
 
-const String domain_serial_three_patient = "\“Subtract three from twenty.\”";
+const String domain_serial_three_patient = "“Subtract three from twenty.”";
 
 const String domain_serial_three_examiner = "Wait for the response.";
 const String domain_serial_three_patinet2 =
-    "\“Now subtract three again and continue to do this until I ask you to stop.\”";
+    "“Now subtract three again and continue to do this until I ask you to stop.”";
 const String domain_serial_title = "Serial 7's And 3's";
 const String domain_spell_word_title = "Spelling Words Backwards";
 const String domain_digit_title = "Digit Span";
 
 const String domain_digit_patient =
-    "\“I will now say a series of numbers and would like you to repeat them. Are you ready? 4 9 3.\”";
+    "“I will now say a series of numbers and would like you to repeat them. Are you ready? 4 9 3.”";
 const String domain_digit_examiner =
     "Note the response and continue by increasing the series with an extra number until a sequence of 7 is reached. Most individuals can repeat a sequence of 6-8 random digits. If a patient fails the sequence then repeat it with another random sequence of the same length.";
-const String domain_digit_numbers1 = "\“5 4 8 1\”";
-const String domain_digit_numbers1_sub = "if required: \“6 4 1 7\”";
-const String domain_digit_numbers2 = "\“5 3 9 5 3\”";
-const String domain_digit_numbers2_sub = "if required: \“9 6 3 8 4\”";
-const String domain_digit_numbers3 = "\“8 6 3 2 8 5\”";
-const String domain_digit_numbers3_sub = "if required: \“5 2 9 7 4 3\”";
-const String domain_digit_numbers4 = "\“2 8 5 4 8 4 2\”";
-const String domain_digit_numbers4_sub = "if required: \“3 7 4 2 8 4 1\”";
+const String domain_digit_numbers1 = "“5 4 8 1”";
+const String domain_digit_numbers1_sub = "if required: “6 4 1 7”";
+const String domain_digit_numbers2 = "“5 3 9 5 3”";
+const String domain_digit_numbers2_sub = "if required: “9 6 3 8 4”";
+const String domain_digit_numbers3 = "“8 6 3 2 8 5”";
+const String domain_digit_numbers3_sub = "if required: “5 2 9 7 4 3”";
+const String domain_digit_numbers4 = "“2 8 5 4 8 4 2”";
+const String domain_digit_numbers4_sub = "if required: “3 7 4 2 8 4 1”";
 
 const String domain_language_title = "Language";
 

@@ -5,6 +5,8 @@ import 'package:mica/src/welcome.dart';
 import 'domain_attention_concentration.dart';
 
 class SerialSeven extends StatefulWidget {
+  const SerialSeven({super.key});
+
   @override
   _SerialSevenState createState() => _SerialSevenState();
 }
@@ -15,7 +17,7 @@ class _SerialSevenState extends State<SerialSeven> {
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         title: ListTile(
@@ -40,8 +42,8 @@ class _SerialSevenState extends State<SerialSeven> {
           IconButton(
               icon: Icon(Icons.clear),
               onPressed: () {
-                var router = new MaterialPageRoute(
-                    builder: (BuildContext context) => new Welcome());
+                var router = MaterialPageRoute(
+                    builder: (BuildContext context) => Welcome());
                 Navigator.of(context).pushAndRemoveUntil(
                     router, (Route<dynamic> route) => false);
               })
@@ -54,8 +56,8 @@ class _SerialSevenState extends State<SerialSeven> {
               SizedBox(
                 height: sizeBoxHeight,
               ),
-              Container(
-                width: _width * 0.9,
+              SizedBox(
+                width: width * 0.9,
                 child: Card(
                   elevation: 10.0,
                   color: Colors.white,
@@ -74,8 +76,8 @@ class _SerialSevenState extends State<SerialSeven> {
                         SizedBox(
                           height: sizeBoxHeight,
                         ),
-                        Container(
-                          width: _width * 0.9,
+                        SizedBox(
+                          width: width * 0.9,
                           child: Card(
                             elevation: 10.0,
                             color: Colors.yellowAccent.shade400,
@@ -99,8 +101,8 @@ class _SerialSevenState extends State<SerialSeven> {
                         SizedBox(
                           height: sizeBoxHeight,
                         ),
-                        Container(
-                          width: _width * 0.9,
+                        SizedBox(
+                          width: width * 0.9,
                           child: Card(
                             elevation: 10.0,
                             color: Colors.deepPurple.shade300,
@@ -124,8 +126,8 @@ class _SerialSevenState extends State<SerialSeven> {
                         SizedBox(
                           height: sizeBoxHeight,
                         ),
-                        Container(
-                          width: _width * 0.9,
+                        SizedBox(
+                          width: width * 0.9,
                           child: Card(
                             elevation: 10.0,
                             color: Colors.yellowAccent.shade400,
@@ -229,8 +231,8 @@ class _SerialSevenState extends State<SerialSeven> {
               SizedBox(
                 height: sizeBoxHeight,
               ),
-              Container(
-                width: _width * 0.9,
+              SizedBox(
+                width: width * 0.9,
                 child: Card(
                   elevation: 10.0,
                   color: Colors.white,
@@ -249,8 +251,8 @@ class _SerialSevenState extends State<SerialSeven> {
                         SizedBox(
                           height: sizeBoxHeight,
                         ),
-                        Container(
-                          width: _width * 0.9,
+                        SizedBox(
+                          width: width * 0.9,
                           child: Card(
                             elevation: 10.0,
                             color: Colors.yellowAccent.shade400,
@@ -274,8 +276,8 @@ class _SerialSevenState extends State<SerialSeven> {
                         SizedBox(
                           height: sizeBoxHeight,
                         ),
-                        Container(
-                          width: _width * 0.9,
+                        SizedBox(
+                          width: width * 0.9,
                           child: Card(
                             elevation: 10.0,
                             color: Colors.deepPurple.shade300,
@@ -299,8 +301,8 @@ class _SerialSevenState extends State<SerialSeven> {
                         SizedBox(
                           height: sizeBoxHeight,
                         ),
-                        Container(
-                          width: _width * 0.9,
+                        SizedBox(
+                          width: width * 0.9,
                           child: Card(
                             elevation: 10.0,
                             color: Colors.yellowAccent.shade400,
@@ -404,8 +406,8 @@ class _SerialSevenState extends State<SerialSeven> {
               SizedBox(
                 height: sizeBoxHeight,
               ),
-              Container(
-                width: _width * 0.9,
+              SizedBox(
+                width: width * 0.9,
                 child: Card(
                   elevation: 10.0,
                   color: Colors.green,
@@ -437,7 +439,7 @@ class _SerialSevenState extends State<SerialSeven> {
                                   Radio(
                                     value: 0,
                                     groupValue: _radioValue,
-                                    onChanged: _handleRadioValueChange,
+                                    onChanged: (int? value) => _handleRadioValueChange(value ?? 0),
                                     activeColor: Colors.white,
                                   ),
                                   Text(
@@ -454,7 +456,7 @@ class _SerialSevenState extends State<SerialSeven> {
                                   Radio(
                                     value: 1,
                                     groupValue: _radioValue,
-                                    onChanged: _handleRadioValueChange,
+                                    onChanged: (int? value) => _handleRadioValueChange(value ?? 0),
                                     activeColor: Colors.white,
                                   ),
                                   Text(
@@ -471,7 +473,7 @@ class _SerialSevenState extends State<SerialSeven> {
                                   Radio(
                                     value: 2,
                                     groupValue: _radioValue,
-                                    onChanged: _handleRadioValueChange,
+                                    onChanged: (int? value) => _handleRadioValueChange(value ?? 0),
                                     activeColor: Colors.white,
                                   ),
                                   Text(
@@ -526,19 +528,21 @@ class _SerialSevenState extends State<SerialSeven> {
               SizedBox(
                 height: sizeBoxHeight,
               ),
-              Container(
-                width: _width * 0.9,
+              SizedBox(
+                width: width * 0.9,
                 child: Card(
                   elevation: 10.0,
                   color: Colors.white,
                   child: Padding(
                     padding: EdgeInsets.all(8.0),
-                    child: RaisedButton(
-                      elevation: 10.0,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        elevation: 10.0,
+                      ),
                       onPressed: () {
-                        var router = new MaterialPageRoute(
+                        var router = MaterialPageRoute(
                             builder: (BuildContext context) =>
-                                new AttentionConcentration());
+                                AttentionConcentration());
                         Navigator.of(context).pushAndRemoveUntil(
                             router, (Route<dynamic> route) => true);
                       },

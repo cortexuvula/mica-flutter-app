@@ -1,35 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
-//import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
 import 'package:video_player/video_player.dart';
 
 class VideoPage extends StatefulWidget {
-  String videoURL;
-  String videoTitle;
+  final String videoURL;
+  final String videoTitle;
 
-  VideoPage({Key key, this.videoURL, this.videoTitle}) : super(key: key);
+  const VideoPage({super.key, required this.videoURL, required this.videoTitle});
 
   @override
   _VideoPageState createState() => _VideoPageState();
 }
 
 class _VideoPageState extends State<VideoPage> {
-  VideoPlayerController videoPlayerController;
-  ChewieController _chewieController;
+  late VideoPlayerController videoPlayerController;
+  late ChewieController _chewieController;
 
   @override
   void initState() {
     super.initState();
-    // print('https://vimeo.com/${widget.videoURL}');
-    videoPlayerController = VideoPlayerController.network(
-        'https://neoncortex.net/wp-content/mca/${widget.videoURL}');
-    _chewieController = ChewieController(
-      videoPlayerController: videoPlayerController,
-      aspectRatio: 3 / 2,
-      autoPlay: true,
-      looping: true,
-    );
+    videoPlayerController = VideoPlayerController.networkUrl(
+        Uri.parse('https://neoncortex.net/wp-content/mca/${widget.videoURL}'));
+    
+    _initializeVideoPlayer();
+  }
+  
+  void _initializeVideoPlayer() async {
+    await videoPlayerController.initialize();
+    
+    setState(() {
+      _chewieController = ChewieController(
+        videoPlayerController: videoPlayerController,
+        aspectRatio: 3 / 2,
+        autoPlay: true,
+        looping: true,
+      );
+    });
   }
 
   @override
@@ -46,7 +52,7 @@ class _VideoPageState extends State<VideoPage> {
         title: ListTile(
           title: Text(
             widget.videoTitle,
-            style: TextStyle(
+            style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
                 fontSize: 15.0),
@@ -55,9 +61,11 @@ class _VideoPageState extends State<VideoPage> {
         ),
       ),
       body: Center(
-        child: Chewie(
-          controller: _chewieController,
-        ),
+        child: videoPlayerController.value.isInitialized
+            ? Chewie(
+                controller: _chewieController,
+              )
+            : const CircularProgressIndicator(),
       ),
     );
   }

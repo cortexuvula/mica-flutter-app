@@ -5,54 +5,53 @@ import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ExecutiveSerial extends StatefulWidget {
-  String patientName;
-  String assessorName;
-  String handedness;
-  DateTime assessmentDate;
-  int languageComprehensionRadioValue;
-  int trialOneScore;
-  int trialTwoScore;
-  int trialThreeScore;
-  int visuospatialPraxisImage1;
-  int visuospatialPraxisImage2;
-  int visuospatialPraxisImage3;
-  int attention;
-  int attentionCorrect;
-  int attentionMistakes;
-  int executiveAnimalNaming;
-  int executiveLuria;
-  int executiveLuriaScore;
-  int executiveAnimalNamingCount;
+  final String patientName;
+  final String assessorName;
+  final String handedness;
+  final DateTime assessmentDate;
+  final int languageComprehensionRadioValue;
+  final int trialOneScore;
+  final int trialTwoScore;
+  final int trialThreeScore;
+  final int visuospatialPraxisImage1;
+  final int visuospatialPraxisImage2;
+  final int visuospatialPraxisImage3;
+  final int attention;
+  final int attentionCorrect;
+  final int attentionMistakes;
+  final int executiveAnimalNaming;
+  final int executiveLuria;
+  final int executiveLuriaScore;
+  final int executiveAnimalNamingCount;
 
-  ExecutiveSerial(
-      {Key key,
-      this.patientName,
-      this.assessorName,
-      this.handedness,
-      this.assessmentDate,
-      this.languageComprehensionRadioValue,
-      this.trialOneScore,
-      this.trialTwoScore,
-      this.trialThreeScore,
-      this.visuospatialPraxisImage1,
-      this.visuospatialPraxisImage2,
-      this.visuospatialPraxisImage3,
-      this.attention,
-      this.attentionCorrect,
-      this.attentionMistakes,
-      this.executiveAnimalNaming,
-      this.executiveAnimalNamingCount,
-      this.executiveLuria,
-      this.executiveLuriaScore})
-      : super(key: key);
+  const ExecutiveSerial({
+      super.key,
+      required this.patientName,
+      required this.assessorName,
+      required this.handedness,
+      required this.assessmentDate,
+      required this.languageComprehensionRadioValue,
+      required this.trialOneScore,
+      required this.trialTwoScore,
+      required this.trialThreeScore,
+      required this.visuospatialPraxisImage1,
+      required this.visuospatialPraxisImage2,
+      required this.visuospatialPraxisImage3,
+      required this.attention,
+      required this.attentionCorrect,
+      required this.attentionMistakes,
+      required this.executiveAnimalNaming,
+      required this.executiveAnimalNamingCount,
+      required this.executiveLuria,
+      required this.executiveLuriaScore});
 
   @override
   _ExecutiveSerialState createState() => _ExecutiveSerialState();
 }
 
 class _ExecutiveSerialState extends State<ExecutiveSerial> {
-  double sizeBoxHeight = 10.0;
-  int _radioValue;
+  final double sizeBoxHeight = 10.0;
+  int? _radioValue; 
   int score = 0;
   List<String> executiveSerialButtonColor = [];
 
@@ -78,16 +77,23 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
-    var sizeBoxWidth = (_width * 0.8) / 3;
-    return WillPopScope(
-      onWillPop: savePrefData,
+    var width = MediaQuery.of(context).size.width;
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (!didPop) {
+          final shouldPop = await savePrefData();
+          if (shouldPop && context.mounted) {
+            Navigator.of(context).pop();
+          }
+        }
+      },
       child: Scaffold(
         appBar: AppBar(
           title: ListTile(
             title: Text(
               appData.testExecutiveSerial,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
               ),
@@ -95,7 +101,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
             ),
             subtitle: Text(
               appData.testExecutiveSerialSubtitle,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
               ),
@@ -104,10 +110,10 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
           ),
           actions: <Widget>[
             IconButton(
-                icon: Icon(Icons.clear),
+                icon: const Icon(Icons.clear),
                 onPressed: () {
-                  var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Welcome());
+                  var router = MaterialPageRoute(
+                      builder: (BuildContext context) => const Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -122,8 +128,8 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.yellowAccent.shade400,
@@ -134,7 +140,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                             Text(
                               appData.testExecutiveSerialToPatient1,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
@@ -147,8 +153,8 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.deepPurple.shade300,
@@ -159,7 +165,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                             Text(
                               appData.testExecutiveSerialDetails,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
@@ -172,8 +178,8 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.yellowAccent.shade400,
@@ -184,7 +190,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                             Text(
                               appData.testExecutiveSerialToPatient2,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
@@ -197,8 +203,8 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.deepPurple.shade300,
@@ -208,7 +214,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                           children: <Widget>[
                             Text(
                               "Tap to score",
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
@@ -224,8 +230,11 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                 TableRow(children: [
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: FlatButton(
-                                      child: Text("December"),
+                                    child: TextButton(
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: decembermonthButtonColor,
+                                      ),
+                                      child: const Text("December"),
                                       onPressed: () {
                                         if (!decemberTapped) {
                                           setState(() {
@@ -244,13 +253,15 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                         }
                                         setRadioValue();
                                       },
-                                      color: decembermonthButtonColor,
                                     ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: FlatButton(
-                                      child: Text("November"),
+                                    child: TextButton(
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: novembermonthButtonColor,
+                                      ),
+                                      child: const Text("November"),
                                       onPressed: () {
                                         if (!novemberTapped) {
                                           setState(() {
@@ -269,15 +280,17 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                         }
                                         setRadioValue();
                                       },
-                                      color: novembermonthButtonColor,
                                     ),
                                   ),
                                 ]),
                                 TableRow(children: [
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: FlatButton(
-                                      child: Text("October"),
+                                    child: TextButton(
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: octobermonthButtonColor,
+                                      ),
+                                      child: const Text("October"),
                                       onPressed: () {
                                         if (!octoberTapped) {
                                           setState(() {
@@ -296,13 +309,15 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                         }
                                         setRadioValue();
                                       },
-                                      color: octobermonthButtonColor,
                                     ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: FlatButton(
-                                      child: Text("September"),
+                                    child: TextButton(
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: septembermonthButtonColor,
+                                      ),
+                                      child: const Text("September"),
                                       onPressed: () {
                                         if (!septemberTapped) {
                                           setState(() {
@@ -321,15 +336,17 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                         }
                                         setRadioValue();
                                       },
-                                      color: septembermonthButtonColor,
                                     ),
                                   ),
                                 ]),
                                 TableRow(children: [
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: FlatButton(
-                                      child: Text("August"),
+                                    child: TextButton(
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: augustmonthButtonColor,
+                                      ),
+                                      child: const Text("August"),
                                       onPressed: () {
                                         if (!augustTapped) {
                                           setState(() {
@@ -348,13 +365,15 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                         }
                                         setRadioValue();
                                       },
-                                      color: augustmonthButtonColor,
                                     ),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
-                                    child: FlatButton(
-                                      child: Text("July"),
+                                    child: TextButton(
+                                      style: TextButton.styleFrom(
+                                        backgroundColor: julymonthButtonColor,
+                                      ),
+                                      child: const Text("July"),
                                       onPressed: () {
                                         if (!julyTapped) {
                                           setState(() {
@@ -372,7 +391,6 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                         }
                                         setRadioValue();
                                       },
-                                      color: julymonthButtonColor,
                                     ),
                                   ),
                                 ])
@@ -386,8 +404,8 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.green,
@@ -398,7 +416,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                             Text(
                               appData.testExecutiveSerialResponse,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
@@ -419,7 +437,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                 TableRow(children: [
                                   Row(
                                     children: <Widget>[
-                                      Radio(
+                                      Radio<int>(
                                         value: 0,
                                         groupValue: _radioValue,
                                         onChanged: _handleRadioValueChange,
@@ -427,7 +445,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                       ),
                                       Text(
                                         "Normal",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.black,
                                           fontSize: 10.0,
                                         ),
@@ -436,7 +454,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                   ),
                                   Row(
                                     children: <Widget>[
-                                      Radio(
+                                      Radio<int>(
                                         value: 1,
                                         groupValue: _radioValue,
                                         onChanged: _handleRadioValueChange,
@@ -444,7 +462,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                       ),
                                       Text(
                                         "Equivocal",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.black,
                                           fontSize: 10.0,
                                         ),
@@ -453,7 +471,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                   ),
                                   Row(
                                     children: <Widget>[
-                                      Radio(
+                                      Radio<int>(
                                         value: 2,
                                         groupValue: _radioValue,
                                         onChanged: _handleRadioValueChange,
@@ -461,7 +479,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                       ),
                                       Text(
                                         "Impaired",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.black,
                                           fontSize: 10.0,
                                         ),
@@ -475,7 +493,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                     child: Text(
                                       appData.testExecutiveSerialResponseNormal,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                   Padding(
@@ -484,7 +502,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                       appData
                                           .testExecutiveSerialResponseEquivocal,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                   Padding(
@@ -493,7 +511,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                       appData
                                           .testExecutiveSerialResponseImpaired,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                 ])
@@ -507,19 +525,18 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: RaisedButton(
-                          elevation: 10.0,
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton(
                           onPressed: () {
-                            var router = new MaterialPageRoute(
+                            var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    new ShortTermMemoryVerbal(
+                                    ShortTermMemoryVerbal(
                                       patientName: widget.patientName,
                                       assessorName: widget.assessorName,
                                       handedness: widget.handedness,
@@ -546,13 +563,13 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                       executiveLuria: widget.executiveLuria,
                                       executiveLuriaScore:
                                           widget.executiveLuriaScore,
-                                      executiveSerial: _radioValue,
+                                      executiveSerial: _radioValue ?? 0,
                                       executiveSerialScore: score,
                                     ));
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: Text("Continue with Testing"),
+                          child: const Text("Continue with Testing"),
                         ),
                       ),
                     ),
@@ -566,7 +583,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
     );
   }
 
-  void _handleRadioValueChange(int value) {
+  void _handleRadioValueChange(int? value) {
     setState(() {
       _radioValue = value;
     });
@@ -592,16 +609,21 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
 
   void getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int _score1 = prefs.getInt("executiveSerial");
-    int _score2 = prefs.getInt("executiveSerial_score");
-    executiveSerialButtonColor =
-        prefs.getStringList("executiveSerialButtonColor");
+    int? score1 = prefs.getInt("executiveSerial");
+    int? score2 = prefs.getInt("executiveSerial_score");
+    List<String>? buttonColors = prefs.getStringList("executiveSerialButtonColor");
+    
+    if (buttonColors != null) {
+      executiveSerialButtonColor = buttonColors;
+    } else {
+      executiveSerialButtonColor = List.filled(6, "yellow");
+    }
 
     List<Color> buttonColor = [];
     List<bool> buttonTapped = [];
 
     for (var i = 0; i < 6; i++) {
-      if (executiveSerialButtonColor[i] == "yellow") {
+      if (i < executiveSerialButtonColor.length && executiveSerialButtonColor[i] == "yellow") {
         buttonColor.add(Colors.yellow);
         buttonTapped.add(false);
       } else {
@@ -611,7 +633,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
     }
 
     setState(() {
-      _radioValue = _score1;
+      _radioValue = score1;
       decembermonthButtonColor = buttonColor[0];
       novembermonthButtonColor = buttonColor[1];
       octobermonthButtonColor = buttonColor[2];
@@ -626,7 +648,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
       augustTapped = buttonTapped[4];
       julyTapped = buttonTapped[5];
 
-      score = _score2;
+      score = score2 ?? 0;
     });
   }
 
@@ -666,7 +688,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
       saveButtonColor.add("green");
     }
 
-    prefs.setInt("executiveSerial", _radioValue);
+    prefs.setInt("executiveSerial", _radioValue ?? 0);
     prefs.setInt("executiveSerial_score", score);
 
     prefs.setStringList("executiveSerialButtonColor", saveButtonColor);

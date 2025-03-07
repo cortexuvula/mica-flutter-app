@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 
 class ShowImageAnomia extends StatefulWidget {
-  String imageURL;
-  int imageNumber;
+  final String imageURL;
+  final int imageNumber;
 
-  ShowImageAnomia({Key key, this.imageURL, this.imageNumber}) : super(key: key);
+  const ShowImageAnomia({super.key, required this.imageURL, required this.imageNumber});
 
   @override
   _ShowImageAnomiaState createState() => _ShowImageAnomiaState();
 }
 
 class _ShowImageAnomiaState extends State<ShowImageAnomia> {
-  int image1;
-  int image2;
-  int image3;
-  int image4;
+  late int image1;
+  late int image2;
+  late int image3;
+  late int image4;
 
   @override
   Widget build(BuildContext context) {
@@ -63,41 +63,41 @@ class _ShowImageAnomiaState extends State<ShowImageAnomia> {
     }
 
     print("This is the image ${widget.imageNumber}");
-    var _width = MediaQuery.of(context).size.width;
+    var width = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(),
         body: PageView(
           children: <Widget>[
-            Container(
-              width: _width * 0.9,
+            SizedBox(
+              width: width * 0.9,
               child: Image.asset(
                 appData.imageURL[widget.imageNumber],
                 fit: BoxFit.fitWidth,
               ),
             ),
-            Container(
-              width: _width * 0.9,
+            SizedBox(
+              width: width * 0.9,
               child: Image.asset(
                 appData.imageURL[image1],
                 fit: BoxFit.fitWidth,
               ),
             ),
-            Container(
-              width: _width * 0.9,
+            SizedBox(
+              width: width * 0.9,
               child: Image.asset(
                 appData.imageURL[image2],
                 fit: BoxFit.fitWidth,
               ),
             ),
-            Container(
-              width: _width * 0.9,
+            SizedBox(
+              width: width * 0.9,
               child: Image.asset(
                 appData.imageURL[image3],
                 fit: BoxFit.fitWidth,
               ),
             ),
-            Container(
-              width: _width * 0.9,
+            SizedBox(
+              width: width * 0.9,
               child: Image.asset(
                 appData.imageURL[image4],
                 fit: BoxFit.fitWidth,

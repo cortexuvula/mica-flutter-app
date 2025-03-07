@@ -1,34 +1,34 @@
 import 'package:flutter/material.dart';
 
 class Praxis extends StatefulWidget {
-  int praxisRight;
-  int praxisLeft;
-  int visuospatialPraxisImage1;
-  int visuospatialPraxisImage2;
-  int visuospatialPraxisImage3;
+  final int praxisRight;
+  final int praxisLeft;
+  final int visuospatialPraxisImage1;
+  final int visuospatialPraxisImage2;
+  final int visuospatialPraxisImage3;
 
-  Praxis(
-      {Key key,
-      this.praxisRight,
-      this.praxisLeft,
-      this.visuospatialPraxisImage1,
-      this.visuospatialPraxisImage2,
-      this.visuospatialPraxisImage3})
-      : super(key: key);
+  const Praxis({
+    super.key,
+    required this.praxisRight,
+    required this.praxisLeft,
+    required this.visuospatialPraxisImage1,
+    required this.visuospatialPraxisImage2,
+    required this.visuospatialPraxisImage3,
+  });
 
   @override
   _PraxisState createState() => _PraxisState();
 }
 
 class _PraxisState extends State<Praxis> {
-  Color cardColorPraxisRight;
-  String resultPraxisRight = "";
+  late Color cardColorPraxisRight;
+  late String resultPraxisRight;
 
-  Color cardColorPraxisLeft;
-  String resultPraxisLeft = "";
+  late Color cardColorPraxisLeft;
+  late String resultPraxisLeft;
 
-  String result = "Normal";
-  Color resultColor;
+  late String result;
+  late Color resultColor;
 
   @override
   void initState() {
@@ -43,7 +43,7 @@ class _PraxisState extends State<Praxis> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: ListTile(
+        title: const ListTile(
           title: Text(
             "Praxis",
             style: TextStyle(
@@ -68,7 +68,7 @@ class _PraxisState extends State<Praxis> {
             color: cardColorPraxisRight,
             elevation: 10.0,
             child: ListTile(
-              title: Text(
+              title: const Text(
                 "Praxis: Finger-hand Dexterity: Right",
                 style: TextStyle(
                   color: Colors.black,
@@ -77,7 +77,7 @@ class _PraxisState extends State<Praxis> {
               ),
               trailing: Text(
                 resultPraxisRight,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
                 ),
@@ -88,7 +88,7 @@ class _PraxisState extends State<Praxis> {
             color: cardColorPraxisLeft,
             elevation: 10.0,
             child: ListTile(
-              title: Text(
+              title: const Text(
                 "Praxis: Finger-hand Dexterity: Left",
                 style: TextStyle(
                   color: Colors.black,
@@ -97,7 +97,7 @@ class _PraxisState extends State<Praxis> {
               ),
               trailing: Text(
                 resultPraxisLeft,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
                 ),
@@ -108,7 +108,7 @@ class _PraxisState extends State<Praxis> {
             color: resultColor,
             elevation: 10.0,
             child: ListTile(
-              title: Text(
+              title: const Text(
                 "Visuospatial & Praxis: Line Drawing Copy",
                 style: TextStyle(
                   color: Colors.black,
@@ -117,7 +117,7 @@ class _PraxisState extends State<Praxis> {
               ),
               trailing: Text(
                 result,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
                 ),
@@ -129,7 +129,7 @@ class _PraxisState extends State<Praxis> {
     );
   }
 
-  radio3ButtonValueToStringPraxisRight(int value) {
+  void radio3ButtonValueToStringPraxisRight(int value) {
     switch (value) {
       case 0:
         {
@@ -158,7 +158,7 @@ class _PraxisState extends State<Praxis> {
     }
   }
 
-  radio3ButtonValueToStringPraxisLeft(int value) {
+  void radio3ButtonValueToStringPraxisLeft(int value) {
     switch (value) {
       case 0:
         {
@@ -187,19 +187,19 @@ class _PraxisState extends State<Praxis> {
     }
   }
 
-  combineScores() {
+  void combineScores() {
     int score1 = 3 - widget.visuospatialPraxisImage1;
     int score2 = 3 - widget.visuospatialPraxisImage2;
     int score3 = 3 - widget.visuospatialPraxisImage3;
 
-    int _combineScore = score1 + score2 + score3;
+    int combineScore = score1 + score2 + score3;
 
-    if (_combineScore > 5) {
+    if (combineScore > 5) {
       setState(() {
         resultColor = Colors.green;
         result = "Normal";
       });
-    } else if (_combineScore < 5) {
+    } else if (combineScore < 5) {
       setState(() {
         resultColor = Colors.red;
         result = "Impaired";

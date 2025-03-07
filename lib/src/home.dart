@@ -1,14 +1,12 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/patient_information.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
-  bool viewedDisclaimer;
+  final bool? viewedDisclaimer;
 
-  Home({Key key, this.viewedDisclaimer}) : super(key: key);
+  const Home({super.key, this.viewedDisclaimer});
 
   @override
   _HomeState createState() => _HomeState();
@@ -17,15 +15,15 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
-    return WillPopScope(
-      onWillPop: () async => true,
+    var width = MediaQuery.of(context).size.width;
+    return PopScope(
+      canPop: true,
       child: Scaffold(
         appBar: AppBar(
           title: ListTile(
             title: Text(
               appData.appName,
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w500,
                   fontSize: 15.0),
@@ -34,36 +32,36 @@ class _HomeState extends State<Home> {
           ),
           actions: <Widget>[
             IconButton(
-                icon: Icon(Icons.info_outline),
+                icon: const Icon(Icons.info_outline),
                 onPressed: () => debugPrint("info")),
           ],
         ),
         body: ListView(
           children: <Widget>[
-            Container(
+            SizedBox(
                 child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                SizedBox(
+                const SizedBox(
                   height: 25.0,
                 ),
-                Container(
-                  width: _width * 0.9,
+                SizedBox(
+                  width: width * 0.9,
                   child: Card(
                     elevation: 10.0,
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Text(appData.appDescription,
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontWeight: FontWeight.w300,
                               fontSize: 14.0,
                               color: Colors.black)),
                     ),
                   ),
                 ),
-                Container(
-                  width: _width * 0.9,
+                SizedBox(
+                  width: width * 0.9,
                   child: Card(
                     elevation: 10.0,
                     color: Colors.white,
@@ -81,20 +79,20 @@ class _HomeState extends State<Home> {
                                   Text(
                                     appData.testDescription,
                                     textAlign: TextAlign.left,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.w500,
                                       fontSize: 20.0,
                                       decoration: TextDecoration.underline,
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5.0,
                                   ),
                                   Text(
                                     appData.fullTestText,
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.w300,
                                         fontSize: 14.0,
                                         color: Colors.black),
@@ -103,7 +101,7 @@ class _HomeState extends State<Home> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10.0,
                           ),
                           Card(
@@ -116,20 +114,20 @@ class _HomeState extends State<Home> {
                                   Text(
                                     appData.testToPatient,
                                     textAlign: TextAlign.left,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.black,
                                       fontWeight: FontWeight.w500,
                                       fontSize: 20.0,
                                       decoration: TextDecoration.underline,
                                     ),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 5.0,
                                   ),
                                   Text(
                                     appData.startTesting,
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         fontWeight: FontWeight.w300,
                                         fontSize: 14.0,
                                         color: Colors.black),
@@ -138,15 +136,18 @@ class _HomeState extends State<Home> {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10.0,
                           ),
-                          RaisedButton(
-                            elevation: 10.0,
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                              elevation: 10.0,
+                              backgroundColor: Theme.of(context).colorScheme.secondary,
+                            ),
                             onPressed: () {
-                              var router = new MaterialPageRoute(
+                              var router = MaterialPageRoute(
                                   builder: (BuildContext context) =>
-                                      new PatientInformation());
+                                      PatientInformation());
                               Navigator.of(context).pushAndRemoveUntil(
                                   router, (Route<dynamic> route) => false);
                             },
@@ -164,11 +165,13 @@ class _HomeState extends State<Home> {
                 //     color: Colors.white,
                 //     child: Padding(
                 //       padding: const EdgeInsets.all(20.0),
-                //       child: RaisedButton(
-                //         elevation: 10.0,
+                //       child: ElevatedButton(
+                //         style: ElevatedButton.styleFrom(
+                //           elevation: 10.0,
+                //           backgroundColor: Theme.of(context).colorScheme.secondary,
+                //         ),
                 //         onPressed: () async {
                 //           print("PDF tapped");
-
                 //           _launchURL();
                 //         },
                 //         child: Text(appData.resourceButtonBooklet),
@@ -176,7 +179,7 @@ class _HomeState extends State<Home> {
                 //     ),
                 //   ),
                 // ),
-                // SizedBox(
+                // const SizedBox(
                 //   height: 5.0,
                 // ),
                 // Container(
@@ -186,13 +189,16 @@ class _HomeState extends State<Home> {
                 //     color: Colors.white,
                 //     child: Padding(
                 //       padding: const EdgeInsets.all(20.0),
-                //       child: RaisedButton(
-                //         elevation: 10.0,
+                //       child: ElevatedButton(
+                //         style: ElevatedButton.styleFrom(
+                //           elevation: 10.0,
+                //           backgroundColor: Theme.of(context).colorScheme.secondary,
+                //         ),
                 //         onPressed: () {
                 //           Navigator.push(
                 //               context,
                 //               MaterialPageRoute(
-                //                   builder: (context) => ResourcePage()));
+                //                   builder: (context) => const ResourcePage()));
                 //         },
                 //         child: Text(appData.resourceButtonVideo),
                 //       ),
@@ -200,20 +206,11 @@ class _HomeState extends State<Home> {
                 //   ),
                 // )
               ],
-            ))
+            )),
           ],
         ),
       ),
     );
-  }
-
-  _launchURL() async {
-    const url = 'http://neoncortex.net/wp-content/mca/bca.pdf';
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 
   @override
@@ -223,7 +220,7 @@ class _HomeState extends State<Home> {
   }
 
   void saveInitialData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     // screen 1
     prefs.setInt("languageComprehensionRadioValue", 0);

@@ -1,40 +1,40 @@
 import 'package:flutter/material.dart';
 
 class VerbalShortTermMemory extends StatefulWidget {
-  int trialTwoScore;
-  int trialThreeScore;
-  int orientation;
-  int tenWordDelay;
-  int scoreVerbalRecognitionMemoryTenWords;
+  final int trialTwoScore;
+  final int trialThreeScore;
+  final int orientation;
+  final int tenWordDelay;
+  final int scoreVerbalRecognitionMemoryTenWords;
 
-  VerbalShortTermMemory(
-      {Key key,
-      this.trialTwoScore,
-      this.trialThreeScore,
-      this.orientation,
-      this.tenWordDelay,
-      this.scoreVerbalRecognitionMemoryTenWords})
-      : super(key: key);
+  const VerbalShortTermMemory({
+    super.key,
+    required this.trialTwoScore,
+    required this.trialThreeScore,
+    required this.orientation,
+    required this.tenWordDelay,
+    required this.scoreVerbalRecognitionMemoryTenWords,
+  });
 
   @override
   _VerbalShortTermMemoryState createState() => _VerbalShortTermMemoryState();
 }
 
 class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
-  String resultTrial3 = "normal";
-  Color resultTrial3Color;
+  late String resultTrial3;
+  late Color resultTrial3Color;
 
-  String resultTrial2 = "normal";
-  Color resultTrial2Color;
+  late String resultTrial2;
+  late Color resultTrial2Color;
 
-  String resultOrientation = "normal";
-  Color resultOrientationColor;
+  late String resultOrientation;
+  late Color resultOrientationColor;
 
-  String resultDelay = "normal";
-  Color resultDelayColor;
+  late String resultDelay;
+  late Color resultDelayColor;
 
-  String resultRecon = "normal";
-  Color resultReconColor;
+  late String resultRecon;
+  late Color resultReconColor;
 
   @override
   void initState() {
@@ -51,7 +51,7 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
     return Scaffold(
       appBar: AppBar(
         title: ListTile(
-          title: Text(
+          title: const Text(
             "Verbal Short-Term Memory",
             style: TextStyle(
               color: Colors.white,
@@ -59,7 +59,7 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
             ),
             textAlign: TextAlign.start,
           ),
-          subtitle: Text(
+          subtitle: const Text(
             "",
             style: TextStyle(
               color: Colors.white,
@@ -75,7 +75,7 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
             color: resultTrial2Color,
             elevation: 10.0,
             child: ListTile(
-              title: Text(
+              title: const Text(
                 "Short-term Memory Verbal Trial 2",
                 style: TextStyle(
                   color: Colors.black,
@@ -84,7 +84,7 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
               ),
               trailing: Text(
                 resultTrial2,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
                 ),
@@ -95,7 +95,7 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
             color: resultTrial3Color,
             elevation: 10.0,
             child: ListTile(
-              title: Text(
+              title: const Text(
                 "Short-term Memory Verbal Trial 3",
                 style: TextStyle(
                   color: Colors.black,
@@ -104,7 +104,7 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
               ),
               trailing: Text(
                 resultTrial3,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
                 ),
@@ -115,7 +115,7 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
             color: resultOrientationColor,
             elevation: 10.0,
             child: ListTile(
-              title: Text(
+              title: const Text(
                 "Orientation",
                 style: TextStyle(
                   color: Colors.black,
@@ -124,7 +124,7 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
               ),
               trailing: Text(
                 resultOrientation,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
                 ),
@@ -135,7 +135,7 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
             color: resultDelayColor,
             elevation: 10.0,
             child: ListTile(
-              title: Text(
+              title: const Text(
                 "Short-Term Memory Verbal: Delayed Recall Of 10 Words",
                 style: TextStyle(
                   color: Colors.black,
@@ -144,7 +144,7 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
               ),
               trailing: Text(
                 resultDelay,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
                 ),
@@ -155,7 +155,7 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
             color: resultReconColor,
             elevation: 10.0,
             child: ListTile(
-              title: Text(
+              title: const Text(
                 "Short-Term Memory Verbal Recognition: Total Score",
                 style: TextStyle(
                   color: Colors.black,
@@ -164,7 +164,7 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
               ),
               trailing: Text(
                 resultRecon,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
                 ),
@@ -176,8 +176,8 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
     );
   }
 
-  valueTrial2ResultToString(int _valueTotal) {
-    switch (_valueTotal > 6) {
+  void valueTrial2ResultToString(int valueTotal) {
+    switch (valueTotal > 6) {
       case true:
         {
           setState(() {
@@ -188,7 +188,7 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
         }
       case false:
         {
-          if (_valueTotal < 5) {
+          if (valueTotal < 5) {
             setState(() {
               resultTrial2 = "Impaired";
               resultTrial2Color = Colors.red;
@@ -204,8 +204,8 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
     }
   }
 
-  valueTrial3ResultToString(int _valueTotal) {
-    switch (_valueTotal > 7) {
+  void valueTrial3ResultToString(int valueTotal) {
+    switch (valueTotal > 7) {
       case true:
         {
           setState(() {
@@ -216,7 +216,7 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
         }
       case false:
         {
-          if (_valueTotal < 5) {
+          if (valueTotal < 5) {
             setState(() {
               resultTrial3 = "Impaired";
               resultTrial3Color = Colors.red;
@@ -232,8 +232,8 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
     }
   }
 
-  valueOrientationResultToString(int _valueTotal) {
-    switch (_valueTotal) {
+  void valueOrientationResultToString(int valueTotal) {
+    switch (valueTotal) {
       case 0:
         {
           setState(() {
@@ -261,8 +261,8 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
     }
   }
 
-  valueRecallResultToString(int _valueTotal) {
-    switch (_valueTotal > 5) {
+  void valueRecallResultToString(int valueTotal) {
+    switch (valueTotal > 5) {
       case true:
         {
           setState(() {
@@ -273,7 +273,7 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
         }
       case false:
         {
-          if (_valueTotal < 5) {
+          if (valueTotal < 5) {
             setState(() {
               resultDelay = "Impaired";
               resultDelayColor = Colors.red;
@@ -289,8 +289,8 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
     }
   }
 
-  valueRecogResultToString(int _valueTotal) {
-    switch (_valueTotal > 5) {
+  void valueRecogResultToString(int valueTotal) {
+    switch (valueTotal > 5) {
       case true:
         {
           setState(() {
@@ -301,7 +301,7 @@ class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
         }
       case false:
         {
-          if (_valueTotal < 5) {
+          if (valueTotal < 5) {
             setState(() {
               resultRecon = "Impaired";
               resultReconColor = Colors.red;

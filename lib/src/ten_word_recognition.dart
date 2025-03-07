@@ -5,34 +5,34 @@ import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class TenWordRecognition extends StatefulWidget {
-  String patientName;
-  String assessorName;
-  String handedness;
-  DateTime assessmentDate;
-  int languageComprehensionRadioValue;
-  int trialOneScore;
-  int trialTwoScore;
-  int trialThreeScore;
-  int visuospatialPraxisImage1;
-  int visuospatialPraxisImage2;
-  int visuospatialPraxisImage3;
-  int attention;
-  int attentionCorrect;
-  int attentionMistakes;
-  int executiveAnimalNaming;
-  int executiveAnimalNamingCount;
-  int executiveLuria;
-  int executiveLuriaScore;
-  int executiveSerial;
-  int executiveSerialScore;
-  int shorttermMemoryVerbal;
-  int shorttermMemoryVerbalScore;
-  int praxisRight;
-  int praxisLeft;
-  int tenWordDelay;
+  final String? patientName;
+  final String? assessorName;
+  final String? handedness;
+  final DateTime? assessmentDate;
+  final int? languageComprehensionRadioValue;
+  final int? trialOneScore;
+  final int? trialTwoScore;
+  final int? trialThreeScore;
+  final int? visuospatialPraxisImage1;
+  final int? visuospatialPraxisImage2;
+  final int? visuospatialPraxisImage3;
+  final int? attention;
+  final int? attentionCorrect;
+  final int? attentionMistakes;
+  final int? executiveAnimalNaming;
+  final int? executiveAnimalNamingCount;
+  final int? executiveLuria;
+  final int? executiveLuriaScore;
+  final int? executiveSerial;
+  final int? executiveSerialScore;
+  final int? shorttermMemoryVerbal;
+  final int? shorttermMemoryVerbalScore;
+  final int? praxisRight;
+  final int? praxisLeft;
+  final int? tenWordDelay;
 
-  TenWordRecognition(
-      {Key key,
+  const TenWordRecognition({
+      super.key,
       this.patientName,
       this.assessorName,
       this.handedness,
@@ -57,8 +57,7 @@ class TenWordRecognition extends StatefulWidget {
       this.shorttermMemoryVerbalScore,
       this.praxisRight,
       this.praxisLeft,
-      this.tenWordDelay})
-      : super(key: key);
+      this.tenWordDelay});
 
   @override
   _TenWordRecognitionState createState() => _TenWordRecognitionState();
@@ -73,8 +72,8 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
 
   bool yesNoSelected = false;
 
-  List<String> noColors;
-  List<String> yesColors;
+  List<String>? noColors;
+  List<String>? yesColors;
 
   @override
   void initState() {
@@ -87,19 +86,26 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
+    var width = MediaQuery.of(context).size.width;
     var screenHeightInfo =
         (MediaQuery.of(context).size.height * 0.3).floorToDouble();
     var screenHeightWords =
         (MediaQuery.of(context).size.height * 0.4).floorToDouble();
-    return WillPopScope(
-      onWillPop: savePrefData,
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (didPop) return;
+        final shouldPop = await savePrefData();
+        if (shouldPop && context.mounted) {
+          Navigator.of(context).pop();
+        }
+      },
       child: Scaffold(
         appBar: AppBar(
           title: ListTile(
             title: Text(
               appData.testTenWordRecognition,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
               ),
@@ -107,7 +113,7 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
             ),
             subtitle: Text(
               appData.testTenWordRecognitionSubtitle,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
               ),
@@ -116,10 +122,10 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
           ),
           actions: <Widget>[
             IconButton(
-                icon: Icon(Icons.clear),
+                icon: const Icon(Icons.clear),
                 onPressed: () {
-                  var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Welcome());
+                  var router = MaterialPageRoute(
+                      builder: (BuildContext context) => const Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -130,7 +136,7 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
             SizedBox(
               height: screenHeightInfo,
               child: ListView(
-                padding: EdgeInsets.fromLTRB(32.0, 8.0, 32.0, 8.0),
+                padding: const EdgeInsets.fromLTRB(32.0, 8.0, 32.0, 8.0),
                 children: <Widget>[
                   Card(
                     elevation: 10.0,
@@ -140,7 +146,7 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
                       children: <Widget>[
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
+                          children: const <Widget>[
                             Text(
                               "Scroll down to reveal more instructions",
                               style: TextStyle(
@@ -155,14 +161,14 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
                               appData.instructionsWordRecognitionPatient1,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 5.0,
                         ),
                         Card(
@@ -172,7 +178,7 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
                             padding: const EdgeInsets.all(8.0),
                             child: RichText(
                                 text: TextSpan(
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.w500,
                                         fontSize: 15.0),
@@ -183,7 +189,7 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
                                   TextSpan(
                                       text: appData
                                           .instructionsWordRecognitionHealthworker3,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           color: Colors.black,
                                           fontWeight: FontWeight.bold)),
                                   TextSpan(
@@ -202,11 +208,11 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
               height: 10.0,
             ),
             SizedBox(
-                width: MediaQuery.of(context).size.width,
+                width: width,
                 height: screenHeightWords,
                 child: ListView.builder(
                     itemCount: appData.tenWordMemoryList.length,
-                    padding: EdgeInsets.all(16.0),
+                    padding: const EdgeInsets.all(16.0),
                     itemBuilder: (BuildContext context, int index) {
                       return Card(
                         elevation: 10.0,
@@ -224,21 +230,19 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
                                     ? Colors.black
                                     : Colors.black38),
                           ),
-                          trailing: Container(
+                          trailing: SizedBox(
                             width: 200.0,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
                                 // yes button setup
-                                FlatButton(
+                                TextButton(
                                   onPressed: () {
                                     setState(() {
                                       if (wordButtonColor[index]["no"] ==
                                           Colors.white70) {
                                         if (wordButtonColor[index]["yes"] ==
                                             Colors.white70) {
-//                                        wordButtonColor[index]["yes"] =
-//                                            Colors.green;
                                           if (appData.tenWordRecallList
                                               .contains(appData
                                                   .tenWordMemoryList[index])) {
@@ -251,7 +255,7 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
                                             // Do nothing as word is not in list and not correctly rejected
                                           }
                                         }
-                                        //TODO: Sort out the scorring as it will not be correct as code is now
+                                        // Sort out the scorring as it will not be correct as code is now
 //                                      else if (wordButtonColor[index]
 //                                      ["yes"] ==
 //                                          Colors.green) {
@@ -277,8 +281,6 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
                                           Colors.green) {
                                         if (wordButtonColor[index]["yes"] ==
                                             Colors.white70) {
-//                                        wordButtonColor[index]["yes"] =
-//                                            Colors.green;
                                           wordButtonColor[index]["no"] =
                                               Colors.white70;
                                           if (appData.tenWordRecallList
@@ -301,8 +303,6 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
                                           Colors.red) {
                                         if (wordButtonColor[index]["yes"] ==
                                             Colors.white70) {
-//                                        wordButtonColor[index]["yes"] =
-//                                            Colors.green;
                                           wordButtonColor[index]["no"] =
                                               Colors.white70;
                                           if (appData.tenWordRecallList
@@ -324,11 +324,13 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
                                       }
                                     });
                                   },
-                                  child: Text("Yes"),
-                                  color: wordButtonColor[index]["yes"],
+                                  style: TextButton.styleFrom(
+                                    foregroundColor: wordButtonColor[index]["yes"],
+                                  ),
+                                  child: const Text("Yes"),
                                 ),
                                 // No Button Setup
-                                FlatButton(
+                                TextButton(
                                   onPressed: () {
                                     setState(() {
                                       if (wordButtonColor[index]["yes"] ==
@@ -393,8 +395,10 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
                                       }
                                     });
                                   },
-                                  child: Text("No"),
-                                  color: wordButtonColor[index]["no"],
+                                  style: TextButton.styleFrom(
+                                    foregroundColor: wordButtonColor[index]["no"],
+                                  ),
+                                  child: const Text("No"),
                                 )
                               ],
                             ),
@@ -405,74 +409,63 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
             SizedBox(
               height: 10.0,
             ),
-            Container(
-                width: _width * 0.9,
+            SizedBox(
+                width: width * 0.9,
                 child: Card(
                   elevation: 10.0,
                   color: Colors.white,
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: RaisedButton(
-                        elevation: 10.0,
-                        child: Text(
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          elevation: 10.0,
+                          backgroundColor: Theme.of(context).colorScheme.secondary,
+                        ),
+                        child: const Text(
                           "Continue",
                           overflow: TextOverflow.clip,
                         ),
-                        //onPressed: () => debugPrint("hello"),
                         onPressed: () {
-                          var router = new MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  new ShortTermMemoryVisual(
-                                    patientName: widget.patientName,
-                                    assessorName: widget.assessorName,
-                                    handedness: widget.handedness,
-                                    assessmentDate: widget.assessmentDate,
-                                    languageComprehensionRadioValue:
-                                        widget.languageComprehensionRadioValue,
-                                    trialOneScore: widget.trialOneScore,
-                                    trialTwoScore: widget.trialTwoScore,
-                                    trialThreeScore: widget.trialThreeScore,
-                                    visuospatialPraxisImage1:
-                                        widget.visuospatialPraxisImage1,
-                                    visuospatialPraxisImage2:
-                                        widget.visuospatialPraxisImage2,
-                                    visuospatialPraxisImage3:
-                                        widget.visuospatialPraxisImage3,
-                                    attention: widget.attention,
-                                    attentionCorrect: widget.attentionCorrect,
-                                    attentionMistakes: widget.attentionMistakes,
-                                    executiveAnimalNaming:
-                                        widget.executiveAnimalNaming,
-                                    executiveAnimalNamingCount:
-                                        widget.executiveAnimalNamingCount,
-                                    executiveLuria: widget.executiveLuria,
-                                    executiveLuriaScore:
-                                        widget.executiveLuriaScore,
-                                    executiveSerial: widget.executiveSerial,
-                                    executiveSerialScore:
-                                        widget.executiveSerialScore,
-                                    praxisRight: widget.praxisRight,
-                                    praxisLeft: widget.praxisLeft,
-                                    shorttermMemoryVerbal:
-                                        widget.shorttermMemoryVerbal,
-                                    shorttermMemoryVerbalScore:
-                                        widget.shorttermMemoryVerbalScore,
-                                    tenWordDelay: widget.tenWordDelay,
-                                    scoreVerbalRecognitionMemoryTenWords:
-                                        scoreVerbalRecognitionMemoryTenWords,
-                                    scoreVerbalRecognitionMemoryTenWordsInList:
-                                        scoreVerbalRecognitionMemoryTenWordsInList,
-                                    scoreVerbalRecognitionMemoryTenWordsNotInList:
-                                        scoreVerbalRecognitionMemoryTenWordsNotInList,
-                                  ));
-                          Navigator.of(context).pushAndRemoveUntil(
-                              router, (Route<dynamic> route) => true);
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => ShortTermMemoryVisual(
+                                patientName: widget.patientName,
+                                assessorName: widget.assessorName,
+                                handedness: widget.handedness,
+                                assessmentDate: widget.assessmentDate,
+                                languageComprehensionRadioValue: widget.languageComprehensionRadioValue,
+                                trialOneScore: widget.trialOneScore,
+                                trialTwoScore: widget.trialTwoScore,
+                                trialThreeScore: widget.trialThreeScore,
+                                visuospatialPraxisImage1: widget.visuospatialPraxisImage1,
+                                visuospatialPraxisImage2: widget.visuospatialPraxisImage2,
+                                visuospatialPraxisImage3: widget.visuospatialPraxisImage3,
+                                attention: widget.attention,
+                                attentionCorrect: widget.attentionCorrect,
+                                attentionMistakes: widget.attentionMistakes,
+                                executiveAnimalNaming: widget.executiveAnimalNaming,
+                                executiveAnimalNamingCount: widget.executiveAnimalNamingCount,
+                                executiveLuria: widget.executiveLuria,
+                                executiveLuriaScore: widget.executiveLuriaScore,
+                                executiveSerial: widget.executiveSerial,
+                                executiveSerialScore: widget.executiveSerialScore,
+                                shorttermMemoryVerbal: widget.shorttermMemoryVerbal,
+                                shorttermMemoryVerbalScore: widget.shorttermMemoryVerbalScore,
+                                praxisRight: widget.praxisRight,
+                                praxisLeft: widget.praxisLeft,
+                                tenWordDelay: widget.tenWordDelay,
+                                scoreVerbalRecognitionMemoryTenWords: scoreVerbalRecognitionMemoryTenWords,
+                                scoreVerbalRecognitionMemoryTenWordsInList: scoreVerbalRecognitionMemoryTenWordsInList,
+                                scoreVerbalRecognitionMemoryTenWordsNotInList: scoreVerbalRecognitionMemoryTenWordsNotInList,
+                              ),
+                            ),
+                          );
                         }),
                   ),
                 )),
           ],
         ),
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: Theme.of(context).colorScheme.surface,
       ),
     );
   }
@@ -497,60 +490,12 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
     scoreVerbalRecognitionMemoryTenWordsNotInList -= 1;
   }
 
-  void getPrefsData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    int score1 = prefs.getInt("scoreVerbalRecognitionMemoryTenWords");
-    int score2 = prefs.getInt("scoreVerbalRecognitionMemoryTenWordsInList");
-    int score3 = prefs.getInt("scoreVerbalRecognitionMemoryTenWordsNotInList");
-    yesColors = prefs.getStringList("yesColors");
-    noColors = prefs.getStringList("noColors");
-
-    for (var i = 0; i < 20; i++) {
-      if (yesColors[i] == "white") {
-        setState(() {
-          wordButtonColor[i]["yes"] = Colors.white70;
-        });
-      } else if (yesColors[i] == "red") {
-        setState(() {
-          wordButtonColor[i]["yes"] = Colors.red;
-        });
-      } else {
-        setState(() {
-          wordButtonColor[i]["yes"] = Colors.green;
-        });
-      }
-
-      if (noColors[i] == "white") {
-        setState(() {
-          wordButtonColor[i]["no"] = Colors.white70;
-        });
-      } else if (noColors[i] == "red") {
-        setState(() {
-          wordButtonColor[i]["no"] = Colors.red;
-        });
-      } else {
-        setState(() {
-          wordButtonColor[i]["no"] = Colors.green;
-        });
-      }
-    }
-
-    setState(() {
-      scoreVerbalRecognitionMemoryTenWords = score1;
-      scoreVerbalRecognitionMemoryTenWordsInList = score2;
-      scoreVerbalRecognitionMemoryTenWordsNotInList = score3;
-    });
-  }
-
   Future<bool> savePrefData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    prefs.setInt("scoreVerbalRecognitionMemoryTenWords",
-        scoreVerbalRecognitionMemoryTenWords);
-    prefs.setInt("scoreVerbalRecognitionMemoryTenWordsInList",
-        scoreVerbalRecognitionMemoryTenWordsInList);
-    prefs.setInt("scoreVerbalRecognitionMemoryTenWordsNotInList",
-        scoreVerbalRecognitionMemoryTenWordsNotInList);
+    prefs.setInt("tenWordRecognition", scoreVerbalRecognitionMemoryTenWords);
+    prefs.setInt("tenWordRecognitionInList", scoreVerbalRecognitionMemoryTenWordsInList);
+    prefs.setInt("tenWordRecognitionNotInList", scoreVerbalRecognitionMemoryTenWordsNotInList);
 
     List<String> noWordColor = [];
     List<String> yesWordColor = [];
@@ -576,5 +521,15 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
     prefs.setStringList("yesColors", yesWordColor);
 
     return true;
+  }
+
+  void getPrefsData() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      scoreVerbalRecognitionMemoryTenWords = prefs.getInt("tenWordRecognition") ?? 0;
+      scoreVerbalRecognitionMemoryTenWordsInList = prefs.getInt("tenWordRecognitionInList") ?? 0;
+      scoreVerbalRecognitionMemoryTenWordsNotInList = prefs.getInt("tenWordRecognitionNotInList") ?? 0;
+    });
   }
 }

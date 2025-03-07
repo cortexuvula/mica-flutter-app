@@ -5,76 +5,75 @@ import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Executive extends StatefulWidget {
-  String patientName;
-  String assessorName;
-  String handedness;
-  DateTime assessmentDate;
-  int languageComprehensionRadioValue;
-  int trialOneScore;
-  int trialTwoScore;
-  int trialThreeScore;
-  int visuospatialPraxisImage1;
-  int visuospatialPraxisImage2;
-  int visuospatialPraxisImage3;
-  int attention;
-  int attentionCorrect;
-  int attentionMistakes;
-  int executiveAnimalNaming;
-  int executiveAnimalNamingCount;
-  int executiveLuria;
-  int executiveLuriaScore;
-  int executiveSerial;
-  int executiveSerialScore;
-  int shorttermMemoryVerbal;
-  int shorttermMemoryVerbalScore;
-  int praxisRight;
-  int praxisLeft;
-  int tenWordDelay;
-  int scoreVerbalRecognitionMemoryTenWords;
-  int scoreVerbalRecognitionMemoryTenWordsInList;
-  int scoreVerbalRecognitionMemoryTenWordsNotInList;
-  int shorttermMemoryVisualImage1;
-  int shorttermMemoryVisualImage2;
-  int shorttermMemoryVisualImage3;
-  int anomiaAgnosia;
-  int agnosia;
+  final String? patientName;
+  final String? assessorName;
+  final String? handedness;
+  final DateTime? assessmentDate;
+  final int? languageComprehensionRadioValue;
+  final int? trialOneScore;
+  final int? trialTwoScore;
+  final int? trialThreeScore;
+  final int? visuospatialPraxisImage1;
+  final int? visuospatialPraxisImage2;
+  final int? visuospatialPraxisImage3;
+  final int? attention;
+  final int? attentionCorrect;
+  final int? attentionMistakes;
+  final int? executiveAnimalNaming;
+  final int? executiveAnimalNamingCount;
+  final int? executiveLuria;
+  final int? executiveLuriaScore;
+  final int? executiveSerial;
+  final int? executiveSerialScore;
+  final int? shorttermMemoryVerbal;
+  final int? shorttermMemoryVerbalScore;
+  final int? praxisRight;
+  final int? praxisLeft;
+  final int? tenWordDelay;
+  final int? scoreVerbalRecognitionMemoryTenWords;
+  final int? scoreVerbalRecognitionMemoryTenWordsInList;
+  final int? scoreVerbalRecognitionMemoryTenWordsNotInList;
+  final int? shorttermMemoryVisualImage1;
+  final int? shorttermMemoryVisualImage2;
+  final int? shorttermMemoryVisualImage3;
+  final int? anomiaAgnosia;
+  final int? agnosia;
 
-  Executive(
-      {Key key,
-      this.patientName,
-      this.assessorName,
-      this.handedness,
-      this.assessmentDate,
-      this.languageComprehensionRadioValue,
-      this.trialOneScore,
-      this.trialTwoScore,
-      this.trialThreeScore,
-      this.visuospatialPraxisImage1,
-      this.visuospatialPraxisImage2,
-      this.visuospatialPraxisImage3,
-      this.attention,
-      this.attentionCorrect,
-      this.attentionMistakes,
-      this.executiveAnimalNaming,
-      this.executiveAnimalNamingCount,
-      this.executiveLuria,
-      this.executiveLuriaScore,
-      this.executiveSerial,
-      this.executiveSerialScore,
-      this.shorttermMemoryVerbal,
-      this.shorttermMemoryVerbalScore,
-      this.praxisRight,
-      this.praxisLeft,
-      this.tenWordDelay,
-      this.scoreVerbalRecognitionMemoryTenWords,
-      this.scoreVerbalRecognitionMemoryTenWordsInList,
-      this.scoreVerbalRecognitionMemoryTenWordsNotInList,
-      this.shorttermMemoryVisualImage1,
-      this.shorttermMemoryVisualImage2,
-      this.shorttermMemoryVisualImage3,
-      this.anomiaAgnosia,
-      this.agnosia})
-      : super(key: key);
+  const Executive({
+    super.key,
+    this.patientName,
+    this.assessorName,
+    this.handedness,
+    this.assessmentDate,
+    this.languageComprehensionRadioValue,
+    this.trialOneScore,
+    this.trialTwoScore,
+    this.trialThreeScore,
+    this.visuospatialPraxisImage1,
+    this.visuospatialPraxisImage2,
+    this.visuospatialPraxisImage3,
+    this.attention,
+    this.attentionCorrect,
+    this.attentionMistakes,
+    this.executiveAnimalNaming,
+    this.executiveAnimalNamingCount,
+    this.executiveLuria,
+    this.executiveLuriaScore,
+    this.executiveSerial,
+    this.executiveSerialScore,
+    this.shorttermMemoryVerbal,
+    this.shorttermMemoryVerbalScore,
+    this.praxisRight,
+    this.praxisLeft,
+    this.tenWordDelay,
+    this.scoreVerbalRecognitionMemoryTenWords,
+    this.scoreVerbalRecognitionMemoryTenWordsInList,
+    this.scoreVerbalRecognitionMemoryTenWordsNotInList,
+    this.shorttermMemoryVisualImage1,
+    this.shorttermMemoryVisualImage2,
+    this.shorttermMemoryVisualImage3,
+    this.anomiaAgnosia,
+    this.agnosia});
 
   @override
   _ExecutiveState createState() => _ExecutiveState();
@@ -83,7 +82,7 @@ class Executive extends StatefulWidget {
 class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
   double sizeBoxHeight = 10.0;
 
-  int _radioValue;
+  int _radioValue = 0;
   int imageNumber = 0;
 
   String displayImage = appData.imageURL[0];
@@ -91,12 +90,12 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
   bool backButtonActive = false;
   bool forwardButtonActive = true;
 
-  AnimationController clockController;
+  late AnimationController clockController;
 
   String buttonText = "Start";
 
   String get timerString {
-    Duration duration = clockController.duration * clockController.value;
+    Duration duration = clockController.duration! * clockController.value;
     return '${duration.inMinutes}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
 
@@ -105,7 +104,7 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
     super.initState();
     clockController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 60),
+      duration: const Duration(seconds: 60),
     );
     getPrefsData();
   }
@@ -118,16 +117,20 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
-    var sizeBoxWidth = (_width * 0.8) / 3;
-    return WillPopScope(
-      onWillPop: savePrefData,
+    var width = MediaQuery.of(context).size.width;
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (!didPop) {
+          await savePrefData();
+        }
+      },
       child: Scaffold(
         appBar: AppBar(
           title: ListTile(
             title: Text(
               appData.testExecutive,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
               ),
@@ -135,7 +138,7 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
             ),
             subtitle: Text(
               appData.testExecutiveSubtitle,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
               ),
@@ -144,10 +147,10 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
           ),
           actions: <Widget>[
             IconButton(
-                icon: Icon(Icons.clear),
+                icon: const Icon(Icons.clear),
                 onPressed: () {
-                  var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Welcome());
+                  var router = MaterialPageRoute(
+                      builder: (BuildContext context) => const Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -162,8 +165,8 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.yellowAccent.shade400,
@@ -174,7 +177,7 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                             Text(
                               appData.testExecutiveToPatient,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
@@ -187,8 +190,8 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.deepPurple.shade300,
@@ -199,29 +202,29 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                             Text(
                               appData.testExecutiveDetails,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
                             ),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                width: _width * 0.8,
+                              child: SizedBox(
+                                width: width * 0.8,
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
-                                    Container(
-                                      width: _width * 0.35,
+                                    SizedBox(
+                                      width: width * 0.35,
                                       height: 100.0,
                                       child: Image.asset(
                                         "./images/hash.png",
                                         fit: BoxFit.contain,
                                       ),
                                     ),
-                                    Container(
-                                      width: _width * 0.35,
+                                    SizedBox(
+                                      width: width * 0.35,
                                       height: 100.0,
                                       child: Image.asset(
                                         "./images/steps.png",
@@ -240,8 +243,8 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.yellowAccent.shade400,
@@ -252,7 +255,7 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                             Text(
                               appData.testExecutiveToPatient2,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
@@ -265,8 +268,8 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.deepPurple.shade300,
@@ -279,20 +282,22 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                               child: AnimatedBuilder(
                                   animation: clockController,
                                   builder:
-                                      (BuildContext context, Widget child) {
-                                    return new Text(
+                                      (BuildContext context, Widget? child) {
+                                    return Text(
                                       timerString,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 20.0,
                                           fontWeight: FontWeight.w500),
                                     );
                                   }),
                             ),
-                            Container(
+                            SizedBox(
                               width: 150.0,
-                              child: FlatButton(
-                                  color: Colors.cyan.shade200,
+                              child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: Colors.cyan.shade200,
+                                  ),
                                   onPressed: () {
                                     if (clockController.isAnimating) {
                                       clockController.stop();
@@ -310,8 +315,8 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                                     }
                                   },
                                   child: Text(
-                                    "$buttonText",
-                                    style: TextStyle(
+                                    buttonText,
+                                    style: const TextStyle(
                                         fontSize: 20.0,
                                         fontWeight: FontWeight.w500),
                                   )),
@@ -324,8 +329,8 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.green,
@@ -336,7 +341,7 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                             Text(
                               appData.testExecutiveResponse,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
@@ -346,9 +351,9 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                               defaultVerticalAlignment:
                                   TableCellVerticalAlignment.middle,
                               columnWidths: {
-                                0: FlexColumnWidth(0.3),
-                                1: FlexColumnWidth(0.3),
-                                2: FlexColumnWidth(0.34)
+                                0: const FlexColumnWidth(0.3),
+                                1: const FlexColumnWidth(0.3),
+                                2: const FlexColumnWidth(0.34)
                               },
                               children: [
                                 TableRow(children: [
@@ -362,7 +367,7 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                                       ),
                                       Text(
                                         "Normal",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.black,
                                           fontSize: 10.0,
                                         ),
@@ -379,7 +384,7 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                                       ),
                                       Text(
                                         "Equivocal",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.black,
                                           fontSize: 10.0,
                                         ),
@@ -396,7 +401,7 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                                       ),
                                       Text(
                                         "Impaired",
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.black,
                                           fontSize: 10.0,
                                         ),
@@ -410,7 +415,7 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                                     child: Text(
                                       appData.testExecutiveResponseNormal,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                   Padding(
@@ -418,7 +423,7 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                                     child: Text(
                                       appData.testExecutiveResponseEquivocal,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                   Padding(
@@ -426,7 +431,7 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                                     child: Text(
                                       appData.testExecutiveResponseImpaired,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                 ])
@@ -440,77 +445,76 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: RaisedButton(
-                          elevation: 10.0,
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton(
                           onPressed: () {
-                            var router = new MaterialPageRoute(
+                            var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    new SpokenLanguage(
-                                      patientName: widget.patientName,
-                                      assessorName: widget.assessorName,
-                                      handedness: widget.handedness,
-                                      assessmentDate: widget.assessmentDate,
-                                      languageComprehensionRadioValue: widget
-                                          .languageComprehensionRadioValue,
-                                      trialOneScore: widget.trialOneScore,
-                                      trialTwoScore: widget.trialTwoScore,
-                                      trialThreeScore: widget.trialThreeScore,
+                                    SpokenLanguage(
+                                      patientName: widget.patientName ?? "",
+                                      assessorName: widget.assessorName ?? "",
+                                      handedness: widget.handedness ?? "",
+                                      assessmentDate: widget.assessmentDate ?? DateTime.now(),
+                                      languageComprehensionRadioValue:
+                                          widget.languageComprehensionRadioValue ?? 0,
+                                      trialOneScore: widget.trialOneScore ?? 0,
+                                      trialTwoScore: widget.trialTwoScore ?? 0,
+                                      trialThreeScore: widget.trialThreeScore ?? 0,
                                       visuospatialPraxisImage1:
-                                          widget.visuospatialPraxisImage1,
+                                          widget.visuospatialPraxisImage1 ?? 0,
                                       visuospatialPraxisImage2:
-                                          widget.visuospatialPraxisImage2,
+                                          widget.visuospatialPraxisImage2 ?? 0,
                                       visuospatialPraxisImage3:
-                                          widget.visuospatialPraxisImage3,
-                                      attention: widget.attention,
-                                      attentionCorrect: widget.attentionCorrect,
+                                          widget.visuospatialPraxisImage3 ?? 0,
+                                      attention: widget.attention ?? 0,
+                                      attentionCorrect: widget.attentionCorrect ?? 0,
                                       attentionMistakes:
-                                          widget.attentionMistakes,
+                                          widget.attentionMistakes ?? 0,
                                       executiveAnimalNaming:
-                                          widget.executiveAnimalNaming,
+                                          widget.executiveAnimalNaming ?? 0,
                                       executiveAnimalNamingCount:
-                                          widget.executiveAnimalNamingCount,
-                                      executiveLuria: widget.executiveLuria,
+                                          widget.executiveAnimalNamingCount ?? 0,
+                                      executiveLuria: widget.executiveLuria ?? 0,
                                       executiveLuriaScore:
-                                          widget.executiveLuriaScore,
-                                      executiveSerial: widget.executiveSerial,
+                                          widget.executiveLuriaScore ?? 0,
+                                      executiveSerial: widget.executiveSerial ?? 0,
                                       executiveSerialScore:
-                                          widget.executiveSerialScore,
-                                      praxisRight: widget.praxisRight,
-                                      praxisLeft: widget.praxisLeft,
+                                          widget.executiveSerialScore ?? 0,
+                                      praxisRight: widget.praxisRight ?? 0,
+                                      praxisLeft: widget.praxisLeft ?? 0,
                                       shorttermMemoryVerbal:
-                                          widget.shorttermMemoryVerbal,
+                                          widget.shorttermMemoryVerbal ?? 0,
                                       shorttermMemoryVerbalScore:
-                                          widget.shorttermMemoryVerbalScore,
-                                      tenWordDelay: widget.tenWordDelay,
-                                      scoreVerbalRecognitionMemoryTenWords: widget
-                                          .scoreVerbalRecognitionMemoryTenWords,
+                                          widget.shorttermMemoryVerbalScore ?? 0,
+                                      tenWordDelay: widget.tenWordDelay ?? 0,
+                                      scoreVerbalRecognitionMemoryTenWords:
+                                          widget.scoreVerbalRecognitionMemoryTenWords ?? 0,
                                       scoreVerbalRecognitionMemoryTenWordsInList:
                                           widget
-                                              .scoreVerbalRecognitionMemoryTenWordsInList,
+                                              .scoreVerbalRecognitionMemoryTenWordsInList ?? 0,
                                       scoreVerbalRecognitionMemoryTenWordsNotInList:
                                           widget
-                                              .scoreVerbalRecognitionMemoryTenWordsNotInList,
+                                              .scoreVerbalRecognitionMemoryTenWordsNotInList ?? 0,
                                       shorttermMemoryVisualImage1:
-                                          widget.shorttermMemoryVisualImage1,
+                                          widget.shorttermMemoryVisualImage1 ?? 0,
                                       shorttermMemoryVisualImage2:
-                                          widget.shorttermMemoryVisualImage2,
+                                          widget.shorttermMemoryVisualImage2 ?? 0,
                                       shorttermMemoryVisualImage3:
-                                          widget.shorttermMemoryVisualImage3,
-                                      anomiaAgnosia: widget.anomiaAgnosia,
-                                      agnosia: widget.agnosia,
+                                          widget.shorttermMemoryVisualImage3 ?? 0,
+                                      anomiaAgnosia: widget.anomiaAgnosia ?? 0,
+                                      agnosia: widget.agnosia ?? 0,
                                       executive: _radioValue,
                                     ));
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: Text("Continue with Testing"),
+                          child: const Text("Continue with Testing"),
                         ),
                       ),
                     ),
@@ -524,17 +528,17 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
     );
   }
 
-  void _handleRadioValueChange(int value) {
+  void _handleRadioValueChange(int? value) {
     setState(() {
-      _radioValue = value;
+      _radioValue = value ?? 0;
     });
   }
 
   void getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int _setRadioPref = prefs.getInt("executive");
+    int? setRadioPref = prefs.getInt("executive");
     setState(() {
-      _radioValue = _setRadioPref;
+      _radioValue = setRadioPref ?? 0;
     });
   }
 

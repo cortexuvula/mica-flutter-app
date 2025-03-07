@@ -1,32 +1,31 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/attention.dart';
-import 'package:mica/src/home.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/show_image.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class VisuospatialPraxis extends StatefulWidget {
-  String patientName;
-  String assessorName;
-  String handedness;
-  DateTime assessmentDate;
-  int languageComprehensionRadioValue;
-  int trialOneScore;
-  int trialTwoScore;
-  int trialThreeScore;
+  final String? patientName;
+  final String? assessorName;
+  final String? handedness;
+  final DateTime? assessmentDate;
+  final int? languageComprehensionRadioValue;
+  final int? trialOneScore;
+  final int? trialTwoScore;
+  final int? trialThreeScore;
 
-  VisuospatialPraxis(
-      {Key key,
-      this.patientName,
-      this.assessorName,
-      this.handedness,
-      this.assessmentDate,
-      this.languageComprehensionRadioValue,
-      this.trialOneScore,
-      this.trialTwoScore,
-      this.trialThreeScore})
-      : super(key: key);
+  const VisuospatialPraxis({
+    super.key,
+    this.patientName,
+    this.assessorName,
+    this.handedness,
+    this.assessmentDate,
+    this.languageComprehensionRadioValue,
+    this.trialOneScore,
+    this.trialTwoScore,
+    this.trialThreeScore,
+  });
 
   @override
   _VisuospatialPraxisState createState() => _VisuospatialPraxisState();
@@ -34,9 +33,9 @@ class VisuospatialPraxis extends StatefulWidget {
 
 class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
   double sizeBoxHeight = 5.0;
-  int _radioValueImageOne;
-  int _radioValueImageTwo;
-  int _radioValueImageThree;
+  int? _radioValueImageOne;
+  int? _radioValueImageTwo;
+  int? _radioValueImageThree;
 
   int imageNumber = 0;
 
@@ -53,17 +52,23 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
-    var _sizeboxWidth = _width * 0.8 / 5;
-    double _fontSize = 8.0;
-    return WillPopScope(
-      onWillPop: savePrefData,
+    var width = MediaQuery.of(context).size.width;
+    double fontSize = 8.0;
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (didPop) return;
+        final shouldPop = await savePrefData();
+        if (shouldPop && context.mounted) {
+          Navigator.of(context).pop();
+        }
+      },
       child: Scaffold(
         appBar: AppBar(
           title: ListTile(
             title: Text(
               appData.testVisuospatialPraxis,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
               ),
@@ -71,7 +76,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
             ),
             subtitle: Text(
               appData.testVisuospatialPraxisSubtitle,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
               ),
@@ -80,19 +85,23 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
           ),
           actions: <Widget>[
             IconButton(
-                icon: Icon(Icons.clear),
-                onPressed: () {
-                  var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Welcome());
-                  Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => false);
-                })
+              icon: const Icon(Icons.clear),
+              onPressed: () {
+                var router = MaterialPageRoute(
+                  builder: (BuildContext context) => const Welcome(),
+                );
+                Navigator.of(context).pushAndRemoveUntil(
+                  router,
+                  (Route<dynamic> route) => false,
+                );
+              },
+            ),
           ],
         ),
         body: PageView(
           children: <Widget>[
             Container(
-              color: Theme.of(context).backgroundColor,
+              color: Theme.of(context).scaffoldBackgroundColor,
               child: ListView(
                 children: <Widget>[
                   Center(
@@ -101,8 +110,8 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                         SizedBox(
                           height: sizeBoxHeight,
                         ),
-                        Container(
-                          width: _width * 0.9,
+                        SizedBox(
+                          width: width * 0.9,
                           child: Card(
                             elevation: 10.0,
                             color: Colors.deepPurple.shade300,
@@ -110,26 +119,14 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: <Widget>[
-//                                Text(
-//                                  appData.testDescription,
-//                                  textAlign: TextAlign.left,
-//                                  style: TextStyle(
-//                                    color: Colors.black,
-//                                    fontWeight: FontWeight.w500,
-//                                    fontSize: 20.0,
-//                                    decoration: TextDecoration.underline,
-//                                  ),
-//                                ),
-//                                SizedBox(
-//                                  height: 5.0,
-//                                ),
                                   Text(
                                     appData.testVisuospatialPraxisDetails,
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 15.0),
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 15.0,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -139,8 +136,8 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                         SizedBox(
                           height: sizeBoxHeight,
                         ),
-                        Container(
-                          width: _width * 0.9,
+                        SizedBox(
+                          width: width * 0.9,
                           child: Card(
                             elevation: 10.0,
                             color: Colors.yellowAccent.shade400,
@@ -148,26 +145,14 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: <Widget>[
-//                                Text(
-//                                  appData.testToPatient,
-//                                  textAlign: TextAlign.left,
-//                                  style: TextStyle(
-//                                    color: Colors.black,
-//                                    fontWeight: FontWeight.w500,
-//                                    fontSize: 20.0,
-//                                    decoration: TextDecoration.underline,
-//                                  ),
-//                                ),
-//                                SizedBox(
-//                                  height: 5.0,
-//                                ),
                                   Text(
                                     appData.testVisuospatialPraxisToPatient,
                                     textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 15.0),
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 15.0,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -178,855 +163,433 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
                             IconButton(
-                                icon: Icon(Icons.arrow_back_ios),
-                                iconSize: 40.0,
-                                onPressed: backButtonActive
-                                    ? () {
-                                        print("tapped");
-                                        if (imageNumber > 0) {
-                                          setState(() {
-                                            imageNumber -= 1;
-                                            displayImage = appData
-                                                .imageURLPraxis[imageNumber];
-                                          });
-                                        }
-                                        if (imageNumber == 0) {
-                                          setState(() {
-                                            backButtonActive = false;
-                                          });
-                                        }
-                                        if (imageNumber < 2) {
-                                          setState(() {
-                                            forwardButtonActive = true;
-                                          });
-                                        }
+                              icon: const Icon(Icons.arrow_back_ios),
+                              iconSize: 40.0,
+                              onPressed: backButtonActive
+                                  ? () {
+                                      print("tapped");
+                                      if (imageNumber > 0) {
+                                        setState(() {
+                                          imageNumber -= 1;
+                                          displayImage =
+                                              appData.imageURLPraxis[imageNumber];
+                                        });
                                       }
-                                    : null),
-                            SizedBox(
-                              width: 20.0,
+                                      if (imageNumber == 0) {
+                                        setState(() {
+                                          backButtonActive = false;
+                                        });
+                                      }
+                                      if (imageNumber < 2) {
+                                        setState(() {
+                                          forwardButtonActive = true;
+                                        });
+                                      }
+                                    }
+                                  : null,
                             ),
-                            Card(
-                              elevation: 10.0,
-                              color: Colors.white,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: GestureDetector(
-                                  onTap: () {
-                                    var router = new MaterialPageRoute(
-                                        builder: (BuildContext context) =>
-                                            new ShowImage(
-                                              imageURL: displayImage,
-                                              imageNumber: imageNumber,
-                                            ));
-                                    Navigator.of(context).pushAndRemoveUntil(
-                                        router, (Route<dynamic> route) => true);
-                                  },
-                                  child: SizedBox(
-                                    width: 150.0,
-                                    height: 150.0,
-                                    child: Image.asset(
-                                      displayImage,
-                                      fit: BoxFit.contain,
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => ShowImage(
+                                      imageURL:
+                                          appData.imageURLPraxis[imageNumber],
+                                      imageNumber: imageNumber,
                                     ),
+                                  ),
+                                );
+                              },
+                              child: Container(
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Image.asset(
+                                    displayImage,
+                                    width: width / 2,
                                   ),
                                 ),
                               ),
                             ),
-                            SizedBox(
-                              width: 20.0,
-                            ),
                             IconButton(
-                                icon: Icon(Icons.arrow_forward_ios),
-                                iconSize: 40.0,
-                                onPressed: forwardButtonActive
-                                    ? () {
-                                        print("tapped");
-                                        if (imageNumber < 2) {
-                                          setState(() {
-                                            imageNumber += 1;
-                                            displayImage = appData
-                                                .imageURLPraxis[imageNumber];
-                                          });
-                                        }
-                                        if (imageNumber == 2) {
-                                          setState(() {
-                                            forwardButtonActive = false;
-                                          });
-                                        }
-                                        if (imageNumber > 0) {
-                                          setState(() {
-                                            backButtonActive = true;
-                                          });
-                                        }
+                              icon: const Icon(Icons.arrow_forward_ios),
+                              iconSize: 40.0,
+                              onPressed: forwardButtonActive
+                                  ? () {
+                                      if (imageNumber < 2) {
+                                        setState(() {
+                                          imageNumber += 1;
+                                          displayImage =
+                                              appData.imageURLPraxis[imageNumber];
+                                        });
                                       }
-                                    : null),
+                                      if (imageNumber == 2) {
+                                        setState(() {
+                                          forwardButtonActive = false;
+                                        });
+                                      }
+                                      if (imageNumber > 0) {
+                                        setState(() {
+                                          backButtonActive = true;
+                                        });
+                                      }
+                                    }
+                                  : null,
+                            ),
                           ],
                         ),
                         SizedBox(
                           height: sizeBoxHeight,
                         ),
-                        Container(
-                          width: _width * 0.9,
+                        SizedBox(
+                          width: width * 0.9,
                           child: Card(
                             elevation: 10.0,
-                            color: Colors.green,
+                            color: Colors.white,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: <Widget>[
-//                                Text(
-//                                  appData.testResponse,
-//                                  textAlign: TextAlign.left,
-//                                  style: TextStyle(
-//                                    color: Colors.black,
-//                                    fontWeight: FontWeight.w500,
-//                                    fontSize: 20.0,
-//                                    decoration: TextDecoration.underline,
-//                                  ),
-//                                ),
-//                                SizedBox(
-//                                  height: 5.0,
-//                                ),
-//                                Text(
-//                                  appData.testVisuospatialPraxisResponse,
-//                                  textAlign: TextAlign.center,
-//                                  style: TextStyle(
-//                                      color: Colors.black,
-//                                      fontWeight: FontWeight.w500,
-//                                      fontSize: 15.0),
-//                                ),
+                                  Text(
+                                    appData.testVisuospatialPraxisScoring,
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                      color: Colors.green,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 15.0,
+                                    ),
+                                  ),
                                   SizedBox(
-                                    height: 5.0,
+                                    height: sizeBoxHeight,
+                                  ),
+                                  Text(
+                                    "Image One",
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 13.0,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: sizeBoxHeight,
                                   ),
                                   Table(
                                     border: TableBorder.all(),
                                     defaultVerticalAlignment:
                                         TableCellVerticalAlignment.middle,
                                     columnWidths: {
-                                      0: FlexColumnWidth(0.2),
-                                      1: FlexColumnWidth(0.2),
-                                      2: FlexColumnWidth(0.2),
-                                      3: FlexColumnWidth(0.2),
-                                      4: FlexColumnWidth(0.2),
+                                      0: const FlexColumnWidth(0.2),
+                                      1: const FlexColumnWidth(0.2),
+                                      2: const FlexColumnWidth(0.2),
+                                      3: const FlexColumnWidth(0.2),
+                                      4: const FlexColumnWidth(0.2),
                                     },
                                     children: [
-                                      TableRow(children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                            "Image",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: _fontSize,
+                                      TableRow(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              "Image",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: fontSize,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                            "No Mistakes",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: _fontSize,
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              "No Mistakes",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: fontSize,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                            "Few Omissions",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: _fontSize,
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              "Few Omissions",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: fontSize,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                            "Poor",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: _fontSize,
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              "Poor",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: fontSize,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                            "No Drawing",
-                                            style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: _fontSize,
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              "No Drawing",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                                fontSize: fontSize,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                      ]),
-                                      TableRow(children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                            "Image 1",
-                                            style: TextStyle(
-                                              color: Colors.black,
+                                        ],
+                                      ),
+                                      TableRow(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              "Image 1",
+                                              style: TextStyle(
+                                                color: Colors.black,
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        Row(
-                                          children: <Widget>[
-                                            Radio(
-                                              value: 0,
-                                              groupValue: _radioValueImageOne,
-                                              onChanged:
-                                                  _handleRadioValueChange1,
-                                              activeColor: Colors.white,
-                                            ),
-                                            Text(
-                                              "3",
+                                          Row(
+                                            children: <Widget>[
+                                              Radio(
+                                                value: 0,
+                                                groupValue: _radioValueImageOne,
+                                                onChanged: _handleRadioValueChange1,
+                                                activeColor: Colors.white,
+                                              ),
+                                              Text(
+                                                "3",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: <Widget>[
+                                              Radio(
+                                                value: 1,
+                                                groupValue: _radioValueImageOne,
+                                                onChanged: _handleRadioValueChange1,
+                                                activeColor: Colors.white,
+                                              ),
+                                              Text(
+                                                "2",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: <Widget>[
+                                              Radio(
+                                                value: 2,
+                                                groupValue: _radioValueImageOne,
+                                                onChanged: _handleRadioValueChange1,
+                                                activeColor: Colors.white,
+                                              ),
+                                              Text(
+                                                "1",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: <Widget>[
+                                              Radio(
+                                                value: 3,
+                                                groupValue: _radioValueImageOne,
+                                                onChanged: _handleRadioValueChange1,
+                                                activeColor: Colors.white,
+                                              ),
+                                              Text(
+                                                "0",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      TableRow(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              "Image 2",
                                               style: TextStyle(
                                                 color: Colors.black,
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: <Widget>[
-                                            Radio(
-                                              value: 1,
-                                              groupValue: _radioValueImageOne,
-                                              onChanged:
-                                                  _handleRadioValueChange1,
-                                              activeColor: Colors.white,
-                                            ),
-                                            Text(
-                                              "2",
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: <Widget>[
-                                            Radio(
-                                              value: 2,
-                                              groupValue: _radioValueImageOne,
-                                              onChanged:
-                                                  _handleRadioValueChange1,
-                                              activeColor: Colors.white,
-                                            ),
-                                            Text(
-                                              "1",
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: <Widget>[
-                                            Radio(
-                                              value: 3,
-                                              groupValue: _radioValueImageOne,
-                                              onChanged:
-                                                  _handleRadioValueChange1,
-                                              activeColor: Colors.white,
-                                            ),
-                                            Text(
-                                              "0",
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ]),
-                                      TableRow(children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                            "Image 2",
-                                            style: TextStyle(
-                                              color: Colors.black,
                                             ),
                                           ),
-                                        ),
-                                        Row(
-                                          children: <Widget>[
-                                            Radio(
-                                              value: 0,
-                                              groupValue: _radioValueImageTwo,
-                                              onChanged:
-                                                  _handleRadioValueChange2,
-                                              activeColor: Colors.white,
-                                            ),
-                                            Text(
-                                              "3",
+                                          Row(
+                                            children: <Widget>[
+                                              Radio(
+                                                value: 0,
+                                                groupValue: _radioValueImageTwo,
+                                                onChanged: _handleRadioValueChange2,
+                                                activeColor: Colors.white,
+                                              ),
+                                              Text(
+                                                "3",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: <Widget>[
+                                              Radio(
+                                                value: 1,
+                                                groupValue: _radioValueImageTwo,
+                                                onChanged: _handleRadioValueChange2,
+                                                activeColor: Colors.white,
+                                              ),
+                                              Text(
+                                                "2",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: <Widget>[
+                                              Radio(
+                                                value: 2,
+                                                groupValue: _radioValueImageTwo,
+                                                onChanged: _handleRadioValueChange2,
+                                                activeColor: Colors.white,
+                                              ),
+                                              Text(
+                                                "1",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: <Widget>[
+                                              Radio(
+                                                value: 3,
+                                                groupValue: _radioValueImageTwo,
+                                                onChanged: _handleRadioValueChange2,
+                                                activeColor: Colors.white,
+                                              ),
+                                              Text(
+                                                "0",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
+                                      TableRow(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              "Image 3",
                                               style: TextStyle(
                                                 color: Colors.black,
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: <Widget>[
-                                            Radio(
-                                              value: 1,
-                                              groupValue: _radioValueImageTwo,
-                                              onChanged:
-                                                  _handleRadioValueChange2,
-                                              activeColor: Colors.white,
-                                            ),
-                                            Text(
-                                              "2",
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: <Widget>[
-                                            Radio(
-                                              value: 2,
-                                              groupValue: _radioValueImageTwo,
-                                              onChanged:
-                                                  _handleRadioValueChange2,
-                                              activeColor: Colors.white,
-                                            ),
-                                            Text(
-                                              "1",
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: <Widget>[
-                                            Radio(
-                                              value: 3,
-                                              groupValue: _radioValueImageTwo,
-                                              onChanged:
-                                                  _handleRadioValueChange2,
-                                              activeColor: Colors.white,
-                                            ),
-                                            Text(
-                                              "0",
-                                              style: TextStyle(
-                                                color: Colors.black,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ]),
-                                      TableRow(children: [
-                                        Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: Text(
-                                            "Image 3",
-                                            style: TextStyle(
-                                              color: Colors.black,
                                             ),
                                           ),
-                                        ),
-                                        Row(
-                                          children: <Widget>[
-                                            Radio(
-                                              value: 0,
-                                              groupValue: _radioValueImageThree,
-                                              onChanged:
-                                                  _handleRadioValueChange3,
-                                              activeColor: Colors.white,
-                                            ),
-                                            Text(
-                                              "3",
-                                              style: TextStyle(
-                                                color: Colors.black,
+                                          Row(
+                                            children: <Widget>[
+                                              Radio(
+                                                value: 0,
+                                                groupValue: _radioValueImageThree,
+                                                onChanged: _handleRadioValueChange3,
+                                                activeColor: Colors.white,
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: <Widget>[
-                                            Radio(
-                                              value: 1,
-                                              groupValue: _radioValueImageThree,
-                                              onChanged:
-                                                  _handleRadioValueChange3,
-                                              activeColor: Colors.white,
-                                            ),
-                                            Text(
-                                              "2",
-                                              style: TextStyle(
-                                                color: Colors.black,
+                                              Text(
+                                                "3",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: <Widget>[
-                                            Radio(
-                                              value: 2,
-                                              groupValue: _radioValueImageThree,
-                                              onChanged:
-                                                  _handleRadioValueChange3,
-                                              activeColor: Colors.white,
-                                            ),
-                                            Text(
-                                              "1",
-                                              style: TextStyle(
-                                                color: Colors.black,
+                                            ],
+                                          ),
+                                          Row(
+                                            children: <Widget>[
+                                              Radio(
+                                                value: 1,
+                                                groupValue: _radioValueImageThree,
+                                                onChanged: _handleRadioValueChange3,
+                                                activeColor: Colors.white,
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                        Row(
-                                          children: <Widget>[
-                                            Radio(
-                                              value: 3,
-                                              groupValue: _radioValueImageThree,
-                                              onChanged:
-                                                  _handleRadioValueChange3,
-                                              activeColor: Colors.white,
-                                            ),
-                                            Text(
-                                              "0",
-                                              style: TextStyle(
-                                                color: Colors.black,
+                                              Text(
+                                                "2",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                ),
                                               ),
-                                            ),
-                                          ],
-                                        ),
-                                      ])
+                                            ],
+                                          ),
+                                          Row(
+                                            children: <Widget>[
+                                              Radio(
+                                                value: 2,
+                                                groupValue: _radioValueImageThree,
+                                                onChanged: _handleRadioValueChange3,
+                                                activeColor: Colors.white,
+                                              ),
+                                              Text(
+                                                "1",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Row(
+                                            children: <Widget>[
+                                              Radio(
+                                                value: 3,
+                                                groupValue: _radioValueImageThree,
+                                                onChanged: _handleRadioValueChange3,
+                                                activeColor: Colors.white,
+                                              ),
+                                              Text(
+                                                "0",
+                                                style: TextStyle(
+                                                  color: Colors.black,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ],
                                   ),
-
-//                                Row(
-//                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-//                                  children: <Widget>[
-//                                    SizedBox(
-//                                      width: _sizeboxWidth,
-//                                      child: Text(
-//                                        "Image",
-//                                        style: TextStyle(
-//                                          color: Colors.black,
-//                                          fontWeight: FontWeight.w500,
-//
-//                                        ),
-//                                      ),
-//                                    ),
-//
-//                                    SizedBox(
-//                                      width: _sizeboxWidth,
-//                                      child: Text(
-//                                        "No Mistakes",
-//                                        style: TextStyle(
-//                                          color: Colors.black,
-//                                          fontSize: _fontSize,
-//                                        ),
-//                                      ),
-//                                    ),
-//
-//                                    SizedBox(
-//                                      width: _sizeboxWidth,
-//                                      child: Text(
-//                                        "Few Omissions",
-//                                        style: TextStyle(
-//                                          color: Colors.black,
-//                                          fontSize: _fontSize,
-//                                        ),
-//                                      ),
-//                                    ),
-//
-//                                    SizedBox(
-//                                      width: _sizeboxWidth,
-//                                      child: Text(
-//                                        "Poor",
-//                                        style: TextStyle(
-//                                          color: Colors.black,
-//                                          fontSize: _fontSize,
-//                                        ),
-//                                      ),
-//                                    ),
-//
-//                                    SizedBox(
-//                                      width: _sizeboxWidth,
-//                                      child: Text(
-//                                        "No Drawing",
-//                                        style: TextStyle(
-//                                          color: Colors.black,
-//                                          fontSize: _fontSize,
-//                                        ),
-//                                      ),
-//                                    ),
-//                                  ],
-//                                ),
-//                                Row(
-//                                  mainAxisAlignment: MainAxisAlignment.start,
-//                                  children: <Widget>[
-//                                    SizedBox(
-//                                      width: _sizeboxWidth,
-//                                      child: Text(
-//                                        "Image 1",
-//                                        style: TextStyle(
-//                                          color: Colors.black,
-//                                        ),
-//                                      ),
-//                                    ),
-//                                    SizedBox(
-//                                      width: _sizeboxWidth,
-//                                      child: Row(
-//                                        children: <Widget>[
-//                                          Radio(
-//                                            value: 0,
-//                                            groupValue: _radioValueImageOne,
-//                                            onChanged: _handleRadioValueChange1,
-//                                            activeColor: Colors.white,
-//                                          ),
-//                                          Text(
-//                                            "3",
-//                                            style: TextStyle(
-//                                              color: Colors.black,
-//                                            ),
-//                                          ),
-//                                        ],
-//                                      ),
-//                                    ),
-//
-//                                    SizedBox(
-//                                      width: _sizeboxWidth,
-//                                      child: Row(
-//                                        children: <Widget>[
-//                                          Radio(
-//                                            value: 1,
-//                                            groupValue: _radioValueImageOne,
-//                                            onChanged: _handleRadioValueChange1,
-//                                            activeColor: Colors.white,
-//                                          ),
-//                                          Text(
-//                                            "2",
-//                                            style: TextStyle(
-//                                              color: Colors.black,
-//                                            ),
-//                                          ),
-//                                        ],
-//                                      ),
-//                                    ),
-//
-//                                    SizedBox(
-//                                      width: _sizeboxWidth,
-//                                      child: Row(
-//                                        children: <Widget>[
-//                                          Radio(
-//                                            value: 2,
-//                                            groupValue: _radioValueImageOne,
-//                                            onChanged: _handleRadioValueChange1,
-//                                            activeColor: Colors.white,
-//                                          ),
-//                                          Text(
-//                                            "1",
-//                                            style: TextStyle(
-//                                              color: Colors.black,
-//                                            ),
-//                                          ),
-//                                        ],
-//                                      ),
-//                                    ),
-//
-//                                    SizedBox(
-//                                      width: _sizeboxWidth,
-//                                      child: Row(
-//                                        children: <Widget>[
-//                                          Radio(
-//                                            value: 3,
-//                                            groupValue: _radioValueImageOne,
-//                                            onChanged: _handleRadioValueChange1,
-//                                            activeColor: Colors.white,
-//                                          ),
-//                                          Text(
-//                                            "0",
-//                                            style: TextStyle(
-//                                              color: Colors.black,
-//                                            ),
-//                                          ),
-//                                        ],
-//                                      ),
-//                                    ),
-//
-//                                  ],
-//                                ),
-//                                Row(
-//                                  mainAxisAlignment: MainAxisAlignment.start,
-//                                  children: <Widget>[
-//                                    SizedBox(
-//                                      width: _sizeboxWidth,
-//                                      child: Text(
-//                                        "Image 2",
-//                                        style: TextStyle(
-//                                          color: Colors.black,
-//                                        ),
-//                                      ),
-//                                    ),
-//                                    SizedBox(
-//                                      width: _sizeboxWidth,
-//                                      child: Row(
-//                                        children: <Widget>[
-//                                          Radio(
-//                                            value: 0,
-//                                            groupValue: _radioValueImageTwo,
-//                                            onChanged: _handleRadioValueChange2,
-//                                            activeColor: Colors.white,
-//                                          ),
-//                                          Text(
-//                                            "3",
-//                                            style: TextStyle(
-//                                              color: Colors.black,
-//                                            ),
-//                                          ),
-//                                        ],
-//                                      ),
-//                                    ),
-//
-//                                    SizedBox(
-//                                      width: _sizeboxWidth,
-//                                      child: Row(
-//                                        children: <Widget>[
-//                                          Radio(
-//                                            value: 1,
-//                                            groupValue: _radioValueImageTwo,
-//                                            onChanged: _handleRadioValueChange2,
-//                                            activeColor: Colors.white,
-//                                          ),
-//                                          Text(
-//                                            "2",
-//                                            style: TextStyle(
-//                                              color: Colors.black,
-//                                            ),
-//                                          ),
-//                                        ],
-//                                      ),
-//                                    ),
-//
-//                                    SizedBox(
-//                                      width: _sizeboxWidth,
-//                                      child: Row(
-//                                        children: <Widget>[
-//                                          Radio(
-//                                            value: 2,
-//                                            groupValue: _radioValueImageTwo,
-//                                            onChanged: _handleRadioValueChange2,
-//                                            activeColor: Colors.white,
-//                                          ),
-//                                          Text(
-//                                            "1",
-//                                            style: TextStyle(
-//                                              color: Colors.black,
-//                                            ),
-//                                          ),
-//                                        ],
-//                                      ),
-//                                    ),
-//
-//                                    SizedBox(
-//                                      width: _sizeboxWidth,
-//                                      child: Row(
-//                                        children: <Widget>[
-//                                          Radio(
-//                                            value: 3,
-//                                            groupValue: _radioValueImageTwo,
-//                                            onChanged: _handleRadioValueChange2,
-//                                            activeColor: Colors.white,
-//                                          ),
-//                                          Text(
-//                                            "0",
-//                                            style: TextStyle(
-//                                              color: Colors.black,
-//                                            ),
-//                                          ),
-//                                        ],
-//                                      ),
-//                                    ),
-//
-//                                  ],
-//                                ),
-//                                Row(
-//                                  mainAxisAlignment: MainAxisAlignment.start,
-//                                  children: <Widget>[
-//                                    SizedBox(
-//                                      width: _sizeboxWidth,
-//                                      child: Text(
-//                                        "Image 3",
-//                                        style: TextStyle(
-//                                          color: Colors.black,
-//                                        ),
-//                                      ),
-//                                    ),
-//                                    SizedBox(
-//                                      width: _sizeboxWidth,
-//                                      child: Row(
-//                                        children: <Widget>[
-//                                          Radio(
-//                                            value: 0,
-//                                            groupValue: _radioValueImageThree,
-//                                            onChanged: _handleRadioValueChange3,
-//                                            activeColor: Colors.white,
-//                                          ),
-//                                          Text(
-//                                            "3",
-//                                            style: TextStyle(
-//                                              color: Colors.black,
-//                                            ),
-//                                          ),
-//                                        ],
-//                                      ),
-//                                    ),
-//
-//                                    SizedBox(
-//                                      width: _sizeboxWidth,
-//                                      child: Row(
-//                                        children: <Widget>[
-//                                          Radio(
-//                                            value: 1,
-//                                            groupValue: _radioValueImageThree,
-//                                            onChanged: _handleRadioValueChange3,
-//                                            activeColor: Colors.white,
-//                                          ),
-//                                          Text(
-//                                            "2",
-//                                            style: TextStyle(
-//                                              color: Colors.black,
-//                                            ),
-//                                          ),
-//                                        ],
-//                                      ),
-//                                    ),
-//
-//                                    SizedBox(
-//                                      width: _sizeboxWidth,
-//                                      child: Row(
-//                                        children: <Widget>[
-//                                          Radio(
-//                                            value: 2,
-//                                            groupValue: _radioValueImageThree,
-//                                            onChanged: _handleRadioValueChange3,
-//                                            activeColor: Colors.white,
-//                                          ),
-//                                          Text(
-//                                            "1",
-//                                            style: TextStyle(
-//                                              color: Colors.black,
-//                                            ),
-//                                          ),
-//                                        ],
-//                                      ),
-//                                    ),
-//
-//                                    SizedBox(
-//                                      width: _sizeboxWidth,
-//                                      child: Row(
-//                                        children: <Widget>[
-//                                          Radio(
-//                                            value: 3,
-//                                            groupValue: _radioValueImageThree,
-//                                            onChanged: _handleRadioValueChange3,
-//                                            activeColor: Colors.white,
-//                                          ),
-//                                          Text(
-//                                            "0",
-//                                            style: TextStyle(
-//                                              color: Colors.black,
-//                                            ),
-//                                          ),
-//                                        ],
-//                                      ),
-//                                    ),
-//
-//                                  ],
-//                                ),
-                                  Text(
-                                    appData.testVisuospatialPraxisScoring,
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 15.0),
-                                  ),
-//                                Row(
-//                                  mainAxisAlignment:
-//                                      MainAxisAlignment.spaceEvenly,
-//                                  children: <Widget>[
-//                                    Text(
-//                                      appData
-//                                          .testVisuospatialPraxisResponseNormal,
-//                                      style: TextStyle(
-//                                        color: Colors.black,
-//                                        fontSize: 10.0,
-//                                      ),
-//                                    ),
-//                                    Text(
-//                                      appData
-//                                          .testVisuospatialPraxisResponseEquivocal,
-//                                      style: TextStyle(
-//                                        color: Colors.black,
-//                                        fontSize: 10.0,
-//                                      ),
-//                                    ),
-//                                  ],
-//                                ),
-//                                Row(
-//                                  mainAxisAlignment:
-//                                      MainAxisAlignment.spaceEvenly,
-//                                  children: <Widget>[
-//                                    Text(
-//                                      appData
-//                                          .testVisuospatialPraxisResponseImpaired,
-//                                      style: TextStyle(
-//                                        color: Colors.black,
-//                                        fontSize: 10.0,
-//                                      ),
-//                                    ),
-//                                    Text(
-//                                      appData
-//                                          .testVisuospatialPraxisResponseFubar,
-//                                      style: TextStyle(
-//                                        color: Colors.black,
-//                                        fontSize: 10.0,
-//                                      ),
-//                                    ),
-//                                  ],
-//                                ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          height: sizeBoxHeight,
-                        ),
-                        Container(
-                          width: _width * 0.9,
-                          child: Card(
-                            elevation: 10.0,
-                            color: Colors.white,
-                            child: Padding(
-                              padding: EdgeInsets.all(8.0),
-                              child: RaisedButton(
-                                elevation: 10.0,
-                                onPressed: () {
-                                  print("Button 1 - $_radioValueImageOne");
-                                  print("Button 2 - $_radioValueImageTwo");
-                                  print("Button 3 - $_radioValueImageThree");
-                                  var router = new MaterialPageRoute(
-                                      builder: (BuildContext context) =>
-                                          new Attention(
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor:
+                                          Theme.of(context).colorScheme.secondary,
+                                      elevation: 10.0,
+                                    ),
+                                    onPressed: () {
+                                      Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) => Attention(
                                             patientName: widget.patientName,
                                             assessorName: widget.assessorName,
                                             handedness: widget.handedness,
-                                            assessmentDate:
-                                                widget.assessmentDate,
-                                            languageComprehensionRadioValue: widget
-                                                .languageComprehensionRadioValue,
+                                            assessmentDate: widget.assessmentDate,
+                                            languageComprehensionRadioValue:
+                                                widget.languageComprehensionRadioValue,
                                             trialOneScore: widget.trialOneScore,
                                             trialTwoScore: widget.trialTwoScore,
                                             trialThreeScore:
@@ -1037,167 +600,67 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                                 _radioValueImageTwo,
                                             visuospatialPraxisImage3:
                                                 _radioValueImageThree,
-                                          ));
-                                  Navigator.of(context).pushAndRemoveUntil(
-                                      router, (Route<dynamic> route) => true);
-                                },
-                                child: Text("Continue with Testing"),
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                    child: Text("Continue"),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
-                        )
+                        ),
+                        SizedBox(
+                          height: sizeBoxHeight,
+                        ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
-//          Container(
-//            color: Theme.of(context).backgroundColor,
-//            child: Center(
-//              child: Column(
-//                children: <Widget>[
-//                  SizedBox(
-//                    height: 20.0,
-//                  ),
-//                  Text(
-//                    "Image 1",
-//                    style: TextStyle(
-//                      fontWeight: FontWeight.w500,
-//                      fontSize: 30.0,
-//                      decoration: TextDecoration.underline,
-//                    ),
-//                  ),
-//                  SizedBox(
-//                    height: 20.0,
-//                  ),
-//                  Container(
-//                    width: _width * 0.9,
-//                    color: Colors.white,
-//                    child: Padding(
-//                      padding: const EdgeInsets.all(10.0),
-//                      child: Image.asset(
-//                        "./images/block_one.png",
-//                        fit: BoxFit.fitWidth,
-//                      ),
-//                    ),
-//                  )
-//                ],
-//              ),
-//            ),
-//          ),
-//          Container(
-//            color: Theme.of(context).backgroundColor,
-//            child: Center(
-//              child: Column(
-//                children: <Widget>[
-//                  SizedBox(
-//                    height: 20.0,
-//                  ),
-//                  Text(
-//                    "Image 2",
-//                    style: TextStyle(
-//                      fontWeight: FontWeight.w500,
-//                      fontSize: 30.0,
-//                      decoration: TextDecoration.underline,
-//                    ),
-//                  ),
-//                  SizedBox(
-//                    height: 20.0,
-//                  ),
-//                  Container(
-//                    width: _width * 0.9,
-//                    color: Colors.white,
-//                    child: Padding(
-//                      padding: const EdgeInsets.all(10.0),
-//                      child: Image.asset(
-//                        "./images/block_two.png",
-//                        fit: BoxFit.fitWidth,
-//                      ),
-//                    ),
-//                  )
-//                ],
-//              ),
-//            ),
-//          ),
-//          Container(
-//            color: Theme.of(context).backgroundColor,
-//            child: Center(
-//              child: Column(
-//                children: <Widget>[
-//                  SizedBox(
-//                    height: 20.0,
-//                  ),
-//                  Text(
-//                    "Image 3",
-//                    style: TextStyle(
-//                      fontWeight: FontWeight.w500,
-//                      fontSize: 30.0,
-//                      decoration: TextDecoration.underline,
-//                    ),
-//                  ),
-//                  SizedBox(
-//                    height: 20.0,
-//                  ),
-//                  Container(
-//                    width: _width * 0.9,
-//                    color: Colors.white,
-//                    child: Padding(
-//                      padding: const EdgeInsets.all(10.0),
-//                      child: Image.asset(
-//                        "./images/block_three.png",
-//                        fit: BoxFit.fitWidth,
-//                      ),
-//                    ),
-//                  )
-//                ],
-//              ),
-//            ),
-//          ),
           ],
         ),
       ),
     );
   }
 
-  void _handleRadioValueChange1(int value) {
+  void _handleRadioValueChange1(int? value) {
     setState(() {
       _radioValueImageOne = value;
     });
   }
 
-  void _handleRadioValueChange2(int value) {
+  void _handleRadioValueChange2(int? value) {
     setState(() {
       _radioValueImageTwo = value;
     });
   }
 
-  void _handleRadioValueChange3(int value) {
+  void _handleRadioValueChange3(int? value) {
     setState(() {
       _radioValueImageThree = value;
     });
   }
 
-  void getPrefsData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    int _score1 = prefs.getInt("visuospatialPraxisImage1");
-    int _score2 = prefs.getInt("visuospatialPraxisImage2");
-    int _score3 = prefs.getInt("visuospatialPraxisImage3");
-
-    setState(() {
-      _radioValueImageOne = _score1;
-      _radioValueImageTwo = _score2;
-      _radioValueImageThree = _score3;
-    });
-  }
-
   Future<bool> savePrefData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    prefs.setInt("visuospatialPraxisImage1", _radioValueImageOne);
-    prefs.setInt("visuospatialPraxisImage2", _radioValueImageTwo);
-    prefs.setInt("visuospatialPraxisImage3", _radioValueImageThree);
+    prefs.setInt("visuospatialPraxisImage1", _radioValueImageOne ?? 0);
+    prefs.setInt("visuospatialPraxisImage2", _radioValueImageTwo ?? 0);
+    prefs.setInt("visuospatialPraxisImage3", _radioValueImageThree ?? 0);
 
     return true;
+  }
+
+  void getPrefsData() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+
+    setState(() {
+      _radioValueImageOne = prefs.getInt("visuospatialPraxisImage1") ?? 0;
+      _radioValueImageTwo = prefs.getInt("visuospatialPraxisImage2") ?? 0;
+      _radioValueImageThree = prefs.getInt("visuospatialPraxisImage3") ?? 0;
+    });
   }
 }

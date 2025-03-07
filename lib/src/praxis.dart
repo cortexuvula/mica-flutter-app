@@ -1,59 +1,58 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
-import 'package:mica/src/home.dart';
+//import 'package:mica/src/home.dart';
 import 'package:mica/src/ten_word_delay_recall.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Praxis extends StatefulWidget {
-  String patientName;
-  String assessorName;
-  String handedness;
-  DateTime assessmentDate;
-  int languageComprehensionRadioValue;
-  int trialOneScore;
-  int trialTwoScore;
-  int trialThreeScore;
-  int visuospatialPraxisImage1;
-  int visuospatialPraxisImage2;
-  int visuospatialPraxisImage3;
-  int attention;
-  int attentionCorrect;
-  int attentionMistakes;
-  int executiveAnimalNaming;
-  int executiveAnimalNamingCount;
-  int executiveLuria;
-  int executiveLuriaScore;
-  int executiveSerial;
-  int executiveSerialScore;
-  int shorttermMemoryVerbal;
-  int shorttermMemoryVerbalScore;
+  final String patientName;
+  final String assessorName;
+  final String handedness;
+  final DateTime assessmentDate;
+  final int languageComprehensionRadioValue;
+  final int trialOneScore;
+  final int trialTwoScore;
+  final int trialThreeScore;
+  final int visuospatialPraxisImage1;
+  final int visuospatialPraxisImage2;
+  final int visuospatialPraxisImage3;
+  final int attention;
+  final int attentionCorrect;
+  final int attentionMistakes;
+  final int executiveAnimalNaming;
+  final int executiveAnimalNamingCount;
+  final int executiveLuria;
+  final int executiveLuriaScore;
+  final int executiveSerial;
+  final int executiveSerialScore;
+  final int shorttermMemoryVerbal;
+  final int shorttermMemoryVerbalScore;
 
-  Praxis(
-      {Key key,
-      this.patientName,
-      this.assessorName,
-      this.handedness,
-      this.assessmentDate,
-      this.languageComprehensionRadioValue,
-      this.trialOneScore,
-      this.trialTwoScore,
-      this.trialThreeScore,
-      this.visuospatialPraxisImage1,
-      this.visuospatialPraxisImage2,
-      this.visuospatialPraxisImage3,
-      this.attention,
-      this.attentionCorrect,
-      this.attentionMistakes,
-      this.executiveAnimalNaming,
-      this.executiveAnimalNamingCount,
-      this.executiveLuria,
-      this.executiveLuriaScore,
-      this.executiveSerial,
-      this.executiveSerialScore,
-      this.shorttermMemoryVerbal,
-      this.shorttermMemoryVerbalScore})
-      : super(key: key);
+  const Praxis({
+      super.key,
+      required this.patientName,
+      required this.assessorName,
+      required this.handedness,
+      required this.assessmentDate,
+      required this.languageComprehensionRadioValue,
+      required this.trialOneScore,
+      required this.trialTwoScore,
+      required this.trialThreeScore,
+      required this.visuospatialPraxisImage1,
+      required this.visuospatialPraxisImage2,
+      required this.visuospatialPraxisImage3,
+      required this.attention,
+      required this.attentionCorrect,
+      required this.attentionMistakes,
+      required this.executiveAnimalNaming,
+      required this.executiveAnimalNamingCount,
+      required this.executiveLuria,
+      required this.executiveLuriaScore,
+      required this.executiveSerial,
+      required this.executiveSerialScore,
+      required this.shorttermMemoryVerbal,
+      required this.shorttermMemoryVerbalScore});
 
   @override
   _PraxisState createState() => _PraxisState();
@@ -61,10 +60,10 @@ class Praxis extends StatefulWidget {
 
 class _PraxisState extends State<Praxis> {
   double sizeBoxHeight = 10.0;
-  int _radioValueRight;
-  int _radioValueLeft;
+  int? _radioValueRight;
+  int? _radioValueLeft;
 
-  double _fontsize = 8.0;
+  final double _fontsize = 8.0;
 
   @override
   void initState() {
@@ -74,10 +73,21 @@ class _PraxisState extends State<Praxis> {
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
-    var sizeBoxWidth = (_width * 0.8) / 3;
-    return WillPopScope(
-      onWillPop: savePrefData,
+    var width = MediaQuery.of(context).size.width;
+    // var sizeBoxWidth = (_width * 0.8) / 3;
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (didPop) {
+          return;
+        }
+        await savePrefData();
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => Welcome(),
+          ),
+        );
+      },
       child: Scaffold(
         appBar: AppBar(
           title: ListTile(
@@ -102,8 +112,8 @@ class _PraxisState extends State<Praxis> {
             IconButton(
                 icon: Icon(Icons.clear),
                 onPressed: () {
-                  var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Welcome());
+                  var router = MaterialPageRoute(
+                      builder: (BuildContext context) => Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -118,8 +128,8 @@ class _PraxisState extends State<Praxis> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.yellowAccent.shade400,
@@ -143,8 +153,8 @@ class _PraxisState extends State<Praxis> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.deepPurple.shade300,
@@ -168,15 +178,15 @@ class _PraxisState extends State<Praxis> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.deepPurple.shade300,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                            width: _width * 0.8,
+                        child: SizedBox(
+                            width: width * 0.8,
                             child: Image.asset(
                               "./images/pen.png",
                               fit: BoxFit.contain,
@@ -187,8 +197,8 @@ class _PraxisState extends State<Praxis> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.green,
@@ -228,7 +238,9 @@ class _PraxisState extends State<Praxis> {
                                       Radio(
                                         value: 0,
                                         groupValue: _radioValueRight,
-                                        onChanged: _handleRadioValueChange,
+                                        onChanged: (int? value) {
+                                          _handleRadioValueChange(value);
+                                        },
                                         activeColor: Colors.white,
                                       ),
                                       Text(
@@ -245,7 +257,9 @@ class _PraxisState extends State<Praxis> {
                                       Radio(
                                         value: 1,
                                         groupValue: _radioValueRight,
-                                        onChanged: _handleRadioValueChange,
+                                        onChanged: (int? value) {
+                                          _handleRadioValueChange(value);
+                                        },
                                         activeColor: Colors.white,
                                       ),
                                       Text(
@@ -262,7 +276,9 @@ class _PraxisState extends State<Praxis> {
                                       Radio(
                                         value: 2,
                                         groupValue: _radioValueRight,
-                                        onChanged: _handleRadioValueChange,
+                                        onChanged: (int? value) {
+                                          _handleRadioValueChange(value);
+                                        },
                                         activeColor: Colors.white,
                                       ),
                                       Text(
@@ -288,7 +304,9 @@ class _PraxisState extends State<Praxis> {
                                       Radio(
                                         value: 0,
                                         groupValue: _radioValueLeft,
-                                        onChanged: _handleRadioValueChangeLeft,
+                                        onChanged: (int? value) {
+                                          _handleRadioValueChangeLeft(value);
+                                        },
                                         activeColor: Colors.white,
                                       ),
                                       Text(
@@ -305,7 +323,9 @@ class _PraxisState extends State<Praxis> {
                                       Radio(
                                         value: 1,
                                         groupValue: _radioValueLeft,
-                                        onChanged: _handleRadioValueChangeLeft,
+                                        onChanged: (int? value) {
+                                          _handleRadioValueChangeLeft(value);
+                                        },
                                         activeColor: Colors.white,
                                       ),
                                       Text(
@@ -322,7 +342,9 @@ class _PraxisState extends State<Praxis> {
                                       Radio(
                                         value: 2,
                                         groupValue: _radioValueLeft,
-                                        onChanged: _handleRadioValueChangeLeft,
+                                        onChanged: (int? value) {
+                                          _handleRadioValueChangeLeft(value);
+                                        },
                                         activeColor: Colors.white,
                                       ),
                                       Text(
@@ -372,19 +394,18 @@ class _PraxisState extends State<Praxis> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.white,
                       child: Padding(
                         padding: EdgeInsets.all(8.0),
-                        child: RaisedButton(
-                          elevation: 10.0,
+                        child: ElevatedButton(
                           onPressed: () {
-                            var router = new MaterialPageRoute(
+                            var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    new TenWordDelayedRecall(
+                                    TenWordDelayedRecall(
                                       patientName: widget.patientName,
                                       assessorName: widget.assessorName,
                                       handedness: widget.handedness,
@@ -418,8 +439,8 @@ class _PraxisState extends State<Praxis> {
                                           widget.shorttermMemoryVerbal,
                                       shorttermMemoryVerbalScore:
                                           widget.shorttermMemoryVerbalScore,
-                                      praxisRight: _radioValueRight,
-                                      praxisLeft: _radioValueLeft,
+                                      praxisRight: _radioValueRight ?? 0,
+                                      praxisLeft: _radioValueLeft ?? 0,
                                     ));
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
@@ -438,13 +459,13 @@ class _PraxisState extends State<Praxis> {
     );
   }
 
-  void _handleRadioValueChange(int value) {
+  void _handleRadioValueChange(int? value) {
     setState(() {
       _radioValueRight = value;
     });
   }
 
-  void _handleRadioValueChangeLeft(int value) {
+  void _handleRadioValueChangeLeft(int? value) {
     setState(() {
       _radioValueLeft = value;
     });
@@ -452,8 +473,8 @@ class _PraxisState extends State<Praxis> {
 
   void getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int right = prefs.getInt("praxisRight");
-    int left = prefs.getInt("praxisLeft");
+    int? right = prefs.getInt("praxisRight");
+    int? left = prefs.getInt("praxisLeft");
 
     setState(() {
       _radioValueLeft = left;
@@ -464,8 +485,8 @@ class _PraxisState extends State<Praxis> {
   Future<bool> savePrefData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    prefs.setInt("praxisRight", _radioValueRight);
-    prefs.setInt("praxisLeft", _radioValueLeft);
+    prefs.setInt("praxisRight", _radioValueRight ?? 0);
+    prefs.setInt("praxisLeft", _radioValueLeft ?? 0);
 
     return true;
   }

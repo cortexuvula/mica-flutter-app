@@ -6,72 +6,72 @@ import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AnomiaAgnosia extends StatefulWidget {
-  String patientName;
-  String assessorName;
-  String handedness;
-  DateTime assessmentDate;
-  int languageComprehensionRadioValue;
-  int trialOneScore;
-  int trialTwoScore;
-  int trialThreeScore;
-  int visuospatialPraxisImage1;
-  int visuospatialPraxisImage2;
-  int visuospatialPraxisImage3;
-  int attention;
-  int attentionCorrect;
-  int attentionMistakes;
-  int executiveAnimalNaming;
-  int executiveAnimalNamingCount;
-  int executiveLuria;
-  int executiveLuriaScore;
-  int executiveSerial;
-  int executiveSerialScore;
-  int shorttermMemoryVerbal;
-  int shorttermMemoryVerbalScore;
-  int praxisRight;
-  int praxisLeft;
-  int tenWordDelay;
-  int scoreVerbalRecognitionMemoryTenWords;
-  int scoreVerbalRecognitionMemoryTenWordsInList;
-  int scoreVerbalRecognitionMemoryTenWordsNotInList;
-  int shorttermMemoryVisualImage1;
-  int shorttermMemoryVisualImage2;
-  int shorttermMemoryVisualImage3;
+  final String patientName;
+  final String assessorName;
+  final String handedness;
+  final DateTime assessmentDate;
+  final int languageComprehensionRadioValue;
+  final int trialOneScore;
+  final int trialTwoScore;
+  final int trialThreeScore;
+  final int visuospatialPraxisImage1;
+  final int visuospatialPraxisImage2;
+  final int visuospatialPraxisImage3;
+  final int attention;
+  final int attentionCorrect;
+  final int attentionMistakes;
+  final int executiveAnimalNaming;
+  final int executiveAnimalNamingCount;
+  final int executiveLuria;
+  final int executiveLuriaScore;
+  final int executiveSerial;
+  final int executiveSerialScore;
+  final int shorttermMemoryVerbal;
+  final int shorttermMemoryVerbalScore;
+  final int praxisRight;
+  final int praxisLeft;
+  final int tenWordDelay;
+  final int scoreVerbalRecognitionMemoryTenWords;
+  final int scoreVerbalRecognitionMemoryTenWordsInList;
+  final int scoreVerbalRecognitionMemoryTenWordsNotInList;
+  final int shorttermMemoryVisualImage1;
+  final int shorttermMemoryVisualImage2;
+  final int shorttermMemoryVisualImage3;
 
-  AnomiaAgnosia({
-    Key key,
-    this.patientName,
-    this.assessorName,
-    this.handedness,
-    this.assessmentDate,
-    this.languageComprehensionRadioValue,
-    this.trialOneScore,
-    this.trialTwoScore,
-    this.trialThreeScore,
-    this.visuospatialPraxisImage1,
-    this.visuospatialPraxisImage2,
-    this.visuospatialPraxisImage3,
-    this.attention,
-    this.attentionCorrect,
-    this.attentionMistakes,
-    this.executiveAnimalNaming,
-    this.executiveAnimalNamingCount,
-    this.executiveLuria,
-    this.executiveLuriaScore,
-    this.executiveSerial,
-    this.executiveSerialScore,
-    this.shorttermMemoryVerbal,
-    this.shorttermMemoryVerbalScore,
-    this.praxisRight,
-    this.praxisLeft,
-    this.tenWordDelay,
-    this.scoreVerbalRecognitionMemoryTenWords,
-    this.scoreVerbalRecognitionMemoryTenWordsInList,
-    this.scoreVerbalRecognitionMemoryTenWordsNotInList,
-    this.shorttermMemoryVisualImage1,
-    this.shorttermMemoryVisualImage2,
-    this.shorttermMemoryVisualImage3,
-  }) : super(key: key);
+  const AnomiaAgnosia({
+    super.key,
+    required this.patientName,
+    required this.assessorName,
+    required this.handedness,
+    required this.assessmentDate,
+    required this.languageComprehensionRadioValue,
+    required this.trialOneScore,
+    required this.trialTwoScore,
+    required this.trialThreeScore,
+    required this.visuospatialPraxisImage1,
+    required this.visuospatialPraxisImage2,
+    required this.visuospatialPraxisImage3,
+    required this.attention,
+    required this.attentionCorrect,
+    required this.attentionMistakes,
+    required this.executiveAnimalNaming,
+    required this.executiveAnimalNamingCount,
+    required this.executiveLuria,
+    required this.executiveLuriaScore,
+    required this.executiveSerial,
+    required this.executiveSerialScore,
+    required this.shorttermMemoryVerbal,
+    required this.shorttermMemoryVerbalScore,
+    required this.praxisRight,
+    required this.praxisLeft,
+    required this.tenWordDelay,
+    required this.scoreVerbalRecognitionMemoryTenWords,
+    required this.scoreVerbalRecognitionMemoryTenWordsInList,
+    required this.scoreVerbalRecognitionMemoryTenWordsNotInList,
+    required this.shorttermMemoryVisualImage1,
+    required this.shorttermMemoryVisualImage2,
+    required this.shorttermMemoryVisualImage3,
+  });
 
   @override
   _AnomiaAgnosiaState createState() => _AnomiaAgnosiaState();
@@ -80,8 +80,8 @@ class AnomiaAgnosia extends StatefulWidget {
 class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
   double sizeBoxHeight = 10.0;
 
-  int _radioValue;
-  int _radioValue2;
+  int? _radioValue;
+  int? _radioValue2;
   int imageNumber = 0;
 
   String displayImage = appData.imageURL[0];
@@ -97,16 +97,27 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
-    var sizeBoxWidth = (_width * 0.8) / 3;
-    return WillPopScope(
-      onWillPop: savePrefData,
+    var width = MediaQuery.of(context).size.width;
+    // Remove unused variable
+    //var sizeBoxWidth = _width * 0.1;
+    var sizeBoxHeight = width * 0.05;
+    
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (!didPop) {
+          final shouldPop = await savePrefData();
+          if (shouldPop && context.mounted) {
+            Navigator.of(context).pop();
+          }
+        }
+      },
       child: Scaffold(
         appBar: AppBar(
           title: ListTile(
             title: Text(
               appData.testAnomiaAgnosia,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
               ),
@@ -114,7 +125,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
             ),
             subtitle: Text(
               appData.testAnomiaAgnosiaSubtitle,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
               ),
@@ -123,10 +134,10 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
           ),
           actions: <Widget>[
             IconButton(
-                icon: Icon(Icons.clear),
+                icon: const Icon(Icons.clear),
                 onPressed: () {
-                  var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Welcome());
+                  var router = MaterialPageRoute(
+                      builder: (BuildContext context) => const Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -141,8 +152,8 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.yellowAccent.shade400,
@@ -150,23 +161,10 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
-//                          Text(
-//                            appData.testToPatient,
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.w500,
-//                              fontSize: 20.0,
-//                              decoration: TextDecoration.underline,
-//                            ),
-//                          ),
-//                          SizedBox(
-//                            height: 5.0,
-//                          ),
                             Text(
                               appData.testAnomiaAgnosiaToPatient,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
@@ -179,8 +177,8 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.deepPurple.shade300,
@@ -191,7 +189,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                             Text(
                               appData.testAnomiaAgnosiaDetails,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
@@ -204,13 +202,13 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.8,
+                  SizedBox(
+                    width: width * 0.8,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         IconButton(
-                            icon: Icon(Icons.arrow_back_ios),
+                            icon: const Icon(Icons.arrow_back_ios),
                             iconSize: 40.0,
                             onPressed: backButtonActive
                                 ? () {
@@ -245,9 +243,9 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                             child: GestureDetector(
                               onTap: () {
                                 debugPrint("tapped picture");
-                                var router = new MaterialPageRoute(
+                                var router = MaterialPageRoute(
                                     builder: (BuildContext context) =>
-                                        new ShowImageAnomia(
+                                        ShowImageAnomia(
                                           imageURL: displayImage,
                                           imageNumber: imageNumber,
                                         ));
@@ -269,7 +267,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                           width: 20.0,
                         ),
                         IconButton(
-                            icon: Icon(Icons.arrow_forward_ios),
+                            icon: const Icon(Icons.arrow_forward_ios),
                             iconSize: 40.0,
                             onPressed: forwardButtonActive
                                 ? () {
@@ -299,8 +297,8 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.green,
@@ -308,23 +306,10 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
                           children: <Widget>[
-//                          Text(
-//                            appData.testResponse,
-//                            textAlign: TextAlign.left,
-//                            style: TextStyle(
-//                              color: Colors.black,
-//                              fontWeight: FontWeight.w500,
-//                              fontSize: 20.0,
-//                              decoration: TextDecoration.underline,
-//                            ),
-//                          ),
-//                          SizedBox(
-//                            height: 5.0,
-//                          ),
                             Text(
                               appData.testAnomiaAgnosiaResponse,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
@@ -336,7 +321,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                               border: TableBorder.all(),
                               defaultVerticalAlignment:
                                   TableCellVerticalAlignment.middle,
-                              columnWidths: {
+                              columnWidths: const {
                                 0: FlexColumnWidth(0.3),
                                 1: FlexColumnWidth(0.3),
                                 2: FlexColumnWidth(0.34)
@@ -345,13 +330,13 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                 TableRow(children: [
                                   Row(
                                     children: <Widget>[
-                                      Radio(
+                                      Radio<int>(
                                         value: 0,
                                         groupValue: _radioValue,
                                         onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Normal",
                                         style: TextStyle(
                                           color: Colors.black,
@@ -362,13 +347,13 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                   ),
                                   Row(
                                     children: <Widget>[
-                                      Radio(
+                                      Radio<int>(
                                         value: 1,
                                         groupValue: _radioValue,
                                         onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Equivocal",
                                         style: TextStyle(
                                           color: Colors.black,
@@ -379,13 +364,13 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                   ),
                                   Row(
                                     children: <Widget>[
-                                      Radio(
+                                      Radio<int>(
                                         value: 2,
                                         groupValue: _radioValue,
                                         onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Impaired",
                                         style: TextStyle(
                                           color: Colors.black,
@@ -401,7 +386,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                     child: Text(
                                       appData.testAnomiaAgnosiaResponseNormal,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                   Padding(
@@ -410,7 +395,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                       appData
                                           .testAnomiaAgnosiaResponseEquivocal,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                   Padding(
@@ -418,7 +403,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                     child: Text(
                                       appData.testAnomiaAgnosiaResponseImpaired,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                 ])
@@ -430,7 +415,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                             Text(
                               appData.testAnomiaAgnosiaResponse2,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
@@ -442,7 +427,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                               border: TableBorder.all(),
                               defaultVerticalAlignment:
                                   TableCellVerticalAlignment.middle,
-                              columnWidths: {
+                              columnWidths: const {
                                 0: FlexColumnWidth(0.3),
                                 1: FlexColumnWidth(0.3),
                                 2: FlexColumnWidth(0.34)
@@ -451,13 +436,13 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                 TableRow(children: [
                                   Row(
                                     children: <Widget>[
-                                      Radio(
+                                      Radio<int>(
                                         value: 0,
                                         groupValue: _radioValue2,
                                         onChanged: _handleRadioValueChange2,
                                         activeColor: Colors.white,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Normal",
                                         style: TextStyle(
                                           color: Colors.black,
@@ -468,13 +453,13 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                   ),
                                   Row(
                                     children: <Widget>[
-                                      Radio(
+                                      Radio<int>(
                                         value: 1,
                                         groupValue: _radioValue2,
                                         onChanged: _handleRadioValueChange2,
                                         activeColor: Colors.white,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Equivocal",
                                         style: TextStyle(
                                           color: Colors.black,
@@ -485,13 +470,13 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                   ),
                                   Row(
                                     children: <Widget>[
-                                      Radio(
+                                      Radio<int>(
                                         value: 2,
                                         groupValue: _radioValue2,
                                         onChanged: _handleRadioValueChange2,
                                         activeColor: Colors.white,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Impaired",
                                         style: TextStyle(
                                           color: Colors.black,
@@ -507,7 +492,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                     child: Text(
                                       appData.testAnomiaAgnosiaResponseNormal,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                   Padding(
@@ -516,7 +501,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                       appData
                                           .testAnomiaAgnosiaResponseEquivocal,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                   Padding(
@@ -524,7 +509,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                     child: Text(
                                       appData.testAnomiaAgnosiaResponseImpaired,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                 ])
@@ -538,19 +523,21 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: RaisedButton(
-                          elevation: 10.0,
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            elevation: 10.0,
+                          ),
                           onPressed: () {
-                            var router = new MaterialPageRoute(
+                            var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    new Executive(
+                                    Executive(
                                       patientName: widget.patientName,
                                       assessorName: widget.assessorName,
                                       handedness: widget.handedness,
@@ -601,13 +588,13 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                           widget.shorttermMemoryVisualImage2,
                                       shorttermMemoryVisualImage3:
                                           widget.shorttermMemoryVisualImage3,
-                                      anomiaAgnosia: _radioValue,
-                                      agnosia: _radioValue2,
+                                      anomiaAgnosia: _radioValue ?? 0,
+                                      agnosia: _radioValue2 ?? 0,
                                     ));
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: Text("Continue with Testing"),
+                          child: const Text("Continue with Testing"),
                         ),
                       ),
                     ),
@@ -621,13 +608,13 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
     );
   }
 
-  void _handleRadioValueChange(int value) {
+  void _handleRadioValueChange(int? value) {
     setState(() {
       _radioValue = value;
     });
   }
 
-  void _handleRadioValueChange2(int value) {
+  void _handleRadioValueChange2(int? value) {
     setState(() {
       _radioValue2 = value;
     });
@@ -635,8 +622,8 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
 
   void getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int anomia = prefs.getInt("anomiaAgnosia");
-    int agnosia = prefs.getInt("agnosia");
+    int? anomia = prefs.getInt("anomiaAgnosia");
+    int? agnosia = prefs.getInt("agnosia");
 
     setState(() {
       _radioValue = anomia;
@@ -647,8 +634,13 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
   Future<bool> savePrefData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    prefs.setInt("anomiaAgnosia", _radioValue);
-    prefs.setInt("agnosia", _radioValue2);
+    if (_radioValue != null) {
+      prefs.setInt("anomiaAgnosia", _radioValue!);
+    }
+    
+    if (_radioValue2 != null) {
+      prefs.setInt("agnosia", _radioValue2!);
+    }
 
     return true;
   }

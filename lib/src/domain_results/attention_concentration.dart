@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 
 class AttentionConcentration extends StatefulWidget {
-  int attention;
+  final int attention;
 
-  AttentionConcentration({Key key, this.attention}) : super(key: key);
+  const AttentionConcentration({
+    super.key, 
+    required this.attention
+  });
 
   @override
   _AttentionConcentrationState createState() => _AttentionConcentrationState();
 }
 
 class _AttentionConcentrationState extends State<AttentionConcentration> {
-  Color cardColor;
+  late Color cardColor;
   String result = "";
 
   @override
@@ -24,7 +27,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
     return Scaffold(
       appBar: AppBar(
         title: ListTile(
-          title: Text(
+          title: const Text(
             "Attention & Concentration",
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
@@ -33,7 +36,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
             ),
             textAlign: TextAlign.start,
           ),
-          subtitle: Text(
+          subtitle: const Text(
             "",
             style: TextStyle(
               color: Colors.white,
@@ -49,7 +52,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
             color: cardColor,
             elevation: 10.0,
             child: ListTile(
-              title: Text(
+              title: const Text(
                 "Vigilance Test",
                 style: TextStyle(
                   color: Colors.black,
@@ -58,7 +61,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
               ),
               trailing: Text(
                 result,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.w500,
                 ),
@@ -70,7 +73,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
     );
   }
 
-  radio3ButtonValueToString(int value) {
+  void radio3ButtonValueToString(int value) {
     switch (value) {
       case 0:
         {

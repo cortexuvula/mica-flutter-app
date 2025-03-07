@@ -5,50 +5,50 @@ import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ExecutiveLuria extends StatefulWidget {
-  String patientName;
-  String assessorName;
-  String handedness;
-  DateTime assessmentDate;
-  int languageComprehensionRadioValue;
-  int trialOneScore;
-  int trialTwoScore;
-  int trialThreeScore;
-  int visuospatialPraxisImage1;
-  int visuospatialPraxisImage2;
-  int visuospatialPraxisImage3;
-  int attention;
-  int attentionCorrect;
-  int attentionMistakes;
-  int executiveAnimalNaming;
-  int executiveAnimalNamingCount;
+  final String patientName;
+  final String assessorName;
+  final String handedness;
+  final DateTime assessmentDate;
+  final int languageComprehensionRadioValue;
+  final int trialOneScore;
+  final int trialTwoScore;
+  final int trialThreeScore;
+  final int visuospatialPraxisImage1;
+  final int visuospatialPraxisImage2;
+  final int visuospatialPraxisImage3;
+  final int attention;
+  final int attentionCorrect;
+  final int attentionMistakes;
+  final int executiveAnimalNaming;
+  final int executiveAnimalNamingCount;
 
-  ExecutiveLuria(
-      {Key key,
-      this.patientName,
-      this.assessorName,
-      this.handedness,
-      this.assessmentDate,
-      this.languageComprehensionRadioValue,
-      this.trialOneScore,
-      this.trialTwoScore,
-      this.trialThreeScore,
-      this.visuospatialPraxisImage1,
-      this.visuospatialPraxisImage2,
-      this.visuospatialPraxisImage3,
-      this.attention,
-      this.attentionCorrect,
-      this.attentionMistakes,
-      this.executiveAnimalNaming,
-      this.executiveAnimalNamingCount})
-      : super(key: key);
+  const ExecutiveLuria({
+    super.key,
+    required this.patientName,
+    required this.assessorName,
+    required this.handedness,
+    required this.assessmentDate,
+    required this.languageComprehensionRadioValue,
+    required this.trialOneScore,
+    required this.trialTwoScore,
+    required this.trialThreeScore,
+    required this.visuospatialPraxisImage1,
+    required this.visuospatialPraxisImage2,
+    required this.visuospatialPraxisImage3,
+    required this.attention,
+    required this.attentionCorrect,
+    required this.attentionMistakes,
+    required this.executiveAnimalNaming,
+    required this.executiveAnimalNamingCount,
+  });
 
   @override
   _ExecutiveLuriaState createState() => _ExecutiveLuriaState();
 }
 
 class _ExecutiveLuriaState extends State<ExecutiveLuria> {
-  double sizeBoxHeight = 10.0;
-  int _radioValue;
+  final double sizeBoxHeight = 10.0;
+  int _radioValue = 2; // Default initialization
   int _counter = 0;
 
   @override
@@ -59,16 +59,23 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
 
   @override
   Widget build(BuildContext context) {
-    var _width = MediaQuery.of(context).size.width;
-    var sizeBoxWidth = (_width * 0.8) / 3;
-    return WillPopScope(
-      onWillPop: savePrefData,
+    var width = MediaQuery.of(context).size.width;
+    return PopScope(
+      canPop: false,
+      onPopInvokedWithResult: (didPop, result) async {
+        if (!didPop) {
+          final shouldPop = await savePrefData();
+          if (shouldPop && context.mounted) {
+            Navigator.of(context).pop();
+          }
+        }
+      },
       child: Scaffold(
         appBar: AppBar(
           title: ListTile(
             title: Text(
               appData.testExecutiveLuria,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
               ),
@@ -76,7 +83,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
             ),
             subtitle: Text(
               appData.testExecutiveLuriaSubtitle,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
               ),
@@ -85,10 +92,10 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
           ),
           actions: <Widget>[
             IconButton(
-                icon: Icon(Icons.clear),
+                icon: const Icon(Icons.clear),
                 onPressed: () {
-                  var router = new MaterialPageRoute(
-                      builder: (BuildContext context) => new Welcome());
+                  var router = MaterialPageRoute(
+                      builder: (BuildContext context) => const Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
                       router, (Route<dynamic> route) => false);
                 })
@@ -103,8 +110,8 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.yellowAccent.shade400,
@@ -115,7 +122,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                             Text(
                               appData.testExecutiveLuriaToPatient,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
@@ -128,15 +135,15 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.deepPurple.shade300,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                            width: _width * 0.8,
+                        child: SizedBox(
+                            width: width * 0.8,
                             child: Image.asset(
                               "./images/hands.png",
                               fit: BoxFit.contain,
@@ -147,8 +154,8 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.green,
@@ -168,7 +175,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                       child: Center(
                                         child: Text(
                                           "$_counter",
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 20.0,
                                             fontWeight: FontWeight.w500,
                                           ),
@@ -186,7 +193,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                       children: <Widget>[
                                         Container(
                                           color: Colors.cyan.shade200,
-                                          child: Text(
+                                          child: const Text(
                                             "Tap to count Cycles",
                                             style: TextStyle(
                                               fontWeight: FontWeight.w500,
@@ -195,8 +202,10 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                         ),
                                         Row(
                                           children: <Widget>[
-                                            FlatButton(
-                                                color: Colors.cyan.shade200,
+                                            TextButton(
+                                                style: TextButton.styleFrom(
+                                                  backgroundColor: Colors.cyan.shade200,
+                                                ),
                                                 onPressed: () {
                                                   setState(() {
                                                     _counter += 1;
@@ -209,11 +218,13 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                                     }
                                                   });
                                                 },
-                                                child: Icon(
+                                                child: const Icon(
                                                   Icons.add,
                                                 )),
-                                            FlatButton(
-                                                color: Colors.cyan.shade200,
+                                            TextButton(
+                                                style: TextButton.styleFrom(
+                                                  backgroundColor: Colors.cyan.shade200,
+                                                ),
                                                 onPressed: () {
                                                   if (_counter > 0) {
                                                     _counter -= 1;
@@ -231,7 +242,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                                     }
                                                   });
                                                 },
-                                                child: Icon(
+                                                child: const Icon(
                                                   Icons.remove,
                                                 )),
                                           ],
@@ -245,7 +256,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                             Text(
                               appData.testExecutiveLuriaResponse,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
@@ -254,7 +265,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                               border: TableBorder.all(),
                               defaultVerticalAlignment:
                                   TableCellVerticalAlignment.middle,
-                              columnWidths: {
+                              columnWidths: const {
                                 0: FlexColumnWidth(0.3),
                                 1: FlexColumnWidth(0.3),
                                 2: FlexColumnWidth(0.34)
@@ -263,13 +274,13 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                 TableRow(children: [
                                   Row(
                                     children: <Widget>[
-                                      Radio(
+                                      Radio<int>(
                                         value: 0,
                                         groupValue: _radioValue,
                                         onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Normal",
                                         style: TextStyle(
                                           color: Colors.black,
@@ -280,13 +291,13 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                   ),
                                   Row(
                                     children: <Widget>[
-                                      Radio(
+                                      Radio<int>(
                                         value: 1,
                                         groupValue: _radioValue,
                                         onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Equivocal",
                                         style: TextStyle(
                                           color: Colors.black,
@@ -297,13 +308,13 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                   ),
                                   Row(
                                     children: <Widget>[
-                                      Radio(
+                                      Radio<int>(
                                         value: 2,
                                         groupValue: _radioValue,
                                         onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
-                                      Text(
+                                      const Text(
                                         "Impaired",
                                         style: TextStyle(
                                           color: Colors.black,
@@ -319,7 +330,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                     child: Text(
                                       appData.testExecutiveLuriaResponseNormal,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                   Padding(
@@ -328,7 +339,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                       appData
                                           .testExecutiveLuriaResponseEquivocal,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                   Padding(
@@ -337,7 +348,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                       appData
                                           .testExecutiveLuriaResponseImpaired,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(fontSize: 10.0),
+                                      style: const TextStyle(fontSize: 10.0),
                                     ),
                                   ),
                                 ])
@@ -351,19 +362,21 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                   SizedBox(
                     height: sizeBoxHeight,
                   ),
-                  Container(
-                    width: _width * 0.9,
+                  SizedBox(
+                    width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.white,
                       child: Padding(
-                        padding: EdgeInsets.all(8.0),
-                        child: RaisedButton(
-                          elevation: 10.0,
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            elevation: 10.0,
+                          ),
                           onPressed: () {
-                            var router = new MaterialPageRoute(
+                            var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    new ExecutiveSerial(
+                                    ExecutiveSerial(
                                       patientName: widget.patientName,
                                       assessorName: widget.assessorName,
                                       handedness: widget.handedness,
@@ -381,8 +394,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                           widget.visuospatialPraxisImage3,
                                       attention: widget.attention,
                                       attentionCorrect: widget.attentionCorrect,
-                                      attentionMistakes:
-                                          widget.attentionMistakes,
+                                      attentionMistakes: widget.attentionMistakes,
                                       executiveAnimalNaming:
                                           widget.executiveAnimalNaming,
                                       executiveAnimalNamingCount:
@@ -390,14 +402,13 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                       executiveLuria: _radioValue,
                                       executiveLuriaScore: _counter,
                                     ));
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            Navigator.of(context).push(router);
                           },
-                          child: Text("Continue with Testing"),
+                          child: const Text("Next"),
                         ),
                       ),
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
@@ -407,20 +418,22 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
     );
   }
 
-  void _handleRadioValueChange(int value) {
-    setState(() {
-      _radioValue = value;
-    });
+  void _handleRadioValueChange(int? value) {
+    if (value != null) {
+      setState(() {
+        _radioValue = value;
+      });
+    }
   }
 
   void getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int _score1 = prefs.getInt("executiveLuria");
-    int _score2 = prefs.getInt("executiveLuria_score");
+    int? score1 = prefs.getInt("executiveLuria");
+    int? score2 = prefs.getInt("executiveLuria_score");
 
     setState(() {
-      _radioValue = _score1;
-      _counter = _score2;
+      if (score1 != null) _radioValue = score1;
+      if (score2 != null) _counter = score2;
     });
   }
 
