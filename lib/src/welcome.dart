@@ -250,7 +250,7 @@ class _WelcomeState extends State<Welcome> {
   }
 
   _launchURL() async {
-    final Uri url = Uri.parse('https://www.neoncortex.net/');
+    final Uri url = Uri.parse('/assets/bca.pdf');
     if (!await launchUrl(url)) {
       throw Exception('Could not launch $url');
     }
