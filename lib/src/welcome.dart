@@ -8,7 +8,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
-  
+
   @override
   _WelcomeState createState() => _WelcomeState();
 }
@@ -62,7 +62,8 @@ class _WelcomeState extends State<Welcome> {
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               elevation: 10.0,
-                              backgroundColor: Theme.of(context).colorScheme.secondary,
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.secondary,
                             ),
                             onPressed: () {
                               Navigator.push(
@@ -92,6 +93,97 @@ class _WelcomeState extends State<Welcome> {
                   ),
                 ),
               ),
+              // SizedBox(
+              //   width: width * 0.9,
+              //   child: Card(
+              //     elevation: 10.0,
+              //     color: Colors.white,
+              //     child: Padding(
+              //       padding: const EdgeInsets.all(20.0),
+              //       child: Column(
+              //         children: <Widget>[
+              //           SizedBox(
+              //             width: width * 0.8,
+              //             child: ElevatedButton(
+              //               style: ElevatedButton.styleFrom(
+              //                 elevation: 10.0,
+              //                 backgroundColor:
+              //                     Theme.of(context).colorScheme.secondary,
+              //               ),
+              //               onPressed: () {
+              //                 var router = MaterialPageRoute(
+              //                     builder: (BuildContext context) =>
+              //                         const DomainSelect());
+              //                 Navigator.of(context).pushAndRemoveUntil(
+              //                     router, (Route<dynamic> route) => true);
+              //               },
+              //               child: Padding(
+              //                 padding: const EdgeInsets.all(8.0),
+              //                 child: Column(
+              //                   children: <Widget>[
+              //                     Text(appData.welcomeButtonOption2),
+              //                     const SizedBox(
+              //                       height: 5.0,
+              //                     ),
+              //                     Text(
+              //                       appData.welcomeOption2,
+              //                       textAlign: TextAlign.center,
+              //                     ),
+              //                   ],
+              //                 ),
+              //               ),
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
+              // SizedBox(
+              //   width: width * 0.9,
+              //   child: Card(
+              //     elevation: 10.0,
+              //     color: Colors.white,
+              //     child: Padding(
+              //       padding: const EdgeInsets.all(20.0),
+              //       child: Column(
+              //         children: <Widget>[
+              //           SizedBox(
+              //             width: width * 0.8,
+              //             child: ElevatedButton(
+              //               style: ElevatedButton.styleFrom(
+              //                 elevation: 10.0,
+              //                 backgroundColor: Theme.of(context).colorScheme.secondary,
+              //               ),
+              //               onPressed: () {
+              //                 var router = MaterialPageRoute(
+              //                     builder: (BuildContext context) =>
+              //                         const ClinicalSelect());
+              //                 Navigator.of(context).pushAndRemoveUntil(
+              //                     router, (Route<dynamic> route) => true);
+              //               },
+              //               child: Padding(
+              //                 padding: const EdgeInsets.all(8.0),
+              //                 child: Column(
+              //                   children: <Widget>[
+              //                     Text(appData.welcomeButtonOption3),
+              //                     const SizedBox(
+              //                       height: 5.0,
+              //                     ),
+              //                     Text(
+              //                       appData.welcomeOption3,
+              //                       textAlign: TextAlign.center,
+              //                     ),
+              //                   ],
+              //                 ),
+              //               ),
+              //             ),
+              //           ),
+              //         ],
+              //       ),
+              //     ),
+              //   ),
+              // ),
               SizedBox(
                 width: width * 0.9,
                 child: Card(
@@ -106,97 +198,8 @@ class _WelcomeState extends State<Welcome> {
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               elevation: 10.0,
-                              backgroundColor: Theme.of(context).colorScheme.secondary,
-                            ),
-                            onPressed: () {
-                              var router = MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      const DomainSelect());
-                              Navigator.of(context).pushAndRemoveUntil(
-                                  router, (Route<dynamic> route) => true);
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: <Widget>[
-                                  Text(appData.welcomeButtonOption2),
-                                  const SizedBox(
-                                    height: 5.0,
-                                  ),
-                                  Text(
-                                    appData.welcomeOption2,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: width * 0.9,
-                child: Card(
-                  elevation: 10.0,
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      children: <Widget>[
-                        SizedBox(
-                          width: width * 0.8,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              elevation: 10.0,
-                              backgroundColor: Theme.of(context).colorScheme.secondary,
-                            ),
-                            onPressed: () {
-                              var router = MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      const ClinicalSelect());
-                              Navigator.of(context).pushAndRemoveUntil(
-                                  router, (Route<dynamic> route) => true);
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Column(
-                                children: <Widget>[
-                                  Text(appData.welcomeButtonOption3),
-                                  const SizedBox(
-                                    height: 5.0,
-                                  ),
-                                  Text(
-                                    appData.welcomeOption3,
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(
-                width: width * 0.9,
-                child: Card(
-                  elevation: 10.0,
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      children: <Widget>[
-                        SizedBox(
-                          width: width * 0.8,
-                          child: ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                              elevation: 10.0,
-                              backgroundColor: Theme.of(context).colorScheme.secondary,
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.secondary,
                             ),
                             onPressed: () {
                               _launchURL();
@@ -223,7 +226,8 @@ class _WelcomeState extends State<Welcome> {
                           child: ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               elevation: 10.0,
-                              backgroundColor: Theme.of(context).colorScheme.secondary,
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.secondary,
                             ),
                             onPressed: () {
                               Navigator.push(
