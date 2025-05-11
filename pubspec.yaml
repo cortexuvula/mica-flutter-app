@@ -61,6 +61,27 @@ flutter:
    - images/hands.png
    - images/hash.png
    - images/steps.png
+   - video/AlternatingNumLetters.m4v
+   - video/AnimalNaming.m4v
+   - video/ClockDrawing.m4v
+   - video/CoinRotation.m4v
+   - video/Comprehension3Objects.m4v
+   - video/DesignFluency.m4v
+   - video/DigitSpan.m4v
+   - video/FingerID.m4v
+   - video/FingerNose.m4v
+   - video/FoldingLetter.m4v
+   - video/FourStageCommand.m4v
+   - video/LuriaI.m4v
+   - video/LuriaII.m4v
+   - video/MakingTea.m4v
+   - video/Naming.m4v
+   - video/ObjectIDTouch.m4v
+   - video/Serial7s.m4v
+   - video/TappingTask.m4v
+   - video/VerbalMemDelayedRecog.m4v
+   - video/VigilanceTest.m4v
+   - video/WordListImRec2.m4v
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
