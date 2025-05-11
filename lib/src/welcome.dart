@@ -75,12 +75,16 @@ class _WelcomeState extends State<Welcome> {
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
                                 children: <Widget>[
-                                  Text(appData.welcomeButtonOption1),
+                                  Text(
+                                    appData.welcomeButtonOption1,
+                                    style: TextStyle(color: Colors.black),
+                                  ),
                                   const SizedBox(
                                     height: 5.0,
                                   ),
                                   Text(
                                     appData.welcomeOption1,
+                                    style: TextStyle(color: Colors.black),
                                     textAlign: TextAlign.center,
                                   ),
                                 ],
@@ -204,7 +208,8 @@ class _WelcomeState extends State<Welcome> {
                             onPressed: () {
                               _launchURL();
                             },
-                            child: Text(appData.welcomeButtonOption4),
+                            child: Text(appData.welcomeButtonOption4,
+                                style: TextStyle(color: Colors.black)),
                           ),
                         ),
                       ],
@@ -235,7 +240,10 @@ class _WelcomeState extends State<Welcome> {
                                   MaterialPageRoute(
                                       builder: (context) => ResourcePage()));
                             },
-                            child: Text(appData.welcomeButtonOption5),
+                            child: Text(
+                              appData.welcomeButtonOption5,
+                              style: TextStyle(color: Colors.black),
+                            ),
                           ),
                         ),
                       ],

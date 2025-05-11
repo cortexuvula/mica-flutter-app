@@ -7,7 +7,7 @@ import 'package:simple_animations/simple_animations.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
-  
+
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
 }
@@ -16,25 +16,23 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
-    
+
     final movie = MovieTween()
       ..scene(
         begin: Duration.zero,
         duration: const Duration(seconds: 3),
-      )
-      .tween(
-        'color1', 
-        ColorTween(begin: Colors.deepPurple.shade50, end: const Color(0xFFaba9e9))
-      )
+      ).tween(
+          'color1',
+          ColorTween(
+              begin: Colors.deepPurple.shade50, end: const Color(0xFFaba9e9)))
       ..scene(
         begin: Duration.zero,
         duration: const Duration(seconds: 3),
-      )
-      .tween(
-        'color2', 
-        ColorTween(begin: const Color(0xFFaba9e9), end: Colors.deepPurple.shade50)
-      );
-      
+      ).tween(
+          'color2',
+          ColorTween(
+              begin: const Color(0xFFaba9e9), end: Colors.deepPurple.shade50));
+
     return Scaffold(
         body: Stack(children: <Widget>[
           CustomAnimationBuilder<Movie>(
@@ -101,15 +99,22 @@ class _LoadingScreenState extends State<LoadingScreen> {
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           elevation: 10.0,
-                          backgroundColor: Theme.of(context).colorScheme.secondary,
+                          backgroundColor:
+                              Theme.of(context).colorScheme.secondary,
                         ),
                         onPressed: () {
                           var router = MaterialPageRoute(
-                              builder: (BuildContext context) => const Welcome());
+                              builder: (BuildContext context) =>
+                                  const Welcome());
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => false);
                         },
-                        child: const Text("Accept Disclaimer"),
+                        child: const Text(
+                          "Accept Disclaimer",
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
                     ),
                   ),

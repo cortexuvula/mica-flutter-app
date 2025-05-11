@@ -6,7 +6,8 @@ class VideoPage extends StatefulWidget {
   final String videoURL;
   final String videoTitle;
 
-  const VideoPage({super.key, required this.videoURL, required this.videoTitle});
+  const VideoPage(
+      {super.key, required this.videoURL, required this.videoTitle});
 
   @override
   _VideoPageState createState() => _VideoPageState();
@@ -19,15 +20,15 @@ class _VideoPageState extends State<VideoPage> {
   @override
   void initState() {
     super.initState();
-    videoPlayerController = VideoPlayerController.networkUrl(
-        Uri.parse('https://neoncortex.net/wp-content/mca/${widget.videoURL}'));
-    
+    videoPlayerController =
+        VideoPlayerController.asset("video/${widget.videoURL}");
+
     _initializeVideoPlayer();
   }
-  
+
   void _initializeVideoPlayer() async {
     await videoPlayerController.initialize();
-    
+
     setState(() {
       _chewieController = ChewieController(
         videoPlayerController: videoPlayerController,
