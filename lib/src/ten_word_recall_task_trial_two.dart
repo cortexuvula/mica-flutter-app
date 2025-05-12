@@ -12,8 +12,8 @@ class TenWordRecallTrialTwo extends StatefulWidget {
   final int languageComprehensionRadioValue;
   final int trialOneScore;
 
-  const TenWordRecallTrialTwo({
-      super.key,
+  const TenWordRecallTrialTwo(
+      {super.key,
       required this.patientName,
       required this.assessorName,
       required this.handedness,
@@ -29,7 +29,7 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
   List<Color> wordButtonColor = [];
   List<String> wordColor = [];
   late int scoreTenWordRecallTrialTwo = 0;
-  bool activeContinueButton = false;
+  bool activeContinueButton = true;
 
   @override
   void initState() {
@@ -232,9 +232,9 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
                               scoreTenWordRecallTrialTwo -= 1;
                             }
 
-                            if (scoreTenWordRecallTrialTwo == 10) {
-                              activeContinueButton = true;
-                            }
+                            // if (scoreTenWordRecallTrialTwo == 10) {
+                            //   activeContinueButton = true;
+                            // }
                           });
                         },
                         child: Text(appData.tenWordRecallList2[index]),
@@ -262,10 +262,11 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
                                           assessorName: widget.assessorName,
                                           handedness: widget.handedness,
                                           assessmentDate: widget.assessmentDate,
-                                          languageComprehensionRadioValue:
-                                              widget.languageComprehensionRadioValue,
+                                          languageComprehensionRadioValue: widget
+                                              .languageComprehensionRadioValue,
                                           trialOneScore: widget.trialOneScore,
-                                          trialTwoScore: scoreTenWordRecallTrialTwo,
+                                          trialTwoScore:
+                                              scoreTenWordRecallTrialTwo,
                                         ));
                                 Navigator.of(context).pushAndRemoveUntil(
                                     router, (Route<dynamic> route) => true);
@@ -288,10 +289,10 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int? score = prefs.getInt("trialTwoScore");
     List<String>? tempWordColor = prefs.getStringList("trial2wordButtonColor");
-    
+
     if (tempWordColor != null) {
       wordColor = tempWordColor;
-      
+
       for (var i = 0; i < 10; i++) {
         if (i < wordColor.length && wordColor[i] == "green") {
           setState(() {

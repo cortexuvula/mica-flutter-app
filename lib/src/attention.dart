@@ -179,8 +179,8 @@ class _AttentionState extends State<Attention> {
                           childAspectRatio: 1.2,
                           crossAxisSpacing: 5.0,
                           mainAxisSpacing: 5.0,
-                          children: List.generate(
-                              appData.attentionList.length, (index) {
+                          children: List.generate(appData.attentionList.length,
+                              (index) {
                             tapCorrect.add(false);
                             tapWrong.add(false);
                             correctCheck.add(false);
@@ -189,11 +189,13 @@ class _AttentionState extends State<Attention> {
                             return Stack(
                               children: <Widget>[
                                 TextButton(
+                                  style: TextButton.styleFrom(
+                                    backgroundColor: Colors.cyan.shade200,
+                                  ),
                                   onPressed: () {
                                     if (!tapWrong[index] &&
                                         !tapCorrect[index]) {
-                                      if (appData.attentionList[index] ==
-                                          "A") {
+                                      if (appData.attentionList[index] == "A") {
                                         setState(() {
                                           tapCorrect[index] = true;
                                           correctTap += 1;
@@ -202,8 +204,7 @@ class _AttentionState extends State<Attention> {
                                           correctCheck[index] = true;
                                         });
                                       }
-                                      if (appData.attentionList[index] !=
-                                          "A") {
+                                      if (appData.attentionList[index] != "A") {
                                         setState(() {
                                           tapWrong[index] = true;
                                           wrongTap += 1;
@@ -479,13 +480,15 @@ class _AttentionState extends State<Attention> {
                                       patientName: widget.patientName ?? '',
                                       assessorName: widget.assessorName ?? '',
                                       handedness: widget.handedness ?? '',
-                                      assessmentDate: widget.assessmentDate ?? DateTime.now(),
+                                      assessmentDate: widget.assessmentDate ??
+                                          DateTime.now(),
                                       languageComprehensionRadioValue: widget
                                               .languageComprehensionRadioValue ??
                                           0,
                                       trialOneScore: widget.trialOneScore ?? 0,
                                       trialTwoScore: widget.trialTwoScore ?? 0,
-                                      trialThreeScore: widget.trialThreeScore ?? 0,
+                                      trialThreeScore:
+                                          widget.trialThreeScore ?? 0,
                                       visuospatialPraxisImage1:
                                           widget.visuospatialPraxisImage1 ?? 0,
                                       visuospatialPraxisImage2:
@@ -535,7 +538,8 @@ class _AttentionState extends State<Attention> {
     List<bool> tapWrong = [];
     List<bool> correctCheck = [];
 
-    letterTapButtonColorList = prefs.getStringList("letterTapButtonColor") ?? [];
+    letterTapButtonColorList =
+        prefs.getStringList("letterTapButtonColor") ?? [];
     tapCorrectList = prefs.getStringList("tapCorrect") ?? [];
     tapWrongList = prefs.getStringList("tapWrong") ?? [];
     correctCheckList = prefs.getStringList("correctCheck") ?? [];

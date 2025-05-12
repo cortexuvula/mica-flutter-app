@@ -171,8 +171,8 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                       if (imageNumber > 0) {
                                         setState(() {
                                           imageNumber -= 1;
-                                          displayImage =
-                                              appData.imageURLPraxis[imageNumber];
+                                          displayImage = appData
+                                              .imageURLPraxis[imageNumber];
                                         });
                                       }
                                       if (imageNumber == 0) {
@@ -219,8 +219,8 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                       if (imageNumber < 2) {
                                         setState(() {
                                           imageNumber += 1;
-                                          displayImage =
-                                              appData.imageURLPraxis[imageNumber];
+                                          displayImage = appData
+                                              .imageURLPraxis[imageNumber];
                                         });
                                       }
                                       if (imageNumber == 2) {
@@ -245,7 +245,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                           width: width * 0.9,
                           child: Card(
                             elevation: 10.0,
-                            color: Colors.white,
+                            color: Colors.green,
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Column(
@@ -262,18 +262,18 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                   SizedBox(
                                     height: sizeBoxHeight,
                                   ),
-                                  Text(
-                                    "Image One",
-                                    textAlign: TextAlign.center,
-                                    style: const TextStyle(
-                                      color: Colors.black,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 13.0,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: sizeBoxHeight,
-                                  ),
+                                  // Text(
+                                  //   "Image One",
+                                  //   textAlign: TextAlign.center,
+                                  //   style: const TextStyle(
+                                  //     color: Colors.black,
+                                  //     fontWeight: FontWeight.w500,
+                                  //     fontSize: 13.0,
+                                  //   ),
+                                  // ),
+                                  // SizedBox(
+                                  //   height: sizeBoxHeight,
+                                  // ),
                                   Table(
                                     border: TableBorder.all(),
                                     defaultVerticalAlignment:
@@ -356,7 +356,8 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                               Radio(
                                                 value: 0,
                                                 groupValue: _radioValueImageOne,
-                                                onChanged: _handleRadioValueChange1,
+                                                onChanged:
+                                                    _handleRadioValueChange1,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -372,7 +373,8 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                               Radio(
                                                 value: 1,
                                                 groupValue: _radioValueImageOne,
-                                                onChanged: _handleRadioValueChange1,
+                                                onChanged:
+                                                    _handleRadioValueChange1,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -388,7 +390,8 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                               Radio(
                                                 value: 2,
                                                 groupValue: _radioValueImageOne,
-                                                onChanged: _handleRadioValueChange1,
+                                                onChanged:
+                                                    _handleRadioValueChange1,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -404,7 +407,8 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                               Radio(
                                                 value: 3,
                                                 groupValue: _radioValueImageOne,
-                                                onChanged: _handleRadioValueChange1,
+                                                onChanged:
+                                                    _handleRadioValueChange1,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -433,7 +437,8 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                               Radio(
                                                 value: 0,
                                                 groupValue: _radioValueImageTwo,
-                                                onChanged: _handleRadioValueChange2,
+                                                onChanged:
+                                                    _handleRadioValueChange2,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -449,7 +454,8 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                               Radio(
                                                 value: 1,
                                                 groupValue: _radioValueImageTwo,
-                                                onChanged: _handleRadioValueChange2,
+                                                onChanged:
+                                                    _handleRadioValueChange2,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -465,7 +471,8 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                               Radio(
                                                 value: 2,
                                                 groupValue: _radioValueImageTwo,
-                                                onChanged: _handleRadioValueChange2,
+                                                onChanged:
+                                                    _handleRadioValueChange2,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -481,7 +488,8 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                               Radio(
                                                 value: 3,
                                                 groupValue: _radioValueImageTwo,
-                                                onChanged: _handleRadioValueChange2,
+                                                onChanged:
+                                                    _handleRadioValueChange2,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -509,8 +517,10 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                             children: <Widget>[
                                               Radio(
                                                 value: 0,
-                                                groupValue: _radioValueImageThree,
-                                                onChanged: _handleRadioValueChange3,
+                                                groupValue:
+                                                    _radioValueImageThree,
+                                                onChanged:
+                                                    _handleRadioValueChange3,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -525,8 +535,10 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                             children: <Widget>[
                                               Radio(
                                                 value: 1,
-                                                groupValue: _radioValueImageThree,
-                                                onChanged: _handleRadioValueChange3,
+                                                groupValue:
+                                                    _radioValueImageThree,
+                                                onChanged:
+                                                    _handleRadioValueChange3,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -541,8 +553,10 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                             children: <Widget>[
                                               Radio(
                                                 value: 2,
-                                                groupValue: _radioValueImageThree,
-                                                onChanged: _handleRadioValueChange3,
+                                                groupValue:
+                                                    _radioValueImageThree,
+                                                onChanged:
+                                                    _handleRadioValueChange3,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -557,8 +571,10 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                             children: <Widget>[
                                               Radio(
                                                 value: 3,
-                                                groupValue: _radioValueImageThree,
-                                                onChanged: _handleRadioValueChange3,
+                                                groupValue:
+                                                    _radioValueImageThree,
+                                                onChanged:
+                                                    _handleRadioValueChange3,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -573,39 +589,6 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                       ),
                                     ],
                                   ),
-                                  ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor:
-                                          Theme.of(context).colorScheme.secondary,
-                                      elevation: 10.0,
-                                    ),
-                                    onPressed: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) => Attention(
-                                            patientName: widget.patientName,
-                                            assessorName: widget.assessorName,
-                                            handedness: widget.handedness,
-                                            assessmentDate: widget.assessmentDate,
-                                            languageComprehensionRadioValue:
-                                                widget.languageComprehensionRadioValue,
-                                            trialOneScore: widget.trialOneScore,
-                                            trialTwoScore: widget.trialTwoScore,
-                                            trialThreeScore:
-                                                widget.trialThreeScore,
-                                            visuospatialPraxisImage1:
-                                                _radioValueImageOne,
-                                            visuospatialPraxisImage2:
-                                                _radioValueImageTwo,
-                                            visuospatialPraxisImage3:
-                                                _radioValueImageThree,
-                                          ),
-                                        ),
-                                      );
-                                    },
-                                    child: Text("Continue"),
-                                  ),
                                 ],
                               ),
                             ),
@@ -613,6 +596,48 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                         ),
                         SizedBox(
                           height: sizeBoxHeight,
+                        ),
+                        SizedBox(
+                          width: width * 0.9,
+                          child: Card(
+                            elevation: 10.0,
+                            color: Colors.white,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      Theme.of(context).colorScheme.secondary,
+                                  elevation: 10.0,
+                                ),
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => Attention(
+                                        patientName: widget.patientName,
+                                        assessorName: widget.assessorName,
+                                        handedness: widget.handedness,
+                                        assessmentDate: widget.assessmentDate,
+                                        languageComprehensionRadioValue: widget
+                                            .languageComprehensionRadioValue,
+                                        trialOneScore: widget.trialOneScore,
+                                        trialTwoScore: widget.trialTwoScore,
+                                        trialThreeScore: widget.trialThreeScore,
+                                        visuospatialPraxisImage1:
+                                            _radioValueImageOne,
+                                        visuospatialPraxisImage2:
+                                            _radioValueImageTwo,
+                                        visuospatialPraxisImage3:
+                                            _radioValueImageThree,
+                                      ),
+                                    ),
+                                  );
+                                },
+                                child: Text("Continue"),
+                              ),
+                            ),
+                          ),
                         ),
                       ],
                     ),

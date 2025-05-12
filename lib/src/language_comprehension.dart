@@ -11,8 +11,8 @@ class LanguageComprehension extends StatefulWidget {
   final String handedness;
   final DateTime assessmentDate;
 
-  const LanguageComprehension({
-      super.key,
+  const LanguageComprehension(
+      {super.key,
       required this.patientName,
       required this.assessorName,
       required this.handedness,
@@ -279,7 +279,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: Text("Continue with Testing"),
+                          child: Text("Continue"),
                         ),
                       ),
                     ),
