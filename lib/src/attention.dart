@@ -186,108 +186,106 @@ class _AttentionState extends State<Attention> {
                             correctCheck.add(false);
                             letterTapButtonColor.add(Colors.cyan.shade200);
 
-                            return Stack(
-                              children: <Widget>[
-                                TextButton(
-                                  style: TextButton.styleFrom(
-                                    backgroundColor: Colors.cyan.shade200,
-                                  ),
-                                  onPressed: () {
-                                    if (!tapWrong[index] &&
-                                        !tapCorrect[index]) {
-                                      if (appData.attentionList[index] == "A") {
-                                        setState(() {
-                                          tapCorrect[index] = true;
-                                          correctTap += 1;
-                                          letterTapButtonColor[index] =
-                                              Colors.green;
-                                          correctCheck[index] = true;
-                                        });
-                                      }
-                                      if (appData.attentionList[index] != "A") {
-                                        setState(() {
-                                          tapWrong[index] = true;
-                                          wrongTap += 1;
-                                          letterTapButtonColor[index] =
-                                              Colors.red;
-                                          if (wrongTap == 1) {
-                                            _radioValue = 1;
-                                          } else if (wrongTap > 1) {
-                                            _radioValue = 2;
-                                          } else if (wrongTap < 1) {
-                                            _radioValue = 0;
-                                          }
-                                        });
-                                      }
+                            return Material(
+                              color: letterTapButtonColor[index],
+                              child: InkWell(
+                                onTap: () {
+                                  if (!tapWrong[index] && !tapCorrect[index]) {
+                                    if (appData.attentionList[index] == "A") {
+                                      setState(() {
+                                        tapCorrect[index] = true;
+                                        correctTap += 1;
+                                        letterTapButtonColor[index] =
+                                            Colors.green;
+                                        correctCheck[index] = true;
+                                      });
                                     }
-                                  },
-                                  child: Text(appData.attentionList[index]),
-                                ),
-                                Center(
-                                  child: Container(
-                                    child: GestureDetector(
-                                      child: tapCorrect[index]
-                                          ? Container(
-                                              child: Icon(
-                                                Icons.check,
-                                                color: Colors.white,
-                                              ),
-                                            )
-                                          : Container(),
-                                      onTap: () {
-                                        print("hello tap");
-                                        if (correctCheck[index]) {
-                                          setState(() {
-                                            correctCheck[index] = true;
-                                            tapCorrect[index] = false;
-                                            tapWrong[index] = true;
-                                            correctTap -= 1;
-                                            wrongTap += 1;
-                                            letterTapButtonColor[index] =
-                                                Colors.red;
-                                            if (wrongTap == 1) {
-                                              _radioValue = 1;
-                                            } else if (wrongTap > 1) {
-                                              _radioValue = 2;
-                                            } else if (wrongTap < 1) {
-                                              _radioValue = 0;
-                                            }
-                                          });
+                                    if (appData.attentionList[index] != "A") {
+                                      setState(() {
+                                        tapWrong[index] = true;
+                                        wrongTap += 1;
+                                        letterTapButtonColor[index] =
+                                            Colors.red;
+                                        if (wrongTap == 1) {
+                                          _radioValue = 1;
+                                        } else if (wrongTap > 1) {
+                                          _radioValue = 2;
+                                        } else if (wrongTap < 1) {
+                                          _radioValue = 0;
                                         }
-                                      },
+                                      });
+                                    }
+                                  } else {
+                                    setState(() {
+                                      if (tapCorrect[index]) {
+                                        correctTap =
+                                            correctTap > 0 ? correctTap - 1 : 0;
+                                      }
+
+                                      if (tapWrong[index]) {
+                                        wrongTap =
+                                            wrongTap > 0 ? wrongTap - 1 : 0;
+                                        if (wrongTap == 1) {
+                                          _radioValue = 1;
+                                        } else if (wrongTap > 1) {
+                                          _radioValue = 2;
+                                        } else if (wrongTap < 1) {
+                                          _radioValue = 0;
+                                        }
+                                      }
+
+                                      tapCorrect[index] = false;
+                                      tapWrong[index] = false;
+                                      correctCheck[index] = false;
+                                      letterTapButtonColor[index] =
+                                          Colors.cyan.shade200;
+                                    });
+                                  }
+                                },
+                                child: Center(
+                                  child: SizedBox.expand(
+                                    child: Stack(
+                                      alignment: Alignment.center,
+                                      children: [
+                                        Text(
+                                          appData.attentionList[index],
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                        if (tapCorrect[index])
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              color: Colors.black38,
+                                              shape: BoxShape.circle,
+                                            ),
+                                            padding: EdgeInsets.all(4),
+                                            child: Icon(
+                                              Icons.check,
+                                              color: Colors.white,
+                                              size: 16,
+                                            ),
+                                          ),
+                                        if (tapWrong[index])
+                                          Container(
+                                            decoration: BoxDecoration(
+                                              color: Colors.black38,
+                                              shape: BoxShape.circle,
+                                            ),
+                                            padding: EdgeInsets.all(4),
+                                            child: Icon(
+                                              Icons.clear,
+                                              color: Colors.white,
+                                              size: 16,
+                                            ),
+                                          ),
+                                      ],
                                     ),
                                   ),
                                 ),
-                                Center(
-                                  child: Container(
-                                    child: GestureDetector(
-                                      child: tapWrong[index]
-                                          ? Container(
-                                              child: Icon(
-                                                Icons.clear,
-                                                color: Colors.white,
-                                              ),
-                                            )
-                                          : Container(),
-                                      onTap: () {
-                                        setState(() {
-                                          tapWrong[index] = false;
-                                          wrongTap -= 1;
-                                          letterTapButtonColor[index] =
-                                              Colors.cyan.shade200;
-                                          if (wrongTap == 1) {
-                                            _radioValue = 1;
-                                          } else if (wrongTap > 1) {
-                                            _radioValue = 2;
-                                          } else if (wrongTap < 1) {
-                                            _radioValue = 0;
-                                          }
-                                        });
-                                      },
-                                    ),
-                                  ),
-                                )
-                              ],
+                              ),
                             );
                           }),
                         ),
