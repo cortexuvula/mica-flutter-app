@@ -204,7 +204,8 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                           children: <Widget>[
                                             TextButton(
                                                 style: TextButton.styleFrom(
-                                                  backgroundColor: Colors.cyan.shade200,
+                                                  backgroundColor:
+                                                      Colors.cyan.shade200,
                                                 ),
                                                 onPressed: () {
                                                   setState(() {
@@ -223,7 +224,8 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                                 )),
                                             TextButton(
                                                 style: TextButton.styleFrom(
-                                                  backgroundColor: Colors.cyan.shade200,
+                                                  backgroundColor:
+                                                      Colors.cyan.shade200,
                                                 ),
                                                 onPressed: () {
                                                   if (_counter > 0) {
@@ -394,7 +396,8 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                           widget.visuospatialPraxisImage3,
                                       attention: widget.attention,
                                       attentionCorrect: widget.attentionCorrect,
-                                      attentionMistakes: widget.attentionMistakes,
+                                      attentionMistakes:
+                                          widget.attentionMistakes,
                                       executiveAnimalNaming:
                                           widget.executiveAnimalNaming,
                                       executiveAnimalNamingCount:
@@ -404,7 +407,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                     ));
                             Navigator.of(context).push(router);
                           },
-                          child: const Text("Next"),
+                          child: const Text("Continue"),
                         ),
                       ),
                     ),
