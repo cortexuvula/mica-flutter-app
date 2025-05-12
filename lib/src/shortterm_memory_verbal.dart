@@ -78,42 +78,39 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
-        if (didPop) {
-          return;
+        if (!didPop) {
+          final shouldPop = await savePrefData();
+          if (shouldPop && context.mounted) {
+            Navigator.of(context).pop();
+          }
         }
-        
-        await savePrefData();
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => Welcome(),
-          ),
-        );
       },
       child: Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: false,
-          backgroundColor: Theme.of(context).colorScheme.surface,
-          title: const Text(
-            "Short-term Memory: Verbal",
-            style: TextStyle(
-              color: Colors.white,
+          title: ListTile(
+            title: Text(
+              appData.testShortTermMemory,
+              style: TextStyle(
+                color: Colors.white,
+              ),
+            ),
+            subtitle: Text(
+              appData.testShortTermMemorySubtitle,
+              style: TextStyle(
+                color: Colors.white,
+              ),
             ),
           ),
-          leading: IconButton(
-            icon: const Icon(
-              Icons.home,
-              color: Colors.white,
-            ),
-            onPressed: () {
-              savePrefData();
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => Home(),
-                ),
-              );
-            },
-          ),
+          actions: <Widget>[
+            IconButton(
+                icon: const Icon(Icons.clear),
+                onPressed: () {
+                  var router = MaterialPageRoute(
+                      builder: (BuildContext context) => const Welcome());
+                  Navigator.of(context).pushAndRemoveUntil(
+                      router, (Route<dynamic> route) => false);
+                })
+          ],
         ),
         body: ListView(
           children: <Widget>[
@@ -149,90 +146,112 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                         child: Column(
                           children: <Widget>[
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Checkbox(
-                                      value: _valueDate,
-                                      onChanged: (bool? value) => _valueDateChanged(value ?? false),
-                                      activeColor: Colors.green,
-                                    ),
-                                    const Text(
-                                      "Date",
-                                      style: TextStyle(
-                                        color: Colors.black,
+                                Container(
+                                  width: 120,
+                                  child: Row(
+                                    children: <Widget>[
+                                      Checkbox(
+                                        value: _valueDate,
+                                        onChanged: (bool? value) =>
+                                            _valueDateChanged(value ?? false),
+                                        activeColor: Colors.green,
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  width: 30.0,
-                                ),
-                                Row(
-                                  children: <Widget>[
-                                    Checkbox(
-                                      value: _valueMonth,
-                                      onChanged: (bool? value) => _valueMonthChanged(value ?? false),
-                                      activeColor: Colors.green,
-                                    ),
-                                    const Text(
-                                      "Month",
-                                      style: TextStyle(
-                                        color: Colors.black,
+                                      const Text(
+                                        "Date",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                        ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  width: 120,
+                                  child: Row(
+                                    children: <Widget>[
+                                      Checkbox(
+                                        value: _valueMonth,
+                                        onChanged: (bool? value) =>
+                                            _valueMonthChanged(value ?? false),
+                                        activeColor: Colors.green,
+                                      ),
+                                      const Text(
+                                        "Month",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 8), // Vertical spacing
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                Container(
+                                  width: 120,
+                                  child: Row(
+                                    children: <Widget>[
+                                      Checkbox(
+                                        value: _valueDay,
+                                        onChanged: (bool? value) =>
+                                            _valueDayChanged(value ?? false),
+                                        activeColor: Colors.green,
+                                      ),
+                                      const Text(
+                                        "Day",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  width: 120,
+                                  child: Row(
+                                    children: <Widget>[
+                                      Checkbox(
+                                        value: _valuePlace,
+                                        onChanged: (bool? value) =>
+                                            _valuePlaceChanged(value ?? false),
+                                        activeColor: Colors.green,
+                                      ),
+                                      const Text(
+                                        "Place",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
                             Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
-                                Row(
-                                  children: <Widget>[
-                                    Checkbox(
-                                      value: _valueDay,
-                                      onChanged: (bool? value) => _valueDayChanged(value ?? false),
-                                      activeColor: Colors.green,
-                                    ),
-                                    const Text(
-                                      "Day",
-                                      style: TextStyle(
-                                        color: Colors.black,
+                                Container(
+                                  width: 120,
+                                  child: Row(
+                                    children: <Widget>[
+                                      Checkbox(
+                                        value: _valueCity,
+                                        onChanged: (bool? value) =>
+                                            _valueCityChanged(value ?? false),
+                                        activeColor: Colors.green,
                                       ),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  width: 30.0,
-                                ),
-                                Row(
-                                  children: <Widget>[
-                                    Checkbox(
-                                      value: _valuePlace,
-                                      onChanged: (bool? value) => _valuePlaceChanged(value ?? false),
-                                      activeColor: Colors.green,
-                                    ),
-                                    const Text(
-                                      "Place",
-                                      style: TextStyle(
-                                        color: Colors.black,
+                                      const Text(
+                                        "City",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            Row(
-                              children: <Widget>[
-                                Checkbox(
-                                  value: _valueCity,
-                                  onChanged: (bool? value) => _valueCityChanged(value ?? false),
-                                  activeColor: Colors.green,
-                                ),
-                                const Text(
-                                  "City",
-                                  style: TextStyle(
-                                    color: Colors.black,
+                                    ],
                                   ),
                                 ),
                               ],
@@ -283,7 +302,8 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                       Radio(
                                         value: 0,
                                         groupValue: _radioValue,
-                                        onChanged: (int? value) => _handleRadioValueChange(value ?? 0),
+                                        onChanged: (int? value) =>
+                                            _handleRadioValueChange(value ?? 0),
                                         activeColor: Colors.white,
                                       ),
                                       const Text(
@@ -300,7 +320,8 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                       Radio(
                                         value: 1,
                                         groupValue: _radioValue,
-                                        onChanged: (int? value) => _handleRadioValueChange(value ?? 0),
+                                        onChanged: (int? value) =>
+                                            _handleRadioValueChange(value ?? 0),
                                         activeColor: Colors.white,
                                       ),
                                       const Text(
@@ -317,7 +338,8 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                       Radio(
                                         value: 2,
                                         groupValue: _radioValue,
-                                        onChanged: (int? value) => _handleRadioValueChange(value ?? 0),
+                                        onChanged: (int? value) =>
+                                            _handleRadioValueChange(value ?? 0),
                                         activeColor: Colors.white,
                                       ),
                                       const Text(
@@ -386,8 +408,8 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                     assessorName: widget.assessorName,
                                     handedness: widget.handedness,
                                     assessmentDate: widget.assessmentDate,
-                                    languageComprehensionRadioValue: widget
-                                        .languageComprehensionRadioValue,
+                                    languageComprehensionRadioValue:
+                                        widget.languageComprehensionRadioValue,
                                     trialOneScore: widget.trialOneScore,
                                     trialTwoScore: widget.trialTwoScore,
                                     trialThreeScore: widget.trialThreeScore,
@@ -399,8 +421,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                         widget.visuospatialPraxisImage3,
                                     attention: widget.attention,
                                     attentionCorrect: widget.attentionCorrect,
-                                    attentionMistakes:
-                                        widget.attentionMistakes,
+                                    attentionMistakes: widget.attentionMistakes,
                                     executiveAnimalNaming:
                                         widget.executiveAnimalNaming,
                                     executiveAnimalNamingCount:
@@ -417,7 +438,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => true);
                         },
-                        child: const Text("Continue with Testing"),
+                        child: const Text("Continue"),
                       ),
                     ),
                   ),
