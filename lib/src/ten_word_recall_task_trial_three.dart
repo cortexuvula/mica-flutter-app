@@ -13,8 +13,8 @@ class TenWordRecallTrialThree extends StatefulWidget {
   final int trialOneScore;
   final int trialTwoScore;
 
-  const TenWordRecallTrialThree({
-      super.key,
+  const TenWordRecallTrialThree(
+      {super.key,
       required this.patientName,
       required this.assessorName,
       required this.handedness,
@@ -32,7 +32,7 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
   List<Color> wordButtonColor = [];
   List<String> wordColor = [];
   late int scoreTenWordRecallTrialThree = 0;
-  bool activeContinueButton = false;
+  bool activeContinueButton = true;
 
   @override
   void initState() {
@@ -266,8 +266,8 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
                                           assessorName: widget.assessorName,
                                           handedness: widget.handedness,
                                           assessmentDate: widget.assessmentDate,
-                                          languageComprehensionRadioValue:
-                                              widget.languageComprehensionRadioValue,
+                                          languageComprehensionRadioValue: widget
+                                              .languageComprehensionRadioValue,
                                           trialOneScore: widget.trialOneScore,
                                           trialTwoScore: widget.trialTwoScore,
                                           trialThreeScore:
@@ -294,10 +294,10 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int? score = prefs.getInt("trialThreeScore");
     List<String>? tempWordColor = prefs.getStringList("trial3wordButtonColor");
-    
+
     if (tempWordColor != null) {
       wordColor = tempWordColor;
-      
+
       for (var i = 0; i < 10; i++) {
         if (i < wordColor.length && wordColor[i] == "green") {
           setState(() {
