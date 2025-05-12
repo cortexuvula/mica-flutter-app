@@ -500,7 +500,7 @@ class _AttentionState extends State<Attention> {
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: const Text("Continue with Testing"),
+                          child: const Text("Continue"),
                         ),
                       ),
                     ),

@@ -295,7 +295,8 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                             TextButton(
                                                 style: TextButton.styleFrom(
                                                   foregroundColor: Colors.black,
-                                                  backgroundColor: Colors.cyan.shade200,
+                                                  backgroundColor:
+                                                      Colors.cyan.shade200,
                                                 ),
                                                 onPressed: () {
                                                   setState(() {
@@ -315,7 +316,8 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                             TextButton(
                                                 style: TextButton.styleFrom(
                                                   foregroundColor: Colors.black,
-                                                  backgroundColor: Colors.cyan.shade200,
+                                                  backgroundColor:
+                                                      Colors.cyan.shade200,
                                                 ),
                                                 onPressed: () {
                                                   if (_counter > 0) {
@@ -328,6 +330,9 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                                     }
                                                     if (_counter > 14) {
                                                       _radioValue = 0;
+                                                    }
+                                                    if (_counter < 12) {
+                                                      _radioValue = 2;
                                                     }
                                                   });
                                                 },
@@ -445,43 +450,45 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                     height: 60.0,
                   ),
                   SizedBox(
-                    width: width * 0.6,
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.cyan.shade200,
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ExecutiveLuria(
-                              patientName: widget.patientName,
-                              assessorName: widget.assessorName,
-                              handedness: widget.handedness,
-                              assessmentDate: widget.assessmentDate,
-                              languageComprehensionRadioValue:
-                                  widget.languageComprehensionRadioValue,
-                              trialOneScore: widget.trialOneScore,
-                              trialTwoScore: widget.trialTwoScore,
-                              trialThreeScore: widget.trialThreeScore,
-                              visuospatialPraxisImage1: widget.visuospatialPraxisImage1,
-                              visuospatialPraxisImage2: widget.visuospatialPraxisImage2,
-                              visuospatialPraxisImage3: widget.visuospatialPraxisImage3,
-                              attention: widget.attention,
-                              attentionCorrect: widget.attentionCorrect,
-                              attentionMistakes: widget.attentionMistakes,
-                              executiveAnimalNaming: _radioValue,
-                              executiveAnimalNamingCount: _counter,
-                            ),
+                    width: width * 0.9,
+                    child: Card(
+                      elevation: 10.0,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ExecutiveLuria(
+                                  patientName: widget.patientName,
+                                  assessorName: widget.assessorName,
+                                  handedness: widget.handedness,
+                                  assessmentDate: widget.assessmentDate,
+                                  languageComprehensionRadioValue:
+                                      widget.languageComprehensionRadioValue,
+                                  trialOneScore: widget.trialOneScore,
+                                  trialTwoScore: widget.trialTwoScore,
+                                  trialThreeScore: widget.trialThreeScore,
+                                  visuospatialPraxisImage1:
+                                      widget.visuospatialPraxisImage1,
+                                  visuospatialPraxisImage2:
+                                      widget.visuospatialPraxisImage2,
+                                  visuospatialPraxisImage3:
+                                      widget.visuospatialPraxisImage3,
+                                  attention: widget.attention,
+                                  attentionCorrect: widget.attentionCorrect,
+                                  attentionMistakes: widget.attentionMistakes,
+                                  executiveAnimalNaming: _radioValue,
+                                  executiveAnimalNamingCount: _counter,
+                                ),
+                              ),
+                            );
+                          },
+                          child: const Text(
+                            'Continue',
                           ),
-                        );
-                      },
-                      child: const Text(
-                        'NEXT',
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black,
                         ),
                       ),
                     ),
