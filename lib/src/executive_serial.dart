@@ -24,8 +24,8 @@ class ExecutiveSerial extends StatefulWidget {
   final int executiveLuriaScore;
   final int executiveAnimalNamingCount;
 
-  const ExecutiveSerial({
-      super.key,
+  const ExecutiveSerial(
+      {super.key,
       required this.patientName,
       required this.assessorName,
       required this.handedness,
@@ -51,7 +51,7 @@ class ExecutiveSerial extends StatefulWidget {
 
 class _ExecutiveSerialState extends State<ExecutiveSerial> {
   final double sizeBoxHeight = 10.0;
-  int? _radioValue; 
+  int? _radioValue;
   int score = 0;
   List<String> executiveSerialButtonColor = [];
 
@@ -232,7 +232,8 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                     padding: const EdgeInsets.all(8.0),
                                     child: TextButton(
                                       style: TextButton.styleFrom(
-                                        backgroundColor: decembermonthButtonColor,
+                                        backgroundColor:
+                                            decembermonthButtonColor,
                                       ),
                                       child: const Text("December"),
                                       onPressed: () {
@@ -259,7 +260,8 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                     padding: const EdgeInsets.all(8.0),
                                     child: TextButton(
                                       style: TextButton.styleFrom(
-                                        backgroundColor: novembermonthButtonColor,
+                                        backgroundColor:
+                                            novembermonthButtonColor,
                                       ),
                                       child: const Text("November"),
                                       onPressed: () {
@@ -288,7 +290,8 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                     padding: const EdgeInsets.all(8.0),
                                     child: TextButton(
                                       style: TextButton.styleFrom(
-                                        backgroundColor: octobermonthButtonColor,
+                                        backgroundColor:
+                                            octobermonthButtonColor,
                                       ),
                                       child: const Text("October"),
                                       onPressed: () {
@@ -315,7 +318,8 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                     padding: const EdgeInsets.all(8.0),
                                     child: TextButton(
                                       style: TextButton.styleFrom(
-                                        backgroundColor: septembermonthButtonColor,
+                                        backgroundColor:
+                                            septembermonthButtonColor,
                                       ),
                                       child: const Text("September"),
                                       onPressed: () {
@@ -569,7 +573,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: const Text("Continue with Testing"),
+                          child: const Text("Continue"),
                         ),
                       ),
                     ),
@@ -611,8 +615,9 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     int? score1 = prefs.getInt("executiveSerial");
     int? score2 = prefs.getInt("executiveSerial_score");
-    List<String>? buttonColors = prefs.getStringList("executiveSerialButtonColor");
-    
+    List<String>? buttonColors =
+        prefs.getStringList("executiveSerialButtonColor");
+
     if (buttonColors != null) {
       executiveSerialButtonColor = buttonColors;
     } else {
@@ -623,7 +628,8 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
     List<bool> buttonTapped = [];
 
     for (var i = 0; i < 6; i++) {
-      if (i < executiveSerialButtonColor.length && executiveSerialButtonColor[i] == "yellow") {
+      if (i < executiveSerialButtonColor.length &&
+          executiveSerialButtonColor[i] == "yellow") {
         buttonColor.add(Colors.yellow);
         buttonTapped.add(false);
       } else {
