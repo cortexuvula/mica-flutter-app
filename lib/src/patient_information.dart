@@ -16,8 +16,7 @@ class PatientInformation extends StatefulWidget {
 
 class _PatientInformationState extends State<PatientInformation> {
   final _formKey = GlobalKey<FormState>();
-  final GlobalKey<ScaffoldState> _scaffoldState =
-      GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
 
   bool rememberAssessor = false;
 
@@ -245,7 +244,8 @@ class _PatientInformationState extends State<PatientInformation> {
                                 router, (Route<dynamic> route) => true);
                           }
                         },
-                        child: Text("Start Testing"),
+                        child: Text("Start Testing",
+                            style: TextStyle(color: Colors.black)),
                       ),
                     ),
                   ),

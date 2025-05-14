@@ -142,7 +142,8 @@ class _HomeState extends State<Home> {
                           ElevatedButton(
                             style: ElevatedButton.styleFrom(
                               elevation: 10.0,
-                              backgroundColor: Theme.of(context).colorScheme.secondary,
+                              backgroundColor:
+                                  Theme.of(context).colorScheme.secondary,
                             ),
                             onPressed: () {
                               var router = MaterialPageRoute(
@@ -151,7 +152,8 @@ class _HomeState extends State<Home> {
                               Navigator.of(context).pushAndRemoveUntil(
                                   router, (Route<dynamic> route) => false);
                             },
-                            child: Text(appData.fullTestButton),
+                            child: Text(appData.fullTestButton,
+                                style: TextStyle(color: Colors.black)),
                           ),
                         ],
                       ),
