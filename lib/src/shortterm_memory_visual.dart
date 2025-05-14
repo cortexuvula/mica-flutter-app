@@ -34,8 +34,8 @@ class ShortTermMemoryVisual extends StatefulWidget {
   final int? scoreVerbalRecognitionMemoryTenWordsInList;
   final int? scoreVerbalRecognitionMemoryTenWordsNotInList;
 
-  const ShortTermMemoryVisual({
-      super.key,
+  const ShortTermMemoryVisual(
+      {super.key,
       this.patientName,
       this.assessorName,
       this.handedness,
@@ -95,7 +95,7 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
         if (didPop) {
           return;
         }
-        
+
         await savePrefData();
         Navigator.of(context).push(
           MaterialPageRoute(
@@ -203,31 +203,29 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                         padding: const EdgeInsets.all(8.0),
                         child: SizedBox(
                           width: width * 0.9,
-                          height: 150.0,
+                          height: 200.0,
                           child: Row(
                             children: <Widget>[
                               SizedBox(
                                 width: width * 0.8 / 3,
-                                height: 130.0,
-                                child: Image.asset(
-                                  "./images/block_one.png",
-                                  fit: BoxFit.fitWidth,
-                                ),
+                                height: 180.0,
+                                child: Image.asset("./images/block_one.png",
+                                    fit: BoxFit.scaleDown),
                               ),
                               SizedBox(
                                 width: width * 0.8 / 3,
-                                height: 130.0,
+                                height: 180.0,
                                 child: Image.asset(
                                   "./images/block_two.png",
-                                  fit: BoxFit.fitWidth,
+                                  fit: BoxFit.scaleDown,
                                 ),
                               ),
                               SizedBox(
                                 width: width * 0.8 / 3,
-                                height: 130.0,
+                                height: 180.0,
                                 child: Image.asset(
                                   "./images/block_three.png",
-                                  fit: BoxFit.fitWidth,
+                                  fit: BoxFit.scaleDown,
                                 ),
                               ),
                             ],
@@ -562,13 +560,15 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                                       patientName: widget.patientName ?? "",
                                       assessorName: widget.assessorName ?? "",
                                       handedness: widget.handedness ?? "",
-                                      assessmentDate: widget.assessmentDate ?? DateTime.now(),
+                                      assessmentDate: widget.assessmentDate ??
+                                          DateTime.now(),
                                       languageComprehensionRadioValue: widget
                                               .languageComprehensionRadioValue ??
                                           0,
                                       trialOneScore: widget.trialOneScore ?? 0,
                                       trialTwoScore: widget.trialTwoScore ?? 0,
-                                      trialThreeScore: widget.trialThreeScore ?? 0,
+                                      trialThreeScore:
+                                          widget.trialThreeScore ?? 0,
                                       visuospatialPraxisImage1:
                                           widget.visuospatialPraxisImage1 ?? 0,
                                       visuospatialPraxisImage2:
@@ -576,17 +576,21 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                                       visuospatialPraxisImage3:
                                           widget.visuospatialPraxisImage3 ?? 0,
                                       attention: widget.attention ?? 0,
-                                      attentionCorrect: widget.attentionCorrect ?? 0,
+                                      attentionCorrect:
+                                          widget.attentionCorrect ?? 0,
                                       attentionMistakes:
                                           widget.attentionMistakes ?? 0,
                                       executiveAnimalNaming:
                                           widget.executiveAnimalNaming ?? 0,
                                       executiveAnimalNamingCount:
-                                          widget.executiveAnimalNamingCount ?? 0,
-                                      executiveLuria: widget.executiveLuria ?? 0,
+                                          widget.executiveAnimalNamingCount ??
+                                              0,
+                                      executiveLuria:
+                                          widget.executiveLuria ?? 0,
                                       executiveLuriaScore:
                                           widget.executiveLuriaScore ?? 0,
-                                      executiveSerial: widget.executiveSerial ?? 0,
+                                      executiveSerial:
+                                          widget.executiveSerial ?? 0,
                                       executiveSerialScore:
                                           widget.executiveSerialScore ?? 0,
                                       praxisRight: widget.praxisRight ?? 0,
@@ -594,18 +598,17 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                                       shorttermMemoryVerbal:
                                           widget.shorttermMemoryVerbal ?? 0,
                                       shorttermMemoryVerbalScore:
-                                          widget.shorttermMemoryVerbalScore ?? 0,
+                                          widget.shorttermMemoryVerbalScore ??
+                                              0,
                                       tenWordDelay: widget.tenWordDelay ?? 0,
-                                      scoreVerbalRecognitionMemoryTenWords: widget
-                                              .scoreVerbalRecognitionMemoryTenWords ??
-                                          0,
+                                      scoreVerbalRecognitionMemoryTenWords:
+                                          widget.scoreVerbalRecognitionMemoryTenWords ??
+                                              0,
                                       scoreVerbalRecognitionMemoryTenWordsInList:
-                                          widget
-                                                  .scoreVerbalRecognitionMemoryTenWordsInList ??
+                                          widget.scoreVerbalRecognitionMemoryTenWordsInList ??
                                               0,
                                       scoreVerbalRecognitionMemoryTenWordsNotInList:
-                                          widget
-                                                  .scoreVerbalRecognitionMemoryTenWordsNotInList ??
+                                          widget.scoreVerbalRecognitionMemoryTenWordsNotInList ??
                                               0,
                                       shorttermMemoryVisualImage1:
                                           _radioValueImageOne ?? 0,
