@@ -438,7 +438,8 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => true);
                         },
-                        child: const Text("Continue"),
+                        child: const Text("Continue",
+                            style: TextStyle(color: Colors.black)),
                       ),
                     ),
                   ),

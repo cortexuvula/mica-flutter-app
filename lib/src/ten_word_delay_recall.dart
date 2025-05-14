@@ -30,8 +30,8 @@ class TenWordDelayedRecall extends StatefulWidget {
   final int praxisRight;
   final int praxisLeft;
 
-  const TenWordDelayedRecall({
-      super.key,
+  const TenWordDelayedRecall(
+      {super.key,
       required this.patientName,
       required this.assessorName,
       required this.handedness,
@@ -70,7 +70,7 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
   void initState() {
     super.initState();
     scoreTenWordDelayRecall = 0;
-    
+
     for (var i = 0; i < 10; i++) {
       wordButtonColor.add(Colors.yellowAccent.shade100);
       wordColor.add('yellow');
@@ -89,7 +89,7 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
-        
+
         final bool shouldPop = await savePrefData();
         if (shouldPop && context.mounted) {
           Navigator.of(context).pop();
@@ -237,6 +237,7 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
                         ),
                         child: const Text(
                           "Continue",
+                          style: TextStyle(color: Colors.black),
                           overflow: TextOverflow.clip,
                         ),
                         //onPressed: () => debugPrint("hello"),

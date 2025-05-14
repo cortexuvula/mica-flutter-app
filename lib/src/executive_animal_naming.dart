@@ -488,6 +488,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                           },
                           child: const Text(
                             'Continue',
+                            style: TextStyle(color: Colors.black),
                           ),
                         ),
                       ),

@@ -39,41 +39,41 @@ class Executive extends StatefulWidget {
   final int? anomiaAgnosia;
   final int? agnosia;
 
-  const Executive({
-    super.key,
-    this.patientName,
-    this.assessorName,
-    this.handedness,
-    this.assessmentDate,
-    this.languageComprehensionRadioValue,
-    this.trialOneScore,
-    this.trialTwoScore,
-    this.trialThreeScore,
-    this.visuospatialPraxisImage1,
-    this.visuospatialPraxisImage2,
-    this.visuospatialPraxisImage3,
-    this.attention,
-    this.attentionCorrect,
-    this.attentionMistakes,
-    this.executiveAnimalNaming,
-    this.executiveAnimalNamingCount,
-    this.executiveLuria,
-    this.executiveLuriaScore,
-    this.executiveSerial,
-    this.executiveSerialScore,
-    this.shorttermMemoryVerbal,
-    this.shorttermMemoryVerbalScore,
-    this.praxisRight,
-    this.praxisLeft,
-    this.tenWordDelay,
-    this.scoreVerbalRecognitionMemoryTenWords,
-    this.scoreVerbalRecognitionMemoryTenWordsInList,
-    this.scoreVerbalRecognitionMemoryTenWordsNotInList,
-    this.shorttermMemoryVisualImage1,
-    this.shorttermMemoryVisualImage2,
-    this.shorttermMemoryVisualImage3,
-    this.anomiaAgnosia,
-    this.agnosia});
+  const Executive(
+      {super.key,
+      this.patientName,
+      this.assessorName,
+      this.handedness,
+      this.assessmentDate,
+      this.languageComprehensionRadioValue,
+      this.trialOneScore,
+      this.trialTwoScore,
+      this.trialThreeScore,
+      this.visuospatialPraxisImage1,
+      this.visuospatialPraxisImage2,
+      this.visuospatialPraxisImage3,
+      this.attention,
+      this.attentionCorrect,
+      this.attentionMistakes,
+      this.executiveAnimalNaming,
+      this.executiveAnimalNamingCount,
+      this.executiveLuria,
+      this.executiveLuriaScore,
+      this.executiveSerial,
+      this.executiveSerialScore,
+      this.shorttermMemoryVerbal,
+      this.shorttermMemoryVerbalScore,
+      this.praxisRight,
+      this.praxisLeft,
+      this.tenWordDelay,
+      this.scoreVerbalRecognitionMemoryTenWords,
+      this.scoreVerbalRecognitionMemoryTenWordsInList,
+      this.scoreVerbalRecognitionMemoryTenWordsNotInList,
+      this.shorttermMemoryVisualImage1,
+      this.shorttermMemoryVisualImage2,
+      this.shorttermMemoryVisualImage3,
+      this.anomiaAgnosia,
+      this.agnosia});
 
   @override
   _ExecutiveState createState() => _ExecutiveState();
@@ -460,12 +460,15 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                                       patientName: widget.patientName ?? "",
                                       assessorName: widget.assessorName ?? "",
                                       handedness: widget.handedness ?? "",
-                                      assessmentDate: widget.assessmentDate ?? DateTime.now(),
-                                      languageComprehensionRadioValue:
-                                          widget.languageComprehensionRadioValue ?? 0,
+                                      assessmentDate: widget.assessmentDate ??
+                                          DateTime.now(),
+                                      languageComprehensionRadioValue: widget
+                                              .languageComprehensionRadioValue ??
+                                          0,
                                       trialOneScore: widget.trialOneScore ?? 0,
                                       trialTwoScore: widget.trialTwoScore ?? 0,
-                                      trialThreeScore: widget.trialThreeScore ?? 0,
+                                      trialThreeScore:
+                                          widget.trialThreeScore ?? 0,
                                       visuospatialPraxisImage1:
                                           widget.visuospatialPraxisImage1 ?? 0,
                                       visuospatialPraxisImage2:
@@ -473,17 +476,21 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                                       visuospatialPraxisImage3:
                                           widget.visuospatialPraxisImage3 ?? 0,
                                       attention: widget.attention ?? 0,
-                                      attentionCorrect: widget.attentionCorrect ?? 0,
+                                      attentionCorrect:
+                                          widget.attentionCorrect ?? 0,
                                       attentionMistakes:
                                           widget.attentionMistakes ?? 0,
                                       executiveAnimalNaming:
                                           widget.executiveAnimalNaming ?? 0,
                                       executiveAnimalNamingCount:
-                                          widget.executiveAnimalNamingCount ?? 0,
-                                      executiveLuria: widget.executiveLuria ?? 0,
+                                          widget.executiveAnimalNamingCount ??
+                                              0,
+                                      executiveLuria:
+                                          widget.executiveLuria ?? 0,
                                       executiveLuriaScore:
                                           widget.executiveLuriaScore ?? 0,
-                                      executiveSerial: widget.executiveSerial ?? 0,
+                                      executiveSerial:
+                                          widget.executiveSerial ?? 0,
                                       executiveSerialScore:
                                           widget.executiveSerialScore ?? 0,
                                       praxisRight: widget.praxisRight ?? 0,
@@ -491,22 +498,27 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                                       shorttermMemoryVerbal:
                                           widget.shorttermMemoryVerbal ?? 0,
                                       shorttermMemoryVerbalScore:
-                                          widget.shorttermMemoryVerbalScore ?? 0,
+                                          widget.shorttermMemoryVerbalScore ??
+                                              0,
                                       tenWordDelay: widget.tenWordDelay ?? 0,
                                       scoreVerbalRecognitionMemoryTenWords:
-                                          widget.scoreVerbalRecognitionMemoryTenWords ?? 0,
+                                          widget.scoreVerbalRecognitionMemoryTenWords ??
+                                              0,
                                       scoreVerbalRecognitionMemoryTenWordsInList:
-                                          widget
-                                              .scoreVerbalRecognitionMemoryTenWordsInList ?? 0,
+                                          widget.scoreVerbalRecognitionMemoryTenWordsInList ??
+                                              0,
                                       scoreVerbalRecognitionMemoryTenWordsNotInList:
-                                          widget
-                                              .scoreVerbalRecognitionMemoryTenWordsNotInList ?? 0,
+                                          widget.scoreVerbalRecognitionMemoryTenWordsNotInList ??
+                                              0,
                                       shorttermMemoryVisualImage1:
-                                          widget.shorttermMemoryVisualImage1 ?? 0,
+                                          widget.shorttermMemoryVisualImage1 ??
+                                              0,
                                       shorttermMemoryVisualImage2:
-                                          widget.shorttermMemoryVisualImage2 ?? 0,
+                                          widget.shorttermMemoryVisualImage2 ??
+                                              0,
                                       shorttermMemoryVisualImage3:
-                                          widget.shorttermMemoryVisualImage3 ?? 0,
+                                          widget.shorttermMemoryVisualImage3 ??
+                                              0,
                                       anomiaAgnosia: widget.anomiaAgnosia ?? 0,
                                       agnosia: widget.agnosia ?? 0,
                                       executive: _radioValue,
@@ -514,7 +526,8 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: const Text("Continue with Testing"),
+                          child: const Text("Continue",
+                              style: TextStyle(color: Colors.black)),
                         ),
                       ),
                     ),

@@ -29,8 +29,8 @@ class Praxis extends StatefulWidget {
   final int shorttermMemoryVerbal;
   final int shorttermMemoryVerbalScore;
 
-  const Praxis({
-      super.key,
+  const Praxis(
+      {super.key,
       required this.patientName,
       required this.assessorName,
       required this.handedness,
@@ -445,7 +445,8 @@ class _PraxisState extends State<Praxis> {
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: Text("Continue with Testing"),
+                          child: Text("Continue",
+                              style: TextStyle(color: Colors.black)),
                         ),
                       ),
                     ),

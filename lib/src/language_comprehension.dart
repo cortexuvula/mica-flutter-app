@@ -279,7 +279,8 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: Text("Continue"),
+                          child: Text("Continue",
+                              style: TextStyle(color: Colors.black)),
                         ),
                       ),
                     ),

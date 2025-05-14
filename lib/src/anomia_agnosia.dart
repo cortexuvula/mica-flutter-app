@@ -101,7 +101,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
     // Remove unused variable
     //var sizeBoxWidth = _width * 0.1;
     var sizeBoxHeight = width * 0.05;
-    
+
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
@@ -536,8 +536,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                           ),
                           onPressed: () {
                             var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    Executive(
+                                builder: (BuildContext context) => Executive(
                                       patientName: widget.patientName,
                                       assessorName: widget.assessorName,
                                       handedness: widget.handedness,
@@ -594,7 +593,8 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: const Text("Continue with Testing"),
+                          child: const Text("Continue",
+                              style: TextStyle(color: Colors.black)),
                         ),
                       ),
                     ),
@@ -637,7 +637,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
     if (_radioValue != null) {
       prefs.setInt("anomiaAgnosia", _radioValue!);
     }
-    
+
     if (_radioValue2 != null) {
       prefs.setInt("agnosia", _radioValue2!);
     }

@@ -11,8 +11,8 @@ class TenWordRecallTrialOne extends StatefulWidget {
   final DateTime assessmentDate;
   final int languageComprehensionRadioValue;
 
-  const TenWordRecallTrialOne({
-      super.key,
+  const TenWordRecallTrialOne(
+      {super.key,
       required this.patientName,
       required this.assessorName,
       required this.handedness,
@@ -34,7 +34,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
   @override
   void initState() {
     super.initState();
-    
+
     scoreTenWordRecallTrialOne = 0;
 
     for (var i = 0; i < 10; i++) {
@@ -55,7 +55,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
-        
+
         final bool shouldPop = await savePrefData();
         if (shouldPop && context.mounted) {
           Navigator.of(context).pop();
@@ -247,6 +247,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                         ),
                         child: const Text(
                           "Continue",
+                          style: TextStyle(color: Colors.black),
                           overflow: TextOverflow.clip,
                         ),
                         //onPressed: () => debugPrint("hello"),
@@ -289,7 +290,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
         }
       }
     }
-    
+
     if (score != null) {
       setState(() {
         scoreTenWordRecallTrialOne = score;

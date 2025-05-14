@@ -274,6 +274,7 @@ class _TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
                             : null,
                         child: Text(
                           "Continue",
+                          style: TextStyle(color: Colors.black),
                           overflow: TextOverflow.clip,
                         )),
                   ),

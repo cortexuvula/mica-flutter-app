@@ -634,7 +634,10 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                     ),
                                   );
                                 },
-                                child: Text("Continue"),
+                                child: Text(
+                                  "Continue",
+                                  style: TextStyle(color: Colors.black),
+                                ),
                               ),
                             ),
                           ),
