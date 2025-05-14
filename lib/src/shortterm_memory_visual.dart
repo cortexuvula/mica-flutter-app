@@ -620,7 +620,8 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: const Text("Continue with Testing"),
+                          child: const Text("Continue",
+                              style: TextStyle(color: Colors.black)),
                         ),
                       ),
                     ),

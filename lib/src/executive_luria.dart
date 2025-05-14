@@ -407,7 +407,8 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                     ));
                             Navigator.of(context).push(router);
                           },
-                          child: const Text("Continue"),
+                          child: const Text("Continue",
+                              style: TextStyle(color: Colors.black)),
                         ),
                       ),
                     ),

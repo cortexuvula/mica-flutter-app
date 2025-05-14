@@ -573,7 +573,8 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: const Text("Continue"),
+                          child: const Text("Continue",
+                              style: TextStyle(color: Colors.black)),
                         ),
                       ),
                     ),

@@ -440,6 +440,7 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
                         ),
                         child: const Text(
                           "Continue",
+                          style: TextStyle(color: Colors.black),
                           overflow: TextOverflow.clip,
                         ),
                         onPressed: () {

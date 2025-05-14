@@ -40,8 +40,8 @@ class SpokenLanguage extends StatefulWidget {
   final int agnosia;
   final int executive;
 
-  const SpokenLanguage({
-      super.key,
+  const SpokenLanguage(
+      {super.key,
       required this.patientName,
       required this.assessorName,
       required this.handedness,
@@ -105,7 +105,7 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
-        
+
         final shouldPop = await savePrefData();
         if (shouldPop) {
           Navigator.of(context).pop();
@@ -294,8 +294,7 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                           ),
                           onPressed: () {
                             var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    TestSummary(
+                                builder: (BuildContext context) => TestSummary(
                                       patientName: widget.patientName,
                                       assessorName: widget.assessorName,
                                       handedness: widget.handedness,
@@ -354,7 +353,8 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: const Text("Continue with Testing"),
+                          child: const Text("Continue",
+                              style: TextStyle(color: Colors.black)),
                         ),
                       ),
                     ),
