@@ -11,6 +11,10 @@ import 'package:mica/src/domain_results/visual_short_term_memory.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/welcome.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:pdf/pdf.dart';
+import 'package:pdf/widgets.dart' as pw;
+import 'package:file_saver/file_saver.dart';
+import 'dart:typed_data';
 
 @immutable
 class TestSummary extends StatefulWidget {
@@ -135,6 +139,12 @@ class _TestSummaryState extends State<TestSummary> {
                   onPressed: () {
                     print("summary");
                     Share.share(shareDoc());
+                  }),
+              IconButton(
+                  icon: Icon(Icons.download),
+                  tooltip: "Download PDF",
+                  onPressed: () {
+                    generateAndDownloadPdf();
                   }),
               IconButton(
                 icon: Icon(Icons.home),
@@ -1582,6 +1592,108 @@ class _TestSummaryState extends State<TestSummary> {
       return "Impaired";
     } else {
       return "Equivocal";
+    }
+  }
+
+  Future<void> generateAndDownloadPdf() async {
+    // Create a PDF document
+    final pdf = pw.Document();
+    
+    // Add content to the PDF
+    final docContent = shareDoc();
+    final paragraphs = docContent.split('\n');
+    
+    pdf.addPage(
+      pw.MultiPage(
+        pageFormat: PdfPageFormat.a4,
+        margin: const pw.EdgeInsets.all(32),
+        build: (pw.Context context) {
+          List<pw.Widget> widgets = [];
+          
+          // Add title
+          widgets.add(
+            pw.Header(
+              level: 0,
+              child: pw.Text('MICA Assessment Report', 
+                style: pw.TextStyle(fontSize: 24, fontWeight: pw.FontWeight.bold)
+              ),
+            ),
+          );
+          
+          widgets.add(pw.SizedBox(height: 20));
+          
+          // Add content paragraphs
+          for (var para in paragraphs) {
+            if (para.trim().isNotEmpty) {
+              // Check if this line is a section header (ends with a colon)
+              if (para.endsWith(':')) {
+                widgets.add(
+                  pw.Header(
+                    level: 1,
+                    child: pw.Text(para, style: pw.TextStyle(fontSize: 16, fontWeight: pw.FontWeight.bold)),
+                  ),
+                );
+              } else if (para.startsWith('Raw score:')) {
+                widgets.add(
+                  pw.Padding(
+                    padding: const pw.EdgeInsets.only(left: 12.0),
+                    child: pw.Text(para, style: pw.TextStyle(fontStyle: pw.FontStyle.italic)),
+                  ),
+                );
+              } else if (para.contains('Normal') || para.contains('Impaired') || para.contains('Equivocal')) {
+                // Assessment results in bold
+                widgets.add(
+                  pw.Padding(
+                    padding: const pw.EdgeInsets.only(left: 12.0, bottom: 10.0),
+                    child: pw.Text(para, style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
+                  ),
+                );
+              } else {
+                widgets.add(
+                  pw.Paragraph(text: para),
+                );
+              }
+            } else {
+              // Add space between sections
+              widgets.add(pw.SizedBox(height: 10));
+            }
+          }
+          
+          return widgets;
+        },
+      ),
+    );
+    
+    // Generate PDF bytes
+    final Uint8List pdfBytes = await pdf.save();
+    
+    // Generate a filename based on patient name and date
+    final patientName = widget.patientName.replaceAll(' ', '_');
+    final dateStr = format.format(widget.assessmentDate).replaceAll(' ', '_');
+    final filename = 'MICA_${patientName}_${dateStr}.pdf';
+    
+    try {
+      // Save PDF to downloads folder
+      await FileSaver.instance.saveFile(
+        name: filename,
+        bytes: pdfBytes,
+        ext: 'pdf',
+        mimeType: MimeType.pdf,
+      );
+      
+      // Show success message
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('PDF saved to downloads folder as $filename')),
+        );
+      }
+    } catch (e) {
+      // Show error message
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Error saving PDF: $e')),
+        );
+      }
     }
   }
 }
