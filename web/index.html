@@ -30,9 +30,82 @@
   <link rel="icon" type="image/png" href="favicon.png"/>
 
   <title>mica</title>
-  <link rel="manifest" href="manifest.json">
+  <!-- Temporarily comment out manifest to avoid CORS errors during development -->
+  <!-- <link rel="manifest" href="manifest.json"> -->
+
+  <style>
+    /* Splash screen styles */
+    #splash {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      background: linear-gradient(to bottom, #ede9fe, #aba9e9);
+      color: #333;
+      font-family: 'Roboto', sans-serif;
+      transition: opacity 0.4s ease;
+    }
+    #splash img {
+      width: 200px;
+      height: 200px;
+      margin-bottom: 20px;
+    }
+    #splash .loading-indicator {
+      width: 50px;
+      height: 50px;
+      border: 5px solid rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      border-top-color: #64638f;
+      animation: spin 1s linear infinite;
+      margin-top: 20px;
+    }
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+    #splash .app-name {
+      font-size: 24px;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+  </style>
 </head>
 <body>
+  <!-- Splash screen container -->
+  <div id="splash">
+    <!-- Use base64 encoded image to avoid CORS and path issues -->
+    <div style="width:200px; height:200px; background-color:#64638f; border-radius:16px; display:flex; align-items:center; justify-content:center; color:white; font-size:36px; font-weight:bold;">MCA</div>
+    <div class="app-name">Midlands Cognitive Assessment</div>
+    <div class="loading-indicator"></div>
+  </div>
+
+  <script>
+    // Simple splash screen script that works in all environments
+    window.onload = function() {
+      // Wait a brief moment to ensure Flutter gets a chance to initialize first
+      setTimeout(function() {
+        var splash = document.getElementById('splash');
+        if (splash) {
+          splash.style.opacity = '0';
+          setTimeout(function() {
+            if (splash && splash.parentNode) {
+              splash.parentNode.removeChild(splash);
+            }
+          }, 400);
+        }
+      }, 2000);
+    };
+  </script>
+  
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
