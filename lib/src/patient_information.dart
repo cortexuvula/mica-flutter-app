@@ -4,7 +4,6 @@ import 'dart:async';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/language_comprehension.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 
 class PatientInformation extends StatefulWidget {
@@ -32,7 +31,7 @@ class _PatientInformationState extends State<PatientInformation> {
   @override
   void initState() {
     super.initState();
-    getPrefs();
+    initFromProvider();
   }
 
   @override
@@ -226,11 +225,10 @@ class _PatientInformationState extends State<PatientInformation> {
                             ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(content: Text('Processing Data')));
 
-                            // Save to SharedPreferences
-                            setPrefs();
+                            // Save to provider
+                            saveToProvider();
                             
-                            // Update the provider with patient information
-                            _updateProviderWithPatientInfo();
+                            // The provider is now updated with patient information
                             
                             // Navigate to the next screen
                             var router = MaterialPageRoute(
@@ -257,18 +255,29 @@ class _PatientInformationState extends State<PatientInformation> {
     });
   }
   
-  /// Update the provider with patient information
-  void _updateProviderWithPatientInfo() {
+    void initFromProvider() {
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     
-    // Get handedness string
-    String handed = _radioValue == 0 ? "Right" : "Left";
+    // Load patient information from provider
+    setState(() {
+      myPatient.text = scoreModel.patientName;
+      myAssessor.text = scoreModel.assessorName;
+      _radioValue = scoreModel.handedness == 'Right' ? 0 : 1;
+      selectedDate = scoreModel.assessmentDate;
+    });
+  }
+
+  // Instead of saving to SharedPreferences, we now update the provider
+  void saveToProvider() {
+    if (!mounted) return;
     
-    // Update provider with patient information
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    
+    // Update the provider with patient information
     scoreModel.setPatientInfo(
       patientName: myPatient.text,
       assessorName: myAssessor.text,
-      handedness: handed,
+      handedness: _radioValue == 0 ? 'Right' : 'Left',
       assessmentDate: selectedDate,
     );
   }
@@ -283,46 +292,6 @@ class _PatientInformationState extends State<PatientInformation> {
       setState(() {
         selectedDate = picked;
       });
-    }
-  }
-
-  void getPrefs() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    try {
-      String? assessor = prefs.getString("assessor");
-      bool? remember = prefs.getBool("rememberAssessor");
-      if (assessor != null) {
-        if (remember == true) {
-          setState(() {
-            myAssessor.text = assessor;
-            rememberAssessor = remember!;
-          });
-        } else if (remember == false) {
-          setState(() {
-            rememberAssessor = remember!;
-          });
-        }
-      }
-
-      print("Retrieved Assessor Name $assessor");
-    } catch (e) {
-      print("failed to get assessor name");
-    }
-  }
-
-  void setPrefs() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    try {
-      if (rememberAssessor) {
-        prefs.setString("assessor", myAssessor.text);
-        prefs.setBool("rememberAssessor", rememberAssessor);
-        print("Saved ${myAssessor.text}");
-      } else if (!rememberAssessor) {
-        prefs.setString("assessor", "");
-        prefs.setBool("rememberAssessor", rememberAssessor);
-      }
-    } catch (e) {
-      print("Failed to save assessor");
     }
   }
 }

@@ -3,7 +3,6 @@ import 'package:mica/src/attention.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/show_image.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 
 class VisuospatialPraxis extends StatefulWidget {
@@ -29,7 +28,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
   @override
   void initState() {
     super.initState();
-    getPrefsData();
+    initFromProvider();
   }
   
   // Update the provider with visuospatial praxis scores
@@ -49,9 +48,14 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
-        if (didPop) return;
-        final shouldPop = await savePrefData();
-        if (shouldPop && context.mounted) {
+        if (didPop) {
+          return;
+        }
+
+        // Update the provider 
+        _updateProvider();
+
+        if (context.mounted) {
           Navigator.of(context).pop();
         }
       },
@@ -651,23 +655,14 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
     });
   }
 
-  Future<bool> savePrefData() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    prefs.setInt("visuospatialPraxisImage1", _radioValueImageOne ?? 0);
-    prefs.setInt("visuospatialPraxisImage2", _radioValueImageTwo ?? 0);
-    prefs.setInt("visuospatialPraxisImage3", _radioValueImageThree ?? 0);
-
-    return true;
-  }
-
-  void getPrefsData() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-
+  void initFromProvider() {
+    // Get data from provider instead of SharedPreferences
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    
     setState(() {
-      _radioValueImageOne = prefs.getInt("visuospatialPraxisImage1") ?? 0;
-      _radioValueImageTwo = prefs.getInt("visuospatialPraxisImage2") ?? 0;
-      _radioValueImageThree = prefs.getInt("visuospatialPraxisImage3") ?? 0;
+      _radioValueImageOne = scoreModel.visuospatialPraxisImage1;
+      _radioValueImageTwo = scoreModel.visuospatialPraxisImage2;
+      _radioValueImageThree = scoreModel.visuospatialPraxisImage3;
     });
   }
 }

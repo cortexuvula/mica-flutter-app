@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/shortterm_memory_visual.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:provider/provider.dart';
 
@@ -29,10 +28,13 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
   @override
   void initState() {
     super.initState();
+    // Load data from the model instead of preferences
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      loadFromModel();
+    });
     for (var i = 0; i < app_data.tenWordMemoryList.length; i++) {
       wordButtonColor.add({"yes": Colors.white70, "no": Colors.white70});
     }
-    getPrefsData();
   }
 
   @override
@@ -46,8 +48,10 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
-        final shouldPop = await savePrefData();
-        if (shouldPop && context.mounted) {
+
+        // Save to the model
+        saveToModel();
+        if (context.mounted) {
           Navigator.of(context).pop();
         }
       },
@@ -440,63 +444,27 @@ class _TenWordRecognitionState extends State<TenWordRecognition> {
     scoreVerbalRecognitionMemoryTenWordsNotInList -= 1;
   }
 
-  Future<bool> savePrefData() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+  void saveToModel() {
     final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
 
-    await prefs.setInt("tenWordRecognition", scoreVerbalRecognitionMemoryTenWords);
-    await prefs.setInt(
-        "tenWordRecognitionInList", scoreVerbalRecognitionMemoryTenWordsInList);
-    await prefs.setInt("tenWordRecognitionNotInList",
-        scoreVerbalRecognitionMemoryTenWordsNotInList);
-        
-    // Update the model
+    // Update the model with current values
     micaScoreModel.setVerbalRecognitionMemory(
       score: scoreVerbalRecognitionMemoryTenWords,
       inList: scoreVerbalRecognitionMemoryTenWordsInList,
       notInList: scoreVerbalRecognitionMemoryTenWordsNotInList
     );
-
-    List<String> noWordColor = [];
-    List<String> yesWordColor = [];
-
-    for (var i = 0; i < 20; i++) {
-      if (wordButtonColor[i]["yes"] == Colors.white70) {
-        yesWordColor.add("white");
-      } else if (wordButtonColor[i]["yes"] == Colors.red) {
-        yesWordColor.add("red");
-      } else {
-        yesWordColor.add("green");
-      }
-      if (wordButtonColor[i]["no"] == Colors.white70) {
-        noWordColor.add("white");
-      } else if (wordButtonColor[i]["no"] == Colors.red) {
-        noWordColor.add("red");
-      } else {
-        noWordColor.add("green");
-      }
-    }
-
-    prefs.setStringList("noColors", noWordColor);
-    prefs.setStringList("yesColors", yesWordColor);
-
-    return true;
+    
+    // If we want to save button states in the future,
+    // we would need to extend the model to store this information
   }
 
-  void getPrefsData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  void loadFromModel() {
     final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
 
     setState(() {
-      scoreVerbalRecognitionMemoryTenWords =
-          prefs.getInt("tenWordRecognition") ?? 
-          micaScoreModel.scoreVerbalRecognitionMemoryTenWords;
-      scoreVerbalRecognitionMemoryTenWordsInList =
-          prefs.getInt("tenWordRecognitionInList") ?? 
-          micaScoreModel.scoreVerbalRecognitionMemoryTenWordsInList;
-      scoreVerbalRecognitionMemoryTenWordsNotInList =
-          prefs.getInt("tenWordRecognitionNotInList") ?? 
-          micaScoreModel.scoreVerbalRecognitionMemoryTenWordsNotInList;
+      scoreVerbalRecognitionMemoryTenWords = micaScoreModel.scoreVerbalRecognitionMemoryTenWords;
+      scoreVerbalRecognitionMemoryTenWordsInList = micaScoreModel.scoreVerbalRecognitionMemoryTenWordsInList;
+      scoreVerbalRecognitionMemoryTenWordsNotInList = micaScoreModel.scoreVerbalRecognitionMemoryTenWordsNotInList;
     });
   }
 }

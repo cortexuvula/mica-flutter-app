@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/shortterm_memory_verbal.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 
 class ExecutiveSerial extends StatefulWidget {
@@ -44,7 +43,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
   @override
   void initState() {
     super.initState();
-    getPrefsData();
+    initFromProvider();
   }
 
   @override
@@ -53,11 +52,12 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
-        if (!didPop) {
-          final shouldPop = await savePrefData();
-          if (shouldPop && context.mounted) {
-            Navigator.of(context).pop();
-          }
+        if (didPop) return;
+        
+        // Save to provider instead of SharedPreferences
+        _updateProvider();
+        if (context.mounted) {
+          Navigator.of(context).pop();
         }
       },
       child: Scaffold(
@@ -558,94 +558,32 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
     }
   }
 
-  void getPrefsData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    int? score1 = prefs.getInt("executiveSerial");
-    int? score2 = prefs.getInt("executiveSerial_score");
-    List<String>? buttonColors =
-        prefs.getStringList("executiveSerialButtonColor");
-
-    if (buttonColors != null) {
-      executiveSerialButtonColor = buttonColors;
-    } else {
-      executiveSerialButtonColor = List.filled(6, "yellow");
-    }
-
-    List<Color> buttonColor = [];
-    List<bool> buttonTapped = [];
-
-    for (var i = 0; i < 6; i++) {
-      if (i < executiveSerialButtonColor.length &&
-          executiveSerialButtonColor[i] == "yellow") {
-        buttonColor.add(Colors.yellow);
-        buttonTapped.add(false);
-      } else {
-        buttonColor.add(Colors.green);
-        buttonTapped.add(true);
-      }
-    }
-
+  void initFromProvider() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    
     setState(() {
-      _radioValue = score1;
-      decembermonthButtonColor = buttonColor[0];
-      novembermonthButtonColor = buttonColor[1];
-      octobermonthButtonColor = buttonColor[2];
-      septembermonthButtonColor = buttonColor[3];
-      augustmonthButtonColor = buttonColor[4];
-      julymonthButtonColor = buttonColor[5];
+      // Get base values from the provider
+      _radioValue = scoreModel.executiveSerial;
+      score = scoreModel.executiveSerialScore;
+      
+      // Initialize button colors - these would need to be stored in the model
+      // if we want to preserve button state between sessions
+      executiveSerialButtonColor = List.filled(6, "yellow");
+      
+      // Reset button colors and tapped states
+      decembermonthButtonColor = Colors.yellow;
+      novembermonthButtonColor = Colors.yellow;
+      octobermonthButtonColor = Colors.yellow;
+      septembermonthButtonColor = Colors.yellow;
+      augustmonthButtonColor = Colors.yellow;
+      julymonthButtonColor = Colors.yellow;
 
-      decemberTapped = buttonTapped[0];
-      novemberTapped = buttonTapped[1];
-      octoberTapped = buttonTapped[2];
-      septemberTapped = buttonTapped[3];
-      augustTapped = buttonTapped[4];
-      julyTapped = buttonTapped[5];
-
-      score = score2 ?? 0;
+      decemberTapped = false;
+      novemberTapped = false;
+      octoberTapped = false;
+      septemberTapped = false;
+      augustTapped = false;
+      julyTapped = false;
     });
-  }
-
-  Future<bool> savePrefData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    List<String> saveButtonColor = [];
-
-    if (decembermonthButtonColor == Colors.yellow) {
-      saveButtonColor.add("yellow");
-    } else {
-      saveButtonColor.add("green");
-    }
-    if (novembermonthButtonColor == Colors.yellow) {
-      saveButtonColor.add("yellow");
-    } else {
-      saveButtonColor.add("green");
-    }
-    if (octobermonthButtonColor == Colors.yellow) {
-      saveButtonColor.add("yellow");
-    } else {
-      saveButtonColor.add("green");
-    }
-    if (septembermonthButtonColor == Colors.yellow) {
-      saveButtonColor.add("yellow");
-    } else {
-      saveButtonColor.add("green");
-    }
-    if (augustmonthButtonColor == Colors.yellow) {
-      saveButtonColor.add("yellow");
-    } else {
-      saveButtonColor.add("green");
-    }
-    if (julymonthButtonColor == Colors.yellow) {
-      saveButtonColor.add("yellow");
-    } else {
-      saveButtonColor.add("green");
-    }
-
-    prefs.setInt("executiveSerial", _radioValue ?? 0);
-    prefs.setInt("executiveSerial_score", score);
-
-    prefs.setStringList("executiveSerialButtonColor", saveButtonColor);
-
-    return true;
   }
 }

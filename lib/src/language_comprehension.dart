@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/ten_word_recall_task_trial_one.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 
 class LanguageComprehension extends StatefulWidget {
@@ -21,7 +20,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
   @override
   void initState() {
     super.initState();
-    getPrefsData();
+    initFromProvider();
   }
   
   // Update the provider with the language comprehension score
@@ -41,7 +40,10 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
         if (didPop) {
           return;
         }
-        await savePrefData();
+        
+        // Update provider before navigation
+        _updateProvider();
+        
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => Welcome(),
@@ -303,19 +305,13 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
 
   // initState method moved to the top of the class
 
-  void getPrefsData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    int? setRadioPref = prefs.getInt("languageComprehensionRadioValue");
+  void initFromProvider() {
+    if (!mounted) return;
+    
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    
     setState(() {
-      _radioValue = setRadioPref;
+      _radioValue = scoreModel.languageComprehensionRadioValue;
     });
-  }
-
-  Future<bool> savePrefData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    prefs.setInt("languageComprehensionRadioValue", _radioValue ?? 0);
-
-    return true;
   }
 }

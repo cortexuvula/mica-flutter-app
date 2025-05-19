@@ -4,7 +4,7 @@ import 'dart:async';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/domain_testing/domain_vigilance.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 final String VIGILANCE = "Vigilance";
 
@@ -37,7 +37,7 @@ class _DomainPatientInformationState extends State<DomainPatientInformation> {
   @override
   void initState() {
     super.initState();
-    getPrefs();
+    getAssessorFromProvider();
   }
 
   @override
@@ -219,12 +219,7 @@ class _DomainPatientInformationState extends State<DomainPatientInformation> {
                           foregroundColor: Colors.white,
                         ),
                         onPressed: () {
-                          String handed;
-                          if (_radioValue == 0) {
-                            handed = "Right";
-                          } else {
-                            handed = "Left";
-                          }
+                          // Handedness is determined directly where needed
                           if (myPatient.text == "") {
                             myPatient.text = "No Name Provided";
                           }
@@ -236,18 +231,21 @@ class _DomainPatientInformationState extends State<DomainPatientInformation> {
                             // often want to call a server or save the information in a database
                             ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(content: Text('Processing Data')));
-                            setPrefs();
+                            saveAssessorToProvider();
+                                
                             if (widget.testName == VIGILANCE) {
-                              var router = MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      DomainVigilance(
-                                        patientName: myPatient.text,
-                                        assessorName: myAssessor.text,
-                                        handedness: handed,
-                                        assessmentDate: selectedDate,
-                                      ));
-                              Navigator.of(context).pushAndRemoveUntil(
-                                  router, (Route<dynamic> route) => true);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => DomainVigilance(
+                                          patientName: myPatient.text,
+                                          assessorName: myAssessor.text,
+                                          handedness: _radioValue == 0
+                                              ? "Right"
+                                              : "Left",
+                                          assessmentDate: selectedDate,
+                                        )),
+                              );
                             }
                           }
                         },
@@ -281,43 +279,50 @@ class _DomainPatientInformationState extends State<DomainPatientInformation> {
     }
   }
 
-  void getPrefs() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  void getAssessorFromProvider() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     try {
-      String? assessor = prefs.getString("assessor");
-      bool? remember = prefs.getBool("rememberAssessor");
-      if (assessor != null) {
-        if (remember ?? false) {
-          setState(() {
-            myAssessor.text = assessor;
-            rememberAssessor = remember ?? false;
-          });
-        } else if (!(remember ?? false)) {
-          setState(() {
-            rememberAssessor = remember ?? false;
-          });
+      // Get assessor name from provider
+      final assessorName = scoreModel.assessorName;
+      
+      setState(() {
+        if (assessorName.isNotEmpty) {
+          myAssessor.text = assessorName;
+          rememberAssessor = true;
+        } else {
+          rememberAssessor = false;
         }
-      }
-
-      print("Retrieved Assessor Name $assessor");
+      });
+      
+      print("Retrieved Assessor Name $assessorName");
     } catch (e) {
-      print("failed to get assessor name");
+      print("Failed to get assessor name: $e");
     }
   }
 
-  void setPrefs() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  void saveAssessorToProvider() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     try {
+      // Set assessor name in the provider
       if (rememberAssessor) {
-        prefs.setString("assessor", myAssessor.text);
-        prefs.setBool("rememberAssessor", rememberAssessor);
-        print("Saved ${myAssessor.text}");
-      } else if (!rememberAssessor) {
-        prefs.setString("assessor", "");
-        prefs.setBool("rememberAssessor", rememberAssessor);
+        scoreModel.setPatientInfo(
+          patientName: myPatient.text, 
+          assessorName: myAssessor.text,
+          handedness: _radioValue == 0 ? "Right" : "Left",
+          assessmentDate: selectedDate
+        );
+        print("Saved assessor: ${myAssessor.text}");
+      } else {
+        // If not remembering, still save other info but with empty assessor name
+        scoreModel.setPatientInfo(
+          patientName: myPatient.text, 
+          assessorName: "",
+          handedness: _radioValue == 0 ? "Right" : "Left",
+          assessmentDate: selectedDate
+        );
       }
     } catch (e) {
-      print("Failed to save assessor");
+      print("Failed to save assessor: $e");
     }
   }
 }

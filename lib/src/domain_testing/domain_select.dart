@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/domain_testing/domain_attention_concentration.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mica/src/welcome.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class DomainSelect extends StatefulWidget {
   const DomainSelect({super.key});
@@ -15,7 +15,7 @@ class _DomainSelectState extends State<DomainSelect> {
   @override
   void initState() {
     super.initState();
-    saveInitialData();
+    initializeModelData();
   }
 
   @override
@@ -281,30 +281,17 @@ class _DomainSelectState extends State<DomainSelect> {
     );
   }
 
-  void saveInitialData() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    // Vigilance
-    prefs.setInt("domain_attention", 0);
-    prefs.setInt("domain_correctTap", 0);
-    prefs.setInt("domain_wrongTap", 0);
-
-    List<String> letterTapButtonColor = [];
-
-    List<String> tapCorrect = [];
-    List<String> tapWrong = [];
-    List<String> correctCheck = [];
-
-    for (var i = 0; i < 26; i++) {
-      tapCorrect.add("false");
-      tapWrong.add("false");
-      correctCheck.add("false");
-      letterTapButtonColor.add("cyan");
-    }
-
-    prefs.setStringList("domain_letterTapButtonColor", letterTapButtonColor);
-    prefs.setStringList("domain_tapCorrect", tapCorrect);
-    prefs.setStringList("domain_tapWrong", tapWrong);
-    prefs.setStringList("domain_correctCheck", correctCheck);
+  void initializeModelData() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    
+    // Initialize attention scores in the model
+    scoreModel.setAttention(
+      score: 0,
+      correct: 0,
+      mistakes: 0
+    );
+    
+    // No need to initialize UI state variables like button colors
+    // These are handled in each screen's initState method
   }
 }

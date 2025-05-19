@@ -3,7 +3,6 @@ import 'package:mica/src/providers/mica_provider.dart';
 import 'package:mica/src/summary_with_provider.dart';
 import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/welcome.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:provider/provider.dart';
 
@@ -29,24 +28,11 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
   @override
   void initState() {
     super.initState();
-    getPrefsData();
     
-    // Initialize provider with any existing data
+    // Initialize from provider data
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _initializeProviderModel();
     });
-  }
-  
-  /// Initialize the provider model with data from this widget
-  void _initializeProviderModel() {
-    // With direct Provider pattern, we don't need to initialize from widget parameters
-    // We only need to sync local state with provider if needed
-    final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
-    if (_radioValue != micaScoreModel.spokenLanguage) {
-      setState(() {
-        _radioValue = micaScoreModel.spokenLanguage;
-      });
-    }
   }
 
   @override
@@ -55,12 +41,18 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
-        if (didPop) return;
-
-        final shouldPop = await savePrefData();
-        if (shouldPop) {
-          Navigator.of(context).pop();
+        if (didPop) {
+          return;
         }
+        
+        // Update the provider
+        _updateProvider();
+        
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const Welcome(),
+          ),
+        );
       },
       child: Scaffold(
         appBar: AppBar(
@@ -282,19 +274,12 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
     micaScoreModel.setSpokenLanguage(_radioValue);
   }
 
-  void getPrefsData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    int? setRadioPref = prefs.getInt("spokenLanguage");
+  // Initialize provider model now directly reads from provider
+  void _initializeProviderModel() {
+    // With direct Provider pattern, we sync local state with provider
+    final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
     setState(() {
-      _radioValue = setRadioPref ?? 0;
+      _radioValue = micaScoreModel.spokenLanguage;
     });
-  }
-
-  Future<bool> savePrefData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    prefs.setInt("spokenLanguage", _radioValue);
-
-    return true;
   }
 }

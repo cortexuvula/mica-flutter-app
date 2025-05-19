@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/ten_word_recognition.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:provider/provider.dart';
 
@@ -28,7 +27,10 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
       wordButtonColor.add(Colors.yellowAccent.shade100);
       wordColor.add('yellow');
     }
-    getPrefsData();
+    // Load data from the model instead of preferences
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      loadFromModel();
+    });
   }
 
   @override
@@ -43,8 +45,9 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
 
-        final bool shouldPop = await savePrefData();
-        if (shouldPop && context.mounted) {
+        // Save data to model instead of preferences
+        saveToModel();
+        if (context.mounted) {
           Navigator.of(context).pop();
         }
       },
@@ -215,52 +218,25 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
     );
   }
 
-  void getPrefsData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  void loadFromModel() {
     final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
     
-    // Check if we have a saved score, otherwise use the model's score
-    int? score = prefs.getInt("tenWordDelay") ?? micaScoreModel.tenWordDelay;
-    List<String>? tempWordColor = prefs.getStringList("recallwordButtonColor");
-
-    if (tempWordColor != null) {
-      for (var i = 0; i < 10; i++) {
-        if (i < tempWordColor.length && tempWordColor[i] == "green") {
-          setState(() {
-            wordButtonColor[i] = Colors.green;
-            wordColor[i] = "green";
-          });
-        }
-      }
-    }
-
+    // Load the score from the model
     setState(() {
-      scoreTenWordDelayRecall = score;
+      scoreTenWordDelayRecall = micaScoreModel.tenWordDelay;
     });
     
-    // Update the model with the loaded score
-    micaScoreModel.setTenWordDelay(scoreTenWordDelayRecall);
+    // If we want to implement loading the button state in the future,
+    // we would need to add that data to the model
   }
 
-  Future<bool> savePrefData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  void saveToModel() {
     final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
     
-    // Save to shared preferences
-    await prefs.setInt("tenWordDelay", scoreTenWordDelayRecall);
-
-    for (var i = 0; i < 10; i++) {
-      if (wordButtonColor[i] == Colors.green) {
-        wordColor[i] = "green";
-      } else {
-        wordColor[i] = 'yellow';
-      }
-    }
-    await prefs.setStringList("recallwordButtonColor", wordColor);
-    
-    // Update the model
+    // Update the model with the current score
     micaScoreModel.setTenWordDelay(scoreTenWordDelayRecall);
-
-    return true;
+    
+    // If we want to save button state in the future,
+    // we would need to add that capability to the model
   }
 }
