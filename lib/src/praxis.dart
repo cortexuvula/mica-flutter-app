@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/ten_word_delay_recall.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +23,7 @@ class _PraxisState extends State<Praxis> {
   @override
   void initState() {
     super.initState();
-    getPrefsData();
+    initFromProvider();
   }
 
   @override
@@ -37,7 +36,10 @@ class _PraxisState extends State<Praxis> {
         if (didPop) {
           return;
         }
-        await savePrefData();
+        
+        // Update provider before navigation
+        updateProvider();
+        
         if (context.mounted) {
           Navigator.of(context).pop();
         }
@@ -333,38 +335,24 @@ class _PraxisState extends State<Praxis> {
         right: _radioValueRight ?? 0, left: _radioValueLeft ?? 0);
   }
 
-  void getPrefsData() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-
+  void initFromProvider() {
     // We need to add a null check for context since initState might run before build
     if (!mounted) return;
 
     final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
 
     setState(() {
-      _radioValueLeft = prefs.getInt('praxisLeft') ?? micaScoreModel.praxisLeft;
-      _radioValueRight =
-          prefs.getInt('praxisRight') ?? micaScoreModel.praxisRight;
+      _radioValueLeft = micaScoreModel.praxisLeft;
+      _radioValueRight = micaScoreModel.praxisRight;
     });
-
-    // Update provider with loaded values
-    micaScoreModel.setPraxisScores(
-        right: _radioValueRight ?? 0, left: _radioValueLeft ?? 0);
   }
 
-  Future<bool> savePrefData() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    await prefs.setInt('praxisLeft', _radioValueLeft ?? 0);
-    await prefs.setInt('praxisRight', _radioValueRight ?? 0);
-
-    // Update provider with final values
-    if (!mounted) return true;
+  void updateProvider() {
+    // Update provider with current values
+    if (!mounted) return;
 
     final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
     micaScoreModel.setPraxisScores(
         right: _radioValueRight ?? 0, left: _radioValueLeft ?? 0);
-
-    return true;
   }
 }

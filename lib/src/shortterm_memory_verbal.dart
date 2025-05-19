@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/praxis.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 
 class ShortTermMemoryVerbal extends StatefulWidget {
@@ -41,7 +40,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
   @override
   void initState() {
     super.initState();
-    getPrefsData();
+    initStateFromProvider();
   }
 
   @override
@@ -52,12 +51,17 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
-        if (!didPop) {
-          final shouldPop = await savePrefData();
-          if (shouldPop && context.mounted) {
-            Navigator.of(context).pop();
-          }
+        if (didPop) {
+          return;
         }
+
+        // Update provider before navigation
+        _updateProvider();
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const Welcome(),
+          ),
+        );
       },
       child: Scaffold(
         appBar: AppBar(
@@ -456,37 +460,23 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
     _updateProvider();
   }
 
-  Future<void> getPrefsData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  void initStateFromProvider() {
+    // Get data from provider instead of SharedPreferences
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    final int storedScore = scoreModel.shorttermMemoryVerbal;
+    final int storedVerbalScore = scoreModel.shorttermMemoryVerbalScore;
     
+    // Initialize UI state based on provider data
+    // Since we don't have individual flags stored in the provider,
+    // we'll reset them all and set _radioValue from the provider
     setState(() {
-      _valueDate = prefs.getBool('shortTermMemoryVerbalDate') ?? false;
-      _valueMonth = prefs.getBool('shortTermMemoryVerbalMonth') ?? false;
-      _valueDay = prefs.getBool('shortTermMemoryVerbalDay') ?? false;
-      _valuePlace = prefs.getBool('shortTermMemoryVerbalPlace') ?? false;
-      _valueCity = prefs.getBool('shortTermMemoryVerbalCity') ?? false;
-      score = prefs.getInt('shortTermMemoryVerbalScore') ?? 0;
-      _radioValue = prefs.getInt('shortTermMemoryVerbalRadioValue') ?? 0;
+      _valueDate = false;
+      _valueMonth = false;
+      _valueDay = false;
+      _valuePlace = false;
+      _valueCity = false;
+      _radioValue = storedScore;
+      score = storedVerbalScore;
     });
-    
-    // Update the provider with loaded data
-    _updateProvider();
-  }
-
-  Future<bool> savePrefData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    prefs.setBool('shortTermMemoryVerbalDate', _valueDate);
-    prefs.setBool('shortTermMemoryVerbalMonth', _valueMonth);
-    prefs.setBool('shortTermMemoryVerbalDay', _valueDay);
-    prefs.setBool('shortTermMemoryVerbalPlace', _valuePlace);
-    prefs.setBool('shortTermMemoryVerbalCity', _valueCity);
-    prefs.setInt('shortTermMemoryVerbalScore', verbalScore);
-    prefs.setInt('shortTermMemoryVerbalRadioValue', _radioValue ?? 0);
-
-    // Final update to the provider before navigation
-    _updateProvider();
-
-    return true;
   }
 }

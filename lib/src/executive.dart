@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/spoken_language.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:provider/provider.dart';
 
@@ -55,9 +54,17 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
-        if (!didPop) {
-          await savePrefData();
+        if (didPop) {
+          return;
         }
+
+        await updateProviderData();
+
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const Welcome(),
+          ),
+        );
       },
       child: Scaffold(
         appBar: AppBar(
@@ -425,34 +432,22 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
     }
   }
 
-  void getPrefsData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    
+  Future<void> getPrefsData() async {
     // We need to add a null check for context since initState might run before build
     if (!mounted) return;
     
     final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
-    int? setRadioPref = prefs.getInt("executive") ?? micaScoreModel.executive;
     
     setState(() {
-      _radioValue = setRadioPref;
+      _radioValue = micaScoreModel.executive;
     });
-    
-    // Update the provider
-    micaScoreModel.setExecutive(_radioValue);
   }
 
-  Future<bool> savePrefData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    await prefs.setInt("executive", _radioValue);
-    
+  Future<void> updateProviderData() async {
     // Update the provider
     if (mounted) {
       final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
       micaScoreModel.setExecutive(_radioValue);
     }
-
-    return true;
   }
 }
