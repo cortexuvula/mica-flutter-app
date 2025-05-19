@@ -4,19 +4,10 @@ import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/ten_word_recall_task_trial_one.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class LanguageComprehension extends StatefulWidget {
-  final String patientName;
-  final String assessorName;
-  final String handedness;
-  final DateTime assessmentDate;
-
-  const LanguageComprehension(
-      {super.key,
-      required this.patientName,
-      required this.assessorName,
-      required this.handedness,
-      required this.assessmentDate});
+  const LanguageComprehension({super.key});
 
   @override
   _LanguageComprehensionState createState() => _LanguageComprehensionState();
@@ -26,6 +17,20 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
   var format = DateFormat.yMMMMd();
   int? _radioValue;
   double sizeBoxHeight = 10.0;
+  
+  @override
+  void initState() {
+    super.initState();
+    getPrefsData();
+  }
+  
+  // Update the provider with the language comprehension score
+  void _updateProvider() {
+    if (_radioValue != null) {
+      final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+      scoreModel.setLanguageComprehension(_radioValue!);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -266,16 +271,12 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                         padding: EdgeInsets.all(8.0),
                         child: ElevatedButton(
                           onPressed: () {
+                            // Update the provider with the language comprehension score
+                            _updateProvider();
+                            
                             var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    TenWordRecallTrialOne(
-                                      patientName: widget.patientName,
-                                      assessorName: widget.assessorName,
-                                      handedness: widget.handedness,
-                                      assessmentDate: widget.assessmentDate,
-                                      languageComprehensionRadioValue:
-                                          _radioValue ?? 0,
-                                    ));
+                                    const TenWordRecallTrialOne());
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
@@ -300,11 +301,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
     });
   }
 
-  @override
-  void initState() {
-    super.initState();
-    getPrefsData();
-  }
+  // initState method moved to the top of the class
 
   void getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

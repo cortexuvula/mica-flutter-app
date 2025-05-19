@@ -1,72 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/anomia_agnosia.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mica/src/models/mica_score_model.dart';
+import 'package:provider/provider.dart';
 
 class ShortTermMemoryVisual extends StatefulWidget {
-  final String? patientName;
-  final String? assessorName;
-  final String? handedness;
-  final DateTime? assessmentDate;
-  final int? languageComprehensionRadioValue;
-  final int? trialOneScore;
-  final int? trialTwoScore;
-  final int? trialThreeScore;
-  final int? visuospatialPraxisImage1;
-  final int? visuospatialPraxisImage2;
-  final int? visuospatialPraxisImage3;
-  final int? attention;
-  final int? attentionCorrect;
-  final int? attentionMistakes;
-  final int? executiveAnimalNaming;
-  final int? executiveAnimalNamingCount;
-  final int? executiveLuria;
-  final int? executiveLuriaScore;
-  final int? executiveSerial;
-  final int? executiveSerialScore;
-  final int? shorttermMemoryVerbal;
-  final int? shorttermMemoryVerbalScore;
-  final int? praxisRight;
-  final int? praxisLeft;
-  final int? tenWordDelay;
-  final int? scoreVerbalRecognitionMemoryTenWords;
-  final int? scoreVerbalRecognitionMemoryTenWordsInList;
-  final int? scoreVerbalRecognitionMemoryTenWordsNotInList;
-
-  const ShortTermMemoryVisual(
-      {super.key,
-      this.patientName,
-      this.assessorName,
-      this.handedness,
-      this.assessmentDate,
-      this.languageComprehensionRadioValue,
-      this.trialOneScore,
-      this.trialTwoScore,
-      this.trialThreeScore,
-      this.visuospatialPraxisImage1,
-      this.visuospatialPraxisImage2,
-      this.visuospatialPraxisImage3,
-      this.attention,
-      this.attentionCorrect,
-      this.attentionMistakes,
-      this.executiveAnimalNaming,
-      this.executiveAnimalNamingCount,
-      this.executiveLuria,
-      this.executiveLuriaScore,
-      this.executiveSerial,
-      this.executiveSerialScore,
-      this.shorttermMemoryVerbal,
-      this.shorttermMemoryVerbalScore,
-      this.praxisRight,
-      this.praxisLeft,
-      this.tenWordDelay,
-      this.scoreVerbalRecognitionMemoryTenWords,
-      this.scoreVerbalRecognitionMemoryTenWordsInList,
-      this.scoreVerbalRecognitionMemoryTenWordsNotInList});
+  // Using Provider pattern, no need for parameters
+  const ShortTermMemoryVisual({super.key});
 
   @override
-  _ShortTermMemoryVisualState createState() => _ShortTermMemoryVisualState();
+  State<ShortTermMemoryVisual> createState() => _ShortTermMemoryVisualState();
 }
 
 class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
@@ -108,7 +53,7 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
           backgroundColor: Theme.of(context).colorScheme.surface,
           title: ListTile(
             title: Text(
-              appData.testShortTermMemoryVisual,
+              app_data.testShortTermMemoryVisual,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -116,7 +61,7 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
               textAlign: TextAlign.start,
             ),
             subtitle: Text(
-              appData.testShortTermMemoryVisualSubtitle,
+              app_data.testShortTermMemoryVisualSubtitle,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
@@ -154,7 +99,7 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testShortTermMemoryVisualToPatient,
+                              app_data.testShortTermMemoryVisualToPatient,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   color: Colors.black,
@@ -179,7 +124,7 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testShortTermMemoryVisualDetails,
+                              app_data.testShortTermMemoryVisualDetails,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   color: Colors.black,
@@ -554,71 +499,21 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
                           onPressed: () {
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    AnomiaAgnosia(
-                                      patientName: widget.patientName ?? "",
-                                      assessorName: widget.assessorName ?? "",
-                                      handedness: widget.handedness ?? "",
-                                      assessmentDate: widget.assessmentDate ??
-                                          DateTime.now(),
-                                      languageComprehensionRadioValue: widget
-                                              .languageComprehensionRadioValue ??
-                                          0,
-                                      trialOneScore: widget.trialOneScore ?? 0,
-                                      trialTwoScore: widget.trialTwoScore ?? 0,
-                                      trialThreeScore:
-                                          widget.trialThreeScore ?? 0,
-                                      visuospatialPraxisImage1:
-                                          widget.visuospatialPraxisImage1 ?? 0,
-                                      visuospatialPraxisImage2:
-                                          widget.visuospatialPraxisImage2 ?? 0,
-                                      visuospatialPraxisImage3:
-                                          widget.visuospatialPraxisImage3 ?? 0,
-                                      attention: widget.attention ?? 0,
-                                      attentionCorrect:
-                                          widget.attentionCorrect ?? 0,
-                                      attentionMistakes:
-                                          widget.attentionMistakes ?? 0,
-                                      executiveAnimalNaming:
-                                          widget.executiveAnimalNaming ?? 0,
-                                      executiveAnimalNamingCount:
-                                          widget.executiveAnimalNamingCount ??
-                                              0,
-                                      executiveLuria:
-                                          widget.executiveLuria ?? 0,
-                                      executiveLuriaScore:
-                                          widget.executiveLuriaScore ?? 0,
-                                      executiveSerial:
-                                          widget.executiveSerial ?? 0,
-                                      executiveSerialScore:
-                                          widget.executiveSerialScore ?? 0,
-                                      praxisRight: widget.praxisRight ?? 0,
-                                      praxisLeft: widget.praxisLeft ?? 0,
-                                      shorttermMemoryVerbal:
-                                          widget.shorttermMemoryVerbal ?? 0,
-                                      shorttermMemoryVerbalScore:
-                                          widget.shorttermMemoryVerbalScore ??
-                                              0,
-                                      tenWordDelay: widget.tenWordDelay ?? 0,
-                                      scoreVerbalRecognitionMemoryTenWords:
-                                          widget.scoreVerbalRecognitionMemoryTenWords ??
-                                              0,
-                                      scoreVerbalRecognitionMemoryTenWordsInList:
-                                          widget.scoreVerbalRecognitionMemoryTenWordsInList ??
-                                              0,
-                                      scoreVerbalRecognitionMemoryTenWordsNotInList:
-                                          widget.scoreVerbalRecognitionMemoryTenWordsNotInList ??
-                                              0,
-                                      shorttermMemoryVisualImage1:
-                                          _radioValueImageOne ?? 0,
-                                      shorttermMemoryVisualImage2:
-                                          _radioValueImageTwo ?? 0,
-                                      shorttermMemoryVisualImage3:
-                                          _radioValueImageThree ?? 0,
-                                    ));
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            // Update provider with the final visual memory scores
+                            if (mounted) {
+                              final micaScoreModel =
+                                  Provider.of<MicaScoreModel>(context, listen: false);
+                              micaScoreModel.setShorttermMemoryVisualImages(
+                                image1: _radioValueImageOne ?? 0,
+                                image2: _radioValueImageTwo ?? 0,
+                                image3: _radioValueImageThree ?? 0
+                              );
+
+                              // Navigate to next screen
+                              var router = MaterialPageRoute(
+                                  builder: (BuildContext context) => const AnomiaAgnosia());
+                              Navigator.of(context).push(router);
+                            }
                           },
                           child: const Text("Continue",
                               style: TextStyle(color: Colors.black)),
@@ -639,25 +534,64 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
     setState(() {
       _radioValueImageOne = value;
     });
+
+    // Update provider with all image values
+    if (mounted) {
+      final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+      micaScoreModel.setShorttermMemoryVisualImages(
+        image1: _radioValueImageOne ?? 0,
+        image2: _radioValueImageTwo ?? 0,
+        image3: _radioValueImageThree ?? 0,
+      );
+    }
   }
 
   void _handleRadioValueChange2(int? value) {
     setState(() {
       _radioValueImageTwo = value;
     });
+
+    // Update provider with all image values
+    if (mounted) {
+      final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+      micaScoreModel.setShorttermMemoryVisualImages(
+        image1: _radioValueImageOne ?? 0,
+        image2: _radioValueImageTwo ?? 0,
+        image3: _radioValueImageThree ?? 0,
+      );
+    }
   }
 
   void _handleRadioValueChange3(int? value) {
     setState(() {
       _radioValueImageThree = value;
     });
+
+    // Update provider with all image values
+    if (mounted) {
+      final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+      micaScoreModel.setShorttermMemoryVisualImages(
+        image1: _radioValueImageOne ?? 0,
+        image2: _radioValueImageTwo ?? 0,
+        image3: _radioValueImageThree ?? 0,
+      );
+    }
   }
 
   void getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int? score1 = prefs.getInt("shorttermMemoryVisualImage1");
-    int? score2 = prefs.getInt("shorttermMemoryVisualImage2");
-    int? score3 = prefs.getInt("shorttermMemoryVisualImage3");
+
+    // We need to add a null check for context since initState might run before build
+    if (!mounted) return;
+
+    final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+
+    int? score1 = prefs.getInt("shorttermMemoryVisualImage1") ??
+        micaScoreModel.shorttermMemoryVisualImage1;
+    int? score2 = prefs.getInt("shorttermMemoryVisualImage2") ??
+        micaScoreModel.shorttermMemoryVisualImage2;
+    int? score3 = prefs.getInt("shorttermMemoryVisualImage3") ??
+        micaScoreModel.shorttermMemoryVisualImage3;
 
     setState(() {
       _radioValueImageOne = score1;
@@ -669,9 +603,19 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
   Future<bool> savePrefData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    prefs.setInt("shorttermMemoryVisualImage1", _radioValueImageOne ?? 0);
-    prefs.setInt("shorttermMemoryVisualImage2", _radioValueImageTwo ?? 0);
-    prefs.setInt("shorttermMemoryVisualImage3", _radioValueImageThree ?? 0);
+    await prefs.setInt("shorttermMemoryVisualImage1", _radioValueImageOne ?? 0);
+    await prefs.setInt("shorttermMemoryVisualImage2", _radioValueImageTwo ?? 0);
+    await prefs.setInt("shorttermMemoryVisualImage3", _radioValueImageThree ?? 0);
+
+    // Update provider as well
+    if (mounted) {
+      final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+      micaScoreModel.setShorttermMemoryVisualImages(
+        image1: _radioValueImageOne ?? 0,
+        image2: _radioValueImageTwo ?? 0,
+        image3: _radioValueImageThree ?? 0,
+      );
+    }
 
     return true;
   }

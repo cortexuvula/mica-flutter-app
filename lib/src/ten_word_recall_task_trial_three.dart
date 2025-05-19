@@ -3,25 +3,10 @@ import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/visuospatial_praxis.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class TenWordRecallTrialThree extends StatefulWidget {
-  final String patientName;
-  final String assessorName;
-  final String handedness;
-  final DateTime assessmentDate;
-  final int languageComprehensionRadioValue;
-  final int trialOneScore;
-  final int trialTwoScore;
-
-  const TenWordRecallTrialThree(
-      {super.key,
-      required this.patientName,
-      required this.assessorName,
-      required this.handedness,
-      required this.assessmentDate,
-      required this.languageComprehensionRadioValue,
-      required this.trialOneScore,
-      required this.trialTwoScore});
+  const TenWordRecallTrialThree({super.key});
 
   @override
   _TenWordRecallTrialThreeState createState() =>
@@ -39,8 +24,15 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
     super.initState();
     for (var i = 0; i < 10; i++) {
       wordButtonColor.add(Colors.yellowAccent.shade100);
+      wordColor.add('yellow');
     }
     getPrefsData();
+  }
+  
+  // Update the provider with the trial three score
+  void _updateProvider() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setTrialThreeScore(scoreTenWordRecallTrialThree);
   }
 
   @override
@@ -259,20 +251,12 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
                         ),
                         onPressed: activeContinueButton
                             ? () {
+                                // Update provider with trial three score
+                                _updateProvider();
+                                
                                 var router = MaterialPageRoute(
                                     builder: (BuildContext context) =>
-                                        VisuospatialPraxis(
-                                          patientName: widget.patientName,
-                                          assessorName: widget.assessorName,
-                                          handedness: widget.handedness,
-                                          assessmentDate: widget.assessmentDate,
-                                          languageComprehensionRadioValue: widget
-                                              .languageComprehensionRadioValue,
-                                          trialOneScore: widget.trialOneScore,
-                                          trialTwoScore: widget.trialTwoScore,
-                                          trialThreeScore:
-                                              scoreTenWordRecallTrialThree,
-                                        ));
+                                        const VisuospatialPraxis());
                                 Navigator.of(context).pushAndRemoveUntil(
                                     router, (Route<dynamic> route) => true);
                               }

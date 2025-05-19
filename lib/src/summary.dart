@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:mica/src/utils/mica_state_initializer.dart';
 import 'package:mica/src/domain_results/attention_concentration.dart';
 import 'package:mica/src/domain_results/executive_functions.dart';
 import 'package:mica/src/domain_results/gnosis.dart';
@@ -99,6 +100,57 @@ class TestSummary extends StatefulWidget {
 class _TestSummaryState extends State<TestSummary> {
   var format = DateFormat('d MMM y');
   Color attentionColor = Colors.green;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize the provider model with the current test data
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _initializeProviderModel();
+    });
+  }
+
+  /// Initialize the provider model with the current test data
+  void _initializeProviderModel() {
+    MicaStateInitializer.initializeFromTestParameters(
+      context: context,
+      patientName: widget.patientName,
+      assessorName: widget.assessorName,
+      handedness: widget.handedness,
+      assessmentDate: widget.assessmentDate,
+      languageComprehensionRadioValue: widget.languageComprehensionRadioValue,
+      trialOneScore: widget.trialOneScore,
+      trialTwoScore: widget.trialTwoScore,
+      trialThreeScore: widget.trialThreeScore,
+      visuospatialPraxisImage1: widget.visuospatialPraxisImage1,
+      visuospatialPraxisImage2: widget.visuospatialPraxisImage2,
+      visuospatialPraxisImage3: widget.visuospatialPraxisImage3,
+      attention: widget.attention,
+      attentionCorrect: widget.attentionCorrect,
+      attentionMistakes: widget.attentionMistakes,
+      executiveAnimalNaming: widget.executiveAnimalNaming,
+      executiveAnimalNamingCount: widget.executiveAnimalNamingCount,
+      executiveLuria: widget.executiveLuria,
+      executiveLuriaScore: widget.executiveLuriaScore,
+      executiveSerial: widget.executiveSerial,
+      executiveSerialScore: widget.executiveSerialScore,
+      shorttermMemoryVerbal: widget.shorttermMemoryVerbal,
+      shorttermMemoryVerbalScore: widget.shorttermMemoryVerbalScore,
+      praxisRight: widget.praxisRight,
+      praxisLeft: widget.praxisLeft,
+      tenWordDelay: widget.tenWordDelay,
+      scoreVerbalRecognitionMemoryTenWords: widget.scoreVerbalRecognitionMemoryTenWords,
+      scoreVerbalRecognitionMemoryTenWordsInList: widget.scoreVerbalRecognitionMemoryTenWordsInList,
+      scoreVerbalRecognitionMemoryTenWordsNotInList: widget.scoreVerbalRecognitionMemoryTenWordsNotInList,
+      shorttermMemoryVisualImage1: widget.shorttermMemoryVisualImage1,
+      shorttermMemoryVisualImage2: widget.shorttermMemoryVisualImage2,
+      shorttermMemoryVisualImage3: widget.shorttermMemoryVisualImage3,
+      anomiaAgnosia: widget.anomiaAgnosia,
+      agnosia: widget.agnosia,
+      executive: widget.executive,
+      spokenLanguage: widget.spokenLanguage,
+    );
+  }
   Color languageColor = Colors.green;
   Color verbalWMColor = Colors.green;
   Color verbalSTMColor = Colors.green;
@@ -934,9 +986,7 @@ class _TestSummaryState extends State<TestSummary> {
               onTap: () {
                 var router = MaterialPageRoute(
                     builder: (BuildContext context) =>
-                        AttentionConcentration(
-                          attention: widget.attention,
-                        ));
+                        const AttentionConcentration());
                 Navigator.of(context)
                     .pushAndRemoveUntil(router, (Route<dynamic> route) => true);
               },

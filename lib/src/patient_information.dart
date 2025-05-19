@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
 import 'package:mica/resources/const_data.dart' as appData;
-// import 'package:mica/src/home.dart';
 import 'package:mica/src/language_comprehension.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class PatientInformation extends StatefulWidget {
   const PatientInformation({super.key});
@@ -213,12 +213,7 @@ class _PatientInformationState extends State<PatientInformation> {
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
                         onPressed: () {
-                          String handed;
-                          if (_radioValue == 0) {
-                            handed = "Right";
-                          } else {
-                            handed = "Left";
-                          }
+                          // Handedness will be processed in _updateProviderWithPatientInfo
                           if (myPatient.text == "") {
                             myPatient.text = "No Name Provided";
                           }
@@ -231,15 +226,15 @@ class _PatientInformationState extends State<PatientInformation> {
                             ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(content: Text('Processing Data')));
 
+                            // Save to SharedPreferences
                             setPrefs();
+                            
+                            // Update the provider with patient information
+                            _updateProviderWithPatientInfo();
+                            
+                            // Navigate to the next screen
                             var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    LanguageComprehension(
-                                      patientName: myPatient.text,
-                                      assessorName: myAssessor.text,
-                                      handedness: handed,
-                                      assessmentDate: selectedDate,
-                                    ));
+                                builder: (BuildContext context) => const LanguageComprehension());
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           }
@@ -260,6 +255,22 @@ class _PatientInformationState extends State<PatientInformation> {
     setState(() {
       _radioValue = value;
     });
+  }
+  
+  /// Update the provider with patient information
+  void _updateProviderWithPatientInfo() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    
+    // Get handedness string
+    String handed = _radioValue == 0 ? "Right" : "Left";
+    
+    // Update provider with patient information
+    scoreModel.setPatientInfo(
+      patientName: myPatient.text,
+      assessorName: myAssessor.text,
+      handedness: handed,
+      assessmentDate: selectedDate,
+    );
   }
 
   Future<void> _selectDate(BuildContext context) async {

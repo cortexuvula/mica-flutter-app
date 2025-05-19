@@ -1,61 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/ten_word_recognition.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mica/src/models/mica_score_model.dart';
+import 'package:provider/provider.dart';
 
 class TenWordDelayedRecall extends StatefulWidget {
-  final String patientName;
-  final String assessorName;
-  final String handedness;
-  final DateTime assessmentDate;
-  final int languageComprehensionRadioValue;
-  final int trialOneScore;
-  final int trialTwoScore;
-  final int trialThreeScore;
-  final int visuospatialPraxisImage1;
-  final int visuospatialPraxisImage2;
-  final int visuospatialPraxisImage3;
-  final int attention;
-  final int attentionCorrect;
-  final int attentionMistakes;
-  final int executiveAnimalNaming;
-  final int executiveAnimalNamingCount;
-  final int executiveLuria;
-  final int executiveLuriaScore;
-  final int executiveSerial;
-  final int executiveSerialScore;
-  final int shorttermMemoryVerbal;
-  final int shorttermMemoryVerbalScore;
-  final int praxisRight;
-  final int praxisLeft;
-
-  const TenWordDelayedRecall(
-      {super.key,
-      required this.patientName,
-      required this.assessorName,
-      required this.handedness,
-      required this.assessmentDate,
-      required this.languageComprehensionRadioValue,
-      required this.trialOneScore,
-      required this.trialTwoScore,
-      required this.trialThreeScore,
-      required this.visuospatialPraxisImage1,
-      required this.visuospatialPraxisImage2,
-      required this.visuospatialPraxisImage3,
-      required this.attention,
-      required this.attentionCorrect,
-      required this.attentionMistakes,
-      required this.executiveAnimalNaming,
-      required this.executiveAnimalNamingCount,
-      required this.executiveLuria,
-      required this.executiveLuriaScore,
-      required this.executiveSerial,
-      required this.executiveSerialScore,
-      required this.shorttermMemoryVerbal,
-      required this.shorttermMemoryVerbalScore,
-      required this.praxisRight,
-      required this.praxisLeft});
+  // Using Provider pattern, no need for parameters
+  const TenWordDelayedRecall({super.key});
 
   @override
   _TenWordDelayedRecallState createState() => _TenWordDelayedRecallState();
@@ -99,7 +52,7 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
         appBar: AppBar(
           title: ListTile(
             title: Text(
-              appData.testTenWordDelayedRecall,
+              app_data.testTenWordDelayedRecall,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -107,7 +60,7 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
               textAlign: TextAlign.start,
             ),
             subtitle: Text(
-              appData.testTenWordDelayedRecallSubtitle,
+              app_data.testTenWordDelayedRecallSubtitle,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
@@ -155,7 +108,7 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Text(
-                              appData.instructionDelayedRecallPatient1,
+                              app_data.instructionDelayedRecallPatient1,
                               style: const TextStyle(
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500,
@@ -174,7 +127,7 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                appData.instructionDelayedRecallHealthworker1,
+                                app_data.instructionDelayedRecallHealthworker1,
                                 style: const TextStyle(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w500,
@@ -218,7 +171,7 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
                             }
                           });
                         },
-                        child: Text(appData.tenWordRecallList[index]),
+                        child: Text(app_data.tenWordRecallList[index]),
                       );
                     })),
               ),
@@ -242,45 +195,14 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
                         ),
                         //onPressed: () => debugPrint("hello"),
                         onPressed: () {
+                          // Update the model with the current ten word delay recall score
+                          final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+                          micaScoreModel.setTenWordDelay(scoreTenWordDelayRecall);
+                          
+                          // Navigate to next screen using Provider
                           var router = MaterialPageRoute(
                               builder: (BuildContext context) =>
-                                  TenWordRecognition(
-                                    patientName: widget.patientName,
-                                    assessorName: widget.assessorName,
-                                    handedness: widget.handedness,
-                                    assessmentDate: widget.assessmentDate,
-                                    languageComprehensionRadioValue:
-                                        widget.languageComprehensionRadioValue,
-                                    trialOneScore: widget.trialOneScore,
-                                    trialTwoScore: widget.trialTwoScore,
-                                    trialThreeScore: widget.trialThreeScore,
-                                    visuospatialPraxisImage1:
-                                        widget.visuospatialPraxisImage1,
-                                    visuospatialPraxisImage2:
-                                        widget.visuospatialPraxisImage2,
-                                    visuospatialPraxisImage3:
-                                        widget.visuospatialPraxisImage3,
-                                    attention: widget.attention,
-                                    attentionCorrect: widget.attentionCorrect,
-                                    attentionMistakes: widget.attentionMistakes,
-                                    executiveAnimalNaming:
-                                        widget.executiveAnimalNaming,
-                                    executiveAnimalNamingCount:
-                                        widget.executiveAnimalNamingCount,
-                                    executiveLuria: widget.executiveLuria,
-                                    executiveLuriaScore:
-                                        widget.executiveLuriaScore,
-                                    executiveSerial: widget.executiveSerial,
-                                    executiveSerialScore:
-                                        widget.executiveSerialScore,
-                                    praxisRight: widget.praxisRight,
-                                    praxisLeft: widget.praxisLeft,
-                                    shorttermMemoryVerbal:
-                                        widget.shorttermMemoryVerbal,
-                                    shorttermMemoryVerbalScore:
-                                        widget.shorttermMemoryVerbalScore,
-                                    tenWordDelay: scoreTenWordDelayRecall,
-                                  ));
+                                  const TenWordRecognition());
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => true);
                         }),
@@ -295,7 +217,10 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
 
   void getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int? score = prefs.getInt("tenWordDelay");
+    final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+    
+    // Check if we have a saved score, otherwise use the model's score
+    int? score = prefs.getInt("tenWordDelay") ?? micaScoreModel.tenWordDelay;
     List<String>? tempWordColor = prefs.getStringList("recallwordButtonColor");
 
     if (tempWordColor != null) {
@@ -309,17 +234,20 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
       }
     }
 
-    if (score != null) {
-      setState(() {
-        scoreTenWordDelayRecall = score;
-      });
-    }
+    setState(() {
+      scoreTenWordDelayRecall = score;
+    });
+    
+    // Update the model with the loaded score
+    micaScoreModel.setTenWordDelay(scoreTenWordDelayRecall);
   }
 
   Future<bool> savePrefData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    prefs.setInt("tenWordDelay", scoreTenWordDelayRecall);
+    final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+    
+    // Save to shared preferences
+    await prefs.setInt("tenWordDelay", scoreTenWordDelayRecall);
 
     for (var i = 0; i < 10; i++) {
       if (wordButtonColor[i] == Colors.green) {
@@ -328,7 +256,10 @@ class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
         wordColor[i] = 'yellow';
       }
     }
-    prefs.setStringList("recallwordButtonColor", wordColor);
+    await prefs.setStringList("recallwordButtonColor", wordColor);
+    
+    // Update the model
+    micaScoreModel.setTenWordDelay(scoreTenWordDelayRecall);
 
     return true;
   }

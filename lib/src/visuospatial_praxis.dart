@@ -4,28 +4,10 @@ import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/show_image.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class VisuospatialPraxis extends StatefulWidget {
-  final String? patientName;
-  final String? assessorName;
-  final String? handedness;
-  final DateTime? assessmentDate;
-  final int? languageComprehensionRadioValue;
-  final int? trialOneScore;
-  final int? trialTwoScore;
-  final int? trialThreeScore;
-
-  const VisuospatialPraxis({
-    super.key,
-    this.patientName,
-    this.assessorName,
-    this.handedness,
-    this.assessmentDate,
-    this.languageComprehensionRadioValue,
-    this.trialOneScore,
-    this.trialTwoScore,
-    this.trialThreeScore,
-  });
+  const VisuospatialPraxis({super.key});
 
   @override
   _VisuospatialPraxisState createState() => _VisuospatialPraxisState();
@@ -48,6 +30,16 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
   void initState() {
     super.initState();
     getPrefsData();
+  }
+  
+  // Update the provider with visuospatial praxis scores
+  void _updateProvider() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setVisuospatialPraxisImages(
+      image1: _radioValueImageOne ?? 0,
+      image2: _radioValueImageTwo ?? 0,
+      image3: _radioValueImageThree ?? 0,
+    );
   }
 
   @override
@@ -611,26 +603,13 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                   elevation: 10.0,
                                 ),
                                 onPressed: () {
+                                  // Update provider with visuospatial praxis scores
+                                  _updateProvider();
+                                  
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                      builder: (context) => Attention(
-                                        patientName: widget.patientName,
-                                        assessorName: widget.assessorName,
-                                        handedness: widget.handedness,
-                                        assessmentDate: widget.assessmentDate,
-                                        languageComprehensionRadioValue: widget
-                                            .languageComprehensionRadioValue,
-                                        trialOneScore: widget.trialOneScore,
-                                        trialTwoScore: widget.trialTwoScore,
-                                        trialThreeScore: widget.trialThreeScore,
-                                        visuospatialPraxisImage1:
-                                            _radioValueImageOne,
-                                        visuospatialPraxisImage2:
-                                            _radioValueImageTwo,
-                                        visuospatialPraxisImage3:
-                                            _radioValueImageThree,
-                                      ),
+                                      builder: (context) => const Attention(),
                                     ),
                                   );
                                 },

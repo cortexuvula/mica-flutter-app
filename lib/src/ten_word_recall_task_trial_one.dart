@@ -3,21 +3,10 @@ import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/ten_word_recall_task_trial_two.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class TenWordRecallTrialOne extends StatefulWidget {
-  final String patientName;
-  final String assessorName;
-  final String handedness;
-  final DateTime assessmentDate;
-  final int languageComprehensionRadioValue;
-
-  const TenWordRecallTrialOne(
-      {super.key,
-      required this.patientName,
-      required this.assessorName,
-      required this.handedness,
-      required this.assessmentDate,
-      required this.languageComprehensionRadioValue});
+  const TenWordRecallTrialOne({super.key});
 
   @override
   _TenWordRecallTrialOneState createState() => _TenWordRecallTrialOneState();
@@ -42,6 +31,12 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
       wordColor.add('yellow');
     }
     getPrefsData();
+  }
+  
+  // Update the provider with the trial one score
+  void _updateProvider() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setTrialOneScore(scoreTenWordRecallTrialOne);
   }
 
   @override
@@ -252,17 +247,13 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                         ),
                         //onPressed: () => debugPrint("hello"),
                         onPressed: () {
+                          // Update provider with the trial one score
+                          _updateProvider();
+                          
+                          // Navigate to the next screen using Provider
                           var router = MaterialPageRoute(
                               builder: (BuildContext context) =>
-                                  TenWordRecallTrialTwo(
-                                    patientName: widget.patientName,
-                                    assessorName: widget.assessorName,
-                                    handedness: widget.handedness,
-                                    assessmentDate: widget.assessmentDate,
-                                    languageComprehensionRadioValue:
-                                        widget.languageComprehensionRadioValue,
-                                    trialOneScore: scoreTenWordRecallTrialOne,
-                                  ));
+                                  const TenWordRecallTrialTwo());
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => true);
                         }),

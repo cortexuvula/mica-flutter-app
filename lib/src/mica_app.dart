@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:mica/src/loading_screen.dart';
 import 'package:mica/src/patient_information.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class MicaApp extends StatelessWidget {
   const MicaApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiProvider(
+      providers: MicaProviders.getProviders(),
+      child: MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Midlands Cognitive Assessment",
       home: const LoadingScreen(),
@@ -35,6 +39,7 @@ class MicaApp extends StatelessWidget {
         '/patient_information': (BuildContext context) => PatientInformation(),
         // ShowImage requires parameters and is used with MaterialPageRoute directly
       },
+      ),
     );
   }
 }

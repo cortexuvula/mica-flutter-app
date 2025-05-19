@@ -1,81 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
-import 'package:mica/src/summary.dart';
+import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/summary_with_provider.dart';
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mica/src/models/mica_score_model.dart';
+import 'package:provider/provider.dart';
 
 class SpokenLanguage extends StatefulWidget {
-  final String patientName;
-  final String assessorName;
-  final String handedness;
-  final DateTime assessmentDate;
-  final int languageComprehensionRadioValue;
-  final int trialOneScore;
-  final int trialTwoScore;
-  final int trialThreeScore;
-  final int visuospatialPraxisImage1;
-  final int visuospatialPraxisImage2;
-  final int visuospatialPraxisImage3;
-  final int attention;
-  final int attentionCorrect;
-  final int attentionMistakes;
-  final int executiveAnimalNaming;
-  final int executiveAnimalNamingCount;
-  final int executiveLuria;
-  final int executiveLuriaScore;
-  final int executiveSerial;
-  final int executiveSerialScore;
-  final int shorttermMemoryVerbal;
-  final int shorttermMemoryVerbalScore;
-  final int praxisRight;
-  final int praxisLeft;
-  final int tenWordDelay;
-  final int scoreVerbalRecognitionMemoryTenWords;
-  final int scoreVerbalRecognitionMemoryTenWordsInList;
-  final int scoreVerbalRecognitionMemoryTenWordsNotInList;
-  final int shorttermMemoryVisualImage1;
-  final int shorttermMemoryVisualImage2;
-  final int shorttermMemoryVisualImage3;
-  final int anomiaAgnosia;
-  final int agnosia;
-  final int executive;
 
-  const SpokenLanguage(
-      {super.key,
-      required this.patientName,
-      required this.assessorName,
-      required this.handedness,
-      required this.assessmentDate,
-      required this.languageComprehensionRadioValue,
-      required this.trialOneScore,
-      required this.trialTwoScore,
-      required this.trialThreeScore,
-      required this.visuospatialPraxisImage1,
-      required this.visuospatialPraxisImage2,
-      required this.visuospatialPraxisImage3,
-      required this.attention,
-      required this.attentionCorrect,
-      required this.attentionMistakes,
-      required this.executiveAnimalNaming,
-      required this.executiveAnimalNamingCount,
-      required this.executiveLuria,
-      required this.executiveLuriaScore,
-      required this.executiveSerial,
-      required this.executiveSerialScore,
-      required this.shorttermMemoryVerbal,
-      required this.shorttermMemoryVerbalScore,
-      required this.praxisRight,
-      required this.praxisLeft,
-      required this.tenWordDelay,
-      required this.scoreVerbalRecognitionMemoryTenWords,
-      required this.scoreVerbalRecognitionMemoryTenWordsInList,
-      required this.scoreVerbalRecognitionMemoryTenWordsNotInList,
-      required this.shorttermMemoryVisualImage1,
-      required this.shorttermMemoryVisualImage2,
-      required this.shorttermMemoryVisualImage3,
-      required this.anomiaAgnosia,
-      required this.agnosia,
-      required this.executive});
+  const SpokenLanguage({super.key});
 
   @override
   _SpokenLanguageState createState() => _SpokenLanguageState();
@@ -87,7 +21,7 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
   late int _radioValue;
   int imageNumber = 0;
 
-  String displayImage = appData.imageURL[0];
+  String displayImage = app_data.imageURL[0];
 
   bool backButtonActive = false;
   bool forwardButtonActive = true;
@@ -96,6 +30,23 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
   void initState() {
     super.initState();
     getPrefsData();
+    
+    // Initialize provider with any existing data
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _initializeProviderModel();
+    });
+  }
+  
+  /// Initialize the provider model with data from this widget
+  void _initializeProviderModel() {
+    // With direct Provider pattern, we don't need to initialize from widget parameters
+    // We only need to sync local state with provider if needed
+    final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+    if (_radioValue != micaScoreModel.spokenLanguage) {
+      setState(() {
+        _radioValue = micaScoreModel.spokenLanguage;
+      });
+    }
   }
 
   @override
@@ -115,7 +66,7 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
         appBar: AppBar(
           title: ListTile(
             title: Text(
-              appData.testSpokenLanguage,
+              app_data.testSpokenLanguage,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -123,7 +74,7 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
               textAlign: TextAlign.start,
             ),
             subtitle: Text(
-              appData.testSpokenLanguageSubtitle,
+              app_data.testSpokenLanguageSubtitle,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
@@ -161,7 +112,7 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testSpokenLanguageResponse,
+                              app_data.testSpokenLanguageResponse,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   color: Colors.black,
@@ -247,7 +198,7 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData.testSpokenLanguageResponseNormal,
+                                      app_data.testSpokenLanguageResponseNormal,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
                                     ),
@@ -255,8 +206,7 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData
-                                          .testSpokenLanguageResponseEquivocal,
+                                      app_data.testSpokenLanguageResponseEquivocal,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
                                     ),
@@ -264,8 +214,7 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData
-                                          .testSpokenLanguageResponseImpaired,
+                                      app_data.testSpokenLanguageResponseImpaired,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
                                     ),
@@ -293,65 +242,14 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
                             elevation: 10.0,
                           ),
                           onPressed: () {
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) => TestSummary(
-                                      patientName: widget.patientName,
-                                      assessorName: widget.assessorName,
-                                      handedness: widget.handedness,
-                                      assessmentDate: widget.assessmentDate,
-                                      languageComprehensionRadioValue: widget
-                                          .languageComprehensionRadioValue,
-                                      trialOneScore: widget.trialOneScore,
-                                      trialTwoScore: widget.trialTwoScore,
-                                      trialThreeScore: widget.trialThreeScore,
-                                      visuospatialPraxisImage1:
-                                          widget.visuospatialPraxisImage1,
-                                      visuospatialPraxisImage2:
-                                          widget.visuospatialPraxisImage2,
-                                      visuospatialPraxisImage3:
-                                          widget.visuospatialPraxisImage3,
-                                      attention: widget.attention,
-                                      attentionCorrect: widget.attentionCorrect,
-                                      attentionMistakes:
-                                          widget.attentionMistakes,
-                                      executiveAnimalNaming:
-                                          widget.executiveAnimalNaming,
-                                      executiveAnimalNamingCount:
-                                          widget.executiveAnimalNamingCount,
-                                      executiveLuria: widget.executiveLuria,
-                                      executiveLuriaScore:
-                                          widget.executiveLuriaScore,
-                                      executiveSerial: widget.executiveSerial,
-                                      executiveSerialScore:
-                                          widget.executiveSerialScore,
-                                      praxisRight: widget.praxisRight,
-                                      praxisLeft: widget.praxisLeft,
-                                      shorttermMemoryVerbal:
-                                          widget.shorttermMemoryVerbal,
-                                      shorttermMemoryVerbalScore:
-                                          widget.shorttermMemoryVerbalScore,
-                                      tenWordDelay: widget.tenWordDelay,
-                                      scoreVerbalRecognitionMemoryTenWords: widget
-                                          .scoreVerbalRecognitionMemoryTenWords,
-                                      scoreVerbalRecognitionMemoryTenWordsInList:
-                                          widget
-                                              .scoreVerbalRecognitionMemoryTenWordsInList,
-                                      scoreVerbalRecognitionMemoryTenWordsNotInList:
-                                          widget
-                                              .scoreVerbalRecognitionMemoryTenWordsNotInList,
-                                      shorttermMemoryVisualImage1:
-                                          widget.shorttermMemoryVisualImage1,
-                                      shorttermMemoryVisualImage2:
-                                          widget.shorttermMemoryVisualImage2,
-                                      shorttermMemoryVisualImage3:
-                                          widget.shorttermMemoryVisualImage3,
-                                      anomiaAgnosia: widget.anomiaAgnosia,
-                                      agnosia: widget.agnosia,
-                                      executive: widget.executive,
-                                      spokenLanguage: _radioValue,
-                                    ));
+                            // Update the provider with the spoken language value
+                            _updateProvider();
+                            
+                            // Navigate to the Provider-based summary page
                             Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                              MaterialPageRoute(builder: (context) => const TestSummaryWithProvider()),
+                              (Route<dynamic> route) => true
+                            );
                           },
                           child: const Text("Continue",
                               style: TextStyle(color: Colors.black)),
@@ -372,6 +270,16 @@ class _SpokenLanguageState extends State<SpokenLanguage> {
     setState(() {
       _radioValue = value;
     });
+    
+    // Update the provider with the new value
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setSpokenLanguage(value);
+  }
+  
+  /// Update provider with the current test data
+  void _updateProvider() {
+    final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+    micaScoreModel.setSpokenLanguage(_radioValue);
   }
 
   void getPrefsData() async {

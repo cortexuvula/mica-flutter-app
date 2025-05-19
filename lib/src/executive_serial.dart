@@ -3,47 +3,10 @@ import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/shortterm_memory_verbal.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class ExecutiveSerial extends StatefulWidget {
-  final String patientName;
-  final String assessorName;
-  final String handedness;
-  final DateTime assessmentDate;
-  final int languageComprehensionRadioValue;
-  final int trialOneScore;
-  final int trialTwoScore;
-  final int trialThreeScore;
-  final int visuospatialPraxisImage1;
-  final int visuospatialPraxisImage2;
-  final int visuospatialPraxisImage3;
-  final int attention;
-  final int attentionCorrect;
-  final int attentionMistakes;
-  final int executiveAnimalNaming;
-  final int executiveLuria;
-  final int executiveLuriaScore;
-  final int executiveAnimalNamingCount;
-
-  const ExecutiveSerial(
-      {super.key,
-      required this.patientName,
-      required this.assessorName,
-      required this.handedness,
-      required this.assessmentDate,
-      required this.languageComprehensionRadioValue,
-      required this.trialOneScore,
-      required this.trialTwoScore,
-      required this.trialThreeScore,
-      required this.visuospatialPraxisImage1,
-      required this.visuospatialPraxisImage2,
-      required this.visuospatialPraxisImage3,
-      required this.attention,
-      required this.attentionCorrect,
-      required this.attentionMistakes,
-      required this.executiveAnimalNaming,
-      required this.executiveAnimalNamingCount,
-      required this.executiveLuria,
-      required this.executiveLuriaScore});
+  const ExecutiveSerial({super.key});
 
   @override
   _ExecutiveSerialState createState() => _ExecutiveSerialState();
@@ -54,6 +17,15 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
   int? _radioValue;
   int score = 0;
   List<String> executiveSerialButtonColor = [];
+  
+  // Update the provider with serial scores
+  void _updateProvider() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setExecutiveSerial(
+      score: _radioValue ?? 0,
+      count: score,
+    );
+  }
 
   Color decembermonthButtonColor = Colors.yellow;
   Color novembermonthButtonColor = Colors.yellow;
@@ -538,38 +510,12 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
                           onPressed: () {
+                            // Update provider with serial scores
+                            _updateProvider();
+                            
                             var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    ShortTermMemoryVerbal(
-                                      patientName: widget.patientName,
-                                      assessorName: widget.assessorName,
-                                      handedness: widget.handedness,
-                                      assessmentDate: widget.assessmentDate,
-                                      languageComprehensionRadioValue: widget
-                                          .languageComprehensionRadioValue,
-                                      trialOneScore: widget.trialOneScore,
-                                      trialTwoScore: widget.trialTwoScore,
-                                      trialThreeScore: widget.trialThreeScore,
-                                      visuospatialPraxisImage1:
-                                          widget.visuospatialPraxisImage1,
-                                      visuospatialPraxisImage2:
-                                          widget.visuospatialPraxisImage2,
-                                      visuospatialPraxisImage3:
-                                          widget.visuospatialPraxisImage3,
-                                      attention: widget.attention,
-                                      attentionCorrect: widget.attentionCorrect,
-                                      attentionMistakes:
-                                          widget.attentionMistakes,
-                                      executiveAnimalNaming:
-                                          widget.executiveAnimalNaming,
-                                      executiveAnimalNamingCount:
-                                          widget.executiveAnimalNamingCount,
-                                      executiveLuria: widget.executiveLuria,
-                                      executiveLuriaScore:
-                                          widget.executiveLuriaScore,
-                                      executiveSerial: _radioValue ?? 0,
-                                      executiveSerialScore: score,
-                                    ));
+                                    const ShortTermMemoryVerbal());
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },

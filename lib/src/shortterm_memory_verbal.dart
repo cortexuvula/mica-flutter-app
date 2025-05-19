@@ -1,68 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
-import 'package:mica/src/home.dart';
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/praxis.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class ShortTermMemoryVerbal extends StatefulWidget {
-  final String patientName;
-  final String assessorName;
-  final String handedness;
-  final DateTime assessmentDate;
-  final int languageComprehensionRadioValue;
-  final int trialOneScore;
-  final int trialTwoScore;
-  final int trialThreeScore;
-  final int visuospatialPraxisImage1;
-  final int visuospatialPraxisImage2;
-  final int visuospatialPraxisImage3;
-  final int attention;
-  final int attentionCorrect;
-  final int attentionMistakes;
-  final int executiveAnimalNaming;
-  final int executiveAnimalNamingCount;
-  final int executiveLuria;
-  final int executiveLuriaScore;
-  final int executiveSerial;
-  final int executiveSerialScore;
-
-  const ShortTermMemoryVerbal({
-    super.key,
-    required this.patientName,
-    required this.assessorName,
-    required this.handedness,
-    required this.assessmentDate,
-    required this.languageComprehensionRadioValue,
-    required this.trialOneScore,
-    required this.trialTwoScore,
-    required this.trialThreeScore,
-    required this.visuospatialPraxisImage1,
-    required this.visuospatialPraxisImage2,
-    required this.visuospatialPraxisImage3,
-    required this.attention,
-    required this.attentionCorrect,
-    required this.attentionMistakes,
-    required this.executiveAnimalNaming,
-    required this.executiveAnimalNamingCount,
-    required this.executiveLuria,
-    required this.executiveLuriaScore,
-    required this.executiveSerial,
-    required this.executiveSerialScore,
-  });
+  const ShortTermMemoryVerbal({super.key});
 
   @override
   _ShortTermMemoryVerbalState createState() => _ShortTermMemoryVerbalState();
 }
 
 class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
-  int _radioValue = 0;
-  int score = 0;
   bool _valueDate = false;
-  bool _valueMonth = false;
   bool _valueDay = false;
-  bool _valuePlace = false;
+  bool _valueMonth = false;
   bool _valueCity = false;
+  bool _valuePlace = false;
+  int? _radioValue = 0;
+  int score = 0;
+
+  // Calculate verbal score based on checkboxes
+  int get verbalScore {
+    int total = 0;
+    if (_valueDate) total++;
+    if (_valueDay) total++;
+    if (_valueMonth) total++;
+    if (_valueCity) total++;
+    if (_valuePlace) total++;
+    return total;
+  }
+
+  // Update the provider with shortterm memory verbal scores
+  void _updateProvider() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setShorttermMemoryVerbal(_radioValue ?? 0, verbalScore);
+  }
 
   @override
   void initState() {
@@ -89,13 +63,13 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
         appBar: AppBar(
           title: ListTile(
             title: Text(
-              appData.testShortTermMemory,
+              app_data.testShortTermMemory,
               style: TextStyle(
                 color: Colors.white,
               ),
             ),
             subtitle: Text(
-              appData.testShortTermMemorySubtitle,
+              app_data.testShortTermMemorySubtitle,
               style: TextStyle(
                 color: Colors.white,
               ),
@@ -124,7 +98,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                     bottom: 12.0,
                   ),
                   child: Text(
-                    appData.testShortTermMemory,
+                    app_data.testShortTermMemory,
                     textAlign: TextAlign.left,
                     style: const TextStyle(
                       fontSize: 16.0,
@@ -275,7 +249,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                       child: Column(
                         children: <Widget>[
                           const Text(
-                            appData.testShortTermMemoryResponse,
+                            app_data.testShortTermMemoryResponse,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -302,8 +276,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                       Radio(
                                         value: 0,
                                         groupValue: _radioValue,
-                                        onChanged: (int? value) =>
-                                            _handleRadioValueChange(value ?? 0),
+                                        onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
                                       const Text(
@@ -320,8 +293,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                       Radio(
                                         value: 1,
                                         groupValue: _radioValue,
-                                        onChanged: (int? value) =>
-                                            _handleRadioValueChange(value ?? 0),
+                                        onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
                                       const Text(
@@ -338,8 +310,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                       Radio(
                                         value: 2,
                                         groupValue: _radioValue,
-                                        onChanged: (int? value) =>
-                                            _handleRadioValueChange(value ?? 0),
+                                        onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
                                       const Text(
@@ -358,7 +329,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData.testShortTermMemoryResponseNormal,
+                                      app_data.testShortTermMemoryResponseNormal,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
                                     ),
@@ -366,7 +337,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData
+                                      app_data
                                           .testShortTermMemoryResponseEquivocal,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
@@ -375,7 +346,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData
+                                      app_data
                                           .testShortTermMemoryResponseImpaired,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
@@ -402,41 +373,16 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
                         onPressed: () {
-                          var router = MaterialPageRoute(
-                              builder: (BuildContext context) => Praxis(
-                                    patientName: widget.patientName,
-                                    assessorName: widget.assessorName,
-                                    handedness: widget.handedness,
-                                    assessmentDate: widget.assessmentDate,
-                                    languageComprehensionRadioValue:
-                                        widget.languageComprehensionRadioValue,
-                                    trialOneScore: widget.trialOneScore,
-                                    trialTwoScore: widget.trialTwoScore,
-                                    trialThreeScore: widget.trialThreeScore,
-                                    visuospatialPraxisImage1:
-                                        widget.visuospatialPraxisImage1,
-                                    visuospatialPraxisImage2:
-                                        widget.visuospatialPraxisImage2,
-                                    visuospatialPraxisImage3:
-                                        widget.visuospatialPraxisImage3,
-                                    attention: widget.attention,
-                                    attentionCorrect: widget.attentionCorrect,
-                                    attentionMistakes: widget.attentionMistakes,
-                                    executiveAnimalNaming:
-                                        widget.executiveAnimalNaming,
-                                    executiveAnimalNamingCount:
-                                        widget.executiveAnimalNamingCount,
-                                    executiveLuria: widget.executiveLuria,
-                                    executiveLuriaScore:
-                                        widget.executiveLuriaScore,
-                                    executiveSerial: widget.executiveSerial,
-                                    executiveSerialScore:
-                                        widget.executiveSerialScore,
-                                    shorttermMemoryVerbal: _radioValue,
-                                    shorttermMemoryVerbalScore: score,
-                                  ));
-                          Navigator.of(context).pushAndRemoveUntil(
-                              router, (Route<dynamic> route) => true);
+                          // Make final update to the provider before navigation
+                          _updateProvider();
+                          
+                          // Now that Praxis has been updated to use Provider pattern,
+                          // we can navigate directly without passing parameters
+                          if (mounted) {
+                            var router = MaterialPageRoute(
+                                builder: (BuildContext context) => const Praxis());
+                            Navigator.of(context).push(router);
+                          }
                         },
                         child: const Text("Continue",
                             style: TextStyle(color: Colors.black)),
@@ -452,119 +398,94 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
     );
   }
 
-  void _handleRadioValueChange(int value) {
+  void _handleRadioValueChange(int? value) {
     setState(() {
       _radioValue = value;
     });
+    _updateProvider();
   }
 
   void _valueDateChanged(bool value) {
-    if (value) {
-      score += 1;
-    } else if (!value) {
-      score -= 1;
-    }
-    setRadioToScore();
     setState(() {
       _valueDate = value;
     });
+    _updateProvider();
   }
 
   void _valueDayChanged(bool value) {
-    if (value) {
-      score += 1;
-    } else if (!value) {
-      score -= 1;
-    }
-    setRadioToScore();
     setState(() {
       _valueDay = value;
     });
+    _updateProvider();
   }
 
   void _valueMonthChanged(bool value) {
-    if (value) {
-      score += 1;
-    } else if (!value) {
-      score -= 1;
-    }
-    setRadioToScore();
     setState(() {
       _valueMonth = value;
     });
+    _updateProvider();
   }
 
   void _valueCityChanged(bool value) {
-    if (value) {
-      score += 1;
-    } else if (!value) {
-      score -= 1;
-    }
-    setRadioToScore();
     setState(() {
       _valueCity = value;
     });
+    _updateProvider();
   }
 
   void _valuePlaceChanged(bool value) {
-    if (value) {
-      score += 1;
-    } else if (!value) {
-      score -= 1;
-    }
-    setRadioToScore();
     setState(() {
       _valuePlace = value;
     });
+    _updateProvider();
   }
 
   void setRadioToScore() {
-    if (score == 4) {
-      setState(() {
-        _radioValue = 1;
-      });
-    } else if (score > 4) {
-      setState(() {
-        _radioValue = 0;
-      });
+    int newRadioValue;
+    if (verbalScore == 4) {
+      newRadioValue = 1;
+    } else if (verbalScore > 4) {
+      newRadioValue = 0;
     } else {
-      setState(() {
-        _radioValue = 2;
-      });
+      newRadioValue = 2;
     }
+    
+    setState(() {
+      _radioValue = newRadioValue;
+    });
+    _updateProvider();
   }
 
-  void getPrefsData() async {
+  Future<void> getPrefsData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    int? score1 = prefs.getInt("shorttermMemoryVerbal");
-    int? score2 = prefs.getInt("shorttermMemoryVerbal_score");
-    bool? date = prefs.getBool("_valueDate");
-    bool? month = prefs.getBool("_valueMonth");
-    bool? day = prefs.getBool("_valueDay");
-    bool? place = prefs.getBool("_valuePlace");
-    bool? city = prefs.getBool("_valueCity");
-
+    
     setState(() {
-      _radioValue = score1 ?? 0;
-      _valueDate = date ?? false;
-      _valueMonth = month ?? false;
-      _valueDay = day ?? false;
-      _valuePlace = place ?? false;
-      _valueCity = city ?? false;
-      score = score2 ?? 0;
+      _valueDate = prefs.getBool('shortTermMemoryVerbalDate') ?? false;
+      _valueMonth = prefs.getBool('shortTermMemoryVerbalMonth') ?? false;
+      _valueDay = prefs.getBool('shortTermMemoryVerbalDay') ?? false;
+      _valuePlace = prefs.getBool('shortTermMemoryVerbalPlace') ?? false;
+      _valueCity = prefs.getBool('shortTermMemoryVerbalCity') ?? false;
+      score = prefs.getInt('shortTermMemoryVerbalScore') ?? 0;
+      _radioValue = prefs.getInt('shortTermMemoryVerbalRadioValue') ?? 0;
     });
+    
+    // Update the provider with loaded data
+    _updateProvider();
   }
 
   Future<bool> savePrefData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    prefs.setInt("shorttermMemoryVerbal", _radioValue);
-    prefs.setInt("shorttermMemoryVerbal_score", score);
-    prefs.setBool("_valueDate", _valueDate);
-    prefs.setBool("_valueMonth", _valueMonth);
-    prefs.setBool("_valueDay", _valueDay);
-    prefs.setBool("_valuePlace", _valuePlace);
-    prefs.setBool("_valueCity", _valueCity);
+    prefs.setBool('shortTermMemoryVerbalDate', _valueDate);
+    prefs.setBool('shortTermMemoryVerbalMonth', _valueMonth);
+    prefs.setBool('shortTermMemoryVerbalDay', _valueDay);
+    prefs.setBool('shortTermMemoryVerbalPlace', _valuePlace);
+    prefs.setBool('shortTermMemoryVerbalCity', _valueCity);
+    prefs.setInt('shortTermMemoryVerbalScore', verbalScore);
+    prefs.setInt('shortTermMemoryVerbalRadioValue', _radioValue ?? 0);
+
+    // Final update to the provider before navigation
+    _updateProvider();
 
     return true;
   }

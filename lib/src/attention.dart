@@ -1,40 +1,16 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/executive_animal_naming.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class Attention extends StatefulWidget {
-  final String? patientName;
-  final String? assessorName;
-  final String? handedness;
-  final DateTime? assessmentDate;
-  final int? languageComprehensionRadioValue;
-  final int? trialOneScore;
-  final int? trialTwoScore;
-  final int? trialThreeScore;
-  final int? visuospatialPraxisImage1;
-  final int? visuospatialPraxisImage2;
-  final int? visuospatialPraxisImage3;
-
-  const Attention({
-    super.key,
-    this.patientName,
-    this.assessorName,
-    this.handedness,
-    this.assessmentDate,
-    this.languageComprehensionRadioValue,
-    this.trialOneScore,
-    this.trialTwoScore,
-    this.trialThreeScore,
-    this.visuospatialPraxisImage1,
-    this.visuospatialPraxisImage2,
-    this.visuospatialPraxisImage3,
-  });
+  const Attention({super.key});
 
   @override
-  _AttentionState createState() => _AttentionState();
+  State<Attention> createState() => _AttentionState();
 }
 
 class _AttentionState extends State<Attention> {
@@ -49,6 +25,16 @@ class _AttentionState extends State<Attention> {
   String displayLetter = "Letters";
 
   List<bool> tapCorrect = [];
+  
+  // Update the provider with attention scores
+  void _updateProvider() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setAttention(
+      score: _radioValue ?? 0,
+      correct: correctTap,
+      mistakes: wrongTap,
+    );
+  }
   List<bool> tapWrong = [];
   List<bool> correctCheck = [];
 
@@ -79,7 +65,7 @@ class _AttentionState extends State<Attention> {
         appBar: AppBar(
           title: ListTile(
             title: Text(
-              appData.testAttention,
+              app_data.testAttention,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 color: Colors.white,
@@ -88,7 +74,7 @@ class _AttentionState extends State<Attention> {
               textAlign: TextAlign.start,
             ),
             subtitle: Text(
-              appData.testAttentionSubtitle,
+              app_data.testAttentionSubtitle,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
@@ -126,7 +112,7 @@ class _AttentionState extends State<Attention> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testAttentionToPatient,
+                              app_data.testAttentionToPatient,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   color: Colors.black,
@@ -151,7 +137,7 @@ class _AttentionState extends State<Attention> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testAttentionDetails,
+                              app_data.testAttentionDetails,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   color: Colors.black,
@@ -179,7 +165,7 @@ class _AttentionState extends State<Attention> {
                           childAspectRatio: 1.2,
                           crossAxisSpacing: 5.0,
                           mainAxisSpacing: 5.0,
-                          children: List.generate(appData.attentionList.length,
+                          children: List.generate(app_data.attentionList.length,
                               (index) {
                             tapCorrect.add(false);
                             tapWrong.add(false);
@@ -191,7 +177,7 @@ class _AttentionState extends State<Attention> {
                               child: InkWell(
                                 onTap: () {
                                   if (!tapWrong[index] && !tapCorrect[index]) {
-                                    if (appData.attentionList[index] == "A") {
+                                    if (app_data.attentionList[index] == "A") {
                                       setState(() {
                                         tapCorrect[index] = true;
                                         correctTap += 1;
@@ -200,7 +186,7 @@ class _AttentionState extends State<Attention> {
                                         correctCheck[index] = true;
                                       });
                                     }
-                                    if (appData.attentionList[index] != "A") {
+                                    if (app_data.attentionList[index] != "A") {
                                       setState(() {
                                         tapWrong[index] = true;
                                         wrongTap += 1;
@@ -248,7 +234,7 @@ class _AttentionState extends State<Attention> {
                                       alignment: Alignment.center,
                                       children: [
                                         Text(
-                                          appData.attentionList[index],
+                                          app_data.attentionList[index],
                                           style: TextStyle(
                                             color: Colors.black,
                                             fontSize: 18,
@@ -351,7 +337,7 @@ class _AttentionState extends State<Attention> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testAttentionResponse,
+                              app_data.testAttentionResponse,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   color: Colors.black,
@@ -425,7 +411,7 @@ class _AttentionState extends State<Attention> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData.testAttentionResponseNormal,
+                                      app_data.testAttentionResponseNormal,
                                       style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
@@ -435,7 +421,7 @@ class _AttentionState extends State<Attention> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData.testAttentionResponseEquivocal,
+                                      app_data.testAttentionResponseEquivocal,
                                       style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
@@ -445,7 +431,7 @@ class _AttentionState extends State<Attention> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData.testAttentionResponseImpaired,
+                                      app_data.testAttentionResponseImpaired,
                                       style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
@@ -472,31 +458,12 @@ class _AttentionState extends State<Attention> {
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
                           onPressed: () {
+                            // Update provider with attention scores
+                            _updateProvider();
+                            
                             var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    ExecutiveAnimalNaming(
-                                      patientName: widget.patientName ?? '',
-                                      assessorName: widget.assessorName ?? '',
-                                      handedness: widget.handedness ?? '',
-                                      assessmentDate: widget.assessmentDate ??
-                                          DateTime.now(),
-                                      languageComprehensionRadioValue: widget
-                                              .languageComprehensionRadioValue ??
-                                          0,
-                                      trialOneScore: widget.trialOneScore ?? 0,
-                                      trialTwoScore: widget.trialTwoScore ?? 0,
-                                      trialThreeScore:
-                                          widget.trialThreeScore ?? 0,
-                                      visuospatialPraxisImage1:
-                                          widget.visuospatialPraxisImage1 ?? 0,
-                                      visuospatialPraxisImage2:
-                                          widget.visuospatialPraxisImage2 ?? 0,
-                                      visuospatialPraxisImage3:
-                                          widget.visuospatialPraxisImage3 ?? 0,
-                                      attention: _radioValue ?? 0,
-                                      attentionCorrect: correctTap,
-                                      attentionMistakes: wrongTap,
-                                    ));
+                                    const ExecutiveAnimalNaming());
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
