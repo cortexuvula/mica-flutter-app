@@ -3,7 +3,6 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/executive.dart';
 import 'package:mica/src/show_image_anomia.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:provider/provider.dart';
 
@@ -29,7 +28,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
   @override
   void initState() {
     super.initState();
-    getPrefsData();
+    initFromProvider();
   }
 
   @override
@@ -40,11 +39,13 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
-        if (!didPop) {
-          final shouldPop = await savePrefData();
-          if (shouldPop && context.mounted) {
-            Navigator.of(context).pop();
-          }
+        if (didPop) {
+          return;
+        }
+        // Update provider before navigation
+        updateProvider();
+        if (context.mounted) {
+          Navigator.of(context).pop();
         }
       },
       child: Scaffold(
@@ -520,35 +521,23 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
     }
   }
 
-  void getPrefsData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  void initFromProvider() {
     // We need to add a null check for context since initState might run before build
     if (!mounted) return;
     final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
-    int? anomia = prefs.getInt("anomiaAgnosia") ?? micaScoreModel.anomiaAgnosia;
-    int? agnosia = prefs.getInt("agnosia") ?? micaScoreModel.agnosia;
-
+    
     setState(() {
-      _radioValue = anomia;
-      _radioValue2 = agnosia;
+      _radioValue = micaScoreModel.anomiaAgnosia;
+      _radioValue2 = micaScoreModel.agnosia;
     });
-    // Update the provider
-    micaScoreModel.setAnomiaAgnosia(_radioValue ?? 0);
-    micaScoreModel.setAgnosia(_radioValue2 ?? 0);
   }
 
-  Future<bool> savePrefData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    await prefs.setInt("anomiaAgnosia", _radioValue ?? 0);
-    await prefs.setInt("agnosia", _radioValue2 ?? 0);
-    // Update the provider
-    if (mounted) {
-      final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
-      micaScoreModel.setAnomiaAgnosia(_radioValue ?? 0);
-      micaScoreModel.setAgnosia(_radioValue2 ?? 0);
-    }
-
-    return true;
+  void updateProvider() {
+    // Update the provider with current values
+    if (!mounted) return;
+    
+    final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+    micaScoreModel.setAnomiaAgnosia(_radioValue ?? 0);
+    micaScoreModel.setAgnosia(_radioValue2 ?? 0);
   }
 }

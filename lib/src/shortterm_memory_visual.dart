@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/anomia_agnosia.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:provider/provider.dart';
 
@@ -26,7 +25,7 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
   @override
   void initState() {
     super.initState();
-    getPrefsData();
+    initStateData();
   }
 
   @override
@@ -41,7 +40,6 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
           return;
         }
 
-        await savePrefData();
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => Welcome(),
@@ -578,45 +576,16 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
     }
   }
 
-  void getPrefsData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
+  void initStateData() {
     // We need to add a null check for context since initState might run before build
     if (!mounted) return;
 
     final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
 
-    int? score1 = prefs.getInt("shorttermMemoryVisualImage1") ??
-        micaScoreModel.shorttermMemoryVisualImage1;
-    int? score2 = prefs.getInt("shorttermMemoryVisualImage2") ??
-        micaScoreModel.shorttermMemoryVisualImage2;
-    int? score3 = prefs.getInt("shorttermMemoryVisualImage3") ??
-        micaScoreModel.shorttermMemoryVisualImage3;
-
     setState(() {
-      _radioValueImageOne = score1;
-      _radioValueImageTwo = score2;
-      _radioValueImageThree = score3;
+      _radioValueImageOne = micaScoreModel.shorttermMemoryVisualImage1;
+      _radioValueImageTwo = micaScoreModel.shorttermMemoryVisualImage2;
+      _radioValueImageThree = micaScoreModel.shorttermMemoryVisualImage3;
     });
-  }
-
-  Future<bool> savePrefData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    await prefs.setInt("shorttermMemoryVisualImage1", _radioValueImageOne ?? 0);
-    await prefs.setInt("shorttermMemoryVisualImage2", _radioValueImageTwo ?? 0);
-    await prefs.setInt("shorttermMemoryVisualImage3", _radioValueImageThree ?? 0);
-
-    // Update provider as well
-    if (mounted) {
-      final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
-      micaScoreModel.setShorttermMemoryVisualImages(
-        image1: _radioValueImageOne ?? 0,
-        image2: _radioValueImageTwo ?? 0,
-        image3: _radioValueImageThree ?? 0,
-      );
-    }
-
-    return true;
   }
 }
