@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class AttentionConcentration extends StatefulWidget {
-  final int attention;
-
+  // No longer requires attention parameter, will get from provider
   const AttentionConcentration({
-    super.key, 
-    required this.attention
+    super.key
   });
 
   @override
@@ -19,11 +18,16 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
   @override
   void initState() {
     super.initState();
-    radio3ButtonValueToString(widget.attention);
+    // We'll get the attention value in build instead of initState
   }
 
   @override
   Widget build(BuildContext context) {
+    // Get the score model from provider
+    final scoreModel = MicaProviders.getScoreModel(context);
+    
+    // Get attention value and convert to string format
+    radio3ButtonValueToString(scoreModel.attention);
     return Scaffold(
       appBar: AppBar(
         title: ListTile(

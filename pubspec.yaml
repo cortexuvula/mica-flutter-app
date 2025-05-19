@@ -33,6 +33,7 @@ dependencies:
   shared_preferences: ^2.2.1
   timer_count_down: ^2.2.2
   simple_animations: ^5.0.2
+  provider: ^6.1.1
 
 
 # For information on the generic Dart part of this file, see the

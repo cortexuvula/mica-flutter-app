@@ -3,44 +3,10 @@ import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/executive_serial.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class ExecutiveLuria extends StatefulWidget {
-  final String patientName;
-  final String assessorName;
-  final String handedness;
-  final DateTime assessmentDate;
-  final int languageComprehensionRadioValue;
-  final int trialOneScore;
-  final int trialTwoScore;
-  final int trialThreeScore;
-  final int visuospatialPraxisImage1;
-  final int visuospatialPraxisImage2;
-  final int visuospatialPraxisImage3;
-  final int attention;
-  final int attentionCorrect;
-  final int attentionMistakes;
-  final int executiveAnimalNaming;
-  final int executiveAnimalNamingCount;
-
-  const ExecutiveLuria({
-    super.key,
-    required this.patientName,
-    required this.assessorName,
-    required this.handedness,
-    required this.assessmentDate,
-    required this.languageComprehensionRadioValue,
-    required this.trialOneScore,
-    required this.trialTwoScore,
-    required this.trialThreeScore,
-    required this.visuospatialPraxisImage1,
-    required this.visuospatialPraxisImage2,
-    required this.visuospatialPraxisImage3,
-    required this.attention,
-    required this.attentionCorrect,
-    required this.attentionMistakes,
-    required this.executiveAnimalNaming,
-    required this.executiveAnimalNamingCount,
-  });
+  const ExecutiveLuria({super.key});
 
   @override
   _ExecutiveLuriaState createState() => _ExecutiveLuriaState();
@@ -50,6 +16,15 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
   final double sizeBoxHeight = 10.0;
   int _radioValue = 2; // Default initialization
   int _counter = 0;
+  
+  // Update the provider with Luria scores
+  void _updateProvider() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setExecutiveLuria(
+      score: _radioValue,
+      count: _counter,
+    );
+  }
 
   @override
   void initState() {
@@ -376,35 +351,12 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                             elevation: 10.0,
                           ),
                           onPressed: () {
+                            // Update provider with Luria scores
+                            _updateProvider();
+                            
                             var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    ExecutiveSerial(
-                                      patientName: widget.patientName,
-                                      assessorName: widget.assessorName,
-                                      handedness: widget.handedness,
-                                      assessmentDate: widget.assessmentDate,
-                                      languageComprehensionRadioValue: widget
-                                          .languageComprehensionRadioValue,
-                                      trialOneScore: widget.trialOneScore,
-                                      trialTwoScore: widget.trialTwoScore,
-                                      trialThreeScore: widget.trialThreeScore,
-                                      visuospatialPraxisImage1:
-                                          widget.visuospatialPraxisImage1,
-                                      visuospatialPraxisImage2:
-                                          widget.visuospatialPraxisImage2,
-                                      visuospatialPraxisImage3:
-                                          widget.visuospatialPraxisImage3,
-                                      attention: widget.attention,
-                                      attentionCorrect: widget.attentionCorrect,
-                                      attentionMistakes:
-                                          widget.attentionMistakes,
-                                      executiveAnimalNaming:
-                                          widget.executiveAnimalNaming,
-                                      executiveAnimalNamingCount:
-                                          widget.executiveAnimalNamingCount,
-                                      executiveLuria: _radioValue,
-                                      executiveLuriaScore: _counter,
-                                    ));
+                                    const ExecutiveSerial());
                             Navigator.of(context).push(router);
                           },
                           child: const Text("Continue",
