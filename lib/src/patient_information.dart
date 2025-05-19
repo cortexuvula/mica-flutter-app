@@ -182,27 +182,27 @@ class _PatientInformationState extends State<PatientInformation> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: <Widget>[
-                      Text("Remember Assessor Name: "),
-                      Switch(
-                        value: rememberAssessor,
-                        onChanged: (bool newValue) {
-                          setState(() {
-                            rememberAssessor = newValue;
-                          });
-                        },
-                        activeColor: Colors.green,
-                        activeTrackColor: Colors.white,
-                        inactiveThumbColor: Colors.red,
-                        inactiveTrackColor: Colors.white,
-                      ),
-                    ],
-                  ),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.all(16.0),
+                //   child: Row(
+                //     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //     children: <Widget>[
+                //       Text("Remember Assessor Name: "),
+                //       Switch(
+                //         value: rememberAssessor,
+                //         onChanged: (bool newValue) {
+                //           setState(() {
+                //             rememberAssessor = newValue;
+                //           });
+                //         },
+                //         activeColor: Colors.green,
+                //         activeTrackColor: Colors.white,
+                //         inactiveThumbColor: Colors.red,
+                //         inactiveTrackColor: Colors.white,
+                //       ),
+                //     ],
+                //   ),
+                // ),
                 SizedBox(
                   width: width * 0.9,
                   child: Card(
@@ -220,19 +220,15 @@ class _PatientInformationState extends State<PatientInformation> {
                             myAssessor.text = "No Name Provided";
                           }
                           if (_formKey.currentState?.validate() ?? false) {
-                            // If the form is valid, display a snackbar. In the real world, you'd
-                            // often want to call a server or save the information in a database
-                            ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Processing Data')));
-
                             // Save to provider
                             saveToProvider();
-                            
+
                             // The provider is now updated with patient information
-                            
+
                             // Navigate to the next screen
                             var router = MaterialPageRoute(
-                                builder: (BuildContext context) => const LanguageComprehension());
+                                builder: (BuildContext context) =>
+                                    const LanguageComprehension());
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           }
@@ -254,10 +250,10 @@ class _PatientInformationState extends State<PatientInformation> {
       _radioValue = value;
     });
   }
-  
-    void initFromProvider() {
+
+  void initFromProvider() {
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-    
+
     // Load patient information from provider
     setState(() {
       myPatient.text = scoreModel.patientName;
@@ -270,9 +266,9 @@ class _PatientInformationState extends State<PatientInformation> {
   // Instead of saving to SharedPreferences, we now update the provider
   void saveToProvider() {
     if (!mounted) return;
-    
+
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-    
+
     // Update the provider with patient information
     scoreModel.setPatientInfo(
       patientName: myPatient.text,
