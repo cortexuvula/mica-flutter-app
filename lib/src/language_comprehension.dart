@@ -4,6 +4,7 @@ import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/ten_word_recall_task_trial_one.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/patient_information.dart';
 
 class LanguageComprehension extends StatefulWidget {
   const LanguageComprehension({super.key});
@@ -44,9 +45,12 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
         // Update provider before navigation
         _updateProvider();
         
+        // Navigate back to PatientInformation screen
+        // This will show the previously entered information because the PatientInformation screen 
+        // loads data from the Provider in its initState method
         Navigator.of(context).push(
           MaterialPageRoute(
-            builder: (context) => Welcome(),
+            builder: (context) => PatientInformation(),
           ),
         );
       },
