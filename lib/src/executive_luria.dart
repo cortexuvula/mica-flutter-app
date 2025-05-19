@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/executive_serial.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 
 class ExecutiveLuria extends StatefulWidget {
@@ -29,7 +28,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
   @override
   void initState() {
     super.initState();
-    getPrefsData();
+    initFromProvider();
   }
 
   @override
@@ -38,11 +37,12 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
-        if (!didPop) {
-          final shouldPop = await savePrefData();
-          if (shouldPop && context.mounted) {
-            Navigator.of(context).pop();
-          }
+        if (didPop) return;
+
+        // Save data to provider instead of SharedPreferences
+        _updateProvider();
+        if (context.mounted) {
+          Navigator.of(context).pop();
         }
       },
       child: Scaffold(
@@ -382,23 +382,14 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
     }
   }
 
-  void getPrefsData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    int? score1 = prefs.getInt("executiveLuria");
-    int? score2 = prefs.getInt("executiveLuria_score");
+  void initFromProvider() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
 
     setState(() {
-      if (score1 != null) _radioValue = score1;
-      if (score2 != null) _counter = score2;
+      _radioValue = scoreModel.executiveLuria;
+      _counter = scoreModel.executiveLuriaScore;
     });
   }
 
-  Future<bool> savePrefData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    prefs.setInt("executiveLuria", _radioValue);
-    prefs.setInt("executiveLuria_score", _counter);
-
-    return true;
-  }
+  // Provider update is now handled directly by _updateProvider method
 }

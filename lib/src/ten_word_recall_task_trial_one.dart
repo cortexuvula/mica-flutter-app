@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/ten_word_recall_task_trial_two.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 
 class TenWordRecallTrialOne extends StatefulWidget {
@@ -30,7 +29,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
       wordButtonColor.add(Colors.yellowAccent.shade100);
       wordColor.add('yellow');
     }
-    getPrefsData();
+    initFromProvider();
   }
   
   // Update the provider with the trial one score
@@ -49,12 +48,18 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
-        if (didPop) return;
-
-        final bool shouldPop = await savePrefData();
-        if (shouldPop && context.mounted) {
-          Navigator.of(context).pop();
+        if (didPop) {
+          return;
         }
+        
+        // Update provider before navigation
+        _updateProvider();
+        
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => const Welcome(),
+          ),
+        );
       },
       child: Scaffold(
         appBar: AppBar(
@@ -266,44 +271,19 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
     );
   }
 
-  void getPrefsData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    int? score = prefs.getInt("trialOneScore");
-    List<String>? tempWordColor = prefs.getStringList("trial1wordButtonColor");
-
-    if (tempWordColor != null) {
-      for (var i = 0; i < 10; i++) {
-        if (i < tempWordColor.length && tempWordColor[i] == "green") {
-          setState(() {
-            wordButtonColor[i] = Colors.green;
-            wordColor[i] = "green";
-          });
-        }
-      }
-    }
-
-    if (score != null) {
+  void initFromProvider() {
+    if (!mounted) return;
+    
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    int score = scoreModel.trialOneScore;
+    
+    // The Provider doesn't store word colors, so we're initializing with default values
+    // If needed, the colors for words could be added to the MicaScoreModel in the future
+    
+    if (score > 0) {
       setState(() {
         scoreTenWordRecallTrialOne = score;
       });
     }
-  }
-
-  Future<bool> savePrefData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    prefs.setInt("trialOneScore", scoreTenWordRecallTrialOne);
-
-    for (var i = 0; i < 10; i++) {
-      if (wordButtonColor[i] == Colors.green) {
-        wordColor[i] = "green";
-      } else {
-        wordColor[i] = 'yellow';
-      }
-    }
-
-    prefs.setStringList("trial1wordButtonColor", wordColor);
-
-    return true;
   }
 }

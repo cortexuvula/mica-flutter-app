@@ -36,10 +36,10 @@ class _PraxisState extends State<Praxis> {
         if (didPop) {
           return;
         }
-        
+
         // Update provider before navigation
         updateProvider();
-        
+
         if (context.mounted) {
           Navigator.of(context).pop();
         }
@@ -89,7 +89,68 @@ class _PraxisState extends State<Praxis> {
                     width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
-                      color: Colors.yellowAccent.shade400,
+                      color: Colors.yellowAccent,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          app_data.testPraxisToPatient,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 15.0),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: sizeBoxHeight,
+                  ),
+                  SizedBox(
+                    width: width * 0.9,
+                    child: Card(
+                      elevation: 10.0,
+                      color: Colors.deepPurple.shade300,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(
+                          app_data.testPraxisDetails,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                              fontSize: 15.0),
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: sizeBoxHeight,
+                  ),
+                  SizedBox(
+                    width: width * 0.9,
+                    child: Card(
+                      elevation: 10.0,
+                      color: Colors.deepPurple.shade300,
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: SizedBox(
+                            width: width * 0.8,
+                            child: Image.asset(
+                              "./images/pen.png",
+                              fit: BoxFit.contain,
+                            )),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: sizeBoxHeight,
+                  ),
+                  SizedBox(
+                    width: width * 0.9,
+                    child: Card(
+                      elevation: 10.0,
+                      color: Colors.green,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Column(
@@ -239,27 +300,6 @@ class _PraxisState extends State<Praxis> {
                               height: 20.0,
                             ),
                           ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: sizeBoxHeight,
-                  ),
-                  SizedBox(
-                    width: width * 0.9,
-                    child: Card(
-                      elevation: 10.0,
-                      color: Colors.deepPurple.shade300,
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Text(
-                          app_data.testPraxis,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 15.0),
                         ),
                       ),
                     ),

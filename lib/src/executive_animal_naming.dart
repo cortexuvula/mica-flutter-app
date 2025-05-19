@@ -1,9 +1,7 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/executive_luria.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 
 class ExecutiveAnimalNaming extends StatefulWidget {
@@ -44,7 +42,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
   @override
   void initState() {
     super.initState();
-    getPrefsData();
+    initFromProvider();
     clockController = AnimationController(
       vsync: this,
       duration: Duration(seconds: startSeconds),
@@ -64,11 +62,12 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
-        if (!didPop) {
-          final shouldPop = await savePrefData();
-          if (shouldPop && context.mounted) {
-            Navigator.of(context).pop();
-          }
+        if (didPop) return;
+
+        // Save data to provider instead of SharedPreferences
+        _updateProvider();
+        if (context.mounted) {
+          Navigator.of(context).pop();
         }
       },
       child: Scaffold(
@@ -95,10 +94,12 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
             IconButton(
                 icon: const Icon(Icons.clear),
                 onPressed: () {
+                  // Update the provider
+                  _updateProvider();
                   var router = MaterialPageRoute(
                       builder: (BuildContext context) => const Welcome());
                   Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => false);
+                      router, (Route<dynamic> route) => true);
                 })
           ],
         ),
@@ -437,15 +438,13 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
                           onPressed: () {
-                            // Update provider with animal naming scores
+                            // Update the provider
                             _updateProvider();
-                            
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ExecutiveLuria(),
-                              ),
-                            );
+                            var router = MaterialPageRoute(
+                                builder: (BuildContext context) =>
+                                    const ExecutiveLuria());
+                            Navigator.of(context).pushAndRemoveUntil(
+                                router, (Route<dynamic> route) => true);
                           },
                           child: const Text(
                             'Continue',
@@ -472,24 +471,12 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
     }
   }
 
-  setPrefsData(bool shouldReturnTrue) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setInt("executiveAnimalNaming", _radioValue);
-    await prefs.setInt("executiveAnimalNamingCount", _counter);
-    return shouldReturnTrue;
-  }
-
-  Future<bool> savePrefData() async {
-    return setPrefsData(true);
-  }
-
-  getPrefsData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
+  // Initialize data from provider instead of SharedPreferences
+  void initFromProvider() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     setState(() {
-      var execNameVal = prefs.getInt("executiveAnimalNaming");
-      var execNameCount = prefs.getInt("executiveAnimalNamingCount");
-      if (execNameVal != null) _radioValue = execNameVal;
-      if (execNameCount != null) _counter = execNameCount;
+      _radioValue = scoreModel.executiveAnimalNaming;
+      _counter = scoreModel.executiveAnimalNamingCount;
     });
   }
 }

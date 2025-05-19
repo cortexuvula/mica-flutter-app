@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/welcome.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 import 'domain_attention_concentration.dart';
 
@@ -46,10 +46,13 @@ class _DomainVigilanceState extends State<DomainVigilance> {
   var correctSelectedColor = Colors.green;
   var wrongSelectedColor = Colors.red;
 
+  // Removed unused letters list
+
   @override
   void initState() {
     super.initState();
-    getPrefsData();
+    // No need to populate letters list since it's not used
+    initFromProvider();
   }
 
   @override
@@ -58,8 +61,12 @@ class _DomainVigilanceState extends State<DomainVigilance> {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
-        if (!didPop) {
-          await savePrefData();
+        if (didPop) return;
+
+        // Save to provider instead of SharedPreferences
+        saveToProvider();
+        if (context.mounted) {
+          Navigator.of(context).pop();
         }
       },
       child: Scaffold(
@@ -510,128 +517,41 @@ class _DomainVigilanceState extends State<DomainVigilance> {
     });
   }
 
-  void getPrefsData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    int? score1 = prefs.getInt("domain_attention");
-    int? score2 = prefs.getInt("domain_correctTap");
-    int? score3 = prefs.getInt("domain_wrongTap");
-
-    List<String> tapCorrectList = [];
-    List<String> letterTapButtonColorList = [];
-    List<String> tapWrongList = [];
-    List<String> correctCheckList = [];
-
-    List<bool> tapCorrect = [];
-    List<Color> letterTapButtonColor = [];
-    List<bool> tapWrong = [];
-    List<bool> correctCheck = [];
-
-    letterTapButtonColorList =
-        prefs.getStringList("domain_letterTapButtonColor") ?? [];
-    tapCorrectList = prefs.getStringList("domain_tapCorrect") ?? [];
-    tapWrongList = prefs.getStringList("domain_tapWrong") ?? [];
-    correctCheckList = prefs.getStringList("domain_correctCheck") ?? [];
-
-    for (var i = 0; i < 26; i++) {
-      if (letterTapButtonColorList.length > i) {
-        if (letterTapButtonColorList[i] == "cyan") {
-          letterTapButtonColor.add(Colors.cyan.shade200);
-        } else if (letterTapButtonColorList[i] == "green") {
-          letterTapButtonColor.add(Colors.green);
-        } else {
-          letterTapButtonColor.add(Colors.red);
-        }
-      } else {
-        letterTapButtonColor.add(Colors.cyan.shade200);
-      }
-
-      if (tapCorrectList.length > i) {
-        if (tapCorrectList[i] == "false") {
-          tapCorrect.add(false);
-        } else {
-          tapCorrect.add(true);
-        }
-      } else {
-        tapCorrect.add(false);
-      }
-
-      if (tapWrongList.length > i) {
-        if (tapWrongList[i] == "false") {
-          tapWrong.add(false);
-        } else {
-          tapWrong.add(true);
-        }
-      } else {
-        tapWrong.add(false);
-      }
-
-      if (correctCheckList.length > i) {
-        if (correctCheckList[i] == "false") {
-          correctCheck.add(false);
-        } else {
-          correctCheck.add(true);
-        }
-      } else {
-        correctCheck.add(false);
-      }
-    }
+  void initFromProvider() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    
+    // Initialize default values
+    List<Color> initialButtonColors = List.filled(26, Colors.cyan.shade200);
+    List<bool> initialTapCorrect = List.filled(26, false);
+    List<bool> initialTapWrong = List.filled(26, false);
+    List<bool> initialCorrectCheck = List.filled(26, false);
+    
     setState(() {
-      _radioValue = score1 ?? 0;
-      correctTap = score2 ?? 0;
-      wrongTap = score3 ?? 0;
-      letterTapButtonColor = letterTapButtonColor;
-      tapCorrect = tapCorrect;
-      tapWrong = tapWrong;
-      correctCheck = correctCheck;
+      // Get attention scores from the provider
+      _radioValue = scoreModel.attention;
+      correctTap = scoreModel.attentionCorrect;
+      wrongTap = scoreModel.attentionMistakes;
+      
+      // Initialize button colors and states
+      // Since these are UI states, we use default values rather than loading from Provider
+      letterTapButtonColor = initialButtonColors;
+      tapCorrect = initialTapCorrect;
+      tapWrong = initialTapWrong;
+      correctCheck = initialCorrectCheck;
     });
   }
 
-  Future<bool> savePrefData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    prefs.setInt("domain_attention", _radioValue);
-    prefs.setInt("domain_correctTap", correctTap);
-    prefs.setInt("domain_wrongTap", wrongTap);
-
-    List<String> tapCorrectList = [];
-    List<String> letterTapButtonColorList = [];
-    List<String> tapWrongList = [];
-    List<String> correctCheckList = [];
-
-    for (var i = 0; i < 26; i++) {
-      if (letterTapButtonColor[i] == Colors.cyan.shade200) {
-        letterTapButtonColorList.add("cyan");
-      } else if (letterTapButtonColor[i] == Colors.red) {
-        letterTapButtonColorList.add("red");
-      } else {
-        letterTapButtonColorList.add("green");
-      }
-
-      if (tapCorrect[i] == false) {
-        tapCorrectList.add("false");
-      } else {
-        tapCorrectList.add("true");
-      }
-
-      if (tapWrong[i] == false) {
-        tapWrongList.add("false");
-      } else {
-        tapWrongList.add("true");
-      }
-
-      if (correctCheck[i] == false) {
-        correctCheckList.add("false");
-      } else {
-        correctCheckList.add("true");
-      }
-    }
-
-    prefs.setStringList(
-        "domain_letterTapButtonColor", letterTapButtonColorList);
-    prefs.setStringList("domain_tapCorrect", tapCorrectList);
-    prefs.setStringList("domain_tapWrong", tapWrongList);
-    prefs.setStringList("domain_correctCheck", correctCheckList);
-
-    return true;
+  void saveToProvider() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    
+    // Save attention scores to the provider
+    scoreModel.setAttention(
+      score: _radioValue,
+      correct: correctTap,
+      mistakes: wrongTap
+    );
+    
+    // We don't need to save the UI states (button colors, etc.) to the Provider
+    // as these are only relevant during the current session
   }
 }

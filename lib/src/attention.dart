@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/executive_animal_naming.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 
 class Attention extends StatefulWidget {
@@ -48,7 +47,7 @@ class _AttentionState extends State<Attention> {
   @override
   void initState() {
     super.initState();
-    getPrefsData();
+    initFromProvider();
   }
 
   @override
@@ -57,9 +56,20 @@ class _AttentionState extends State<Attention> {
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
-        if (!didPop) {
-          await savePrefData();
+        if (didPop) {
+          return;
         }
+
+        // Update provider before navigation
+        _updateProvider();
+        
+        if (context.mounted) {
+          Navigator.of(context).pop();
+        }
+        var router = MaterialPageRoute(
+            builder: (BuildContext context) => const Welcome());
+        Navigator.of(context).pushAndRemoveUntil(
+            router, (Route<dynamic> route) => false);
       },
       child: Scaffold(
         appBar: AppBar(
@@ -458,14 +468,16 @@ class _AttentionState extends State<Attention> {
                         padding: const EdgeInsets.all(8.0),
                         child: ElevatedButton(
                           onPressed: () {
-                            // Update provider with attention scores
+                            sequenceInMotion = false;
+                            timer?.cancel();
+                            
+                            // Update provider
                             _updateProvider();
                             
                             var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
                                     const ExecutiveAnimalNaming());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            Navigator.of(context).push(router);
                           },
                           child: const Text("Continue",
                               style: TextStyle(color: Colors.black)),
@@ -488,142 +500,32 @@ class _AttentionState extends State<Attention> {
     });
   }
 
-  void getPrefsData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    int? score1 = prefs.getInt("attention");
-    int? score2 = prefs.getInt("correctTap");
-    int? score3 = prefs.getInt("wrongTap");
-
-    List<String> tapCorrectList = [];
-    List<String> letterTapButtonColorList = [];
-    List<String> tapWrongList = [];
-    List<String> correctCheckList = [];
-
-    List<bool> tapCorrect = [];
-    List<Color> letterTapButtonColor = [];
-    List<bool> tapWrong = [];
-    List<bool> correctCheck = [];
-
-    letterTapButtonColorList =
-        prefs.getStringList("letterTapButtonColor") ?? [];
-    tapCorrectList = prefs.getStringList("tapCorrect") ?? [];
-    tapWrongList = prefs.getStringList("tapWrong") ?? [];
-    correctCheckList = prefs.getStringList("correctCheck") ?? [];
-
-    // Ensure lists have expected length
-    if (letterTapButtonColorList.isEmpty ||
-        tapCorrectList.isEmpty ||
-        tapWrongList.isEmpty ||
-        correctCheckList.isEmpty) {
-      // Initialize with default values if lists are empty
-      for (var i = 0; i < 26; i++) {
-        letterTapButtonColor.add(Colors.cyan.shade200);
-        tapCorrect.add(false);
-        tapWrong.add(false);
-        correctCheck.add(false);
-      }
-    } else {
-      for (var i = 0; i < 26; i++) {
-        if (i < letterTapButtonColorList.length) {
-          if (letterTapButtonColorList[i] == "cyan") {
-            letterTapButtonColor.add(Colors.cyan.shade200);
-          } else if (letterTapButtonColorList[i] == "green") {
-            letterTapButtonColor.add(Colors.green);
-          } else {
-            letterTapButtonColor.add(Colors.red);
-          }
-        } else {
-          letterTapButtonColor.add(Colors.cyan.shade200);
-        }
-
-        if (i < tapCorrectList.length) {
-          if (tapCorrectList[i] == "false") {
-            tapCorrect.add(false);
-          } else {
-            tapCorrect.add(true);
-          }
-        } else {
-          tapCorrect.add(false);
-        }
-
-        if (i < tapWrongList.length) {
-          if (tapWrongList[i] == "false") {
-            tapWrong.add(false);
-          } else {
-            tapWrong.add(true);
-          }
-        } else {
-          tapWrong.add(false);
-        }
-
-        if (i < correctCheckList.length) {
-          if (correctCheckList[i] == "false") {
-            correctCheck.add(false);
-          } else {
-            correctCheck.add(true);
-          }
-        } else {
-          correctCheck.add(false);
-        }
-      }
-    }
-
+  // Initialize from provider
+  void initFromProvider() {
+    if (!mounted) return;
+    
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    
+    // Load basic attention scores
     setState(() {
-      _radioValue = score1;
-      correctTap = score2 ?? 0;
-      wrongTap = score3 ?? 0;
-      letterTapButtonColor = letterTapButtonColor;
-      tapCorrect = tapCorrect;
-      tapWrong = tapWrong;
-      correctCheck = correctCheck;
+      _radioValue = scoreModel.attention;
+      correctTap = scoreModel.attentionCorrect;
+      wrongTap = scoreModel.attentionMistakes;
     });
-  }
-
-  Future<bool> savePrefData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    prefs.setInt("attention", _radioValue ?? 0);
-    prefs.setInt("correctTap", correctTap);
-    prefs.setInt("wrongTap", wrongTap);
-
-    List<String> tapCorrectList = [];
-    List<String> letterTapButtonColorList = [];
-    List<String> tapWrongList = [];
-    List<String> correctCheckList = [];
-
+    
+    // Initialize lists with default values
+    // Note: The provider currently doesn't store the detailed lists,
+    // so we initialize them with default values
+    letterTapButtonColor = [];
+    tapCorrect = [];
+    tapWrong = [];
+    correctCheck = [];
+    
     for (var i = 0; i < 26; i++) {
-      if (letterTapButtonColor[i] == Colors.cyan.shade200) {
-        letterTapButtonColorList.add("cyan");
-      } else if (letterTapButtonColor[i] == Colors.red) {
-        letterTapButtonColorList.add("red");
-      } else {
-        letterTapButtonColorList.add("green");
-      }
-
-      if (tapCorrect[i] == false) {
-        tapCorrectList.add("false");
-      } else {
-        tapCorrectList.add("true");
-      }
-
-      if (tapWrong[i] == false) {
-        tapWrongList.add("false");
-      } else {
-        tapWrongList.add("true");
-      }
-
-      if (correctCheck[i] == false) {
-        correctCheckList.add("false");
-      } else {
-        correctCheckList.add("true");
-      }
+      letterTapButtonColor.add(Colors.cyan.shade200);
+      tapCorrect.add(false);
+      tapWrong.add(false);
+      correctCheck.add(false);
     }
-
-    prefs.setStringList("letterTapButtonColor", letterTapButtonColorList);
-    prefs.setStringList("tapCorrect", tapCorrectList);
-    prefs.setStringList("tapWrong", tapWrongList);
-    prefs.setStringList("correctCheck", correctCheckList);
-
-    return true;
   }
 }

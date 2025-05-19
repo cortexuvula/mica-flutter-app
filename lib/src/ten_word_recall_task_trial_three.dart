@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as appData;
 import 'package:mica/src/visuospatial_praxis.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 
 class TenWordRecallTrialThree extends StatefulWidget {
@@ -26,7 +25,7 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
       wordButtonColor.add(Colors.yellowAccent.shade100);
       wordColor.add('yellow');
     }
-    getPrefsData();
+    initFromProvider();
   }
   
   // Update the provider with the trial three score
@@ -46,8 +45,11 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
-        final shouldPop = await savePrefData();
-        if (shouldPop && context.mounted) {
+        
+        // Update provider before navigation
+        _updateProvider();
+        
+        if (context.mounted) {
           Navigator.of(context).pop();
         }
       },
@@ -275,45 +277,19 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
     );
   }
 
-  void getPrefsData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    int? score = prefs.getInt("trialThreeScore");
-    List<String>? tempWordColor = prefs.getStringList("trial3wordButtonColor");
-
-    if (tempWordColor != null) {
-      wordColor = tempWordColor;
-
-      for (var i = 0; i < 10; i++) {
-        if (i < wordColor.length && wordColor[i] == "green") {
-          setState(() {
-            wordButtonColor[i] = Colors.green;
-          });
-        }
-      }
-    }
-
-    if (score != null) {
+  void initFromProvider() {
+    if (!mounted) return;
+    
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    int score = scoreModel.trialThreeScore;
+    
+    // The Provider doesn't store word colors, so we're initializing with default values
+    // If needed, the colors for words could be added to the MicaScoreModel in the future
+    
+    if (score > 0) {
       setState(() {
         scoreTenWordRecallTrialThree = score;
       });
     }
-  }
-
-  Future<bool> savePrefData() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-
-    prefs.setInt("trialThreeScore", scoreTenWordRecallTrialThree);
-
-    for (var i = 0; i < 10; i++) {
-      if (wordButtonColor[i] == Colors.green) {
-        wordColor[i] = "green";
-      } else {
-        wordColor[i] = 'yellow';
-      }
-    }
-
-    prefs.setStringList("trial3wordButtonColor", wordColor);
-
-    return true;
   }
 }
