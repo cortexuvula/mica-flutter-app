@@ -25,7 +25,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            app_data.domain_attention_title,
+            app_data.domainAttentionTitle,
             style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -33,7 +33,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
             textAlign: TextAlign.start,
           ),
           subtitle: Text(
-            app_data.domain_attention_subtitle,
+            app_data.domainAttentionSubtitle,
             style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,

@@ -367,17 +367,12 @@ const String welcomeButtonOption5 = "Educational Videos";
 
 const String domainSelectButton1 = "Attention and Concentration";
 
-const String domain_test_complete_button = "Task Completed";
+const String domainTestCompleteButton = "Task Completed";
 
-const String domain_observation_title = "Attention";
-const String domain_observation_subtitle = "Observation";
-const String domain_observation_examiner =
+const String domainObservationTitle = "Attention";
+const String domainObservationSubtitle = "Observation";
+const String domainObservationExaminer =
     "It is possible to assess attention and concentration by observing the patient's quality of interaction during mental status examination. However, this provides only a rough estimate and is usually a precursor for further testing.";
-
-const String domain_attention_title = "Attention";
-const String domain_attention_subtitle = "& Concentration";
-const String domain_select = "Domain Select";
-const String domain_select_info = "Please select the cognitive domain to test.";
 
 const String domainSelectButton2 = "Language";
 const String domainSelectButton3 = "Memory";
@@ -413,37 +408,37 @@ const String domainSelectInfo =
 const String domainAttentionTitle = "Assessment of Attention";
 const String domainAttentionSubtitle = "and Concentration";
 
-const String domain_spell_word = "\"Good. Now spell it backwards.\"";
-const String domain_spell_word_patient =
+const String domainSpellWord = "\"Good. Now spell it backwards.\"";
+const String domainSpellWordPatient =
     "“Spell the following word: RIGHT”\n\"Good. Now spell it backwards.\"";
-const String domain_spell_word_alternative =
+const String domainSpellWordAlternative =
     "Alternative words: April or March";
 
-const String domain_serial_seven_patient = "“Subtract seven from one hundred.”";
-const String domain_serial_seven_examiner = "Wait for the response.";
-const String domain_serial_seven_patinet2 =
+const String domainSerialSevenPatient = "“Subtract seven from one hundred.”";
+const String domainSerialSevenExaminer = "Wait for the response.";
+const String domainSerialSevenPatient2 =
     "“Now subtract seven again and continue to do this until I ask you to stop.”";
 
-const String domain_serial_three_patient = "“Subtract three from twenty.”";
+const String domainSerialThreePatient = "“Subtract three from twenty.”";
 
-const String domain_serial_three_examiner = "Wait for the response.";
-const String domain_serial_three_patinet2 =
+const String domainSerialThreeExaminer = "Wait for the response.";
+const String domainSerialThreePatient2 =
     "“Now subtract three again and continue to do this until I ask you to stop.”";
-const String domain_serial_title = "Serial 7's And 3's";
-const String domain_spell_word_title = "Spelling Words Backwards";
-const String domain_digit_title = "Digit Span";
+const String domainSerialTitle = "Serial 7's And 3's";
+const String domainSpellWordTitle = "Spelling Words Backwards";
+const String domainDigitTitle = "Digit Span";
 
-const String domain_digit_patient =
+const String domainDigitPatient =
     "“I will now say a series of numbers and would like you to repeat them. Are you ready? 4 9 3.”";
-const String domain_digit_examiner =
+const String domainDigitExaminer =
     "Note the response and continue by increasing the series with an extra number until a sequence of 7 is reached. Most individuals can repeat a sequence of 6-8 random digits. If a patient fails the sequence then repeat it with another random sequence of the same length.";
-const String domain_digit_numbers1 = "“5 4 8 1”";
-const String domain_digit_numbers1_sub = "if required: “6 4 1 7”";
-const String domain_digit_numbers2 = "“5 3 9 5 3”";
-const String domain_digit_numbers2_sub = "if required: “9 6 3 8 4”";
-const String domain_digit_numbers3 = "“8 6 3 2 8 5”";
-const String domain_digit_numbers3_sub = "if required: “5 2 9 7 4 3”";
-const String domain_digit_numbers4 = "“2 8 5 4 8 4 2”";
-const String domain_digit_numbers4_sub = "if required: “3 7 4 2 8 4 1”";
+const String domainDigitNumbers1 = "“5 4 8 1”";
+const String domainDigitNumbers1Sub = "if required: “6 4 1 7”";
+const String domainDigitNumbers2 = "“5 3 9 5 3”";
+const String domainDigitNumbers2Sub = "if required: “9 6 3 8 4”";
+const String domainDigitNumbers3 = "“8 6 3 2 8 5”";
+const String domainDigitNumbers3Sub = "if required: “5 2 9 7 4 3”";
+const String domainDigitNumbers4 = "“2 8 5 4 8 4 2”";
+const String domainDigitNumbers4Sub = "if required: “3 7 4 2 8 4 1”";
 
-const String domain_language_title = "Language";
+const String domainLanguageTitle = "Language";

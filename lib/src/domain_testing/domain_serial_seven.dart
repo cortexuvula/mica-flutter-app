@@ -22,7 +22,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            app_data.domain_serial_title,
+            app_data.domainSerialTitle,
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -86,7 +86,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    app_data.domain_serial_seven_patient,
+                                    app_data.domainSerialSevenPatient,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -111,7 +111,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    app_data.domain_serial_seven_examiner,
+                                    app_data.domainSerialSevenExaminer,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -136,7 +136,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    app_data.domain_serial_seven_patinet2,
+                                    app_data.domainSerialSevenPatient2,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -166,7 +166,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
               //       child: Column(
               //         children: <Widget>[
               //           Text(
-              //             app_data.domain_serial_seven_patient,
+              //             app_data.domainSerialSevenPatient,
               //             textAlign: TextAlign.center,
               //             style: TextStyle(
               //                 color: Colors.black,
@@ -191,7 +191,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
               //       child: Column(
               //         children: <Widget>[
               //           Text(
-              //             app_data.domain_serial_seven_examiner,
+              //             app_data.domainSerialSevenExaminer,
               //             textAlign: TextAlign.center,
               //             style: TextStyle(
               //                 color: Colors.black,
@@ -216,7 +216,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
               //       child: Column(
               //         children: <Widget>[
               //           Text(
-              //             app_data.domain_serial_seven_patinet2,
+              //             app_data.domainSerialSevenPatient2,
               //             textAlign: TextAlign.center,
               //             style: TextStyle(
               //                 color: Colors.black,
@@ -261,7 +261,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    app_data.domain_serial_three_patient,
+                                    app_data.domainSerialThreePatient,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -286,7 +286,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    app_data.domain_serial_three_examiner,
+                                    app_data.domainSerialThreeExaminer,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -311,7 +311,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    app_data.domain_serial_three_patinet2,
+                                    app_data.domainSerialThreePatient2,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -341,7 +341,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
               //       child: Column(
               //         children: <Widget>[
               //           Text(
-              //             app_data.domain_serial_three_patient,
+              //             app_data.domainSerialThreePatient,
               //             textAlign: TextAlign.center,
               //             style: TextStyle(
               //                 color: Colors.black,
@@ -366,7 +366,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
               //       child: Column(
               //         children: <Widget>[
               //           Text(
-              //             app_data.domain_serial_three_examiner,
+              //             app_data.domainSerialThreeExaminer,
               //             textAlign: TextAlign.center,
               //             style: TextStyle(
               //                 color: Colors.black,
@@ -391,7 +391,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
               //       child: Column(
               //         children: <Widget>[
               //           Text(
-              //             app_data.domain_serial_three_patinet2,
+              //             app_data.domainSerialThreePatient2,
               //             textAlign: TextAlign.center,
               //             style: TextStyle(
               //                 color: Colors.black,
@@ -546,7 +546,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                         Navigator.of(context).pushAndRemoveUntil(
                             router, (Route<dynamic> route) => true);
                       },
-                      child: Text(app_data.domain_test_complete_button),
+                      child: Text(app_data.domainTestCompleteButton),
                     ),
                   ),
                 ),

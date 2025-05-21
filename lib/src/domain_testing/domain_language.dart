@@ -26,7 +26,7 @@ class DomainLanguageState extends State<DomainLanguage> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            app_data.domain_observation_title,
+            app_data.domainObservationTitle,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,
@@ -34,7 +34,7 @@ class DomainLanguageState extends State<DomainLanguage> {
             textAlign: TextAlign.start,
           ),
           subtitle: Text(
-            app_data.domain_observation_subtitle,
+            app_data.domainObservationSubtitle,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w300,
@@ -72,7 +72,7 @@ class DomainLanguageState extends State<DomainLanguage> {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            app_data.domain_observation_examiner,
+                            app_data.domainObservationExaminer,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -245,7 +245,7 @@ class DomainLanguageState extends State<DomainLanguage> {
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => true);
                         },
-                        child: Text(app_data.domain_test_complete_button),
+                        child: Text(app_data.domainTestCompleteButton),
                       ),
                     ),
                   ),

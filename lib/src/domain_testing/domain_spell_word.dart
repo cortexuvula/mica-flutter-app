@@ -22,7 +22,7 @@ class DomainSpellWordState extends State<SpellWordBarkwards> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            app_data.domain_spell_word_title,
+            app_data.domainSpellWordTitle,
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -66,7 +66,7 @@ class DomainSpellWordState extends State<SpellWordBarkwards> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          app_data.domain_spell_word_patient,
+                          app_data.domainSpellWordPatient,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.black,
@@ -91,7 +91,7 @@ class DomainSpellWordState extends State<SpellWordBarkwards> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          app_data.domain_spell_word_alternative,
+                          app_data.domainSpellWordAlternative,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.black,
@@ -271,7 +271,7 @@ class DomainSpellWordState extends State<SpellWordBarkwards> {
                         Navigator.of(context).pushAndRemoveUntil(
                             router, (Route<dynamic> route) => true);
                       },
-                      child: Text(app_data.domain_test_complete_button),
+                      child: Text(app_data.domainTestCompleteButton),
                     ),
                   ),
                 ),

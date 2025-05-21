@@ -26,7 +26,7 @@ class DomainSelectState extends State<DomainSelect> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            app_data.domain_select,
+            app_data.domainSelect,
             style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -61,7 +61,7 @@ class DomainSelectState extends State<DomainSelect> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          app_data.domain_select_info.toUpperCase(),
+                          app_data.domainSelectInfo.toUpperCase(),
                           textAlign: TextAlign.center,
                           style: const TextStyle(fontWeight: FontWeight.w500),
                         ),
