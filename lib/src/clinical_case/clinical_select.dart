@@ -18,7 +18,7 @@ class ClinicalSelectState extends State<ClinicalSelect> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            app_data.clinicalSelect_title,
+            app_data.clinicalSelectTitle,
             style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,

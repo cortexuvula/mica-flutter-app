@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/ten_word_recall_task_trial_one.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
@@ -10,10 +10,10 @@ class LanguageComprehension extends StatefulWidget {
   const LanguageComprehension({super.key});
 
   @override
-  _LanguageComprehensionState createState() => _LanguageComprehensionState();
+  LanguageComprehensionState createState() => LanguageComprehensionState();
 }
 
-class _LanguageComprehensionState extends State<LanguageComprehension> {
+class LanguageComprehensionState extends State<LanguageComprehension> {
   var format = DateFormat.yMMMMd();
   int? _radioValue;
   double sizeBoxHeight = 10.0;
@@ -58,7 +58,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
         appBar: AppBar(
           title: ListTile(
             title: Text(
-              appData.testLanguageComprehension,
+              app_data.testLanguageComprehension,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -66,7 +66,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
               textAlign: TextAlign.start,
             ),
             subtitle: Text(
-              appData.testLanguageComprehensionSubtitle,
+              app_data.testLanguageComprehensionSubtitle,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
@@ -104,7 +104,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testLanguageComprehensionDetails,
+                              app_data.testLanguageComprehensionDetails,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Colors.black,
@@ -129,7 +129,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testLanguageComprehensionToPatient,
+                              app_data.testLanguageComprehensionToPatient,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Colors.black,
@@ -154,7 +154,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testLanguageComprehensionResponse,
+                              app_data.testLanguageComprehensionResponse,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Colors.black,
@@ -233,8 +233,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData
-                                          .testLanguageComprehensionResponseNormal,
+                                      app_data.testLanguageComprehensionResponseNormal,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(fontSize: 10.0),
                                     ),
@@ -242,8 +241,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData
-                                          .testLanguageComprehensionResponseEquivocal,
+                                      app_data.testLanguageComprehensionResponseEquivocal,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(fontSize: 10.0),
                                     ),
@@ -251,8 +249,7 @@ class _LanguageComprehensionState extends State<LanguageComprehension> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData
-                                          .testLanguageComprehensionResponseImpaired,
+                                      app_data.testLanguageComprehensionResponseImpaired,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(fontSize: 10.0),
                                     ),

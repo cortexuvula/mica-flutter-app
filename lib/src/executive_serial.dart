@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/shortterm_memory_verbal.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
@@ -8,10 +8,10 @@ class ExecutiveSerial extends StatefulWidget {
   const ExecutiveSerial({super.key});
 
   @override
-  _ExecutiveSerialState createState() => _ExecutiveSerialState();
+  ExecutiveSerialState createState() => ExecutiveSerialState();
 }
 
-class _ExecutiveSerialState extends State<ExecutiveSerial> {
+class ExecutiveSerialState extends State<ExecutiveSerial> {
   final double sizeBoxHeight = 10.0;
   int? _radioValue;
   int score = 0;
@@ -64,7 +64,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
         appBar: AppBar(
           title: ListTile(
             title: Text(
-              appData.testExecutiveSerial,
+              app_data.testExecutiveSerial,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -72,7 +72,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
               textAlign: TextAlign.start,
             ),
             subtitle: Text(
-              appData.testExecutiveSerialSubtitle,
+              app_data.testExecutiveSerialSubtitle,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
@@ -110,7 +110,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testExecutiveSerialToPatient1,
+                              app_data.testExecutiveSerialToPatient1,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   color: Colors.black,
@@ -135,7 +135,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testExecutiveSerialDetails,
+                              app_data.testExecutiveSerialDetails,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   color: Colors.black,
@@ -160,7 +160,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testExecutiveSerialToPatient2,
+                              app_data.testExecutiveSerialToPatient2,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   color: Colors.black,
@@ -390,7 +390,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testExecutiveSerialResponse,
+                              app_data.testExecutiveSerialResponse,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   color: Colors.black,
@@ -467,7 +467,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData.testExecutiveSerialResponseNormal,
+                                      app_data.testExecutiveSerialResponseNormal,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
                                     ),
@@ -475,8 +475,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData
-                                          .testExecutiveSerialResponseEquivocal,
+                                      app_data.testExecutiveSerialResponseEquivocal,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
                                     ),
@@ -484,8 +483,7 @@ class _ExecutiveSerialState extends State<ExecutiveSerial> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData
-                                          .testExecutiveSerialResponseImpaired,
+                                      app_data.testExecutiveSerialResponseImpaired,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
                                     ),

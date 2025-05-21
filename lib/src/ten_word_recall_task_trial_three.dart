@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/visuospatial_praxis.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
@@ -27,7 +27,7 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
     }
     initFromProvider();
   }
-  
+
   // Update the provider with the trial three score
   void _updateProvider() {
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
@@ -45,10 +45,10 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
-        
+
         // Update provider before navigation
         _updateProvider();
-        
+
         if (context.mounted) {
           Navigator.of(context).pop();
         }
@@ -57,7 +57,7 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
         appBar: AppBar(
           title: ListTile(
             title: Text(
-              appData.testTenWordRecallTrialThree,
+              app_data.testTenWordRecallTrialThree,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -65,7 +65,7 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
               textAlign: TextAlign.start,
             ),
             subtitle: Text(
-              appData.testTenWordRecallTrialThreeSubtitle,
+              app_data.testTenWordRecallTrialThreeSubtitle,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
@@ -130,7 +130,7 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                appData
+                                app_data
                                     .instructionsTenWordRecallTrialThreeHealthworker1,
                                 style: TextStyle(
                                     color: Colors.black,
@@ -148,7 +148,7 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                appData
+                                app_data
                                     .instructionsTenWordRecallTrialThreePatient1,
                                 style: TextStyle(
                                     color: Colors.black,
@@ -167,7 +167,7 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                appData
+                                app_data
                                     .instructionsTenWordRecallTrialThreeHealthworker2,
                                 style: TextStyle(
                                     color: Colors.black,
@@ -185,7 +185,7 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                appData
+                                app_data
                                     .instructionsTenWordRecallTrialThreePatient2,
                                 style: TextStyle(
                                     color: Colors.black,
@@ -235,7 +235,7 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
                             }
                           });
                         },
-                        child: Text(appData.tenWordRecallList3[index]),
+                        child: Text(app_data.tenWordRecallList3[index]),
                       );
                     })),
               ),
@@ -255,7 +255,7 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
                             ? () {
                                 // Update provider with trial three score
                                 _updateProvider();
-                                
+
                                 var router = MaterialPageRoute(
                                     builder: (BuildContext context) =>
                                         const VisuospatialPraxis());
@@ -279,13 +279,13 @@ class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
 
   void initFromProvider() {
     if (!mounted) return;
-    
+
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     int score = scoreModel.trialThreeScore;
-    
+
     // The Provider doesn't store word colors, so we're initializing with default values
     // If needed, the colors for words could be added to the MicaScoreModel in the future
-    
+
     if (score > 0) {
       setState(() {
         scoreTenWordRecallTrialThree = score;

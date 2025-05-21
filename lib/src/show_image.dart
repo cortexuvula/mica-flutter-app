@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 
 class ShowImage extends StatefulWidget {
   final String imageURL;
   final int imageNumber;
 
-  const ShowImage({super.key, required this.imageURL, required this.imageNumber});
+  const ShowImage(
+      {super.key, required this.imageURL, required this.imageNumber});
 
   @override
-  _ShowImageState createState() => _ShowImageState();
+  ShowImageState createState() => ShowImageState();
 }
 
-class _ShowImageState extends State<ShowImage> {
+class ShowImageState extends State<ShowImage> {
   late int image1;
   late int image2;
 
@@ -37,8 +38,6 @@ class _ShowImageState extends State<ShowImage> {
           break;
         }
     }
-
-    print("This is the image ${widget.imageNumber}");
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
         appBar: AppBar(),
@@ -47,21 +46,21 @@ class _ShowImageState extends State<ShowImage> {
             SizedBox(
               width: width * 0.9,
               child: Image.asset(
-                appData.imageURLPraxis[widget.imageNumber],
+                app_data.imageURLPraxis[widget.imageNumber],
                 fit: BoxFit.fitWidth,
               ),
             ),
             SizedBox(
               width: width * 0.9,
               child: Image.asset(
-                appData.imageURLPraxis[image1],
+                app_data.imageURLPraxis[image1],
                 fit: BoxFit.fitWidth,
               ),
             ),
             SizedBox(
               width: width * 0.9,
               child: Image.asset(
-                appData.imageURLPraxis[image2],
+                app_data.imageURLPraxis[image2],
                 fit: BoxFit.fitWidth,
               ),
             ),

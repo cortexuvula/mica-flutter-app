@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/video_page.dart';
 
 class ResourcePage extends StatefulWidget {
   const ResourcePage({super.key});
 
   @override
-  _ResourcePageState createState() => _ResourcePageState();
+  ResourcePageState createState() => ResourcePageState();
 }
 
-class _ResourcePageState extends State<ResourcePage> {
+class ResourcePageState extends State<ResourcePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +26,7 @@ class _ResourcePageState extends State<ResourcePage> {
         ),
       ),
       body: ListView.builder(
-          itemCount: appData.videos.length,
+          itemCount: app_data.videos.length,
           itemBuilder: (BuildContext context, int index) {
             return Card(
               color: Colors.white,
@@ -36,11 +36,11 @@ class _ResourcePageState extends State<ResourcePage> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => VideoPage(
-                                videoTitle: appData.videos[index]["title"] ?? "",
-                                videoURL: appData.videos[index]["video"] ?? "",
+                                videoTitle: app_data.videos[index]["title"] ?? "",
+                                videoURL: app_data.videos[index]["video"] ?? "",
                               )));
                 },
-                title: Text(appData.videos[index]["title"] ?? ""),
+                title: Text(app_data.videos[index]["title"] ?? ""),
               ),
             );
           }),

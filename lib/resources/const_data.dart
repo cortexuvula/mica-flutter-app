@@ -363,14 +363,29 @@ const String welcomeButtonOption3 = "Clinical Cases";
 const String welcomeButtonOption4 = "Bedside Cognitive Assessment Booklet";
 const String welcomeButtonOption5 = "Educational Videos";
 
+// Domain constants
+
 const String domainSelectButton1 = "Attention and Concentration";
+
+const String domain_test_complete_button = "Task Completed";
+
+const String domain_observation_title = "Attention";
+const String domain_observation_subtitle = "Observation";
+const String domain_observation_examiner =
+    "It is possible to assess attention and concentration by observing the patient's quality of interaction during mental status examination. However, this provides only a rough estimate and is usually a precursor for further testing.";
+
+const String domain_attention_title = "Attention";
+const String domain_attention_subtitle = "& Concentration";
+const String domain_select = "Domain Select";
+const String domain_select_info = "Please select the cognitive domain to test.";
+
 const String domainSelectButton2 = "Language";
 const String domainSelectButton3 = "Memory";
 const String domainSelectButton4 = "Praxis";
 const String domainSelectButton5 = "Gnosis";
 const String domainSelectButton6 = "Executive functions";
 
-const String clinicalSelect_title = "Clinical Cases";
+const String clinicalSelectTitle = "Clinical Cases";
 
 const String clinicalSelectButton1 = "Early or Mild Alzheimer's disease";
 const String clinicalSelectButton2 = "Moderate Alzheimer's disease";
@@ -391,12 +406,12 @@ const String attentionConcentrationButton3 = "3. Serial 7s or 3s";
 const String attentionConcentrationButton4 = "4. Digit span";
 const String attentionConcentrationButton5 = "5. Observation";
 
-const String domain_select = "Domain Select";
-const String domain_select_info =
+const String domainSelect = "Domain Select";
+const String domainSelectInfo =
     "Select a cognitive domain below to see how to assess for it.";
 
-const String domain_attention_title = "Assessment of Attention";
-const String domain_attention_subtitle = "and Concentration";
+const String domainAttentionTitle = "Assessment of Attention";
+const String domainAttentionSubtitle = "and Concentration";
 
 const String domain_spell_word = "\"Good. Now spell it backwards.\"";
 const String domain_spell_word_patient =
@@ -404,8 +419,7 @@ const String domain_spell_word_patient =
 const String domain_spell_word_alternative =
     "Alternative words: April or March";
 
-const String domain_serial_seven_patient =
-    "“Subtract seven from one hundred.”";
+const String domain_serial_seven_patient = "“Subtract seven from one hundred.”";
 const String domain_serial_seven_examiner = "Wait for the response.";
 const String domain_serial_seven_patinet2 =
     "“Now subtract seven again and continue to do this until I ask you to stop.”";
@@ -433,10 +447,3 @@ const String domain_digit_numbers4 = "“2 8 5 4 8 4 2”";
 const String domain_digit_numbers4_sub = "if required: “3 7 4 2 8 4 1”";
 
 const String domain_language_title = "Language";
-
-const String domain_test_complete_button = "Task Completed";
-
-const String domain_observation_title = "Attention";
-const String domain_observation_subtitle = "Observation";
-const String domain_observation_examiner =
-    "It is possible to assess attention and concentration by observing the patient’s quality of interaction during mental status examination. However, this provides only a rough estimate and is usually a precursor for further testing.";

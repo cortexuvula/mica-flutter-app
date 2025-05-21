@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/ten_word_recall_task_trial_two.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
@@ -31,7 +31,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
     }
     initFromProvider();
   }
-  
+
   // Update the provider with the trial one score
   void _updateProvider() {
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
@@ -51,10 +51,10 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
         if (didPop) {
           return;
         }
-        
+
         // Update provider before navigation
         _updateProvider();
-        
+
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => const Welcome(),
@@ -65,7 +65,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
         appBar: AppBar(
           title: ListTile(
             title: Text(
-              appData.testTenWordRecallTrialOne,
+              app_data.testTenWordRecallTrialOne,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -73,7 +73,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
               textAlign: TextAlign.start,
             ),
             subtitle: Text(
-              appData.testTenWordRecallTrialOneSubtitle,
+              app_data.testTenWordRecallTrialOneSubtitle,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
@@ -124,7 +124,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                appData
+                                app_data
                                     .instructionsTenWordRecallTrialOnePaient1,
                                 style: const TextStyle(
                                     color: Colors.black,
@@ -143,7 +143,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                appData
+                                app_data
                                     .instructionsTenWordRecallTrialOneHealthworker1,
                                 style: const TextStyle(
                                     color: Colors.black,
@@ -162,7 +162,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                appData
+                                app_data
                                     .instructionsTenWordRecallTrialOnePatient2,
                                 style: const TextStyle(
                                     color: Colors.black,
@@ -181,7 +181,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Text(
-                                appData
+                                app_data
                                     .instructionsTenWordRecallTrialOneHealthworker2,
                                 style: const TextStyle(
                                     color: Colors.black,
@@ -229,7 +229,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                             }
                           });
                         },
-                        child: Text(appData.tenWordRecallList[index]),
+                        child: Text(app_data.tenWordRecallList[index]),
                       );
                     })),
               ),
@@ -254,7 +254,7 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                         onPressed: () {
                           // Update provider with the trial one score
                           _updateProvider();
-                          
+
                           // Navigate to the next screen using Provider
                           var router = MaterialPageRoute(
                               builder: (BuildContext context) =>
@@ -273,13 +273,13 @@ class _TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
 
   void initFromProvider() {
     if (!mounted) return;
-    
+
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     int score = scoreModel.trialOneScore;
-    
+
     // The Provider doesn't store word colors, so we're initializing with default values
     // If needed, the colors for words could be added to the MicaScoreModel in the future
-    
+
     if (score > 0) {
       setState(() {
         scoreTenWordRecallTrialOne = score;

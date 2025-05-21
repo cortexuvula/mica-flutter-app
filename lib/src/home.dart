@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/patient_information.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:provider/provider.dart';
@@ -10,10 +10,10 @@ class Home extends StatefulWidget {
   const Home({super.key, this.viewedDisclaimer});
 
   @override
-  _HomeState createState() => _HomeState();
+  HomeState createState() => HomeState();
 }
 
-class _HomeState extends State<Home> {
+class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
         appBar: AppBar(
           title: ListTile(
             title: Text(
-              appData.appName,
+              app_data.appName,
               style: const TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w500,
@@ -52,7 +52,7 @@ class _HomeState extends State<Home> {
                     elevation: 10.0,
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
-                      child: Text(appData.appDescription,
+                      child: Text(app_data.appDescription,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                               fontWeight: FontWeight.w300,
@@ -78,7 +78,7 @@ class _HomeState extends State<Home> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    appData.testDescription,
+                                    app_data.testDescription,
                                     textAlign: TextAlign.left,
                                     style: const TextStyle(
                                       color: Colors.black,
@@ -91,7 +91,7 @@ class _HomeState extends State<Home> {
                                     height: 5.0,
                                   ),
                                   Text(
-                                    appData.fullTestText,
+                                    app_data.fullTestText,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w300,
@@ -113,7 +113,7 @@ class _HomeState extends State<Home> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    appData.testToPatient,
+                                    app_data.testToPatient,
                                     textAlign: TextAlign.left,
                                     style: const TextStyle(
                                       color: Colors.black,
@@ -126,7 +126,7 @@ class _HomeState extends State<Home> {
                                     height: 5.0,
                                   ),
                                   Text(
-                                    appData.startTesting,
+                                    app_data.startTesting,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
                                         fontWeight: FontWeight.w300,
@@ -153,7 +153,7 @@ class _HomeState extends State<Home> {
                               Navigator.of(context).pushAndRemoveUntil(
                                   router, (Route<dynamic> route) => false);
                             },
-                            child: Text(appData.fullTestButton,
+                            child: Text(app_data.fullTestButton,
                                 style: TextStyle(color: Colors.black)),
                           ),
                         ],
@@ -177,7 +177,7 @@ class _HomeState extends State<Home> {
                 //           print("PDF tapped");
                 //           _launchURL();
                 //         },
-                //         child: Text(appData.resourceButtonBooklet),
+                //         child: Text(app_data.resourceButtonBooklet),
                 //       ),
                 //     ),
                 //   ),
@@ -203,7 +203,7 @@ class _HomeState extends State<Home> {
                 //               MaterialPageRoute(
                 //                   builder: (context) => const ResourcePage()));
                 //         },
-                //         child: Text(appData.resourceButtonVideo),
+                //         child: Text(app_data.resourceButtonVideo),
                 //       ),
                 //     ),
                 //   ),

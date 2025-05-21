@@ -10,10 +10,10 @@ class VideoPage extends StatefulWidget {
       {super.key, required this.videoURL, required this.videoTitle});
 
   @override
-  _VideoPageState createState() => _VideoPageState();
+  VideoPageState createState() => VideoPageState();
 }
 
-class _VideoPageState extends State<VideoPage> {
+class VideoPageState extends State<VideoPage> {
   late VideoPlayerController videoPlayerController;
   late ChewieController _chewieController;
 
