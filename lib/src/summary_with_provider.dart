@@ -8,7 +8,7 @@ import 'package:mica/src/domain_results/praxis.dart';
 import 'package:mica/src/domain_results/verbal_shortterm_memory.dart';
 import 'package:mica/src/domain_results/verbal_working_memory.dart';
 import 'package:mica/src/domain_results/visual_short_term_memory.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/welcome.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:pdf/pdf.dart';
@@ -24,11 +24,10 @@ class TestSummaryWithProvider extends StatefulWidget {
   const TestSummaryWithProvider({super.key});
 
   @override
-  _TestSummaryWithProviderState createState() =>
-      _TestSummaryWithProviderState();
+  TestSummaryWithProviderState createState() => TestSummaryWithProviderState();
 }
 
-class _TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
+class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
   var format = DateFormat('d MMM y');
 
   Color attentionColor = Colors.green;
@@ -52,7 +51,7 @@ class _TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
         appBar: AppBar(
           title: ListTile(
             title: Text(
-              appData.summary,
+              app_data.summary,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -60,7 +59,7 @@ class _TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
               textAlign: TextAlign.start,
             ),
             subtitle: Text(
-              appData.testSpokenLanguageSubtitle,
+              app_data.testSpokenLanguageSubtitle,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
@@ -149,550 +148,541 @@ class _TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Container(
-                child: Card(
-                  elevation: 10.0,
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Table(
-                      defaultVerticalAlignment:
-                          TableCellVerticalAlignment.middle,
-                      border: TableBorder.all(),
-                      columnWidths: {
-                        0: FlexColumnWidth(0.4),
-                        1: FlexColumnWidth(0.3),
-                        2: FlexColumnWidth(0.15),
-                        3: FlexColumnWidth(0.15)
-                      },
-                      children: [
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Task"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Scoring Guide"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Result"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("N / E / I"),
-                          ),
-                        ]),
-                        // Language Comprehension row
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child:
-                                Text("Language Comprehension: 3 Stage Command"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                "E (Equivocal) = some difficulty, I (Impaired) = 1 or more clear errors"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "${3 - scoreModel.languageComprehensionRadioValue}",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              radioValueResultToString(
-                                  scoreModel.languageComprehensionRadioValue),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ]),
-                        // Working Memory Verbal Trial 1
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                "Working Memory VerbalTrial 1: 10 Word Recall"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("N > 6, E = 5-6, I < 5"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "${scoreModel.trialOneScore}",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              valueTrial12ResultToString(
-                                  scoreModel.trialOneScore),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ]),
-                        // Short-term Memory Verbal Trial 2
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                "Short-term Memory Verbal Trial 2: 10 Word Recall"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("N > 6, E = 5-6, I < 5"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "${scoreModel.trialTwoScore}",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              valueTrial12ResultToString(
-                                  scoreModel.trialTwoScore),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ]),
-                        // Short-term Memory Verbal Trial 3
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                "Short-term Memory Verbal Trial 3: 10 Word Recall"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("N > 7, E = 5-7, I < 5"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "${scoreModel.trialThreeScore}",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              valueTrial3ResultToString(
-                                  scoreModel.trialThreeScore),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ]),
-                        // Visuospatial & Praxis: Line Drawing Copy
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                "Visuospatial & Praxis: Line Drawing Copy"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("N > 6, E = 6, I < 6"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              valueVisualResultToString(),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ]),
-                        // Attention: Vigilance Test
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Attention: Vigilance Test"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                "N = no mistakes, E = one mistake and I = > 1 mistake"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              radioValueResultToString(scoreModel.attention),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ]),
-                        // Executive: Animal Naming Task
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Executive: Animal Naming Task"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(">14 = N; 12-14 = E;  <12 =I"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "${scoreModel.executiveAnimalNamingCount}",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              radioValueResultToString(
-                                  scoreModel.executiveAnimalNaming),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ]),
-                        // Executive: Luria Alternating Hand Movements
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                "Executive: Luria Alternating Hand Movements"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                "N =  3 cycles without mistakes; E = able to do 1-2 cycles; I = unable to complete task"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "${scoreModel.executiveLuriaScore}",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              radioValueResultToString(
-                                  scoreModel.executiveLuria),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ]),
-                        // Executive: Serial Order Reversal Task
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child:
-                                Text("Executive: Serial Order Reversal Task"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child:
-                                Text("N = no errors; E = 1 error; I >1 error"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "${scoreModel.executiveSerialScore}",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              radioValueResultToString(
-                                  scoreModel.executiveSerial),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ]),
-                        // Short-Term Memory Verbal Recall: Orientation
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                "Short-Term Memory Verbal Recall: Orientation"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("N = 5, E = 4, I < 4"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "${scoreModel.shorttermMemoryVerbalScore}",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              radioValueResultToString(
-                                  scoreModel.shorttermMemoryVerbal),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ]),
-                        // Praxis: Finger-hand Dexterity: Right
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Praxis: Finger-hand Dexterity: Right"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                "N = no errors; E = some difficulty; I = clear difficulty"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              radioValueResultToString(scoreModel.praxisRight),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ]),
-                        // Praxis: Finger-hand Dexterity: Left
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Praxis: Finger-hand Dexterity: Left"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                "N = no errors; E = some difficulty; I = clear difficulty"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              radioValueResultToString(scoreModel.praxisLeft),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ]),
-                        // Short-Term Memory Verbal: Delayed Recall Of 10 Words
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                "Short-Term Memory Verbal: Delayed Recall Of 10 Words"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("N > 5, E = 5, I < 5"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "${scoreModel.tenWordDelay}",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              valueDelayResultToString(scoreModel.tenWordDelay),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ]),
-                        // Short-Term Memory Verbal: Recognition: Total Score
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                "Short-Term Memory Verbal Recognition: Total Score"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("N > 5, E = 5, I < 5"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "${scoreModel.scoreVerbalRecognitionMemoryTenWords}",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              valueDelayResultToString(scoreModel
-                                  .scoreVerbalRecognitionMemoryTenWords),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ]),
-                        // Short-Term Memory Visual: Line Drawing Recall
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                "Short-Term Memory Visual: Line Drawing Recall"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("N > 5, E = 5, I < 5"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              valueVisualResultToString(),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ]),
-                        // Anomia: Naming Line Drawings
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Anomia: Naming Line Drawings"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                "N = all correct, E = 1 error, I >1 error"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "3",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              radioValueResultToString(
-                                  scoreModel.anomiaAgnosia),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ]),
-                        // Agnosia: Recognition of Line Drawings
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child:
-                                Text("Agnosia: Recognition of Line Drawings"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                "N = all correct, E = 1 error, I >1 error"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "3",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              radioValueResultToString(scoreModel.agnosia),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ]),
-                        // Executive: Design Fluency
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Executive: Design Fluency"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                "N > 7 drawings, E = 5-7 drawings, I< 5 drawings"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              radioValueResultToString(scoreModel.executive),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ]),
-                        // Spoken Language
-                        TableRow(children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text("Spoken Language"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                                "N = normal speech, E = equivocal, I = definite impairment"),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              "3",
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              radioValueResultToString(
-                                  scoreModel.spokenLanguage),
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                        ]),
-                      ],
-                    ),
+              child: Card(
+                elevation: 10.0,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Table(
+                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                    border: TableBorder.all(),
+                    columnWidths: {
+                      0: FlexColumnWidth(0.4),
+                      1: FlexColumnWidth(0.3),
+                      2: FlexColumnWidth(0.15),
+                      3: FlexColumnWidth(0.15)
+                    },
+                    children: [
+                      TableRow(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Task"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Scoring Guide"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Result"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("N / E / I"),
+                        ),
+                      ]),
+                      // Language Comprehension row
+                      TableRow(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child:
+                              Text("Language Comprehension: 3 Stage Command"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              "E (Equivocal) = some difficulty, I (Impaired) = 1 or more clear errors"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "${3 - scoreModel.languageComprehensionRadioValue}",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            radioValueResultToString(
+                                scoreModel.languageComprehensionRadioValue),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ]),
+                      // Working Memory Verbal Trial 1
+                      TableRow(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              "Working Memory VerbalTrial 1: 10 Word Recall"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("N > 6, E = 5-6, I < 5"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "${scoreModel.trialOneScore}",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            valueTrial12ResultToString(
+                                scoreModel.trialOneScore),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ]),
+                      // Short-term Memory Verbal Trial 2
+                      TableRow(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              "Short-term Memory Verbal Trial 2: 10 Word Recall"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("N > 6, E = 5-6, I < 5"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "${scoreModel.trialTwoScore}",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            valueTrial12ResultToString(
+                                scoreModel.trialTwoScore),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ]),
+                      // Short-term Memory Verbal Trial 3
+                      TableRow(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              "Short-term Memory Verbal Trial 3: 10 Word Recall"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("N > 7, E = 5-7, I < 5"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "${scoreModel.trialThreeScore}",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            valueTrial3ResultToString(
+                                scoreModel.trialThreeScore),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ]),
+                      // Visuospatial & Praxis: Line Drawing Copy
+                      TableRow(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child:
+                              Text("Visuospatial & Praxis: Line Drawing Copy"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("N > 6, E = 6, I < 6"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            valueVisualResultToString(),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ]),
+                      // Attention: Vigilance Test
+                      TableRow(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Attention: Vigilance Test"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              "N = no mistakes, E = one mistake and I = > 1 mistake"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            radioValueResultToString(scoreModel.attention),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ]),
+                      // Executive: Animal Naming Task
+                      TableRow(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Executive: Animal Naming Task"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(">14 = N; 12-14 = E;  <12 =I"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "${scoreModel.executiveAnimalNamingCount}",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            radioValueResultToString(
+                                scoreModel.executiveAnimalNaming),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ]),
+                      // Executive: Luria Alternating Hand Movements
+                      TableRow(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              "Executive: Luria Alternating Hand Movements"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              "N =  3 cycles without mistakes; E = able to do 1-2 cycles; I = unable to complete task"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "${scoreModel.executiveLuriaScore}",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            radioValueResultToString(scoreModel.executiveLuria),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ]),
+                      // Executive: Serial Order Reversal Task
+                      TableRow(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Executive: Serial Order Reversal Task"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("N = no errors; E = 1 error; I >1 error"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "${scoreModel.executiveSerialScore}",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            radioValueResultToString(
+                                scoreModel.executiveSerial),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ]),
+                      // Short-Term Memory Verbal Recall: Orientation
+                      TableRow(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              "Short-Term Memory Verbal Recall: Orientation"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("N = 5, E = 4, I < 4"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "${scoreModel.shorttermMemoryVerbalScore}",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            radioValueResultToString(
+                                scoreModel.shorttermMemoryVerbal),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ]),
+                      // Praxis: Finger-hand Dexterity: Right
+                      TableRow(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Praxis: Finger-hand Dexterity: Right"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              "N = no errors; E = some difficulty; I = clear difficulty"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            radioValueResultToString(scoreModel.praxisRight),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ]),
+                      // Praxis: Finger-hand Dexterity: Left
+                      TableRow(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Praxis: Finger-hand Dexterity: Left"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              "N = no errors; E = some difficulty; I = clear difficulty"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            radioValueResultToString(scoreModel.praxisLeft),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ]),
+                      // Short-Term Memory Verbal: Delayed Recall Of 10 Words
+                      TableRow(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              "Short-Term Memory Verbal: Delayed Recall Of 10 Words"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("N > 5, E = 5, I < 5"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "${scoreModel.tenWordDelay}",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            valueDelayResultToString(scoreModel.tenWordDelay),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ]),
+                      // Short-Term Memory Verbal: Recognition: Total Score
+                      TableRow(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              "Short-Term Memory Verbal Recognition: Total Score"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("N > 5, E = 5, I < 5"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "${scoreModel.scoreVerbalRecognitionMemoryTenWords}",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            valueDelayResultToString(scoreModel
+                                .scoreVerbalRecognitionMemoryTenWords),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ]),
+                      // Short-Term Memory Visual: Line Drawing Recall
+                      TableRow(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              "Short-Term Memory Visual: Line Drawing Recall"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("N > 5, E = 5, I < 5"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            valueVisualResultToString(),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ]),
+                      // Anomia: Naming Line Drawings
+                      TableRow(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Anomia: Naming Line Drawings"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child:
+                              Text("N = all correct, E = 1 error, I >1 error"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "3",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            radioValueResultToString(scoreModel.anomiaAgnosia),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ]),
+                      // Agnosia: Recognition of Line Drawings
+                      TableRow(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Agnosia: Recognition of Line Drawings"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child:
+                              Text("N = all correct, E = 1 error, I >1 error"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "3",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            radioValueResultToString(scoreModel.agnosia),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ]),
+                      // Executive: Design Fluency
+                      TableRow(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Executive: Design Fluency"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              "N > 7 drawings, E = 5-7 drawings, I< 5 drawings"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            radioValueResultToString(scoreModel.executive),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ]),
+                      // Spoken Language
+                      TableRow(children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text("Spoken Language"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                              "N = normal speech, E = equivocal, I = definite impairment"),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            "3",
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            radioValueResultToString(scoreModel.spokenLanguage),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      ]),
+                    ],
                   ),
                 ),
               ),
@@ -779,7 +769,8 @@ class _TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
                   width: 130.0,
                   height: 50.0,
                   decoration: BoxDecoration(
-                      color: Colors.white, borderRadius: BorderRadius.circular(10.0)),
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10.0)),
                   child: Padding(
                     padding: const EdgeInsets.all(2.0),
                     child: Row(
@@ -787,11 +778,13 @@ class _TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
                       children: <Widget>[
                         Icon(
                           Icons.brightness_1,
-                          color: valueTrial12ResultToColor(scoreModel.trialTwoScore),
+                          color: valueTrial12ResultToColor(
+                              scoreModel.trialTwoScore),
                         ),
                         Icon(
                           Icons.brightness_1,
-                          color: valueTrial3ResultToColor(scoreModel.trialThreeScore),
+                          color: valueTrial3ResultToColor(
+                              scoreModel.trialThreeScore),
                         ),
                         Icon(
                           Icons.brightness_1,
@@ -800,7 +793,8 @@ class _TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
                         ),
                         Icon(
                           Icons.brightness_1,
-                          color: valueDelayResultToColor(scoreModel.tenWordDelay),
+                          color:
+                              valueDelayResultToColor(scoreModel.tenWordDelay),
                         ),
                         Icon(
                           Icons.brightness_1,
@@ -821,8 +815,8 @@ class _TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
                             scoreVerbalRecognitionMemoryTenWords:
                                 scoreModel.scoreVerbalRecognitionMemoryTenWords,
                           ));
-                  Navigator.of(context)
-                      .pushAndRemoveUntil(router, (Route<dynamic> route) => true);
+                  Navigator.of(context).pushAndRemoveUntil(
+                      router, (Route<dynamic> route) => true);
                 },
               ),
             ),
@@ -986,14 +980,15 @@ class _TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
   }
 
   Widget verbalShortTermMemoryCard(MicaScoreModel scoreModel) {
-    // Debug print for card values
-    print('DEBUG verbalShortTermMemoryCard values:');
-    print('  scoreModel.trialTwoScore: ${scoreModel.trialTwoScore}');
-    print('  scoreModel.trialThreeScore: ${scoreModel.trialThreeScore}');
-    print('  scoreModel.shorttermMemoryVerbal: ${scoreModel.shorttermMemoryVerbal}');
-    print('  scoreModel.tenWordDelay: ${scoreModel.tenWordDelay}');
-    print('  scoreModel.scoreVerbalRecognitionMemoryTenWords: ${scoreModel.scoreVerbalRecognitionMemoryTenWords}');
-    
+    // Debug information for development only
+    // TODO: Replace with proper logging mechanism
+    // print('DEBUG verbalShortTermMemoryCard values:');
+    // print('  scoreModel.trialTwoScore: ${scoreModel.trialTwoScore}');
+    // print('  scoreModel.trialThreeScore: ${scoreModel.trialThreeScore}');
+    // print('  scoreModel.shorttermMemoryVerbal: ${scoreModel.shorttermMemoryVerbal}');
+    // print('  scoreModel.tenWordDelay: ${scoreModel.tenWordDelay}');
+    // print('  scoreModel.scoreVerbalRecognitionMemoryTenWords: ${scoreModel.scoreVerbalRecognitionMemoryTenWords}');
+
     // Calculate color and print it
     Color cardColor = verbalShortTermMemory(
       scoreModel.trialTwoScore,
@@ -1002,9 +997,11 @@ class _TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
       scoreModel.tenWordDelay,
       scoreModel.scoreVerbalRecognitionMemoryTenWords,
     );
-    
-    print('  Final card color: ${cardColor == Colors.red ? "RED" : cardColor == Colors.yellow ? "YELLOW" : "GREEN"}');
-    
+
+    // TODO: Replace with proper logging mechanism
+    // print(
+    //    '  Final card color: ${cardColor == Colors.red ? "RED" : cardColor == Colors.yellow ? "YELLOW" : "GREEN"}');
+
     return Card(
       elevation: 10.0,
       color: cardColor,
@@ -1360,44 +1357,49 @@ class _TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
     int valuescoreVerbalRecognitionMemoryTenWords,
   ) {
     // Debug print statements
-    print('Debug verbalShortTermMemory values:');
-    print('  valuetrialTwoScore: $valuetrialTwoScore');
-    print('  valuetrialThreeScore: $valuetrialThreeScore');
-    print('  valueshorttermMemoryVerbal: $valueshorttermMemoryVerbal');
-    print('  valuetenWordDelay: $valuetenWordDelay');
-    print('  valuescoreVerbalRecognitionMemoryTenWords: $valuescoreVerbalRecognitionMemoryTenWords');
-    
+    // TODO: Replace with proper logging mechanism
+    // print('DEBUG verbalShortTermMemory values:');
+    // print('  valuetrialTwoScore: $valuetrialTwoScore');
+    // print('  valuetrialThreeScore: $valuetrialThreeScore');
+    // print('  valueshorttermMemoryVerbal: $valueshorttermMemoryVerbal');
+    // print('  valuetenWordDelay: $valuetenWordDelay');
+    // print(
+    //    '  valuescoreVerbalRecognitionMemoryTenWords: $valuescoreVerbalRecognitionMemoryTenWords');
+
     // Check if all values have excellent scores, assuming 0 means default/not set
     if (valuetrialTwoScore >= 7 &&
         valuetrialThreeScore >= 8 &&
         (valueshorttermMemoryVerbal == 0 || valueshorttermMemoryVerbal >= 5) &&
         valuetenWordDelay >= 6 &&
         valuescoreVerbalRecognitionMemoryTenWords >= 6) {
-      print('  All values normal - Returning GREEN');
+      // TODO: Replace with proper logging mechanism
+      // print('  All values normal - Returning GREEN');
       return Colors.green;
     }
-    
+
     // Check if any value indicates impaired (red)
     // For shorttermMemoryVerbal, only consider it impaired if it's not 0 and less than 4
-    bool stmVerbalImpaired = valueshorttermMemoryVerbal != 0 && valueshorttermMemoryVerbal < 4;
-    
+    bool stmVerbalImpaired =
+        valueshorttermMemoryVerbal != 0 && valueshorttermMemoryVerbal < 4;
+
     bool isImpaired = valuetrialTwoScore < 5 ||
         valuetrialThreeScore < 5 ||
         stmVerbalImpaired ||
         valuetenWordDelay < 5 ||
         valuescoreVerbalRecognitionMemoryTenWords < 5;
-    
-    print('  isImpaired: $isImpaired');
-    
+
+    // TODO: Replace with proper logging mechanism
+    // print('  isImpaired: $isImpaired');
+
     if (isImpaired) {
-      print('  Returning RED');
+      // TODO: Replace with proper logging mechanism
+      // print('  Returning RED');
       return Colors.red;
     }
 
     // Check if any value indicates equivocal (yellow)
     // For trial two score
-    bool trial2Equivocal =
-        valuetrialTwoScore == 5 || valuetrialTwoScore == 6;
+    bool trial2Equivocal = valuetrialTwoScore == 5 || valuetrialTwoScore == 6;
     // For trial three score
     bool trial3Equivocal =
         valuetrialThreeScore >= 5 && valuetrialThreeScore <= 7;
@@ -1407,28 +1409,32 @@ class _TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
     bool tenWordDelayEquivocal = valuetenWordDelay == 5;
     // For recognition memory
     bool recognitionEquivocal = valuescoreVerbalRecognitionMemoryTenWords == 5;
-    
-    print('  trial2Equivocal: $trial2Equivocal');
-    print('  trial3Equivocal: $trial3Equivocal');
-    print('  stmVerbalEquivocal: $stmVerbalEquivocal');
-    print('  tenWordDelayEquivocal: $tenWordDelayEquivocal');
-    print('  recognitionEquivocal: $recognitionEquivocal');
-    
+
+    // TODO: Replace with proper logging mechanism
+    // print('  trial2Equivocal: $trial2Equivocal');
+    // print('  trial3Equivocal: $trial3Equivocal');
+    // print('  stmVerbalEquivocal: $stmVerbalEquivocal');
+    // print('  tenWordDelayEquivocal: $tenWordDelayEquivocal');
+    // print('  recognitionEquivocal: $recognitionEquivocal');
+
     bool isEquivocal = trial2Equivocal ||
         trial3Equivocal ||
         stmVerbalEquivocal ||
         tenWordDelayEquivocal ||
         recognitionEquivocal;
-    
-    print('  isEquivocal: $isEquivocal');
-    
+
+    // TODO: Replace with proper logging mechanism
+    // print('  isEquivocal: $isEquivocal');
+
     if (isEquivocal) {
-      print('  Returning YELLOW');
+      // TODO: Replace with proper logging mechanism
+      // print('  Returning YELLOW');
       return Colors.yellow;
     }
 
     // If all values are normal (not impaired or equivocal), return green
-    print('  Returning GREEN');
+    // TODO: Replace with proper logging mechanism
+    // print('  Returning GREEN');
     return Colors.green;
   }
 
@@ -1553,7 +1559,7 @@ class _TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
     String shareDoc = "MICA Assessment Report\n";
     shareDoc += "_________________________________________________________\n\n";
 
-    shareDoc += "Disclaimer: ${appData.disclaimer2} \n\n";
+    shareDoc += "Disclaimer: ${app_data.disclaimer2} \n\n";
 
     shareDoc +=
         "Name: ${scoreModel.patientName.isNotEmpty ? scoreModel.patientName[0].toUpperCase() + scoreModel.patientName.substring(1) : ''}\n\n";
@@ -1787,7 +1793,7 @@ class _TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
 
           // Add disclaimer
           widgets.add(pw.Paragraph(
-              text: "Disclaimer: ${appData.disclaimer2}",
+              text: "Disclaimer: ${app_data.disclaimer2}",
               style: pw.TextStyle(fontSize: 10)));
 
           widgets.add(pw.SizedBox(height: 10));
