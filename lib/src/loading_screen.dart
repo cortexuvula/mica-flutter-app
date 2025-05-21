@@ -1,6 +1,6 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/animated_wave.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:simple_animations/simple_animations.dart';
@@ -9,10 +9,10 @@ class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
 
   @override
-  _LoadingScreenState createState() => _LoadingScreenState();
+  LoadingScreenState createState() => LoadingScreenState();
 }
 
-class _LoadingScreenState extends State<LoadingScreen> {
+class LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -85,7 +85,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
                     color: Colors.white,
                     child: Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: const Text(appData.disclaimer2),
+                      child: const Text(app_data.disclaimer2),
                     ),
                   ),
                 ),

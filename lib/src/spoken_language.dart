@@ -11,10 +11,10 @@ class SpokenLanguage extends StatefulWidget {
   const SpokenLanguage({super.key});
 
   @override
-  _SpokenLanguageState createState() => _SpokenLanguageState();
+  SpokenLanguageState createState() => SpokenLanguageState();
 }
 
-class _SpokenLanguageState extends State<SpokenLanguage> {
+class SpokenLanguageState extends State<SpokenLanguage> {
   final double sizeBoxHeight = 10.0;
 
   late int _radioValue;
