@@ -58,9 +58,17 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
           return;
         }
 
+        // Cache the navigator state before the async operation
+        final navigatorState = Navigator.of(context);
+        
+        // Perform async operation
         await updateProviderData();
-
-        Navigator.of(context).push(
+        
+        // Check if still mounted before continuing
+        if (!mounted) return;
+        
+        // Use cached navigator state instead of context directly
+        navigatorState.push(
           MaterialPageRoute(
             builder: (context) => const Welcome(),
           ),

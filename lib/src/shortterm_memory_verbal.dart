@@ -8,10 +8,10 @@ class ShortTermMemoryVerbal extends StatefulWidget {
   const ShortTermMemoryVerbal({super.key});
 
   @override
-  _ShortTermMemoryVerbalState createState() => _ShortTermMemoryVerbalState();
+  ShortTermMemoryVerbalState createState() => ShortTermMemoryVerbalState();
 }
 
-class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
+class ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
   bool _valueDate = false;
   bool _valueDay = false;
   bool _valueMonth = false;

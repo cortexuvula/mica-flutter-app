@@ -8,11 +8,11 @@ class TenWordRecallTrialThree extends StatefulWidget {
   const TenWordRecallTrialThree({super.key});
 
   @override
-  _TenWordRecallTrialThreeState createState() =>
-      _TenWordRecallTrialThreeState();
+  TenWordRecallTrialThreeState createState() =>
+      TenWordRecallTrialThreeState();
 }
 
-class _TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
+class TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
   List<Color> wordButtonColor = [];
   List<String> wordColor = [];
   late int scoreTenWordRecallTrialThree = 0;
