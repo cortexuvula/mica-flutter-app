@@ -9,10 +9,10 @@ class ExecutiveFunctions extends StatefulWidget {
   });
 
   @override
-  _ExecutiveFunctionsState createState() => _ExecutiveFunctionsState();
+  ExecutiveFunctionsState createState() => ExecutiveFunctionsState();
 }
 
-class _ExecutiveFunctionsState extends State<ExecutiveFunctions> {
+class ExecutiveFunctionsState extends State<ExecutiveFunctions> {
   late Color cardColorAnimalNaming;
   String resultAnimalNaming = "";
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/welcome.dart';
 
 import 'domain_attention_concentration.dart';
@@ -9,10 +9,10 @@ class DomainLanguage extends StatefulWidget {
   const DomainLanguage({super.key});
 
   @override
-  _DomainLanguageState createState() => _DomainLanguageState();
+  DomainLanguageState createState() => DomainLanguageState();
 }
 
-class _DomainLanguageState extends State<DomainLanguage> {
+class DomainLanguageState extends State<DomainLanguage> {
   var format = DateFormat.yMMMMd();
   int _radioValue = 0;
   double sizeBoxHeight = 10.0;
@@ -26,7 +26,7 @@ class _DomainLanguageState extends State<DomainLanguage> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            appData.domain_observation_title,
+            app_data.domain_observation_title,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,
@@ -34,7 +34,7 @@ class _DomainLanguageState extends State<DomainLanguage> {
             textAlign: TextAlign.start,
           ),
           subtitle: Text(
-            appData.domain_observation_subtitle,
+            app_data.domain_observation_subtitle,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w300,
@@ -72,7 +72,7 @@ class _DomainLanguageState extends State<DomainLanguage> {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            appData.domain_observation_examiner,
+                            app_data.domain_observation_examiner,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -97,7 +97,7 @@ class _DomainLanguageState extends State<DomainLanguage> {
                 //       child: Column(
                 //         children: <Widget>[
                 //           Text(
-                //             appData.testLanguageComprehensionToPatient,
+                //             app_data.testLanguageComprehensionToPatient,
                 //             textAlign: TextAlign.center,
                 //             style: TextStyle(
                 //                 color: Colors.black,
@@ -122,7 +122,7 @@ class _DomainLanguageState extends State<DomainLanguage> {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            appData.testLanguageComprehensionResponse,
+                            app_data.testLanguageComprehensionResponse,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -245,7 +245,7 @@ class _DomainLanguageState extends State<DomainLanguage> {
                           Navigator.of(context).pushAndRemoveUntil(
                               router, (Route<dynamic> route) => true);
                         },
-                        child: Text(appData.domain_test_complete_button),
+                        child: Text(app_data.domain_test_complete_button),
                       ),
                     ),
                   ),

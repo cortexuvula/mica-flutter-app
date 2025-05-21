@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/welcome.dart';
 
 class ClinicalSelect extends StatefulWidget {
   const ClinicalSelect({super.key});
   
   @override
-  _ClinicalSelectState createState() => _ClinicalSelectState();
+  ClinicalSelectState createState() => ClinicalSelectState();
 }
 
-class _ClinicalSelectState extends State<ClinicalSelect> {
+class ClinicalSelectState extends State<ClinicalSelect> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -18,7 +18,7 @@ class _ClinicalSelectState extends State<ClinicalSelect> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            appData.clinicalSelect_title,
+            app_data.clinicalSelect_title,
             style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -68,7 +68,7 @@ class _ClinicalSelectState extends State<ClinicalSelect> {
                                 router, (Route<dynamic> route) => true);
                           },
                           child: Text(
-                            appData.clinicalSelectButton1,
+                            app_data.clinicalSelectButton1,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -105,7 +105,7 @@ class _ClinicalSelectState extends State<ClinicalSelect> {
                                 router, (Route<dynamic> route) => true);
                           },
                           child: Text(
-                            appData.clinicalSelectButton2,
+                            app_data.clinicalSelectButton2,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -142,7 +142,7 @@ class _ClinicalSelectState extends State<ClinicalSelect> {
                                 router, (Route<dynamic> route) => true);
                           },
                           child: Text(
-                            appData.clinicalSelectButton3,
+                            app_data.clinicalSelectButton3,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -179,7 +179,7 @@ class _ClinicalSelectState extends State<ClinicalSelect> {
                                 router, (Route<dynamic> route) => true);
                           },
                           child: Text(
-                            appData.clinicalSelectButton4,
+                            app_data.clinicalSelectButton4,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -216,7 +216,7 @@ class _ClinicalSelectState extends State<ClinicalSelect> {
                                 router, (Route<dynamic> route) => true);
                           },
                           child: Text(
-                            appData.clinicalSelectButton5,
+                            app_data.clinicalSelectButton5,
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -247,7 +247,7 @@ class _ClinicalSelectState extends State<ClinicalSelect> {
             //                   router, (Route<dynamic> route) => true);
             //             },
             //             child: Text(
-            //               appData.clinicalSelectButton6,
+            //               app_data.clinicalSelectButton6,
             //               textAlign: TextAlign.center,
             //             ),
             //           ),
@@ -277,7 +277,7 @@ class _ClinicalSelectState extends State<ClinicalSelect> {
             //                   router, (Route<dynamic> route) => true);
             //             },
             //             child: Text(
-            //               appData.clinicalSelectButton7,
+            //               app_data.clinicalSelectButton7,
             //               textAlign: TextAlign.center,
             //             ),
             //           ),
@@ -307,7 +307,7 @@ class _ClinicalSelectState extends State<ClinicalSelect> {
             //                   router, (Route<dynamic> route) => true);
             //             },
             //             child: Text(
-            //               appData.clinicalSelectButton8,
+            //               app_data.clinicalSelectButton8,
             //               textAlign: TextAlign.center,
             //             ),
             //           ),
@@ -337,7 +337,7 @@ class _ClinicalSelectState extends State<ClinicalSelect> {
             //                   router, (Route<dynamic> route) => true);
             //             },
             //             child: Text(
-            //               appData.clinicalSelectButton9,
+            //               app_data.clinicalSelectButton9,
             //               textAlign: TextAlign.center,
             //             ),
             //           ),
@@ -367,7 +367,7 @@ class _ClinicalSelectState extends State<ClinicalSelect> {
             //                   router, (Route<dynamic> route) => true);
             //             },
             //             child: Text(
-            //               appData.clinicalSelectButton10,
+            //               app_data.clinicalSelectButton10,
             //               textAlign: TextAlign.center,
             //             ),
             //           ),

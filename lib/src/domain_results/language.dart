@@ -13,10 +13,10 @@ class Language extends StatefulWidget {
   });
 
   @override
-  _LanguageState createState() => _LanguageState();
+  LanguageState createState() => LanguageState();
 }
 
-class _LanguageState extends State<Language> {
+class LanguageState extends State<Language> {
   late Color cardColorSpokenLanguage;
   late String resultSpokenLanguage;
 

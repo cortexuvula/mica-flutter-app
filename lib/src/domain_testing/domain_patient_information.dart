@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:mica/src/domain_testing/domain_vigilance.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 
-final String VIGILANCE = "Vigilance";
+final String vigilance = "Vigilance";
 
 class DomainPatientInformation extends StatefulWidget {
   final String testName;
@@ -14,11 +15,11 @@ class DomainPatientInformation extends StatefulWidget {
   const DomainPatientInformation({super.key, required this.testName});
 
   @override
-  _DomainPatientInformationState createState() =>
-      _DomainPatientInformationState();
+  DomainPatientInformationState createState() =>
+      DomainPatientInformationState();
 }
 
-class _DomainPatientInformationState extends State<DomainPatientInformation> {
+class DomainPatientInformationState extends State<DomainPatientInformation> {
   final _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldState =
       GlobalKey<ScaffoldState>();
@@ -55,7 +56,7 @@ class _DomainPatientInformationState extends State<DomainPatientInformation> {
         appBar: AppBar(
           title: ListTile(
             title: Text(
-              appData.appName,
+              app_data.appName,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -233,7 +234,7 @@ class _DomainPatientInformationState extends State<DomainPatientInformation> {
                                 SnackBar(content: Text('Processing Data')));
                             saveAssessorToProvider();
                                 
-                            if (widget.testName == VIGILANCE) {
+                            if (widget.testName == vigilance) {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -294,9 +295,9 @@ class _DomainPatientInformationState extends State<DomainPatientInformation> {
         }
       });
       
-      print("Retrieved Assessor Name $assessorName");
+      debugPrint("Retrieved Assessor Name $assessorName");
     } catch (e) {
-      print("Failed to get assessor name: $e");
+      debugPrint("Failed to get assessor name: $e");
     }
   }
 
@@ -311,7 +312,7 @@ class _DomainPatientInformationState extends State<DomainPatientInformation> {
           handedness: _radioValue == 0 ? "Right" : "Left",
           assessmentDate: selectedDate
         );
-        print("Saved assessor: ${myAssessor.text}");
+        debugPrint("Saved assessor: ${myAssessor.text}");
       } else {
         // If not remembering, still save other info but with empty assessor name
         scoreModel.setPatientInfo(
@@ -322,7 +323,7 @@ class _DomainPatientInformationState extends State<DomainPatientInformation> {
         );
       }
     } catch (e) {
-      print("Failed to save assessor: $e");
+      debugPrint("Failed to save assessor: $e");
     }
   }
 }

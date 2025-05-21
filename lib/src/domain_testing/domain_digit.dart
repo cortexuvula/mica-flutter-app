@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/welcome.dart';
 
 import 'domain_attention_concentration.dart';
@@ -8,10 +8,10 @@ class Digit extends StatefulWidget {
   const Digit({super.key});
 
   @override
-  _DigitState createState() => _DigitState();
+  DigitState createState() => DigitState();
 }
 
-class _DigitState extends State<Digit> {
+class DigitState extends State<Digit> {
   double sizeBoxHeight = 10.0;
   int _radioValue = 2;
 
@@ -29,7 +29,7 @@ class _DigitState extends State<Digit> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            appData.domain_digit_title,
+            app_data.domain_digit_title,
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -73,7 +73,7 @@ class _DigitState extends State<Digit> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          appData.domain_digit_patient,
+                          app_data.domain_digit_patient,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.black,
@@ -98,7 +98,7 @@ class _DigitState extends State<Digit> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          appData.domain_digit_examiner,
+                          app_data.domain_digit_examiner,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.black,
@@ -122,14 +122,14 @@ class _DigitState extends State<Digit> {
                     padding: const EdgeInsets.all(8.0),
                     child: ListTile(
                       title: Text(
-                        appData.domain_digit_numbers1,
+                        app_data.domain_digit_numbers1,
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w500,
                             fontSize: 15.0),
                       ),
                       subtitle: Text(
-                        appData.domain_digit_numbers1_sub,
+                        app_data.domain_digit_numbers1_sub,
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w500,
@@ -161,14 +161,14 @@ class _DigitState extends State<Digit> {
                     padding: const EdgeInsets.all(8.0),
                     child: ListTile(
                       title: Text(
-                        appData.domain_digit_numbers2,
+                        app_data.domain_digit_numbers2,
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w500,
                             fontSize: 15.0),
                       ),
                       subtitle: Text(
-                        appData.domain_digit_numbers2_sub,
+                        app_data.domain_digit_numbers2_sub,
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w500,
@@ -200,14 +200,14 @@ class _DigitState extends State<Digit> {
                     padding: const EdgeInsets.all(8.0),
                     child: ListTile(
                       title: Text(
-                        appData.domain_digit_numbers3,
+                        app_data.domain_digit_numbers3,
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w500,
                             fontSize: 15.0),
                       ),
                       subtitle: Text(
-                        appData.domain_digit_numbers3_sub,
+                        app_data.domain_digit_numbers3_sub,
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w500,
@@ -239,14 +239,14 @@ class _DigitState extends State<Digit> {
                     padding: const EdgeInsets.all(8.0),
                     child: ListTile(
                       title: Text(
-                        appData.domain_digit_numbers4,
+                        app_data.domain_digit_numbers4,
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w500,
                             fontSize: 15.0),
                       ),
                       subtitle: Text(
-                        appData.domain_digit_numbers4_sub,
+                        app_data.domain_digit_numbers4_sub,
                         style: TextStyle(
                             color: Colors.black,
                             fontWeight: FontWeight.w500,
@@ -353,7 +353,7 @@ class _DigitState extends State<Digit> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  appData.testAttentionResponseNormal,
+                                  app_data.testAttentionResponseNormal,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 10.0,
@@ -363,7 +363,7 @@ class _DigitState extends State<Digit> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  appData.testAttentionResponseEquivocal,
+                                  app_data.testAttentionResponseEquivocal,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 10.0,
@@ -373,7 +373,7 @@ class _DigitState extends State<Digit> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  appData.testAttentionResponseImpaired,
+                                  app_data.testAttentionResponseImpaired,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 10.0,
@@ -409,7 +409,7 @@ class _DigitState extends State<Digit> {
                         Navigator.of(context).pushAndRemoveUntil(
                             router, (Route<dynamic> route) => true);
                       },
-                      child: Text(appData.domain_test_complete_button),
+                      child: Text(app_data.domain_test_complete_button),
                     ),
                   ),
                 ),
