@@ -183,26 +183,27 @@ class VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                     }
                                   : null,
                             ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ShowImage(
-                                      imageURL:
-                                          app_data.imageURLPraxis[imageNumber],
-                                      imageNumber: imageNumber,
+                            Expanded(
+                              child: GestureDetector(
+                                onTap: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ShowImage(
+                                        imageURL:
+                                            app_data.imageURLPraxis[imageNumber],
+                                        imageNumber: imageNumber,
+                                      ),
                                     ),
-                                  ),
-                                );
-                              },
-                              child: SizedBox(
-                                width: width * 0.9,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Image.asset(
-                                    displayImage,
-                                    width: width / 2,
+                                  );
+                                },
+                                child: SizedBox(
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Image.asset(
+                                      displayImage,
+                                      width: width / 2,
+                                    ),
                                   ),
                                 ),
                               ),

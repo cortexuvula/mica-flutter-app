@@ -28,6 +28,7 @@ class SpokenLanguageState extends State<SpokenLanguage> {
   @override
   void initState() {
     super.initState();
+    _radioValue = 0; // Initialize with a default value (e.g., 0 for "Normal")
     
     // Initialize from provider data
     WidgetsBinding.instance.addPostFrameCallback((_) {
