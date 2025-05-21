@@ -10,10 +10,10 @@ class TenWordDelayedRecall extends StatefulWidget {
   const TenWordDelayedRecall({super.key});
 
   @override
-  _TenWordDelayedRecallState createState() => _TenWordDelayedRecallState();
+  TenWordDelayedRecallState createState() => TenWordDelayedRecallState();
 }
 
-class _TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
+class TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
   final List<Color> wordButtonColor = [];
   final List<String> wordColor = [];
   late int scoreTenWordDelayRecall;

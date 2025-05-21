@@ -10,10 +10,10 @@ class TenWordRecognition extends StatefulWidget {
   const TenWordRecognition({super.key});
 
   @override
-  _TenWordRecognitionState createState() => _TenWordRecognitionState();
+  TenWordRecognitionState createState() => TenWordRecognitionState();
 }
 
-class _TenWordRecognitionState extends State<TenWordRecognition> {
+class TenWordRecognitionState extends State<TenWordRecognition> {
   List<Map<String, Color>> wordButtonColor = [];
 
   int scoreVerbalRecognitionMemoryTenWords = 0;
