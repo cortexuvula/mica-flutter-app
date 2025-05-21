@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/executive_serial.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
@@ -8,10 +8,10 @@ class ExecutiveLuria extends StatefulWidget {
   const ExecutiveLuria({super.key});
 
   @override
-  _ExecutiveLuriaState createState() => _ExecutiveLuriaState();
+  ExecutiveLuriaState createState() => ExecutiveLuriaState();
 }
 
-class _ExecutiveLuriaState extends State<ExecutiveLuria> {
+class ExecutiveLuriaState extends State<ExecutiveLuria> {
   final double sizeBoxHeight = 10.0;
   int _radioValue = 2; // Default initialization
   int _counter = 0;
@@ -49,7 +49,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
         appBar: AppBar(
           title: ListTile(
             title: Text(
-              appData.testExecutiveLuria,
+              app_data.testExecutiveLuria,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -57,7 +57,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
               textAlign: TextAlign.start,
             ),
             subtitle: Text(
-              appData.testExecutiveLuriaSubtitle,
+              app_data.testExecutiveLuriaSubtitle,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
@@ -95,7 +95,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testExecutiveLuriaToPatient,
+                              app_data.testExecutiveLuriaToPatient,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   color: Colors.black,
@@ -231,7 +231,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                               ),
                             ),
                             Text(
-                              appData.testExecutiveLuriaResponse,
+                              app_data.testExecutiveLuriaResponse,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   color: Colors.black,
@@ -305,7 +305,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData.testExecutiveLuriaResponseNormal,
+                                      app_data.testExecutiveLuriaResponseNormal,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
                                     ),
@@ -313,8 +313,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData
-                                          .testExecutiveLuriaResponseEquivocal,
+                                      app_data.testExecutiveLuriaResponseEquivocal,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
                                     ),
@@ -322,8 +321,7 @@ class _ExecutiveLuriaState extends State<ExecutiveLuria> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData
-                                          .testExecutiveLuriaResponseImpaired,
+                                      app_data.testExecutiveLuriaResponseImpaired,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
                                     ),

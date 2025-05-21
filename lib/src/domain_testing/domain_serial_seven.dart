@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/welcome.dart';
 
 import 'domain_attention_concentration.dart';
@@ -8,10 +8,10 @@ class SerialSeven extends StatefulWidget {
   const SerialSeven({super.key});
 
   @override
-  _SerialSevenState createState() => _SerialSevenState();
+  DomainSerialSevenState createState() => DomainSerialSevenState();
 }
 
-class _SerialSevenState extends State<SerialSeven> {
+class DomainSerialSevenState extends State<SerialSeven> {
   double sizeBoxHeight = 10.0;
   int _radioValue = 0;
 
@@ -22,7 +22,7 @@ class _SerialSevenState extends State<SerialSeven> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            appData.domain_serial_title,
+            app_data.domain_serial_title,
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -30,7 +30,7 @@ class _SerialSevenState extends State<SerialSeven> {
             textAlign: TextAlign.start,
           ),
           // subtitle: Text(
-          //   appData.domain_attention_subtitle,
+          //   app_data.domain_attention_subtitle,
           //   style: TextStyle(
           //       color: Colors.white,
           //       fontWeight: FontWeight.w500,
@@ -86,7 +86,7 @@ class _SerialSevenState extends State<SerialSeven> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    appData.domain_serial_seven_patient,
+                                    app_data.domain_serial_seven_patient,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -111,7 +111,7 @@ class _SerialSevenState extends State<SerialSeven> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    appData.domain_serial_seven_examiner,
+                                    app_data.domain_serial_seven_examiner,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -136,7 +136,7 @@ class _SerialSevenState extends State<SerialSeven> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    appData.domain_serial_seven_patinet2,
+                                    app_data.domain_serial_seven_patinet2,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -166,7 +166,7 @@ class _SerialSevenState extends State<SerialSeven> {
               //       child: Column(
               //         children: <Widget>[
               //           Text(
-              //             appData.domain_serial_seven_patient,
+              //             app_data.domain_serial_seven_patient,
               //             textAlign: TextAlign.center,
               //             style: TextStyle(
               //                 color: Colors.black,
@@ -191,7 +191,7 @@ class _SerialSevenState extends State<SerialSeven> {
               //       child: Column(
               //         children: <Widget>[
               //           Text(
-              //             appData.domain_serial_seven_examiner,
+              //             app_data.domain_serial_seven_examiner,
               //             textAlign: TextAlign.center,
               //             style: TextStyle(
               //                 color: Colors.black,
@@ -216,7 +216,7 @@ class _SerialSevenState extends State<SerialSeven> {
               //       child: Column(
               //         children: <Widget>[
               //           Text(
-              //             appData.domain_serial_seven_patinet2,
+              //             app_data.domain_serial_seven_patinet2,
               //             textAlign: TextAlign.center,
               //             style: TextStyle(
               //                 color: Colors.black,
@@ -261,7 +261,7 @@ class _SerialSevenState extends State<SerialSeven> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    appData.domain_serial_three_patient,
+                                    app_data.domain_serial_three_patient,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -286,7 +286,7 @@ class _SerialSevenState extends State<SerialSeven> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    appData.domain_serial_three_examiner,
+                                    app_data.domain_serial_three_examiner,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -311,7 +311,7 @@ class _SerialSevenState extends State<SerialSeven> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    appData.domain_serial_three_patinet2,
+                                    app_data.domain_serial_three_patinet2,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -341,7 +341,7 @@ class _SerialSevenState extends State<SerialSeven> {
               //       child: Column(
               //         children: <Widget>[
               //           Text(
-              //             appData.domain_serial_three_patient,
+              //             app_data.domain_serial_three_patient,
               //             textAlign: TextAlign.center,
               //             style: TextStyle(
               //                 color: Colors.black,
@@ -366,7 +366,7 @@ class _SerialSevenState extends State<SerialSeven> {
               //       child: Column(
               //         children: <Widget>[
               //           Text(
-              //             appData.domain_serial_three_examiner,
+              //             app_data.domain_serial_three_examiner,
               //             textAlign: TextAlign.center,
               //             style: TextStyle(
               //                 color: Colors.black,
@@ -391,7 +391,7 @@ class _SerialSevenState extends State<SerialSeven> {
               //       child: Column(
               //         children: <Widget>[
               //           Text(
-              //             appData.domain_serial_three_patinet2,
+              //             app_data.domain_serial_three_patinet2,
               //             textAlign: TextAlign.center,
               //             style: TextStyle(
               //                 color: Colors.black,
@@ -416,7 +416,7 @@ class _SerialSevenState extends State<SerialSeven> {
                     child: Column(
                       children: <Widget>[
                         // Text(
-                        //   appData.testAttentionResponse,
+                        //   app_data.testAttentionResponse,
                         //   textAlign: TextAlign.center,
                         //   style: TextStyle(
                         //       color: Colors.black,
@@ -490,7 +490,7 @@ class _SerialSevenState extends State<SerialSeven> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  appData.testAttentionResponseNormal,
+                                  app_data.testAttentionResponseNormal,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 10.0,
@@ -500,7 +500,7 @@ class _SerialSevenState extends State<SerialSeven> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  appData.testAttentionResponseEquivocal,
+                                  app_data.testAttentionResponseEquivocal,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 10.0,
@@ -510,7 +510,7 @@ class _SerialSevenState extends State<SerialSeven> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  appData.testAttentionResponseImpaired,
+                                  app_data.testAttentionResponseImpaired,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 10.0,
@@ -546,7 +546,7 @@ class _SerialSevenState extends State<SerialSeven> {
                         Navigator.of(context).pushAndRemoveUntil(
                             router, (Route<dynamic> route) => true);
                       },
-                      child: Text(appData.domain_test_complete_button),
+                      child: Text(app_data.domain_test_complete_button),
                     ),
                   ),
                 ),

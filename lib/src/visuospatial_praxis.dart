@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/attention.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/show_image.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
@@ -9,10 +9,10 @@ class VisuospatialPraxis extends StatefulWidget {
   const VisuospatialPraxis({super.key});
 
   @override
-  _VisuospatialPraxisState createState() => _VisuospatialPraxisState();
+  VisuospatialPraxisState createState() => VisuospatialPraxisState();
 }
 
-class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
+class VisuospatialPraxisState extends State<VisuospatialPraxis> {
   double sizeBoxHeight = 5.0;
   int? _radioValueImageOne;
   int? _radioValueImageTwo;
@@ -20,7 +20,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
 
   int imageNumber = 0;
 
-  String displayImage = appData.imageURLPraxis[0];
+  String displayImage = app_data.imageURLPraxis[0];
 
   bool backButtonActive = false;
   bool forwardButtonActive = true;
@@ -30,7 +30,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
     super.initState();
     initFromProvider();
   }
-  
+
   // Update the provider with visuospatial praxis scores
   void _updateProvider() {
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
@@ -52,7 +52,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
           return;
         }
 
-        // Update the provider 
+        // Update the provider
         _updateProvider();
 
         if (context.mounted) {
@@ -63,7 +63,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
         appBar: AppBar(
           title: ListTile(
             title: Text(
-              appData.testVisuospatialPraxis,
+              app_data.testVisuospatialPraxis,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -71,7 +71,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
               textAlign: TextAlign.start,
             ),
             subtitle: Text(
-              appData.testVisuospatialPraxisSubtitle,
+              app_data.testVisuospatialPraxisSubtitle,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
@@ -116,7 +116,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    appData.testVisuospatialPraxisDetails,
+                                    app_data.testVisuospatialPraxisDetails,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
                                       color: Colors.black,
@@ -142,7 +142,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    appData.testVisuospatialPraxisToPatient,
+                                    app_data.testVisuospatialPraxisToPatient,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
                                       color: Colors.black,
@@ -163,11 +163,10 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                               iconSize: 40.0,
                               onPressed: backButtonActive
                                   ? () {
-                                      print("tapped");
                                       if (imageNumber > 0) {
                                         setState(() {
                                           imageNumber -= 1;
-                                          displayImage = appData
+                                          displayImage = app_data
                                               .imageURLPraxis[imageNumber];
                                         });
                                       }
@@ -191,13 +190,14 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                   MaterialPageRoute(
                                     builder: (context) => ShowImage(
                                       imageURL:
-                                          appData.imageURLPraxis[imageNumber],
+                                          app_data.imageURLPraxis[imageNumber],
                                       imageNumber: imageNumber,
                                     ),
                                   ),
                                 );
                               },
-                              child: Container(
+                              child: SizedBox(
+                                width: width * 0.9,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Image.asset(
@@ -215,7 +215,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                       if (imageNumber < 2) {
                                         setState(() {
                                           imageNumber += 1;
-                                          displayImage = appData
+                                          displayImage = app_data
                                               .imageURLPraxis[imageNumber];
                                         });
                                       }
@@ -247,7 +247,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    appData.testVisuospatialPraxisScoring,
+                                    app_data.testVisuospatialPraxisScoring,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
                                       color: Colors.green,
@@ -609,7 +609,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                 onPressed: () {
                                   // Update provider with visuospatial praxis scores
                                   _updateProvider();
-                                  
+
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -658,7 +658,7 @@ class _VisuospatialPraxisState extends State<VisuospatialPraxis> {
   void initFromProvider() {
     // Get data from provider instead of SharedPreferences
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-    
+
     setState(() {
       _radioValueImageOne = scoreModel.visuospatialPraxisImage1;
       _radioValueImageTwo = scoreModel.visuospatialPraxisImage2;

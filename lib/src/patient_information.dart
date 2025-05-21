@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/language_comprehension.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
@@ -10,10 +10,10 @@ class PatientInformation extends StatefulWidget {
   const PatientInformation({super.key});
 
   @override
-  _PatientInformationState createState() => _PatientInformationState();
+  PatientInformationState createState() => PatientInformationState();
 }
 
-class _PatientInformationState extends State<PatientInformation> {
+class PatientInformationState extends State<PatientInformation> {
   final _formKey = GlobalKey<FormState>();
   final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
 
@@ -49,7 +49,7 @@ class _PatientInformationState extends State<PatientInformation> {
         appBar: AppBar(
           title: ListTile(
             title: Text(
-              appData.appName,
+              app_data.appName,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/executive_luria.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
@@ -8,10 +8,10 @@ class ExecutiveAnimalNaming extends StatefulWidget {
   const ExecutiveAnimalNaming({super.key});
 
   @override
-  _ExecutiveAnimalNamingState createState() => _ExecutiveAnimalNamingState();
+  ExecutiveAnimalNamingState createState() => ExecutiveAnimalNamingState();
 }
 
-class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
+class ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
     with TickerProviderStateMixin {
   double sizeBoxHeight = 10.0;
   int _radioValue = 2; // Default value
@@ -74,7 +74,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
         appBar: AppBar(
           title: ListTile(
             title: Text(
-              appData.testExecutiveAnimalNaming,
+              app_data.testExecutiveAnimalNaming,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -82,7 +82,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
               textAlign: TextAlign.start,
             ),
             subtitle: Text(
-              appData.testExecutiveAnimalNamingSubtitle,
+              app_data.testExecutiveAnimalNamingSubtitle,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
@@ -122,7 +122,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                         child: Column(
                           children: const <Widget>[
                             Text(
-                              appData.testExecutiveAnimalNamingToPatient,
+                              app_data.testExecutiveAnimalNamingToPatient,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Colors.black,
@@ -147,7 +147,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                         child: Column(
                           children: const <Widget>[
                             Text(
-                              appData.testExecutiveAnimalNamingDetails,
+                              app_data.testExecutiveAnimalNamingDetails,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Colors.black,
@@ -394,7 +394,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData
+                                      app_data
                                           .testExecutiveAnimalNamingResponseNormal,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
@@ -403,7 +403,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData
+                                      app_data
                                           .testExecutiveAnimalNamingResponseEquivocal,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
@@ -412,7 +412,7 @@ class _ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData
+                                      app_data
                                           .testExecutiveAnimalNamingResponseImpaired,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),

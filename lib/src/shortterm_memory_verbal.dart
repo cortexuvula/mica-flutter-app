@@ -126,7 +126,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
-                                Container(
+                                SizedBox(
                                   width: 120,
                                   child: Row(
                                     children: <Widget>[
@@ -145,7 +145,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                     ],
                                   ),
                                 ),
-                                Container(
+                                SizedBox(
                                   width: 120,
                                   child: Row(
                                     children: <Widget>[
@@ -170,7 +170,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
-                                Container(
+                                SizedBox(
                                   width: 120,
                                   child: Row(
                                     children: <Widget>[
@@ -189,7 +189,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                     ],
                                   ),
                                 ),
-                                Container(
+                                SizedBox(
                                   width: 120,
                                   child: Row(
                                     children: <Widget>[
@@ -213,7 +213,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
-                                Container(
+                                SizedBox(
                                   width: 120,
                                   child: Row(
                                     children: <Widget>[
@@ -333,7 +333,8 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      app_data.testShortTermMemoryResponseNormal,
+                                      app_data
+                                          .testShortTermMemoryResponseNormal,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
                                     ),
@@ -379,12 +380,13 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                         onPressed: () {
                           // Make final update to the provider before navigation
                           _updateProvider();
-                          
+
                           // Now that Praxis has been updated to use Provider pattern,
                           // we can navigate directly without passing parameters
                           if (mounted) {
                             var router = MaterialPageRoute(
-                                builder: (BuildContext context) => const Praxis());
+                                builder: (BuildContext context) =>
+                                    const Praxis());
                             Navigator.of(context).push(router);
                           }
                         },
@@ -453,7 +455,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
     } else {
       newRadioValue = 2;
     }
-    
+
     setState(() {
       _radioValue = newRadioValue;
     });
@@ -465,7 +467,7 @@ class _ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     final int storedScore = scoreModel.shorttermMemoryVerbal;
     final int storedVerbalScore = scoreModel.shorttermMemoryVerbalScore;
-    
+
     // Initialize UI state based on provider data
     // Since we don't have individual flags stored in the provider,
     // we'll reset them all and set _radioValue from the provider

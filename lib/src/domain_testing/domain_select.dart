@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/domain_testing/domain_attention_concentration.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
@@ -8,10 +8,10 @@ class DomainSelect extends StatefulWidget {
   const DomainSelect({super.key});
 
   @override
-  _DomainSelectState createState() => _DomainSelectState();
+  DomainSelectState createState() => DomainSelectState();
 }
 
-class _DomainSelectState extends State<DomainSelect> {
+class DomainSelectState extends State<DomainSelect> {
   @override
   void initState() {
     super.initState();
@@ -26,7 +26,7 @@ class _DomainSelectState extends State<DomainSelect> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            appData.domain_select,
+            app_data.domain_select,
             style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -61,7 +61,7 @@ class _DomainSelectState extends State<DomainSelect> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          appData.domain_select_info.toUpperCase(),
+                          app_data.domain_select_info.toUpperCase(),
                           textAlign: TextAlign.center,
                           style: const TextStyle(fontWeight: FontWeight.w500),
                         ),
@@ -97,7 +97,7 @@ class _DomainSelectState extends State<DomainSelect> {
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: Text(appData.domainSelectButton1),
+                          child: Text(app_data.domainSelectButton1),
                         ),
                       ),
                     ],
@@ -131,7 +131,7 @@ class _DomainSelectState extends State<DomainSelect> {
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: Text(appData.domainSelectButton2),
+                          child: Text(app_data.domainSelectButton2),
                         ),
                       ),
                     ],
@@ -165,7 +165,7 @@ class _DomainSelectState extends State<DomainSelect> {
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: Text(appData.domainSelectButton3),
+                          child: Text(app_data.domainSelectButton3),
                         ),
                       ),
                     ],
@@ -199,7 +199,7 @@ class _DomainSelectState extends State<DomainSelect> {
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: Text(appData.domainSelectButton4),
+                          child: Text(app_data.domainSelectButton4),
                         ),
                       ),
                     ],
@@ -233,7 +233,7 @@ class _DomainSelectState extends State<DomainSelect> {
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: Text(appData.domainSelectButton5),
+                          child: Text(app_data.domainSelectButton5),
                         ),
                       ),
                     ],
@@ -267,7 +267,7 @@ class _DomainSelectState extends State<DomainSelect> {
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: Text(appData.domainSelectButton6),
+                          child: Text(app_data.domainSelectButton6),
                         ),
                       ),
                     ],

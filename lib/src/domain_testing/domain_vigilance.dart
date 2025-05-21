@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 
@@ -21,10 +21,10 @@ class DomainVigilance extends StatefulWidget {
   });
 
   @override
-  _DomainVigilanceState createState() => _DomainVigilanceState();
+  DomainVigilanceState createState() => DomainVigilanceState();
 }
 
-class _DomainVigilanceState extends State<DomainVigilance> {
+class DomainVigilanceState extends State<DomainVigilance> {
   Timer? timer;
 
   int _radioValue = 0;
@@ -73,7 +73,7 @@ class _DomainVigilanceState extends State<DomainVigilance> {
         appBar: AppBar(
           title: ListTile(
             title: Text(
-              appData.testAttention,
+              app_data.testAttention,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 color: Colors.white,
@@ -82,7 +82,7 @@ class _DomainVigilanceState extends State<DomainVigilance> {
               textAlign: TextAlign.start,
             ),
             subtitle: Text(
-              appData.testAttentionSubtitle,
+              app_data.testAttentionSubtitle,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
@@ -120,7 +120,7 @@ class _DomainVigilanceState extends State<DomainVigilance> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testAttentionToPatient,
+                              app_data.testAttentionToPatient,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Colors.black,
@@ -145,7 +145,7 @@ class _DomainVigilanceState extends State<DomainVigilance> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              appData.testAttentionDetails,
+                              app_data.testAttentionDetails,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Colors.black,
@@ -168,132 +168,99 @@ class _DomainVigilanceState extends State<DomainVigilance> {
                       color: Colors.white,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Container(
-                          child: GridView.count(
-                            crossAxisCount: 7,
-                            childAspectRatio: 1.2,
-                            crossAxisSpacing: 5.0,
-                            mainAxisSpacing: 5.0,
-                            children: List.generate(
-                                appData.attentionList.length, (index) {
-                              tapCorrect.add(false);
-                              tapWrong.add(false);
-                              correctCheck.add(false);
-                              letterTapButtonColor.add(Colors.cyan.shade200);
+                        child: GridView.count(
+                          crossAxisCount: 7,
+                          childAspectRatio: 1.2,
+                          crossAxisSpacing: 5.0,
+                          mainAxisSpacing: 5.0,
+                          children: List.generate(app_data.attentionList.length,
+                              (index) {
+                            tapCorrect.add(false);
+                            tapWrong.add(false);
+                            correctCheck.add(false);
+                            letterTapButtonColor.add(Colors.cyan.shade200);
 
-                              return Stack(
-                                children: <Widget>[
-                                  TextButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        if (!tapWrong[index] &&
-                                            !tapCorrect[index]) {
-                                          if (appData.attentionList[index] ==
-                                              "A") {
-                                            tapCorrect[index] = true;
-                                            correctTap += 1;
-                                            letterTapButtonColor[index] =
-                                                Colors.green;
-                                            correctCheck[index] = true;
-                                          }
-                                          if (appData.attentionList[index] !=
-                                              "A") {
-                                            tapWrong[index] = true;
-                                            wrongTap += 1;
-                                            letterTapButtonColor[index] =
-                                                Colors.red;
-                                            if (wrongTap == 1) {
-                                              _radioValue = 1;
-                                            } else if (wrongTap > 1) {
-                                              _radioValue = 2;
-                                            } else if (wrongTap < 1) {
-                                              _radioValue = 0;
-                                            }
+                            return Stack(
+                              children: <Widget>[
+                                TextButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      if (!tapWrong[index] &&
+                                          !tapCorrect[index]) {
+                                        if (app_data.attentionList[index] ==
+                                            "A") {
+                                          tapCorrect[index] = true;
+                                          correctTap += 1;
+                                          letterTapButtonColor[index] =
+                                              Colors.green;
+                                          correctCheck[index] = true;
+                                        }
+                                        if (app_data.attentionList[index] !=
+                                            "A") {
+                                          tapWrong[index] = true;
+                                          wrongTap += 1;
+                                          letterTapButtonColor[index] =
+                                              Colors.red;
+                                          if (wrongTap == 1) {
+                                            _radioValue = 1;
+                                          } else if (wrongTap > 1) {
+                                            _radioValue = 2;
+                                          } else if (wrongTap < 1) {
+                                            _radioValue = 0;
                                           }
                                         }
-                                      });
-                                    },
-                                    style: ButtonStyle(
-                                      backgroundColor: WidgetStateProperty.all(
-                                          letterTapButtonColor[index]),
-                                    ),
-                                    child:
-                                        Text(appData.attentionList[index]),
+                                      }
+                                    });
+                                  },
+                                  style: ButtonStyle(
+                                    backgroundColor: WidgetStateProperty.all(
+                                        letterTapButtonColor[index]),
                                   ),
-                                  Center(
-                                    child: Container(
-                                      child: GestureDetector(
-                                        child: tapCorrect[index]
-                                            ? Container(
-                                                child: Icon(
-                                                  Icons.check,
-                                                  color: Colors.white,
-                                                ),
+                                  child: Text(app_data.attentionList[index]),
+                                ),
+                                Center(
+                                  child: SizedBox(
+                                    width: 30.0,
+                                    height: 30.0,
+                                    child: tapCorrect[index]
+                                        ? Icon(
+                                            Icons.check,
+                                            color: Colors.green,
+                                          )
+                                        : tapWrong[index]
+                                            ? Icon(
+                                                Icons.close,
+                                                color: Colors.red,
                                               )
-                                            : Container(),
-                                        onTap: () {
-                                          print("hello tap");
-                                          if (correctCheck[index]) {
-                                            setState(() {
-                                              correctCheck[index] = true;
-                                              tapCorrect[index] = false;
-                                              tapWrong[index] = true;
-                                              correctTap -= 1;
-                                              wrongTap += 1;
-                                              letterTapButtonColor[index] =
-                                                  Colors.red;
-                                              if (wrongTap == 1) {
-                                                _radioValue = 1;
-                                              } else if (wrongTap > 1) {
-                                                _radioValue = 2;
-                                              } else if (wrongTap < 1) {
-                                                _radioValue = 0;
-                                              }
-                                            });
-                                          }
-//                                        setState(() {
-//                                          tapCorrect[index] = false;
-//                                          correctTap -= 1;
-//                                          letterTapButtonColor[index] =
-//                                              Colors.cyan.shade200;
-//                                        });
-                                        },
-                                      ),
-                                    ),
+                                            : null,
                                   ),
-                                  Center(
-                                    child: Container(
-                                      child: GestureDetector(
-                                        child: tapWrong[index]
-                                            ? Container(
-                                                child: Icon(
-                                                  Icons.clear,
-                                                  color: Colors.white,
-                                                ),
-                                              )
-                                            : Container(),
-                                        onTap: () {
-                                          setState(() {
-                                            tapWrong[index] = false;
-                                            wrongTap -= 1;
-                                            letterTapButtonColor[index] =
-                                                Colors.cyan.shade200;
-                                            if (wrongTap == 1) {
-                                              _radioValue = 1;
-                                            } else if (wrongTap > 1) {
-                                              _radioValue = 2;
-                                            } else if (wrongTap < 1) {
-                                              _radioValue = 0;
-                                            }
-                                          });
-                                        },
-                                      ),
-                                    ),
-                                  )
-                                ],
-                              );
-                            }),
-                          ),
+                                ),
+                                GestureDetector(
+                                  child: tapWrong[index]
+                                      ? Icon(
+                                          Icons.clear,
+                                          color: Colors.white,
+                                        )
+                                      : Container(),
+                                  onTap: () {
+                                    setState(() {
+                                      tapWrong[index] = false;
+                                      wrongTap -= 1;
+                                      letterTapButtonColor[index] =
+                                          Colors.cyan.shade200;
+                                      if (wrongTap == 1) {
+                                        _radioValue = 1;
+                                      } else if (wrongTap > 1) {
+                                        _radioValue = 2;
+                                      } else if (wrongTap < 1) {
+                                        _radioValue = 0;
+                                      }
+                                    });
+                                  },
+                                ),
+                              ],
+                            );
+                          }),
                         ),
                       ),
                     ),
@@ -357,7 +324,7 @@ class _DomainVigilanceState extends State<DomainVigilance> {
                         child: Column(
                           children: <Widget>[
 //                          Text(
-//                            appData.testResponse,
+//                            app_data.testResponse,
 //                            textAlign: TextAlign.left,
 //                            style: TextStyle(
 //                              color: Colors.black,
@@ -370,7 +337,7 @@ class _DomainVigilanceState extends State<DomainVigilance> {
 //                            height: 5.0,
 //                          ),
                             Text(
-                              appData.testAttentionResponse,
+                              app_data.testAttentionResponse,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   color: Colors.black,
@@ -444,7 +411,7 @@ class _DomainVigilanceState extends State<DomainVigilance> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData.testAttentionResponseNormal,
+                                      app_data.testAttentionResponseNormal,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
@@ -454,7 +421,7 @@ class _DomainVigilanceState extends State<DomainVigilance> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData.testAttentionResponseEquivocal,
+                                      app_data.testAttentionResponseEquivocal,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
@@ -464,7 +431,7 @@ class _DomainVigilanceState extends State<DomainVigilance> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      appData.testAttentionResponseImpaired,
+                                      app_data.testAttentionResponseImpaired,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
@@ -497,7 +464,7 @@ class _DomainVigilanceState extends State<DomainVigilance> {
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           },
-                          child: Text(appData.domain_test_complete_button),
+                          child: Text(app_data.domain_test_complete_button),
                         ),
                       ),
                     ),
@@ -519,19 +486,19 @@ class _DomainVigilanceState extends State<DomainVigilance> {
 
   void initFromProvider() {
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-    
+
     // Initialize default values
     List<Color> initialButtonColors = List.filled(26, Colors.cyan.shade200);
     List<bool> initialTapCorrect = List.filled(26, false);
     List<bool> initialTapWrong = List.filled(26, false);
     List<bool> initialCorrectCheck = List.filled(26, false);
-    
+
     setState(() {
       // Get attention scores from the provider
       _radioValue = scoreModel.attention;
       correctTap = scoreModel.attentionCorrect;
       wrongTap = scoreModel.attentionMistakes;
-      
+
       // Initialize button colors and states
       // Since these are UI states, we use default values rather than loading from Provider
       letterTapButtonColor = initialButtonColors;
@@ -543,14 +510,11 @@ class _DomainVigilanceState extends State<DomainVigilance> {
 
   void saveToProvider() {
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-    
+
     // Save attention scores to the provider
     scoreModel.setAttention(
-      score: _radioValue,
-      correct: correctTap,
-      mistakes: wrongTap
-    );
-    
+        score: _radioValue, correct: correctTap, mistakes: wrongTap);
+
     // We don't need to save the UI states (button colors, etc.) to the Provider
     // as these are only relevant during the current session
   }

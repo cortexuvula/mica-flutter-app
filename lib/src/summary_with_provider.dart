@@ -980,15 +980,6 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
   }
 
   Widget verbalShortTermMemoryCard(MicaScoreModel scoreModel) {
-    // Debug information for development only
-    // TODO: Replace with proper logging mechanism
-    // print('DEBUG verbalShortTermMemoryCard values:');
-    // print('  scoreModel.trialTwoScore: ${scoreModel.trialTwoScore}');
-    // print('  scoreModel.trialThreeScore: ${scoreModel.trialThreeScore}');
-    // print('  scoreModel.shorttermMemoryVerbal: ${scoreModel.shorttermMemoryVerbal}');
-    // print('  scoreModel.tenWordDelay: ${scoreModel.tenWordDelay}');
-    // print('  scoreModel.scoreVerbalRecognitionMemoryTenWords: ${scoreModel.scoreVerbalRecognitionMemoryTenWords}');
-
     // Calculate color and print it
     Color cardColor = verbalShortTermMemory(
       scoreModel.trialTwoScore,
@@ -997,11 +988,6 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
       scoreModel.tenWordDelay,
       scoreModel.scoreVerbalRecognitionMemoryTenWords,
     );
-
-    // TODO: Replace with proper logging mechanism
-    // print(
-    //    '  Final card color: ${cardColor == Colors.red ? "RED" : cardColor == Colors.yellow ? "YELLOW" : "GREEN"}');
-
     return Card(
       elevation: 10.0,
       color: cardColor,
@@ -1356,24 +1342,12 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
     int valuetenWordDelay,
     int valuescoreVerbalRecognitionMemoryTenWords,
   ) {
-    // Debug print statements
-    // TODO: Replace with proper logging mechanism
-    // print('DEBUG verbalShortTermMemory values:');
-    // print('  valuetrialTwoScore: $valuetrialTwoScore');
-    // print('  valuetrialThreeScore: $valuetrialThreeScore');
-    // print('  valueshorttermMemoryVerbal: $valueshorttermMemoryVerbal');
-    // print('  valuetenWordDelay: $valuetenWordDelay');
-    // print(
-    //    '  valuescoreVerbalRecognitionMemoryTenWords: $valuescoreVerbalRecognitionMemoryTenWords');
-
     // Check if all values have excellent scores, assuming 0 means default/not set
     if (valuetrialTwoScore >= 7 &&
         valuetrialThreeScore >= 8 &&
         (valueshorttermMemoryVerbal == 0 || valueshorttermMemoryVerbal >= 5) &&
         valuetenWordDelay >= 6 &&
         valuescoreVerbalRecognitionMemoryTenWords >= 6) {
-      // TODO: Replace with proper logging mechanism
-      // print('  All values normal - Returning GREEN');
       return Colors.green;
     }
 
@@ -1388,12 +1362,7 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
         valuetenWordDelay < 5 ||
         valuescoreVerbalRecognitionMemoryTenWords < 5;
 
-    // TODO: Replace with proper logging mechanism
-    // print('  isImpaired: $isImpaired');
-
     if (isImpaired) {
-      // TODO: Replace with proper logging mechanism
-      // print('  Returning RED');
       return Colors.red;
     }
 
@@ -1410,31 +1379,15 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
     // For recognition memory
     bool recognitionEquivocal = valuescoreVerbalRecognitionMemoryTenWords == 5;
 
-    // TODO: Replace with proper logging mechanism
-    // print('  trial2Equivocal: $trial2Equivocal');
-    // print('  trial3Equivocal: $trial3Equivocal');
-    // print('  stmVerbalEquivocal: $stmVerbalEquivocal');
-    // print('  tenWordDelayEquivocal: $tenWordDelayEquivocal');
-    // print('  recognitionEquivocal: $recognitionEquivocal');
-
     bool isEquivocal = trial2Equivocal ||
         trial3Equivocal ||
         stmVerbalEquivocal ||
         tenWordDelayEquivocal ||
         recognitionEquivocal;
 
-    // TODO: Replace with proper logging mechanism
-    // print('  isEquivocal: $isEquivocal');
-
     if (isEquivocal) {
-      // TODO: Replace with proper logging mechanism
-      // print('  Returning YELLOW');
       return Colors.yellow;
     }
-
-    // If all values are normal (not impaired or equivocal), return green
-    // TODO: Replace with proper logging mechanism
-    // print('  Returning GREEN');
     return Colors.green;
   }
 

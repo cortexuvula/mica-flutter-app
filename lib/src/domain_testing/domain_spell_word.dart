@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/welcome.dart';
 
 import 'domain_attention_concentration.dart';
@@ -8,10 +8,10 @@ class SpellWordBarkwards extends StatefulWidget {
   const SpellWordBarkwards({super.key});
 
   @override
-  _SpellWordBarkwardsState createState() => _SpellWordBarkwardsState();
+  DomainSpellWordState createState() => DomainSpellWordState();
 }
 
-class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
+class DomainSpellWordState extends State<SpellWordBarkwards> {
   double sizeBoxHeight = 10.0;
   int _radioValue = 0;
 
@@ -22,7 +22,7 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            appData.domain_spell_word_title,
+            app_data.domain_spell_word_title,
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -30,7 +30,7 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
             textAlign: TextAlign.start,
           ),
           // subtitle: Text(
-          //   appData.domain_attention_subtitle,
+          //   app_data.domain_attention_subtitle,
           //   style: TextStyle(
           //       color: Colors.white,
           //       fontWeight: FontWeight.w500,
@@ -66,7 +66,7 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          appData.domain_spell_word_patient,
+                          app_data.domain_spell_word_patient,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.black,
@@ -91,7 +91,7 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          appData.domain_spell_word_alternative,
+                          app_data.domain_spell_word_alternative,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.black,
@@ -116,7 +116,7 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
               //       child: Column(
               //         children: <Widget>[
               //           Text(
-              //             appData.domain_spell_word,
+              //             app_data.domain_spell_word,
               //             textAlign: TextAlign.center,
               //             style: TextStyle(
               //                 color: Colors.black,
@@ -141,7 +141,7 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
                     child: Column(
                       children: <Widget>[
                         // Text(
-                        //   appData.testAttentionResponse,
+                        //   app_data.testAttentionResponse,
                         //   textAlign: TextAlign.center,
                         //   style: TextStyle(
                         //       color: Colors.black,
@@ -215,7 +215,7 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  appData.testAttentionResponseNormal,
+                                  app_data.testAttentionResponseNormal,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 10.0,
@@ -225,7 +225,7 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  appData.testAttentionResponseEquivocal,
+                                  app_data.testAttentionResponseEquivocal,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 10.0,
@@ -235,7 +235,7 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  appData.testAttentionResponseImpaired,
+                                  app_data.testAttentionResponseImpaired,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 10.0,
@@ -271,7 +271,7 @@ class _SpellWordBarkwardsState extends State<SpellWordBarkwards> {
                         Navigator.of(context).pushAndRemoveUntil(
                             router, (Route<dynamic> route) => true);
                       },
-                      child: Text(appData.domain_test_complete_button),
+                      child: Text(app_data.domain_test_complete_button),
                     ),
                   ),
                 ),
