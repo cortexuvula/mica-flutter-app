@@ -17,10 +17,10 @@ class Praxis extends StatefulWidget {
   });
 
   @override
-  _PraxisState createState() => _PraxisState();
+  PraxisState createState() => PraxisState();
 }
 
-class _PraxisState extends State<Praxis> {
+class PraxisState extends State<Praxis> {
   late Color cardColorPraxisRight;
   late String resultPraxisRight;
 

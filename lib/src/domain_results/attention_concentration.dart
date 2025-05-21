@@ -8,10 +8,10 @@ class AttentionConcentration extends StatefulWidget {
   });
 
   @override
-  _AttentionConcentrationState createState() => _AttentionConcentrationState();
+  AttentionConcentrationState createState() => AttentionConcentrationState();
 }
 
-class _AttentionConcentrationState extends State<AttentionConcentration> {
+class AttentionConcentrationState extends State<AttentionConcentration> {
   late Color cardColor;
   String result = "";
 

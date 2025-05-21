@@ -17,10 +17,10 @@ class VerbalShortTermMemory extends StatefulWidget {
   });
 
   @override
-  _VerbalShortTermMemoryState createState() => _VerbalShortTermMemoryState();
+  VerbalShortTermMemoryState createState() => VerbalShortTermMemoryState();
 }
 
-class _VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
+class VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
   late String resultTrial3;
   late Color resultTrial3Color;
 

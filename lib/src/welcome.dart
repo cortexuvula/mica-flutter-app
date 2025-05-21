@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as appData;
-import 'package:mica/src/clinical_case/clinical_select.dart';
-import 'package:mica/src/domain_testing/domain_select.dart';
+import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/home.dart';
 import 'package:mica/src/resource_page.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -10,10 +8,10 @@ class Welcome extends StatefulWidget {
   const Welcome({super.key});
 
   @override
-  _WelcomeState createState() => _WelcomeState();
+  WelcomeState createState() => WelcomeState();
 }
 
-class _WelcomeState extends State<Welcome> {
+class WelcomeState extends State<Welcome> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -42,7 +40,7 @@ class _WelcomeState extends State<Welcome> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      appData.welcomeTitle.toUpperCase(),
+                      app_data.welcomeTitle.toUpperCase(),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -76,14 +74,14 @@ class _WelcomeState extends State<Welcome> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    appData.welcomeButtonOption1,
+                                    app_data.welcomeButtonOption1,
                                     style: TextStyle(color: Colors.black),
                                   ),
                                   const SizedBox(
                                     height: 5.0,
                                   ),
                                   Text(
-                                    appData.welcomeOption1,
+                                    app_data.welcomeOption1,
                                     style: TextStyle(color: Colors.black),
                                     textAlign: TextAlign.center,
                                   ),
@@ -130,7 +128,7 @@ class _WelcomeState extends State<Welcome> {
               //                       height: 5.0,
               //                     ),
               //                     Text(
-              //                       appData.welcomeOption2,
+              //                       app_data.welcomeOption2,
               //                       textAlign: TextAlign.center,
               //                     ),
               //                   ],
@@ -175,7 +173,7 @@ class _WelcomeState extends State<Welcome> {
               //                       height: 5.0,
               //                     ),
               //                     Text(
-              //                       appData.welcomeOption3,
+              //                       app_data.welcomeOption3,
               //                       textAlign: TextAlign.center,
               //                     ),
               //                   ],
@@ -208,7 +206,7 @@ class _WelcomeState extends State<Welcome> {
                             onPressed: () {
                               _launchURL();
                             },
-                            child: Text(appData.welcomeButtonOption4,
+                            child: Text(app_data.welcomeButtonOption4,
                                 style: TextStyle(color: Colors.black)),
                           ),
                         ),
@@ -241,7 +239,7 @@ class _WelcomeState extends State<Welcome> {
                                       builder: (context) => ResourcePage()));
                             },
                             child: Text(
-                              appData.welcomeButtonOption5,
+                              app_data.welcomeButtonOption5,
                               style: TextStyle(color: Colors.black),
                             ),
                           ),
