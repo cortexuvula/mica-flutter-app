@@ -4,6 +4,7 @@ import 'package:mica/src/ten_word_recognition.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:provider/provider.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class TenWordDelayedRecall extends StatefulWidget {
   // Using Provider pattern, no need for parameters
@@ -75,10 +76,8 @@ class TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
             IconButton(
                 icon: const Icon(Icons.clear),
                 onPressed: () {
-                  var router = MaterialPageRoute(
-                      builder: (BuildContext context) => const Welcome());
-                  Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => false);
+                  NavigationHelper.navigateAndRemoveUntil(context,
+                      const Welcome(), (Route<dynamic> route) => false);
                 })
           ],
         ),
@@ -199,15 +198,17 @@ class TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
                         //onPressed: () => debugPrint("hello"),
                         onPressed: () {
                           // Update the model with the current ten word delay recall score
-                          final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
-                          micaScoreModel.setTenWordDelay(scoreTenWordDelayRecall);
-                          
+                          final micaScoreModel = Provider.of<MicaScoreModel>(
+                              context,
+                              listen: false);
+                          micaScoreModel
+                              .setTenWordDelay(scoreTenWordDelayRecall);
+
                           // Navigate to next screen using Provider
-                          var router = MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  const TenWordRecognition());
-                          Navigator.of(context).pushAndRemoveUntil(
-                              router, (Route<dynamic> route) => true);
+                          NavigationHelper.navigateAndRemoveUntil(
+                              context,
+                              const TenWordRecognition(),
+                              (Route<dynamic> route) => true);
                         }),
                   ),
                 )),
@@ -220,22 +221,22 @@ class TenWordDelayedRecallState extends State<TenWordDelayedRecall> {
 
   void loadFromModel() {
     final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
-    
+
     // Load the score from the model
     setState(() {
       scoreTenWordDelayRecall = micaScoreModel.tenWordDelay;
     });
-    
+
     // If we want to implement loading the button state in the future,
     // we would need to add that data to the model
   }
 
   void saveToModel() {
     final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
-    
+
     // Update the model with the current score
     micaScoreModel.setTenWordDelay(scoreTenWordDelayRecall);
-    
+
     // If we want to save button state in the future,
     // we would need to add that capability to the model
   }

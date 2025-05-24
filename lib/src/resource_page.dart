@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/video_page.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class ResourcePage extends StatefulWidget {
   const ResourcePage({super.key});
@@ -32,13 +33,12 @@ class ResourcePageState extends State<ResourcePage> {
               color: Colors.white,
               child: ListTile(
                 onTap: () {
-                  Navigator.push(
+                  NavigationHelper.navigateTo(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => VideoPage(
-                                videoTitle: app_data.videos[index]["title"] ?? "",
-                                videoURL: app_data.videos[index]["video"] ?? "",
-                              )));
+                      VideoPage(
+                        videoTitle: app_data.videos[index]["title"] ?? "",
+                        videoURL: app_data.videos[index]["video"] ?? "",
+                      ));
                 },
                 title: Text(app_data.videos[index]["title"] ?? ""),
               ),

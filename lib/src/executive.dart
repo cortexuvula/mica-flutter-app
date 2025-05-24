@@ -4,6 +4,7 @@ import 'package:mica/src/spoken_language.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:provider/provider.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class Executive extends StatefulWidget {
   // Using Provider pattern, no need for parameters
@@ -60,13 +61,13 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
 
         // Cache the navigator state before the async operation
         final navigatorState = Navigator.of(context);
-        
+
         // Perform async operation
         await updateProviderData();
-        
+
         // Check if still mounted before continuing
         if (!mounted) return;
-        
+
         // Use cached navigator state instead of context directly
         navigatorState.push(
           MaterialPageRoute(
@@ -98,10 +99,8 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
             IconButton(
                 icon: const Icon(Icons.clear),
                 onPressed: () {
-                  var router = MaterialPageRoute(
-                      builder: (BuildContext context) => const Welcome());
-                  Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => false);
+                  NavigationHelper.navigateAndRemoveUntil(context,
+                      const Welcome(), (Route<dynamic> route) => false);
                 })
           ],
         ),
@@ -408,14 +407,16 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                         child: ElevatedButton(
                           onPressed: () {
                             // Update the provider with the executive value
-                            final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+                            final micaScoreModel = Provider.of<MicaScoreModel>(
+                                context,
+                                listen: false);
                             micaScoreModel.setExecutive(_radioValue);
-                            
+
                             // Navigate to SpokenLanguage using Provider pattern
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) => const SpokenLanguage());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            NavigationHelper.navigateAndRemoveUntil(
+                                context,
+                                const SpokenLanguage(),
+                                (Route<dynamic> route) => true);
                           },
                           child: const Text("Continue",
                               style: TextStyle(color: Colors.black)),
@@ -434,12 +435,14 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
 
   void _handleRadioValueChange(int? value) {
     setState(() {
-      _radioValue = value!; // Value is guaranteed to be non-null due to Radio widget configuration
+      _radioValue =
+          value!; // Value is guaranteed to be non-null due to Radio widget configuration
     });
-    
+
     // Update the provider
     if (mounted) {
-      final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+      final micaScoreModel =
+          Provider.of<MicaScoreModel>(context, listen: false);
       micaScoreModel.setExecutive(_radioValue);
     }
   }
@@ -447,9 +450,9 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
   Future<void> getPrefsData() async {
     // We need to add a null check for context since initState might run before build
     if (!mounted) return;
-    
+
     final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
-    
+
     setState(() {
       _radioValue = micaScoreModel.executive;
     });
@@ -458,7 +461,8 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
   Future<void> updateProviderData() async {
     // Update the provider
     if (mounted) {
-      final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+      final micaScoreModel =
+          Provider.of<MicaScoreModel>(context, listen: false);
       micaScoreModel.setExecutive(_radioValue);
     }
   }

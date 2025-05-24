@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 class VerbalWorkingMemory extends StatefulWidget {
   final int trialOneScore;
 
-  const VerbalWorkingMemory({
-    super.key, 
-    required this.trialOneScore
-  });
+  const VerbalWorkingMemory({super.key, required this.trialOneScore});
 
   @override
   State<VerbalWorkingMemory> createState() => _VerbalWorkingMemoryState();

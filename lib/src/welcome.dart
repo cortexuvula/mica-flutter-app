@@ -3,6 +3,7 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/home.dart';
 import 'package:mica/src/resource_page.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
@@ -64,10 +65,10 @@ class WelcomeState extends State<Welcome> {
                                   Theme.of(context).colorScheme.secondary,
                             ),
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => const Home()));
+                              NavigationHelper.navigateTo(
+                                context,
+                                const Home(),
+                              );
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -233,10 +234,10 @@ class WelcomeState extends State<Welcome> {
                                   Theme.of(context).colorScheme.secondary,
                             ),
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => ResourcePage()));
+                              NavigationHelper.navigateTo(
+                                context,
+                                ResourcePage(),
+                              );
                             },
                             child: Text(
                               app_data.welcomeButtonOption5,

@@ -3,6 +3,7 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/ten_word_recall_task_trial_two.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class TenWordRecallTrialOne extends StatefulWidget {
   const TenWordRecallTrialOne({super.key});
@@ -55,11 +56,7 @@ class TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
         // Update provider before navigation
         _updateProvider();
 
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const Welcome(),
-          ),
-        );
+        NavigationHelper.navigateTo(context, const Welcome());
       },
       child: Scaffold(
         appBar: AppBar(
@@ -85,10 +82,8 @@ class TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
             IconButton(
                 icon: const Icon(Icons.clear),
                 onPressed: () {
-                  var router = MaterialPageRoute(
-                      builder: (BuildContext context) => const Welcome());
-                  Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => false);
+                  NavigationHelper.navigateAndRemoveUntil(context,
+                      const Welcome(), (Route<dynamic> route) => false);
                 })
           ],
         ),
@@ -256,11 +251,10 @@ class TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
                           _updateProvider();
 
                           // Navigate to the next screen using Provider
-                          var router = MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  const TenWordRecallTrialTwo());
-                          Navigator.of(context).pushAndRemoveUntil(
-                              router, (Route<dynamic> route) => true);
+                          NavigationHelper.navigateAndRemoveUntil(
+                              context,
+                              const TenWordRecallTrialTwo(),
+                              (Route<dynamic> route) => true);
                         }),
                   ),
                 )),

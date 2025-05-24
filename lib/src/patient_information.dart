@@ -5,6 +5,7 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/ten_word_recall_task_trial_one.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class PatientInformation extends StatefulWidget {
   const PatientInformation({super.key});
@@ -61,10 +62,11 @@ class PatientInformationState extends State<PatientInformation> {
             IconButton(
                 icon: Icon(Icons.clear),
                 onPressed: () {
-                  var router = MaterialPageRoute(
-                      builder: (BuildContext context) => Welcome());
-                  Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => false);
+                  NavigationHelper.navigateAndRemoveUntil(
+                    context,
+                    Welcome(),
+                    (Route<dynamic> route) => false,
+                  );
                 })
           ],
         ),
@@ -226,11 +228,11 @@ class PatientInformationState extends State<PatientInformation> {
                             // The provider is now updated with patient information
 
                             // Navigate to the next screen
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const TenWordRecallTrialOne());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            NavigationHelper.navigateAndRemoveUntil(
+                              context,
+                              const TenWordRecallTrialOne(),
+                              (Route<dynamic> route) => true,
+                            );
                           }
                         },
                         child: Text("Start Testing",

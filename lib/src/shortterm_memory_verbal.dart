@@ -3,6 +3,7 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/praxis.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class ShortTermMemoryVerbal extends StatefulWidget {
   const ShortTermMemoryVerbal({super.key});
@@ -59,11 +60,7 @@ class ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
 
         // Update provider before navigation
         _updateProvider();
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const Welcome(),
-          ),
-        );
+        NavigationHelper.navigateTo(context, const Welcome());
       },
       child: Scaffold(
         appBar: AppBar(
@@ -85,10 +82,8 @@ class ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
             IconButton(
                 icon: const Icon(Icons.clear),
                 onPressed: () {
-                  var router = MaterialPageRoute(
-                      builder: (BuildContext context) => const Welcome());
-                  Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => false);
+                  NavigationHelper.navigateAndRemoveUntil(context,
+                      const Welcome(), (Route<dynamic> route) => false);
                 })
           ],
         ),
@@ -406,10 +401,8 @@ class ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                           // Now that Praxis has been updated to use Provider pattern,
                           // we can navigate directly without passing parameters
                           if (mounted) {
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const Praxis());
-                            Navigator.of(context).push(router);
+                            NavigationHelper.navigateTo(
+                                context, const Praxis());
                           }
                         },
                         child: const Text("Continue",

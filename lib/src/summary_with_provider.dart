@@ -18,6 +18,7 @@ import 'package:pdf/widgets.dart' as pw;
 import 'package:file_saver/file_saver.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 @immutable
 class TestSummaryWithProvider extends StatefulWidget {
@@ -67,11 +68,12 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
                 onPressed: () async {
                   try {
                     final String shareContent = shareDoc(scoreModel);
-                    
+
                     if (shareContent.isNotEmpty) {
                       if (kIsWeb) {
                         // Web platform: Copy to clipboard as fallback
-                        await Clipboard.setData(ClipboardData(text: shareContent));
+                        await Clipboard.setData(
+                            ClipboardData(text: shareContent));
                         if (context.mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -88,9 +90,10 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
                         // Mobile platforms: Use native share
                         await Share.share(
                           shareContent,
-                          subject: 'MICA Assessment Report - ${scoreModel.patientName}',
+                          subject:
+                              'MICA Assessment Report - ${scoreModel.patientName}',
                         );
-                        
+
                         if (context.mounted) {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
@@ -104,7 +107,8 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
                       if (context.mounted) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text('No content to share - please complete assessment first'),
+                            content: Text(
+                                'No content to share - please complete assessment first'),
                             backgroundColor: Colors.orange,
                           ),
                         );
@@ -133,10 +137,8 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
               onPressed: () {
                 // Reset scores when going back to start
                 scoreModel.resetScores();
-                var router = MaterialPageRoute(
-                    builder: (BuildContext context) => Welcome());
-                Navigator.of(context).pushAndRemoveUntil(
-                    router, (Route<dynamic> route) => false);
+                NavigationHelper.navigateAndRemoveUntil(
+                    context, Welcome(), (Route<dynamic> route) => false);
               },
             )
           ],
@@ -853,17 +855,17 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
                   ),
                 ),
                 onTap: () {
-                  var router = MaterialPageRoute(
-                      builder: (BuildContext context) => VerbalShortTermMemory(
-                            trialTwoScore: scoreModel.trialTwoScore,
-                            trialThreeScore: scoreModel.trialThreeScore,
-                            orientation: scoreModel.shorttermMemoryVerbal,
-                            tenWordDelay: scoreModel.tenWordDelay,
-                            scoreVerbalRecognitionMemoryTenWords:
-                                scoreModel.scoreVerbalRecognitionMemoryTenWords,
-                          ));
-                  Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => true);
+                  NavigationHelper.navigateAndRemoveUntil(
+                      context,
+                      VerbalShortTermMemory(
+                        trialTwoScore: scoreModel.trialTwoScore,
+                        trialThreeScore: scoreModel.trialThreeScore,
+                        orientation: scoreModel.shorttermMemoryVerbal,
+                        tenWordDelay: scoreModel.tenWordDelay,
+                        scoreVerbalRecognitionMemoryTenWords:
+                            scoreModel.scoreVerbalRecognitionMemoryTenWords,
+                      ),
+                      (Route<dynamic> route) => true);
                 },
               ),
             ),

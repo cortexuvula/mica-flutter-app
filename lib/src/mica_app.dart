@@ -13,36 +13,37 @@ class MicaApp extends StatelessWidget {
     return MultiProvider(
       providers: MicaProviders.getProviders(),
       child: MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Midlands Cognitive Assessment",
-      home: const LoadingScreen(),
-      builder: (context, child) {
-        return ResponsiveWrapper(child: child!);
-      },
-      theme: ThemeData(
-          primaryColor: const Color(0xFF64638f),
-          colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color(0xFF64638f),
-            primary: const Color(0xFF64638f),
-            secondary: const Color(0xFF9795cf),
-            surface: const Color(0xFFaba9e9), // Replacing backgroundColor
-          ),
-          splashColor: const Color(0xFFaba9e9),
-          scaffoldBackgroundColor: const Color(0xFFcbc9ff),
-          elevatedButtonTheme: ElevatedButtonThemeData(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xFF9795cf),
+        debugShowCheckedModeBanner: false,
+        title: "Midlands Cognitive Assessment",
+        home: const LoadingScreen(),
+        builder: (context, child) {
+          return ResponsiveWrapper(child: child!);
+        },
+        theme: ThemeData(
+            primaryColor: const Color(0xFF64638f),
+            colorScheme: ColorScheme.fromSeed(
+              seedColor: const Color(0xFF64638f),
+              primary: const Color(0xFF64638f),
+              secondary: const Color(0xFF9795cf),
+              surface: const Color(0xFFaba9e9), // Replacing backgroundColor
             ),
-          ),
-          // Use DialogThemeData instead of dialogBackgroundColor
-          dialogTheme: const DialogThemeData(
-            backgroundColor: Color(0xFFcbc9ff),
-          ),
-          cardColor: Colors.white),
-      routes: <String, WidgetBuilder>{
-        '/patient_information': (BuildContext context) => PatientInformation(),
-        // ShowImage requires parameters and is used with MaterialPageRoute directly
-      },
+            splashColor: const Color(0xFFaba9e9),
+            scaffoldBackgroundColor: const Color(0xFFcbc9ff),
+            elevatedButtonTheme: ElevatedButtonThemeData(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xFF9795cf),
+              ),
+            ),
+            // Use DialogThemeData instead of dialogBackgroundColor
+            dialogTheme: const DialogThemeData(
+              backgroundColor: Color(0xFFcbc9ff),
+            ),
+            cardColor: Colors.white),
+        routes: <String, WidgetBuilder>{
+          '/patient_information': (BuildContext context) =>
+              PatientInformation(),
+          // ShowImage requires parameters and is used with MaterialPageRoute directly
+        },
       ),
     );
   }

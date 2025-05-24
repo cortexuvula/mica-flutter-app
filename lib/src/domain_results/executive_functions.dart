@@ -3,10 +3,7 @@ import 'package:flutter/material.dart';
 class ExecutiveFunctions extends StatefulWidget {
   final int executiveAnimalNaming;
 
-  const ExecutiveFunctions({
-    super.key, 
-    required this.executiveAnimalNaming
-  });
+  const ExecutiveFunctions({super.key, required this.executiveAnimalNaming});
 
   @override
   ExecutiveFunctionsState createState() => ExecutiveFunctionsState();

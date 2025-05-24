@@ -4,6 +4,7 @@ import 'package:mica/src/ten_word_delay_recall.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:provider/provider.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class Praxis extends StatefulWidget {
   // Using Provider pattern, no need to pass parameters
@@ -68,10 +69,8 @@ class _PraxisState extends State<Praxis> {
             IconButton(
                 icon: const Icon(Icons.clear),
                 onPressed: () {
-                  var router = MaterialPageRoute(
-                      builder: (BuildContext context) => const Welcome());
-                  Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => false);
+                  NavigationHelper.navigateAndRemoveUntil(context,
+                      const Welcome(), (Route<dynamic> route) => false);
                 })
           ],
         ),
@@ -329,10 +328,8 @@ class _PraxisState extends State<Praxis> {
                                 left: _radioValueLeft ?? 0);
 
                             // Navigate to next screen using Provider pattern
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const TenWordDelayedRecall());
-                            Navigator.of(context).push(router);
+                            NavigationHelper.navigateTo(
+                                context, const TenWordDelayedRecall());
                           },
                           child: const Text("Continue",
                               style: TextStyle(color: Colors.black)),
