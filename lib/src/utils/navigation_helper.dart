@@ -12,8 +12,8 @@ class NavigationHelper {
           child: child,
         );
       },
-      transitionDuration: const Duration(milliseconds: 800),
-      reverseTransitionDuration: const Duration(milliseconds: 800),
+      transitionDuration: const Duration(milliseconds: 1000),
+      reverseTransitionDuration: const Duration(milliseconds: 1000),
     );
   }
 
