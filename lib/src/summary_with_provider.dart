@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:mica/src/domain_results/attention_concentration.dart';
 import 'package:mica/src/domain_results/executive_functions.dart';
@@ -14,7 +16,6 @@ import 'package:share_plus/share_plus.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:file_saver/file_saver.dart';
-import 'dart:typed_data';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 
@@ -58,21 +59,67 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
               ),
               textAlign: TextAlign.start,
             ),
-            subtitle: Text(
-              app_data.testSpokenLanguageSubtitle,
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w300,
-              ),
-              textAlign: TextAlign.start,
-            ),
           ),
           actions: <Widget>[
             IconButton(
                 icon: Icon(Icons.share),
                 tooltip: "Share Summary",
-                onPressed: () {
-                  Share.share(shareDoc(scoreModel));
+                onPressed: () async {
+                  try {
+                    final String shareContent = shareDoc(scoreModel);
+                    
+                    if (shareContent.isNotEmpty) {
+                      if (kIsWeb) {
+                        // Web platform: Copy to clipboard as fallback
+                        await Clipboard.setData(ClipboardData(text: shareContent));
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Report copied to clipboard!'),
+                              duration: Duration(seconds: 3),
+                              action: SnackBarAction(
+                                label: 'OK',
+                                onPressed: () {},
+                              ),
+                            ),
+                          );
+                        }
+                      } else {
+                        // Mobile platforms: Use native share
+                        await Share.share(
+                          shareContent,
+                          subject: 'MICA Assessment Report - ${scoreModel.patientName}',
+                        );
+                        
+                        if (context.mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text('Share dialog opened'),
+                              duration: Duration(seconds: 2),
+                            ),
+                          );
+                        }
+                      }
+                    } else {
+                      if (context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('No content to share - please complete assessment first'),
+                            backgroundColor: Colors.orange,
+                          ),
+                        );
+                      }
+                    }
+                  } catch (e) {
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Error sharing: ${e.toString()}'),
+                          backgroundColor: Colors.red,
+                        ),
+                      );
+                    }
+                  }
                 }),
             IconButton(
                 icon: Icon(Icons.download),
@@ -181,33 +228,33 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
                         ),
                       ]),
                       // Language Comprehension row
-                      TableRow(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child:
-                              Text("Language Comprehension: 3 Stage Command"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              "E (Equivocal) = some difficulty, I (Impaired) = 1 or more clear errors"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "${3 - scoreModel.languageComprehensionRadioValue}",
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            radioValueResultToString(
-                                scoreModel.languageComprehensionRadioValue),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ]),
+                      // TableRow(children: [
+                      //   Padding(
+                      //     padding: const EdgeInsets.all(8.0),
+                      //     child:
+                      //         Text("Language Comprehension: 3 Stage Command"),
+                      //   ),
+                      //   Padding(
+                      //     padding: const EdgeInsets.all(8.0),
+                      //     child: Text(
+                      //         "E (Equivocal) = some difficulty, I (Impaired) = 1 or more clear errors"),
+                      //   ),
+                      //   Padding(
+                      //     padding: const EdgeInsets.all(8.0),
+                      //     child: Text(
+                      //       "${3 - scoreModel.languageComprehensionRadioValue}",
+                      //       textAlign: TextAlign.center,
+                      //     ),
+                      //   ),
+                      //   Padding(
+                      //     padding: const EdgeInsets.all(8.0),
+                      //     child: Text(
+                      //       radioValueResultToString(
+                      //           scoreModel.languageComprehensionRadioValue),
+                      //       textAlign: TextAlign.center,
+                      //     ),
+                      //   ),
+                      // ]),
                       // Working Memory Verbal Trial 1
                       TableRow(children: [
                         Padding(
@@ -906,11 +953,11 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
                     Icons.brightness_1,
                     color: radioValueResultToColor(scoreModel.spokenLanguage),
                   ),
-                  Icon(
-                    Icons.brightness_1,
-                    color: radioValueResultToColor(
-                        scoreModel.languageComprehensionRadioValue),
-                  ),
+                  // Icon(
+                  //   Icons.brightness_1,
+                  //   color: radioValueResultToColor(
+                  //       scoreModel.languageComprehensionRadioValue),
+                  // ),
                   Icon(
                     Icons.brightness_1,
                     color: radioValueResultToColor(scoreModel.executive),

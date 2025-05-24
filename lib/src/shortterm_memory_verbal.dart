@@ -15,6 +15,7 @@ class ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
   bool _valueDate = false;
   bool _valueDay = false;
   bool _valueMonth = false;
+  bool _valueYear = false;
   bool _valueCity = false;
   bool _valuePlace = false;
   int? _radioValue = 0;
@@ -26,6 +27,7 @@ class ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
     if (_valueDate) total++;
     if (_valueDay) total++;
     if (_valueMonth) total++;
+    if (_valueYear) total++;
     if (_valueCity) total++;
     if (_valuePlace) total++;
     return total;
@@ -194,6 +196,31 @@ class ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                   child: Row(
                                     children: <Widget>[
                                       Checkbox(
+                                        value: _valueYear,
+                                        onChanged: (bool? value) =>
+                                            _valueYearChanged(value ?? false),
+                                        activeColor: Colors.green,
+                                      ),
+                                      const Text(
+                                        "Year",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                            SizedBox(height: 8), // Vertical spacing
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: <Widget>[
+                                SizedBox(
+                                  width: 120,
+                                  child: Row(
+                                    children: <Widget>[
+                                      Checkbox(
                                         value: _valuePlace,
                                         onChanged: (bool? value) =>
                                             _valuePlaceChanged(value ?? false),
@@ -208,11 +235,6 @@ class ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                     ],
                                   ),
                                 ),
-                              ],
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
                                 SizedBox(
                                   width: 120,
                                   child: Row(
@@ -446,11 +468,18 @@ class ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
     _updateProvider();
   }
 
+  void _valueYearChanged(bool value) {
+    setState(() {
+      _valueYear = value;
+    });
+    _updateProvider();
+  }
+
   void setRadioToScore() {
     int newRadioValue;
-    if (verbalScore == 4) {
+    if (verbalScore == 5) {
       newRadioValue = 1;
-    } else if (verbalScore > 4) {
+    } else if (verbalScore > 5) {
       newRadioValue = 0;
     } else {
       newRadioValue = 2;
@@ -475,6 +504,7 @@ class ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
       _valueDate = false;
       _valueMonth = false;
       _valueDay = false;
+      _valueYear = false;
       _valuePlace = false;
       _valueCity = false;
       _radioValue = storedScore;
