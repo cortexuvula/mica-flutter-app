@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:mica/src/loading_screen.dart';
 import 'package:mica/src/patient_information.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/widgets/responsive_wrapper.dart';
 
 class MicaApp extends StatelessWidget {
   const MicaApp({super.key});
@@ -15,6 +16,9 @@ class MicaApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Midlands Cognitive Assessment",
       home: const LoadingScreen(),
+      builder: (context, child) {
+        return ResponsiveWrapper(child: child!);
+      },
       theme: ThemeData(
           primaryColor: const Color(0xFF64638f),
           colorScheme: ColorScheme.fromSeed(
@@ -31,7 +35,7 @@ class MicaApp extends StatelessWidget {
             ),
           ),
           // Use DialogThemeData instead of dialogBackgroundColor
-          dialogTheme: const DialogTheme(
+          dialogTheme: const DialogThemeData(
             backgroundColor: Color(0xFFcbc9ff),
           ),
           cardColor: Colors.white),

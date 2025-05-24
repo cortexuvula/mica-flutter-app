@@ -164,20 +164,24 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
                                   children: <Widget>[
-                                    SizedBox(
-                                      width: width * 0.35,
-                                      height: 100.0,
-                                      child: Image.asset(
-                                        "./images/hash.png",
-                                        fit: BoxFit.contain,
+                                    Flexible(
+                                      flex: 1,
+                                      child: SizedBox(
+                                        height: 100.0,
+                                        child: Image.asset(
+                                          "./images/hash.png",
+                                          fit: BoxFit.contain,
+                                        ),
                                       ),
                                     ),
-                                    SizedBox(
-                                      width: width * 0.35,
-                                      height: 100.0,
-                                      child: Image.asset(
-                                        "./images/steps.png",
-                                        fit: BoxFit.contain,
+                                    Flexible(
+                                      flex: 1,
+                                      child: SizedBox(
+                                        height: 100.0,
+                                        child: Image.asset(
+                                          "./images/steps.png",
+                                          fit: BoxFit.contain,
+                                        ),
                                       ),
                                     ),
                                   ],
