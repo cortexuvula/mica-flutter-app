@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'dart:async';
 import 'package:mica/resources/const_data.dart' as app_data;
-import 'package:mica/src/language_comprehension.dart';
+import 'package:mica/src/ten_word_recall_task_trial_one.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 
@@ -228,7 +228,7 @@ class PatientInformationState extends State<PatientInformation> {
                             // Navigate to the next screen
                             var router = MaterialPageRoute(
                                 builder: (BuildContext context) =>
-                                    const LanguageComprehension());
+                                    const TenWordRecallTrialOne());
                             Navigator.of(context).pushAndRemoveUntil(
                                 router, (Route<dynamic> route) => true);
                           }
