@@ -59,26 +59,26 @@ class LanguageState extends State<Language> {
       ),
       body: ListView(
         children: <Widget>[
-          Card(
-            color: cardColorComprehension,
-            elevation: 10.0,
-            child: ListTile(
-              title: const Text(
-                "Comprehension",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              trailing: Text(
-                resultComprehension,
-                style: const TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-          ),
+          // Card(
+          //   color: cardColorComprehension,
+          //   elevation: 10.0,
+          //   child: ListTile(
+          //     title: const Text(
+          //       "Comprehension",
+          //       style: TextStyle(
+          //         color: Colors.black,
+          //         fontWeight: FontWeight.w500,
+          //       ),
+          //     ),
+          //     trailing: Text(
+          //       resultComprehension,
+          //       style: const TextStyle(
+          //         color: Colors.black,
+          //         fontWeight: FontWeight.w500,
+          //       ),
+          //     ),
+          //   ),
+          // ),
           Card(
             color: cardColorSpokenLanguage,
             elevation: 10.0,
