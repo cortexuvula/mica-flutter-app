@@ -47,6 +47,13 @@ class _AttentionState extends State<Attention> {
   @override
   void initState() {
     super.initState();
+    // Initialize lists with correct length
+    final letterCount = app_data.attentionList.length;
+    tapCorrect = List.filled(letterCount, false);
+    tapWrong = List.filled(letterCount, false);
+    correctCheck = List.filled(letterCount, false);
+    letterTapButtonColor = List.filled(letterCount, Colors.cyan.shade200);
+    
     initFromProvider();
   }
 
@@ -164,24 +171,20 @@ class _AttentionState extends State<Attention> {
                   ),
                   SizedBox(
                     width: width * 0.9,
-                    height: 200.0,
                     child: Card(
                       elevation: 10.0,
                       color: Colors.white,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: GridView.count(
+                          shrinkWrap: true,
+                          physics: const NeverScrollableScrollPhysics(),
                           crossAxisCount: 7,
                           childAspectRatio: 1.2,
                           crossAxisSpacing: 5.0,
                           mainAxisSpacing: 5.0,
                           children: List.generate(app_data.attentionList.length,
                               (index) {
-                            tapCorrect.add(false);
-                            tapWrong.add(false);
-                            correctCheck.add(false);
-                            letterTapButtonColor.add(Colors.cyan.shade200);
-
                             return Material(
                               color: letterTapButtonColor[index],
                               child: InkWell(
