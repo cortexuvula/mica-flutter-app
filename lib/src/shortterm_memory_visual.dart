@@ -149,26 +149,32 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                           height: 200.0,
                           child: Row(
                             children: <Widget>[
-                              SizedBox(
-                                width: width * 0.8 / 3,
-                                height: 180.0,
-                                child: Image.asset("./images/block_one.png",
-                                    fit: BoxFit.scaleDown),
-                              ),
-                              SizedBox(
-                                width: width * 0.8 / 3,
-                                height: 180.0,
-                                child: Image.asset(
-                                  "./images/block_two.png",
-                                  fit: BoxFit.scaleDown,
+                              Flexible(
+                                flex: 1,
+                                child: SizedBox(
+                                  height: 180.0,
+                                  child: Image.asset("./images/block_one.png",
+                                      fit: BoxFit.scaleDown),
                                 ),
                               ),
-                              SizedBox(
-                                width: width * 0.8 / 3,
-                                height: 180.0,
-                                child: Image.asset(
-                                  "./images/block_three.png",
-                                  fit: BoxFit.scaleDown,
+                              Flexible(
+                                flex: 1,
+                                child: SizedBox(
+                                  height: 180.0,
+                                  child: Image.asset(
+                                    "./images/block_two.png",
+                                    fit: BoxFit.scaleDown,
+                                  ),
+                                ),
+                              ),
+                              Flexible(
+                                flex: 1,
+                                child: SizedBox(
+                                  height: 180.0,
+                                  child: Image.asset(
+                                    "./images/block_three.png",
+                                    fit: BoxFit.scaleDown,
+                                  ),
                                 ),
                               ),
                             ],
