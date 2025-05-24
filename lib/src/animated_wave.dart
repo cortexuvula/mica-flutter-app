@@ -7,12 +7,11 @@ class AnimatedWave extends StatelessWidget {
   final double speed;
   final double offset;
 
-  const AnimatedWave({
-    super.key, 
-    required this.height, 
-    required this.speed, 
-    this.offset = 0.0
-  });
+  const AnimatedWave(
+      {super.key,
+      required this.height,
+      required this.speed,
+      this.offset = 0.0});
 
   @override
   Widget build(BuildContext context) {

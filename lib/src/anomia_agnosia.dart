@@ -5,10 +5,11 @@ import 'package:mica/src/show_image_anomia.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:provider/provider.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class AnomiaAgnosia extends StatefulWidget {
   const AnomiaAgnosia({super.key});
-  
+
   @override
   State<AnomiaAgnosia> createState() => _AnomiaAgnosiaState();
 }
@@ -29,6 +30,14 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
   void initState() {
     super.initState();
     initFromProvider();
+    // Preload images to avoid loading delay
+    _preloadImages();
+  }
+
+  void _preloadImages() {
+    for (String imageUrl in app_data.imageURL) {
+      precacheImage(AssetImage(imageUrl), context);
+    }
   }
 
   @override
@@ -72,10 +81,8 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
             IconButton(
                 icon: const Icon(Icons.clear),
                 onPressed: () {
-                  var router = MaterialPageRoute(
-                      builder: (BuildContext context) => const Welcome());
-                  Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => false);
+                  NavigationHelper.navigateAndRemoveUntil(context,
+                      const Welcome(), (Route<dynamic> route) => false);
                 })
           ],
         ),
@@ -179,21 +186,41 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                             child: GestureDetector(
                               onTap: () {
                                 debugPrint("tapped picture");
-                                var router = MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        ShowImageAnomia(
-                                          imageURL: displayImage,
-                                          imageNumber: imageNumber,
-                                        ));
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    router, (Route<dynamic> route) => true);
+                                NavigationHelper.navigateAndRemoveUntil(
+                                    context,
+                                    ShowImageAnomia(
+                                      imageURL: displayImage,
+                                      imageNumber: imageNumber,
+                                    ),
+                                    (Route<dynamic> route) => true);
                               },
                               child: SizedBox(
                                 width: 150.0,
                                 height: 150.0,
-                                child: Image.asset(
-                                  displayImage,
-                                  fit: BoxFit.contain,
+                                child: AnimatedSwitcher(
+                                  duration: const Duration(milliseconds: 200),
+                                  switchInCurve: Curves.easeIn,
+                                  switchOutCurve: Curves.easeOut,
+                                  transitionBuilder: (Widget child, Animation<double> animation) {
+                                    return FadeTransition(
+                                      opacity: animation,
+                                      child: ScaleTransition(
+                                        scale: Tween<double>(
+                                          begin: 0.95,
+                                          end: 1.0,
+                                        ).animate(animation),
+                                        child: child,
+                                      ),
+                                    );
+                                  },
+                                  child: Image.asset(
+                                    displayImage,
+                                    key: ValueKey<int>(imageNumber),
+                                    fit: BoxFit.contain,
+                                    gaplessPlayback: true,
+                                    cacheWidth: 300,
+                                    cacheHeight: 300,
+                                  ),
                                 ),
                               ),
                             ),
@@ -337,7 +364,8 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      app_data.testAnomiaAgnosiaResponseImpaired,
+                                      app_data
+                                          .testAnomiaAgnosiaResponseImpaired,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
                                     ),
@@ -443,7 +471,8 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      app_data.testAnomiaAgnosiaResponseImpaired,
+                                      app_data
+                                          .testAnomiaAgnosiaResponseImpaired,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
                                     ),
@@ -472,17 +501,17 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                           ),
                           onPressed: () {
                             // Update the provider with the anomia and agnosia values
-                            final micaScoreModel =
-                                Provider.of<MicaScoreModel>(context, listen: false);
+                            final micaScoreModel = Provider.of<MicaScoreModel>(
+                                context,
+                                listen: false);
                             micaScoreModel.setAnomiaAgnosia(_radioValue ?? 0);
                             micaScoreModel.setAgnosia(_radioValue2 ?? 0);
-                            
-                            // Navigate to Executive using Provider pattern
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) => const Executive());
 
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            // Navigate to Executive using Provider pattern
+                            NavigationHelper.navigateAndRemoveUntil(
+                                context,
+                                const Executive(),
+                                (Route<dynamic> route) => true);
                           },
                           child: const Text("Continue",
                               style: TextStyle(color: Colors.black)),
@@ -505,7 +534,8 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
     });
     // Update the provider
     if (mounted) {
-      final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+      final micaScoreModel =
+          Provider.of<MicaScoreModel>(context, listen: false);
       micaScoreModel.setAnomiaAgnosia(_radioValue ?? 0);
     }
   }
@@ -516,7 +546,8 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
     });
     // Update the provider
     if (mounted) {
-      final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+      final micaScoreModel =
+          Provider.of<MicaScoreModel>(context, listen: false);
       micaScoreModel.setAgnosia(_radioValue2 ?? 0);
     }
   }
@@ -525,7 +556,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
     // We need to add a null check for context since initState might run before build
     if (!mounted) return;
     final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
-    
+
     setState(() {
       _radioValue = micaScoreModel.anomiaAgnosia;
       _radioValue2 = micaScoreModel.agnosia;
@@ -535,7 +566,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
   void updateProvider() {
     // Update the provider with current values
     if (!mounted) return;
-    
+
     final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
     micaScoreModel.setAnomiaAgnosia(_radioValue ?? 0);
     micaScoreModel.setAgnosia(_radioValue2 ?? 0);

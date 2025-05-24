@@ -3,6 +3,7 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/domain_testing/domain_attention_concentration.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class DomainSelect extends StatefulWidget {
   const DomainSelect({super.key});
@@ -38,10 +39,11 @@ class DomainSelectState extends State<DomainSelect> {
           IconButton(
               icon: const Icon(Icons.clear),
               onPressed: () {
-                var router = MaterialPageRoute(
-                    builder: (BuildContext context) => const Welcome());
-                Navigator.of(context).pushAndRemoveUntil(
-                    router, (Route<dynamic> route) => false);
+                NavigationHelper.navigateAndRemoveUntil(
+                  context,
+                  const Welcome(),
+                  (Route<dynamic> route) => false,
+                );
               })
         ],
       ),
@@ -88,14 +90,15 @@ class DomainSelectState extends State<DomainSelect> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             elevation: 10.0,
-                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    AttentionConcentration());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            NavigationHelper.navigateAndRemoveUntil(
+                              context,
+                              AttentionConcentration(),
+                              (Route<dynamic> route) => true,
+                            );
                           },
                           child: Text(app_data.domainSelectButton1),
                         ),
@@ -122,14 +125,15 @@ class DomainSelectState extends State<DomainSelect> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             elevation: 10.0,
-                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const Welcome());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            NavigationHelper.navigateAndRemoveUntil(
+                              context,
+                              const Welcome(),
+                              (Route<dynamic> route) => true,
+                            );
                           },
                           child: Text(app_data.domainSelectButton2),
                         ),
@@ -156,14 +160,15 @@ class DomainSelectState extends State<DomainSelect> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             elevation: 10.0,
-                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const Welcome());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            NavigationHelper.navigateAndRemoveUntil(
+                              context,
+                              const Welcome(),
+                              (Route<dynamic> route) => true,
+                            );
                           },
                           child: Text(app_data.domainSelectButton3),
                         ),
@@ -190,14 +195,15 @@ class DomainSelectState extends State<DomainSelect> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             elevation: 10.0,
-                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const Welcome());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            NavigationHelper.navigateAndRemoveUntil(
+                              context,
+                              const Welcome(),
+                              (Route<dynamic> route) => true,
+                            );
                           },
                           child: Text(app_data.domainSelectButton4),
                         ),
@@ -224,14 +230,15 @@ class DomainSelectState extends State<DomainSelect> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             elevation: 10.0,
-                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const Welcome());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            NavigationHelper.navigateAndRemoveUntil(
+                              context,
+                              const Welcome(),
+                              (Route<dynamic> route) => true,
+                            );
                           },
                           child: Text(app_data.domainSelectButton5),
                         ),
@@ -258,14 +265,15 @@ class DomainSelectState extends State<DomainSelect> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             elevation: 10.0,
-                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const Welcome());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            NavigationHelper.navigateAndRemoveUntil(
+                              context,
+                              const Welcome(),
+                              (Route<dynamic> route) => true,
+                            );
                           },
                           child: Text(app_data.domainSelectButton6),
                         ),
@@ -283,14 +291,10 @@ class DomainSelectState extends State<DomainSelect> {
 
   void initializeModelData() {
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-    
+
     // Initialize attention scores in the model
-    scoreModel.setAttention(
-      score: 0,
-      correct: 0,
-      mistakes: 0
-    );
-    
+    scoreModel.setAttention(score: 0, correct: 0, mistakes: 0);
+
     // No need to initialize UI state variables like button colors
     // These are handled in each screen's initState method
   }

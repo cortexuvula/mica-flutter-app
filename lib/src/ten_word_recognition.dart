@@ -4,6 +4,7 @@ import 'package:mica/src/shortterm_memory_visual.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:provider/provider.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class TenWordRecognition extends StatefulWidget {
   // Using Provider pattern, no need for parameters
@@ -79,10 +80,8 @@ class TenWordRecognitionState extends State<TenWordRecognition> {
             IconButton(
                 icon: const Icon(Icons.clear),
                 onPressed: () {
-                  var router = MaterialPageRoute(
-                      builder: (BuildContext context) => const Welcome());
-                  Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => false);
+                  NavigationHelper.navigateAndRemoveUntil(context,
+                      const Welcome(), (Route<dynamic> route) => false);
                 })
           ],
         ),
@@ -338,7 +337,8 @@ class TenWordRecognitionState extends State<TenWordRecognition> {
                                                   Colors.green;
                                               wordButtonColor[index]["yes"] =
                                                   Colors.white70;
-                                            } else if (app_data.tenWordRecallList
+                                            } else if (app_data
+                                                .tenWordRecallList
                                                 .contains(
                                                     app_data.tenWordMemoryList[
                                                         index])) {
@@ -400,20 +400,19 @@ class TenWordRecognitionState extends State<TenWordRecognition> {
                         ),
                         onPressed: () {
                           // Update the model first before navigating
-                          final micaScoreModel =
-                              Provider.of<MicaScoreModel>(context, listen: false);
+                          final micaScoreModel = Provider.of<MicaScoreModel>(
+                              context,
+                              listen: false);
                           micaScoreModel.setVerbalRecognitionMemory(
                             score: scoreVerbalRecognitionMemoryTenWords,
                             inList: scoreVerbalRecognitionMemoryTenWordsInList,
-                            notInList: scoreVerbalRecognitionMemoryTenWordsNotInList,
+                            notInList:
+                                scoreVerbalRecognitionMemoryTenWordsNotInList,
                           );
-                          
+
                           // Then navigate to the next screen
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => const ShortTermMemoryVisual(),
-                            ),
-                          );
+                          NavigationHelper.navigateTo(
+                              context, const ShortTermMemoryVisual());
                         }),
                   ),
                 )),
@@ -449,11 +448,10 @@ class TenWordRecognitionState extends State<TenWordRecognition> {
 
     // Update the model with current values
     micaScoreModel.setVerbalRecognitionMemory(
-      score: scoreVerbalRecognitionMemoryTenWords,
-      inList: scoreVerbalRecognitionMemoryTenWordsInList,
-      notInList: scoreVerbalRecognitionMemoryTenWordsNotInList
-    );
-    
+        score: scoreVerbalRecognitionMemoryTenWords,
+        inList: scoreVerbalRecognitionMemoryTenWordsInList,
+        notInList: scoreVerbalRecognitionMemoryTenWordsNotInList);
+
     // If we want to save button states in the future,
     // we would need to extend the model to store this information
   }
@@ -462,9 +460,12 @@ class TenWordRecognitionState extends State<TenWordRecognition> {
     final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
 
     setState(() {
-      scoreVerbalRecognitionMemoryTenWords = micaScoreModel.scoreVerbalRecognitionMemoryTenWords;
-      scoreVerbalRecognitionMemoryTenWordsInList = micaScoreModel.scoreVerbalRecognitionMemoryTenWordsInList;
-      scoreVerbalRecognitionMemoryTenWordsNotInList = micaScoreModel.scoreVerbalRecognitionMemoryTenWordsNotInList;
+      scoreVerbalRecognitionMemoryTenWords =
+          micaScoreModel.scoreVerbalRecognitionMemoryTenWords;
+      scoreVerbalRecognitionMemoryTenWordsInList =
+          micaScoreModel.scoreVerbalRecognitionMemoryTenWordsInList;
+      scoreVerbalRecognitionMemoryTenWordsNotInList =
+          micaScoreModel.scoreVerbalRecognitionMemoryTenWordsNotInList;
     });
   }
 }

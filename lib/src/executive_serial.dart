@@ -3,6 +3,7 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/shortterm_memory_verbal.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class ExecutiveSerial extends StatefulWidget {
   const ExecutiveSerial({super.key});
@@ -16,7 +17,7 @@ class ExecutiveSerialState extends State<ExecutiveSerial> {
   int? _radioValue;
   int score = 0;
   List<String> executiveSerialButtonColor = [];
-  
+
   // Update the provider with serial scores
   void _updateProvider() {
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
@@ -53,7 +54,7 @@ class ExecutiveSerialState extends State<ExecutiveSerial> {
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
         if (didPop) return;
-        
+
         // Save to provider instead of SharedPreferences
         _updateProvider();
         if (context.mounted) {
@@ -84,10 +85,8 @@ class ExecutiveSerialState extends State<ExecutiveSerial> {
             IconButton(
                 icon: const Icon(Icons.clear),
                 onPressed: () {
-                  var router = MaterialPageRoute(
-                      builder: (BuildContext context) => const Welcome());
-                  Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => false);
+                  NavigationHelper.navigateAndRemoveUntil(context,
+                      const Welcome(), (Route<dynamic> route) => false);
                 })
           ],
         ),
@@ -467,7 +466,8 @@ class ExecutiveSerialState extends State<ExecutiveSerial> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      app_data.testExecutiveSerialResponseNormal,
+                                      app_data
+                                          .testExecutiveSerialResponseNormal,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
                                     ),
@@ -475,7 +475,8 @@ class ExecutiveSerialState extends State<ExecutiveSerial> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      app_data.testExecutiveSerialResponseEquivocal,
+                                      app_data
+                                          .testExecutiveSerialResponseEquivocal,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
                                     ),
@@ -483,7 +484,8 @@ class ExecutiveSerialState extends State<ExecutiveSerial> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      app_data.testExecutiveSerialResponseImpaired,
+                                      app_data
+                                          .testExecutiveSerialResponseImpaired,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
                                     ),
@@ -510,12 +512,11 @@ class ExecutiveSerialState extends State<ExecutiveSerial> {
                           onPressed: () {
                             // Update provider with serial scores
                             _updateProvider();
-                            
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const ShortTermMemoryVerbal());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+
+                            NavigationHelper.navigateAndRemoveUntil(
+                                context,
+                                const ShortTermMemoryVerbal(),
+                                (Route<dynamic> route) => true);
                           },
                           child: const Text("Continue",
                               style: TextStyle(color: Colors.black)),
@@ -558,16 +559,16 @@ class ExecutiveSerialState extends State<ExecutiveSerial> {
 
   void initFromProvider() {
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-    
+
     setState(() {
       // Get base values from the provider
       _radioValue = scoreModel.executiveSerial;
       score = scoreModel.executiveSerialScore;
-      
+
       // Initialize button colors - these would need to be stored in the model
       // if we want to preserve button state between sessions
       executiveSerialButtonColor = List.filled(6, "yellow");
-      
+
       // Reset button colors and tapped states
       decembermonthButtonColor = Colors.yellow;
       novembermonthButtonColor = Colors.yellow;

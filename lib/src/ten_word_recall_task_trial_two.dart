@@ -3,6 +3,7 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/ten_word_recall_task_trial_three.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class TenWordRecallTrialTwo extends StatefulWidget {
   const TenWordRecallTrialTwo({super.key});
@@ -76,10 +77,8 @@ class TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
             IconButton(
                 icon: Icon(Icons.clear),
                 onPressed: () {
-                  var router = MaterialPageRoute(
-                      builder: (BuildContext context) => Welcome());
-                  Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => false);
+                  NavigationHelper.navigateAndRemoveUntil(
+                      context, Welcome(), (Route<dynamic> route) => false);
                 })
           ],
         ),
@@ -254,11 +253,10 @@ class TenWordRecallTrialTwoState extends State<TenWordRecallTrialTwo> {
                                 // Update provider with trial two score
                                 _updateProvider();
 
-                                var router = MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        const TenWordRecallTrialThree());
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    router, (Route<dynamic> route) => true);
+                                NavigationHelper.navigateAndRemoveUntil(
+                                    context,
+                                    const TenWordRecallTrialThree(),
+                                    (Route<dynamic> route) => true);
                               }
                             : null,
                         child: Text(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/welcome.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 import 'domain_attention_concentration.dart';
 
@@ -42,10 +43,11 @@ class DomainSpellWordState extends State<SpellWordBarkwards> {
           IconButton(
               icon: Icon(Icons.clear),
               onPressed: () {
-                var router = MaterialPageRoute(
-                    builder: (BuildContext context) => Welcome());
-                Navigator.of(context).pushAndRemoveUntil(
-                    router, (Route<dynamic> route) => false);
+                NavigationHelper.navigateAndRemoveUntil(
+                  context,
+                  Welcome(),
+                  (Route<dynamic> route) => false,
+                );
               })
         ],
       ),
@@ -265,11 +267,11 @@ class DomainSpellWordState extends State<SpellWordBarkwards> {
                         elevation: WidgetStateProperty.all(10.0),
                       ),
                       onPressed: () {
-                        var router = MaterialPageRoute(
-                            builder: (BuildContext context) =>
-                                AttentionConcentration());
-                        Navigator.of(context).pushAndRemoveUntil(
-                            router, (Route<dynamic> route) => true);
+                        NavigationHelper.navigateAndRemoveUntil(
+                          context,
+                          AttentionConcentration(),
+                          (Route<dynamic> route) => true,
+                        );
                       },
                       child: Text(app_data.domainTestCompleteButton),
                     ),

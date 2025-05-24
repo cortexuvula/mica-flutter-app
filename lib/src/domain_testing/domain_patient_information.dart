@@ -6,6 +6,7 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/domain_testing/domain_vigilance.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 final String vigilance = "Vigilance";
 
@@ -21,8 +22,7 @@ class DomainPatientInformation extends StatefulWidget {
 
 class DomainPatientInformationState extends State<DomainPatientInformation> {
   final _formKey = GlobalKey<FormState>();
-  final GlobalKey<ScaffoldState> _scaffoldState =
-      GlobalKey<ScaffoldState>();
+  final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
 
   bool rememberAssessor = false;
 
@@ -68,10 +68,11 @@ class DomainPatientInformationState extends State<DomainPatientInformation> {
             IconButton(
                 icon: Icon(Icons.clear),
                 onPressed: () {
-                  var router = MaterialPageRoute(
-                      builder: (BuildContext context) => Welcome());
-                  Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => false);
+                  NavigationHelper.navigateAndRemoveUntil(
+                    context,
+                    Welcome(),
+                    (Route<dynamic> route) => false,
+                  );
                 })
           ],
         ),
@@ -146,7 +147,8 @@ class DomainPatientInformationState extends State<DomainPatientInformation> {
                             Radio(
                               value: 0,
                               groupValue: _radioValue,
-                              onChanged: (int? value) => _handleRadioValueChange(value ?? 0),
+                              onChanged: (int? value) =>
+                                  _handleRadioValueChange(value ?? 0),
                               activeColor: Colors.white,
                             ),
                             Text(
@@ -158,7 +160,8 @@ class DomainPatientInformationState extends State<DomainPatientInformation> {
                             Radio(
                               value: 1,
                               groupValue: _radioValue,
-                              onChanged: (int? value) => _handleRadioValueChange(value ?? 0),
+                              onChanged: (int? value) =>
+                                  _handleRadioValueChange(value ?? 0),
                               activeColor: Colors.white,
                             ),
                             Text(
@@ -216,7 +219,8 @@ class DomainPatientInformationState extends State<DomainPatientInformation> {
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Theme.of(context).colorScheme.primary,
+                          backgroundColor:
+                              Theme.of(context).colorScheme.primary,
                           foregroundColor: Colors.white,
                         ),
                         onPressed: () {
@@ -227,25 +231,24 @@ class DomainPatientInformationState extends State<DomainPatientInformation> {
                           if (myAssessor.text == "") {
                             myAssessor.text = "No Name Provided";
                           }
-                          if (_formKey.currentState != null && _formKey.currentState!.validate()) {
+                          if (_formKey.currentState != null &&
+                              _formKey.currentState!.validate()) {
                             // If the form is valid, display a snackbar. In the real world, you'd
                             // often want to call a server or save the information in a database
                             ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(content: Text('Processing Data')));
                             saveAssessorToProvider();
-                                
+
                             if (widget.testName == vigilance) {
-                              Navigator.push(
+                              NavigationHelper.navigateTo(
                                 context,
-                                MaterialPageRoute(
-                                    builder: (context) => DomainVigilance(
-                                          patientName: myPatient.text,
-                                          assessorName: myAssessor.text,
-                                          handedness: _radioValue == 0
-                                              ? "Right"
-                                              : "Left",
-                                          assessmentDate: selectedDate,
-                                        )),
+                                DomainVigilance(
+                                  patientName: myPatient.text,
+                                  assessorName: myAssessor.text,
+                                  handedness:
+                                      _radioValue == 0 ? "Right" : "Left",
+                                  assessmentDate: selectedDate,
+                                ),
                               );
                             }
                           }
@@ -285,7 +288,7 @@ class DomainPatientInformationState extends State<DomainPatientInformation> {
     try {
       // Get assessor name from provider
       final assessorName = scoreModel.assessorName;
-      
+
       setState(() {
         if (assessorName.isNotEmpty) {
           myAssessor.text = assessorName;
@@ -294,7 +297,7 @@ class DomainPatientInformationState extends State<DomainPatientInformation> {
           rememberAssessor = false;
         }
       });
-      
+
       debugPrint("Retrieved Assessor Name $assessorName");
     } catch (e) {
       debugPrint("Failed to get assessor name: $e");
@@ -307,20 +310,18 @@ class DomainPatientInformationState extends State<DomainPatientInformation> {
       // Set assessor name in the provider
       if (rememberAssessor) {
         scoreModel.setPatientInfo(
-          patientName: myPatient.text, 
-          assessorName: myAssessor.text,
-          handedness: _radioValue == 0 ? "Right" : "Left",
-          assessmentDate: selectedDate
-        );
+            patientName: myPatient.text,
+            assessorName: myAssessor.text,
+            handedness: _radioValue == 0 ? "Right" : "Left",
+            assessmentDate: selectedDate);
         debugPrint("Saved assessor: ${myAssessor.text}");
       } else {
         // If not remembering, still save other info but with empty assessor name
         scoreModel.setPatientInfo(
-          patientName: myPatient.text, 
-          assessorName: "",
-          handedness: _radioValue == 0 ? "Right" : "Left",
-          assessmentDate: selectedDate
-        );
+            patientName: myPatient.text,
+            assessorName: "",
+            handedness: _radioValue == 0 ? "Right" : "Left",
+            assessmentDate: selectedDate);
       }
     } catch (e) {
       debugPrint("Failed to save assessor: $e");

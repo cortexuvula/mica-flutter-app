@@ -4,6 +4,7 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/show_image.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class VisuospatialPraxis extends StatefulWidget {
   const VisuospatialPraxis({super.key});
@@ -186,14 +187,12 @@ class VisuospatialPraxisState extends State<VisuospatialPraxis> {
                             Expanded(
                               child: GestureDetector(
                                 onTap: () {
-                                  Navigator.push(
+                                  NavigationHelper.navigateTo(
                                     context,
-                                    MaterialPageRoute(
-                                      builder: (context) => ShowImage(
-                                        imageURL:
-                                            app_data.imageURLPraxis[imageNumber],
-                                        imageNumber: imageNumber,
-                                      ),
+                                    ShowImage(
+                                      imageURL:
+                                          app_data.imageURLPraxis[imageNumber],
+                                      imageNumber: imageNumber,
                                     ),
                                   );
                                 },
@@ -611,11 +610,9 @@ class VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                   // Update provider with visuospatial praxis scores
                                   _updateProvider();
 
-                                  Navigator.push(
+                                  NavigationHelper.navigateTo(
                                     context,
-                                    MaterialPageRoute(
-                                      builder: (context) => const Attention(),
-                                    ),
+                                    const Attention(),
                                   );
                                 },
                                 child: Text(

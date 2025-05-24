@@ -71,9 +71,12 @@ class MicaScoreModel extends ChangeNotifier {
   int get tenWordDelay => _tenWordDelay;
   int get shorttermMemoryVerbal => _shorttermMemoryVerbal;
   int get shorttermMemoryVerbalScore => _shorttermMemoryVerbalScore;
-  int get scoreVerbalRecognitionMemoryTenWords => _scoreVerbalRecognitionMemoryTenWords;
-  int get scoreVerbalRecognitionMemoryTenWordsInList => _scoreVerbalRecognitionMemoryTenWordsInList;
-  int get scoreVerbalRecognitionMemoryTenWordsNotInList => _scoreVerbalRecognitionMemoryTenWordsNotInList;
+  int get scoreVerbalRecognitionMemoryTenWords =>
+      _scoreVerbalRecognitionMemoryTenWords;
+  int get scoreVerbalRecognitionMemoryTenWordsInList =>
+      _scoreVerbalRecognitionMemoryTenWordsInList;
+  int get scoreVerbalRecognitionMemoryTenWordsNotInList =>
+      _scoreVerbalRecognitionMemoryTenWordsNotInList;
 
   // Getters for visual memory scores
   int get shorttermMemoryVisualImage1 => _shorttermMemoryVisualImage1;
@@ -317,9 +320,12 @@ class MicaScoreModel extends ChangeNotifier {
     _praxisRight = praxisRight;
     _praxisLeft = praxisLeft;
     _tenWordDelay = tenWordDelay;
-    _scoreVerbalRecognitionMemoryTenWords = scoreVerbalRecognitionMemoryTenWords;
-    _scoreVerbalRecognitionMemoryTenWordsInList = scoreVerbalRecognitionMemoryTenWordsInList;
-    _scoreVerbalRecognitionMemoryTenWordsNotInList = scoreVerbalRecognitionMemoryTenWordsNotInList;
+    _scoreVerbalRecognitionMemoryTenWords =
+        scoreVerbalRecognitionMemoryTenWords;
+    _scoreVerbalRecognitionMemoryTenWordsInList =
+        scoreVerbalRecognitionMemoryTenWordsInList;
+    _scoreVerbalRecognitionMemoryTenWordsNotInList =
+        scoreVerbalRecognitionMemoryTenWordsNotInList;
     _shorttermMemoryVisualImage1 = shorttermMemoryVisualImage1;
     _shorttermMemoryVisualImage2 = shorttermMemoryVisualImage2;
     _shorttermMemoryVisualImage3 = shorttermMemoryVisualImage3;
@@ -327,7 +333,7 @@ class MicaScoreModel extends ChangeNotifier {
     _agnosia = agnosia;
     _executive = executive;
     _spokenLanguage = spokenLanguage;
-    
+
     notifyListeners();
   }
 
@@ -337,11 +343,11 @@ class MicaScoreModel extends ChangeNotifier {
     _assessorName = '';
     _handedness = 'Right';
     _assessmentDate = DateTime.now();
-    
+
     // Reset all test scores
     _languageComprehensionRadioValue = 0;
     _spokenLanguage = 0;
-    
+
     _trialOneScore = 0;
     _trialTwoScore = 0;
     _trialThreeScore = 0;
@@ -351,21 +357,21 @@ class MicaScoreModel extends ChangeNotifier {
     _scoreVerbalRecognitionMemoryTenWords = 0;
     _scoreVerbalRecognitionMemoryTenWordsInList = 0;
     _scoreVerbalRecognitionMemoryTenWordsNotInList = 0;
-    
+
     _shorttermMemoryVisualImage1 = 0;
     _shorttermMemoryVisualImage2 = 0;
     _shorttermMemoryVisualImage3 = 0;
-    
+
     _visuospatialPraxisImage1 = 0;
     _visuospatialPraxisImage2 = 0;
     _visuospatialPraxisImage3 = 0;
     _praxisRight = 0;
     _praxisLeft = 0;
-    
+
     _attention = 0;
     _attentionCorrect = 0;
     _attentionMistakes = 0;
-    
+
     _executiveAnimalNaming = 0;
     _executiveAnimalNamingCount = 0;
     _executiveLuria = 0;
@@ -373,10 +379,10 @@ class MicaScoreModel extends ChangeNotifier {
     _executiveSerial = 0;
     _executiveSerialScore = 0;
     _executive = 0;
-    
+
     _anomiaAgnosia = 0;
     _agnosia = 0;
-    
+
     notifyListeners();
   }
 }

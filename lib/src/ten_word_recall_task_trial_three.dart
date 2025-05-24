@@ -3,13 +3,13 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/visuospatial_praxis.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class TenWordRecallTrialThree extends StatefulWidget {
   const TenWordRecallTrialThree({super.key});
 
   @override
-  TenWordRecallTrialThreeState createState() =>
-      TenWordRecallTrialThreeState();
+  TenWordRecallTrialThreeState createState() => TenWordRecallTrialThreeState();
 }
 
 class TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
@@ -77,10 +77,8 @@ class TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
             IconButton(
                 icon: Icon(Icons.clear),
                 onPressed: () {
-                  var router = MaterialPageRoute(
-                      builder: (BuildContext context) => Welcome());
-                  Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => false);
+                  NavigationHelper.navigateAndRemoveUntil(
+                      context, Welcome(), (Route<dynamic> route) => false);
                 })
           ],
         ),
@@ -256,11 +254,10 @@ class TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
                                 // Update provider with trial three score
                                 _updateProvider();
 
-                                var router = MaterialPageRoute(
-                                    builder: (BuildContext context) =>
-                                        const VisuospatialPraxis());
-                                Navigator.of(context).pushAndRemoveUntil(
-                                    router, (Route<dynamic> route) => true);
+                                NavigationHelper.navigateAndRemoveUntil(
+                                    context,
+                                    const VisuospatialPraxis(),
+                                    (Route<dynamic> route) => true);
                               }
                             : null,
                         child: Text(

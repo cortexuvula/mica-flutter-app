@@ -3,9 +3,7 @@ import 'package:mica/src/providers/mica_provider.dart';
 
 class AttentionConcentration extends StatefulWidget {
   // No longer requires attention parameter, will get from provider
-  const AttentionConcentration({
-    super.key
-  });
+  const AttentionConcentration({super.key});
 
   @override
   AttentionConcentrationState createState() => AttentionConcentrationState();
@@ -25,7 +23,7 @@ class AttentionConcentrationState extends State<AttentionConcentration> {
   Widget build(BuildContext context) {
     // Get the score model from provider
     final scoreModel = MicaProviders.getScoreModel(context);
-    
+
     // Get attention value and convert to string format
     radio3ButtonValueToString(scoreModel.attention);
     return Scaffold(

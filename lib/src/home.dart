@@ -3,6 +3,7 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/patient_information.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:provider/provider.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class Home extends StatefulWidget {
   final bool? viewedDisclaimer;
@@ -147,11 +148,11 @@ class HomeState extends State<Home> {
                                   Theme.of(context).colorScheme.secondary,
                             ),
                             onPressed: () {
-                              var router = MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      PatientInformation());
-                              Navigator.of(context).pushAndRemoveUntil(
-                                  router, (Route<dynamic> route) => false);
+                              NavigationHelper.navigateAndRemoveUntil(
+                                context,
+                                PatientInformation(),
+                                (Route<dynamic> route) => false,
+                              );
                             },
                             child: Text(app_data.fullTestButton,
                                 style: TextStyle(color: Colors.black)),
@@ -227,16 +228,16 @@ class HomeState extends State<Home> {
   void initializeModelData() {
     // Get the model from provider and initialize all values
     final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
-    
+
     // Initialize all scores in the model
     // These initializations replace all the SharedPreferences.setInt/setBool calls
-    
+
     // Instead of setting SharedPreferences values, we're initializing the model
     // with default values for all the assessment scores
-    
+
     // We may need to extend the MicaScoreModel class to store all the necessary data
     // that was previously stored in SharedPreferences
-    
+
     // For now, we'll initialize all the scores that the model already supports
     micaScoreModel.resetScores();
   }

@@ -5,9 +5,9 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:provider/provider.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class SpokenLanguage extends StatefulWidget {
-
   const SpokenLanguage({super.key});
 
   @override
@@ -29,7 +29,7 @@ class SpokenLanguageState extends State<SpokenLanguage> {
   void initState() {
     super.initState();
     _radioValue = 0; // Initialize with a default value (e.g., 0 for "Normal")
-    
+
     // Initialize from provider data
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _initializeProviderModel();
@@ -45,15 +45,11 @@ class SpokenLanguageState extends State<SpokenLanguage> {
         if (didPop) {
           return;
         }
-        
+
         // Update the provider
         _updateProvider();
-        
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => const Welcome(),
-          ),
-        );
+
+        NavigationHelper.navigateTo(context, const Welcome());
       },
       child: Scaffold(
         appBar: AppBar(
@@ -79,10 +75,11 @@ class SpokenLanguageState extends State<SpokenLanguage> {
             IconButton(
                 icon: const Icon(Icons.clear),
                 onPressed: () {
-                  var router = MaterialPageRoute(
-                      builder: (BuildContext context) => const Welcome());
-                  Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => false);
+                  NavigationHelper.navigateAndRemoveUntil(
+                    context,
+                    const Welcome(),
+                    (Route<dynamic> route) => false,
+                  );
                 })
           ],
         ),
@@ -199,7 +196,8 @@ class SpokenLanguageState extends State<SpokenLanguage> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      app_data.testSpokenLanguageResponseEquivocal,
+                                      app_data
+                                          .testSpokenLanguageResponseEquivocal,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
                                     ),
@@ -207,7 +205,8 @@ class SpokenLanguageState extends State<SpokenLanguage> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      app_data.testSpokenLanguageResponseImpaired,
+                                      app_data
+                                          .testSpokenLanguageResponseImpaired,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
                                     ),
@@ -237,12 +236,12 @@ class SpokenLanguageState extends State<SpokenLanguage> {
                           onPressed: () {
                             // Update the provider with the spoken language value
                             _updateProvider();
-                            
+
                             // Navigate to the Provider-based summary page
-                            Navigator.of(context).pushAndRemoveUntil(
-                              MaterialPageRoute(builder: (context) => const TestSummaryWithProvider()),
-                              (Route<dynamic> route) => true
-                            );
+                            NavigationHelper.navigateAndRemoveUntil(
+                                context,
+                                const TestSummaryWithProvider(),
+                                (Route<dynamic> route) => true);
                           },
                           child: const Text("Continue",
                               style: TextStyle(color: Colors.black)),
@@ -263,12 +262,12 @@ class SpokenLanguageState extends State<SpokenLanguage> {
     setState(() {
       _radioValue = value;
     });
-    
+
     // Update the provider with the new value
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     scoreModel.setSpokenLanguage(value);
   }
-  
+
   /// Update provider with the current test data
   void _updateProvider() {
     final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);

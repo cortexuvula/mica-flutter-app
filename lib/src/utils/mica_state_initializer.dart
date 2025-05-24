@@ -44,7 +44,7 @@ class MicaStateInitializer {
   }) {
     // Get the model without listening to changes
     final model = MicaProviders.getScoreModel(context, listen: false);
-    
+
     // Initialize the model with the provided parameters
     model.initFromTestSummary(
       patientName: patientName,
@@ -72,9 +72,12 @@ class MicaStateInitializer {
       praxisRight: praxisRight,
       praxisLeft: praxisLeft,
       tenWordDelay: tenWordDelay,
-      scoreVerbalRecognitionMemoryTenWords: scoreVerbalRecognitionMemoryTenWords,
-      scoreVerbalRecognitionMemoryTenWordsInList: scoreVerbalRecognitionMemoryTenWordsInList,
-      scoreVerbalRecognitionMemoryTenWordsNotInList: scoreVerbalRecognitionMemoryTenWordsNotInList,
+      scoreVerbalRecognitionMemoryTenWords:
+          scoreVerbalRecognitionMemoryTenWords,
+      scoreVerbalRecognitionMemoryTenWordsInList:
+          scoreVerbalRecognitionMemoryTenWordsInList,
+      scoreVerbalRecognitionMemoryTenWordsNotInList:
+          scoreVerbalRecognitionMemoryTenWordsNotInList,
       shorttermMemoryVisualImage1: shorttermMemoryVisualImage1,
       shorttermMemoryVisualImage2: shorttermMemoryVisualImage2,
       shorttermMemoryVisualImage3: shorttermMemoryVisualImage3,

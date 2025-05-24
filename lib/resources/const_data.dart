@@ -411,8 +411,7 @@ const String domainAttentionSubtitle = "and Concentration";
 const String domainSpellWord = "\"Good. Now spell it backwards.\"";
 const String domainSpellWordPatient =
     "“Spell the following word: RIGHT”\n\"Good. Now spell it backwards.\"";
-const String domainSpellWordAlternative =
-    "Alternative words: April or March";
+const String domainSpellWordAlternative = "Alternative words: April or March";
 
 const String domainSerialSevenPatient = "“Subtract seven from one hundred.”";
 const String domainSerialSevenExaminer = "Wait for the response.";

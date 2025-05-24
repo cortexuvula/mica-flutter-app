@@ -5,12 +5,11 @@ class Language extends StatefulWidget {
   final int comprehension;
   final int drawLine;
 
-  const Language({
-    super.key, 
-    required this.spokenLanguage, 
-    required this.comprehension, 
-    required this.drawLine
-  });
+  const Language(
+      {super.key,
+      required this.spokenLanguage,
+      required this.comprehension,
+      required this.drawLine});
 
   @override
   LanguageState createState() => LanguageState();

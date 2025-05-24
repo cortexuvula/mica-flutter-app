@@ -4,6 +4,7 @@ import 'package:mica/src/anomia_agnosia.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:provider/provider.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class ShortTermMemoryVisual extends StatefulWidget {
   // Using Provider pattern, no need for parameters
@@ -40,11 +41,7 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
           return;
         }
 
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => Welcome(),
-          ),
-        );
+        NavigationHelper.navigateTo(context, Welcome());
       },
       child: Scaffold(
         appBar: AppBar(
@@ -71,10 +68,8 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
             IconButton(
                 icon: const Icon(Icons.clear),
                 onPressed: () {
-                  var router = MaterialPageRoute(
-                      builder: (BuildContext context) => Welcome());
-                  Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => false);
+                  NavigationHelper.navigateAndRemoveUntil(
+                      context, Welcome(), (Route<dynamic> route) => false);
                 })
           ],
         ),
@@ -506,17 +501,16 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
                             // Update provider with the final visual memory scores
                             if (mounted) {
                               final micaScoreModel =
-                                  Provider.of<MicaScoreModel>(context, listen: false);
+                                  Provider.of<MicaScoreModel>(context,
+                                      listen: false);
                               micaScoreModel.setShorttermMemoryVisualImages(
-                                image1: _radioValueImageOne ?? 0,
-                                image2: _radioValueImageTwo ?? 0,
-                                image3: _radioValueImageThree ?? 0
-                              );
+                                  image1: _radioValueImageOne ?? 0,
+                                  image2: _radioValueImageTwo ?? 0,
+                                  image3: _radioValueImageThree ?? 0);
 
                               // Navigate to next screen
-                              var router = MaterialPageRoute(
-                                  builder: (BuildContext context) => const AnomiaAgnosia());
-                              Navigator.of(context).push(router);
+                              NavigationHelper.navigateTo(
+                                  context, const AnomiaAgnosia());
                             }
                           },
                           child: const Text("Continue",
@@ -541,7 +535,8 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
 
     // Update provider with all image values
     if (mounted) {
-      final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+      final micaScoreModel =
+          Provider.of<MicaScoreModel>(context, listen: false);
       micaScoreModel.setShorttermMemoryVisualImages(
         image1: _radioValueImageOne ?? 0,
         image2: _radioValueImageTwo ?? 0,
@@ -557,7 +552,8 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
 
     // Update provider with all image values
     if (mounted) {
-      final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+      final micaScoreModel =
+          Provider.of<MicaScoreModel>(context, listen: false);
       micaScoreModel.setShorttermMemoryVisualImages(
         image1: _radioValueImageOne ?? 0,
         image2: _radioValueImageTwo ?? 0,
@@ -573,7 +569,8 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
 
     // Update provider with all image values
     if (mounted) {
-      final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+      final micaScoreModel =
+          Provider.of<MicaScoreModel>(context, listen: false);
       micaScoreModel.setShorttermMemoryVisualImages(
         image1: _radioValueImageOne ?? 0,
         image2: _radioValueImageTwo ?? 0,

@@ -4,6 +4,7 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/executive_animal_naming.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class Attention extends StatefulWidget {
   const Attention({super.key});
@@ -24,7 +25,7 @@ class _AttentionState extends State<Attention> {
   String displayLetter = "Letters";
 
   List<bool> tapCorrect = [];
-  
+
   // Update the provider with attention scores
   void _updateProvider() {
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
@@ -34,6 +35,7 @@ class _AttentionState extends State<Attention> {
       mistakes: wrongTap,
     );
   }
+
   List<bool> tapWrong = [];
   List<bool> correctCheck = [];
 
@@ -53,7 +55,7 @@ class _AttentionState extends State<Attention> {
     tapWrong = List.filled(letterCount, false);
     correctCheck = List.filled(letterCount, false);
     letterTapButtonColor = List.filled(letterCount, Colors.cyan.shade200);
-    
+
     initFromProvider();
   }
 
@@ -69,14 +71,12 @@ class _AttentionState extends State<Attention> {
 
         // Update provider before navigation
         _updateProvider();
-        
+
         if (context.mounted) {
           Navigator.of(context).pop();
         }
-        var router = MaterialPageRoute(
-            builder: (BuildContext context) => const Welcome());
-        Navigator.of(context).pushAndRemoveUntil(
-            router, (Route<dynamic> route) => false);
+        NavigationHelper.navigateAndRemoveUntil(
+            context, const Welcome(), (Route<dynamic> route) => false);
       },
       child: Scaffold(
         appBar: AppBar(
@@ -103,10 +103,8 @@ class _AttentionState extends State<Attention> {
             IconButton(
                 icon: const Icon(Icons.clear),
                 onPressed: () {
-                  var router = MaterialPageRoute(
-                      builder: (BuildContext context) => const Welcome());
-                  Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => false);
+                  NavigationHelper.navigateAndRemoveUntil(context,
+                      const Welcome(), (Route<dynamic> route) => false);
                 })
           ],
         ),
@@ -473,14 +471,12 @@ class _AttentionState extends State<Attention> {
                           onPressed: () {
                             sequenceInMotion = false;
                             timer?.cancel();
-                            
+
                             // Update provider
                             _updateProvider();
-                            
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const ExecutiveAnimalNaming());
-                            Navigator.of(context).push(router);
+
+                            NavigationHelper.navigateTo(
+                                context, const ExecutiveAnimalNaming());
                           },
                           child: const Text("Continue",
                               style: TextStyle(color: Colors.black)),
@@ -506,16 +502,16 @@ class _AttentionState extends State<Attention> {
   // Initialize from provider
   void initFromProvider() {
     if (!mounted) return;
-    
+
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-    
+
     // Load basic attention scores
     setState(() {
       _radioValue = scoreModel.attention;
       correctTap = scoreModel.attentionCorrect;
       wrongTap = scoreModel.attentionMistakes;
     });
-    
+
     // Initialize lists with default values
     // Note: The provider currently doesn't store the detailed lists,
     // so we initialize them with default values
@@ -523,7 +519,7 @@ class _AttentionState extends State<Attention> {
     tapCorrect = [];
     tapWrong = [];
     correctCheck = [];
-    
+
     for (var i = 0; i < 26; i++) {
       letterTapButtonColor.add(Colors.cyan.shade200);
       tapCorrect.add(false);

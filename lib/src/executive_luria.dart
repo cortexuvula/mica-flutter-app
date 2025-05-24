@@ -3,6 +3,7 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/executive_serial.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class ExecutiveLuria extends StatefulWidget {
   const ExecutiveLuria({super.key});
@@ -15,7 +16,7 @@ class ExecutiveLuriaState extends State<ExecutiveLuria> {
   final double sizeBoxHeight = 10.0;
   int _radioValue = 2; // Default initialization
   int _counter = 0;
-  
+
   // Update the provider with Luria scores
   void _updateProvider() {
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
@@ -69,10 +70,8 @@ class ExecutiveLuriaState extends State<ExecutiveLuria> {
             IconButton(
                 icon: const Icon(Icons.clear),
                 onPressed: () {
-                  var router = MaterialPageRoute(
-                      builder: (BuildContext context) => const Welcome());
-                  Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => false);
+                  NavigationHelper.navigateAndRemoveUntil(context,
+                      const Welcome(), (Route<dynamic> route) => false);
                 })
           ],
         ),
@@ -313,7 +312,8 @@ class ExecutiveLuriaState extends State<ExecutiveLuria> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      app_data.testExecutiveLuriaResponseEquivocal,
+                                      app_data
+                                          .testExecutiveLuriaResponseEquivocal,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
                                     ),
@@ -321,7 +321,8 @@ class ExecutiveLuriaState extends State<ExecutiveLuria> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      app_data.testExecutiveLuriaResponseImpaired,
+                                      app_data
+                                          .testExecutiveLuriaResponseImpaired,
                                       textAlign: TextAlign.center,
                                       style: const TextStyle(fontSize: 10.0),
                                     ),
@@ -351,11 +352,9 @@ class ExecutiveLuriaState extends State<ExecutiveLuria> {
                           onPressed: () {
                             // Update provider with Luria scores
                             _updateProvider();
-                            
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const ExecutiveSerial());
-                            Navigator.of(context).push(router);
+
+                            NavigationHelper.navigateTo(
+                                context, const ExecutiveSerial());
                           },
                           child: const Text("Continue",
                               style: TextStyle(color: Colors.black)),

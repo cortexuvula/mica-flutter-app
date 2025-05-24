@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/welcome.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class ClinicalSelect extends StatefulWidget {
   const ClinicalSelect({super.key});
-  
+
   @override
   ClinicalSelectState createState() => ClinicalSelectState();
 }
@@ -30,10 +31,8 @@ class ClinicalSelectState extends State<ClinicalSelect> {
           IconButton(
               icon: const Icon(Icons.clear),
               onPressed: () {
-                var router = MaterialPageRoute(
-                    builder: (BuildContext context) => const Welcome());
-                Navigator.of(context).pushAndRemoveUntil(
-                    router, (Route<dynamic> route) => false);
+                NavigationHelper.navigateAndRemoveUntil(
+                    context, const Welcome(), (Route<dynamic> route) => false);
               })
         ],
       ),
@@ -58,14 +57,14 @@ class ClinicalSelectState extends State<ClinicalSelect> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             elevation: 10.0,
-                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const Welcome());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            NavigationHelper.navigateAndRemoveUntil(
+                                context,
+                                const Welcome(),
+                                (Route<dynamic> route) => true);
                           },
                           child: Text(
                             app_data.clinicalSelectButton1,
@@ -95,14 +94,14 @@ class ClinicalSelectState extends State<ClinicalSelect> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             elevation: 10.0,
-                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const Welcome());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            NavigationHelper.navigateAndRemoveUntil(
+                                context,
+                                const Welcome(),
+                                (Route<dynamic> route) => true);
                           },
                           child: Text(
                             app_data.clinicalSelectButton2,
@@ -132,14 +131,14 @@ class ClinicalSelectState extends State<ClinicalSelect> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             elevation: 10.0,
-                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const Welcome());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            NavigationHelper.navigateAndRemoveUntil(
+                                context,
+                                const Welcome(),
+                                (Route<dynamic> route) => true);
                           },
                           child: Text(
                             app_data.clinicalSelectButton3,
@@ -169,14 +168,14 @@ class ClinicalSelectState extends State<ClinicalSelect> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             elevation: 10.0,
-                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const Welcome());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            NavigationHelper.navigateAndRemoveUntil(
+                                context,
+                                const Welcome(),
+                                (Route<dynamic> route) => true);
                           },
                           child: Text(
                             app_data.clinicalSelectButton4,
@@ -206,14 +205,14 @@ class ClinicalSelectState extends State<ClinicalSelect> {
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             elevation: 10.0,
-                            backgroundColor: Theme.of(context).colorScheme.secondary,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const Welcome());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            NavigationHelper.navigateAndRemoveUntil(
+                                context,
+                                const Welcome(),
+                                (Route<dynamic> route) => true);
                           },
                           child: Text(
                             app_data.clinicalSelectButton5,

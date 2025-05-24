@@ -6,6 +6,7 @@ import 'package:mica/src/domain_testing/domain_serial_seven.dart';
 import 'package:mica/src/domain_testing/domain_spell_word.dart';
 import 'package:mica/src/domain_testing/domain_vigilance.dart';
 import 'package:mica/src/welcome.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 const String vigilance = "Vigilance";
 
@@ -45,10 +46,11 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
           IconButton(
               icon: const Icon(Icons.clear),
               onPressed: () {
-                final router = MaterialPageRoute(
-                    builder: (BuildContext context) => const Welcome());
-                Navigator.of(context).pushAndRemoveUntil(
-                    router, (Route<dynamic> route) => false);
+                NavigationHelper.navigateAndRemoveUntil(
+                  context,
+                  const Welcome(),
+                  (Route<dynamic> route) => false,
+                );
               })
         ],
       ),
@@ -72,11 +74,11 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                             elevation: 10.0,
                           ),
                           onPressed: () {
-                            final router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const DomainVigilance());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            NavigationHelper.navigateAndRemoveUntil(
+                              context,
+                              const DomainVigilance(),
+                              (Route<dynamic> route) => true,
+                            );
                           },
                           child: Text(
                             app_data.attentionConcentrationButton1,
@@ -108,11 +110,11 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                             elevation: 10.0,
                           ),
                           onPressed: () {
-                            final router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const SpellWordBarkwards());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            NavigationHelper.navigateAndRemoveUntil(
+                              context,
+                              const SpellWordBarkwards(),
+                              (Route<dynamic> route) => true,
+                            );
                           },
                           child: Text(
                             app_data.attentionConcentrationButton2,
@@ -144,11 +146,11 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                             elevation: 10.0,
                           ),
                           onPressed: () {
-                            final router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const SerialSeven());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            NavigationHelper.navigateAndRemoveUntil(
+                              context,
+                              const SerialSeven(),
+                              (Route<dynamic> route) => true,
+                            );
                           },
                           child: Text(
                             app_data.attentionConcentrationButton3,
@@ -180,11 +182,11 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                             elevation: 10.0,
                           ),
                           onPressed: () {
-                            final router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const Digit());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            NavigationHelper.navigateAndRemoveUntil(
+                              context,
+                              const Digit(),
+                              (Route<dynamic> route) => true,
+                            );
                           },
                           child: Text(
                             app_data.attentionConcentrationButton4,
@@ -216,11 +218,11 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                             elevation: 10.0,
                           ),
                           onPressed: () {
-                            final router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const DomainLanguage());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            NavigationHelper.navigateAndRemoveUntil(
+                              context,
+                              const DomainLanguage(),
+                              (Route<dynamic> route) => true,
+                            );
                           },
                           child: Text(
                             app_data.attentionConcentrationButton5,

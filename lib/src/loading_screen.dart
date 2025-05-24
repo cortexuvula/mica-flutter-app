@@ -4,6 +4,7 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/animated_wave.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:simple_animations/simple_animations.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
@@ -103,11 +104,11 @@ class LoadingScreenState extends State<LoadingScreen> {
                               Theme.of(context).colorScheme.secondary,
                         ),
                         onPressed: () {
-                          var router = MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  const Welcome());
-                          Navigator.of(context).pushAndRemoveUntil(
-                              router, (Route<dynamic> route) => false);
+                          NavigationHelper.navigateAndRemoveUntil(
+                            context,
+                            const Welcome(),
+                            (Route<dynamic> route) => false,
+                          );
                         },
                         child: const Text(
                           "Accept Disclaimer",

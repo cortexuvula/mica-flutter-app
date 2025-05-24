@@ -3,6 +3,7 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/executive_luria.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class ExecutiveAnimalNaming extends StatefulWidget {
   const ExecutiveAnimalNaming({super.key});
@@ -17,7 +18,7 @@ class ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
   int _radioValue = 2; // Default value
   int _counter = 0;
   int startSeconds = 60;
-  
+
   // Update the provider with animal naming scores
   void _updateProvider() {
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
@@ -96,10 +97,8 @@ class ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                 onPressed: () {
                   // Update the provider
                   _updateProvider();
-                  var router = MaterialPageRoute(
-                      builder: (BuildContext context) => const Welcome());
-                  Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => true);
+                  NavigationHelper.navigateAndRemoveUntil(
+                      context, const Welcome(), (Route<dynamic> route) => true);
                 })
           ],
         ),
@@ -440,11 +439,10 @@ class ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                           onPressed: () {
                             // Update the provider
                             _updateProvider();
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const ExecutiveLuria());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+                            NavigationHelper.navigateAndRemoveUntil(
+                                context,
+                                const ExecutiveLuria(),
+                                (Route<dynamic> route) => true);
                           },
                           child: const Text(
                             'Continue',

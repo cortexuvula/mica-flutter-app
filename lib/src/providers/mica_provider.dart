@@ -16,7 +16,8 @@ class MicaProviders {
   }
 
   /// Method to access the MicaScoreModel from any context
-  static MicaScoreModel getScoreModel(BuildContext context, {bool listen = true}) {
+  static MicaScoreModel getScoreModel(BuildContext context,
+      {bool listen = true}) {
     return Provider.of<MicaScoreModel>(context, listen: listen);
   }
 }

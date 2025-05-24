@@ -5,6 +5,7 @@ import 'package:mica/src/ten_word_recall_task_trial_one.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 import 'package:mica/src/patient_information.dart';
+import 'package:mica/src/utils/navigation_helper.dart';
 
 class LanguageComprehension extends StatefulWidget {
   const LanguageComprehension({super.key});
@@ -17,13 +18,13 @@ class LanguageComprehensionState extends State<LanguageComprehension> {
   var format = DateFormat.yMMMMd();
   int? _radioValue;
   double sizeBoxHeight = 10.0;
-  
+
   @override
   void initState() {
     super.initState();
     initFromProvider();
   }
-  
+
   // Update the provider with the language comprehension score
   void _updateProvider() {
     if (_radioValue != null) {
@@ -41,18 +42,14 @@ class LanguageComprehensionState extends State<LanguageComprehension> {
         if (didPop) {
           return;
         }
-        
+
         // Update provider before navigation
         _updateProvider();
-        
+
         // Navigate back to PatientInformation screen
-        // This will show the previously entered information because the PatientInformation screen 
+        // This will show the previously entered information because the PatientInformation screen
         // loads data from the Provider in its initState method
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) => PatientInformation(),
-          ),
-        );
+        NavigationHelper.navigateTo(context, PatientInformation());
       },
       child: Scaffold(
         appBar: AppBar(
@@ -78,10 +75,8 @@ class LanguageComprehensionState extends State<LanguageComprehension> {
             IconButton(
                 icon: Icon(Icons.clear),
                 onPressed: () {
-                  var router = MaterialPageRoute(
-                      builder: (BuildContext context) => Welcome());
-                  Navigator.of(context).pushAndRemoveUntil(
-                      router, (Route<dynamic> route) => false);
+                  NavigationHelper.navigateAndRemoveUntil(
+                      context, Welcome(), (Route<dynamic> route) => false);
                 })
           ],
         ),
@@ -233,7 +228,8 @@ class LanguageComprehensionState extends State<LanguageComprehension> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      app_data.testLanguageComprehensionResponseNormal,
+                                      app_data
+                                          .testLanguageComprehensionResponseNormal,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(fontSize: 10.0),
                                     ),
@@ -241,7 +237,8 @@ class LanguageComprehensionState extends State<LanguageComprehension> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      app_data.testLanguageComprehensionResponseEquivocal,
+                                      app_data
+                                          .testLanguageComprehensionResponseEquivocal,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(fontSize: 10.0),
                                     ),
@@ -249,7 +246,8 @@ class LanguageComprehensionState extends State<LanguageComprehension> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      app_data.testLanguageComprehensionResponseImpaired,
+                                      app_data
+                                          .testLanguageComprehensionResponseImpaired,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(fontSize: 10.0),
                                     ),
@@ -276,12 +274,11 @@ class LanguageComprehensionState extends State<LanguageComprehension> {
                           onPressed: () {
                             // Update the provider with the language comprehension score
                             _updateProvider();
-                            
-                            var router = MaterialPageRoute(
-                                builder: (BuildContext context) =>
-                                    const TenWordRecallTrialOne());
-                            Navigator.of(context).pushAndRemoveUntil(
-                                router, (Route<dynamic> route) => true);
+
+                            NavigationHelper.navigateAndRemoveUntil(
+                                context,
+                                const TenWordRecallTrialOne(),
+                                (Route<dynamic> route) => true);
                           },
                           child: Text("Continue",
                               style: TextStyle(color: Colors.black)),
@@ -308,9 +305,9 @@ class LanguageComprehensionState extends State<LanguageComprehension> {
 
   void initFromProvider() {
     if (!mounted) return;
-    
+
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-    
+
     setState(() {
       _radioValue = scoreModel.languageComprehensionRadioValue;
     });
