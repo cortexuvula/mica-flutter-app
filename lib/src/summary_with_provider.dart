@@ -1576,13 +1576,6 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
     shareDoc += "  N = Normal, E = Equivocal, I = Impaired\n\n";
     shareDoc += "Cut scores are estimates only.\n\n";
 
-    // Language Comprehension
-    shareDoc += "Language Comprehension: 3 Stage Command\n\n";
-    shareDoc +=
-        "  Raw score: ${3 - scoreModel.languageComprehensionRadioValue}/3\n";
-    shareDoc +=
-        "  ${convertResponseToString(radioValueResultToString(scoreModel.languageComprehensionRadioValue))}\n\n";
-
     // Working Memory Verbal Trial 1
     shareDoc += "Working Memory VerbalTrial 1: Ten Word Recall\n\n";
     shareDoc += "N > 6, E = 5 - 6, I < 5\n\n";
@@ -1645,7 +1638,7 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
     // Short-Term Memory Verbal Recall: Orientation
     shareDoc += "Short-Term Memory Verbal Recall: Orientation\n\n";
     shareDoc += "N = 5, E = 4, I < 4\n\n";
-    shareDoc += "  Raw score: ${scoreModel.shorttermMemoryVerbalScore}/5\n";
+    shareDoc += "  Raw score: ${scoreModel.shorttermMemoryVerbalScore}/6\n";
     shareDoc +=
         "  ${convertResponseToString(radioValueResultToString(scoreModel.shorttermMemoryVerbal))}\n\n";
 
@@ -1856,15 +1849,6 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
 
           widgets.add(pw.SizedBox(height: 10));
 
-          // Language Comprehension
-          widgets.add(addAssessmentSection(
-              title: "Language Comprehension: 3 Stage Command",
-              guide: "",
-              rawScore:
-                  "Raw score: ${3 - scoreModel.languageComprehensionRadioValue}/3",
-              result: convertResponseToString(radioValueResultToString(
-                  scoreModel.languageComprehensionRadioValue))));
-
           // Working Memory VerbalTrial 1
           widgets.add(addAssessmentSection(
               title: "Working Memory VerbalTrial 1: Ten Word Recall",
@@ -1934,7 +1918,7 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
           widgets.add(addAssessmentSection(
               title: "Short-Term Memory Verbal Recall: Orientation",
               guide: "N = 5, E = 4, I < 4",
-              rawScore: "Raw score: ${scoreModel.shorttermMemoryVerbalScore}/5",
+              rawScore: "Raw score: ${scoreModel.shorttermMemoryVerbalScore}/6",
               result: convertResponseToString(
                   radioValueResultToString(scoreModel.shorttermMemoryVerbal))));
 
