@@ -30,6 +30,11 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
   void initState() {
     super.initState();
     initFromProvider();
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
     // Preload images to avoid loading delay
     _preloadImages();
   }
