@@ -177,18 +177,19 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
                 width: width,
                 child: Card(
                   elevation: 10.0,
+                  color: Color(0xFFF5F5DC),
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                            "Name: ${scoreModel.patientName.isNotEmpty ? scoreModel.patientName[0].toUpperCase() + scoreModel.patientName.substring(1) : ''}"),
+                            "Name: ${scoreModel.patientName.isEmpty ? 'No Name Provided' : scoreModel.patientName}"),
                         Text("Handedness: ${scoreModel.handedness}"),
                         Text(
                             "Date of Assessment: ${format.format(scoreModel.assessmentDate)}"),
                         Text(
-                            "Assessor: ${scoreModel.assessorName.isNotEmpty ? scoreModel.assessorName[0].toUpperCase() + scoreModel.assessorName.substring(1) : ''}"),
+                            "Assessor: ${scoreModel.assessorName.isEmpty ? 'No Name Provided' : scoreModel.assessorName}"),
                       ],
                     ),
                   ),
@@ -199,544 +200,290 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
               padding: const EdgeInsets.all(8.0),
               child: Card(
                 elevation: 10.0,
+                color: Color(0xFFF5F5DC),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Table(
-                    defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                    border: TableBorder.all(),
-                    columnWidths: {
-                      0: FlexColumnWidth(0.4),
-                      1: FlexColumnWidth(0.3),
-                      2: FlexColumnWidth(0.15),
-                      3: FlexColumnWidth(0.15)
-                    },
-                    children: [
-                      TableRow(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("Task"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("Scoring Guide"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("Result"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("N / E / I"),
-                        ),
-                      ]),
-                      // Language Comprehension row
-                      // TableRow(children: [
-                      //   Padding(
-                      //     padding: const EdgeInsets.all(8.0),
-                      //     child:
-                      //         Text("Language Comprehension: 3 Stage Command"),
-                      //   ),
-                      //   Padding(
-                      //     padding: const EdgeInsets.all(8.0),
-                      //     child: Text(
-                      //         "E (Equivocal) = some difficulty, I (Impaired) = 1 or more clear errors"),
-                      //   ),
-                      //   Padding(
-                      //     padding: const EdgeInsets.all(8.0),
-                      //     child: Text(
-                      //       "${3 - scoreModel.languageComprehensionRadioValue}",
-                      //       textAlign: TextAlign.center,
-                      //     ),
-                      //   ),
-                      //   Padding(
-                      //     padding: const EdgeInsets.all(8.0),
-                      //     child: Text(
-                      //       radioValueResultToString(
-                      //           scoreModel.languageComprehensionRadioValue),
-                      //       textAlign: TextAlign.center,
-                      //     ),
-                      //   ),
-                      // ]),
-                      // Working Memory Verbal Trial 1
-                      TableRow(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              "Working Memory VerbalTrial 1: 10 Word Recall"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("N > 6, E = 5-6, I < 5"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "${scoreModel.trialOneScore}",
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            valueTrial12ResultToString(
-                                scoreModel.trialOneScore),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ]),
-                      // Short-term Memory Verbal Trial 2
-                      TableRow(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              "Short-term Memory Verbal Trial 2: 10 Word Recall"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("N > 6, E = 5-6, I < 5"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "${scoreModel.trialTwoScore}",
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            valueTrial12ResultToString(
-                                scoreModel.trialTwoScore),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ]),
-                      // Short-term Memory Verbal Trial 3
-                      TableRow(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              "Short-term Memory Verbal Trial 3: 10 Word Recall"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("N > 7, E = 5-7, I < 5"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "${scoreModel.trialThreeScore}",
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            valueTrial3ResultToString(
-                                scoreModel.trialThreeScore),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ]),
-                      // Visuospatial & Praxis: Line Drawing Copy
-                      TableRow(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child:
-                              Text("Visuospatial & Praxis: Line Drawing Copy"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("N > 6, E = 6, I < 6"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "",
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            valueVisualResultToString(),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ]),
-                      // Attention: Vigilance Test
-                      TableRow(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("Attention: Vigilance Test"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              "N = no mistakes, E = one mistake and I = > 1 mistake"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "",
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            radioValueResultToString(scoreModel.attention),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ]),
-                      // Executive: Animal Naming Task
-                      TableRow(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("Executive: Animal Naming Task"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(">14 = N; 12-14 = E;  <12 =I"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "${scoreModel.executiveAnimalNamingCount}",
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            radioValueResultToString(
-                                scoreModel.executiveAnimalNaming),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ]),
-                      // Executive: Luria Alternating Hand Movements
-                      TableRow(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              "Executive: Luria Alternating Hand Movements"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              "N =  3 cycles without mistakes; E = able to do 1-2 cycles; I = unable to complete task"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "${scoreModel.executiveLuriaScore}",
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            radioValueResultToString(scoreModel.executiveLuria),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ]),
-                      // Executive: Serial Order Reversal Task
-                      TableRow(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("Executive: Serial Order Reversal Task"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("N = no errors; E = 1 error; I >1 error"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "${scoreModel.executiveSerialScore}",
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            radioValueResultToString(
-                                scoreModel.executiveSerial),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ]),
-                      // Short-Term Memory Verbal Recall: Orientation
-                      TableRow(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              "Short-Term Memory Verbal Recall: Orientation"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("N = 5, E = 4, I < 4"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "${scoreModel.shorttermMemoryVerbalScore}",
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            radioValueResultToString(
-                                scoreModel.shorttermMemoryVerbal),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ]),
-                      // Praxis: Finger-hand Dexterity: Right
-                      TableRow(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("Praxis: Finger-hand Dexterity: Right"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              "N = no errors; E = some difficulty; I = clear difficulty"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "",
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            radioValueResultToString(scoreModel.praxisRight),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ]),
-                      // Praxis: Finger-hand Dexterity: Left
-                      TableRow(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("Praxis: Finger-hand Dexterity: Left"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              "N = no errors; E = some difficulty; I = clear difficulty"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "",
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            radioValueResultToString(scoreModel.praxisLeft),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ]),
-                      // Short-Term Memory Verbal: Delayed Recall Of 10 Words
-                      TableRow(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              "Short-Term Memory Verbal: Delayed Recall Of 10 Words"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("N > 5, E = 5, I < 5"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "${scoreModel.tenWordDelay}",
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            valueDelayResultToString(scoreModel.tenWordDelay),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ]),
-                      // Short-Term Memory Verbal: Recognition: Total Score
-                      TableRow(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              "Short-Term Memory Verbal Recognition: Total Score"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("N > 5, E = 5, I < 5"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "${scoreModel.scoreVerbalRecognitionMemoryTenWords}",
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            valueDelayResultToString(scoreModel
-                                .scoreVerbalRecognitionMemoryTenWords),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ]),
-                      // Short-Term Memory Visual: Line Drawing Recall
-                      TableRow(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              "Short-Term Memory Visual: Line Drawing Recall"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("N > 5, E = 5, I < 5"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "",
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            valueVisualResultToString(),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ]),
-                      // Anomia: Naming Line Drawings
-                      TableRow(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("Anomia: Naming Line Drawings"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child:
-                              Text("N = all correct, E = 1 error, I >1 error"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "3",
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            radioValueResultToString(scoreModel.anomiaAgnosia),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ]),
-                      // Agnosia: Recognition of Line Drawings
-                      TableRow(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("Agnosia: Recognition of Line Drawings"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child:
-                              Text("N = all correct, E = 1 error, I >1 error"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "3",
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            radioValueResultToString(scoreModel.agnosia),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ]),
-                      // Executive: Design Fluency
-                      TableRow(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("Executive: Design Fluency"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              "N > 7 drawings, E = 5-7 drawings, I< 5 drawings"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "",
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            radioValueResultToString(scoreModel.executive),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ]),
-                      // Spoken Language
-                      TableRow(children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text("Spoken Language"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                              "N = normal speech, E = equivocal, I = definite impairment"),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            "3",
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            radioValueResultToString(scoreModel.spokenLanguage),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      ]),
-                    ],
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    'Some tasks have a numerical raw score. Other tasks provide an estimate based on clinical judgement which is indicated by the word "Clinical" in the table below.',
+                    style: TextStyle(fontSize: 14),
                   ),
                 ),
               ),
             ),
+            // Attention & Concentration Domain
+            _buildDomainCard(
+              'Attention & Concentration',
+              [
+                _buildTaskRow(
+                  'Attention: Vigilance Test',
+                  'N = no mistakes, E = one mistake and I = > 1 mistake',
+                  scoreModel.attentionMistakes.toString(),
+                  radioValueResultToString(scoreModel.attention),
+                ),
+              ],
+              scoreModel,
+            ),
+            // Language Domain
+            _buildDomainCard(
+              'Language',
+              [
+                _buildTaskRow(
+                  'Anomia: Naming Pictures',
+                  'N = all correct, E = 1 error, I >1 error',
+                  'Clinical',
+                  radioValueResultToString(scoreModel.anomiaAgnosia),
+                ),
+                _buildTaskRow(
+                  'Spoken Language',
+                  'N = Normal speech, E = Equivocal, I = definite impairment',
+                  'Clinical',
+                  radioValueResultToString(scoreModel.spokenLanguage),
+                ),
+              ],
+              scoreModel,
+            ),
+            // Verbal Working Memory Domain
+            _buildDomainCard(
+              'Verbal Working Memory',
+              [
+                _buildTaskRow(
+                  'Working Memory Verbal Trial 1: 10 Word Recall',
+                  'N > 6, E = 5-6, I < 5',
+                  scoreModel.trialOneScore.toString(),
+                  valueTrial2ResultToString(scoreModel.trialOneScore),
+                ),
+              ],
+              scoreModel,
+            ),
+            // Verbal Short-Term Memory Domain
+            _buildDomainCard(
+              'Verbal Short-Term Memory',
+              [
+                _buildTaskRow(
+                  'Short-term Memory Verbal Trial 2: 10 Word Recall',
+                  'N > 6, E = 5-6, I < 5',
+                  scoreModel.trialTwoScore.toString(),
+                  valueTrial2ResultToString(scoreModel.trialTwoScore),
+                ),
+                _buildTaskRow(
+                  'Short-term Memory Verbal Trial 3: 10 Word Recall',
+                  'N > 7, E = 5-7, I < 5',
+                  scoreModel.trialThreeScore.toString(),
+                  valueTrial3ResultToString(scoreModel.trialThreeScore),
+                ),
+                _buildTaskRow(
+                  'Short-Term Memory Verbal: Delayed Recall Of 10 Words',
+                  'N >5, E = 5, I < 5',
+                  scoreModel.tenWordDelay.toString(),
+                  valueDelayResultToString(scoreModel.tenWordDelay),
+                ),
+                _buildTaskRow(
+                  'Short-Term Memory Verbal Recognition: Total Score',
+                  'N > 16, E = 14 - 16, I < 14',
+                  scoreModel.scoreVerbalRecognitionMemoryTenWords.toString(),
+                  valueRecognitionResultToString(
+                      scoreModel.scoreVerbalRecognitionMemoryTenWords),
+                ),
+                _buildTaskRow(
+                  'Short-Term Memory Verbal Recall: Orientation',
+                  'N = 5, E = 4, I < 4',
+                  scoreModel.shorttermMemoryVerbalScore.toString(),
+                  valueOrientationResultToString(
+                      scoreModel.shorttermMemoryVerbalScore),
+                ),
+              ],
+              scoreModel,
+            ),
+            // Visual Short-Term Memory Domain
+            _buildDomainCard(
+              'Visual Short-Term Memory',
+              [
+                _buildTaskRow(
+                  'Short-term Memory Visual: Line Drawing Recall',
+                  'N >5, E = 5, I < 5',
+                  ((3 - scoreModel.shorttermMemoryVisualImage1) +
+                          (3 - scoreModel.shorttermMemoryVisualImage2) +
+                          (3 - scoreModel.shorttermMemoryVisualImage3))
+                      .toString(),
+                  valueVisualResultToString(scoreModel),
+                ),
+              ],
+              scoreModel,
+            ),
+            // Praxis Domain
+            _buildDomainCard(
+              'Praxis',
+              [
+                _buildTaskRow(
+                  'Praxis: Finger-hand Dexterity: Right',
+                  'N = No errors, E = Some difficulty, I = Clear difficulty',
+                  'Clinical',
+                  radioValueResultToString(scoreModel.praxisRight),
+                ),
+                _buildTaskRow(
+                  'Praxis: Finger-hand Dexterity: Left',
+                  'N = no errors, E = some difficulty, I = Clear difficulty',
+                  'Clinical',
+                  radioValueResultToString(scoreModel.praxisLeft),
+                ),
+                _buildTaskRow(
+                  'Visuospatial & Praxis: Line Drawing Copy',
+                  'N > 6, E = 6, I < 6',
+                  ((3 - scoreModel.shorttermMemoryVisualImage1) +
+                          (3 - scoreModel.shorttermMemoryVisualImage2) +
+                          (3 - scoreModel.shorttermMemoryVisualImage3))
+                      .toString(),
+                  valueVisualResultToString(scoreModel),
+                ),
+              ],
+              scoreModel,
+            ),
+            // Gnosis Domain
+            _buildDomainCard(
+              'Gnosis',
+              [
+                _buildTaskRow(
+                  'Agnosia: Recognition of Pictures',
+                  'N = all correct, E = 1 error, I >1 error',
+                  'Clinical',
+                  radioValueResultToString(scoreModel.agnosia),
+                ),
+                _buildTaskRow(
+                  'Visuospatial & Praxis: Line Drawing Copy',
+                  'N > 6, E = 6, I < 6',
+                  ((3 - scoreModel.visuospatialPraxisImage1) +
+                          (3 - scoreModel.visuospatialPraxisImage2) +
+                          (3 - scoreModel.visuospatialPraxisImage3))
+                      .toString(),
+                  valueVisualResultToString(scoreModel),
+                ),
+              ],
+              scoreModel,
+            ),
+            // Executive Function Domain
+            _buildDomainCard(
+              'Executive Function',
+              [
+                _buildTaskRow(
+                  'Executive: Animal Naming Task',
+                  '>14 = N, 12-14 = E, <12 =I',
+                  scoreModel.executiveAnimalNamingCount.toString(),
+                  radioValueResultToString(scoreModel.executiveAnimalNaming),
+                ),
+                _buildTaskRow(
+                  'Executive: Design Fluency',
+                  'N > 7 drawings, E = 5-7 drawings, I< 5 drawings',
+                  scoreModel.executive.toString(),
+                  radioValueResultToString(scoreModel.executive),
+                ),
+                _buildTaskRow(
+                  'Executive: Luria Alternating Hand Movements',
+                  'N = 3 cycles without mistakes, E = able to do 1-2 cycles, I = unable to complete task',
+                  scoreModel.executiveLuriaScore.toString(),
+                  radioValueResultToString(scoreModel.executiveLuria),
+                ),
+                _buildTaskRow(
+                  'Executive: Serial Order Reversal Task',
+                  'N = no errors, E = 1 error, I > 1 error',
+                  scoreModel.executiveSerialScore.toString(),
+                  radioValueResultToString(scoreModel.executiveSerial),
+                ),
+              ],
+              scoreModel,
+            ),
           ],
+        ),
+      ],
+    );
+  }
+
+  Widget _buildDomainCard(
+      String title, List<TableRow> rows, MicaScoreModel scoreModel) {
+    // Determine if this domain uses "Result" or "Estimate" based on the title
+    bool useResult = title == 'Verbal Short-Term Memory' ||
+        title == 'Visual Short-Term Memory';
+
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Card(
+        elevation: 10.0,
+        color: Color(0xFFF5F5DC),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(height: 10),
+              Table(
+                defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                border: TableBorder.all(color: Colors.grey),
+                columnWidths: {
+                  0: FlexColumnWidth(2.5),
+                  1: FlexColumnWidth(2.5),
+                  2: FlexColumnWidth(1.0),
+                  3: FlexColumnWidth(1.0)
+                },
+                children: [
+                  TableRow(
+                    decoration: BoxDecoration(color: Colors.grey[300]),
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text('Task',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text('Scoring Guide',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text(useResult ? 'Result' : 'Estimate',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text('N / E / I',
+                            style: TextStyle(fontWeight: FontWeight.bold)),
+                      ),
+                    ],
+                  ),
+                  ...rows,
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  TableRow _buildTaskRow(String task, String guide, String result, String nei) {
+    return TableRow(
+      children: [
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(task),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(guide),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(result, textAlign: TextAlign.center),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(nei, textAlign: TextAlign.center),
         ),
       ],
     );
@@ -928,7 +675,6 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
       elevation: 10.0,
       color: languageCardColor(
         scoreModel.spokenLanguage,
-        scoreModel.languageComprehensionRadioValue,
         scoreModel.executiveAnimalNaming,
       ),
       child: Padding(
@@ -1329,15 +1075,10 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
     }
   }
 
-  Color languageCardColor(
-      int valueSpokenLanguage, int valueComprehension, int valueExecutive) {
-    if (valueSpokenLanguage == 2 ||
-        valueComprehension == 2 ||
-        valueExecutive == 2) {
+  Color languageCardColor(int valueSpokenLanguage, int valueExecutive) {
+    if (valueSpokenLanguage == 2 || valueExecutive == 2) {
       return Colors.red;
-    } else if (valueSpokenLanguage == 1 ||
-        valueComprehension == 1 ||
-        valueExecutive == 1) {
+    } else if (valueSpokenLanguage == 1 || valueExecutive == 1) {
       return Colors.yellow;
     } else {
       return Colors.green;
@@ -1345,9 +1086,9 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
   }
 
   Color verbalWorkingMemoryCardColor(int value) {
-    if (value < 5) {
+    if (value < 4) {
       return Colors.red;
-    } else if (value >= 5 && value <= 6) {
+    } else if (value == 4 || value == 5) {
       return Colors.yellow;
     } else {
       return Colors.green;
@@ -1365,9 +1106,9 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
   }
 
   Color valueTrial3ResultToColor(int valueTotal) {
-    if (valueTotal < 5) {
+    if (valueTotal < 6) {
       return Colors.red;
-    } else if (valueTotal >= 5 && valueTotal <= 7) {
+    } else if (valueTotal == 6 || valueTotal == 7) {
       return Colors.yellow;
     } else {
       return Colors.green;
@@ -1375,9 +1116,9 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
   }
 
   Color valueDelayResultToColor(int valueTotal) {
-    if (valueTotal < 5) {
+    if (valueTotal < 7) {
       return Colors.red;
-    } else if (valueTotal == 5) {
+    } else if (valueTotal == 7) {
       return Colors.yellow;
     } else {
       return Colors.green;
@@ -1460,9 +1201,19 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
     }
   }
 
-  String valueVisualResultToString() {
-    // This is a placeholder - in the real implementation, it would use the combined scores
-    return "N";
+  String valueVisualResultToString(MicaScoreModel scoreModel) {
+    int score1 = 3 - scoreModel.shorttermMemoryVisualImage1;
+    int score2 = 3 - scoreModel.shorttermMemoryVisualImage2;
+    int score3 = 3 - scoreModel.shorttermMemoryVisualImage3;
+    int combinedScore = score1 + score2 + score3;
+
+    if (combinedScore > 7) {
+      return "Normal";
+    } else if (combinedScore < 7) {
+      return "Impaired";
+    } else {
+      return "Equivocal";
+    }
   }
 
   Color praxisCardColor(MicaScoreModel scoreModel) {
@@ -1527,7 +1278,17 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
     }
   }
 
-  String valueTrial12ResultToString(int valueTotal) {
+  String valueTrial1ResultToString(int valueTotal) {
+    if (valueTotal < 4) {
+      return "I";
+    } else if (valueTotal == 5 || valueTotal == 4) {
+      return "E";
+    } else {
+      return "N";
+    }
+  }
+
+  String valueTrial2ResultToString(int valueTotal) {
     if (valueTotal < 5) {
       return "I";
     } else if (valueTotal >= 5 && valueTotal <= 6) {
@@ -1538,9 +1299,9 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
   }
 
   String valueTrial3ResultToString(int valueTotal) {
-    if (valueTotal < 5) {
+    if (valueTotal < 6) {
       return "I";
-    } else if (valueTotal >= 5 && valueTotal <= 7) {
+    } else if (valueTotal == 6 || valueTotal == 7) {
       return "E";
     } else {
       return "N";
@@ -1551,6 +1312,26 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
     if (valueTotal < 5) {
       return "I";
     } else if (valueTotal == 5) {
+      return "E";
+    } else {
+      return "N";
+    }
+  }
+
+  String valueRecognitionResultToString(int valueTotal) {
+    if (valueTotal < 14) {
+      return "I";
+    } else if (valueTotal >= 14 && valueTotal <= 16) {
+      return "E";
+    } else {
+      return "N";
+    }
+  }
+
+  String valueOrientationResultToString(int valueTotal) {
+    if (valueTotal < 4) {
+      return "I";
+    } else if (valueTotal == 4) {
       return "E";
     } else {
       return "N";
@@ -1578,30 +1359,32 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
 
     // Working Memory Verbal Trial 1
     shareDoc += "Working Memory VerbalTrial 1: Ten Word Recall\n\n";
-    shareDoc += "N > 6, E = 5 - 6, I < 5\n\n";
+    shareDoc += "N > 5, E = 4-5, I < 4\n\n";
     shareDoc += "  Raw score: ${scoreModel.trialOneScore}/10\n";
     shareDoc +=
-        "  ${convertResponseToString(valueTrial12ResultToString(scoreModel.trialOneScore))}\n\n";
+        "  ${convertResponseToString(valueTrial1ResultToString(scoreModel.trialOneScore))}\n\n";
 
     // Short-term Memory Verbal Trial 2
     shareDoc += "Short-term Memory Verbal Trial 2: Ten Word Recall\n\n";
     shareDoc += "N > 6, E = 5 - 6, I < 5\n\n";
     shareDoc += "  Raw score: ${scoreModel.trialTwoScore}/10\n";
     shareDoc +=
-        "  ${convertResponseToString(valueTrial12ResultToString(scoreModel.trialTwoScore))}\n\n";
+        "  ${convertResponseToString(valueTrial2ResultToString(scoreModel.trialTwoScore))}\n\n";
 
     // Short-term Memory Verbal Trial 3
     shareDoc += "Short-term Memory Verbal Trial 3: Ten Word Recall\n\n";
-    shareDoc += "N > 7, E = 5 - 7, I < 5\n\n";
+    shareDoc += "N > 7, E = 6-7, I < 6\n\n";
     shareDoc += "  Raw score: ${scoreModel.trialThreeScore}/10\n";
     shareDoc +=
         "  ${convertResponseToString(valueTrial3ResultToString(scoreModel.trialThreeScore))}\n\n";
 
     // Visuospatial & Praxis: Line Drawing Copy
     shareDoc += "Visuospatial & Praxis: Line Drawing Copy\n\n";
-    shareDoc += "N > 6, E = 6, I < 6\n\n";
-    shareDoc += "  Raw score: 9/9\n";
-    shareDoc += "  ${convertResponseToString(valueVisualResultToString())}\n\n";
+    shareDoc += "N > 7, E = 7, I < 7\n\n";
+    shareDoc +=
+        "  Raw score: ${(scoreModel.visuospatialPraxisImage1 + scoreModel.visuospatialPraxisImage2 + scoreModel.visuospatialPraxisImage3)}/9\n";
+    shareDoc +=
+        "  ${convertResponseToString(valueVisualResultToString(scoreModel))}\n\n";
 
     // Attention: Vigilance Test
     shareDoc += "Attention: Vigilance Test\n\n";
@@ -1645,14 +1428,14 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
     // Praxis: Finger-hand Dexterity: Right
     shareDoc += "Praxis: Finger-hand Dexterity: Right\n\n";
     shareDoc += "N = no errors, E = some difficulty, I = clear difficulty\n\n";
-    shareDoc += "  Raw score: 3/3\n";
+    shareDoc += "  Raw score: ${scoreModel.praxisRight}/3\n";
     shareDoc +=
         "  ${convertResponseToString(radioValueResultToString(scoreModel.praxisRight))}\n\n";
 
     // Praxis: Finger-hand Dexterity: Left
     shareDoc += "Praxis: Finger-hand Dexterity: Left\n\n";
     shareDoc += "N = no errors, E = some difficulty, I = clear difficulty\n\n";
-    shareDoc += "  Raw score: 3/3\n";
+    shareDoc += "  Raw score: ${scoreModel.praxisLeft}/3\n";
     shareDoc +=
         "  ${convertResponseToString(radioValueResultToString(scoreModel.praxisLeft))}\n\n";
 
@@ -1678,34 +1461,36 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
     // Short-Term Memory Visual: Line Drawing Recall
     shareDoc += "Short-Term Memory Visual: Line Drawing Recall\n\n";
     shareDoc += "N > 5, E = 5, I < 5\n\n";
-    shareDoc += "  Raw score: 9/9\n";
-    shareDoc += "  ${convertResponseToString(valueVisualResultToString())}\n\n";
+    shareDoc +=
+        "  Raw score: ${(scoreModel.shorttermMemoryVisualImage1 + scoreModel.shorttermMemoryVisualImage2 + scoreModel.shorttermMemoryVisualImage3)}/9\n";
+    shareDoc +=
+        "  ${convertResponseToString(valueVisualResultToString(scoreModel))}\n\n";
 
     // Anomia: Naming Line Drawings
     shareDoc += "Anomia: Naming Line Drawings\n\n";
     shareDoc += "N = all correct, E = 1 error, I > 1 error\n\n";
-    shareDoc += "  Raw Score: 3/3\n";
+    shareDoc += "  Raw Score: ${scoreModel.anomiaAgnosia}/3\n";
     shareDoc +=
         "  ${convertResponseToString(radioValueResultToString(scoreModel.anomiaAgnosia))}\n\n";
 
     // Agnosia: Recognition of Line Drawings
     shareDoc += "Agnosia: Recognition of Line Drawings\n\n";
     shareDoc += "N = all correct, E = 1 error, I > 1 error\n\n";
-    shareDoc += "  Raw Score: 3/3\n";
+    shareDoc += "  Raw Score: ${scoreModel.agnosia}/3\n";
     shareDoc +=
         "  ${convertResponseToString(radioValueResultToString(scoreModel.agnosia))}\n\n";
 
     // Executive: Design Fluency
     shareDoc += "Executive: Design Fluency\n\n";
     shareDoc += "N > 7 drawings, E = 5 - 7 drawings, I < 5 drawings\n\n";
-    shareDoc += "  Raw Score: 3/3\n";
+    shareDoc += "  Raw Score: ${scoreModel.executive}/3\n";
     shareDoc +=
         "  ${convertResponseToString(radioValueResultToString(scoreModel.executive))}\n\n";
 
     // Spoken Language
     shareDoc += "Spoken Language\n\n";
     shareDoc += "N = normal speech, E = equivocal, I definite impairment\n\n";
-    shareDoc += "  Raw Score: 3/3\n";
+    shareDoc += "  Raw Score: ${scoreModel.spokenLanguage}/3\n";
     shareDoc +=
         "  ${convertResponseToString(radioValueResultToString(scoreModel.spokenLanguage))}\n\n";
 
@@ -1852,10 +1637,10 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
           // Working Memory VerbalTrial 1
           widgets.add(addAssessmentSection(
               title: "Working Memory VerbalTrial 1: Ten Word Recall",
-              guide: "N > 6, E = 5 - 6, I < 5",
+              guide: "N > 5, E = 4 - 5, I < 4",
               rawScore: "Raw score: ${scoreModel.trialOneScore}/10",
               result: convertResponseToString(
-                  valueTrial12ResultToString(scoreModel.trialOneScore))));
+                  valueTrial2ResultToString(scoreModel.trialOneScore))));
 
           // Short-term Memory Verbal Trial 2
           widgets.add(addAssessmentSection(
@@ -1863,12 +1648,12 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
               guide: "N > 6, E = 5 - 6, I < 5",
               rawScore: "Raw score: ${scoreModel.trialTwoScore}/10",
               result: convertResponseToString(
-                  valueTrial12ResultToString(scoreModel.trialTwoScore))));
+                  valueTrial2ResultToString(scoreModel.trialTwoScore))));
 
           // Short-term Memory Verbal Trial 3
           widgets.add(addAssessmentSection(
               title: "Short-term Memory Verbal Trial 3: Ten Word Recall",
-              guide: "N > 7, E = 5 - 7, I < 5",
+              guide: "N > 7, E = 6 - 7, I < 6",
               rawScore: "Raw score: ${scoreModel.trialThreeScore}/10",
               result: convertResponseToString(
                   valueTrial3ResultToString(scoreModel.trialThreeScore))));
@@ -1876,9 +1661,11 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
           // Visuospatial & Praxis
           widgets.add(addAssessmentSection(
               title: "Visuospatial & Praxis: Line Drawing Copy",
-              guide: "N > 6, E = 6, I < 6",
-              rawScore: "Raw score: 9/9",
-              result: convertResponseToString(valueVisualResultToString())));
+              guide: "N > 7, E = 7, I < 7",
+              rawScore:
+                  "Raw score: ${scoreModel.visuospatialPraxisImage1 + scoreModel.visuospatialPraxisImage2 + scoreModel.visuospatialPraxisImage3}/9",
+              result: convertResponseToString(
+                  valueVisualResultToString(scoreModel))));
 
           // Attention
           widgets.add(addAssessmentSection(
@@ -1917,7 +1704,7 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
           // Short-Term Memory
           widgets.add(addAssessmentSection(
               title: "Short-Term Memory Verbal Recall: Orientation",
-              guide: "N = 5, E = 4, I < 4",
+              guide: "N > 5, E = 5, I < 5",
               rawScore: "Raw score: ${scoreModel.shorttermMemoryVerbalScore}/6",
               result: convertResponseToString(
                   radioValueResultToString(scoreModel.shorttermMemoryVerbal))));
@@ -1926,14 +1713,14 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
           widgets.add(addAssessmentSection(
               title: "Praxis: Finger-hand Dexterity: Right",
               guide: "N = no errors, E = some difficulty, I = clear difficulty",
-              rawScore: "Raw score: 3/3",
+              rawScore: "Raw score: ${scoreModel.praxisRight}/3",
               result: convertResponseToString(
                   radioValueResultToString(scoreModel.praxisRight))));
 
           widgets.add(addAssessmentSection(
               title: "Praxis: Finger-hand Dexterity: Left",
               guide: "N = no errors, E = some difficulty, I = clear difficulty",
-              rawScore: "Raw score: 3/3",
+              rawScore: "Raw score: ${scoreModel.praxisLeft}/3",
               result: convertResponseToString(
                   radioValueResultToString(scoreModel.praxisLeft))));
 
@@ -1956,35 +1743,37 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
           widgets.add(addAssessmentSection(
               title: "Short-Term Memory Visual: Line Drawing Recall",
               guide: "N > 5, E = 5, I < 5",
-              rawScore: "Raw score: 9/9",
-              result: convertResponseToString(valueVisualResultToString())));
+              rawScore:
+                  "Raw score: ${scoreModel.shorttermMemoryVisualImage1 + scoreModel.shorttermMemoryVisualImage2 + scoreModel.shorttermMemoryVisualImage3}/9",
+              result: convertResponseToString(
+                  valueVisualResultToString(scoreModel))));
 
           // Final sections
           widgets.add(addAssessmentSection(
               title: "Anomia: Naming Line Drawings",
               guide: "N = all correct, E = 1 error, I > 1 error",
-              rawScore: "Raw Score: 3/3",
+              rawScore: "Raw Score: ${scoreModel.anomiaAgnosia}/3",
               result: convertResponseToString(
                   radioValueResultToString(scoreModel.anomiaAgnosia))));
 
           widgets.add(addAssessmentSection(
               title: "Agnosia: Recognition of Line Drawings",
               guide: "N = all correct, E = 1 error, I > 1 error",
-              rawScore: "Raw Score: 3/3",
+              rawScore: "Raw Score: ${scoreModel.agnosia}/3",
               result: convertResponseToString(
                   radioValueResultToString(scoreModel.agnosia))));
 
           widgets.add(addAssessmentSection(
               title: "Executive: Design Fluency",
               guide: "N > 7 drawings, E = 5 - 7 drawings, I < 5 drawings",
-              rawScore: "Raw Score: 3/3",
+              rawScore: "Raw Score: ${scoreModel.executive}/3",
               result: convertResponseToString(
                   radioValueResultToString(scoreModel.executive))));
 
           widgets.add(addAssessmentSection(
               title: "Spoken Language",
               guide: "N = normal speech, E = equivocal, I definite impairment",
-              rawScore: "Raw Score: 3/3",
+              rawScore: "Raw Score: ${scoreModel.spokenLanguage}/3",
               result: convertResponseToString(
                   radioValueResultToString(scoreModel.spokenLanguage))));
 
