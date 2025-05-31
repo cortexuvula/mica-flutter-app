@@ -250,7 +250,7 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
                   'Working Memory Verbal Trial 1: 10 Word Recall',
                   'N > 6, E = 5-6, I < 5',
                   scoreModel.trialOneScore.toString(),
-                  valueTrial12ResultToString(scoreModel.trialOneScore),
+                  valueTrial2ResultToString(scoreModel.trialOneScore),
                 ),
               ],
               scoreModel,
@@ -263,7 +263,7 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
                   'Short-term Memory Verbal Trial 2: 10 Word Recall',
                   'N > 6, E = 5-6, I < 5',
                   scoreModel.trialTwoScore.toString(),
-                  valueTrial12ResultToString(scoreModel.trialTwoScore),
+                  valueTrial2ResultToString(scoreModel.trialTwoScore),
                 ),
                 _buildTaskRow(
                   'Short-term Memory Verbal Trial 3: 10 Word Recall',
@@ -675,7 +675,6 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
       elevation: 10.0,
       color: languageCardColor(
         scoreModel.spokenLanguage,
-        scoreModel.languageComprehensionRadioValue,
         scoreModel.executiveAnimalNaming,
       ),
       child: Padding(
@@ -1076,15 +1075,10 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
     }
   }
 
-  Color languageCardColor(
-      int valueSpokenLanguage, int valueComprehension, int valueExecutive) {
-    if (valueSpokenLanguage == 2 ||
-        valueComprehension == 2 ||
-        valueExecutive == 2) {
+  Color languageCardColor(int valueSpokenLanguage, int valueExecutive) {
+    if (valueSpokenLanguage == 2 || valueExecutive == 2) {
       return Colors.red;
-    } else if (valueSpokenLanguage == 1 ||
-        valueComprehension == 1 ||
-        valueExecutive == 1) {
+    } else if (valueSpokenLanguage == 1 || valueExecutive == 1) {
       return Colors.yellow;
     } else {
       return Colors.green;
@@ -1092,9 +1086,9 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
   }
 
   Color verbalWorkingMemoryCardColor(int value) {
-    if (value < 5) {
+    if (value < 4) {
       return Colors.red;
-    } else if (value >= 5 && value <= 6) {
+    } else if (value == 4 || value == 5) {
       return Colors.yellow;
     } else {
       return Colors.green;
@@ -1112,9 +1106,9 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
   }
 
   Color valueTrial3ResultToColor(int valueTotal) {
-    if (valueTotal < 5) {
+    if (valueTotal < 6) {
       return Colors.red;
-    } else if (valueTotal >= 5 && valueTotal <= 7) {
+    } else if (valueTotal == 6 || valueTotal == 7) {
       return Colors.yellow;
     } else {
       return Colors.green;
@@ -1122,9 +1116,9 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
   }
 
   Color valueDelayResultToColor(int valueTotal) {
-    if (valueTotal < 5) {
+    if (valueTotal < 7) {
       return Colors.red;
-    } else if (valueTotal == 5) {
+    } else if (valueTotal == 7) {
       return Colors.yellow;
     } else {
       return Colors.green;
@@ -1213,9 +1207,9 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
     int score3 = 3 - scoreModel.shorttermMemoryVisualImage3;
     int combinedScore = score1 + score2 + score3;
 
-    if (combinedScore > 5) {
+    if (combinedScore > 7) {
       return "Normal";
-    } else if (combinedScore < 5) {
+    } else if (combinedScore < 7) {
       return "Impaired";
     } else {
       return "Equivocal";
@@ -1284,7 +1278,17 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
     }
   }
 
-  String valueTrial12ResultToString(int valueTotal) {
+  String valueTrial1ResultToString(int valueTotal) {
+    if (valueTotal < 4) {
+      return "I";
+    } else if (valueTotal == 5 || valueTotal == 4) {
+      return "E";
+    } else {
+      return "N";
+    }
+  }
+
+  String valueTrial2ResultToString(int valueTotal) {
     if (valueTotal < 5) {
       return "I";
     } else if (valueTotal >= 5 && valueTotal <= 6) {
@@ -1295,9 +1299,9 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
   }
 
   String valueTrial3ResultToString(int valueTotal) {
-    if (valueTotal < 5) {
+    if (valueTotal < 6) {
       return "I";
-    } else if (valueTotal >= 5 && valueTotal <= 7) {
+    } else if (valueTotal == 6 || valueTotal == 7) {
       return "E";
     } else {
       return "N";
@@ -1355,28 +1359,28 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
 
     // Working Memory Verbal Trial 1
     shareDoc += "Working Memory VerbalTrial 1: Ten Word Recall\n\n";
-    shareDoc += "N > 6, E = 5 - 6, I < 5\n\n";
+    shareDoc += "N > 5, E = 4-5, I < 4\n\n";
     shareDoc += "  Raw score: ${scoreModel.trialOneScore}/10\n";
     shareDoc +=
-        "  ${convertResponseToString(valueTrial12ResultToString(scoreModel.trialOneScore))}\n\n";
+        "  ${convertResponseToString(valueTrial1ResultToString(scoreModel.trialOneScore))}\n\n";
 
     // Short-term Memory Verbal Trial 2
     shareDoc += "Short-term Memory Verbal Trial 2: Ten Word Recall\n\n";
     shareDoc += "N > 6, E = 5 - 6, I < 5\n\n";
     shareDoc += "  Raw score: ${scoreModel.trialTwoScore}/10\n";
     shareDoc +=
-        "  ${convertResponseToString(valueTrial12ResultToString(scoreModel.trialTwoScore))}\n\n";
+        "  ${convertResponseToString(valueTrial2ResultToString(scoreModel.trialTwoScore))}\n\n";
 
     // Short-term Memory Verbal Trial 3
     shareDoc += "Short-term Memory Verbal Trial 3: Ten Word Recall\n\n";
-    shareDoc += "N > 7, E = 5 - 7, I < 5\n\n";
+    shareDoc += "N > 7, E = 6-7, I < 6\n\n";
     shareDoc += "  Raw score: ${scoreModel.trialThreeScore}/10\n";
     shareDoc +=
         "  ${convertResponseToString(valueTrial3ResultToString(scoreModel.trialThreeScore))}\n\n";
 
     // Visuospatial & Praxis: Line Drawing Copy
     shareDoc += "Visuospatial & Praxis: Line Drawing Copy\n\n";
-    shareDoc += "N > 6, E = 6, I < 6\n\n";
+    shareDoc += "N > 7, E = 7, I < 7\n\n";
     shareDoc +=
         "  Raw score: ${(scoreModel.visuospatialPraxisImage1 + scoreModel.visuospatialPraxisImage2 + scoreModel.visuospatialPraxisImage3)}/9\n";
     shareDoc +=
@@ -1633,10 +1637,10 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
           // Working Memory VerbalTrial 1
           widgets.add(addAssessmentSection(
               title: "Working Memory VerbalTrial 1: Ten Word Recall",
-              guide: "N > 6, E = 5 - 6, I < 5",
+              guide: "N > 5, E = 4 - 5, I < 4",
               rawScore: "Raw score: ${scoreModel.trialOneScore}/10",
               result: convertResponseToString(
-                  valueTrial12ResultToString(scoreModel.trialOneScore))));
+                  valueTrial2ResultToString(scoreModel.trialOneScore))));
 
           // Short-term Memory Verbal Trial 2
           widgets.add(addAssessmentSection(
@@ -1644,12 +1648,12 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
               guide: "N > 6, E = 5 - 6, I < 5",
               rawScore: "Raw score: ${scoreModel.trialTwoScore}/10",
               result: convertResponseToString(
-                  valueTrial12ResultToString(scoreModel.trialTwoScore))));
+                  valueTrial2ResultToString(scoreModel.trialTwoScore))));
 
           // Short-term Memory Verbal Trial 3
           widgets.add(addAssessmentSection(
               title: "Short-term Memory Verbal Trial 3: Ten Word Recall",
-              guide: "N > 7, E = 5 - 7, I < 5",
+              guide: "N > 7, E = 6 - 7, I < 6",
               rawScore: "Raw score: ${scoreModel.trialThreeScore}/10",
               result: convertResponseToString(
                   valueTrial3ResultToString(scoreModel.trialThreeScore))));
@@ -1657,7 +1661,7 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
           // Visuospatial & Praxis
           widgets.add(addAssessmentSection(
               title: "Visuospatial & Praxis: Line Drawing Copy",
-              guide: "N > 6, E = 6, I < 6",
+              guide: "N > 7, E = 7, I < 7",
               rawScore:
                   "Raw score: ${scoreModel.visuospatialPraxisImage1 + scoreModel.visuospatialPraxisImage2 + scoreModel.visuospatialPraxisImage3}/9",
               result: convertResponseToString(
@@ -1700,7 +1704,7 @@ class TestSummaryWithProviderState extends State<TestSummaryWithProvider> {
           // Short-Term Memory
           widgets.add(addAssessmentSection(
               title: "Short-Term Memory Verbal Recall: Orientation",
-              guide: "N = 5, E = 4, I < 4",
+              guide: "N > 5, E = 5, I < 5",
               rawScore: "Raw score: ${scoreModel.shorttermMemoryVerbalScore}/6",
               result: convertResponseToString(
                   radioValueResultToString(scoreModel.shorttermMemoryVerbal))));
