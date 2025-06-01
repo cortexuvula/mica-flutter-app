@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/providers/mica_provider.dart';
-import 'package:mica/src/summary_with_provider.dart';
+import 'package:mica/src/summary/summary_with_provider_refactored.dart';
 import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/models/mica_score_model.dart';
@@ -237,10 +237,10 @@ class SpokenLanguageState extends State<SpokenLanguage> {
                             // Update the provider with the spoken language value
                             _updateProvider();
 
-                            // Navigate to the Provider-based summary page
+                            // Navigate to the refactored Provider-based summary page
                             NavigationHelper.navigateAndRemoveUntil(
                                 context,
-                                const TestSummaryWithProvider(),
+                                const TestSummaryWithProviderRefactored(),
                                 (Route<dynamic> route) => true);
                           },
                           child: const Text("Continue",

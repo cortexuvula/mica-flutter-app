@@ -1,218 +1,219 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:mica/src/summary_with_provider.dart';
+import 'package:mica/src/summary/summary_with_provider_refactored.dart';
+import 'package:mica/src/summary/assessment_color_utils.dart';
+import 'package:mica/src/summary/assessment_string_utils.dart';
+import 'package:mica/src/summary/services/share_service.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   late MicaScoreModel scoreModel;
-  late TestSummaryWithProviderState testState;
 
   setUp(() {
     scoreModel = MicaScoreModel();
-    testState = TestSummaryWithProviderState();
   });
 
   group('Color Calculation Tests', () {
-    group('attentionCardColor', () {
+    group('attentionColor', () {
       test('returns green for normal (0)', () {
-        expect(testState.attentionCardColor(0), Colors.green);
+        expect(AssessmentColorUtils.attentionColor(0), Colors.green);
       });
 
       test('returns yellow for equivocal (1)', () {
-        expect(testState.attentionCardColor(1), Colors.yellow);
+        expect(AssessmentColorUtils.attentionColor(1), Colors.yellow);
       });
 
       test('returns red for impaired (2)', () {
-        expect(testState.attentionCardColor(2), Colors.red);
+        expect(AssessmentColorUtils.attentionColor(2), Colors.red);
       });
     });
 
-    group('languageCardColor', () {
+    group('languageDomainColor', () {
       test('returns red if any value is impaired', () {
-        expect(testState.languageCardColor(2, 0), Colors.red);
-        expect(testState.languageCardColor(0, 2), Colors.red);
-        expect(testState.languageCardColor(2, 2), Colors.red);
+        expect(AssessmentColorUtils.languageDomainColor(2, 0), Colors.red);
+        expect(AssessmentColorUtils.languageDomainColor(0, 2), Colors.red);
+        expect(AssessmentColorUtils.languageDomainColor(2, 2), Colors.red);
       });
 
       test('returns yellow if any value is equivocal and none impaired', () {
-        expect(testState.languageCardColor(1, 0), Colors.yellow);
-        expect(testState.languageCardColor(0, 1), Colors.yellow);
-        expect(testState.languageCardColor(1, 1), Colors.yellow);
+        expect(AssessmentColorUtils.languageDomainColor(1, 0), Colors.yellow);
+        expect(AssessmentColorUtils.languageDomainColor(0, 1), Colors.yellow);
+        expect(AssessmentColorUtils.languageDomainColor(1, 1), Colors.yellow);
       });
 
       test('returns green if all values are normal', () {
-        expect(testState.languageCardColor(0, 0), Colors.green);
+        expect(AssessmentColorUtils.languageDomainColor(0, 0), Colors.green);
       });
     });
 
-    group('verbalWorkingMemoryCardColor', () {
-      test('returns red for value < 3', () {
-        expect(testState.verbalWorkingMemoryCardColor(0), Colors.red);
-        expect(testState.verbalWorkingMemoryCardColor(3), Colors.red);
-      });
-
-      test('returns yellow for value 4-5', () {
-        expect(testState.verbalWorkingMemoryCardColor(4), Colors.yellow);
-        expect(testState.verbalWorkingMemoryCardColor(5), Colors.yellow);
-      });
-
-      test('returns green for value > 5', () {
-        expect(testState.verbalWorkingMemoryCardColor(6), Colors.green);
-        expect(testState.verbalWorkingMemoryCardColor(10), Colors.green);
-      });
-    });
-
-    group('valueTrial12ResultToColor', () {
+    group('trial1Color', () {
       test('returns red for value < 5', () {
-        expect(testState.valueTrial12ResultToColor(0), Colors.red);
-        expect(testState.valueTrial12ResultToColor(4), Colors.red);
+        expect(AssessmentColorUtils.trial1Color(0), Colors.red);
+        expect(AssessmentColorUtils.trial1Color(4), Colors.red);
       });
 
       test('returns yellow for value 5-6', () {
-        expect(testState.valueTrial12ResultToColor(5), Colors.yellow);
-        expect(testState.valueTrial12ResultToColor(6), Colors.yellow);
+        expect(AssessmentColorUtils.trial1Color(5), Colors.yellow);
+        expect(AssessmentColorUtils.trial1Color(6), Colors.yellow);
       });
 
       test('returns green for value > 6', () {
-        expect(testState.valueTrial12ResultToColor(7), Colors.green);
-        expect(testState.valueTrial12ResultToColor(10), Colors.green);
+        expect(AssessmentColorUtils.trial1Color(7), Colors.green);
+        expect(AssessmentColorUtils.trial1Color(10), Colors.green);
       });
     });
 
-    group('valueTrial3ResultToColor', () {
+    group('trial2Color', () {
+      test('returns red for value < 5', () {
+        expect(AssessmentColorUtils.trial2Color(0), Colors.red);
+        expect(AssessmentColorUtils.trial2Color(4), Colors.red);
+      });
+
+      test('returns yellow for value 5-6', () {
+        expect(AssessmentColorUtils.trial2Color(5), Colors.yellow);
+        expect(AssessmentColorUtils.trial2Color(6), Colors.yellow);
+      });
+
+      test('returns green for value > 6', () {
+        expect(AssessmentColorUtils.trial2Color(7), Colors.green);
+        expect(AssessmentColorUtils.trial2Color(10), Colors.green);
+      });
+    });
+
+    group('trial3Color', () {
       test('returns red for value < 6', () {
-        expect(testState.valueTrial3ResultToColor(0), Colors.red);
-        expect(testState.valueTrial3ResultToColor(5), Colors.red);
+        expect(AssessmentColorUtils.trial3Color(0), Colors.red);
+        expect(AssessmentColorUtils.trial3Color(5), Colors.red);
       });
 
       test('returns yellow for value 6-7', () {
-        expect(testState.valueTrial3ResultToColor(6), Colors.yellow);
-        expect(testState.valueTrial3ResultToColor(7), Colors.yellow);
+        expect(AssessmentColorUtils.trial3Color(6), Colors.yellow);
+        expect(AssessmentColorUtils.trial3Color(7), Colors.yellow);
       });
 
       test('returns green for value > 7', () {
-        expect(testState.valueTrial3ResultToColor(8), Colors.green);
-        expect(testState.valueTrial3ResultToColor(10), Colors.green);
+        expect(AssessmentColorUtils.trial3Color(8), Colors.green);
+        expect(AssessmentColorUtils.trial3Color(10), Colors.green);
       });
     });
 
-    group('valueDelayResultToColor', () {
+    group('delayRecallColor', () {
       test('returns red for value < 7', () {
-        expect(testState.valueDelayResultToColor(0), Colors.red);
-        expect(testState.valueDelayResultToColor(6), Colors.red);
+        expect(AssessmentColorUtils.delayRecallColor(0), Colors.red);
+        expect(AssessmentColorUtils.delayRecallColor(6), Colors.red);
       });
 
       test('returns yellow for value = 7', () {
-        expect(testState.valueDelayResultToColor(7), Colors.yellow);
+        expect(AssessmentColorUtils.delayRecallColor(7), Colors.yellow);
       });
 
       test('returns green for value > 7', () {
-        expect(testState.valueDelayResultToColor(8), Colors.green);
-        expect(testState.valueDelayResultToColor(10), Colors.green);
+        expect(AssessmentColorUtils.delayRecallColor(8), Colors.green);
+        expect(AssessmentColorUtils.delayRecallColor(10), Colors.green);
       });
     });
 
-    group('verbalShortTermMemory', () {
+    group('verbalShortTermMemoryColor', () {
       test('returns green when all scores are excellent', () {
         expect(
-          testState.verbalShortTermMemory(7, 8, 0, 6, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(7, 8, 0, 6, 6),
           Colors.green,
         );
         expect(
-          testState.verbalShortTermMemory(10, 10, 5, 10, 10),
+          AssessmentColorUtils.verbalShortTermMemoryColor(10, 10, 5, 10, 10),
           Colors.green,
         );
       });
 
       test('returns red when any score is impaired', () {
         expect(
-          testState.verbalShortTermMemory(4, 8, 0, 6, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(4, 8, 0, 6, 6),
           Colors.red,
         );
         expect(
-          testState.verbalShortTermMemory(7, 4, 0, 6, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(7, 4, 0, 6, 6),
           Colors.red,
         );
         expect(
-          testState.verbalShortTermMemory(7, 8, 3, 6, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(7, 8, 3, 6, 6),
           Colors.red,
         );
         expect(
-          testState.verbalShortTermMemory(7, 8, 0, 4, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(7, 8, 0, 4, 6),
           Colors.red,
         );
         expect(
-          testState.verbalShortTermMemory(7, 8, 0, 6, 4),
+          AssessmentColorUtils.verbalShortTermMemoryColor(7, 8, 0, 6, 4),
           Colors.red,
         );
       });
 
       test('returns yellow when any score is equivocal and none impaired', () {
         expect(
-          testState.verbalShortTermMemory(5, 8, 0, 6, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(5, 8, 0, 6, 6),
           Colors.yellow,
         );
         expect(
-          testState.verbalShortTermMemory(6, 8, 0, 6, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(6, 8, 0, 6, 6),
           Colors.yellow,
         );
         expect(
-          testState.verbalShortTermMemory(7, 5, 0, 6, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(7, 5, 0, 6, 6),
           Colors.yellow,
         );
         expect(
-          testState.verbalShortTermMemory(7, 7, 0, 6, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(7, 7, 0, 6, 6),
           Colors.yellow,
         );
         expect(
-          testState.verbalShortTermMemory(7, 8, 4, 6, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(7, 8, 4, 6, 6),
           Colors.yellow,
         );
         expect(
-          testState.verbalShortTermMemory(7, 8, 0, 5, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(7, 8, 0, 5, 6),
           Colors.yellow,
         );
         expect(
-          testState.verbalShortTermMemory(7, 8, 0, 6, 5),
+          AssessmentColorUtils.verbalShortTermMemoryColor(7, 8, 0, 6, 5),
           Colors.yellow,
         );
       });
     });
 
-    group('valueVisualResultToColor', () {
+    group('visualMemoryColor', () {
       test('calculates visual scores correctly', () {
         scoreModel.setShorttermMemoryVisualImages(
           image1: 0,
           image2: 0,
           image3: 0,
         );
-        expect(testState.valueVisualResultToColor(scoreModel), Colors.green);
+        expect(AssessmentColorUtils.visualMemoryColor(scoreModel), Colors.green);
 
         scoreModel.setShorttermMemoryVisualImages(
           image1: 1,
           image2: 0,
           image3: 0,
         );
-        expect(testState.valueVisualResultToColor(scoreModel), Colors.green);
+        expect(AssessmentColorUtils.visualMemoryColor(scoreModel), Colors.green);
 
         scoreModel.setShorttermMemoryVisualImages(
           image1: 1,
           image2: 1,
           image3: 1,
         );
-        expect(testState.valueVisualResultToColor(scoreModel), Colors.yellow);
+        expect(AssessmentColorUtils.visualMemoryColor(scoreModel), Colors.yellow);
 
         scoreModel.setShorttermMemoryVisualImages(
           image1: 2,
           image2: 1,
           image3: 1,
         );
-        expect(testState.valueVisualResultToColor(scoreModel), Colors.red);
+        expect(AssessmentColorUtils.visualMemoryColor(scoreModel), Colors.red);
       });
     });
 
-    group('praxisCardColor', () {
+    group('praxisDomainColor', () {
       test('returns appropriate colors based on praxis scores', () {
         scoreModel.setVisuospatialPraxisImages(
           image1: 0,
@@ -220,7 +221,7 @@ void main() {
           image3: 0,
         );
         scoreModel.setPraxisScores(right: 0, left: 0);
-        expect(testState.praxisCardColor(scoreModel), Colors.green);
+        expect(AssessmentColorUtils.praxisDomainColor(scoreModel), Colors.green);
 
         scoreModel.setVisuospatialPraxisImages(
           image1: 2,
@@ -228,7 +229,7 @@ void main() {
           image3: 1,
         );
         scoreModel.setPraxisScores(right: 0, left: 0);
-        expect(testState.praxisCardColor(scoreModel), Colors.yellow);
+        expect(AssessmentColorUtils.praxisDomainColor(scoreModel), Colors.yellow);
 
         scoreModel.setVisuospatialPraxisImages(
           image1: 0,
@@ -236,7 +237,7 @@ void main() {
           image3: 0,
         );
         scoreModel.setPraxisScores(right: 2, left: 0);
-        expect(testState.praxisCardColor(scoreModel), Colors.red);
+        expect(AssessmentColorUtils.praxisDomainColor(scoreModel), Colors.red);
 
         scoreModel.setVisuospatialPraxisImages(
           image1: 0,
@@ -244,11 +245,11 @@ void main() {
           image3: 0,
         );
         scoreModel.setPraxisScores(right: 0, left: 2);
-        expect(testState.praxisCardColor(scoreModel), Colors.red);
+        expect(AssessmentColorUtils.praxisDomainColor(scoreModel), Colors.red);
       });
     });
 
-    group('gnosisCardColor', () {
+    group('gnosisDomainColor', () {
       test('returns appropriate colors based on gnosis scores', () {
         scoreModel.setVisuospatialPraxisImages(
           image1: 0,
@@ -256,7 +257,7 @@ void main() {
           image3: 0,
         );
         scoreModel.setAnomiaAgnosia(0);
-        expect(testState.gnosisCardColor(scoreModel), Colors.green);
+        expect(AssessmentColorUtils.gnosisDomainColor(scoreModel), Colors.green);
 
         scoreModel.setVisuospatialPraxisImages(
           image1: 2,
@@ -264,7 +265,7 @@ void main() {
           image3: 1,
         );
         scoreModel.setAnomiaAgnosia(0);
-        expect(testState.gnosisCardColor(scoreModel), Colors.yellow);
+        expect(AssessmentColorUtils.gnosisDomainColor(scoreModel), Colors.yellow);
 
         scoreModel.setVisuospatialPraxisImages(
           image1: 0,
@@ -272,160 +273,160 @@ void main() {
           image3: 0,
         );
         scoreModel.setAnomiaAgnosia(2);
-        expect(testState.gnosisCardColor(scoreModel), Colors.red);
+        expect(AssessmentColorUtils.gnosisDomainColor(scoreModel), Colors.red);
       });
     });
 
-    group('executiveFunctionCarcColor', () {
+    group('executiveFunctionColor', () {
       test('returns green for normal (0)', () {
-        expect(testState.executiveFunctionCarcColor(0), Colors.green);
+        expect(AssessmentColorUtils.executiveFunctionColor(0), Colors.green);
       });
 
       test('returns yellow for equivocal (1)', () {
-        expect(testState.executiveFunctionCarcColor(1), Colors.yellow);
+        expect(AssessmentColorUtils.executiveFunctionColor(1), Colors.yellow);
       });
 
       test('returns red for impaired (2)', () {
-        expect(testState.executiveFunctionCarcColor(2), Colors.red);
+        expect(AssessmentColorUtils.executiveFunctionColor(2), Colors.red);
       });
     });
 
-    group('radioValueResultToColor', () {
+    group('radioValueToColor', () {
       test('returns correct colors for radio values', () {
-        expect(testState.radioValueResultToColor(0), Colors.green);
-        expect(testState.radioValueResultToColor(1), Colors.yellow);
-        expect(testState.radioValueResultToColor(2), Colors.red);
+        expect(AssessmentColorUtils.radioValueToColor(0), Colors.green);
+        expect(AssessmentColorUtils.radioValueToColor(1), Colors.yellow);
+        expect(AssessmentColorUtils.radioValueToColor(2), Colors.red);
       });
     });
   });
 
   group('String Result Tests', () {
-    group('radioValueResultToString', () {
+    group('radioValueToString', () {
       test('converts radio values to string correctly', () {
-        expect(testState.radioValueResultToString(0), 'N');
-        expect(testState.radioValueResultToString(1), 'E');
-        expect(testState.radioValueResultToString(2), 'I');
-        expect(testState.radioValueResultToString(3), 'N'); // default case
+        expect(AssessmentStringUtils.radioValueToString(0), 'N');
+        expect(AssessmentStringUtils.radioValueToString(1), 'E');
+        expect(AssessmentStringUtils.radioValueToString(2), 'I');
+        expect(AssessmentStringUtils.radioValueToString(3), 'N'); // default case
       });
     });
 
-    group('valueTrial12ResultToString', () {
+    group('trial1ResultToString', () {
       test('converts trial 1 scores to string correctly', () {
-        expect(testState.valueTrial1ResultToString(0), 'I');
-        expect(testState.valueTrial1ResultToString(3), 'I');
-        expect(testState.valueTrial1ResultToString(4), 'E');
-        expect(testState.valueTrial1ResultToString(5), 'E');
-        expect(testState.valueTrial1ResultToString(6), 'N');
-        expect(testState.valueTrial1ResultToString(7), 'N');
-        expect(testState.valueTrial1ResultToString(10), 'N');
+        expect(AssessmentStringUtils.trial1ResultToString(0), 'I');
+        expect(AssessmentStringUtils.trial1ResultToString(3), 'I');
+        expect(AssessmentStringUtils.trial1ResultToString(4), 'I');
+        expect(AssessmentStringUtils.trial1ResultToString(5), 'E');
+        expect(AssessmentStringUtils.trial1ResultToString(6), 'E');
+        expect(AssessmentStringUtils.trial1ResultToString(7), 'N');
+        expect(AssessmentStringUtils.trial1ResultToString(10), 'N');
       });
     });
-    group('valueTrial12ResultToString', () {
+    group('trial2ResultToString', () {
       test('converts trial 2 scores to string correctly', () {
-        expect(testState.valueTrial2ResultToString(0), 'I');
-        expect(testState.valueTrial2ResultToString(4), 'I');
-        expect(testState.valueTrial2ResultToString(5), 'E');
-        expect(testState.valueTrial2ResultToString(6), 'E');
-        expect(testState.valueTrial2ResultToString(7), 'N');
-        expect(testState.valueTrial2ResultToString(10), 'N');
+        expect(AssessmentStringUtils.trial2ResultToString(0), 'I');
+        expect(AssessmentStringUtils.trial2ResultToString(4), 'I');
+        expect(AssessmentStringUtils.trial2ResultToString(5), 'E');
+        expect(AssessmentStringUtils.trial2ResultToString(6), 'E');
+        expect(AssessmentStringUtils.trial2ResultToString(7), 'N');
+        expect(AssessmentStringUtils.trial2ResultToString(10), 'N');
       });
     });
 
-    group('valueTrial3ResultToString', () {
+    group('trial3ResultToString', () {
       test('converts trial 3 scores to string correctly', () {
-        expect(testState.valueTrial3ResultToString(0), 'I');
-        expect(testState.valueTrial3ResultToString(4), 'I');
-        expect(testState.valueTrial3ResultToString(5), 'I');
-        expect(testState.valueTrial3ResultToString(6), 'E');
-        expect(testState.valueTrial3ResultToString(7), 'E');
-        expect(testState.valueTrial3ResultToString(8), 'N');
-        expect(testState.valueTrial3ResultToString(10), 'N');
+        expect(AssessmentStringUtils.trial3ResultToString(0), 'I');
+        expect(AssessmentStringUtils.trial3ResultToString(4), 'I');
+        expect(AssessmentStringUtils.trial3ResultToString(5), 'I');
+        expect(AssessmentStringUtils.trial3ResultToString(6), 'E');
+        expect(AssessmentStringUtils.trial3ResultToString(7), 'E');
+        expect(AssessmentStringUtils.trial3ResultToString(8), 'N');
+        expect(AssessmentStringUtils.trial3ResultToString(10), 'N');
       });
     });
 
-    group('valueDelayResultToString', () {
+    group('delayRecallResultToString', () {
       test('converts delay scores to string correctly', () {
-        expect(testState.valueDelayResultToString(0), 'I');
-        expect(testState.valueDelayResultToString(4), 'I');
-        expect(testState.valueDelayResultToString(5), 'E');
-        expect(testState.valueDelayResultToString(6), 'N');
-        expect(testState.valueDelayResultToString(10), 'N');
+        expect(AssessmentStringUtils.delayRecallResultToString(0), 'I');
+        expect(AssessmentStringUtils.delayRecallResultToString(4), 'I');
+        expect(AssessmentStringUtils.delayRecallResultToString(5), 'E');
+        expect(AssessmentStringUtils.delayRecallResultToString(6), 'N');
+        expect(AssessmentStringUtils.delayRecallResultToString(10), 'N');
       });
     });
 
-    group('valueRecognitionResultToString', () {
+    group('recognitionResultToString', () {
       test('converts recognition scores to string correctly', () {
-        expect(testState.valueRecognitionResultToString(0), 'I');
-        expect(testState.valueRecognitionResultToString(13), 'I');
-        expect(testState.valueRecognitionResultToString(14), 'E');
-        expect(testState.valueRecognitionResultToString(15), 'E');
-        expect(testState.valueRecognitionResultToString(16), 'E');
-        expect(testState.valueRecognitionResultToString(17), 'N');
-        expect(testState.valueRecognitionResultToString(20), 'N');
+        expect(AssessmentStringUtils.recognitionResultToString(0), 'I');
+        expect(AssessmentStringUtils.recognitionResultToString(13), 'I');
+        expect(AssessmentStringUtils.recognitionResultToString(14), 'E');
+        expect(AssessmentStringUtils.recognitionResultToString(15), 'E');
+        expect(AssessmentStringUtils.recognitionResultToString(16), 'E');
+        expect(AssessmentStringUtils.recognitionResultToString(17), 'N');
+        expect(AssessmentStringUtils.recognitionResultToString(20), 'N');
       });
     });
 
-    group('valueOrientationResultToString', () {
+    group('orientationResultToString', () {
       test('converts orientation scores to string correctly', () {
-        expect(testState.valueOrientationResultToString(0), 'I');
-        expect(testState.valueOrientationResultToString(3), 'I');
-        expect(testState.valueOrientationResultToString(4), 'E');
-        expect(testState.valueOrientationResultToString(5), 'N');
-        expect(testState.valueOrientationResultToString(6), 'N');
+        expect(AssessmentStringUtils.orientationResultToString(0), 'I');
+        expect(AssessmentStringUtils.orientationResultToString(3), 'I');
+        expect(AssessmentStringUtils.orientationResultToString(4), 'E');
+        expect(AssessmentStringUtils.orientationResultToString(5), 'N');
+        expect(AssessmentStringUtils.orientationResultToString(6), 'N');
       });
     });
 
-    group('valueVisualResultToString', () {
+    group('visualMemoryResultToString', () {
       test('converts visual scores to string correctly', () {
         scoreModel.setShorttermMemoryVisualImages(
           image1: 3,
           image2: 3,
           image3: 3,
         );
-        expect(testState.valueVisualResultToString(scoreModel), 'Impaired');
+        expect(AssessmentStringUtils.visualMemoryResultToString(scoreModel), 'Impaired');
 
         scoreModel.setShorttermMemoryVisualImages(
           image1: 2,
           image2: 2,
           image3: 2,
         );
-        expect(testState.valueVisualResultToString(scoreModel), 'Impaired');
+        expect(AssessmentStringUtils.visualMemoryResultToString(scoreModel), 'Impaired');
 
         scoreModel.setShorttermMemoryVisualImages(
           image1: 2,
           image2: 1,
           image3: 1,
         );
-        expect(testState.valueVisualResultToString(scoreModel), 'Impaired');
+        expect(AssessmentStringUtils.visualMemoryResultToString(scoreModel), 'Impaired');
 
         scoreModel.setShorttermMemoryVisualImages(
           image1: 1,
           image2: 1,
           image3: 1,
         );
-        expect(testState.valueVisualResultToString(scoreModel), 'Impaired');
+        expect(AssessmentStringUtils.visualMemoryResultToString(scoreModel), 'Impaired');
 
         scoreModel.setShorttermMemoryVisualImages(
           image1: 1,
           image2: 1,
           image3: 0,
         );
-        expect(testState.valueVisualResultToString(scoreModel), 'Equivocal');
+        expect(AssessmentStringUtils.visualMemoryResultToString(scoreModel), 'Equivocal');
 
         scoreModel.setShorttermMemoryVisualImages(
           image1: 0,
           image2: 0,
           image3: 0,
         );
-        expect(testState.valueVisualResultToString(scoreModel), 'Normal');
+        expect(AssessmentStringUtils.visualMemoryResultToString(scoreModel), 'Normal');
       });
     });
 
-    group('convertResponseToString', () {
+    group('resultToFullName', () {
       test('converts N/E/I to full words', () {
-        expect(testState.convertResponseToString('N'), 'Normal');
-        expect(testState.convertResponseToString('E'), 'Equivocal');
-        expect(testState.convertResponseToString('I'), 'Impaired');
+        expect(AssessmentStringUtils.resultToFullName('N'), 'Normal');
+        expect(AssessmentStringUtils.resultToFullName('E'), 'Equivocal');
+        expect(AssessmentStringUtils.resultToFullName('I'), 'Impaired');
       });
     });
   });
@@ -506,7 +507,7 @@ void main() {
         mistakes: 0,
       );
       expect(scoreModel.attentionMistakes, 0);
-      expect(testState.radioValueResultToString(scoreModel.attention), 'N');
+      expect(AssessmentStringUtils.radioValueToString(scoreModel.attention), 'N');
 
       scoreModel.setAttention(
         score: 1,
@@ -514,7 +515,7 @@ void main() {
         mistakes: 1,
       );
       expect(scoreModel.attentionMistakes, 1);
-      expect(testState.radioValueResultToString(scoreModel.attention), 'E');
+      expect(AssessmentStringUtils.radioValueToString(scoreModel.attention), 'E');
 
       scoreModel.setAttention(
         score: 2,
@@ -522,7 +523,7 @@ void main() {
         mistakes: 2,
       );
       expect(scoreModel.attentionMistakes, 2);
-      expect(testState.radioValueResultToString(scoreModel.attention), 'I');
+      expect(AssessmentStringUtils.radioValueToString(scoreModel.attention), 'I');
     });
   });
 
@@ -565,7 +566,7 @@ void main() {
         count: 15,
       );
 
-      String shareDoc = testState.shareDoc(scoreModel);
+      String shareDoc = ShareService.generateShareContent(scoreModel);
 
       expect(shareDoc.contains('MICA Assessment Report'), true);
       expect(shareDoc.contains('Name: John Doe'), true);
@@ -592,7 +593,7 @@ void main() {
   });
 
   group('Widget Test', () {
-    testWidgets('TestSummaryWithProvider builds correctly',
+    testWidgets('TestSummaryWithProviderRefactored builds correctly',
         (WidgetTester tester) async {
       final scoreModel = MicaScoreModel();
       scoreModel.setPatientInfo(
@@ -606,13 +607,13 @@ void main() {
         MaterialApp(
           home: ChangeNotifierProvider<MicaScoreModel>.value(
             value: scoreModel,
-            child: const TestSummaryWithProvider(),
+            child: const TestSummaryWithProviderRefactored(),
           ),
         ),
       );
 
       // Check if the widget builds without errors
-      expect(find.byType(TestSummaryWithProvider), findsOneWidget);
+      expect(find.byType(TestSummaryWithProviderRefactored), findsOneWidget);
       expect(find.byType(DefaultTabController), findsOneWidget);
       expect(find.byType(TabBar), findsOneWidget);
       expect(find.byType(TabBarView), findsOneWidget);
