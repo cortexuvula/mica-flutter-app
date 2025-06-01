@@ -27,6 +27,8 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
   late AnimationController clockController;
 
   String buttonText = "Start";
+  bool timerCompleted = false;
+  bool timerStarted = false;
 
   String get timerString {
     Duration duration = clockController.duration! * clockController.value;
@@ -40,6 +42,17 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
       vsync: this,
       duration: const Duration(seconds: 60),
     );
+    
+    // Listen for when timer reaches 0
+    clockController.addListener(() {
+      if (clockController.value == 0.0 && timerStarted && !clockController.isAnimating) {
+        setState(() {
+          timerCompleted = true;
+          buttonText = "Complete";
+        });
+      }
+    });
+    
     getPrefsData();
   }
 
@@ -224,7 +237,7 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                     width: width * 0.9,
                     child: Card(
                       elevation: 10.0,
-                      color: Colors.deepPurple.shade300,
+                      color: timerCompleted ? Colors.red : Colors.deepPurple.shade300,
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
@@ -251,6 +264,12 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                                     backgroundColor: Colors.cyan.shade200,
                                   ),
                                   onPressed: () {
+                                    if (timerCompleted) {
+                                      // Timer has completed, button shows "Complete"
+                                      // You can add any completion logic here if needed
+                                      return;
+                                    }
+                                    
                                     if (clockController.isAnimating) {
                                       clockController.stop();
                                       setState(() {
@@ -263,6 +282,11 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                                               : clockController.value);
                                       setState(() {
                                         buttonText = "Pause";
+                                        timerStarted = true;
+                                        // Reset timerCompleted if restarting from beginning
+                                        if (clockController.value == 0.0) {
+                                          timerCompleted = false;
+                                        }
                                       });
                                     }
                                   },
