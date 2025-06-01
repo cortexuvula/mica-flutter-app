@@ -42,9 +42,9 @@ class TenWordRecognitionState extends State<TenWordRecognition> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var screenHeightInfo =
-        (MediaQuery.of(context).size.height * 0.3).floorToDouble();
+        (MediaQuery.of(context).size.height * 0.15).floorToDouble();
     var screenHeightWords =
-        (MediaQuery.of(context).size.height * 0.4).floorToDouble();
+        (MediaQuery.of(context).size.height * 0.6).floorToDouble();
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, result) async {
