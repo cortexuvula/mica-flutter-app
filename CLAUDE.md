@@ -17,11 +17,17 @@ flutter run -d android   # Android emulator
 # Analyze code for issues
 flutter analyze
 
-# Run tests (if any exist)
+# Run tests
 flutter test
+
+# Run a specific test
+flutter test test/src/summary_with_provider_test.dart
 
 # Format code
 dart format .
+
+# Get dependencies
+flutter pub get
 ```
 
 ### Build
@@ -46,12 +52,15 @@ The app uses Provider pattern with a centralized `MicaScoreModel` (ChangeNotifie
 
 - **MicaProviders.getProviders()** - Returns MultiProvider configuration for app initialization
 - **MicaProviders.getScoreModel(context)** - Static method to access the score model from any screen
+- **MicaProviders.getScoreModel(context, listen: false)** - Use when updating scores to avoid rebuild loops
 - Scores are updated via setter methods that call `notifyListeners()`
-- Use `listen: false` when updating scores to avoid rebuild loops during the same frame
+- Model initialization should be deferred using `WidgetsBinding.instance.addPostFrameCallback` to avoid setState during build
 
 ### Navigation Flow
 1. **LoadingScreen** → **Welcome** → **PatientInformation** → **DomainSelect**
-2. Each domain has its own testing flow with multiple screens
+2. Domain testing flows are organized in subfolders:
+   - `attention_concentration/` - Contains vigilance, digit span, serial 7s, etc.
+   - `language/` - Language assessments (speech, comprehension, naming, etc.)
 3. Results are displayed in domain-specific result screens
 4. **Summary** page aggregates all results with tabs for domain breakdown and full report
 
@@ -61,10 +70,71 @@ Each cognitive test follows this structure:
 - Test administration screen with scoring logic
 - Score saved to MicaScoreModel
 - Navigation to next test or domain results
+- Most test screens now use `Navigator.pop()` instead of specific navigation
+
+### UI Styling Standards
+```dart
+// ElevatedButton standard
+ElevatedButton(
+  style: ElevatedButton.styleFrom(
+    elevation: 10.0,
+    backgroundColor: Theme.of(context).colorScheme.secondary,
+  ),
+  child: Text('Button Text', style: TextStyle(color: Colors.black)),
+)
+
+// Card standard
+SizedBox(
+  width: width * 0.9,  // 90% of screen width
+  child: Card(
+    elevation: 10.0,
+    color: Colors.white,
+    child: Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(children: [...]),
+    ),
+  ),
+)
+
+// Color coding for instruction cards
+- Yellow (Colors.yellowAccent.shade400) - Patient instructions
+- Purple (Colors.deepPurple.shade300) - Examiner instructions  
+- Green (Colors.green) - Response/scoring sections
+
+// Radio button styling in assessment screens
+Radio<int>(
+  fillColor: WidgetStateProperty.resolveWith<Color>((states) {
+    if (states.contains(WidgetState.selected)) {
+      return Colors.white;  // White when selected
+    }
+    return Colors.black;    // Black when unselected
+  }),
+)
+
+// Table styling for assessment options
+Table(
+  border: TableBorder.all(
+    color: Colors.black54,
+    width: 1.0,
+  ),
+  children: [
+    TableRow(
+      children: [
+        // TableCell with InkWell for tap handling
+        // Radio button with label in Row
+      ],
+    ),
+  ],
+)
+```
 
 ### Key Directories
-- `/lib/src/domain_testing/` - Test implementation screens
+- `/lib/src/domain_testing/` - Test implementation screens organized by domain
+  - `attention_concentration/` - Attention and concentration tests
+  - `language/` - Language assessment tests
 - `/lib/src/domain_results/` - Result display screens
+- `/lib/src/summary/` - Summary screens with modular components
+- `/lib/src/providers/` - State management (MicaProviders)
 - `/video/` - Instruction videos (.m4v format)
 - `/images/` - Test materials and assets
 
@@ -75,3 +145,5 @@ Each cognitive test follows this structure:
 - Android signing configured via `key.properties` (not in version control)
 - Bitbucket Pipelines configured for CI/CD
 - Color scheme uses purple/lavender theme (#64638f primary)
+- When creating new test screens, follow the established card/button styling patterns
+- Summary screen has been refactored into modular components in `/lib/src/summary/`

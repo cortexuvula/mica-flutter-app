@@ -1,38 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as app_data;
-import 'package:mica/src/domain_testing/attention_concentration/domain_attention_concentration.dart';
-import 'package:mica/src/domain_testing/language/language_assessment.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:mica/src/providers/mica_provider.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/domain_testing/language/spontaneous_speech.dart';
 
-class DomainSelect extends StatefulWidget {
-  const DomainSelect({super.key});
+class LanguageAssessment extends StatefulWidget {
+  const LanguageAssessment({super.key});
 
   @override
-  DomainSelectState createState() => DomainSelectState();
+  State<LanguageAssessment> createState() => _LanguageAssessmentState();
 }
 
-class DomainSelectState extends State<DomainSelect> {
-  @override
-  void initState() {
-    super.initState();
-    // Defer model initialization to after the build phase
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      initializeModelData();
-    });
-  }
-
+class _LanguageAssessmentState extends State<LanguageAssessment> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     double height = 10.0;
+    
     return Scaffold(
       appBar: AppBar(
-        title: ListTile(
+        title: const ListTile(
           title: Text(
-            app_data.domainSelect,
-            style: const TextStyle(
+            'Language',
+            style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
                 fontSize: 15.0),
@@ -55,6 +44,7 @@ class DomainSelectState extends State<DomainSelect> {
         Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
+            // Info card
             SizedBox(
               width: width * 0.9,
               child: Card(
@@ -67,7 +57,7 @@ class DomainSelectState extends State<DomainSelect> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          app_data.domainSelectInfo.toUpperCase(),
+                          'SELECT A LANGUAGE ASSESSMENT BELOW',
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                               fontWeight: FontWeight.w500, color: Colors.black),
@@ -81,6 +71,7 @@ class DomainSelectState extends State<DomainSelect> {
             SizedBox(
               height: height,
             ),
+            // Spontaneous Speech
             SizedBox(
               width: width * 0.9,
               child: Card(
@@ -101,11 +92,11 @@ class DomainSelectState extends State<DomainSelect> {
                           onPressed: () {
                             NavigationHelper.navigateAndRemoveUntil(
                               context,
-                              AttentionConcentration(),
+                              const SpontaneousSpeech(),
                               (Route<dynamic> route) => true,
                             );
                           },
-                          child: Text(app_data.domainSelectButton1,
+                          child: const Text('Spontaneous Speech',
                               style: TextStyle(color: Colors.black)),
                         ),
                       ),
@@ -117,6 +108,7 @@ class DomainSelectState extends State<DomainSelect> {
             SizedBox(
               height: height,
             ),
+            // Comprehension: 3 Stage Command Task
             SizedBox(
               width: width * 0.9,
               child: Card(
@@ -135,13 +127,77 @@ class DomainSelectState extends State<DomainSelect> {
                                 Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            NavigationHelper.navigateAndRemoveUntil(
-                              context,
-                              const LanguageAssessment(),
-                              (Route<dynamic> route) => true,
-                            );
+                            // TODO: Navigate to 3 Stage Command Task
                           },
-                          child: Text(app_data.domainSelectButton2,
+                          child: const Text('Comprehension: 3 Stage Command Task',
+                              style: TextStyle(color: Colors.black),
+                              textAlign: TextAlign.center),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: height,
+            ),
+            // Comprehension: Moving 3 Objects Task
+            SizedBox(
+              width: width * 0.9,
+              child: Card(
+                elevation: 10.0,
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(
+                        width: width * 0.8,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            elevation: 10.0,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.secondary,
+                          ),
+                          onPressed: () {
+                            // TODO: Navigate to Moving 3 Objects Task
+                          },
+                          child: const Text('Comprehension: Moving 3 Objects Task',
+                              style: TextStyle(color: Colors.black),
+                              textAlign: TextAlign.center),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: height,
+            ),
+            // Repetition
+            SizedBox(
+              width: width * 0.9,
+              child: Card(
+                elevation: 10.0,
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    children: <Widget>[
+                      SizedBox(
+                        width: width * 0.8,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            elevation: 10.0,
+                            backgroundColor:
+                                Theme.of(context).colorScheme.secondary,
+                          ),
+                          onPressed: () {
+                            // TODO: Navigate to Repetition assessment
+                          },
+                          child: const Text('Repetition',
                               style: TextStyle(color: Colors.black)),
                         ),
                       ),
@@ -153,6 +209,7 @@ class DomainSelectState extends State<DomainSelect> {
             SizedBox(
               height: height,
             ),
+            // Naming
             SizedBox(
               width: width * 0.9,
               child: Card(
@@ -171,13 +228,9 @@ class DomainSelectState extends State<DomainSelect> {
                                 Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            NavigationHelper.navigateAndRemoveUntil(
-                              context,
-                              const Welcome(),
-                              (Route<dynamic> route) => true,
-                            );
+                            // TODO: Navigate to Naming assessment
                           },
-                          child: Text(app_data.domainSelectButton3,
+                          child: const Text('Naming',
                               style: TextStyle(color: Colors.black)),
                         ),
                       ),
@@ -189,6 +242,7 @@ class DomainSelectState extends State<DomainSelect> {
             SizedBox(
               height: height,
             ),
+            // Reading
             SizedBox(
               width: width * 0.9,
               child: Card(
@@ -207,13 +261,9 @@ class DomainSelectState extends State<DomainSelect> {
                                 Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            NavigationHelper.navigateAndRemoveUntil(
-                              context,
-                              const Welcome(),
-                              (Route<dynamic> route) => true,
-                            );
+                            // TODO: Navigate to Reading assessment
                           },
-                          child: Text(app_data.domainSelectButton4,
+                          child: const Text('Reading',
                               style: TextStyle(color: Colors.black)),
                         ),
                       ),
@@ -225,6 +275,7 @@ class DomainSelectState extends State<DomainSelect> {
             SizedBox(
               height: height,
             ),
+            // Writing
             SizedBox(
               width: width * 0.9,
               child: Card(
@@ -243,49 +294,9 @@ class DomainSelectState extends State<DomainSelect> {
                                 Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            NavigationHelper.navigateAndRemoveUntil(
-                              context,
-                              const Welcome(),
-                              (Route<dynamic> route) => true,
-                            );
+                            // TODO: Navigate to Writing assessment
                           },
-                          child: Text(app_data.domainSelectButton5,
-                              style: TextStyle(color: Colors.black)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: height,
-            ),
-            SizedBox(
-              width: width * 0.9,
-              child: Card(
-                elevation: 10.0,
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    children: <Widget>[
-                      SizedBox(
-                        width: width * 0.8,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            elevation: 10.0,
-                            backgroundColor:
-                                Theme.of(context).colorScheme.secondary,
-                          ),
-                          onPressed: () {
-                            NavigationHelper.navigateAndRemoveUntil(
-                              context,
-                              const Welcome(),
-                              (Route<dynamic> route) => true,
-                            );
-                          },
-                          child: Text(app_data.domainSelectButton6,
+                          child: const Text('Writing',
                               style: TextStyle(color: Colors.black)),
                         ),
                       ),
@@ -298,15 +309,5 @@ class DomainSelectState extends State<DomainSelect> {
         ),
       ]),
     );
-  }
-
-  void initializeModelData() {
-    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-
-    // Initialize attention scores in the model
-    scoreModel.setAttention(score: 0, correct: 0, mistakes: 0);
-
-    // No need to initialize UI state variables like button colors
-    // These are handled in each screen's initState method
   }
 }
