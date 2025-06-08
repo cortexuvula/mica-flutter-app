@@ -82,6 +82,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                           },
                           child: Text(
                             app_data.attentionConcentrationButton1,
+                            style: TextStyle(color: Colors.black),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -118,6 +119,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                           },
                           child: Text(
                             app_data.attentionConcentrationButton2,
+                            style: TextStyle(color: Colors.black),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -154,6 +156,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                           },
                           child: Text(
                             app_data.attentionConcentrationButton3,
+                            style: TextStyle(color: Colors.black),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -190,6 +193,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                           },
                           child: Text(
                             app_data.attentionConcentrationButton4,
+                            style: TextStyle(color: Colors.black),
                             textAlign: TextAlign.center,
                           ),
                         ),
@@ -226,6 +230,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                           },
                           child: Text(
                             app_data.attentionConcentrationButton5,
+                            style: TextStyle(color: Colors.black),
                             textAlign: TextAlign.center,
                           ),
                         ),

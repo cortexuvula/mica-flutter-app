@@ -172,7 +172,8 @@ class HomeState extends State<Home> {
                 //       child: ElevatedButton(
                 //         style: ElevatedButton.styleFrom(
                 //           elevation: 10.0,
-                //           backgroundColor: Theme.of(context).colorScheme.secondary,
+                //           backgroundColor:
+                //               Theme.of(context).colorScheme.secondary,
                 //         ),
                 //         onPressed: () async {
                 //           print("PDF tapped");
