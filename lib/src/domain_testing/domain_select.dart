@@ -16,7 +16,10 @@ class DomainSelectState extends State<DomainSelect> {
   @override
   void initState() {
     super.initState();
-    initializeModelData();
+    // Defer model initialization to after the build phase
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      initializeModelData();
+    });
   }
 
   @override
@@ -65,7 +68,8 @@ class DomainSelectState extends State<DomainSelect> {
                         child: Text(
                           app_data.domainSelectInfo.toUpperCase(),
                           textAlign: TextAlign.center,
-                          style: const TextStyle(fontWeight: FontWeight.w500),
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w500, color: Colors.black),
                         ),
                       ),
                     ],
@@ -100,7 +104,8 @@ class DomainSelectState extends State<DomainSelect> {
                               (Route<dynamic> route) => true,
                             );
                           },
-                          child: Text(app_data.domainSelectButton1),
+                          child: Text(app_data.domainSelectButton1,
+                              style: TextStyle(color: Colors.black)),
                         ),
                       ),
                     ],
@@ -135,7 +140,8 @@ class DomainSelectState extends State<DomainSelect> {
                               (Route<dynamic> route) => true,
                             );
                           },
-                          child: Text(app_data.domainSelectButton2),
+                          child: Text(app_data.domainSelectButton2,
+                              style: TextStyle(color: Colors.black)),
                         ),
                       ),
                     ],
@@ -170,7 +176,8 @@ class DomainSelectState extends State<DomainSelect> {
                               (Route<dynamic> route) => true,
                             );
                           },
-                          child: Text(app_data.domainSelectButton3),
+                          child: Text(app_data.domainSelectButton3,
+                              style: TextStyle(color: Colors.black)),
                         ),
                       ),
                     ],
@@ -205,7 +212,8 @@ class DomainSelectState extends State<DomainSelect> {
                               (Route<dynamic> route) => true,
                             );
                           },
-                          child: Text(app_data.domainSelectButton4),
+                          child: Text(app_data.domainSelectButton4,
+                              style: TextStyle(color: Colors.black)),
                         ),
                       ),
                     ],
@@ -240,7 +248,8 @@ class DomainSelectState extends State<DomainSelect> {
                               (Route<dynamic> route) => true,
                             );
                           },
-                          child: Text(app_data.domainSelectButton5),
+                          child: Text(app_data.domainSelectButton5,
+                              style: TextStyle(color: Colors.black)),
                         ),
                       ),
                     ],
@@ -275,7 +284,8 @@ class DomainSelectState extends State<DomainSelect> {
                               (Route<dynamic> route) => true,
                             );
                           },
-                          child: Text(app_data.domainSelectButton6),
+                          child: Text(app_data.domainSelectButton6,
+                              style: TextStyle(color: Colors.black)),
                         ),
                       ),
                     ],

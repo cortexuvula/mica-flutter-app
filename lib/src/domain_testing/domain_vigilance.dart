@@ -177,11 +177,6 @@ class DomainVigilanceState extends State<DomainVigilance> {
                           mainAxisSpacing: 5.0,
                           children: List.generate(app_data.attentionList.length,
                               (index) {
-                            tapCorrect.add(false);
-                            tapWrong.add(false);
-                            correctCheck.add(false);
-                            letterTapButtonColor.add(Colors.cyan.shade200);
-
                             return Stack(
                               children: <Widget>[
                                 TextButton(
@@ -489,11 +484,12 @@ class DomainVigilanceState extends State<DomainVigilance> {
   void initFromProvider() {
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
 
-    // Initialize default values
-    List<Color> initialButtonColors = List.filled(26, Colors.cyan.shade200);
-    List<bool> initialTapCorrect = List.filled(26, false);
-    List<bool> initialTapWrong = List.filled(26, false);
-    List<bool> initialCorrectCheck = List.filled(26, false);
+    // Initialize default values based on actual list length
+    int listLength = app_data.attentionList.length;
+    List<Color> initialButtonColors = List.filled(listLength, Colors.cyan.shade200);
+    List<bool> initialTapCorrect = List.filled(listLength, false);
+    List<bool> initialTapWrong = List.filled(listLength, false);
+    List<bool> initialCorrectCheck = List.filled(listLength, false);
 
     setState(() {
       // Get attention scores from the provider
