@@ -4,8 +4,6 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 
-import 'domain_attention_concentration.dart';
-
 class DomainLanguage extends StatefulWidget {
   const DomainLanguage({super.key});
 
@@ -89,28 +87,6 @@ class DomainLanguageState extends State<DomainLanguage> {
                 SizedBox(
                   height: sizeBoxHeight,
                 ),
-                // Container(
-                //   width: _width * 0.9,
-                //   child: Card(
-                //     elevation: 10.0,
-                //     color: Colors.yellowAccent.shade400,
-                //     child: Padding(
-                //       padding: const EdgeInsets.all(8.0),
-                //       child: Column(
-                //         children: <Widget>[
-                //           Text(
-                //             app_data.testLanguageComprehensionToPatient,
-                //             textAlign: TextAlign.center,
-                //             style: TextStyle(
-                //                 color: Colors.black,
-                //                 fontWeight: FontWeight.w500,
-                //                 fontSize: 15.0),
-                //           ),
-                //         ],
-                //       ),
-                //     ),
-                //   ),
-                // ),
                 SizedBox(
                   height: sizeBoxHeight,
                 ),
@@ -190,35 +166,6 @@ class DomainLanguageState extends State<DomainLanguage> {
                                   ],
                                 ),
                               ]),
-                              // TableRow(children: [
-                              //   Padding(
-                              //     padding: const EdgeInsets.all(8.0),
-                              //     child: Text(
-                              //       appData
-                              //           .testLanguageComprehensionResponseNormal,
-                              //       textAlign: TextAlign.center,
-                              //       style: TextStyle(fontSize: 10.0),
-                              //     ),
-                              //   ),
-                              //   Padding(
-                              //     padding: const EdgeInsets.all(8.0),
-                              //     child: Text(
-                              //       appData
-                              //           .testLanguageComprehensionResponseEquivocal,
-                              //       textAlign: TextAlign.center,
-                              //       style: TextStyle(fontSize: 10.0),
-                              //     ),
-                              //   ),
-                              //   Padding(
-                              //     padding: const EdgeInsets.all(8.0),
-                              //     child: Text(
-                              //       appData
-                              //           .testLanguageComprehensionResponseImpaired,
-                              //       textAlign: TextAlign.center,
-                              //       style: TextStyle(fontSize: 10.0),
-                              //     ),
-                              //   ),
-                              // ])
                             ],
                           ),
                         ],
@@ -241,13 +188,12 @@ class DomainLanguageState extends State<DomainLanguage> {
                           elevation: 10.0,
                         ),
                         onPressed: () {
-                          NavigationHelper.navigateAndRemoveUntil(
-                            context,
-                            AttentionConcentration(),
-                            (Route<dynamic> route) => true,
-                          );
+                          Navigator.of(context).pop();
                         },
-                        child: Text(app_data.domainTestCompleteButton),
+                        child: Text(
+                          app_data.domainTestCompleteButton,
+                          style: TextStyle(color: Colors.black),
+                        ),
                       ),
                     ),
                   ),

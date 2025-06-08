@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as app_data;
-import 'package:mica/src/domain_testing/domain_digit.dart';
-import 'package:mica/src/domain_testing/domain_language.dart';
-import 'package:mica/src/domain_testing/domain_serial_seven.dart';
-import 'package:mica/src/domain_testing/domain_spell_word.dart';
-import 'package:mica/src/domain_testing/domain_vigilance.dart';
+import 'package:mica/src/domain_testing/attention_concentration/domain_digit.dart';
+import 'package:mica/src/domain_testing/attention_concentration/domain_language.dart';
+import 'package:mica/src/domain_testing/attention_concentration/domain_serial_seven.dart';
+import 'package:mica/src/domain_testing/attention_concentration/domain_spell_word.dart';
+import 'package:mica/src/domain_testing/attention_concentration/domain_vigilance.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 
