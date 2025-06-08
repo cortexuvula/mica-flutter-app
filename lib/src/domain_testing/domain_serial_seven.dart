@@ -3,8 +3,6 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 
-import 'domain_attention_concentration.dart';
-
 class SerialSeven extends StatefulWidget {
   const SerialSeven({super.key});
 
@@ -545,13 +543,12 @@ class DomainSerialSevenState extends State<SerialSeven> {
                         elevation: 10.0,
                       ),
                       onPressed: () {
-                        NavigationHelper.navigateAndRemoveUntil(
-                          context,
-                          AttentionConcentration(),
-                          (Route<dynamic> route) => true,
-                        );
+                        Navigator.of(context).pop();
                       },
-                      child: Text(app_data.domainTestCompleteButton),
+                      child: Text(
+                        app_data.domainTestCompleteButton,
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ),
                   ),
                 ),

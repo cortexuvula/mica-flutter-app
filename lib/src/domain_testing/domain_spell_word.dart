@@ -3,8 +3,6 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 
-import 'domain_attention_concentration.dart';
-
 class SpellWordBarkwards extends StatefulWidget {
   const SpellWordBarkwards({super.key});
 
@@ -30,14 +28,6 @@ class DomainSpellWordState extends State<SpellWordBarkwards> {
                 fontSize: 15.0),
             textAlign: TextAlign.start,
           ),
-          // subtitle: Text(
-          //   app_data.domain_attention_subtitle,
-          //   style: TextStyle(
-          //       color: Colors.white,
-          //       fontWeight: FontWeight.w500,
-          //       fontSize: 15.0),
-          //   textAlign: TextAlign.start,
-          // ),
         ),
         actions: <Widget>[
           IconButton(
@@ -108,31 +98,6 @@ class DomainSpellWordState extends State<SpellWordBarkwards> {
               SizedBox(
                 height: sizeBoxHeight,
               ),
-              // Container(
-              //   width: _width * 0.9,
-              //   child: Card(
-              //     elevation: 10.0,
-              //     color: Colors.yellowAccent.shade400,
-              //     child: Padding(
-              //       padding: const EdgeInsets.all(8.0),
-              //       child: Column(
-              //         children: <Widget>[
-              //           Text(
-              //             app_data.domain_spell_word,
-              //             textAlign: TextAlign.center,
-              //             style: TextStyle(
-              //                 color: Colors.black,
-              //                 fontWeight: FontWeight.w500,
-              //                 fontSize: 15.0),
-              //           ),
-              //         ],
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              // SizedBox(
-              //   height: sizeBoxHeight,
-              // ),
               SizedBox(
                 width: width * 0.9,
                 child: Card(
@@ -142,14 +107,6 @@ class DomainSpellWordState extends State<SpellWordBarkwards> {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: <Widget>[
-                        // Text(
-                        //   app_data.testAttentionResponse,
-                        //   textAlign: TextAlign.center,
-                        //   style: TextStyle(
-                        //       color: Colors.black,
-                        //       fontWeight: FontWeight.w500,
-                        //       fontSize: 15.0),
-                        // ),
                         Table(
                           defaultVerticalAlignment:
                               TableCellVerticalAlignment.middle,
@@ -267,13 +224,12 @@ class DomainSpellWordState extends State<SpellWordBarkwards> {
                         elevation: WidgetStateProperty.all(10.0),
                       ),
                       onPressed: () {
-                        NavigationHelper.navigateAndRemoveUntil(
-                          context,
-                          AttentionConcentration(),
-                          (Route<dynamic> route) => true,
-                        );
+                        Navigator.of(context).pop();
                       },
-                      child: Text(app_data.domainTestCompleteButton),
+                      child: Text(
+                        app_data.domainTestCompleteButton,
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ),
                   ),
                 ),

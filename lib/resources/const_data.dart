@@ -410,7 +410,7 @@ const String domainAttentionSubtitle = "and Concentration";
 
 const String domainSpellWord = "\"Good. Now spell it backwards.\"";
 const String domainSpellWordPatient =
-    "“Spell the following word: RIGHT”\n\"Good. Now spell it backwards.\"";
+    "“Spell the following word:“ \n“RIGHT”\n\"Good. Now spell it backwards.\"";
 const String domainSpellWordAlternative = "Alternative words: April or March";
 
 const String domainSerialSevenPatient = "“Subtract seven from one hundred.”";
@@ -430,7 +430,7 @@ const String domainDigitTitle = "Digit Span";
 const String domainDigitPatient =
     "“I will now say a series of numbers and would like you to repeat them. Are you ready? 4 9 3.”";
 const String domainDigitExaminer =
-    "Note the response and continue by increasing the series with an extra number until a sequence of 7 is reached. Most individuals can repeat a sequence of 6-8 random digits. If a patient fails the sequence then repeat it with another random sequence of the same length.";
+    "Allow patient to say \"493\" and then start with assessment below. Increase the series with an extra number until a sequence of 7 is reached. Most individuals can repeat a sequence of 6-8 random digits. If a patient fails the sequence then repeat it with another random sequence of the same length.";
 const String domainDigitNumbers1 = "“5 4 8 1”";
 const String domainDigitNumbers1Sub = "if required: “6 4 1 7”";
 const String domainDigitNumbers2 = "“5 3 9 5 3”";

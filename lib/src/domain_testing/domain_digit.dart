@@ -3,8 +3,6 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 
-import 'domain_attention_concentration.dart';
-
 class Digit extends StatefulWidget {
   const Digit({super.key});
 
@@ -37,14 +35,6 @@ class DigitState extends State<Digit> {
                 fontSize: 15.0),
             textAlign: TextAlign.start,
           ),
-          // subtitle: Text(
-          //   appData.domain_attention_subtitle,
-          //   style: TextStyle(
-          //       color: Colors.white,
-          //       fontWeight: FontWeight.w500,
-          //       fontSize: 15.0),
-          //   textAlign: TextAlign.start,
-          // ),
         ),
         actions: <Widget>[
           IconButton(
@@ -280,14 +270,6 @@ class DigitState extends State<Digit> {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: <Widget>[
-                        // Text(
-                        //   appData.testAttentionResponse,
-                        //   textAlign: TextAlign.center,
-                        //   style: TextStyle(
-                        //       color: Colors.black,
-                        //       fontWeight: FontWeight.w500,
-                        //       fontSize: 15.0),
-                        // ),
                         Table(
                           defaultVerticalAlignment:
                               TableCellVerticalAlignment.middle,
@@ -405,13 +387,12 @@ class DigitState extends State<Digit> {
                         elevation: 10.0,
                       ),
                       onPressed: () {
-                        NavigationHelper.navigateAndRemoveUntil(
-                          context,
-                          AttentionConcentration(),
-                          (Route<dynamic> route) => true,
-                        );
+                        Navigator.of(context).pop();
                       },
-                      child: Text(app_data.domainTestCompleteButton),
+                      child: Text(
+                        app_data.domainTestCompleteButton,
+                        style: TextStyle(color: Colors.black),
+                      ),
                     ),
                   ),
                 ),
