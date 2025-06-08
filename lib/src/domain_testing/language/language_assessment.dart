@@ -2,6 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/domain_testing/language/spontaneous_speech.dart';
+import 'package:mica/src/domain_testing/language/comprehension_three_stage.dart';
+import 'package:mica/src/domain_testing/language/comprehension_moving_objects.dart';
+import 'package:mica/src/domain_testing/language/repetition.dart';
+import 'package:mica/src/domain_testing/language/naming.dart';
+import 'package:mica/src/domain_testing/language/reading.dart';
+import 'package:mica/src/domain_testing/language/writing.dart';
 
 class LanguageAssessment extends StatefulWidget {
   const LanguageAssessment({super.key});
@@ -127,7 +133,11 @@ class _LanguageAssessmentState extends State<LanguageAssessment> {
                                 Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            // TODO: Navigate to 3 Stage Command Task
+                            NavigationHelper.navigateAndRemoveUntil(
+                              context,
+                              const ComprehensionThreeStage(),
+                              (Route<dynamic> route) => true,
+                            );
                           },
                           child: const Text('Comprehension: 3 Stage Command Task',
                               style: TextStyle(color: Colors.black),
@@ -161,7 +171,11 @@ class _LanguageAssessmentState extends State<LanguageAssessment> {
                                 Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            // TODO: Navigate to Moving 3 Objects Task
+                            NavigationHelper.navigateAndRemoveUntil(
+                              context,
+                              const ComprehensionMovingObjects(),
+                              (Route<dynamic> route) => true,
+                            );
                           },
                           child: const Text('Comprehension: Moving 3 Objects Task',
                               style: TextStyle(color: Colors.black),
@@ -195,7 +209,11 @@ class _LanguageAssessmentState extends State<LanguageAssessment> {
                                 Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            // TODO: Navigate to Repetition assessment
+                            NavigationHelper.navigateAndRemoveUntil(
+                              context,
+                              const Repetition(),
+                              (Route<dynamic> route) => true,
+                            );
                           },
                           child: const Text('Repetition',
                               style: TextStyle(color: Colors.black)),
@@ -228,7 +246,11 @@ class _LanguageAssessmentState extends State<LanguageAssessment> {
                                 Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            // TODO: Navigate to Naming assessment
+                            NavigationHelper.navigateAndRemoveUntil(
+                              context,
+                              const Naming(),
+                              (Route<dynamic> route) => true,
+                            );
                           },
                           child: const Text('Naming',
                               style: TextStyle(color: Colors.black)),
@@ -261,7 +283,11 @@ class _LanguageAssessmentState extends State<LanguageAssessment> {
                                 Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            // TODO: Navigate to Reading assessment
+                            NavigationHelper.navigateAndRemoveUntil(
+                              context,
+                              const Reading(),
+                              (Route<dynamic> route) => true,
+                            );
                           },
                           child: const Text('Reading',
                               style: TextStyle(color: Colors.black)),
@@ -294,7 +320,11 @@ class _LanguageAssessmentState extends State<LanguageAssessment> {
                                 Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            // TODO: Navigate to Writing assessment
+                            NavigationHelper.navigateAndRemoveUntil(
+                              context,
+                              const Writing(),
+                              (Route<dynamic> route) => true,
+                            );
                           },
                           child: const Text('Writing',
                               style: TextStyle(color: Colors.black)),
