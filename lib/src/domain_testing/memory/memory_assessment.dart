@@ -4,6 +4,8 @@ import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/domain_testing/memory/short_verbal_memory_test.dart';
 import 'package:mica/src/domain_testing/memory/ten_word_verbal_recall.dart';
 import 'package:mica/src/domain_testing/memory/visual_working_memory.dart';
+import 'package:mica/src/domain_testing/memory/visual_short_term_memory.dart';
+import 'package:mica/src/domain_testing/memory/semantic_memory.dart';
 
 class MemoryAssessment extends StatefulWidget {
   const MemoryAssessment({super.key});
@@ -176,12 +178,11 @@ class _MemoryAssessmentState extends State<MemoryAssessment> {
                                   Theme.of(context).colorScheme.secondary,
                             ),
                             onPressed: () {
-                              // TODO: Navigate to Visual Short-Term Memory
-                              // NavigationHelper.navigateAndRemoveUntil(
-                              //   context,
-                              //   const VisualShortTermMemory(),
-                              //   (Route<dynamic> route) => true,
-                              // );
+                              NavigationHelper.navigateAndRemoveUntil(
+                                context,
+                                const VisualShortTermMemory(),
+                                (Route<dynamic> route) => true,
+                              );
                             },
                             child: const Text('Visual Short-Term Memory',
                                 style: TextStyle(color: Colors.black)),
@@ -214,12 +215,11 @@ class _MemoryAssessmentState extends State<MemoryAssessment> {
                                   Theme.of(context).colorScheme.secondary,
                             ),
                             onPressed: () {
-                              // TODO: Navigate to Semantic memory
-                              // NavigationHelper.navigateAndRemoveUntil(
-                              //   context,
-                              //   const SemanticMemory(),
-                              //   (Route<dynamic> route) => true,
-                              // );
+                              NavigationHelper.navigateAndRemoveUntil(
+                                context,
+                                const SemanticMemory(),
+                                (Route<dynamic> route) => true,
+                              );
                             },
                             child: const Text('Semantic memory',
                                 style: TextStyle(color: Colors.black)),
