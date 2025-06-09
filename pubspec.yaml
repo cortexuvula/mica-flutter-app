@@ -85,6 +85,9 @@ flutter:
    - video/VerbalMemDelayedRecog.m4v
    - video/VigilanceTest.m4v
    - video/WordListImRec2.m4v
+   - images/visual_memory_shape1.png
+   - images/visual_memory_shape2.png
+   - images/visual_memory_shape3.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

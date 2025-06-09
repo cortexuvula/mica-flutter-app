@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/domain_testing/memory/short_verbal_memory_test.dart';
+import 'package:mica/src/domain_testing/memory/ten_word_verbal_recall.dart';
+import 'package:mica/src/domain_testing/memory/visual_working_memory.dart';
 
 class MemoryAssessment extends StatefulWidget {
   const MemoryAssessment({super.key});
@@ -100,12 +102,11 @@ class _MemoryAssessmentState extends State<MemoryAssessment> {
                                   Theme.of(context).colorScheme.secondary,
                             ),
                             onPressed: () {
-                              // TODO: Navigate to 10-Word Verbal Recall
-                              // NavigationHelper.navigateAndRemoveUntil(
-                              //   context,
-                              //   const TenWordVerbalRecall(),
-                              //   (Route<dynamic> route) => true,
-                              // );
+                              NavigationHelper.navigateAndRemoveUntil(
+                                context,
+                                const TenWordVerbalRecall(),
+                                (Route<dynamic> route) => true,
+                              );
                             },
                             child: const Text('10-Word Verbal Recall',
                                 style: TextStyle(color: Colors.black)),
@@ -138,12 +139,11 @@ class _MemoryAssessmentState extends State<MemoryAssessment> {
                                   Theme.of(context).colorScheme.secondary,
                             ),
                             onPressed: () {
-                              // TODO: Navigate to Visual Working Memory
-                              // NavigationHelper.navigateAndRemoveUntil(
-                              //   context,
-                              //   const VisualWorkingMemory(),
-                              //   (Route<dynamic> route) => true,
-                              // );
+                              NavigationHelper.navigateAndRemoveUntil(
+                                context,
+                                const VisualWorkingMemory(),
+                                (Route<dynamic> route) => true,
+                              );
                             },
                             child: const Text('Visual Working Memory',
                                 style: TextStyle(color: Colors.black)),
