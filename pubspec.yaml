@@ -64,6 +64,9 @@ flutter:
    - images/hands.png
    - images/hash.png
    - images/steps.png
+   - images/line_drawing_1.png
+   - images/line_drawing_2.png
+   - images/line_drawing_3.png
    - video/AlternatingNumLetters.m4v
    - video/AnimalNaming.m4v
    - video/ClockDrawing.m4v
