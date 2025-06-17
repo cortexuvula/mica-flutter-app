@@ -64,7 +64,8 @@ class PdfGenerationService {
 
     // Add patient information
     widgets.add(pw.Paragraph(
-      text: "Name: ${AssessmentStringUtils.formatPatientName(scoreModel.patientName)}",
+      text:
+          "Name: ${AssessmentStringUtils.formatPatientName(scoreModel.patientName)}",
     ));
 
     widgets.add(pw.Paragraph(
@@ -76,7 +77,8 @@ class PdfGenerationService {
     ));
 
     widgets.add(pw.Paragraph(
-      text: "Assessor: ${AssessmentStringUtils.formatAssessorName(scoreModel.assessorName)}",
+      text:
+          "Assessor: ${AssessmentStringUtils.formatAssessorName(scoreModel.assessorName)}",
     ));
 
     widgets.add(pw.SizedBox(height: 10));
@@ -146,7 +148,8 @@ class PdfGenerationService {
       guide: "N > 7, E = 6 - 7, I < 6",
       rawScore: "Raw score: ${scoreModel.trialThreeScore}/10",
       result: AssessmentStringUtils.resultToFullName(
-          AssessmentStringUtils.trial3ResultToString(scoreModel.trialThreeScore)),
+          AssessmentStringUtils.trial3ResultToString(
+              scoreModel.trialThreeScore)),
     ));
 
     // Visuospatial & Praxis
@@ -154,7 +157,7 @@ class PdfGenerationService {
       title: "Visuospatial & Praxis: Line Drawing Copy",
       guide: "N > 7, E = 7, I < 7",
       rawScore:
-          "Raw score: ${scoreModel.visuospatialPraxisImage1 + scoreModel.visuospatialPraxisImage2 + scoreModel.visuospatialPraxisImage3}/9",
+          "Raw score: ${9 - (scoreModel.visuospatialPraxisImage1 + scoreModel.visuospatialPraxisImage2 + scoreModel.visuospatialPraxisImage3)}/9",
       result: AssessmentStringUtils.resultToFullName(
           AssessmentStringUtils.visualMemoryResultToString(scoreModel)),
     ));
@@ -173,15 +176,18 @@ class PdfGenerationService {
     sections.add(_addAssessmentSection(
       title: "Executive: Animal Naming Task",
       guide: ">14 = N, 12 - 14 = E, < 12 = I",
-      rawScore: "Raw score: ${scoreModel.executiveAnimalNamingCount} Animals Named",
+      rawScore:
+          "Raw score: ${scoreModel.executiveAnimalNamingCount} Animals Named",
       result: AssessmentStringUtils.resultToFullName(
-          AssessmentStringUtils.radioValueToString(scoreModel.executiveAnimalNaming)),
+          AssessmentStringUtils.radioValueToString(
+              scoreModel.executiveAnimalNaming)),
     ));
 
     // Executive: Luria Alternating Hand Movements
     sections.add(_addAssessmentSection(
       title: "Executive: Luria Alternating Hand Movements",
-      guide: "N = 3 cycles without mistakes; E = able to do 1 - 2 cycles; I = unable to complete task",
+      guide:
+          "N = 3 cycles without mistakes; E = able to do 1 - 2 cycles; I = unable to complete task",
       rawScore: "Raw score: ${scoreModel.executiveLuriaScore} Hand Movements",
       result: AssessmentStringUtils.resultToFullName(
           AssessmentStringUtils.radioValueToString(scoreModel.executiveLuria)),
@@ -202,7 +208,8 @@ class PdfGenerationService {
       guide: "N > 5, E = 5, I < 5",
       rawScore: "Raw score: ${scoreModel.shorttermMemoryVerbalScore}/6",
       result: AssessmentStringUtils.resultToFullName(
-          AssessmentStringUtils.radioValueToString(scoreModel.shorttermMemoryVerbal)),
+          AssessmentStringUtils.radioValueToString(
+              scoreModel.shorttermMemoryVerbal)),
     ));
 
     // Praxis: Finger-hand Dexterity: Right
@@ -229,7 +236,8 @@ class PdfGenerationService {
       guide: "N > 5, E = 5, I < 5",
       rawScore: "Raw score: ${scoreModel.tenWordDelay}/10",
       result: AssessmentStringUtils.resultToFullName(
-          AssessmentStringUtils.delayRecallResultToString(scoreModel.tenWordDelay)),
+          AssessmentStringUtils.delayRecallResultToString(
+              scoreModel.tenWordDelay)),
     ));
 
     // Short-Term Memory Verbal Recognition: Total Score
@@ -239,7 +247,8 @@ class PdfGenerationService {
       rawScore:
           "Raw score: Words correctly identified in original word list: ${scoreModel.scoreVerbalRecognitionMemoryTenWordsInList}/10\nRaw score: Words correctly identified NOT in original word list: ${scoreModel.scoreVerbalRecognitionMemoryTenWordsNotInList}/10\nRaw score: Words identified: ${scoreModel.scoreVerbalRecognitionMemoryTenWords}/20",
       result: AssessmentStringUtils.resultToFullName(
-          AssessmentStringUtils.delayRecallResultToString(scoreModel.scoreVerbalRecognitionMemoryTenWords)),
+          AssessmentStringUtils.delayRecallResultToString(
+              scoreModel.scoreVerbalRecognitionMemoryTenWords)),
     ));
 
     // Short-Term Memory Visual: Line Drawing Recall
@@ -247,7 +256,7 @@ class PdfGenerationService {
       title: "Short-Term Memory Visual: Line Drawing Recall",
       guide: "N > 5, E = 5, I < 5",
       rawScore:
-          "Raw score: ${scoreModel.shorttermMemoryVisualImage1 + scoreModel.shorttermMemoryVisualImage2 + scoreModel.shorttermMemoryVisualImage3}/9",
+          "Raw score: ${9 - (scoreModel.shorttermMemoryVisualImage1 + scoreModel.shorttermMemoryVisualImage2 + scoreModel.shorttermMemoryVisualImage3)}/9",
       result: AssessmentStringUtils.resultToFullName(
           AssessmentStringUtils.visualMemoryResultToString(scoreModel)),
     ));
@@ -256,7 +265,7 @@ class PdfGenerationService {
     sections.add(_addAssessmentSection(
       title: "Anomia: Naming Line Drawings",
       guide: "N = all correct, E = 1 error, I > 1 error",
-      rawScore: "Raw Score: ${scoreModel.anomiaAgnosia}/3",
+      rawScore: "Raw Score: ${3 - (scoreModel.anomiaAgnosia)}/3",
       result: AssessmentStringUtils.resultToFullName(
           AssessmentStringUtils.radioValueToString(scoreModel.anomiaAgnosia)),
     ));
@@ -265,7 +274,7 @@ class PdfGenerationService {
     sections.add(_addAssessmentSection(
       title: "Agnosia: Recognition of Line Drawings",
       guide: "N = all correct, E = 1 error, I > 1 error",
-      rawScore: "Raw Score: ${scoreModel.agnosia}/3",
+      rawScore: "Raw Score: ${3 - (scoreModel.agnosia)}/3",
       result: AssessmentStringUtils.resultToFullName(
           AssessmentStringUtils.radioValueToString(scoreModel.agnosia)),
     ));
@@ -274,7 +283,7 @@ class PdfGenerationService {
     sections.add(_addAssessmentSection(
       title: "Executive: Design Fluency",
       guide: "N > 7 drawings, E = 5 - 7 drawings, I < 5 drawings",
-      rawScore: "Raw Score: ${scoreModel.executive}/3",
+      rawScore: "Raw Score: ${3 - (scoreModel.executive)}/3",
       result: AssessmentStringUtils.resultToFullName(
           AssessmentStringUtils.radioValueToString(scoreModel.executive)),
     ));
@@ -283,7 +292,7 @@ class PdfGenerationService {
     sections.add(_addAssessmentSection(
       title: "Spoken Language",
       guide: "N = normal speech, E = equivocal, I definite impairment",
-      rawScore: "Raw Score: ${scoreModel.spokenLanguage}/3",
+      rawScore: "Raw Score: ${3 - (scoreModel.spokenLanguage)}/3",
       result: AssessmentStringUtils.resultToFullName(
           AssessmentStringUtils.radioValueToString(scoreModel.spokenLanguage)),
     ));
