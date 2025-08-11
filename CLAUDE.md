@@ -61,6 +61,9 @@ The app uses Provider pattern with a centralized `MicaScoreModel` (ChangeNotifie
 2. Domain testing flows are organized in subfolders:
    - `attention_concentration/` - Contains vigilance, digit span, serial 7s, etc.
    - `language/` - Language assessments (speech, comprehension, naming, etc.)
+   - `memory/` - Memory assessments (ten word verbal recall, visual memory, semantic memory)
+   - `praxis/` - Praxis assessments (various apraxia tests and line drawing)
+   - `gnosis/` - Gnosis assessments (object identification, finger perception, clock drawing)
 3. Results are displayed in domain-specific result screens
 4. **Summary** page aggregates all results with tabs for domain breakdown and full report
 
@@ -132,11 +135,19 @@ Table(
 - `/lib/src/domain_testing/` - Test implementation screens organized by domain
   - `attention_concentration/` - Attention and concentration tests
   - `language/` - Language assessment tests
+  - `memory/` - Memory assessment tests (verbal and visual)
+  - `praxis/` - Praxis assessment tests (limb-kinetic, ideomotor, ideational, oral, dressing)
+  - `gnosis/` - Gnosis assessment tests:
+    - Visual object identification (nominal dysphasia vs visual object agnosia)
+    - Object identification by touch (astereognosis testing)
+    - Finger perception test (finger agnosia)
+    - Clock drawing test (integrated cognitive assessment)
 - `/lib/src/domain_results/` - Result display screens
 - `/lib/src/summary/` - Summary screens with modular components
 - `/lib/src/providers/` - State management (MicaProviders)
 - `/video/` - Instruction videos (.m4v format)
 - `/images/` - Test materials and assets
+  - `handdiagram1-7.png` - Finger perception test diagrams
 
 ## Important Notes
 
@@ -147,3 +158,22 @@ Table(
 - Color scheme uses purple/lavender theme (#64638f primary)
 - When creating new test screens, follow the established card/button styling patterns
 - Summary screen has been refactored into modular components in `/lib/src/summary/`
+
+## Recent Updates
+
+### Gnosis Module (Added)
+- Complete Gnosis assessment domain with 4 tests
+- Visual object identification test with scoring for nominal dysphasia vs visual object agnosia
+- Touch object identification test (astereognosis) with separate scoring for right and left hands
+- Finger perception test with 7 hand diagrams and pattern-based scoring
+- Clock drawing test with 5-point scoring criteria
+- All tests follow the app's standard UI patterns with purple/yellow instruction cards and green scoring sections
+
+### UI Improvements
+- Fixed attention screen: double-tap on "A" buttons now marks as mistake instead of deselecting
+- Updated ten_word_recognition: Yes/No buttons now have white background with black text
+- Fixed Yes button first-click issue in recognition tests
+
+### Image Assets
+- Added handdiagram1-7.png for finger perception test
+- Images properly configured in pubspec.yaml

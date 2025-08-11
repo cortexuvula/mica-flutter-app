@@ -8,17 +8,26 @@ Mica is a mobile application designed to provide cognitive assessments in clinic
 
 ## Features
 
-- Interactive cognitive assessment tools
-- Secure data collection and storage
+- Interactive cognitive assessment tools across multiple domains
+- Comprehensive assessment modules:
+  - **Attention & Concentration**: Vigilance tests, digit span, serial 7s
+  - **Language**: Speech fluency, comprehension, naming, reading, writing
+  - **Memory**: Verbal and visual short-term memory, delayed recall, recognition
+  - **Praxis**: Limb-kinetic, ideomotor, ideational, oral, and dressing apraxia tests
+  - **Gnosis**: Visual object identification, astereognosis, finger perception, clock drawing
+- Secure data collection and storage with Provider pattern
 - Cross-platform support (iOS and Android)
 - Responsive UI design for various device sizes
-- Results summary and visualization
+- Results summary with domain-specific scoring and PDF generation
+- Video instructions for complex assessments
 
 ## Technology Stack
 
 - Flutter for cross-platform development
 - Dart programming language
-- State management: Basic Flutter state management (setState)
+- State management: Provider pattern with ChangeNotifier
+- PDF generation for assessment reports
+- Video player for instructional content
 
 ## Installation
 
@@ -56,17 +65,43 @@ Mica is a mobile application designed to provide cognitive assessments in clinic
 
 ```
 lib/
-├── main.dart         # Application entry point
-├── models/           # Data models
-├── screens/          # UI screens
-├── services/         # Business logic and services
-├── utils/            # Utility functions
-└── widgets/          # Reusable UI components
+├── main.dart                    # Application entry point
+├── resources/
+│   └── const_data.dart         # Constants and static data
+├── src/
+│   ├── domain_testing/         # Assessment modules by domain
+│   │   ├── attention_concentration/
+│   │   ├── language/
+│   │   ├── memory/
+│   │   ├── praxis/
+│   │   └── gnosis/            # Gnosis assessment tests
+│   │       ├── gnosis_assessment.dart
+│   │       ├── identify_objects_visually.dart
+│   │       ├── identify_objects_by_touch.dart
+│   │       ├── finger_perception_test.dart
+│   │       └── clock_drawing_test.dart
+│   ├── domain_results/         # Result display screens
+│   ├── models/                 # Data models
+│   │   └── mica_score_model.dart
+│   ├── providers/              # State management
+│   │   └── mica_provider.dart
+│   ├── summary/                # Summary and report generation
+│   │   └── services/
+│   │       └── pdf_generation_service.dart
+│   └── utils/                  # Utility functions
+│       └── navigation_helper.dart
+├── images/                     # Image assets
+│   └── handdiagram1-7.png    # Finger perception test diagrams
+└── video/                      # Instructional videos
 ```
 
 ### State Management
 
-The application uses Flutter's built-in state management approach with StatefulWidget and setState() for handling component state. This approach works well for this application's needs, providing simplicity and directness for managing UI state.
+The application uses the Provider pattern with ChangeNotifier for state management. The centralized `MicaScoreModel` holds all test scores and patient information, providing a single source of truth across the application. Key patterns include:
+
+- `MicaProviders.getProviders()` - Returns MultiProvider configuration
+- `MicaProviders.getScoreModel(context)` - Access the score model from any screen
+- Deferred initialization using `WidgetsBinding.instance.addPostFrameCallback`
 
 ## Contributing
 

@@ -129,7 +129,7 @@ const String testTenWordRecallTrialOneSubtitle = "Verbal Trial 1";
 const String instructionsTenWordRecallTrialOnePaient1 =
     "\"I am going to read you a list of 10 words. Remember these words, as I will ask you what you can remember afterwards. Please repeat each word after I have said it, so that I can be sure that you have heard it correctly. Do you understand? Are you ready? Let's go!\"";
 const String instructionsTenWordRecallTrialOneHealthworker1 =
-    "If the patient does not repeat the word say: “Please repeat the word.” Read the words from left to right. Carry on with the rest of the list.";
+    "If the patient does not repeat the word say: “Please repeat the word.” Read the words from left to right.";
 const String instructionsTenWordRecallTrialOnePatient2 =
     "“What were those words?” ";
 const String instructionsTenWordRecallTrialOneHealthworker2 =

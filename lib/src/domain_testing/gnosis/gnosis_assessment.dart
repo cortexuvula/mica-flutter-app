@@ -3,6 +3,8 @@ import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/domain_testing/gnosis/identify_objects_visually.dart';
 import 'package:mica/src/domain_testing/gnosis/identify_objects_by_touch.dart';
+import 'package:mica/src/domain_testing/gnosis/finger_perception_test.dart';
+import 'package:mica/src/domain_testing/gnosis/clock_drawing_test.dart';
 
 class GnosisAssessment extends StatefulWidget {
   const GnosisAssessment({super.key});
@@ -78,11 +80,9 @@ class _GnosisAssessmentState extends State<GnosisAssessment> {
                 width, 
                 'Finger Perception Test',
                 () {
-                  // TODO: Navigate to finger perception test
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Finger Perception Test - Coming Soon'),
-                    ),
+                  NavigationHelper.navigateTo(
+                    context,
+                    const FingerPerceptionTest(),
                   );
                 }
               ),
@@ -94,11 +94,9 @@ class _GnosisAssessmentState extends State<GnosisAssessment> {
                 width, 
                 'Clock Drawing Test',
                 () {
-                  // TODO: Navigate to clock drawing test
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text('Clock Drawing Test - Coming Soon'),
-                    ),
+                  NavigationHelper.navigateTo(
+                    context,
+                    const ClockDrawingTest(),
                   );
                 }
               ),

@@ -91,6 +91,13 @@ flutter:
    - images/visual_memory_shape1.png
    - images/visual_memory_shape2.png
    - images/visual_memory_shape3.png
+   - images/handdiagram1.png
+   - images/handdiagram2.png
+   - images/handdiagram3.png
+   - images/handdiagram4.png
+   - images/handdiagram5.png
+   - images/handdiagram6.png
+   - images/handdiagram7.png
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
