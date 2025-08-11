@@ -34,7 +34,7 @@ class TenWordRecognitionState extends State<TenWordRecognition> {
       loadFromModel();
     });
     for (var i = 0; i < app_data.tenWordMemoryList.length; i++) {
-      wordButtonColor.add({"yes": Colors.white70, "no": Colors.white70});
+      wordButtonColor.add({"yes": Colors.white, "no": Colors.white});
     }
   }
 
@@ -187,7 +187,7 @@ class TenWordRecognitionState extends State<TenWordRecognition> {
                           trailing: SizedBox(
                             width: 200.0,
                             child: Container(
-                              color: Colors.black87,
+                              color: Colors.white,
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceEvenly,
@@ -197,9 +197,9 @@ class TenWordRecognitionState extends State<TenWordRecognition> {
                                     onPressed: () {
                                       setState(() {
                                         if (wordButtonColor[index]["no"] ==
-                                            Colors.white70) {
+                                            Colors.white) {
                                           if (wordButtonColor[index]["yes"] ==
-                                              Colors.white70) {
+                                              Colors.white) {
                                             if (app_data.tenWordRecallList
                                                 .contains(
                                                     app_data.tenWordMemoryList[
@@ -218,7 +218,7 @@ class TenWordRecognitionState extends State<TenWordRecognition> {
                                           //                                      ["yes"] ==
                                           //                                          Colors.green) {
                                           //                                        wordButtonColor[index]["yes"] =
-                                          //                                            Colors.white70;
+                                          //                                            Colors.white;
                                           //                                        if (app_data.tenWordRecallList.contains(
                                           //                                            app_data.tenWordMemoryList[index])) {
                                           //                                          ifWordInTheListMinus();
@@ -228,7 +228,7 @@ class TenWordRecognitionState extends State<TenWordRecognition> {
                                           //                                      ["yes"] ==
                                           //                                          Colors.red) {
                                           //                                        wordButtonColor[index]["yes"] =
-                                          //                                            Colors.white70;
+                                          //                                            Colors.white;
                                           //                                        // Not sure if this is the correct logic here - check scores
                                           ////                                        if (!app_data.tenWordRecallList.contains(
                                           ////                                            app_data.tenWordMemoryList[index])) {
@@ -239,9 +239,9 @@ class TenWordRecognitionState extends State<TenWordRecognition> {
                                                 ["no"] ==
                                             Colors.green) {
                                           if (wordButtonColor[index]["yes"] ==
-                                              Colors.white70) {
+                                              Colors.white) {
                                             wordButtonColor[index]["no"] =
-                                                Colors.white70;
+                                                Colors.white;
                                             if (app_data.tenWordRecallList
                                                 .contains(
                                                     app_data.tenWordMemoryList[
@@ -264,9 +264,9 @@ class TenWordRecognitionState extends State<TenWordRecognition> {
                                                 ["no"] ==
                                             Colors.red) {
                                           if (wordButtonColor[index]["yes"] ==
-                                              Colors.white70) {
+                                              Colors.white) {
                                             wordButtonColor[index]["no"] =
-                                                Colors.white70;
+                                                Colors.white;
                                             if (app_data.tenWordRecallList
                                                 .contains(
                                                     app_data.tenWordMemoryList[
@@ -289,8 +289,9 @@ class TenWordRecognitionState extends State<TenWordRecognition> {
                                       });
                                     },
                                     style: TextButton.styleFrom(
-                                      foregroundColor: wordButtonColor[index]
+                                      backgroundColor: wordButtonColor[index]
                                           ["yes"],
+                                      foregroundColor: Colors.black,
                                     ),
                                     child: const Text("Yes"),
                                   ),
@@ -299,9 +300,9 @@ class TenWordRecognitionState extends State<TenWordRecognition> {
                                     onPressed: () {
                                       setState(() {
                                         if (wordButtonColor[index]["yes"] ==
-                                            Colors.white70) {
+                                            Colors.white) {
                                           if (wordButtonColor[index]["no"] ==
-                                              Colors.white70) {
+                                              Colors.white) {
                                             if (!app_data.tenWordRecallList
                                                 .contains(
                                                     app_data.tenWordMemoryList[
@@ -317,7 +318,7 @@ class TenWordRecognitionState extends State<TenWordRecognition> {
                                           }
                                           //                                      if (wordButtonColor[index]["no"] == Colors.green) {
                                           //                                        wordButtonColor[index]["no"] =
-                                          //                                            Colors.white70;
+                                          //                                            Colors.white;
                                           //                                        if (!app_data.tenWordRecallList.contains(app_data.tenWordMemoryList[index])) {
                                           //                                          ifWordNotInListMinus();
                                           //
@@ -327,7 +328,7 @@ class TenWordRecognitionState extends State<TenWordRecognition> {
                                                 ["yes"] ==
                                             Colors.green) {
                                           if (wordButtonColor[index]["no"] ==
-                                              Colors.white70) {
+                                              Colors.white) {
                                             if (!app_data.tenWordRecallList
                                                 .contains(
                                                     app_data.tenWordMemoryList[
@@ -336,7 +337,7 @@ class TenWordRecognitionState extends State<TenWordRecognition> {
                                               wordButtonColor[index]["no"] =
                                                   Colors.green;
                                               wordButtonColor[index]["yes"] =
-                                                  Colors.white70;
+                                                  Colors.white;
                                             } else if (app_data
                                                 .tenWordRecallList
                                                 .contains(
@@ -347,14 +348,14 @@ class TenWordRecognitionState extends State<TenWordRecognition> {
                                               wordButtonColor[index]["no"] =
                                                   Colors.red;
                                               wordButtonColor[index]["yes"] =
-                                                  Colors.white70;
+                                                  Colors.white;
                                             }
                                           }
                                         } else if (wordButtonColor[index]
                                                 ["yes"] ==
                                             Colors.red) {
                                           wordButtonColor[index]["yes"] =
-                                              Colors.white70;
+                                              Colors.white;
                                           if (!app_data.tenWordRecallList
                                               .contains(app_data
                                                   .tenWordMemoryList[index])) {
@@ -365,8 +366,9 @@ class TenWordRecognitionState extends State<TenWordRecognition> {
                                       });
                                     },
                                     style: TextButton.styleFrom(
-                                      foregroundColor: wordButtonColor[index]
+                                      backgroundColor: wordButtonColor[index]
                                           ["no"],
+                                      foregroundColor: Colors.black,
                                     ),
                                     child: const Text("No"),
                                   )

@@ -188,6 +188,7 @@ class _AttentionState extends State<Attention> {
                               child: InkWell(
                                 onTap: () {
                                   if (!tapWrong[index] && !tapCorrect[index]) {
+                                    // First tap
                                     if (app_data.attentionList[index] == "A") {
                                       setState(() {
                                         tapCorrect[index] = true;
@@ -213,29 +214,52 @@ class _AttentionState extends State<Attention> {
                                       });
                                     }
                                   } else {
+                                    // Second tap (double tap)
                                     setState(() {
-                                      if (tapCorrect[index]) {
-                                        correctTap =
-                                            correctTap > 0 ? correctTap - 1 : 0;
-                                      }
-
-                                      if (tapWrong[index]) {
-                                        wrongTap =
-                                            wrongTap > 0 ? wrongTap - 1 : 0;
+                                      // If this is an "A" that was previously marked correct,
+                                      // convert it to a mistake on double tap
+                                      if (app_data.attentionList[index] == "A" && tapCorrect[index]) {
+                                        // Remove from correct count
+                                        correctTap = correctTap > 0 ? correctTap - 1 : 0;
+                                        tapCorrect[index] = false;
+                                        correctCheck[index] = false;
+                                        
+                                        // Add to wrong count
+                                        tapWrong[index] = true;
+                                        wrongTap += 1;
+                                        letterTapButtonColor[index] = Colors.red;
+                                        
+                                        // Update radio value based on mistakes
                                         if (wrongTap == 1) {
                                           _radioValue = 1;
                                         } else if (wrongTap > 1) {
                                           _radioValue = 2;
-                                        } else if (wrongTap < 1) {
-                                          _radioValue = 0;
                                         }
-                                      }
+                                      } else {
+                                        // For other cases, reset the selection
+                                        if (tapCorrect[index]) {
+                                          correctTap =
+                                              correctTap > 0 ? correctTap - 1 : 0;
+                                        }
 
-                                      tapCorrect[index] = false;
-                                      tapWrong[index] = false;
-                                      correctCheck[index] = false;
-                                      letterTapButtonColor[index] =
-                                          Colors.cyan.shade200;
+                                        if (tapWrong[index]) {
+                                          wrongTap =
+                                              wrongTap > 0 ? wrongTap - 1 : 0;
+                                          if (wrongTap == 1) {
+                                            _radioValue = 1;
+                                          } else if (wrongTap > 1) {
+                                            _radioValue = 2;
+                                          } else if (wrongTap < 1) {
+                                            _radioValue = 0;
+                                          }
+                                        }
+
+                                        tapCorrect[index] = false;
+                                        tapWrong[index] = false;
+                                        correctCheck[index] = false;
+                                        letterTapButtonColor[index] =
+                                            Colors.cyan.shade200;
+                                      }
                                     });
                                   }
                                 },
