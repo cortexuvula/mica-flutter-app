@@ -5,6 +5,7 @@ import 'package:mica/src/domain_testing/language/language_assessment.dart';
 import 'package:mica/src/domain_testing/memory/memory_assessment.dart';
 import 'package:mica/src/domain_testing/praxis/praxis_assessment.dart';
 import 'package:mica/src/domain_testing/gnosis/gnosis_assessment.dart';
+import 'package:mica/src/domain_testing/executive_function/executive_function_assessment.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
@@ -284,7 +285,7 @@ class DomainSelectState extends State<DomainSelect> {
                           onPressed: () {
                             NavigationHelper.navigateAndRemoveUntil(
                               context,
-                              const Welcome(),
+                              const ExecutiveFunctionAssessment(),
                               (Route<dynamic> route) => true,
                             );
                           },
