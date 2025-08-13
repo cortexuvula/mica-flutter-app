@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/domain_testing/executive_function/luria_alternating_hand_movements.dart';
+import 'package:mica/src/domain_testing/executive_function/luria_fist_edge_palm_movement.dart';
 
 class ExecutiveFunctionAssessment extends StatefulWidget {
   const ExecutiveFunctionAssessment({super.key});
@@ -61,7 +62,11 @@ class ExecutiveFunctionAssessmentState
             width,
             'Luria Fist-Edge-Palm Movement',
             () {
-              // TODO: Navigate to Luria Fist-Edge-Palm Movement test
+              NavigationHelper.navigateAndRemoveUntil(
+                context,
+                const LuriaFistEdgePalmMovement(),
+                (Route<dynamic> route) => true,
+              );
             },
           ),
           const SizedBox(height: 10),
