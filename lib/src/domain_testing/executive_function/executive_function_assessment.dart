@@ -3,6 +3,7 @@ import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/domain_testing/executive_function/luria_alternating_hand_movements.dart';
 import 'package:mica/src/domain_testing/executive_function/luria_fist_edge_palm_movement.dart';
+import 'package:mica/src/domain_testing/executive_function/animal_naming_task.dart';
 
 class ExecutiveFunctionAssessment extends StatefulWidget {
   const ExecutiveFunctionAssessment({super.key});
@@ -75,7 +76,11 @@ class ExecutiveFunctionAssessmentState
             width,
             'Animal Naming Task',
             () {
-              // TODO: Navigate to Animal Naming Task test
+              NavigationHelper.navigateAndRemoveUntil(
+                context,
+                const AnimalNamingTask(),
+                (Route<dynamic> route) => true,
+              );
             },
           ),
           const SizedBox(height: 10),
