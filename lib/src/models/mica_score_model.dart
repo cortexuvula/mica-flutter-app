@@ -44,6 +44,12 @@ class MicaScoreModel extends ChangeNotifier {
   // Executive function scores
   int _executiveAnimalNaming = 0;
   int _executiveAnimalNamingCount = 0;
+  int _executiveLexicalFluency = 0;
+  int _executiveLexicalFluencyCount = 0;
+  int _executiveDesignFluency = 0;
+  int _executiveFingerNose = 0;
+  int _executiveTap = 0;
+  int _executiveAlternatingSequences = 0;
   int _executiveLuria = 0;
   int _executiveLuriaScore = 0;
   int _executiveSerial = 0;
@@ -98,6 +104,12 @@ class MicaScoreModel extends ChangeNotifier {
   // Getters for executive function scores
   int get executiveAnimalNaming => _executiveAnimalNaming;
   int get executiveAnimalNamingCount => _executiveAnimalNamingCount;
+  int get executiveLexicalFluency => _executiveLexicalFluency;
+  int get executiveLexicalFluencyCount => _executiveLexicalFluencyCount;
+  int get executiveDesignFluency => _executiveDesignFluency;
+  int get executiveFingerNose => _executiveFingerNose;
+  int get executiveTap => _executiveTap;
+  int get executiveAlternatingSequences => _executiveAlternatingSequences;
   int get executiveLuria => _executiveLuria;
   int get executiveLuriaScore => _executiveLuriaScore;
   int get executiveSerial => _executiveSerial;
@@ -223,6 +235,35 @@ class MicaScoreModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setExecutiveLexicalFluency({
+    required int score,
+    required int count,
+  }) {
+    _executiveLexicalFluency = score;
+    _executiveLexicalFluencyCount = count;
+    notifyListeners();
+  }
+
+  void setExecutiveDesignFluency(int score) {
+    _executiveDesignFluency = score;
+    notifyListeners();
+  }
+
+  void setExecutiveFingerNose(int score) {
+    _executiveFingerNose = score;
+    notifyListeners();
+  }
+
+  void setExecutiveTap(int score) {
+    _executiveTap = score;
+    notifyListeners();
+  }
+
+  void setExecutiveAlternatingSequences(int score) {
+    _executiveAlternatingSequences = score;
+    notifyListeners();
+  }
+
   void setExecutiveLuria({
     required int score,
     required int count,
@@ -275,6 +316,12 @@ class MicaScoreModel extends ChangeNotifier {
     required int attentionMistakes,
     required int executiveAnimalNaming,
     required int executiveAnimalNamingCount,
+    required int executiveLexicalFluency,
+    required int executiveLexicalFluencyCount,
+    required int executiveDesignFluency,
+    required int executiveFingerNose,
+    required int executiveTap,
+    required int executiveAlternatingSequences,
     required int executiveLuria,
     required int executiveLuriaScore,
     required int executiveSerial,
@@ -311,6 +358,12 @@ class MicaScoreModel extends ChangeNotifier {
     _attentionMistakes = attentionMistakes;
     _executiveAnimalNaming = executiveAnimalNaming;
     _executiveAnimalNamingCount = executiveAnimalNamingCount;
+    _executiveLexicalFluency = executiveLexicalFluency;
+    _executiveLexicalFluencyCount = executiveLexicalFluencyCount;
+    _executiveDesignFluency = executiveDesignFluency;
+    _executiveFingerNose = executiveFingerNose;
+    _executiveTap = executiveTap;
+    _executiveAlternatingSequences = executiveAlternatingSequences;
     _executiveLuria = executiveLuria;
     _executiveLuriaScore = executiveLuriaScore;
     _executiveSerial = executiveSerial;
@@ -374,6 +427,12 @@ class MicaScoreModel extends ChangeNotifier {
 
     _executiveAnimalNaming = 0;
     _executiveAnimalNamingCount = 0;
+    _executiveLexicalFluency = 0;
+    _executiveLexicalFluencyCount = 0;
+    _executiveDesignFluency = 0;
+    _executiveFingerNose = 0;
+    _executiveTap = 0;
+    _executiveAlternatingSequences = 0;
     _executiveLuria = 0;
     _executiveLuriaScore = 0;
     _executiveSerial = 0;

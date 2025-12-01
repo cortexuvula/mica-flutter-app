@@ -4,6 +4,12 @@ import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/domain_testing/executive_function/luria_alternating_hand_movements.dart';
 import 'package:mica/src/domain_testing/executive_function/luria_fist_edge_palm_movement.dart';
 import 'package:mica/src/domain_testing/executive_function/animal_naming_task.dart';
+import 'package:mica/src/domain_testing/executive_function/lexical_fluency_test.dart';
+import 'package:mica/src/domain_testing/executive_function/design_fluency_task.dart';
+import 'package:mica/src/domain_testing/executive_function/months_of_year_backwards.dart';
+import 'package:mica/src/domain_testing/executive_function/finger_nose_task.dart';
+import 'package:mica/src/domain_testing/executive_function/tap_task.dart';
+import 'package:mica/src/domain_testing/executive_function/alternating_sequences.dart';
 
 class ExecutiveFunctionAssessment extends StatefulWidget {
   const ExecutiveFunctionAssessment({super.key});
@@ -89,7 +95,11 @@ class ExecutiveFunctionAssessmentState
             width,
             'Lexical Fluency Test',
             () {
-              // TODO: Navigate to Lexical Fluency Test
+              NavigationHelper.navigateAndRemoveUntil(
+                context,
+                const LexicalFluencyTest(),
+                (Route<dynamic> route) => true,
+              );
             },
           ),
           const SizedBox(height: 10),
@@ -98,7 +108,11 @@ class ExecutiveFunctionAssessmentState
             width,
             'Design Fluency Task',
             () {
-              // TODO: Navigate to Design Fluency Task
+              NavigationHelper.navigateAndRemoveUntil(
+                context,
+                const DesignFluencyTask(),
+                (Route<dynamic> route) => true,
+              );
             },
           ),
           const SizedBox(height: 10),
@@ -107,7 +121,11 @@ class ExecutiveFunctionAssessmentState
             width,
             'Finger-Nose Task',
             () {
-              // TODO: Navigate to Finger-Nose Task
+              NavigationHelper.navigateAndRemoveUntil(
+                context,
+                const FingerNoseTask(),
+                (Route<dynamic> route) => true,
+              );
             },
           ),
           const SizedBox(height: 10),
@@ -116,7 +134,11 @@ class ExecutiveFunctionAssessmentState
             width,
             'Tap Task',
             () {
-              // TODO: Navigate to Tap Task
+              NavigationHelper.navigateAndRemoveUntil(
+                context,
+                const TapTask(),
+                (Route<dynamic> route) => true,
+              );
             },
           ),
           const SizedBox(height: 10),
@@ -125,7 +147,11 @@ class ExecutiveFunctionAssessmentState
             width,
             'Alternating Sequences',
             () {
-              // TODO: Navigate to Alternating Sequences test
+              NavigationHelper.navigateAndRemoveUntil(
+                context,
+                const AlternatingSequences(),
+                (Route<dynamic> route) => true,
+              );
             },
           ),
           const SizedBox(height: 10),
@@ -134,7 +160,11 @@ class ExecutiveFunctionAssessmentState
             width,
             'Months of the Year Backwards',
             () {
-              // TODO: Navigate to Months of the Year Backwards test
+              NavigationHelper.navigateAndRemoveUntil(
+                context,
+                const MonthsOfYearBackwards(),
+                (Route<dynamic> route) => true,
+              );
             },
           ),
         ],

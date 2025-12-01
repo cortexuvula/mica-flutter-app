@@ -187,11 +187,22 @@ const String testExecutiveAnimalNamingSubtitle = "Animal Naming Task";
 const String testExecutiveAnimalNamingDetails =
     "The patient can name mammals, birds, reptiles or fish. Repetitions are not scored.";
 const String testExecutiveAnimalNamingToPatient =
-    "“I am going to give you one minute to name as many animals as possible.”";
+    "\"I am going to give you one minute to name as many animals as possible.\"";
 const String testExecutiveAnimalNamingResponse = "";
 const String testExecutiveAnimalNamingResponseNormal = "> 14 Names";
 const String testExecutiveAnimalNamingResponseEquivocal = "12 - 14 Names";
 const String testExecutiveAnimalNamingResponseImpaired = "< 12 Names";
+
+const String testExecutiveLexicalFluency = "Executive";
+const String testExecutiveLexicalFluencySubtitle = "Lexical Fluency Test";
+const String testExecutiveLexicalFluencyDetails =
+    "Repetitions are not scored but should be noted as it may indicate perseveration. The letters 'F' and 'A' can also be used.";
+const String testExecutiveLexicalFluencyToPatient =
+    "\"Say as many words as you can beginning with the letter 'S', any words except names of people or places. I will give you one minute to complete the task. Are you ready? Go.\"";
+const String testExecutiveLexicalFluencyResponse = "";
+const String testExecutiveLexicalFluencyResponseNormal = "> 14 Names";
+const String testExecutiveLexicalFluencyResponseEquivocal = "12 - 14 Names";
+const String testExecutiveLexicalFluencyResponseImpaired = "< 12 Names";
 
 const String testExecutiveLuria = "Executive";
 const String testExecutiveLuriaSubtitle = "Luria Alternating Hand Movements";
@@ -205,18 +216,49 @@ const String testExecutiveLuriaResponseImpaired =
     "Not being able to complete the task.";
 
 const String testExecutiveSerial = "Executive";
-const String testExecutiveSerialSubtitle = "Serial Order Reversal Task";
+const String testExecutiveSerialSubtitle = "Months of the Year Backwards";
 const String testExecutiveSerialDetails =
     "Allow person to complete the sequence January to December.";
 const String testExecutiveSerialToPatient1 =
-    "”Say the months of the year starting with January.\"";
+    "\"Say the months of the year starting with January.\"";
 const String testExecutiveSerialToPatient2 =
-    "\"Now start with December and go backwards.”";
+    "\"Now start with December and go backwards.\"";
 const String testExecutiveSerialResponse =
     "Stop the person when he reaches July or makes 2 or more mistakes.";
 const String testExecutiveSerialResponseNormal = "No errors";
 const String testExecutiveSerialResponseEquivocal = "1 error";
 const String testExecutiveSerialResponseImpaired = "> 1 error";
+
+const String testExecutiveFingerNose = "Executive";
+const String testExecutiveFingerNoseSubtitle = "Finger-Nose Task";
+const String testExecutiveFingerNoseDetails =
+    "The examiner lifts their finger and in response the patient touches their nose. When the examiner touches his nose, the patient responds by lifting his finger.";
+const String testExecutiveFingerNoseToPatient =
+    "\"Listen carefully. When I touch my nose, you raise your finger like this.\"\n\"When I raise my finger, you touch your nose. Let's try it now.\"";
+const String testExecutiveFingerNoseInstructions =
+    "The examiner performs five variations such as Finger-Nose-Nose-Finger-Nose. Most individuals can complete this task without making a mistake.";
+const String testExecutiveFingerNoseResponse =
+    "Note the response of the patient and score as below.";
+
+const String testExecutiveTap = "Executive";
+const String testExecutiveTapSubtitle = "Tap Task";
+const String testExecutiveTapToPatient =
+    "\"Tap once when I tap once. Do not tap when I tap twice.\"";
+const String testExecutiveTapInstructions =
+    "Perform a random series of tapping once or twice and note the patient's response. Most people can do this without any mistakes.";
+const String testExecutiveTapResponse =
+    "Note the response of the patient and score as below.";
+
+const String testExecutiveAlternatingSequences = "Executive";
+const String testExecutiveAlternatingSequencesSubtitle = "Alternating Sequences";
+const String testExecutiveAlternatingSequencesToPatient1 =
+    "\"I will say a sequence of letters and numbers. Listen carefully as I would like you to complete it for me. A 1 B 2 C...?\"";
+const String testExecutiveAlternatingSequencesToPatient2 =
+    "\"Good, now start from A and say this sequence until I ask you to stop.\"";
+const String testExecutiveAlternatingSequencesInstructions =
+    "Score the sequence below. Most people can complete this task without any mistakes.\n\nA 1 B 2 C 3 D 4 E 5";
+const String testExecutiveAlternatingSequencesResponse =
+    "Note the response of the patient and score as below.";
 
 const String testShortTermMemory = "Short-Term Memory";
 const String testShortTermMemorySubtitle = "Verbal";
@@ -294,13 +336,13 @@ const String testExecutiveSubtitle = "Design Fluency";
 const String testExecutiveDetails =
     "Draw the following two examples on the same paper that the patient will use. Count the lines from 1 - 4 while you are drawing.";
 const String testExecutiveToPatient =
-    "“You have one minute to draw anything using four lines. The drawings must be different and I must be able to count the lines. I will give you two examples.”";
+    "\"You have one minute to draw anything using four lines. The drawings must be different and I must be able to count the lines. I will give you two examples.\"";
 const String testExecutiveToPatient2 =
     "\"Do you have any questions? Your minute starts now.\"";
 const String testExecutiveResponse = "";
-const String testExecutiveResponseNormal = "7 drawings";
+const String testExecutiveResponseNormal = "> 7 drawings";
 const String testExecutiveResponseEquivocal = "5 - 7 drawings";
-const String testExecutiveResponseImpaired = "> 5 drawings";
+const String testExecutiveResponseImpaired = "< 5 drawings";
 
 const String testSpokenLanguage = "Spoken Language";
 const String testSpokenLanguageSubtitle = "";
