@@ -251,25 +251,26 @@ class _PictureNamingState extends State<PictureNaming> {
                           SizedBox(
                             height: 5.0,
                           ),
-                          Table(
-                            border: TableBorder.all(),
-                            defaultVerticalAlignment:
-                                TableCellVerticalAlignment.middle,
-                            columnWidths: const {
-                              0: FlexColumnWidth(0.3),
-                              1: FlexColumnWidth(0.3),
-                              2: FlexColumnWidth(0.34)
-                            },
-                            children: [
-                              TableRow(children: [
-                                Row(
-                                  children: <Widget>[
-                                    Radio<int>(
-                                      value: 0,
-                                      groupValue: _radioValue,
-                                      onChanged: _handleRadioValueChange,
-                                      activeColor: Colors.white,
-                                    ),
+                          RadioGroup<int>(
+                            groupValue: _radioValue,
+                            onChanged: _handleRadioValueChange,
+                            child: Table(
+                              border: TableBorder.all(),
+                              defaultVerticalAlignment:
+                                  TableCellVerticalAlignment.middle,
+                              columnWidths: const {
+                                0: FlexColumnWidth(0.3),
+                                1: FlexColumnWidth(0.3),
+                                2: FlexColumnWidth(0.34)
+                              },
+                              children: [
+                                TableRow(children: [
+                                  Row(
+                                    children: <Widget>[
+                                      Radio<int>(
+                                        value: 0,
+                                        activeColor: Colors.white,
+                                      ),
                                     const Text(
                                       "Normal",
                                       style: TextStyle(
@@ -283,8 +284,6 @@ class _PictureNamingState extends State<PictureNaming> {
                                   children: <Widget>[
                                     Radio<int>(
                                       value: 1,
-                                      groupValue: _radioValue,
-                                      onChanged: _handleRadioValueChange,
                                       activeColor: Colors.white,
                                     ),
                                     const Text(
@@ -300,8 +299,6 @@ class _PictureNamingState extends State<PictureNaming> {
                                   children: <Widget>[
                                     Radio<int>(
                                       value: 2,
-                                      groupValue: _radioValue,
-                                      onChanged: _handleRadioValueChange,
                                       activeColor: Colors.white,
                                     ),
                                     const Text(
@@ -343,6 +340,7 @@ class _PictureNamingState extends State<PictureNaming> {
                                 ),
                               ])
                             ],
+                          ),
                           ),
                           SizedBox(
                             height: 5.0,
@@ -358,25 +356,26 @@ class _PictureNamingState extends State<PictureNaming> {
                           SizedBox(
                             height: 5.0,
                           ),
-                          Table(
-                            border: TableBorder.all(),
-                            defaultVerticalAlignment:
-                                TableCellVerticalAlignment.middle,
-                            columnWidths: const {
-                              0: FlexColumnWidth(0.3),
-                              1: FlexColumnWidth(0.3),
-                              2: FlexColumnWidth(0.34)
-                            },
-                            children: [
-                              TableRow(children: [
-                                Row(
-                                  children: <Widget>[
-                                    Radio<int>(
-                                      value: 0,
-                                      groupValue: _radioValue2,
-                                      onChanged: _handleRadioValueChange2,
-                                      activeColor: Colors.white,
-                                    ),
+                          RadioGroup<int>(
+                            groupValue: _radioValue2,
+                            onChanged: _handleRadioValueChange2,
+                            child: Table(
+                              border: TableBorder.all(),
+                              defaultVerticalAlignment:
+                                  TableCellVerticalAlignment.middle,
+                              columnWidths: const {
+                                0: FlexColumnWidth(0.3),
+                                1: FlexColumnWidth(0.3),
+                                2: FlexColumnWidth(0.34)
+                              },
+                              children: [
+                                TableRow(children: [
+                                  Row(
+                                    children: <Widget>[
+                                      Radio<int>(
+                                        value: 0,
+                                        activeColor: Colors.white,
+                                      ),
                                     const Text(
                                       "Normal",
                                       style: TextStyle(
@@ -390,8 +389,6 @@ class _PictureNamingState extends State<PictureNaming> {
                                   children: <Widget>[
                                     Radio<int>(
                                       value: 1,
-                                      groupValue: _radioValue2,
-                                      onChanged: _handleRadioValueChange2,
                                       activeColor: Colors.white,
                                     ),
                                     const Text(
@@ -407,8 +404,6 @@ class _PictureNamingState extends State<PictureNaming> {
                                   children: <Widget>[
                                     Radio<int>(
                                       value: 2,
-                                      groupValue: _radioValue2,
-                                      onChanged: _handleRadioValueChange2,
                                       activeColor: Colors.white,
                                     ),
                                     const Text(
@@ -450,6 +445,7 @@ class _PictureNamingState extends State<PictureNaming> {
                                 ),
                               ])
                             ],
+                          ),
                           ),
                         ],
                       ),
