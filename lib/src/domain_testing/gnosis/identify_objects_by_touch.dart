@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:mica/src/providers/mica_provider.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 
 class IdentifyObjectsByTouch extends StatefulWidget {
@@ -427,15 +426,13 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
   }
   
   void saveToModel() {
-    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     // TODO: Add astereognosis scores to the model when model is updated
     // For now, just store the values locally
   }
-  
+
   void loadFromModel() {
     if (!mounted) return;
-    
-    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+
     // TODO: Load astereognosis scores from the model when model is updated
     setState(() {
       _rightHandRadioValue = 0; // Default to Normal

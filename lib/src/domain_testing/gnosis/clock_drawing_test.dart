@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:mica/src/providers/mica_provider.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 
 class ClockDrawingTest extends StatefulWidget {
@@ -345,15 +344,13 @@ class _ClockDrawingTestState extends State<ClockDrawingTest> {
   }
   
   void saveToModel() {
-    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     // TODO: Add clock drawing scores to the model when model is updated
     // For now, just store the value locally
   }
-  
+
   void loadFromModel() {
     if (!mounted) return;
-    
-    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+
     // TODO: Load clock drawing scores from the model when model is updated
     setState(() {
       _radioValue = 0; // Default to Normal

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
-import 'package:mica/src/providers/mica_provider.dart';
 
 class SemanticMemory extends StatefulWidget {
   const SemanticMemory({super.key});
@@ -136,9 +135,9 @@ class _SemanticMemoryState extends State<SemanticMemory> {
                                   backgroundColor: Theme.of(context).colorScheme.secondary,
                                 ),
                                 onPressed: () {
-                                  // Save score to model
-                                  final scoreModel = MicaProviders.getScoreModel(context, listen: false);
                                   // TODO: Add semantic memory score setter to model
+                                  // Save score to model when setter is available
+                                  // final scoreModel = MicaProviders.getScoreModel(context, listen: false);
                                   // scoreModel.setSemanticMemoryScore(score);
 
                                   // Pop back to memory assessment menu

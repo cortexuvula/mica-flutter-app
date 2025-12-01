@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:mica/src/providers/mica_provider.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 
 class IdentifyObjectsVisually extends StatefulWidget {
@@ -315,15 +314,13 @@ class _IdentifyObjectsVisuallyState extends State<IdentifyObjectsVisually> {
   }
   
   void saveToModel() {
-    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     // TODO: Add gnosis scores to the model when model is updated
     // For now, just store the value locally
   }
-  
+
   void loadFromModel() {
     if (!mounted) return;
-    
-    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+
     // TODO: Load gnosis scores from the model when model is updated
     setState(() {
       _radioValue = 0; // Default to Normal

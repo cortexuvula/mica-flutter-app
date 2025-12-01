@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
-import 'package:mica/src/providers/mica_provider.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 
 class FingerPerceptionTest extends StatefulWidget {
@@ -528,7 +527,6 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
   }
 
   void saveToModel() {
-    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     // TODO: Add finger perception scores to the model when model is updated
     // For now, just store the values locally
   }
@@ -536,7 +534,6 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
   void loadFromModel() {
     if (!mounted) return;
 
-    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     // TODO: Load finger perception scores from the model when model is updated
     setState(() {
       // Initialize all scores to Normal (0)

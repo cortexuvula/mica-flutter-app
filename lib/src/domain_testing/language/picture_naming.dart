@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/show_image_anomia.dart';
-import 'package:mica/src/models/mica_score_model.dart';
-import 'package:provider/provider.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 
 class PictureNaming extends StatefulWidget {
@@ -478,11 +476,8 @@ class _PictureNamingState extends State<PictureNaming> {
                                 backgroundColor: Theme.of(context).colorScheme.secondary,
                               ),
                               onPressed: () {
-                                // Update the provider with the picture naming values
-                                final micaScoreModel = Provider.of<MicaScoreModel>(
-                                    context,
-                                    listen: false);
                                 // TODO: Add picture naming scores to model when available
+                                // Update the provider with the picture naming values
                                 // micaScoreModel.setPictureNaming(_radioValue ?? 0);
                                 // micaScoreModel.setPictureAgnosia(_radioValue2 ?? 0);
 
@@ -510,35 +505,33 @@ class _PictureNamingState extends State<PictureNaming> {
     setState(() {
       _radioValue = value;
     });
-    // Update the provider
-    if (mounted) {
-      final micaScoreModel =
-          Provider.of<MicaScoreModel>(context, listen: false);
-      // TODO: Add picture naming score to model when available
-      // micaScoreModel.setPictureNaming(_radioValue ?? 0);
-    }
+    // TODO: Add picture naming score to model when available
+    // Update the provider when model is ready
+    // if (mounted) {
+    //   final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+    //   micaScoreModel.setPictureNaming(_radioValue ?? 0);
+    // }
   }
 
   void _handleRadioValueChange2(int? value) {
     setState(() {
       _radioValue2 = value;
     });
-    // Update the provider
-    if (mounted) {
-      final micaScoreModel =
-          Provider.of<MicaScoreModel>(context, listen: false);
-      // TODO: Add picture agnosia score to model when available
-      // micaScoreModel.setPictureAgnosia(_radioValue2 ?? 0);
-    }
+    // TODO: Add picture agnosia score to model when available
+    // Update the provider when model is ready
+    // if (mounted) {
+    //   final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+    //   micaScoreModel.setPictureAgnosia(_radioValue2 ?? 0);
+    // }
   }
 
   void initFromProvider() {
     // We need to add a null check for context since initState might run before build
     if (!mounted) return;
-    final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
 
     setState(() {
       // TODO: Get picture naming scores from model when available
+      // final micaScoreModel = Provider.of<MicaScoreModel>(context, listen: false);
       // _radioValue = micaScoreModel.pictureNaming;
       // _radioValue2 = micaScoreModel.pictureAgnosia;
       _radioValue = 0;
