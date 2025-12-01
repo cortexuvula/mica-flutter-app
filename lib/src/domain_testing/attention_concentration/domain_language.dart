@@ -110,63 +110,61 @@ class DomainLanguageState extends State<DomainLanguage> {
                           SizedBox(
                             height: 5.0,
                           ),
-                          Table(
-                            border: TableBorder.all(),
-                            columnWidths: {
-                              0: FlexColumnWidth(0.33),
-                              1: FlexColumnWidth(0.33),
-                              2: FlexColumnWidth(0.34),
-                            },
-                            children: [
-                              TableRow(children: [
-                                Row(
-                                  children: <Widget>[
-                                    Radio(
-                                      value: 0,
-                                      groupValue: _radioValue,
-                                      onChanged: _handleRadioValueChange,
-                                      activeColor: Colors.white,
-                                    ),
-                                    Text(
-                                      "Normal",
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 10.0),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: <Widget>[
-                                    Radio(
-                                      value: 1,
-                                      groupValue: _radioValue,
-                                      onChanged: _handleRadioValueChange,
-                                      activeColor: Colors.white,
-                                    ),
-                                    Text(
-                                      "Equivocal",
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 10.0),
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  children: <Widget>[
-                                    Radio(
-                                      value: 2,
-                                      groupValue: _radioValue,
-                                      onChanged: _handleRadioValueChange,
-                                      activeColor: Colors.white,
-                                    ),
-                                    Text(
-                                      "Impaired",
-                                      style: TextStyle(
-                                          color: Colors.black, fontSize: 10.0),
-                                    ),
-                                  ],
-                                ),
-                              ]),
-                            ],
+                          RadioGroup<int>(
+                            groupValue: _radioValue,
+                            onChanged: _handleRadioValueChange,
+                            child: Table(
+                              border: TableBorder.all(),
+                              columnWidths: {
+                                0: FlexColumnWidth(0.33),
+                                1: FlexColumnWidth(0.33),
+                                2: FlexColumnWidth(0.34),
+                              },
+                              children: [
+                                TableRow(children: [
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 0,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Normal",
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 10.0),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 1,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Equivocal",
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 10.0),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio(
+                                        value: 2,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Impaired",
+                                        style: TextStyle(
+                                            color: Colors.black, fontSize: 10.0),
+                                      ),
+                                    ],
+                                  ),
+                                ]),
+                              ],
+                            ),
                           ),
                         ],
                       ),

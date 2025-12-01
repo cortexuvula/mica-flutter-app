@@ -270,69 +270,66 @@ class DigitState extends State<Digit> {
                     padding: const EdgeInsets.all(8.0),
                     child: Column(
                       children: <Widget>[
-                        Table(
-                          defaultVerticalAlignment:
-                              TableCellVerticalAlignment.middle,
-                          border: TableBorder.all(),
-                          columnWidths: {
-                            0: FlexColumnWidth(0.3),
-                            1: FlexColumnWidth(0.3),
-                            2: FlexColumnWidth(0.34)
-                          },
-                          children: [
-                            TableRow(children: [
-                              Row(
-                                children: <Widget>[
-                                  Radio(
-                                    value: 0,
-                                    groupValue: _radioValue,
-                                    onChanged: _handleRadioValueChange,
-                                    activeColor: Colors.white,
-                                  ),
-                                  Text(
-                                    "Normal",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 10.0,
+                        RadioGroup<int>(
+                          groupValue: _radioValue,
+                          onChanged: _handleRadioValueChange,
+                          child: Table(
+                            defaultVerticalAlignment:
+                                TableCellVerticalAlignment.middle,
+                            border: TableBorder.all(),
+                            columnWidths: {
+                              0: FlexColumnWidth(0.3),
+                              1: FlexColumnWidth(0.3),
+                              2: FlexColumnWidth(0.34)
+                            },
+                            children: [
+                              TableRow(children: [
+                                Row(
+                                  children: <Widget>[
+                                    Radio(
+                                      value: 0,
+                                      activeColor: Colors.white,
                                     ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  Radio(
-                                    value: 1,
-                                    groupValue: _radioValue,
-                                    onChanged: _handleRadioValueChange,
-                                    activeColor: Colors.white,
-                                  ),
-                                  Text(
-                                    "Equivocal",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 10.0,
+                                    Text(
+                                      "Normal",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 10.0,
+                                      ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                children: <Widget>[
-                                  Radio(
-                                    value: 2,
-                                    groupValue: _radioValue,
-                                    onChanged: _handleRadioValueChange,
-                                    activeColor: Colors.white,
-                                  ),
-                                  Text(
-                                    "Impaired",
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 10.0,
+                                  ],
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    Radio(
+                                      value: 1,
+                                      activeColor: Colors.white,
                                     ),
-                                  ),
-                                ],
-                              )
-                            ]),
+                                    Text(
+                                      "Equivocal",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 10.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: <Widget>[
+                                    Radio(
+                                      value: 2,
+                                      activeColor: Colors.white,
+                                    ),
+                                    Text(
+                                      "Impaired",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 10.0,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ]),
                             TableRow(children: [
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
@@ -367,6 +364,7 @@ class DigitState extends State<Digit> {
                             ])
                           ],
                         ),
+                      ),
                       ],
                     ),
                   ),
