@@ -109,29 +109,30 @@ class SpokenLanguageState extends State<SpokenLanguage> {
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
                             ),
-                            Table(
-                              border: TableBorder.all(),
-                              defaultVerticalAlignment:
-                                  TableCellVerticalAlignment.middle,
-                              columnWidths: const {
-                                0: FlexColumnWidth(0.3),
-                                1: FlexColumnWidth(0.3),
-                                2: FlexColumnWidth(0.34)
+                            RadioGroup<int>(
+                              groupValue: _radioValue,
+                              onChanged: (int? value) {
+                                if (value != null) {
+                                  _handleRadioValueChange(value);
+                                }
                               },
-                              children: [
-                                TableRow(children: [
-                                  Row(
-                                    children: <Widget>[
-                                      Radio<int>(
-                                        value: 0,
-                                        groupValue: _radioValue,
-                                        onChanged: (int? value) {
-                                          if (value != null) {
-                                            _handleRadioValueChange(value);
-                                          }
-                                        },
-                                        activeColor: Colors.white,
-                                      ),
+                              child: Table(
+                                border: TableBorder.all(),
+                                defaultVerticalAlignment:
+                                    TableCellVerticalAlignment.middle,
+                                columnWidths: const {
+                                  0: FlexColumnWidth(0.3),
+                                  1: FlexColumnWidth(0.3),
+                                  2: FlexColumnWidth(0.34)
+                                },
+                                children: [
+                                  TableRow(children: [
+                                    Row(
+                                      children: <Widget>[
+                                        Radio<int>(
+                                          value: 0,
+                                          activeColor: Colors.white,
+                                        ),
                                       const Text(
                                         "Normal",
                                         style: TextStyle(
@@ -145,12 +146,6 @@ class SpokenLanguageState extends State<SpokenLanguage> {
                                     children: <Widget>[
                                       Radio<int>(
                                         value: 1,
-                                        groupValue: _radioValue,
-                                        onChanged: (int? value) {
-                                          if (value != null) {
-                                            _handleRadioValueChange(value);
-                                          }
-                                        },
                                         activeColor: Colors.white,
                                       ),
                                       const Text(
@@ -166,12 +161,6 @@ class SpokenLanguageState extends State<SpokenLanguage> {
                                     children: <Widget>[
                                       Radio<int>(
                                         value: 2,
-                                        groupValue: _radioValue,
-                                        onChanged: (int? value) {
-                                          if (value != null) {
-                                            _handleRadioValueChange(value);
-                                          }
-                                        },
                                         activeColor: Colors.white,
                                       ),
                                       const Text(
@@ -213,6 +202,7 @@ class SpokenLanguageState extends State<SpokenLanguage> {
                                   ),
                                 ])
                               ],
+                            ),
                             ),
                           ],
                         ),
