@@ -129,22 +129,23 @@ class PatientInformationState extends State<PatientInformation> {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(16.0),
-                        child: Row(
-                          children: <Widget>[
-                            Text(
-                              "Handedness: ",
-                              style: TextStyle(
-                                color: Colors.black,
+                        child: RadioGroup<int>(
+                          groupValue: _radioValue,
+                          onChanged: (int? value) {
+                            _handleRadioValueChange(value ?? 0);
+                          },
+                          child: Row(
+                            children: <Widget>[
+                              Text(
+                                "Handedness: ",
+                                style: TextStyle(
+                                  color: Colors.black,
+                                ),
                               ),
-                            ),
-                            Radio(
-                              value: 0,
-                              groupValue: _radioValue,
-                              onChanged: (int? value) {
-                                _handleRadioValueChange(value ?? 0);
-                              },
-                              activeColor: Colors.white,
-                            ),
+                              Radio(
+                                value: 0,
+                                activeColor: Colors.white,
+                              ),
                             Text(
                               "Right",
                               style: TextStyle(
@@ -153,10 +154,6 @@ class PatientInformationState extends State<PatientInformation> {
                             ),
                             Radio(
                               value: 1,
-                              groupValue: _radioValue,
-                              onChanged: (int? value) {
-                                _handleRadioValueChange(value ?? 0);
-                              },
                               activeColor: Colors.white,
                             ),
                             Text(
@@ -166,6 +163,7 @@ class PatientInformationState extends State<PatientInformation> {
                               ),
                             )
                           ],
+                        ),
                         ),
                       ),
                       Padding(
