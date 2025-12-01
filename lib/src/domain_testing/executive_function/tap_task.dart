@@ -141,12 +141,15 @@ class TapTaskState extends State<TapTask> {
                       ),
                       const SizedBox(height: 16),
                       // Scoring table
-                      Table(
-                        border: TableBorder.all(
-                          color: Colors.black54,
-                          width: 1.0,
-                        ),
-                        children: [
+                      RadioGroup<int>(
+                        groupValue: _radioValue,
+                        onChanged: _handleRadioValueChange,
+                        child: Table(
+                          border: TableBorder.all(
+                            color: Colors.black54,
+                            width: 1.0,
+                          ),
+                          children: [
                           TableRow(
                             children: [
                               TableCell(
@@ -160,8 +163,6 @@ class TapTaskState extends State<TapTask> {
                                       children: [
                                         Radio<int>(
                                           value: 0,
-                                          groupValue: _radioValue,
-                                          onChanged: _handleRadioValueChange,
                                           fillColor: WidgetStateProperty
                                               .resolveWith<Color>((states) {
                                             if (states.contains(
@@ -196,8 +197,6 @@ class TapTaskState extends State<TapTask> {
                                       children: [
                                         Radio<int>(
                                           value: 1,
-                                          groupValue: _radioValue,
-                                          onChanged: _handleRadioValueChange,
                                           fillColor: WidgetStateProperty
                                               .resolveWith<Color>((states) {
                                             if (states.contains(
@@ -232,8 +231,6 @@ class TapTaskState extends State<TapTask> {
                                       children: [
                                         Radio<int>(
                                           value: 2,
-                                          groupValue: _radioValue,
-                                          onChanged: _handleRadioValueChange,
                                           fillColor: WidgetStateProperty
                                               .resolveWith<Color>((states) {
                                             if (states.contains(
@@ -260,6 +257,7 @@ class TapTaskState extends State<TapTask> {
                             ],
                           ),
                         ],
+                      ),
                       ),
                     ],
                   ),
