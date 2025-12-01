@@ -379,25 +379,26 @@ class _AttentionState extends State<Attention> {
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
                             ),
-                            Table(
-                              defaultVerticalAlignment:
-                                  TableCellVerticalAlignment.middle,
-                              border: TableBorder.all(),
-                              columnWidths: {
-                                0: FlexColumnWidth(0.3),
-                                1: FlexColumnWidth(0.3),
-                                2: FlexColumnWidth(0.34)
-                              },
-                              children: [
-                                TableRow(children: [
-                                  Row(
-                                    children: <Widget>[
-                                      Radio(
-                                        value: 0,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
-                                        activeColor: Colors.white,
-                                      ),
+                            RadioGroup<int>(
+                              groupValue: _radioValue,
+                              onChanged: _handleRadioValueChange,
+                              child: Table(
+                                defaultVerticalAlignment:
+                                    TableCellVerticalAlignment.middle,
+                                border: TableBorder.all(),
+                                columnWidths: {
+                                  0: FlexColumnWidth(0.3),
+                                  1: FlexColumnWidth(0.3),
+                                  2: FlexColumnWidth(0.34)
+                                },
+                                children: [
+                                  TableRow(children: [
+                                    Row(
+                                      children: <Widget>[
+                                        Radio(
+                                          value: 0,
+                                          activeColor: Colors.white,
+                                        ),
                                       Text(
                                         "Normal",
                                         style: const TextStyle(
@@ -411,8 +412,6 @@ class _AttentionState extends State<Attention> {
                                     children: <Widget>[
                                       Radio(
                                         value: 1,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
                                       Text(
@@ -428,8 +427,6 @@ class _AttentionState extends State<Attention> {
                                     children: <Widget>[
                                       Radio(
                                         value: 2,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
                                       Text(
@@ -475,6 +472,7 @@ class _AttentionState extends State<Attention> {
                                   ),
                                 ])
                               ],
+                            ),
                             ),
                           ],
                         ),
