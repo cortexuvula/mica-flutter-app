@@ -279,12 +279,15 @@ class DesignFluencyTaskState extends State<DesignFluencyTask> {
                   child: Column(
                     children: [
                       // Scoring table
-                      Table(
-                        border: TableBorder.all(
-                          color: Colors.black54,
-                          width: 1.0,
-                        ),
-                        children: [
+                      RadioGroup<int>(
+                        groupValue: _radioValue,
+                        onChanged: _handleRadioValueChange,
+                        child: Table(
+                          border: TableBorder.all(
+                            color: Colors.black54,
+                            width: 1.0,
+                          ),
+                          children: [
                           TableRow(
                             children: [
                               TableCell(
@@ -298,8 +301,6 @@ class DesignFluencyTaskState extends State<DesignFluencyTask> {
                                       children: [
                                         Radio<int>(
                                           value: 0,
-                                          groupValue: _radioValue,
-                                          onChanged: _handleRadioValueChange,
                                           fillColor: WidgetStateProperty
                                               .resolveWith<Color>((states) {
                                             if (states.contains(
@@ -336,8 +337,6 @@ class DesignFluencyTaskState extends State<DesignFluencyTask> {
                                       children: [
                                         Radio<int>(
                                           value: 1,
-                                          groupValue: _radioValue,
-                                          onChanged: _handleRadioValueChange,
                                           fillColor: WidgetStateProperty
                                               .resolveWith<Color>((states) {
                                             if (states.contains(
@@ -374,8 +373,6 @@ class DesignFluencyTaskState extends State<DesignFluencyTask> {
                                       children: [
                                         Radio<int>(
                                           value: 2,
-                                          groupValue: _radioValue,
-                                          onChanged: _handleRadioValueChange,
                                           fillColor: WidgetStateProperty
                                               .resolveWith<Color>((states) {
                                             if (states.contains(
@@ -441,6 +438,7 @@ class DesignFluencyTaskState extends State<DesignFluencyTask> {
                             ],
                           ),
                         ],
+                      ),
                       ),
                     ],
                   ),
