@@ -156,13 +156,16 @@ class _IdentifyObjectsVisuallyState extends State<IdentifyObjectsVisually> {
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 16.0),
-                    Table(
-                      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                      border: TableBorder.all(
-                        color: Colors.black54,
-                        width: 1.0,
-                      ),
-                      children: [
+                    RadioGroup<int>(
+                      groupValue: _radioValue,
+                      onChanged: _handleRadioValueChange,
+                      child: Table(
+                        defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                        border: TableBorder.all(
+                          color: Colors.black54,
+                          width: 1.0,
+                        ),
+                        children: [
                         TableRow(
                           children: [
                             TableCell(
@@ -175,8 +178,6 @@ class _IdentifyObjectsVisuallyState extends State<IdentifyObjectsVisually> {
                                     children: <Widget>[
                                       Radio<int>(
                                         value: 0,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
                                         fillColor: WidgetStateProperty.resolveWith<Color>((states) {
                                           if (states.contains(WidgetState.selected)) {
                                             return Colors.white;
@@ -206,8 +207,6 @@ class _IdentifyObjectsVisuallyState extends State<IdentifyObjectsVisually> {
                                     children: <Widget>[
                                       Radio<int>(
                                         value: 1,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
                                         fillColor: WidgetStateProperty.resolveWith<Color>((states) {
                                           if (states.contains(WidgetState.selected)) {
                                             return Colors.white;
@@ -237,8 +236,6 @@ class _IdentifyObjectsVisuallyState extends State<IdentifyObjectsVisually> {
                                     children: <Widget>[
                                       Radio<int>(
                                         value: 2,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
                                         fillColor: WidgetStateProperty.resolveWith<Color>((states) {
                                           if (states.contains(WidgetState.selected)) {
                                             return Colors.white;
@@ -261,6 +258,7 @@ class _IdentifyObjectsVisuallyState extends State<IdentifyObjectsVisually> {
                           ],
                         ),
                       ],
+                    ),
                     ),
                   ],
                 ),
