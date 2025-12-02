@@ -152,8 +152,11 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                           ),
                         ),
                         const SizedBox(height: 16.0),
-                        // Table for scoring
-                        Table(
+                        // Right hand scoring row
+                        RadioGroup<int>(
+                          groupValue: _rightHandScore,
+                          onChanged: (value) => _handleRadioChange(true, value),
+                          child: Table(
                           border: TableBorder.all(
                             color: Colors.black54,
                             width: 1.0,
@@ -167,7 +170,6 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                             3: FlexColumnWidth(0.26),
                           },
                           children: [
-                            // Right hand row
                             TableRow(
                               children: [
                                 const Padding(
@@ -185,9 +187,6 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                                       children: [
                                         Radio<int>(
                                           value: 0,
-                                          groupValue: _rightHandScore,
-                                          onChanged: (value) =>
-                                              _handleRadioChange(true, value),
                                           fillColor: WidgetStateProperty.resolveWith<Color>(
                                             (states) {
                                               if (states.contains(WidgetState.selected)) {
@@ -213,9 +212,6 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                                       children: [
                                         Radio<int>(
                                           value: 1,
-                                          groupValue: _rightHandScore,
-                                          onChanged: (value) =>
-                                              _handleRadioChange(true, value),
                                           fillColor: WidgetStateProperty.resolveWith<Color>(
                                             (states) {
                                               if (states.contains(WidgetState.selected)) {
@@ -241,9 +237,6 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                                       children: [
                                         Radio<int>(
                                           value: 2,
-                                          groupValue: _rightHandScore,
-                                          onChanged: (value) =>
-                                              _handleRadioChange(true, value),
                                           fillColor: WidgetStateProperty.resolveWith<Color>(
                                             (states) {
                                               if (states.contains(WidgetState.selected)) {
@@ -263,7 +256,27 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                                 ),
                               ],
                             ),
-                            // Left hand row
+                          ],
+                        ),
+                        ),
+                        // Left hand scoring row
+                        RadioGroup<int>(
+                          groupValue: _leftHandScore,
+                          onChanged: (value) => _handleRadioChange(false, value),
+                          child: Table(
+                          border: TableBorder.all(
+                            color: Colors.black54,
+                            width: 1.0,
+                          ),
+                          defaultVerticalAlignment:
+                              TableCellVerticalAlignment.middle,
+                          columnWidths: const {
+                            0: FlexColumnWidth(0.2),
+                            1: FlexColumnWidth(0.27),
+                            2: FlexColumnWidth(0.27),
+                            3: FlexColumnWidth(0.26),
+                          },
+                          children: [
                             TableRow(
                               children: [
                                 const Padding(
@@ -281,9 +294,6 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                                       children: [
                                         Radio<int>(
                                           value: 0,
-                                          groupValue: _leftHandScore,
-                                          onChanged: (value) =>
-                                              _handleRadioChange(false, value),
                                           fillColor: WidgetStateProperty.resolveWith<Color>(
                                             (states) {
                                               if (states.contains(WidgetState.selected)) {
@@ -309,9 +319,6 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                                       children: [
                                         Radio<int>(
                                           value: 1,
-                                          groupValue: _leftHandScore,
-                                          onChanged: (value) =>
-                                              _handleRadioChange(false, value),
                                           fillColor: WidgetStateProperty.resolveWith<Color>(
                                             (states) {
                                               if (states.contains(WidgetState.selected)) {
@@ -337,9 +344,6 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                                       children: [
                                         Radio<int>(
                                           value: 2,
-                                          groupValue: _leftHandScore,
-                                          onChanged: (value) =>
-                                              _handleRadioChange(false, value),
                                           fillColor: WidgetStateProperty.resolveWith<Color>(
                                             (states) {
                                               if (states.contains(WidgetState.selected)) {
@@ -359,7 +363,24 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                                 ),
                               ],
                             ),
-                            // Footer row
+                          ],
+                        ),
+                        ),
+                        // Footer row
+                        Table(
+                          border: TableBorder.all(
+                            color: Colors.black54,
+                            width: 1.0,
+                          ),
+                          defaultVerticalAlignment:
+                              TableCellVerticalAlignment.middle,
+                          columnWidths: const {
+                            0: FlexColumnWidth(0.2),
+                            1: FlexColumnWidth(0.27),
+                            2: FlexColumnWidth(0.27),
+                            3: FlexColumnWidth(0.26),
+                          },
+                          children: [
                             const TableRow(
                               children: [
                                 TableCell(child: SizedBox(height: 40)),
