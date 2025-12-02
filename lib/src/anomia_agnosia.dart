@@ -285,7 +285,10 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                             SizedBox(
                               height: 5.0,
                             ),
-                            Table(
+                            RadioGroup<int>(
+                              groupValue: _radioValue,
+                              onChanged: _handleRadioValueChange,
+                              child: Table(
                               border: TableBorder.all(),
                               defaultVerticalAlignment:
                                   TableCellVerticalAlignment.middle,
@@ -300,8 +303,6 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                     children: <Widget>[
                                       Radio<int>(
                                         value: 0,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
                                       const Text(
@@ -317,8 +318,6 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                     children: <Widget>[
                                       Radio<int>(
                                         value: 1,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
                                       const Text(
@@ -334,8 +333,6 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                     children: <Widget>[
                                       Radio<int>(
                                         value: 2,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
                                       const Text(
@@ -377,6 +374,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                   ),
                                 ])
                               ],
+                            ),
                             ),
                             SizedBox(
                               height: 5.0,
@@ -392,7 +390,10 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                             SizedBox(
                               height: 5.0,
                             ),
-                            Table(
+                            RadioGroup<int>(
+                              groupValue: _radioValue2,
+                              onChanged: _handleRadioValueChange2,
+                              child: Table(
                               border: TableBorder.all(),
                               defaultVerticalAlignment:
                                   TableCellVerticalAlignment.middle,
@@ -407,8 +408,6 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                     children: <Widget>[
                                       Radio<int>(
                                         value: 0,
-                                        groupValue: _radioValue2,
-                                        onChanged: _handleRadioValueChange2,
                                         activeColor: Colors.white,
                                       ),
                                       const Text(
@@ -424,8 +423,6 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                     children: <Widget>[
                                       Radio<int>(
                                         value: 1,
-                                        groupValue: _radioValue2,
-                                        onChanged: _handleRadioValueChange2,
                                         activeColor: Colors.white,
                                       ),
                                       const Text(
@@ -441,8 +438,6 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                     children: <Widget>[
                                       Radio<int>(
                                         value: 2,
-                                        groupValue: _radioValue2,
-                                        onChanged: _handleRadioValueChange2,
                                         activeColor: Colors.white,
                                       ),
                                       const Text(
@@ -484,6 +479,7 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
                                   ),
                                 ])
                               ],
+                            ),
                             ),
                           ],
                         ),
