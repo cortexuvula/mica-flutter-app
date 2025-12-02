@@ -399,7 +399,10 @@ class ExecutiveSerialState extends State<ExecutiveSerial> {
                             SizedBox(
                               height: 5.0,
                             ),
-                            Table(
+                            RadioGroup<int>(
+                              groupValue: _radioValue,
+                              onChanged: _handleRadioValueChange,
+                              child: Table(
                               border: TableBorder.all(),
                               defaultVerticalAlignment:
                                   TableCellVerticalAlignment.middle,
@@ -414,8 +417,6 @@ class ExecutiveSerialState extends State<ExecutiveSerial> {
                                     children: <Widget>[
                                       Radio<int>(
                                         value: 0,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
                                       Text(
@@ -431,8 +432,6 @@ class ExecutiveSerialState extends State<ExecutiveSerial> {
                                     children: <Widget>[
                                       Radio<int>(
                                         value: 1,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
                                       Text(
@@ -448,8 +447,6 @@ class ExecutiveSerialState extends State<ExecutiveSerial> {
                                     children: <Widget>[
                                       Radio<int>(
                                         value: 2,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
                                       Text(
@@ -492,6 +489,7 @@ class ExecutiveSerialState extends State<ExecutiveSerial> {
                                   ),
                                 ])
                               ],
+                            ),
                             ),
                           ],
                         ),
