@@ -349,25 +349,26 @@ class ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                 ],
                               ),
                             ),
-                            Table(
-                              border: TableBorder.all(),
-                              defaultVerticalAlignment:
-                                  TableCellVerticalAlignment.middle,
-                              columnWidths: const {
-                                0: FlexColumnWidth(0.3),
-                                1: FlexColumnWidth(0.3),
-                                2: FlexColumnWidth(0.34)
-                              },
-                              children: [
-                                TableRow(children: [
-                                  Row(
-                                    children: <Widget>[
-                                      Radio<int>(
-                                        value: 0,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
-                                        activeColor: Colors.white,
-                                      ),
+                            RadioGroup<int>(
+                              groupValue: _radioValue,
+                              onChanged: _handleRadioValueChange,
+                              child: Table(
+                                border: TableBorder.all(),
+                                defaultVerticalAlignment:
+                                    TableCellVerticalAlignment.middle,
+                                columnWidths: const {
+                                  0: FlexColumnWidth(0.3),
+                                  1: FlexColumnWidth(0.3),
+                                  2: FlexColumnWidth(0.34)
+                                },
+                                children: [
+                                  TableRow(children: [
+                                    Row(
+                                      children: <Widget>[
+                                        Radio<int>(
+                                          value: 0,
+                                          activeColor: Colors.white,
+                                        ),
                                       const Text(
                                         "Normal",
                                         style: TextStyle(
@@ -381,8 +382,6 @@ class ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                     children: <Widget>[
                                       Radio<int>(
                                         value: 1,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
                                       const Text(
@@ -398,8 +397,6 @@ class ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                     children: <Widget>[
                                       Radio<int>(
                                         value: 2,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
                                       const Text(
@@ -442,6 +439,7 @@ class ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
                                   ),
                                 ])
                               ],
+                            ),
                             ),
                           ],
                         ),
