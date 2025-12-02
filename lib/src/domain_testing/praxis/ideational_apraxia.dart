@@ -152,7 +152,10 @@ class _IdeationalApraxiaState extends State<IdeationalApraxia> {
                         ),
                         const SizedBox(height: 16.0),
                         // Table for scoring
-                        Table(
+                        RadioGroup<int>(
+                          groupValue: _score,
+                          onChanged: _handleRadioChange,
+                          child: Table(
                           border: TableBorder.all(
                             color: Colors.black54,
                             width: 1.0,
@@ -177,8 +180,6 @@ class _IdeationalApraxiaState extends State<IdeationalApraxia> {
                                         children: [
                                           Radio<int>(
                                             value: 0,
-                                            groupValue: _score,
-                                            onChanged: _handleRadioChange,
                                             fillColor: WidgetStateProperty.resolveWith<Color>(
                                               (states) {
                                                 if (states.contains(WidgetState.selected)) {
@@ -211,8 +212,6 @@ class _IdeationalApraxiaState extends State<IdeationalApraxia> {
                                         children: [
                                           Radio<int>(
                                             value: 1,
-                                            groupValue: _score,
-                                            onChanged: _handleRadioChange,
                                             fillColor: WidgetStateProperty.resolveWith<Color>(
                                               (states) {
                                                 if (states.contains(WidgetState.selected)) {
@@ -245,8 +244,6 @@ class _IdeationalApraxiaState extends State<IdeationalApraxia> {
                                         children: [
                                           Radio<int>(
                                             value: 2,
-                                            groupValue: _score,
-                                            onChanged: _handleRadioChange,
                                             fillColor: WidgetStateProperty.resolveWith<Color>(
                                               (states) {
                                                 if (states.contains(WidgetState.selected)) {
@@ -272,6 +269,7 @@ class _IdeationalApraxiaState extends State<IdeationalApraxia> {
                               ],
                             ),
                           ],
+                        ),
                         ),
                       ],
                     ),
