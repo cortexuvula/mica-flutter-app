@@ -271,7 +271,10 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
     return Card(
       elevation: 10.0,
       color: Colors.green,
-      child: Table(
+      child: RadioGroup<int>(
+        groupValue: _patternScores[patternIndex],
+        onChanged: (value) => _handlePatternScoreChange(patternIndex, value),
+        child: Table(
         defaultVerticalAlignment: TableCellVerticalAlignment.middle,
         border: TableBorder.all(
           color: Colors.black54,
@@ -290,9 +293,6 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
                       children: <Widget>[
                         Radio<int>(
                           value: 0,
-                          groupValue: _patternScores[patternIndex],
-                          onChanged: (value) =>
-                              _handlePatternScoreChange(patternIndex, value),
                           fillColor:
                               WidgetStateProperty.resolveWith<Color>((states) {
                             if (states.contains(WidgetState.selected)) {
@@ -323,9 +323,6 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
                       children: <Widget>[
                         Radio<int>(
                           value: 1,
-                          groupValue: _patternScores[patternIndex],
-                          onChanged: (value) =>
-                              _handlePatternScoreChange(patternIndex, value),
                           fillColor:
                               WidgetStateProperty.resolveWith<Color>((states) {
                             if (states.contains(WidgetState.selected)) {
@@ -356,9 +353,6 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
                       children: <Widget>[
                         Radio<int>(
                           value: 2,
-                          groupValue: _patternScores[patternIndex],
-                          onChanged: (value) =>
-                              _handlePatternScoreChange(patternIndex, value),
                           fillColor:
                               WidgetStateProperty.resolveWith<Color>((states) {
                             if (states.contains(WidgetState.selected)) {
@@ -383,11 +377,15 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
           ),
         ],
       ),
+      ),
     );
   }
 
   Widget _buildSummaryScoreTable() {
-    return Table(
+    return RadioGroup<int>(
+      groupValue: _summaryScore,
+      onChanged: _handleSummaryScoreChange,
+      child: Table(
       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
       border: TableBorder.all(
         color: Colors.black54,
@@ -406,8 +404,6 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
                     children: <Widget>[
                       Radio<int>(
                         value: 0,
-                        groupValue: _summaryScore,
-                        onChanged: _handleSummaryScoreChange,
                         fillColor:
                             WidgetStateProperty.resolveWith<Color>((states) {
                           if (states.contains(WidgetState.selected)) {
@@ -438,8 +434,6 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
                     children: <Widget>[
                       Radio<int>(
                         value: 1,
-                        groupValue: _summaryScore,
-                        onChanged: _handleSummaryScoreChange,
                         fillColor:
                             WidgetStateProperty.resolveWith<Color>((states) {
                           if (states.contains(WidgetState.selected)) {
@@ -470,8 +464,6 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
                     children: <Widget>[
                       Radio<int>(
                         value: 2,
-                        groupValue: _summaryScore,
-                        onChanged: _handleSummaryScoreChange,
                         fillColor:
                             WidgetStateProperty.resolveWith<Color>((states) {
                           if (states.contains(WidgetState.selected)) {
@@ -495,6 +487,7 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
           ],
         ),
       ],
+    ),
     );
   }
 
