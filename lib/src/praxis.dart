@@ -162,7 +162,11 @@ class _PraxisState extends State<Praxis> {
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
                             ),
-                            Table(
+                            // Right hand scoring row
+                            RadioGroup<int>(
+                              groupValue: _radioValueRight,
+                              onChanged: _handleRadioValueChange,
+                              child: Table(
                               border: TableBorder.all(),
                               defaultVerticalAlignment:
                                   TableCellVerticalAlignment.middle,
@@ -185,8 +189,6 @@ class _PraxisState extends State<Praxis> {
                                     children: <Widget>[
                                       Radio<int>(
                                         value: 0,
-                                        groupValue: _radioValueRight,
-                                        onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
                                       Text(
@@ -202,8 +204,6 @@ class _PraxisState extends State<Praxis> {
                                     children: <Widget>[
                                       Radio<int>(
                                         value: 1,
-                                        groupValue: _radioValueRight,
-                                        onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
                                       Text(
@@ -219,68 +219,6 @@ class _PraxisState extends State<Praxis> {
                                     children: <Widget>[
                                       Radio<int>(
                                         value: 2,
-                                        groupValue: _radioValueRight,
-                                        onChanged: _handleRadioValueChange,
-                                        activeColor: Colors.white,
-                                      ),
-                                      Text(
-                                        "Impaired",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: _fontsize,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ]),
-                                TableRow(children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      "Left",
-                                      style: TextStyle(fontSize: _fontsize),
-                                    ),
-                                  ),
-                                  Row(
-                                    children: <Widget>[
-                                      Radio<int>(
-                                        value: 0,
-                                        groupValue: _radioValueLeft,
-                                        onChanged: _handleRadioValueChangeLeft,
-                                        activeColor: Colors.white,
-                                      ),
-                                      Text(
-                                        "Normal",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: _fontsize,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: <Widget>[
-                                      Radio<int>(
-                                        value: 1,
-                                        groupValue: _radioValueLeft,
-                                        onChanged: _handleRadioValueChangeLeft,
-                                        activeColor: Colors.white,
-                                      ),
-                                      Text(
-                                        "Equivocal",
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: _fontsize,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Row(
-                                    children: <Widget>[
-                                      Radio<int>(
-                                        value: 2,
-                                        groupValue: _radioValueLeft,
-                                        onChanged: _handleRadioValueChangeLeft,
                                         activeColor: Colors.white,
                                       ),
                                       Text(
@@ -294,6 +232,79 @@ class _PraxisState extends State<Praxis> {
                                   ),
                                 ]),
                               ],
+                            ),
+                            ),
+                            // Left hand scoring row
+                            RadioGroup<int>(
+                              groupValue: _radioValueLeft,
+                              onChanged: _handleRadioValueChangeLeft,
+                              child: Table(
+                              border: TableBorder.all(),
+                              defaultVerticalAlignment:
+                                  TableCellVerticalAlignment.middle,
+                              columnWidths: const {
+                                0: FlexColumnWidth(0.15),
+                                1: FlexColumnWidth(0.27),
+                                2: FlexColumnWidth(0.27),
+                                3: FlexColumnWidth(0.27)
+                              },
+                              children: [
+                                TableRow(children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      "Left",
+                                      style: TextStyle(fontSize: _fontsize),
+                                    ),
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio<int>(
+                                        value: 0,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Normal",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: _fontsize,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio<int>(
+                                        value: 1,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Equivocal",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: _fontsize,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Row(
+                                    children: <Widget>[
+                                      Radio<int>(
+                                        value: 2,
+                                        activeColor: Colors.white,
+                                      ),
+                                      Text(
+                                        "Impaired",
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: _fontsize,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ]),
+                              ],
+                            ),
                             ),
                             const SizedBox(
                               height: 20.0,
