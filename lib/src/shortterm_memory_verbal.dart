@@ -280,7 +280,10 @@ class ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                           SizedBox(
                             height: 5.0,
                           ),
-                          Table(
+                          RadioGroup<int>(
+                            groupValue: _radioValue,
+                            onChanged: _handleRadioValueChange,
+                            child: Table(
                             border: TableBorder.all(),
                             defaultVerticalAlignment:
                                 TableCellVerticalAlignment.middle,
@@ -296,8 +299,6 @@ class ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                     children: <Widget>[
                                       Radio(
                                         value: 0,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
                                       const Text(
@@ -313,8 +314,6 @@ class ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                     children: <Widget>[
                                       Radio(
                                         value: 1,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
                                       const Text(
@@ -330,8 +329,6 @@ class ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                                     children: <Widget>[
                                       Radio(
                                         value: 2,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
                                       const Text(
@@ -378,6 +375,7 @@ class ShortTermMemoryVerbalState extends State<ShortTermMemoryVerbal> {
                               ),
                             ],
                           ),
+                        ),
                         ],
                       ),
                     ),
