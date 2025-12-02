@@ -219,7 +219,7 @@ class _LineDrawingState extends State<LineDrawing> {
                           ),
                         ),
                         const SizedBox(height: 16.0),
-                        // Table for scoring
+                        // Header table
                         Table(
                           border: TableBorder.all(
                             color: Colors.black54,
@@ -304,7 +304,27 @@ class _LineDrawingState extends State<LineDrawing> {
                                 ),
                               ],
                             ),
-                            // Image 1 row
+                          ],
+                        ),
+                        // Image 1 scoring table
+                        RadioGroup<int>(
+                          groupValue: _image1Score,
+                          onChanged: (value) => _handleRadioChange(1, value),
+                          child: Table(
+                          border: TableBorder.all(
+                            color: Colors.black54,
+                            width: 1.0,
+                          ),
+                          defaultVerticalAlignment:
+                              TableCellVerticalAlignment.middle,
+                          columnWidths: const {
+                            0: FlexColumnWidth(1.5),
+                            1: FlexColumnWidth(1.2),
+                            2: FlexColumnWidth(1.2),
+                            3: FlexColumnWidth(1),
+                            4: FlexColumnWidth(1.2),
+                          },
+                          children: [
                             TableRow(
                               children: [
                                 const TableCell(
@@ -322,7 +342,28 @@ class _LineDrawingState extends State<LineDrawing> {
                                 _buildScoreCell(1, 0),
                               ],
                             ),
-                            // Image 2 row
+                          ],
+                        ),
+                        ),
+                        // Image 2 scoring table
+                        RadioGroup<int>(
+                          groupValue: _image2Score,
+                          onChanged: (value) => _handleRadioChange(2, value),
+                          child: Table(
+                          border: TableBorder.all(
+                            color: Colors.black54,
+                            width: 1.0,
+                          ),
+                          defaultVerticalAlignment:
+                              TableCellVerticalAlignment.middle,
+                          columnWidths: const {
+                            0: FlexColumnWidth(1.5),
+                            1: FlexColumnWidth(1.2),
+                            2: FlexColumnWidth(1.2),
+                            3: FlexColumnWidth(1),
+                            4: FlexColumnWidth(1.2),
+                          },
+                          children: [
                             TableRow(
                               children: [
                                 const TableCell(
@@ -340,7 +381,28 @@ class _LineDrawingState extends State<LineDrawing> {
                                 _buildScoreCell(2, 0),
                               ],
                             ),
-                            // Image 3 row
+                          ],
+                        ),
+                        ),
+                        // Image 3 scoring table
+                        RadioGroup<int>(
+                          groupValue: _image3Score,
+                          onChanged: (value) => _handleRadioChange(3, value),
+                          child: Table(
+                          border: TableBorder.all(
+                            color: Colors.black54,
+                            width: 1.0,
+                          ),
+                          defaultVerticalAlignment:
+                              TableCellVerticalAlignment.middle,
+                          columnWidths: const {
+                            0: FlexColumnWidth(1.5),
+                            1: FlexColumnWidth(1.2),
+                            2: FlexColumnWidth(1.2),
+                            3: FlexColumnWidth(1),
+                            4: FlexColumnWidth(1.2),
+                          },
+                          children: [
                             TableRow(
                               children: [
                                 const TableCell(
@@ -359,6 +421,7 @@ class _LineDrawingState extends State<LineDrawing> {
                               ],
                             ),
                           ],
+                        ),
                         ),
                       ],
                     ),
@@ -402,19 +465,6 @@ class _LineDrawingState extends State<LineDrawing> {
   }
 
   Widget _buildScoreCell(int imageNumber, int score) {
-    int? currentScore;
-    switch (imageNumber) {
-      case 1:
-        currentScore = _image1Score;
-        break;
-      case 2:
-        currentScore = _image2Score;
-        break;
-      case 3:
-        currentScore = _image3Score;
-        break;
-    }
-
     return TableCell(
       child: InkWell(
         onTap: () => _handleRadioChange(imageNumber, score),
@@ -425,8 +475,6 @@ class _LineDrawingState extends State<LineDrawing> {
             children: [
               Radio<int>(
                 value: score,
-                groupValue: currentScore,
-                onChanged: (value) => _handleRadioChange(imageNumber, value),
                 fillColor: WidgetStateProperty.resolveWith<Color>(
                   (states) {
                     if (states.contains(WidgetState.selected)) {
