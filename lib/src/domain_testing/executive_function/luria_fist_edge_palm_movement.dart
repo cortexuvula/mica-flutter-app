@@ -301,9 +301,12 @@ class LuriaFistEdgePalmMovementState
                 ],
               ),
               const SizedBox(height: 16),
-              
+
               // Scoring table
-              Table(
+              RadioGroup<int>(
+                groupValue: selectedScore,
+                onChanged: (int? value) {}, // Disabled - scores auto-calculated
+                child: Table(
                 border: TableBorder.all(
                   color: Colors.black,
                   width: 2.0,
@@ -317,6 +320,7 @@ class LuriaFistEdgePalmMovementState
                     ],
                   ),
                 ],
+              ),
               ),
             ],
           ),
@@ -336,8 +340,6 @@ class LuriaFistEdgePalmMovementState
             children: [
               Radio<int>(
                 value: value,
-                groupValue: selectedScore,
-                onChanged: null, // Disable manual selection
                 fillColor: WidgetStateProperty.resolveWith<Color>((states) {
                   if (states.contains(WidgetState.selected)) {
                     return Colors.white;
