@@ -233,7 +233,7 @@ class _VisualWorkingMemoryState extends State<VisualWorkingMemory> {
                             ),
                           ),
                           const SizedBox(height: 12.0),
-                          // Score table
+                          // Header table
                           Table(
                             border: TableBorder.all(
                               color: Colors.black,
@@ -261,7 +261,22 @@ class _VisualWorkingMemoryState extends State<VisualWorkingMemory> {
                                   _buildHeaderCell('No Drawing', '0'),
                                 ],
                               ),
-                              // Image 1 row
+                            ],
+                          ),
+                          // Image 1 scoring table
+                          RadioGroup<int>(
+                            groupValue: selectedScores['image1'],
+                            onChanged: (value) {
+                              setState(() {
+                                selectedScores['image1'] = value!;
+                              });
+                            },
+                            child: Table(
+                            border: TableBorder.all(
+                              color: Colors.black,
+                              width: 2.0,
+                            ),
+                            children: [
                               TableRow(
                                 children: [
                                   const TableCell(
@@ -283,7 +298,23 @@ class _VisualWorkingMemoryState extends State<VisualWorkingMemory> {
                                   _buildScoreCell('image1', 0),
                                 ],
                               ),
-                              // Image 2 row
+                            ],
+                          ),
+                          ),
+                          // Image 2 scoring table
+                          RadioGroup<int>(
+                            groupValue: selectedScores['image2'],
+                            onChanged: (value) {
+                              setState(() {
+                                selectedScores['image2'] = value!;
+                              });
+                            },
+                            child: Table(
+                            border: TableBorder.all(
+                              color: Colors.black,
+                              width: 2.0,
+                            ),
+                            children: [
                               TableRow(
                                 children: [
                                   const TableCell(
@@ -305,7 +336,23 @@ class _VisualWorkingMemoryState extends State<VisualWorkingMemory> {
                                   _buildScoreCell('image2', 0),
                                 ],
                               ),
-                              // Image 3 row
+                            ],
+                          ),
+                          ),
+                          // Image 3 scoring table
+                          RadioGroup<int>(
+                            groupValue: selectedScores['image3'],
+                            onChanged: (value) {
+                              setState(() {
+                                selectedScores['image3'] = value!;
+                              });
+                            },
+                            child: Table(
+                            border: TableBorder.all(
+                              color: Colors.black,
+                              width: 2.0,
+                            ),
+                            children: [
                               TableRow(
                                 children: [
                                   const TableCell(
@@ -328,6 +375,7 @@ class _VisualWorkingMemoryState extends State<VisualWorkingMemory> {
                                 ],
                               ),
                             ],
+                          ),
                           ),
                         ],
                       ),
@@ -499,12 +547,6 @@ class _VisualWorkingMemoryState extends State<VisualWorkingMemory> {
           padding: const EdgeInsets.all(8.0),
           child: Radio<int>(
             value: value,
-            groupValue: selectedScores[imageKey],
-            onChanged: (int? newValue) {
-              setState(() {
-                selectedScores[imageKey] = newValue!;
-              });
-            },
             fillColor: WidgetStateProperty.resolveWith<Color>((states) {
               if (states.contains(WidgetState.selected)) {
                 return Colors.white;
