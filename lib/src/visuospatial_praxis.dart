@@ -270,6 +270,7 @@ class VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                   // SizedBox(
                                   //   height: sizeBoxHeight,
                                   // ),
+                                  // Header table
                                   Table(
                                     border: TableBorder.all(),
                                     defaultVerticalAlignment:
@@ -336,6 +337,24 @@ class VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                           ),
                                         ],
                                       ),
+                                    ],
+                                  ),
+                                  // Image 1 scoring table
+                                  RadioGroup<int>(
+                                    groupValue: _radioValueImageOne,
+                                    onChanged: _handleRadioValueChange1,
+                                    child: Table(
+                                      border: TableBorder.all(),
+                                      defaultVerticalAlignment:
+                                          TableCellVerticalAlignment.middle,
+                                      columnWidths: {
+                                        0: const FlexColumnWidth(0.2),
+                                        1: const FlexColumnWidth(0.2),
+                                        2: const FlexColumnWidth(0.2),
+                                        3: const FlexColumnWidth(0.2),
+                                        4: const FlexColumnWidth(0.2),
+                                      },
+                                      children: [
                                       TableRow(
                                         children: [
                                           Padding(
@@ -351,9 +370,6 @@ class VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                             children: <Widget>[
                                               Radio(
                                                 value: 0,
-                                                groupValue: _radioValueImageOne,
-                                                onChanged:
-                                                    _handleRadioValueChange1,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -368,9 +384,6 @@ class VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                             children: <Widget>[
                                               Radio(
                                                 value: 1,
-                                                groupValue: _radioValueImageOne,
-                                                onChanged:
-                                                    _handleRadioValueChange1,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -385,9 +398,6 @@ class VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                             children: <Widget>[
                                               Radio(
                                                 value: 2,
-                                                groupValue: _radioValueImageOne,
-                                                onChanged:
-                                                    _handleRadioValueChange1,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -402,9 +412,6 @@ class VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                             children: <Widget>[
                                               Radio(
                                                 value: 3,
-                                                groupValue: _radioValueImageOne,
-                                                onChanged:
-                                                    _handleRadioValueChange1,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -417,6 +424,25 @@ class VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                           ),
                                         ],
                                       ),
+                                    ],
+                                  ),
+                                  ),
+                                  // Image 2 scoring table
+                                  RadioGroup<int>(
+                                    groupValue: _radioValueImageTwo,
+                                    onChanged: _handleRadioValueChange2,
+                                    child: Table(
+                                      border: TableBorder.all(),
+                                      defaultVerticalAlignment:
+                                          TableCellVerticalAlignment.middle,
+                                      columnWidths: {
+                                        0: const FlexColumnWidth(0.2),
+                                        1: const FlexColumnWidth(0.2),
+                                        2: const FlexColumnWidth(0.2),
+                                        3: const FlexColumnWidth(0.2),
+                                        4: const FlexColumnWidth(0.2),
+                                      },
+                                      children: [
                                       TableRow(
                                         children: [
                                           Padding(
@@ -432,9 +458,6 @@ class VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                             children: <Widget>[
                                               Radio(
                                                 value: 0,
-                                                groupValue: _radioValueImageTwo,
-                                                onChanged:
-                                                    _handleRadioValueChange2,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -449,9 +472,6 @@ class VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                             children: <Widget>[
                                               Radio(
                                                 value: 1,
-                                                groupValue: _radioValueImageTwo,
-                                                onChanged:
-                                                    _handleRadioValueChange2,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -466,9 +486,6 @@ class VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                             children: <Widget>[
                                               Radio(
                                                 value: 2,
-                                                groupValue: _radioValueImageTwo,
-                                                onChanged:
-                                                    _handleRadioValueChange2,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -483,9 +500,6 @@ class VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                             children: <Widget>[
                                               Radio(
                                                 value: 3,
-                                                groupValue: _radioValueImageTwo,
-                                                onChanged:
-                                                    _handleRadioValueChange2,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -498,6 +512,25 @@ class VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                           ),
                                         ],
                                       ),
+                                    ],
+                                  ),
+                                  ),
+                                  // Image 3 scoring table
+                                  RadioGroup<int>(
+                                    groupValue: _radioValueImageThree,
+                                    onChanged: _handleRadioValueChange3,
+                                    child: Table(
+                                      border: TableBorder.all(),
+                                      defaultVerticalAlignment:
+                                          TableCellVerticalAlignment.middle,
+                                      columnWidths: {
+                                        0: const FlexColumnWidth(0.2),
+                                        1: const FlexColumnWidth(0.2),
+                                        2: const FlexColumnWidth(0.2),
+                                        3: const FlexColumnWidth(0.2),
+                                        4: const FlexColumnWidth(0.2),
+                                      },
+                                      children: [
                                       TableRow(
                                         children: [
                                           Padding(
@@ -513,10 +546,6 @@ class VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                             children: <Widget>[
                                               Radio(
                                                 value: 0,
-                                                groupValue:
-                                                    _radioValueImageThree,
-                                                onChanged:
-                                                    _handleRadioValueChange3,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -531,10 +560,6 @@ class VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                             children: <Widget>[
                                               Radio(
                                                 value: 1,
-                                                groupValue:
-                                                    _radioValueImageThree,
-                                                onChanged:
-                                                    _handleRadioValueChange3,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -549,10 +574,6 @@ class VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                             children: <Widget>[
                                               Radio(
                                                 value: 2,
-                                                groupValue:
-                                                    _radioValueImageThree,
-                                                onChanged:
-                                                    _handleRadioValueChange3,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -567,10 +588,6 @@ class VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                             children: <Widget>[
                                               Radio(
                                                 value: 3,
-                                                groupValue:
-                                                    _radioValueImageThree,
-                                                onChanged:
-                                                    _handleRadioValueChange3,
                                                 activeColor: Colors.white,
                                               ),
                                               Text(
@@ -584,6 +601,7 @@ class VisuospatialPraxisState extends State<VisuospatialPraxis> {
                                         ],
                                       ),
                                     ],
+                                  ),
                                   ),
                                 ],
                               ),
