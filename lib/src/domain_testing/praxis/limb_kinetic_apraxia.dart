@@ -137,7 +137,7 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       children: <Widget>[
-                        // Table for scoring
+                        // Header row
                         Table(
                           border: TableBorder.all(
                             color: Colors.black54,
@@ -152,7 +152,6 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                             3: FlexColumnWidth(0.26),
                           },
                           children: [
-                            // Header row
                             const TableRow(
                               children: [
                                 TableCell(child: SizedBox(height: 40)),
@@ -194,7 +193,26 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                                 ),
                               ],
                             ),
-                            // Right hand row
+                          ],
+                        ),
+                        // Right hand scoring row
+                        RadioGroup<int>(
+                          groupValue: _rightHandScore,
+                          onChanged: (value) => _handleRadioChange(true, value),
+                          child: Table(
+                          border: TableBorder.all(
+                            color: Colors.black54,
+                            width: 1.0,
+                          ),
+                          defaultVerticalAlignment:
+                              TableCellVerticalAlignment.middle,
+                          columnWidths: const {
+                            0: FlexColumnWidth(0.2),
+                            1: FlexColumnWidth(0.27),
+                            2: FlexColumnWidth(0.27),
+                            3: FlexColumnWidth(0.26),
+                          },
+                          children: [
                             TableRow(
                               children: [
                                 const Padding(
@@ -211,9 +229,6 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                                       padding: const EdgeInsets.all(4.0),
                                       child: Radio<int>(
                                         value: 0,
-                                        groupValue: _rightHandScore,
-                                        onChanged: (value) =>
-                                            _handleRadioChange(true, value),
                                         fillColor: WidgetStateProperty.resolveWith<Color>(
                                           (states) {
                                             if (states.contains(WidgetState.selected)) {
@@ -233,9 +248,6 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                                       padding: const EdgeInsets.all(4.0),
                                       child: Radio<int>(
                                         value: 1,
-                                        groupValue: _rightHandScore,
-                                        onChanged: (value) =>
-                                            _handleRadioChange(true, value),
                                         fillColor: WidgetStateProperty.resolveWith<Color>(
                                           (states) {
                                             if (states.contains(WidgetState.selected)) {
@@ -255,9 +267,6 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                                       padding: const EdgeInsets.all(4.0),
                                       child: Radio<int>(
                                         value: 2,
-                                        groupValue: _rightHandScore,
-                                        onChanged: (value) =>
-                                            _handleRadioChange(true, value),
                                         fillColor: WidgetStateProperty.resolveWith<Color>(
                                           (states) {
                                             if (states.contains(WidgetState.selected)) {
@@ -272,7 +281,27 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                                 ),
                               ],
                             ),
-                            // Left hand row
+                          ],
+                        ),
+                        ),
+                        // Left hand scoring row
+                        RadioGroup<int>(
+                          groupValue: _leftHandScore,
+                          onChanged: (value) => _handleRadioChange(false, value),
+                          child: Table(
+                          border: TableBorder.all(
+                            color: Colors.black54,
+                            width: 1.0,
+                          ),
+                          defaultVerticalAlignment:
+                              TableCellVerticalAlignment.middle,
+                          columnWidths: const {
+                            0: FlexColumnWidth(0.2),
+                            1: FlexColumnWidth(0.27),
+                            2: FlexColumnWidth(0.27),
+                            3: FlexColumnWidth(0.26),
+                          },
+                          children: [
                             TableRow(
                               children: [
                                 const Padding(
@@ -289,9 +318,6 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                                       padding: const EdgeInsets.all(4.0),
                                       child: Radio<int>(
                                         value: 0,
-                                        groupValue: _leftHandScore,
-                                        onChanged: (value) =>
-                                            _handleRadioChange(false, value),
                                         fillColor: WidgetStateProperty.resolveWith<Color>(
                                           (states) {
                                             if (states.contains(WidgetState.selected)) {
@@ -311,9 +337,6 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                                       padding: const EdgeInsets.all(4.0),
                                       child: Radio<int>(
                                         value: 1,
-                                        groupValue: _leftHandScore,
-                                        onChanged: (value) =>
-                                            _handleRadioChange(false, value),
                                         fillColor: WidgetStateProperty.resolveWith<Color>(
                                           (states) {
                                             if (states.contains(WidgetState.selected)) {
@@ -333,9 +356,6 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                                       padding: const EdgeInsets.all(4.0),
                                       child: Radio<int>(
                                         value: 2,
-                                        groupValue: _leftHandScore,
-                                        onChanged: (value) =>
-                                            _handleRadioChange(false, value),
                                         fillColor: WidgetStateProperty.resolveWith<Color>(
                                           (states) {
                                             if (states.contains(WidgetState.selected)) {
@@ -350,7 +370,24 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                                 ),
                               ],
                             ),
-                            // Footer row
+                          ],
+                        ),
+                        ),
+                        // Footer row
+                        Table(
+                          border: TableBorder.all(
+                            color: Colors.black54,
+                            width: 1.0,
+                          ),
+                          defaultVerticalAlignment:
+                              TableCellVerticalAlignment.middle,
+                          columnWidths: const {
+                            0: FlexColumnWidth(0.2),
+                            1: FlexColumnWidth(0.27),
+                            2: FlexColumnWidth(0.27),
+                            3: FlexColumnWidth(0.26),
+                          },
+                          children: [
                             const TableRow(
                               children: [
                                 TableCell(child: SizedBox(height: 40)),
