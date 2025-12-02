@@ -322,25 +322,26 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15.0),
                             ),
-                            Table(
-                              border: TableBorder.all(),
-                              defaultVerticalAlignment:
-                                  TableCellVerticalAlignment.middle,
-                              columnWidths: {
-                                0: const FlexColumnWidth(0.3),
-                                1: const FlexColumnWidth(0.3),
-                                2: const FlexColumnWidth(0.34)
-                              },
-                              children: [
-                                TableRow(children: [
-                                  Row(
-                                    children: <Widget>[
-                                      Radio(
-                                        value: 0,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
-                                        activeColor: Colors.white,
-                                      ),
+                            RadioGroup<int>(
+                              groupValue: _radioValue,
+                              onChanged: _handleRadioValueChange,
+                              child: Table(
+                                border: TableBorder.all(),
+                                defaultVerticalAlignment:
+                                    TableCellVerticalAlignment.middle,
+                                columnWidths: {
+                                  0: const FlexColumnWidth(0.3),
+                                  1: const FlexColumnWidth(0.3),
+                                  2: const FlexColumnWidth(0.34)
+                                },
+                                children: [
+                                  TableRow(children: [
+                                    Row(
+                                      children: <Widget>[
+                                        Radio(
+                                          value: 0,
+                                          activeColor: Colors.white,
+                                        ),
                                       Text(
                                         "Normal",
                                         style: const TextStyle(
@@ -354,8 +355,6 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                                     children: <Widget>[
                                       Radio(
                                         value: 1,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
                                       Text(
@@ -371,8 +370,6 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                                     children: <Widget>[
                                       Radio(
                                         value: 2,
-                                        groupValue: _radioValue,
-                                        onChanged: _handleRadioValueChange,
                                         activeColor: Colors.white,
                                       ),
                                       Text(
@@ -412,6 +409,7 @@ class _ExecutiveState extends State<Executive> with TickerProviderStateMixin {
                                   ),
                                 ])
                               ],
+                            ),
                             ),
                           ],
                         ),
