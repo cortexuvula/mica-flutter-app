@@ -174,7 +174,10 @@ class _OralApraxiaState extends State<OralApraxia> {
                         ),
                         const SizedBox(height: 16.0),
                         // Table for scoring
-                        Table(
+                        RadioGroup<int>(
+                          groupValue: _score,
+                          onChanged: _handleRadioChange,
+                          child: Table(
                           border: TableBorder.all(
                             color: Colors.black54,
                             width: 1.0,
@@ -199,8 +202,6 @@ class _OralApraxiaState extends State<OralApraxia> {
                                         children: [
                                           Radio<int>(
                                             value: 0,
-                                            groupValue: _score,
-                                            onChanged: _handleRadioChange,
                                             fillColor: WidgetStateProperty.resolveWith<Color>(
                                               (states) {
                                                 if (states.contains(WidgetState.selected)) {
@@ -233,8 +234,6 @@ class _OralApraxiaState extends State<OralApraxia> {
                                         children: [
                                           Radio<int>(
                                             value: 1,
-                                            groupValue: _score,
-                                            onChanged: _handleRadioChange,
                                             fillColor: WidgetStateProperty.resolveWith<Color>(
                                               (states) {
                                                 if (states.contains(WidgetState.selected)) {
@@ -267,8 +266,6 @@ class _OralApraxiaState extends State<OralApraxia> {
                                         children: [
                                           Radio<int>(
                                             value: 2,
-                                            groupValue: _score,
-                                            onChanged: _handleRadioChange,
                                             fillColor: WidgetStateProperty.resolveWith<Color>(
                                               (states) {
                                                 if (states.contains(WidgetState.selected)) {
@@ -294,6 +291,7 @@ class _OralApraxiaState extends State<OralApraxia> {
                               ],
                             ),
                           ],
+                        ),
                         ),
                       ],
                     ),
