@@ -66,7 +66,12 @@ class _SpontaneousSpeechState extends State<SpontaneousSpeech> {
                   ),
                   const SizedBox(height: 16.0),
                   // Radio button table
-                  Table(
+                  RadioGroup<int>(
+                    groupValue: selectedOption,
+                    onChanged: (int? value) {
+                      if (value != null) setState(() => selectedOption = value);
+                    },
+                    child: Table(
                     border: TableBorder.all(
                       color: Colors.black54,
                       width: 1.0,
@@ -88,12 +93,6 @@ class _SpontaneousSpeechState extends State<SpontaneousSpeech> {
                                   children: [
                                     Radio<int>(
                                       value: 0,
-                                      groupValue: selectedOption,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          selectedOption = value;
-                                        });
-                                      },
                                       fillColor: WidgetStateProperty.resolveWith<Color>((states) {
                                         if (states.contains(WidgetState.selected)) {
                                           return Colors.white;
@@ -127,12 +126,6 @@ class _SpontaneousSpeechState extends State<SpontaneousSpeech> {
                                   children: [
                                     Radio<int>(
                                       value: 1,
-                                      groupValue: selectedOption,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          selectedOption = value;
-                                        });
-                                      },
                                       fillColor: WidgetStateProperty.resolveWith<Color>((states) {
                                         if (states.contains(WidgetState.selected)) {
                                           return Colors.white;
@@ -166,12 +159,6 @@ class _SpontaneousSpeechState extends State<SpontaneousSpeech> {
                                   children: [
                                     Radio<int>(
                                       value: 2,
-                                      groupValue: selectedOption,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          selectedOption = value;
-                                        });
-                                      },
                                       fillColor: WidgetStateProperty.resolveWith<Color>((states) {
                                         if (states.contains(WidgetState.selected)) {
                                           return Colors.white;
@@ -194,6 +181,7 @@ class _SpontaneousSpeechState extends State<SpontaneousSpeech> {
                         ],
                       ),
                     ],
+                  ),
                   ),
                 ],
               ),
