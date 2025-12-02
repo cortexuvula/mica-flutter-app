@@ -749,7 +749,10 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 16.0),
-            Table(
+            RadioGroup<int>(
+              groupValue: selectedOption,
+              onChanged: (int? value) {}, // Disabled - scores auto-calculated
+              child: Table(
               border: TableBorder.all(
                 color: Colors.black,
                 width: 2.0,
@@ -764,8 +767,6 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
                           children: [
                             Radio<int>(
                               value: 0,
-                              groupValue: selectedOption,
-                              onChanged: null, // Disabled - automatically set
                               fillColor: WidgetStateProperty.resolveWith<Color>(
                                   (states) {
                                 if (states.contains(WidgetState.selected)) {
@@ -792,8 +793,6 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
                           children: [
                             Radio<int>(
                               value: 1,
-                              groupValue: selectedOption,
-                              onChanged: null, // Disabled - automatically set
                               fillColor: WidgetStateProperty.resolveWith<Color>(
                                   (states) {
                                 if (states.contains(WidgetState.selected)) {
@@ -820,8 +819,6 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
                           children: [
                             Radio<int>(
                               value: 2,
-                              groupValue: selectedOption,
-                              onChanged: null, // Disabled - automatically set
                               fillColor: WidgetStateProperty.resolveWith<Color>(
                                   (states) {
                                 if (states.contains(WidgetState.selected)) {
@@ -881,6 +878,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
                   ],
                 ),
               ],
+            ),
             ),
           ],
         ),
