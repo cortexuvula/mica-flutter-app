@@ -112,6 +112,7 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(height: 16.0),
+                    // Header row
                     Table(
                       defaultVerticalAlignment: TableCellVerticalAlignment.middle,
                       border: TableBorder.all(
@@ -119,7 +120,6 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
                         width: 1.0,
                       ),
                       children: [
-                        // Header row
                         TableRow(
                           children: [
                             Container(
@@ -172,7 +172,19 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
                             ),
                           ],
                         ),
-                        // Right hand row
+                      ],
+                    ),
+                    // Right hand scoring row
+                    RadioGroup<int>(
+                      groupValue: _rightHandRadioValue,
+                      onChanged: _handleRightHandRadioValueChange,
+                      child: Table(
+                      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                      border: TableBorder.all(
+                        color: Colors.black54,
+                        width: 1.0,
+                      ),
+                      children: [
                         TableRow(
                           children: [
                             Container(
@@ -193,8 +205,6 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Radio<int>(
                                     value: 0,
-                                    groupValue: _rightHandRadioValue,
-                                    onChanged: _handleRightHandRadioValueChange,
                                     fillColor: WidgetStateProperty.resolveWith<Color>((states) {
                                       if (states.contains(WidgetState.selected)) {
                                         return Colors.white;
@@ -212,8 +222,6 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Radio<int>(
                                     value: 1,
-                                    groupValue: _rightHandRadioValue,
-                                    onChanged: _handleRightHandRadioValueChange,
                                     fillColor: WidgetStateProperty.resolveWith<Color>((states) {
                                       if (states.contains(WidgetState.selected)) {
                                         return Colors.white;
@@ -231,8 +239,6 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Radio<int>(
                                     value: 2,
-                                    groupValue: _rightHandRadioValue,
-                                    onChanged: _handleRightHandRadioValueChange,
                                     fillColor: WidgetStateProperty.resolveWith<Color>((states) {
                                       if (states.contains(WidgetState.selected)) {
                                         return Colors.white;
@@ -245,7 +251,20 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
                             ),
                           ],
                         ),
-                        // Left hand row
+                      ],
+                    ),
+                    ),
+                    // Left hand scoring row
+                    RadioGroup<int>(
+                      groupValue: _leftHandRadioValue,
+                      onChanged: _handleLeftHandRadioValueChange,
+                      child: Table(
+                      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                      border: TableBorder.all(
+                        color: Colors.black54,
+                        width: 1.0,
+                      ),
+                      children: [
                         TableRow(
                           children: [
                             Container(
@@ -266,8 +285,6 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Radio<int>(
                                     value: 0,
-                                    groupValue: _leftHandRadioValue,
-                                    onChanged: _handleLeftHandRadioValueChange,
                                     fillColor: WidgetStateProperty.resolveWith<Color>((states) {
                                       if (states.contains(WidgetState.selected)) {
                                         return Colors.white;
@@ -285,8 +302,6 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Radio<int>(
                                     value: 1,
-                                    groupValue: _leftHandRadioValue,
-                                    onChanged: _handleLeftHandRadioValueChange,
                                     fillColor: WidgetStateProperty.resolveWith<Color>((states) {
                                       if (states.contains(WidgetState.selected)) {
                                         return Colors.white;
@@ -304,8 +319,6 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Radio<int>(
                                     value: 2,
-                                    groupValue: _leftHandRadioValue,
-                                    onChanged: _handleLeftHandRadioValueChange,
                                     fillColor: WidgetStateProperty.resolveWith<Color>((states) {
                                       if (states.contains(WidgetState.selected)) {
                                         return Colors.white;
@@ -318,7 +331,17 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
                             ),
                           ],
                         ),
-                        // Footer row with descriptions
+                      ],
+                    ),
+                    ),
+                    // Footer row
+                    Table(
+                      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                      border: TableBorder.all(
+                        color: Colors.black54,
+                        width: 1.0,
+                      ),
+                      children: [
                         TableRow(
                           children: [
                             Container(
