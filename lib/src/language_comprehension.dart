@@ -159,25 +159,26 @@ class LanguageComprehensionState extends State<LanguageComprehension> {
                             SizedBox(
                               height: 5.0,
                             ),
-                            Table(
-                              border: TableBorder.all(),
-                              columnWidths: {
-                                0: FlexColumnWidth(0.33),
-                                1: FlexColumnWidth(0.33),
-                                2: FlexColumnWidth(0.34),
+                            RadioGroup<int>(
+                              groupValue: _radioValue,
+                              onChanged: (int? value) {
+                                _handleRadioValueChange(value);
                               },
-                              children: [
-                                TableRow(children: [
-                                  Row(
-                                    children: <Widget>[
-                                      Radio(
-                                        value: 0,
-                                        groupValue: _radioValue,
-                                        onChanged: (int? value) {
-                                          _handleRadioValueChange(value);
-                                        },
-                                        activeColor: Colors.white,
-                                      ),
+                              child: Table(
+                                border: TableBorder.all(),
+                                columnWidths: {
+                                  0: FlexColumnWidth(0.33),
+                                  1: FlexColumnWidth(0.33),
+                                  2: FlexColumnWidth(0.34),
+                                },
+                                children: [
+                                  TableRow(children: [
+                                    Row(
+                                      children: <Widget>[
+                                        Radio(
+                                          value: 0,
+                                          activeColor: Colors.white,
+                                        ),
                                       Text(
                                         "Normal",
                                         style: TextStyle(
@@ -190,10 +191,6 @@ class LanguageComprehensionState extends State<LanguageComprehension> {
                                     children: <Widget>[
                                       Radio(
                                         value: 1,
-                                        groupValue: _radioValue,
-                                        onChanged: (int? value) {
-                                          _handleRadioValueChange(value);
-                                        },
                                         activeColor: Colors.white,
                                       ),
                                       Text(
@@ -209,10 +206,6 @@ class LanguageComprehensionState extends State<LanguageComprehension> {
                                     children: <Widget>[
                                       Radio(
                                         value: 2,
-                                        groupValue: _radioValue,
-                                        onChanged: (int? value) {
-                                          _handleRadioValueChange(value);
-                                        },
                                         activeColor: Colors.white,
                                       ),
                                       Text(
@@ -254,6 +247,7 @@ class LanguageComprehensionState extends State<LanguageComprehension> {
                                   ),
                                 ])
                               ],
+                            ),
                             ),
                           ],
                         ),
