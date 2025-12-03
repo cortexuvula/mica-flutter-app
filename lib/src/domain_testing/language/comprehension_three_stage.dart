@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class ComprehensionThreeStage extends StatefulWidget {
   const ComprehensionThreeStage({super.key});
@@ -288,9 +289,8 @@ class _ComprehensionThreeStageState extends State<ComprehensionThreeStage> {
                         onPressed: () {
                           // Save the score if selected
                           if (selectedOption != null) {
-                            // TODO: Add comprehension 3 stage score to model when available
-                            // final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-                            // scoreModel.setComprehensionThreeStage(selectedOption!);
+                            final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+                            scoreModel.setLanguageComprehensionThreeStage(selectedOption!);
                           }
                           // Pop back to language assessment
                           Navigator.of(context).pop();

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class ComprehensionMovingObjects extends StatefulWidget {
   const ComprehensionMovingObjects({super.key});
@@ -259,9 +260,8 @@ class _ComprehensionMovingObjectsState extends State<ComprehensionMovingObjects>
                         onPressed: () {
                           // Save the score if selected
                           if (selectedOption != null) {
-                            // TODO: Add comprehension moving objects score to model when available
-                            // final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-                            // scoreModel.setComprehensionMovingObjects(selectedOption!);
+                            final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+                            scoreModel.setLanguageComprehensionMoving(selectedOption!);
                           }
                           // Pop back to language assessment
                           Navigator.of(context).pop();

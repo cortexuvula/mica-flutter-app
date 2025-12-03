@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class LuriaFistEdgePalmMovement extends StatefulWidget {
   const LuriaFistEdgePalmMovement({super.key});
@@ -395,8 +396,16 @@ class LuriaFistEdgePalmMovementState
   }
   
   void _saveScore() {
-    // TODO: Save the scores to the model
-    // You may need to add specific methods for executive function scores
-    // For now, we'll just store the cycle counts and scores
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+
+    // Calculate average score from both hands
+    // If one hand has no cycles, it defaults to 0 (Normal)
+    int averageScore = ((rightHandScore ?? 0) + (leftHandScore ?? 0)) ~/ 2;
+    int totalCycles = rightHandCycleCount + leftHandCycleCount;
+
+    scoreModel.setExecutiveLuria(
+      score: averageScore,
+      count: totalCycles,
+    );
   }
 }

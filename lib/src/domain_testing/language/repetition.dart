@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class Repetition extends StatefulWidget {
   const Repetition({super.key});
@@ -244,9 +245,8 @@ class _RepetitionState extends State<Repetition> {
                         onPressed: () {
                           // Save the score if selected
                           if (selectedOption != null) {
-                            // TODO: Add repetition score to model when available
-                            // final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-                            // scoreModel.setRepetition(selectedOption!);
+                            final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+                            scoreModel.setLanguageRepetition(selectedOption!);
                           }
                           // Pop back to language assessment
                           Navigator.of(context).pop();

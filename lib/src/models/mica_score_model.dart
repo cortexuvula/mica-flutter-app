@@ -13,6 +13,20 @@ class MicaScoreModel extends ChangeNotifier {
   int _languageComprehensionRadioValue = 0;
   int _spokenLanguage = 0;
 
+  // Granular language test scores
+  int _languageReading = 0;
+  int _languageRepetition = 0;
+  int _languageComprehensionMoving = 0;
+  int _languageWriting = 0;
+  int _languageObjectNaming = 0;
+  int _languageSpontaneousSpeech = 0;
+  int _languageComprehensionThreeStage = 0;
+
+  // Picture Naming Test (detailed scoring)
+  int _languagePictureNamingCorrect = 0;
+  int _languagePictureNamingTotal = 0;
+  int _languagePictureAgnosia = 0;
+
   // Memory scores
   int _trialOneScore = 0;
   int _trialTwoScore = 0;
@@ -28,6 +42,22 @@ class MicaScoreModel extends ChangeNotifier {
   int _shorttermMemoryVisualImage1 = 0;
   int _shorttermMemoryVisualImage2 = 0;
   int _shorttermMemoryVisualImage3 = 0;
+
+  // Additional memory test scores
+  int _memorySemanticScore = 0;
+
+  // Visual Working Memory (immediate recall - same images as STM)
+  int _memoryVisualWorkingImage1 = 0;
+  int _memoryVisualWorkingImage2 = 0;
+  int _memoryVisualWorkingImage3 = 0;
+
+  // Short Verbal Memory Test (name/address recall)
+  int _memoryShortVerbalCorrect = 0;
+  int _memoryShortVerbalTotal = 0;
+
+  // Ten Word Recall recognition test breakdown
+  int _memoryTenWordRecognitionCorrect = 0;
+  int _memoryTenWordRecognitionFalsePositive = 0;
 
   // Visuospatial and praxis scores
   int _visuospatialPraxisImage1 = 0;
@@ -60,6 +90,28 @@ class MicaScoreModel extends ChangeNotifier {
   int _anomiaAgnosia = 0;
   int _agnosia = 0;
 
+  // Gnosis domain scores
+  // Finger Perception Test (7 patterns scored)
+  int _gnosisFingerPerceptionPattern1 = 0;
+  int _gnosisFingerPerceptionPattern2 = 0;
+  int _gnosisFingerPerceptionPattern3 = 0;
+  int _gnosisFingerPerceptionPattern4 = 0;
+  int _gnosisFingerPerceptionPattern5 = 0;
+  int _gnosisFingerPerceptionPattern6 = 0;
+  int _gnosisFingerPerceptionPattern7 = 0;
+  int _gnosisFingerPerceptionTotal = 0;
+
+  // Visual Object Identification (nominal dysphasia vs visual agnosia)
+  int _gnosisVisualNominalDysphasia = 0;
+  int _gnosisVisualAgnosia = 0;
+
+  // Tactile Object Identification (astereognosis)
+  int _gnosisAstereognosisRight = 0;
+  int _gnosisAstereognosisLeft = 0;
+
+  // Clock Drawing Test (5-point criteria)
+  int _gnosisClockDrawing = 0;
+
   // Getters for patient information
   String get patientName => _patientName;
   String get assessorName => _assessorName;
@@ -69,6 +121,19 @@ class MicaScoreModel extends ChangeNotifier {
   // Getters for language scores
   int get languageComprehensionRadioValue => _languageComprehensionRadioValue;
   int get spokenLanguage => _spokenLanguage;
+
+  // Getters for granular language test scores
+  int get languageReading => _languageReading;
+  int get languageRepetition => _languageRepetition;
+  int get languageComprehensionMoving => _languageComprehensionMoving;
+  int get languageWriting => _languageWriting;
+  int get languageObjectNaming => _languageObjectNaming;
+  int get languageSpontaneousSpeech => _languageSpontaneousSpeech;
+  int get languageComprehensionThreeStage => _languageComprehensionThreeStage;
+
+  int get languagePictureNamingCorrect => _languagePictureNamingCorrect;
+  int get languagePictureNamingTotal => _languagePictureNamingTotal;
+  int get languagePictureAgnosia => _languagePictureAgnosia;
 
   // Getters for memory scores
   int get trialOneScore => _trialOneScore;
@@ -88,6 +153,19 @@ class MicaScoreModel extends ChangeNotifier {
   int get shorttermMemoryVisualImage1 => _shorttermMemoryVisualImage1;
   int get shorttermMemoryVisualImage2 => _shorttermMemoryVisualImage2;
   int get shorttermMemoryVisualImage3 => _shorttermMemoryVisualImage3;
+
+  // Getters for additional memory test scores
+  int get memorySemanticScore => _memorySemanticScore;
+
+  int get memoryVisualWorkingImage1 => _memoryVisualWorkingImage1;
+  int get memoryVisualWorkingImage2 => _memoryVisualWorkingImage2;
+  int get memoryVisualWorkingImage3 => _memoryVisualWorkingImage3;
+
+  int get memoryShortVerbalCorrect => _memoryShortVerbalCorrect;
+  int get memoryShortVerbalTotal => _memoryShortVerbalTotal;
+
+  int get memoryTenWordRecognitionCorrect => _memoryTenWordRecognitionCorrect;
+  int get memoryTenWordRecognitionFalsePositive => _memoryTenWordRecognitionFalsePositive;
 
   // Getters for visuospatial and praxis scores
   int get visuospatialPraxisImage1 => _visuospatialPraxisImage1;
@@ -120,6 +198,24 @@ class MicaScoreModel extends ChangeNotifier {
   int get anomiaAgnosia => _anomiaAgnosia;
   int get agnosia => _agnosia;
 
+  // Getters for gnosis domain scores
+  int get gnosisFingerPerceptionPattern1 => _gnosisFingerPerceptionPattern1;
+  int get gnosisFingerPerceptionPattern2 => _gnosisFingerPerceptionPattern2;
+  int get gnosisFingerPerceptionPattern3 => _gnosisFingerPerceptionPattern3;
+  int get gnosisFingerPerceptionPattern4 => _gnosisFingerPerceptionPattern4;
+  int get gnosisFingerPerceptionPattern5 => _gnosisFingerPerceptionPattern5;
+  int get gnosisFingerPerceptionPattern6 => _gnosisFingerPerceptionPattern6;
+  int get gnosisFingerPerceptionPattern7 => _gnosisFingerPerceptionPattern7;
+  int get gnosisFingerPerceptionTotal => _gnosisFingerPerceptionTotal;
+
+  int get gnosisVisualNominalDysphasia => _gnosisVisualNominalDysphasia;
+  int get gnosisVisualAgnosia => _gnosisVisualAgnosia;
+
+  int get gnosisAstereognosisRight => _gnosisAstereognosisRight;
+  int get gnosisAstereognosisLeft => _gnosisAstereognosisLeft;
+
+  int get gnosisClockDrawing => _gnosisClockDrawing;
+
   // Setters for patient information
   void setPatientInfo({
     required String patientName,
@@ -142,6 +238,55 @@ class MicaScoreModel extends ChangeNotifier {
 
   void setSpokenLanguage(int value) {
     _spokenLanguage = value;
+    notifyListeners();
+  }
+
+  // Language domain setters (expanded)
+
+  void setLanguageReading(int score) {
+    _languageReading = score;
+    notifyListeners();
+  }
+
+  void setLanguageRepetition(int score) {
+    _languageRepetition = score;
+    notifyListeners();
+  }
+
+  void setLanguageComprehensionMoving(int score) {
+    _languageComprehensionMoving = score;
+    notifyListeners();
+  }
+
+  void setLanguageWriting(int score) {
+    _languageWriting = score;
+    notifyListeners();
+  }
+
+  void setLanguageObjectNaming(int score) {
+    _languageObjectNaming = score;
+    notifyListeners();
+  }
+
+  void setLanguageSpontaneousSpeech(int score) {
+    _languageSpontaneousSpeech = score;
+    notifyListeners();
+  }
+
+  void setLanguageComprehensionThreeStage(int score) {
+    _languageComprehensionThreeStage = score;
+    notifyListeners();
+  }
+
+  /// Set picture naming test scores with detailed breakdown
+  void setLanguagePictureNaming({
+    required int correct,
+    required int total,
+    required int agnosia,
+  }) {
+    _languagePictureNamingCorrect = correct;
+    _languagePictureNamingTotal = total;
+    _languagePictureAgnosia = agnosia;
     notifyListeners();
   }
 
@@ -192,6 +337,45 @@ class MicaScoreModel extends ChangeNotifier {
     _shorttermMemoryVisualImage1 = image1;
     _shorttermMemoryVisualImage2 = image2;
     _shorttermMemoryVisualImage3 = image3;
+    notifyListeners();
+  }
+
+  // Memory domain setters (expanded)
+
+  void setMemorySemanticScore(int score) {
+    _memorySemanticScore = score;
+    notifyListeners();
+  }
+
+  /// Set visual working memory scores (immediate recall)
+  void setMemoryVisualWorking({
+    required int image1,
+    required int image2,
+    required int image3,
+  }) {
+    _memoryVisualWorkingImage1 = image1;
+    _memoryVisualWorkingImage2 = image2;
+    _memoryVisualWorkingImage3 = image3;
+    notifyListeners();
+  }
+
+  /// Set short verbal memory test scores (name/address recall)
+  void setMemoryShortVerbal({
+    required int correct,
+    required int total,
+  }) {
+    _memoryShortVerbalCorrect = correct;
+    _memoryShortVerbalTotal = total;
+    notifyListeners();
+  }
+
+  /// Set ten word recognition test breakdown
+  void setMemoryTenWordRecognition({
+    required int correct,
+    required int falsePositive,
+  }) {
+    _memoryTenWordRecognitionCorrect = correct;
+    _memoryTenWordRecognitionFalsePositive = falsePositive;
     notifyListeners();
   }
 
@@ -298,6 +482,59 @@ class MicaScoreModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Gnosis domain setters
+
+  /// Set finger perception test scores for all 7 patterns
+  void setGnosisFingerPerception({
+    required int pattern1,
+    required int pattern2,
+    required int pattern3,
+    required int pattern4,
+    required int pattern5,
+    required int pattern6,
+    required int pattern7,
+  }) {
+    _gnosisFingerPerceptionPattern1 = pattern1;
+    _gnosisFingerPerceptionPattern2 = pattern2;
+    _gnosisFingerPerceptionPattern3 = pattern3;
+    _gnosisFingerPerceptionPattern4 = pattern4;
+    _gnosisFingerPerceptionPattern5 = pattern5;
+    _gnosisFingerPerceptionPattern6 = pattern6;
+    _gnosisFingerPerceptionPattern7 = pattern7;
+
+    // Calculate total (sum of all patterns)
+    _gnosisFingerPerceptionTotal = pattern1 + pattern2 + pattern3 +
+                                    pattern4 + pattern5 + pattern6 + pattern7;
+
+    notifyListeners();
+  }
+
+  /// Set visual object identification scores (nominal dysphasia vs agnosia)
+  void setGnosisVisualIdentification({
+    required int nominalDysphasia,
+    required int visualAgnosia,
+  }) {
+    _gnosisVisualNominalDysphasia = nominalDysphasia;
+    _gnosisVisualAgnosia = visualAgnosia;
+    notifyListeners();
+  }
+
+  /// Set tactile object identification scores (astereognosis)
+  void setGnosisAstereognosis({
+    required int rightHand,
+    required int leftHand,
+  }) {
+    _gnosisAstereognosisRight = rightHand;
+    _gnosisAstereognosisLeft = leftHand;
+    notifyListeners();
+  }
+
+  /// Set clock drawing test score (0-5 scale)
+  void setGnosisClockDrawing(int score) {
+    _gnosisClockDrawing = score;
+    notifyListeners();
+  }
+
   // Method to initialize model from test data
   void initFromTestSummary({
     required String patientName,
@@ -341,6 +578,40 @@ class MicaScoreModel extends ChangeNotifier {
     required int agnosia,
     required int executive,
     required int spokenLanguage,
+    // Gnosis parameters
+    required int gnosisFingerPerceptionPattern1,
+    required int gnosisFingerPerceptionPattern2,
+    required int gnosisFingerPerceptionPattern3,
+    required int gnosisFingerPerceptionPattern4,
+    required int gnosisFingerPerceptionPattern5,
+    required int gnosisFingerPerceptionPattern6,
+    required int gnosisFingerPerceptionPattern7,
+    required int gnosisFingerPerceptionTotal,
+    required int gnosisVisualNominalDysphasia,
+    required int gnosisVisualAgnosia,
+    required int gnosisAstereognosisRight,
+    required int gnosisAstereognosisLeft,
+    required int gnosisClockDrawing,
+    // Language parameters
+    required int languageReading,
+    required int languageRepetition,
+    required int languageComprehensionMoving,
+    required int languageWriting,
+    required int languageObjectNaming,
+    required int languageSpontaneousSpeech,
+    required int languageComprehensionThreeStage,
+    required int languagePictureNamingCorrect,
+    required int languagePictureNamingTotal,
+    required int languagePictureAgnosia,
+    // Memory parameters
+    required int memorySemanticScore,
+    required int memoryVisualWorkingImage1,
+    required int memoryVisualWorkingImage2,
+    required int memoryVisualWorkingImage3,
+    required int memoryShortVerbalCorrect,
+    required int memoryShortVerbalTotal,
+    required int memoryTenWordRecognitionCorrect,
+    required int memoryTenWordRecognitionFalsePositive,
   }) {
     _patientName = patientName;
     _assessorName = assessorName;
@@ -386,6 +657,43 @@ class MicaScoreModel extends ChangeNotifier {
     _agnosia = agnosia;
     _executive = executive;
     _spokenLanguage = spokenLanguage;
+
+    // Gnosis assignments
+    _gnosisFingerPerceptionPattern1 = gnosisFingerPerceptionPattern1;
+    _gnosisFingerPerceptionPattern2 = gnosisFingerPerceptionPattern2;
+    _gnosisFingerPerceptionPattern3 = gnosisFingerPerceptionPattern3;
+    _gnosisFingerPerceptionPattern4 = gnosisFingerPerceptionPattern4;
+    _gnosisFingerPerceptionPattern5 = gnosisFingerPerceptionPattern5;
+    _gnosisFingerPerceptionPattern6 = gnosisFingerPerceptionPattern6;
+    _gnosisFingerPerceptionPattern7 = gnosisFingerPerceptionPattern7;
+    _gnosisFingerPerceptionTotal = gnosisFingerPerceptionTotal;
+    _gnosisVisualNominalDysphasia = gnosisVisualNominalDysphasia;
+    _gnosisVisualAgnosia = gnosisVisualAgnosia;
+    _gnosisAstereognosisRight = gnosisAstereognosisRight;
+    _gnosisAstereognosisLeft = gnosisAstereognosisLeft;
+    _gnosisClockDrawing = gnosisClockDrawing;
+
+    // Language assignments
+    _languageReading = languageReading;
+    _languageRepetition = languageRepetition;
+    _languageComprehensionMoving = languageComprehensionMoving;
+    _languageWriting = languageWriting;
+    _languageObjectNaming = languageObjectNaming;
+    _languageSpontaneousSpeech = languageSpontaneousSpeech;
+    _languageComprehensionThreeStage = languageComprehensionThreeStage;
+    _languagePictureNamingCorrect = languagePictureNamingCorrect;
+    _languagePictureNamingTotal = languagePictureNamingTotal;
+    _languagePictureAgnosia = languagePictureAgnosia;
+
+    // Memory assignments
+    _memorySemanticScore = memorySemanticScore;
+    _memoryVisualWorkingImage1 = memoryVisualWorkingImage1;
+    _memoryVisualWorkingImage2 = memoryVisualWorkingImage2;
+    _memoryVisualWorkingImage3 = memoryVisualWorkingImage3;
+    _memoryShortVerbalCorrect = memoryShortVerbalCorrect;
+    _memoryShortVerbalTotal = memoryShortVerbalTotal;
+    _memoryTenWordRecognitionCorrect = memoryTenWordRecognitionCorrect;
+    _memoryTenWordRecognitionFalsePositive = memoryTenWordRecognitionFalsePositive;
 
     notifyListeners();
   }
@@ -441,6 +749,43 @@ class MicaScoreModel extends ChangeNotifier {
 
     _anomiaAgnosia = 0;
     _agnosia = 0;
+
+    // Reset gnosis scores
+    _gnosisFingerPerceptionPattern1 = 0;
+    _gnosisFingerPerceptionPattern2 = 0;
+    _gnosisFingerPerceptionPattern3 = 0;
+    _gnosisFingerPerceptionPattern4 = 0;
+    _gnosisFingerPerceptionPattern5 = 0;
+    _gnosisFingerPerceptionPattern6 = 0;
+    _gnosisFingerPerceptionPattern7 = 0;
+    _gnosisFingerPerceptionTotal = 0;
+    _gnosisVisualNominalDysphasia = 0;
+    _gnosisVisualAgnosia = 0;
+    _gnosisAstereognosisRight = 0;
+    _gnosisAstereognosisLeft = 0;
+    _gnosisClockDrawing = 0;
+
+    // Reset language scores
+    _languageReading = 0;
+    _languageRepetition = 0;
+    _languageComprehensionMoving = 0;
+    _languageWriting = 0;
+    _languageObjectNaming = 0;
+    _languageSpontaneousSpeech = 0;
+    _languageComprehensionThreeStage = 0;
+    _languagePictureNamingCorrect = 0;
+    _languagePictureNamingTotal = 0;
+    _languagePictureAgnosia = 0;
+
+    // Reset memory scores
+    _memorySemanticScore = 0;
+    _memoryVisualWorkingImage1 = 0;
+    _memoryVisualWorkingImage2 = 0;
+    _memoryVisualWorkingImage3 = 0;
+    _memoryShortVerbalCorrect = 0;
+    _memoryShortVerbalTotal = 0;
+    _memoryTenWordRecognitionCorrect = 0;
+    _memoryTenWordRecognitionFalsePositive = 0;
 
     notifyListeners();
   }

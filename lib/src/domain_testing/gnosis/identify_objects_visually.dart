@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class IdentifyObjectsVisually extends StatefulWidget {
   const IdentifyObjectsVisually({super.key});
@@ -312,16 +313,23 @@ class _IdentifyObjectsVisuallyState extends State<IdentifyObjectsVisually> {
   }
   
   void saveToModel() {
-    // TODO: Add gnosis scores to the model when model is updated
-    // For now, just store the value locally
+    if (!mounted) return;
+
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    // Note: Current implementation uses single score - saved to nominalDysphasia field
+    // Future enhancement: Refactor test to separately assess nominal dysphasia vs visual agnosia
+    scoreModel.setGnosisVisualIdentification(
+      nominalDysphasia: _radioValue ?? 0,
+      visualAgnosia: 0, // Not separately assessed in current implementation
+    );
   }
 
   void loadFromModel() {
     if (!mounted) return;
 
-    // TODO: Load gnosis scores from the model when model is updated
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     setState(() {
-      _radioValue = 0; // Default to Normal
+      _radioValue = scoreModel.gnosisVisualNominalDysphasia;
     });
   }
 }

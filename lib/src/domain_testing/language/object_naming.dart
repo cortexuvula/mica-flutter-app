@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class ObjectNaming extends StatefulWidget {
   const ObjectNaming({super.key});
@@ -276,9 +277,8 @@ class _ObjectNamingState extends State<ObjectNaming> {
                         onPressed: () {
                           // Save the score if selected
                           if (selectedOption != null) {
-                            // TODO: Add object naming score to model when available
-                            // final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-                            // scoreModel.setObjectNaming(selectedOption!);
+                            final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+                            scoreModel.setLanguageObjectNaming(selectedOption!);
                           }
                           // Pop back to naming menu
                           Navigator.of(context).pop();

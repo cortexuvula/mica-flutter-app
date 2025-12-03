@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class ShortVerbalMemoryTest extends StatefulWidget {
   const ShortVerbalMemoryTest({super.key});
@@ -585,9 +586,16 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
                       backgroundColor: Theme.of(context).colorScheme.secondary,
                     ),
                     onPressed: () {
-                      // TODO: Save scores to model
-                      // final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-                      // scoreModel.setShortVerbalMemoryScores(...);
+                      final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+
+                      // Calculate correct items from delayed recall (true = correct)
+                      int correctCount = delayedRecallSelected.where((selected) => selected).length;
+                      int totalCount = delayedRecallSelected.length;
+
+                      scoreModel.setMemoryShortVerbal(
+                        correct: correctCount,
+                        total: totalCount,
+                      );
 
                       // Pop back to memory assessment menu
                       Navigator.of(context).pop();

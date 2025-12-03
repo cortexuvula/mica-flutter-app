@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class Writing extends StatefulWidget {
   const Writing({super.key});
@@ -228,9 +229,8 @@ class _WritingState extends State<Writing> {
                         onPressed: () {
                           // Save the score if selected
                           if (selectedOption != null) {
-                            // TODO: Add writing score to model when available
-                            // final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-                            // scoreModel.setWriting(selectedOption!);
+                            final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+                            scoreModel.setLanguageWriting(selectedOption!);
                           }
                           // Pop back to language assessment
                           Navigator.of(context).pop();

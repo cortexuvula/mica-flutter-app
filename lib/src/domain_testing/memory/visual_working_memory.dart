@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class VisualWorkingMemory extends StatefulWidget {
   const VisualWorkingMemory({super.key});
@@ -400,10 +401,12 @@ class _VisualWorkingMemoryState extends State<VisualWorkingMemory> {
                                   backgroundColor: Theme.of(context).colorScheme.secondary,
                                 ),
                                 onPressed: () {
-                                  // TODO: Save score to model
-                                  // final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-                                  // int totalScore = selectedScores['image1']! + selectedScores['image2']! + selectedScores['image3']!;
-                                  // scoreModel.setVisualWorkingMemoryScore(totalScore);
+                                  final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+                                  scoreModel.setMemoryVisualWorking(
+                                    image1: selectedScores['image1'] ?? 0,
+                                    image2: selectedScores['image2'] ?? 0,
+                                    image3: selectedScores['image3'] ?? 0,
+                                  );
 
                                   // Pop back to memory assessment menu
                                   Navigator.of(context).pop();

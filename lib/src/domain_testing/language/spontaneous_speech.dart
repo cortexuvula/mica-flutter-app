@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class SpontaneousSpeech extends StatefulWidget {
   const SpontaneousSpeech({super.key});
@@ -209,9 +210,8 @@ class _SpontaneousSpeechState extends State<SpontaneousSpeech> {
                         onPressed: () {
                           // Save the score if selected
                           if (selectedOption != null) {
-                            // TODO: Add spontaneous speech score to model when available
-                            // final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-                            // scoreModel.setSpontaneousSpeech(selectedOption!);
+                            final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+                            scoreModel.setLanguageSpontaneousSpeech(selectedOption!);
                           }
                           // Pop back to language assessment
                           Navigator.of(context).pop();

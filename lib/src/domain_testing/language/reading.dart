@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class Reading extends StatefulWidget {
   const Reading({super.key});
@@ -233,9 +234,8 @@ class _ReadingState extends State<Reading> {
                         onPressed: () {
                           // Save the score if selected
                           if (selectedOption != null) {
-                            // TODO: Add reading score to model when available
-                            // final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-                            // scoreModel.setReading(selectedOption!);
+                            final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+                            scoreModel.setLanguageReading(selectedOption!);
                           }
                           // Pop back to language assessment
                           Navigator.of(context).pop();

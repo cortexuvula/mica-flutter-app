@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class FingerPerceptionTest extends StatefulWidget {
   const FingerPerceptionTest({super.key});
@@ -520,20 +521,32 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
   }
 
   void saveToModel() {
-    // TODO: Add finger perception scores to the model when model is updated
-    // For now, just store the values locally
+    if (!mounted) return;
+
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setGnosisFingerPerception(
+      pattern1: _patternScores[0] ?? 0,
+      pattern2: _patternScores[1] ?? 0,
+      pattern3: _patternScores[2] ?? 0,
+      pattern4: _patternScores[3] ?? 0,
+      pattern5: _patternScores[4] ?? 0,
+      pattern6: _patternScores[5] ?? 0,
+      pattern7: _patternScores[6] ?? 0,
+    );
   }
 
   void loadFromModel() {
     if (!mounted) return;
 
-    // TODO: Load finger perception scores from the model when model is updated
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     setState(() {
-      // Initialize all scores to Normal (0)
-      for (int i = 0; i < _patternScores.length; i++) {
-        _patternScores[i] = 0;
-      }
-      _summaryScore = 0;
+      _patternScores[0] = scoreModel.gnosisFingerPerceptionPattern1;
+      _patternScores[1] = scoreModel.gnosisFingerPerceptionPattern2;
+      _patternScores[2] = scoreModel.gnosisFingerPerceptionPattern3;
+      _patternScores[3] = scoreModel.gnosisFingerPerceptionPattern4;
+      _patternScores[4] = scoreModel.gnosisFingerPerceptionPattern5;
+      _patternScores[5] = scoreModel.gnosisFingerPerceptionPattern6;
+      _patternScores[6] = scoreModel.gnosisFingerPerceptionPattern7;
     });
   }
 }

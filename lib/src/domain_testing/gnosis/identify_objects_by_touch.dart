@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class IdentifyObjectsByTouch extends StatefulWidget {
   const IdentifyObjectsByTouch({super.key});
@@ -449,17 +450,22 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
   }
   
   void saveToModel() {
-    // TODO: Add astereognosis scores to the model when model is updated
-    // For now, just store the values locally
+    if (!mounted) return;
+
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setGnosisAstereognosis(
+      rightHand: _rightHandRadioValue ?? 0,
+      leftHand: _leftHandRadioValue ?? 0,
+    );
   }
 
   void loadFromModel() {
     if (!mounted) return;
 
-    // TODO: Load astereognosis scores from the model when model is updated
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     setState(() {
-      _rightHandRadioValue = 0; // Default to Normal
-      _leftHandRadioValue = 0;  // Default to Normal
+      _rightHandRadioValue = scoreModel.gnosisAstereognosisRight;
+      _leftHandRadioValue = scoreModel.gnosisAstereognosisLeft;
     });
   }
 }

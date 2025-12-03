@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class TenWordVerbalRecall extends StatefulWidget {
   const TenWordVerbalRecall({super.key});
@@ -1127,7 +1128,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
     // Calculate recognition scores
     int correctInList = 0;
     int correctNotInList = 0;
-    recognitionItems.forEach((item) {
+    for (final item in recognitionItems) {
       bool? response = recognitionResponses[item['word']];
       if (response != null) {
         if (item['isOriginal'] && response == true) {
@@ -1136,7 +1137,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
           correctNotInList++;
         }
       }
-    });
+    }
 
     return [
       // Score Summary card
@@ -1245,9 +1246,18 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                       backgroundColor: Theme.of(context).colorScheme.secondary,
                     ),
                     onPressed: () {
-                      // TODO: Save scores to model
-                      // final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-                      // scoreModel.setTenWordVerbalRecallScores(...);
+                      final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+
+                      // Save recognition test breakdown
+                      int totalCorrect = correctInList + correctNotInList;
+                      int falsePositives = 10 - correctNotInList; // Words NOT in list incorrectly identified as being in list
+
+                      scoreModel.setMemoryTenWordRecognition(
+                        correct: totalCorrect,
+                        falsePositive: falsePositives,
+                      );
+
+                      // Trial scores are already saved via setTrialScores() during the test
 
                       // Pop back to memory assessment menu
                       Navigator.of(context).pop();

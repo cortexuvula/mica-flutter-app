@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class LuriaAlternatingHandMovements extends StatefulWidget {
   const LuriaAlternatingHandMovements({super.key});
@@ -295,9 +296,11 @@ class LuriaAlternatingHandMovementsState
   
   void _saveScore() {
     if (selectedScore != null) {
-      // TODO: Save the score to the model
-      // You may need to add a specific method for executive function scores
-      // For now, we'll just store the cycle count and score
+      final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+      scoreModel.setExecutiveLuria(
+        score: selectedScore!,
+        count: cycleCount,
+      );
     }
   }
 }
