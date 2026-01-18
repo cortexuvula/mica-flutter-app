@@ -10,7 +10,7 @@ This document tracks known technical debt, areas for improvement, and planned re
 
 | Category | Priority | Items |
 |----------|----------|-------|
-| Code Quality | Medium | 1 |
+| Code Quality | Medium | 0 |
 | Testing | - | 0 |
 | Architecture | Low | 1 |
 | Dependencies | Low | 1 |
@@ -26,23 +26,7 @@ _No high priority items currently._
 
 ## Medium Priority
 
-### Hardcoded Strings
-
-**Issue:** UI strings are hardcoded throughout the application.
-
-**Current State:**
-- Test instructions, labels, and messages are inline
-- No internationalization support
-- Changing text requires code changes
-
-**Impact:** Difficult to maintain consistency, impossible to localize.
-
-**Recommended Actions:**
-1. Extract strings to a centralized location (`lib/resources/strings.dart`)
-2. Consider implementing Flutter's `intl` package for localization
-3. Group strings by domain/feature
-
-**Effort Estimate:** Medium-High
+_No medium priority items currently._
 
 ---
 
@@ -108,6 +92,37 @@ _No high priority items currently._
 ---
 
 ## Completed Items
+
+### Hardcoded Strings Organization (Completed January 2026)
+
+**Issue:** UI strings were hardcoded throughout the application.
+
+**Resolution:**
+- Created centralized string constants directory at `lib/resources/strings/`
+- Organized strings by domain with dedicated files:
+  - `common_strings.dart` - Shared UI labels, button text, form labels
+  - `attention_strings.dart` - Attention domain instructions and labels
+  - `language_strings.dart` - Language domain strings
+  - `memory_strings.dart` - Memory domain strings
+  - `praxis_strings.dart` - Praxis domain strings
+  - `gnosis_strings.dart` - Gnosis domain strings
+  - `executive_strings.dart` - Executive function domain strings
+  - `summary_strings.dart` - Summary/results screen strings
+  - `strings.dart` - Barrel file for centralized exports
+- Updated 50+ screen files to use string constants
+- Extracted 300+ hardcoded strings
+
+**Files Added:**
+- `lib/resources/strings/` directory with 9 new files
+
+**Files Modified:**
+- 48 domain testing and summary screen files
+
+**Commit:** `974db12 feat: organize hardcoded strings into domain-specific constant classes`
+
+**Next Steps:** Consider implementing Flutter's `intl` package for full internationalization support.
+
+---
 
 ### Navigation Pattern Standardization (Completed January 2026)
 
