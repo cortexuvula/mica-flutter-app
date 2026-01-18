@@ -6,28 +6,55 @@ import 'package:mica/src/models/mica_score_model.dart';
 import 'package:mica/resources/const_data.dart' as app_data;
 import '../assessment_string_utils.dart';
 
+/// Exception thrown when sharing fails
+class ShareException implements Exception {
+  final String message;
+  final Object? originalError;
+
+  ShareException(this.message, [this.originalError]);
+
+  @override
+  String toString() => 'ShareException: $message';
+}
+
 /// Service for sharing assessment reports
 class ShareService {
   static final DateFormat _dateFormat = DateFormat('d MMM y');
 
   /// Share the assessment report
+  ///
+  /// Throws [ShareException] if sharing fails.
   static Future<ShareResult?> shareReport(MicaScoreModel scoreModel) async {
     final String shareContent = generateShareContent(scoreModel);
 
     if (shareContent.isEmpty) {
-      throw Exception('No content to share - please complete assessment first');
+      throw ShareException('No content to share - please complete assessment first');
     }
 
     if (kIsWeb) {
       // Web platform: Copy to clipboard as fallback
-      await Clipboard.setData(ClipboardData(text: shareContent));
-      return null; // Web doesn't return ShareResult
+      try {
+        await Clipboard.setData(ClipboardData(text: shareContent));
+        return null; // Web doesn't return ShareResult
+      } catch (e) {
+        throw ShareException(
+          'Failed to copy to clipboard. Please try again.',
+          e,
+        );
+      }
     } else {
       // Mobile platforms: Use native share
-      return await Share.share(
-        shareContent,
-        subject: 'MICA Assessment Report - ${scoreModel.patientName}',
-      );
+      try {
+        return await Share.share(
+          shareContent,
+          subject: 'MICA Assessment Report - ${scoreModel.patientName}',
+        );
+      } catch (e) {
+        throw ShareException(
+          'Failed to open share dialog. Please try again.',
+          e,
+        );
+      }
     }
   }
 

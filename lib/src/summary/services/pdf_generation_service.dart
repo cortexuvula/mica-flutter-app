@@ -7,38 +7,79 @@ import 'package:mica/src/models/mica_score_model.dart';
 import 'package:mica/resources/const_data.dart' as app_data;
 import '../assessment_string_utils.dart';
 
+/// Exception thrown when PDF generation fails
+class PdfGenerationException implements Exception {
+  final String message;
+  final Object? originalError;
+
+  PdfGenerationException(this.message, [this.originalError]);
+
+  @override
+  String toString() => 'PdfGenerationException: $message';
+}
+
 /// Service for generating PDF reports from assessment data
 class PdfGenerationService {
   static final DateFormat _dateFormat = DateFormat('d MMM y');
 
   /// Generate and download a PDF report for the assessment
+  ///
+  /// Throws [PdfGenerationException] if generation or saving fails.
   static Future<void> generateAndDownloadPdf(MicaScoreModel scoreModel) async {
-    final pdf = pw.Document();
+    List<int> bytes;
 
-    pdf.addPage(
-      pw.MultiPage(
-        pageFormat: PdfPageFormat.a4,
-        margin: const pw.EdgeInsets.all(32),
-        build: (pw.Context context) {
-          return _buildPdfContent(scoreModel);
-        },
-      ),
-    );
+    // Generate PDF content
+    try {
+      final pdf = pw.Document();
 
-    // Save the PDF
-    final bytes = await pdf.save();
+      pdf.addPage(
+        pw.MultiPage(
+          pageFormat: PdfPageFormat.a4,
+          margin: const pw.EdgeInsets.all(32),
+          build: (pw.Context context) {
+            return _buildPdfContent(scoreModel);
+          },
+        ),
+      );
+
+      bytes = await pdf.save();
+    } catch (e) {
+      throw PdfGenerationException(
+        'Failed to generate PDF content. Please try again.',
+        e,
+      );
+    }
 
     // Generate filename with patient name and date
-    final String fileName =
-        'MICA_${scoreModel.patientName.isNotEmpty ? scoreModel.patientName.replaceAll(" ", "_") : "Report"}_${_dateFormat.format(scoreModel.assessmentDate).replaceAll(" ", "_")}.pdf';
+    final String fileName = _generateFileName(scoreModel);
 
     // Save the file
-    await FileSaver.instance.saveFile(
-      name: fileName,
-      bytes: Uint8List.fromList(bytes),
-      ext: 'pdf',
-      mimeType: MimeType.pdf,
-    );
+    try {
+      await FileSaver.instance.saveFile(
+        name: fileName,
+        bytes: Uint8List.fromList(bytes),
+        ext: 'pdf',
+        mimeType: MimeType.pdf,
+      );
+    } catch (e) {
+      throw PdfGenerationException(
+        'Failed to save PDF file. Please check storage permissions and available space.',
+        e,
+      );
+    }
+  }
+
+  /// Generates a safe filename for the PDF
+  static String _generateFileName(MicaScoreModel scoreModel) {
+    final safeName = scoreModel.patientName.isNotEmpty
+        ? scoreModel.patientName
+            .replaceAll(RegExp(r'[<>:"/\\|?*]'), '_') // Remove invalid chars
+            .replaceAll(' ', '_')
+        : 'Report';
+
+    final dateStr = _dateFormat.format(scoreModel.assessmentDate).replaceAll(' ', '_');
+
+    return 'MICA_${safeName}_$dateStr';
   }
 
   static List<pw.Widget> _buildPdfContent(MicaScoreModel scoreModel) {

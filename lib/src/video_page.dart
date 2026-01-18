@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:chewie/chewie.dart';
 import 'package:video_player/video_player.dart';
+import 'package:mica/src/widgets/error/error_widgets.dart';
 
 class VideoPage extends StatefulWidget {
   final String videoURL;
@@ -15,7 +16,9 @@ class VideoPage extends StatefulWidget {
 
 class VideoPageState extends State<VideoPage> {
   late VideoPlayerController videoPlayerController;
-  late ChewieController _chewieController;
+  ChewieController? _chewieController;
+  bool _hasError = false;
+  String _errorMessage = '';
 
   @override
   void initState() {
@@ -26,23 +29,51 @@ class VideoPageState extends State<VideoPage> {
     _initializeVideoPlayer();
   }
 
-  void _initializeVideoPlayer() async {
-    await videoPlayerController.initialize();
+  Future<void> _initializeVideoPlayer() async {
+    try {
+      await videoPlayerController.initialize();
 
+      if (!mounted) return;
+
+      setState(() {
+        _hasError = false;
+        _chewieController = ChewieController(
+          videoPlayerController: videoPlayerController,
+          aspectRatio: 3 / 2,
+          autoPlay: true,
+          looping: true,
+        );
+      });
+    } catch (e) {
+      if (!mounted) return;
+
+      setState(() {
+        _hasError = true;
+        _errorMessage = 'Unable to load video: ${widget.videoURL}';
+      });
+    }
+  }
+
+  void _retryVideoLoad() {
     setState(() {
-      _chewieController = ChewieController(
-        videoPlayerController: videoPlayerController,
-        aspectRatio: 3 / 2,
-        autoPlay: true,
-        looping: true,
-      );
+      _hasError = false;
+      _errorMessage = '';
     });
+
+    // Dispose old controller and create new one
+    videoPlayerController.dispose();
+    _chewieController?.dispose();
+    _chewieController = null;
+
+    videoPlayerController =
+        VideoPlayerController.asset("video/${widget.videoURL}");
+    _initializeVideoPlayer();
   }
 
   @override
   void dispose() {
     videoPlayerController.dispose();
-    _chewieController.dispose();
+    _chewieController?.dispose();
     super.dispose();
   }
 
@@ -62,12 +93,23 @@ class VideoPageState extends State<VideoPage> {
         ),
       ),
       body: Center(
-        child: videoPlayerController.value.isInitialized
-            ? Chewie(
-                controller: _chewieController,
-              )
-            : const CircularProgressIndicator(),
+        child: _buildContent(),
       ),
     );
+  }
+
+  Widget _buildContent() {
+    if (_hasError) {
+      return ErrorDisplayWidget.videoError(
+        message: _errorMessage,
+        onRetry: _retryVideoLoad,
+      );
+    }
+
+    if (videoPlayerController.value.isInitialized && _chewieController != null) {
+      return Chewie(controller: _chewieController!);
+    }
+
+    return const CircularProgressIndicator();
   }
 }

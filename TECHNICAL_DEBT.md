@@ -13,7 +13,7 @@ This document tracks known technical debt, areas for improvement, and planned re
 | Code Quality | Medium | 0 |
 | Testing | - | 0 |
 | Architecture | Low | 1 |
-| Dependencies | Low | 1 |
+| Dependencies | Low | 0 |
 | Documentation | Low | 1 |
 
 ---
@@ -52,25 +52,6 @@ _No medium priority items currently._
 
 ---
 
-### Error Handling
-
-**Issue:** Limited error handling and user feedback for failures.
-
-**Current State:**
-- Video loading failures may show blank screens
-- PDF generation errors not gracefully handled
-- No offline capability or error recovery
-
-**Recommended Actions:**
-1. Add error boundaries around video players
-2. Implement graceful degradation for failed operations
-3. Add user-friendly error messages
-4. Consider implementing retry logic for recoverable errors
-
-**Effort Estimate:** Medium
-
----
-
 ### State Persistence
 
 **Issue:** No persistence of assessment state across app restarts.
@@ -92,6 +73,43 @@ _No medium priority items currently._
 ---
 
 ## Completed Items
+
+### Error Handling Improvements (Completed January 2026)
+
+**Issue:** Limited error handling and user feedback for failures.
+
+**Resolution:**
+- Created reusable error handling widgets at `lib/src/widgets/error/`:
+  - `ErrorDisplayWidget` - Displays error states with retry functionality, factory constructors for video/file/network errors
+  - `SnackbarHelper` - Consistent snackbar messages (success, error, warning, info, loading)
+  - `error_widgets.dart` - Barrel file for easy imports
+- Added error handling to video player (`lib/src/video_page.dart`):
+  - Try-catch around video initialization
+  - Error state UI with retry functionality
+  - Null-safe controller disposal
+- Enhanced PDF generation service (`lib/src/summary/services/pdf_generation_service.dart`):
+  - Created `PdfGenerationException` custom exception
+  - Added try-catch around PDF generation and file saving
+  - Safer filename generation with invalid character removal
+- Enhanced share service (`lib/src/summary/services/share_service.dart`):
+  - Created `ShareException` custom exception
+  - Added try-catch around clipboard and share operations
+- Fixed URL launcher in welcome screen (`lib/src/welcome.dart`):
+  - Try-catch around URL launch
+  - User-friendly error snackbar instead of thrown exception
+
+**Files Added:**
+- `lib/src/widgets/error/error_display_widget.dart`
+- `lib/src/widgets/error/snackbar_helper.dart`
+- `lib/src/widgets/error/error_widgets.dart`
+
+**Files Modified:**
+- `lib/src/video_page.dart`
+- `lib/src/summary/services/pdf_generation_service.dart`
+- `lib/src/summary/services/share_service.dart`
+- `lib/src/welcome.dart`
+
+---
 
 ### Hardcoded Strings Organization (Completed January 2026)
 

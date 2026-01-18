@@ -5,6 +5,7 @@ import 'package:mica/src/home.dart';
 import 'package:mica/src/resource_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/widgets/error/error_widgets.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
@@ -261,10 +262,25 @@ class WelcomeState extends State<Welcome> {
         backgroundColor: Theme.of(context).colorScheme.surface);
   }
 
-  _launchURL() async {
+  Future<void> _launchURL() async {
     final Uri url = Uri.parse('/assets/bca.pdf');
-    if (!await launchUrl(url)) {
-      throw Exception('Could not launch $url');
+
+    try {
+      final bool launched = await launchUrl(url);
+
+      if (!launched && mounted) {
+        SnackbarHelper.showError(
+          context,
+          'Unable to open the resource file. Please try again.',
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        SnackbarHelper.showError(
+          context,
+          'Failed to open the resource: ${e.toString()}',
+        );
+      }
     }
   }
 }
