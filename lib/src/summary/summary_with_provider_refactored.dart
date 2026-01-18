@@ -14,6 +14,7 @@ import 'package:mica/src/welcome.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/services/persistence_service.dart';
 
 // Import refactored components
 import 'assessment_color_utils.dart';
@@ -22,6 +23,7 @@ import 'widgets/domain_card_widget.dart';
 import 'widgets/domain_report_card.dart';
 import 'services/pdf_generation_service.dart';
 import 'services/share_service.dart';
+import 'widgets/keep_alive_tab_content.dart';
 
 /// Refactored Summary page using extracted components
 @immutable
@@ -89,8 +91,8 @@ class TestSummaryWithProviderRefactoredState
         ),
         body: TabBarView(
           children: <Widget>[
-            _buildDomainReport(scoreModel),
-            _buildFullReport(scoreModel),
+            KeepAliveTabContent(child: _buildDomainReport(scoreModel)),
+            KeepAliveTabContent(child: _buildFullReport(scoreModel)),
           ],
         ),
       ),
@@ -660,12 +662,16 @@ class TestSummaryWithProviderRefactoredState
     }
   }
 
-  void _goHome(MicaScoreModel scoreModel) {
+  Future<void> _goHome(MicaScoreModel scoreModel) async {
+    // Clear saved progress since assessment is complete
+    await PersistenceService.clearProgress();
     scoreModel.resetScores();
-    NavigationHelper.navigateAndRemoveUntil(
-      context,
-      const Welcome(),
-      (Route<dynamic> route) => false,
-    );
+    if (mounted) {
+      NavigationHelper.navigateAndRemoveUntil(
+        context,
+        const Welcome(),
+        (Route<dynamic> route) => false,
+      );
+    }
   }
 }

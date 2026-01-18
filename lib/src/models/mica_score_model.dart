@@ -218,6 +218,43 @@ class MicaScoreModel extends ChangeNotifier {
 
   int get gnosisClockDrawing => _gnosisClockDrawing;
 
+  // ============================================================
+  // COMPUTED GETTERS
+  // ============================================================
+  // These provide cached calculations for frequently used score
+  // combinations, avoiding redundant calculations across the app.
+
+  /// Computed visual short-term memory score (delayed recall)
+  /// Converts error counts (0-3 per image) to correct scores.
+  /// Returns 0-9 where 9 is perfect recall.
+  int get visualMemoryTotalScore =>
+      (3 - _shorttermMemoryVisualImage1) +
+      (3 - _shorttermMemoryVisualImage2) +
+      (3 - _shorttermMemoryVisualImage3);
+
+  /// Computed visuospatial praxis score (line drawing copy)
+  /// Converts error counts (0-3 per image) to correct scores.
+  /// Returns 0-9 where 9 is perfect copying.
+  int get visuospatialPraxisTotalScore =>
+      (3 - _visuospatialPraxisImage1) +
+      (3 - _visuospatialPraxisImage2) +
+      (3 - _visuospatialPraxisImage3);
+
+  /// Computed visual working memory score (immediate recall)
+  /// Converts error counts (0-3 per image) to correct scores.
+  /// Returns 0-9 where 9 is perfect immediate recall.
+  int get visualWorkingMemoryTotalScore =>
+      (3 - _memoryVisualWorkingImage1) +
+      (3 - _memoryVisualWorkingImage2) +
+      (3 - _memoryVisualWorkingImage3);
+
+  /// Total verbal memory trial score (sum of all three trials)
+  /// Returns 0-30 for all three ten-word recall trials combined.
+  int get verbalTrialsTotalScore =>
+      _trialOneScore + _trialTwoScore + _trialThreeScore;
+
+  // ============================================================
+
   // Setters for patient information
   void setPatientInfo({
     required String patientName,
@@ -945,5 +982,264 @@ class MicaScoreModel extends ChangeNotifier {
     _memoryTenWordRecognitionFalsePositive = 0;
 
     notifyListeners();
+  }
+
+  // ============================================================
+  // PERSISTENCE METHODS
+  // ============================================================
+
+  /// Version for JSON schema migration (increment when structure changes)
+  static const int _jsonVersion = 1;
+
+  /// Convert model to JSON map for persistence
+  Map<String, dynamic> toJson() {
+    return {
+      // Schema version for future migrations
+      'version': _jsonVersion,
+
+      // Metadata
+      'savedAt': DateTime.now().toIso8601String(),
+
+      // Patient information
+      'patientName': _patientName,
+      'assessorName': _assessorName,
+      'handedness': _handedness,
+      'assessmentDate': _assessmentDate.toIso8601String(),
+
+      // Language scores
+      'languageComprehensionRadioValue': _languageComprehensionRadioValue,
+      'spokenLanguage': _spokenLanguage,
+      'languageReading': _languageReading,
+      'languageRepetition': _languageRepetition,
+      'languageComprehensionMoving': _languageComprehensionMoving,
+      'languageWriting': _languageWriting,
+      'languageObjectNaming': _languageObjectNaming,
+      'languageSpontaneousSpeech': _languageSpontaneousSpeech,
+      'languageComprehensionThreeStage': _languageComprehensionThreeStage,
+      'languagePictureNamingCorrect': _languagePictureNamingCorrect,
+      'languagePictureNamingTotal': _languagePictureNamingTotal,
+      'languagePictureAgnosia': _languagePictureAgnosia,
+
+      // Memory scores
+      'trialOneScore': _trialOneScore,
+      'trialTwoScore': _trialTwoScore,
+      'trialThreeScore': _trialThreeScore,
+      'tenWordDelay': _tenWordDelay,
+      'shorttermMemoryVerbal': _shorttermMemoryVerbal,
+      'shorttermMemoryVerbalScore': _shorttermMemoryVerbalScore,
+      'scoreVerbalRecognitionMemoryTenWords':
+          _scoreVerbalRecognitionMemoryTenWords,
+      'scoreVerbalRecognitionMemoryTenWordsInList':
+          _scoreVerbalRecognitionMemoryTenWordsInList,
+      'scoreVerbalRecognitionMemoryTenWordsNotInList':
+          _scoreVerbalRecognitionMemoryTenWordsNotInList,
+
+      // Visual memory scores
+      'shorttermMemoryVisualImage1': _shorttermMemoryVisualImage1,
+      'shorttermMemoryVisualImage2': _shorttermMemoryVisualImage2,
+      'shorttermMemoryVisualImage3': _shorttermMemoryVisualImage3,
+
+      // Additional memory test scores
+      'memorySemanticScore': _memorySemanticScore,
+      'memoryVisualWorkingImage1': _memoryVisualWorkingImage1,
+      'memoryVisualWorkingImage2': _memoryVisualWorkingImage2,
+      'memoryVisualWorkingImage3': _memoryVisualWorkingImage3,
+      'memoryShortVerbalCorrect': _memoryShortVerbalCorrect,
+      'memoryShortVerbalTotal': _memoryShortVerbalTotal,
+      'memoryTenWordRecognitionCorrect': _memoryTenWordRecognitionCorrect,
+      'memoryTenWordRecognitionFalsePositive':
+          _memoryTenWordRecognitionFalsePositive,
+
+      // Visuospatial and praxis scores
+      'visuospatialPraxisImage1': _visuospatialPraxisImage1,
+      'visuospatialPraxisImage2': _visuospatialPraxisImage2,
+      'visuospatialPraxisImage3': _visuospatialPraxisImage3,
+      'praxisRight': _praxisRight,
+      'praxisLeft': _praxisLeft,
+
+      // Attention scores
+      'attention': _attention,
+      'attentionCorrect': _attentionCorrect,
+      'attentionMistakes': _attentionMistakes,
+
+      // Executive function scores
+      'executiveAnimalNaming': _executiveAnimalNaming,
+      'executiveAnimalNamingCount': _executiveAnimalNamingCount,
+      'executiveLexicalFluency': _executiveLexicalFluency,
+      'executiveLexicalFluencyCount': _executiveLexicalFluencyCount,
+      'executiveDesignFluency': _executiveDesignFluency,
+      'executiveFingerNose': _executiveFingerNose,
+      'executiveTap': _executiveTap,
+      'executiveAlternatingSequences': _executiveAlternatingSequences,
+      'executiveLuria': _executiveLuria,
+      'executiveLuriaScore': _executiveLuriaScore,
+      'executiveSerial': _executiveSerial,
+      'executiveSerialScore': _executiveSerialScore,
+      'executive': _executive,
+
+      // Anomia/agnosia scores
+      'anomiaAgnosia': _anomiaAgnosia,
+      'agnosia': _agnosia,
+
+      // Gnosis domain scores
+      'gnosisFingerPerceptionPattern1': _gnosisFingerPerceptionPattern1,
+      'gnosisFingerPerceptionPattern2': _gnosisFingerPerceptionPattern2,
+      'gnosisFingerPerceptionPattern3': _gnosisFingerPerceptionPattern3,
+      'gnosisFingerPerceptionPattern4': _gnosisFingerPerceptionPattern4,
+      'gnosisFingerPerceptionPattern5': _gnosisFingerPerceptionPattern5,
+      'gnosisFingerPerceptionPattern6': _gnosisFingerPerceptionPattern6,
+      'gnosisFingerPerceptionPattern7': _gnosisFingerPerceptionPattern7,
+      'gnosisFingerPerceptionTotal': _gnosisFingerPerceptionTotal,
+      'gnosisVisualNominalDysphasia': _gnosisVisualNominalDysphasia,
+      'gnosisVisualAgnosia': _gnosisVisualAgnosia,
+      'gnosisAstereognosisRight': _gnosisAstereognosisRight,
+      'gnosisAstereognosisLeft': _gnosisAstereognosisLeft,
+      'gnosisClockDrawing': _gnosisClockDrawing,
+    };
+  }
+
+  /// Restore model from JSON map
+  void fromJson(Map<String, dynamic> json) {
+    // Patient information
+    _patientName = json['patientName'] as String? ?? '';
+    _assessorName = json['assessorName'] as String? ?? '';
+    _handedness = json['handedness'] as String? ?? 'Right';
+    final dateStr = json['assessmentDate'] as String?;
+    _assessmentDate =
+        dateStr != null ? DateTime.tryParse(dateStr) ?? DateTime.now() : DateTime.now();
+
+    // Language scores
+    _languageComprehensionRadioValue =
+        json['languageComprehensionRadioValue'] as int? ?? 0;
+    _spokenLanguage = json['spokenLanguage'] as int? ?? 0;
+    _languageReading = json['languageReading'] as int? ?? 0;
+    _languageRepetition = json['languageRepetition'] as int? ?? 0;
+    _languageComprehensionMoving =
+        json['languageComprehensionMoving'] as int? ?? 0;
+    _languageWriting = json['languageWriting'] as int? ?? 0;
+    _languageObjectNaming = json['languageObjectNaming'] as int? ?? 0;
+    _languageSpontaneousSpeech = json['languageSpontaneousSpeech'] as int? ?? 0;
+    _languageComprehensionThreeStage =
+        json['languageComprehensionThreeStage'] as int? ?? 0;
+    _languagePictureNamingCorrect =
+        json['languagePictureNamingCorrect'] as int? ?? 0;
+    _languagePictureNamingTotal =
+        json['languagePictureNamingTotal'] as int? ?? 0;
+    _languagePictureAgnosia = json['languagePictureAgnosia'] as int? ?? 0;
+
+    // Memory scores
+    _trialOneScore = json['trialOneScore'] as int? ?? 0;
+    _trialTwoScore = json['trialTwoScore'] as int? ?? 0;
+    _trialThreeScore = json['trialThreeScore'] as int? ?? 0;
+    _tenWordDelay = json['tenWordDelay'] as int? ?? 0;
+    _shorttermMemoryVerbal = json['shorttermMemoryVerbal'] as int? ?? 0;
+    _shorttermMemoryVerbalScore =
+        json['shorttermMemoryVerbalScore'] as int? ?? 0;
+    _scoreVerbalRecognitionMemoryTenWords =
+        json['scoreVerbalRecognitionMemoryTenWords'] as int? ?? 0;
+    _scoreVerbalRecognitionMemoryTenWordsInList =
+        json['scoreVerbalRecognitionMemoryTenWordsInList'] as int? ?? 0;
+    _scoreVerbalRecognitionMemoryTenWordsNotInList =
+        json['scoreVerbalRecognitionMemoryTenWordsNotInList'] as int? ?? 0;
+
+    // Visual memory scores
+    _shorttermMemoryVisualImage1 =
+        json['shorttermMemoryVisualImage1'] as int? ?? 0;
+    _shorttermMemoryVisualImage2 =
+        json['shorttermMemoryVisualImage2'] as int? ?? 0;
+    _shorttermMemoryVisualImage3 =
+        json['shorttermMemoryVisualImage3'] as int? ?? 0;
+
+    // Additional memory test scores
+    _memorySemanticScore = json['memorySemanticScore'] as int? ?? 0;
+    _memoryVisualWorkingImage1 = json['memoryVisualWorkingImage1'] as int? ?? 0;
+    _memoryVisualWorkingImage2 = json['memoryVisualWorkingImage2'] as int? ?? 0;
+    _memoryVisualWorkingImage3 = json['memoryVisualWorkingImage3'] as int? ?? 0;
+    _memoryShortVerbalCorrect = json['memoryShortVerbalCorrect'] as int? ?? 0;
+    _memoryShortVerbalTotal = json['memoryShortVerbalTotal'] as int? ?? 0;
+    _memoryTenWordRecognitionCorrect =
+        json['memoryTenWordRecognitionCorrect'] as int? ?? 0;
+    _memoryTenWordRecognitionFalsePositive =
+        json['memoryTenWordRecognitionFalsePositive'] as int? ?? 0;
+
+    // Visuospatial and praxis scores
+    _visuospatialPraxisImage1 = json['visuospatialPraxisImage1'] as int? ?? 0;
+    _visuospatialPraxisImage2 = json['visuospatialPraxisImage2'] as int? ?? 0;
+    _visuospatialPraxisImage3 = json['visuospatialPraxisImage3'] as int? ?? 0;
+    _praxisRight = json['praxisRight'] as int? ?? 0;
+    _praxisLeft = json['praxisLeft'] as int? ?? 0;
+
+    // Attention scores
+    _attention = json['attention'] as int? ?? 0;
+    _attentionCorrect = json['attentionCorrect'] as int? ?? 0;
+    _attentionMistakes = json['attentionMistakes'] as int? ?? 0;
+
+    // Executive function scores
+    _executiveAnimalNaming = json['executiveAnimalNaming'] as int? ?? 0;
+    _executiveAnimalNamingCount =
+        json['executiveAnimalNamingCount'] as int? ?? 0;
+    _executiveLexicalFluency = json['executiveLexicalFluency'] as int? ?? 0;
+    _executiveLexicalFluencyCount =
+        json['executiveLexicalFluencyCount'] as int? ?? 0;
+    _executiveDesignFluency = json['executiveDesignFluency'] as int? ?? 0;
+    _executiveFingerNose = json['executiveFingerNose'] as int? ?? 0;
+    _executiveTap = json['executiveTap'] as int? ?? 0;
+    _executiveAlternatingSequences =
+        json['executiveAlternatingSequences'] as int? ?? 0;
+    _executiveLuria = json['executiveLuria'] as int? ?? 0;
+    _executiveLuriaScore = json['executiveLuriaScore'] as int? ?? 0;
+    _executiveSerial = json['executiveSerial'] as int? ?? 0;
+    _executiveSerialScore = json['executiveSerialScore'] as int? ?? 0;
+    _executive = json['executive'] as int? ?? 0;
+
+    // Anomia/agnosia scores
+    _anomiaAgnosia = json['anomiaAgnosia'] as int? ?? 0;
+    _agnosia = json['agnosia'] as int? ?? 0;
+
+    // Gnosis domain scores
+    _gnosisFingerPerceptionPattern1 =
+        json['gnosisFingerPerceptionPattern1'] as int? ?? 0;
+    _gnosisFingerPerceptionPattern2 =
+        json['gnosisFingerPerceptionPattern2'] as int? ?? 0;
+    _gnosisFingerPerceptionPattern3 =
+        json['gnosisFingerPerceptionPattern3'] as int? ?? 0;
+    _gnosisFingerPerceptionPattern4 =
+        json['gnosisFingerPerceptionPattern4'] as int? ?? 0;
+    _gnosisFingerPerceptionPattern5 =
+        json['gnosisFingerPerceptionPattern5'] as int? ?? 0;
+    _gnosisFingerPerceptionPattern6 =
+        json['gnosisFingerPerceptionPattern6'] as int? ?? 0;
+    _gnosisFingerPerceptionPattern7 =
+        json['gnosisFingerPerceptionPattern7'] as int? ?? 0;
+    _gnosisFingerPerceptionTotal =
+        json['gnosisFingerPerceptionTotal'] as int? ?? 0;
+    _gnosisVisualNominalDysphasia =
+        json['gnosisVisualNominalDysphasia'] as int? ?? 0;
+    _gnosisVisualAgnosia = json['gnosisVisualAgnosia'] as int? ?? 0;
+    _gnosisAstereognosisRight = json['gnosisAstereognosisRight'] as int? ?? 0;
+    _gnosisAstereognosisLeft = json['gnosisAstereognosisLeft'] as int? ?? 0;
+    _gnosisClockDrawing = json['gnosisClockDrawing'] as int? ?? 0;
+
+    notifyListeners();
+  }
+
+  /// Check if assessment has meaningful data worth saving
+  bool get hasData {
+    // Check patient info
+    if (_patientName.isNotEmpty) return true;
+    if (_assessorName.isNotEmpty) return true;
+
+    // Check key scores from different domains
+    if (_attention != 0 || _attentionCorrect != 0) return true;
+    if (_trialOneScore != 0 || _trialTwoScore != 0 || _trialThreeScore != 0) {
+      return true;
+    }
+    if (_gnosisClockDrawing != 0) return true;
+    if (_executiveAnimalNamingCount != 0) return true;
+    if (_languageComprehensionRadioValue != 0 || _spokenLanguage != 0) {
+      return true;
+    }
+
+    return false;
   }
 }

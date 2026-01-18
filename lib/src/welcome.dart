@@ -6,6 +6,8 @@ import 'package:mica/src/resource_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/widgets/error/error_widgets.dart';
+import 'package:mica/src/services/persistence_service.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class Welcome extends StatefulWidget {
   const Welcome({super.key});
@@ -15,6 +17,81 @@ class Welcome extends StatefulWidget {
 }
 
 class WelcomeState extends State<Welcome> {
+  bool _hasInProgressAssessment = false;
+  String? _savedPatientName;
+  bool _isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    _checkForSavedProgress();
+  }
+
+  Future<void> _checkForSavedProgress() async {
+    final hasProgress = await PersistenceService.hasInProgressAssessment();
+    final patientName = await PersistenceService.getSavedPatientName();
+
+    if (mounted) {
+      setState(() {
+        _hasInProgressAssessment = hasProgress;
+        _savedPatientName = patientName;
+        _isLoading = false;
+      });
+    }
+  }
+
+  Future<void> _resumeAssessment() async {
+    if (!mounted) return;
+    final model = MicaProviders.getScoreModel(context, listen: false);
+    final success = await PersistenceService.restoreProgress(model);
+
+    if (!mounted) return;
+    if (success) {
+      Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => const DomainSelect()),
+        (Route<dynamic> route) => true,
+      );
+    } else {
+      // Failed to restore - clear corrupted data and refresh
+      await PersistenceService.clearProgress();
+      if (!mounted) return;
+      _checkForSavedProgress();
+      SnackbarHelper.showError(
+        context,
+        'Unable to restore assessment. Please start a new one.',
+      );
+    }
+  }
+
+  Future<void> _discardSavedProgress() async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Discard Saved Progress?'),
+        content: const Text(
+          'This will permanently delete your saved assessment progress. '
+          'This action cannot be undone.',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            style: TextButton.styleFrom(foregroundColor: Colors.red),
+            child: const Text('Discard'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true && mounted) {
+      await PersistenceService.clearProgress();
+      _checkForSavedProgress();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -49,6 +126,76 @@ class WelcomeState extends State<Welcome> {
                   ),
                 ),
               ),
+              // Resume Assessment button (shown only if there's saved progress)
+              if (!_isLoading && _hasInProgressAssessment)
+                SizedBox(
+                  width: width * 0.9,
+                  child: Card(
+                    elevation: 10.0,
+                    color: Colors.green.shade50,
+                    child: Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(
+                            width: width * 0.8,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                elevation: 10.0,
+                                backgroundColor: Colors.green.shade300,
+                              ),
+                              onPressed: _resumeAssessment,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: <Widget>[
+                                    const Text(
+                                      'Resume Assessment',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    if (_savedPatientName != null) ...[
+                                      const SizedBox(height: 5.0),
+                                      Text(
+                                        _savedPatientName!,
+                                        style: const TextStyle(
+                                          color: Colors.black87,
+                                        ),
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    ],
+                                    const SizedBox(height: 5.0),
+                                    const Text(
+                                      'Continue where you left off',
+                                      style: TextStyle(
+                                        color: Colors.black54,
+                                        fontSize: 12.0,
+                                      ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 8.0),
+                          TextButton(
+                            onPressed: _discardSavedProgress,
+                            child: const Text(
+                              'Discard saved progress',
+                              style: TextStyle(
+                                color: Colors.red,
+                                fontSize: 12.0,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               SizedBox(
                 width: width * 0.9,
                 child: Card(

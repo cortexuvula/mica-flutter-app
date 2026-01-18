@@ -12,9 +12,9 @@ This document tracks known technical debt, areas for improvement, and planned re
 |----------|----------|-------|
 | Code Quality | Medium | 0 |
 | Testing | - | 0 |
-| Architecture | Low | 1 |
+| Architecture | Low | 0 |
 | Dependencies | Low | 0 |
-| Documentation | Low | 1 |
+| Documentation | Low | 0 |
 
 ---
 
@@ -32,47 +32,73 @@ _No medium priority items currently._
 
 ## Low Priority
 
-### Summary Screen Complexity
-
-**Issue:** Summary screen has grown complex despite modularization.
-
-**Location:** `lib/src/summary/`
-
-**Current State:**
-- Refactored into modular components (widgets/, services/)
-- Still handles many responsibilities
-- PDF generation service could be further isolated
-
-**Recommended Actions:**
-1. Consider separating PDF generation into a background isolate for large reports
-2. Add caching for computed summary data
-3. Implement lazy loading for domain tabs
-
-**Effort Estimate:** Medium
-
----
-
-### State Persistence
-
-**Issue:** No persistence of assessment state across app restarts.
-
-**Current State:**
-- All state held in memory via Provider
-- App restart loses all progress
-- No draft/resume capability
-
-**Impact:** Users lose progress if app is closed mid-assessment.
-
-**Recommended Actions:**
-1. Implement local storage for assessment progress
-2. Add "Resume" functionality for incomplete assessments
-3. Consider using `shared_preferences` or `hive` for persistence
-
-**Effort Estimate:** High
+_No low priority items currently._
 
 ---
 
 ## Completed Items
+
+### State Persistence (Completed January 2026)
+
+**Issue:** No persistence of assessment state across app restarts.
+
+**Resolution:**
+- Created `PersistenceService` for auto-saving assessment progress using SharedPreferences
+- Added `toJson()`, `fromJson()`, and `hasData` methods to `MicaScoreModel` for serialization
+- Implemented debounced auto-save on every score change via Provider listener
+- Added "Resume Assessment" button to Welcome screen with saved patient name display
+- Added "Discard saved progress" option with confirmation dialog
+- Progress is automatically cleared when assessment is completed (going home from summary)
+- Comprehensive unit tests for persistence functionality (25 tests)
+
+**Data Flow:**
+```
+[Score Change] → MicaScoreModel.setter → notifyListeners() → PersistenceService.saveProgress()
+[App Start] → Welcome Screen → Check hasInProgressAssessment → Show "Resume" button
+[Resume] → PersistenceService.restoreProgress() → Navigate to DomainSelect
+[Complete] → _goHome() → PersistenceService.clearProgress() → resetScores()
+```
+
+**Files Added:**
+- `lib/src/services/persistence_service.dart` - SharedPreferences wrapper with debouncing
+- `test/src/services/persistence_service_test.dart` - 25 unit tests
+
+**Files Modified:**
+- `lib/src/models/mica_score_model.dart` - Added `toJson()`, `fromJson()`, `hasData`, version constant
+- `lib/src/providers/mica_provider.dart` - Added auto-save listener on model creation
+- `lib/src/welcome.dart` - Added "Resume Assessment" button, state management, discard option
+- `lib/src/summary/summary_with_provider_refactored.dart` - Clear progress on going home
+
+---
+
+### Summary Screen Optimization (Completed January 2026)
+
+**Issue:** Summary screen complexity with redundant calculations and tab rebuilds.
+
+**Resolution:**
+- Added computed getters to `MicaScoreModel` for caching frequently calculated scores:
+  - `visualMemoryTotalScore` - Caches visual short-term memory score calculation
+  - `visuospatialPraxisTotalScore` - Caches line drawing copy score calculation
+  - `visualWorkingMemoryTotalScore` - Caches immediate recall score calculation
+  - `verbalTrialsTotalScore` - Caches sum of all three verbal recall trials
+- Updated `AssessmentColorUtils` to use computed getters (3 methods simplified)
+- Updated `AssessmentStringUtils` to use computed getters (2 methods simplified)
+- Updated PDF generation and share services to use consistent score display
+- Implemented lazy loading for domain tabs using `AutomaticKeepAliveClientMixin`
+- Fixed inconsistency between share (was showing errors) and PDF (was showing correct) score display
+
+**Files Added:**
+- `lib/src/summary/widgets/keep_alive_tab_content.dart`
+
+**Files Modified:**
+- `lib/src/models/mica_score_model.dart` - Added 4 computed getters
+- `lib/src/summary/assessment_color_utils.dart` - Uses computed getters
+- `lib/src/summary/assessment_string_utils.dart` - Uses computed getters
+- `lib/src/summary/services/share_service.dart` - Uses computed getters
+- `lib/src/summary/services/pdf_generation_service.dart` - Uses computed getters
+- `lib/src/summary/summary_with_provider_refactored.dart` - Added lazy loading wrapper
+
+---
 
 ### Error Handling Improvements (Completed January 2026)
 
