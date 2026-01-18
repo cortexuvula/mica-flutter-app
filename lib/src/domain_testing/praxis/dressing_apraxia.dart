@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/praxis_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class DressingApraxia extends StatefulWidget {
   const DressingApraxia({super.key});
@@ -39,7 +41,7 @@ class _DressingApraxiaState extends State<DressingApraxia> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Dressing Apraxia',
+          PraxisStrings.dressingTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -74,7 +76,7 @@ class _DressingApraxiaState extends State<DressingApraxia> {
                   child: const Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      'This task involves limb-kinetic, ideomotor, and to some extent ideational praxis. It is assessed by asking the patient to put on a hospital gown or other suitable piece of clothing such as a cardigan. Observe if the patient is able to put their hands and arms through the sleeves correctly and is able to fasten the buttons.',
+                      PraxisStrings.dressingExaminerInstruction,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -98,7 +100,7 @@ class _DressingApraxiaState extends State<DressingApraxia> {
                     child: Column(
                       children: <Widget>[
                         const Text(
-                          'Note the response of the patient and score as below.',
+                          CommonStrings.noteResponseAndScore,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.black,
@@ -147,7 +149,7 @@ class _DressingApraxiaState extends State<DressingApraxia> {
                                           ),
                                           const SizedBox(width: 8.0),
                                           const Text(
-                                            'Normal',
+                                            CommonStrings.normal,
                                             style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               fontSize: 14.0,
@@ -179,7 +181,7 @@ class _DressingApraxiaState extends State<DressingApraxia> {
                                           ),
                                           const SizedBox(width: 8.0),
                                           const Text(
-                                            'Equivocal',
+                                            CommonStrings.equivocal,
                                             style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               fontSize: 14.0,
@@ -211,7 +213,7 @@ class _DressingApraxiaState extends State<DressingApraxia> {
                                           ),
                                           const SizedBox(width: 8.0),
                                           const Text(
-                                            'Impaired',
+                                            CommonStrings.impaired,
                                             style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               fontSize: 14.0,
@@ -254,7 +256,7 @@ class _DressingApraxiaState extends State<DressingApraxia> {
                         Navigator.pop(context);
                       },
                       child: const Text(
-                        'Task Completed',
+                        CommonStrings.taskCompleted,
                         style: TextStyle(color: Colors.black),
                       ),
                     ),

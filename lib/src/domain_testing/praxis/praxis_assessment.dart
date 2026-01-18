@@ -7,6 +7,7 @@ import 'package:mica/src/domain_testing/praxis/ideational_apraxia.dart';
 import 'package:mica/src/domain_testing/praxis/oral_apraxia.dart';
 import 'package:mica/src/domain_testing/praxis/dressing_apraxia.dart';
 import 'package:mica/src/domain_testing/praxis/line_drawing.dart';
+import 'package:mica/resources/strings/praxis_strings.dart';
 
 class PraxisAssessment extends StatefulWidget {
   const PraxisAssessment({super.key});
@@ -23,7 +24,7 @@ class _PraxisAssessmentState extends State<PraxisAssessment> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Praxis',
+          PraxisStrings.domainTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -50,9 +51,9 @@ class _PraxisAssessmentState extends State<PraxisAssessment> {
             children: <Widget>[
               // Limb-kinetic Apraxia
               _buildPraxisOption(
-                context, 
-                width, 
-                'Limb-kinetic Apraxia',
+                context,
+                width,
+                PraxisStrings.limbKineticButton,
                 () {
                   NavigationHelper.navigateTo(
                     context,
@@ -61,12 +62,12 @@ class _PraxisAssessmentState extends State<PraxisAssessment> {
                 }
               ),
               const SizedBox(height: 10.0),
-              
+
               // Ideomotor Apraxia
               _buildPraxisOption(
-                context, 
-                width, 
-                'Ideomotor Apraxia',
+                context,
+                width,
+                PraxisStrings.ideomotorButton,
                 () {
                   NavigationHelper.navigateTo(
                     context,
@@ -75,12 +76,12 @@ class _PraxisAssessmentState extends State<PraxisAssessment> {
                 }
               ),
               const SizedBox(height: 10.0),
-              
+
               // Ideational Apraxia
               _buildPraxisOption(
-                context, 
-                width, 
-                'Ideational Apraxia',
+                context,
+                width,
+                PraxisStrings.ideationalButton,
                 () {
                   NavigationHelper.navigateTo(
                     context,
@@ -89,12 +90,12 @@ class _PraxisAssessmentState extends State<PraxisAssessment> {
                 }
               ),
               const SizedBox(height: 10.0),
-              
+
               // Oral Apraxia
               _buildPraxisOption(
-                context, 
-                width, 
-                'Oral Apraxia',
+                context,
+                width,
+                PraxisStrings.oralButton,
                 () {
                   NavigationHelper.navigateTo(
                     context,
@@ -103,12 +104,12 @@ class _PraxisAssessmentState extends State<PraxisAssessment> {
                 }
               ),
               const SizedBox(height: 10.0),
-              
+
               // Dressing Apraxia
               _buildPraxisOption(
-                context, 
-                width, 
-                'Dressing Apraxia',
+                context,
+                width,
+                PraxisStrings.dressingButton,
                 () {
                   NavigationHelper.navigateTo(
                     context,
@@ -117,12 +118,12 @@ class _PraxisAssessmentState extends State<PraxisAssessment> {
                 }
               ),
               const SizedBox(height: 10.0),
-              
+
               // Line Drawing
               _buildPraxisOption(
-                context, 
-                width, 
-                'Line Drawing',
+                context,
+                width,
+                PraxisStrings.lineDrawingButton,
                 () {
                   NavigationHelper.navigateTo(
                     context,

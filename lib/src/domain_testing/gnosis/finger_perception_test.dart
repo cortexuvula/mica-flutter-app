@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/gnosis_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class FingerPerceptionTest extends StatefulWidget {
   const FingerPerceptionTest({super.key});
@@ -31,7 +33,7 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Finger Perception Test',
+          GnosisStrings.fingerPerceptionTest,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -63,7 +65,7 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: const Text(
-                  '"Place your hands on the table in front of you. I am now going to touch two of your fingers and you must say how many of your other fingers are in between my fingers."',
+                  GnosisStrings.fingerPerceptionPatientInstruction1,
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
@@ -83,7 +85,7 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: const Text(
-                  'Touch the fingers indicated in the picture below, on the black markings. The patient should answer "one."',
+                  GnosisStrings.fingerPerceptionExaminerInstruction1,
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
@@ -107,7 +109,7 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: const Text(
-                  '"Now close your eyes while I continue this test. How many of your fingers are in between the fingers that I touch?"',
+                  GnosisStrings.fingerPerceptionPatientInstruction2,
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
@@ -127,7 +129,7 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: const Text(
-                  'Continue to touch the patient\'s fingers as indicated below and rate the response.',
+                  GnosisStrings.fingerPerceptionExaminerInstruction2,
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
@@ -156,7 +158,7 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
                 child: Column(
                   children: <Widget>[
                     const Text(
-                      'Most people should be able to complete this test without any mistakes.',
+                      GnosisStrings.fingerPerceptionSummaryNote,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
@@ -167,7 +169,7 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
                     ),
                     const SizedBox(height: 16.0),
                     const Text(
-                      'Summary Score:',
+                      GnosisStrings.fingerPerceptionSummaryScore,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.bold,
@@ -205,7 +207,7 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
                       Navigator.of(context).pop();
                     },
                     child: const Text(
-                      'Task Completed',
+                      CommonStrings.taskCompleted,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16.0,
@@ -252,7 +254,7 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
                 ),
                 child: Center(
                   child: Text(
-                    'Hand Diagram ${index + 1}',
+                    '${GnosisStrings.fingerPerceptionHandDiagram} ${index + 1}',
                     style: const TextStyle(
                       color: Colors.black54,
                       fontSize: 14.0,
@@ -303,7 +305,7 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
                           }),
                         ),
                         const Text(
-                          'Normal',
+                          CommonStrings.normal,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 14.0,
@@ -333,7 +335,7 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
                           }),
                         ),
                         const Text(
-                          'Equivocal',
+                          CommonStrings.equivocal,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 14.0,
@@ -363,7 +365,7 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
                           }),
                         ),
                         const Text(
-                          'Impaired',
+                          CommonStrings.impaired,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 14.0,

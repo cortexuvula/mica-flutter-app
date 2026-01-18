@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/executive_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class LuriaFistEdgePalmMovement extends StatefulWidget {
   const LuriaFistEdgePalmMovement({super.key});
@@ -32,7 +34,7 @@ class LuriaFistEdgePalmMovementState
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Luria Fist-Edge-Palm Movement',
+          ExecutiveStrings.luriaFistEdgePalmTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -61,7 +63,7 @@ class LuriaFistEdgePalmMovementState
                 child: const Padding(
                   padding: EdgeInsets.all(16.0),
                   child: Text(
-                    'The examiner performs alternating movements with the right hand by making a fist, then opening the hand with the edge touching the surface, and then the palm touching the surface. The patient is first asked to imitate the series and then continue on his/her own.',
+                    ExecutiveStrings.luriaFistEdgePalmExaminerInstruction,
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 15.0,
@@ -83,7 +85,7 @@ class LuriaFistEdgePalmMovementState
               child: const Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Text(
-                  '"Can you see what I am doing? Please join me and do the same."',
+                  ExecutiveStrings.luriaFistEdgePalmPatientInstruction,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16.0,
@@ -105,7 +107,7 @@ class LuriaFistEdgePalmMovementState
               child: const Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Text(
-                  'The patient should be able to perform 5 cycles correctly. Test both hands.',
+                  ExecutiveStrings.luriaFistEdgePalmScoringNote,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 15.0,
@@ -144,7 +146,7 @@ class LuriaFistEdgePalmMovementState
           
           // Right Hand scoring card
           _buildHandScoringCard(
-            'Right Hand',
+            ExecutiveStrings.rightHand,
             rightHandCycleCount,
             rightHandScore!,
             (increment) {
@@ -162,7 +164,7 @@ class LuriaFistEdgePalmMovementState
           
           // Left Hand scoring card
           _buildHandScoringCard(
-            'Left Hand',
+            ExecutiveStrings.leftHand,
             leftHandCycleCount,
             leftHandScore!,
             (increment) {
@@ -197,7 +199,7 @@ class LuriaFistEdgePalmMovementState
                     Navigator.pop(context);
                   },
                   child: const Text(
-                    'Task Completed',
+                    CommonStrings.taskCompleted,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 18.0,
@@ -267,7 +269,7 @@ class LuriaFistEdgePalmMovementState
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           const Text(
-                            'Tap to count Cycles',
+                            ExecutiveStrings.tapToCountCycles,
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
@@ -315,9 +317,9 @@ class LuriaFistEdgePalmMovementState
                 children: [
                   TableRow(
                     children: [
-                      _buildScoreCell('Normal', 0, selectedScore, '5 cycles without any mistakes'),
-                      _buildScoreCell('Equivocal', 1, selectedScore, '1 mistake'),
-                      _buildScoreCell('Impaired', 2, selectedScore, '2 or more mistakes'),
+                      _buildScoreCell(CommonStrings.normal, 0, selectedScore, ExecutiveStrings.fiveCyclesNoMistakes),
+                      _buildScoreCell(CommonStrings.equivocal, 1, selectedScore, ExecutiveStrings.oneMistake),
+                      _buildScoreCell(CommonStrings.impaired, 2, selectedScore, ExecutiveStrings.twoOrMoreMistakes),
                     ],
                   ),
                 ],

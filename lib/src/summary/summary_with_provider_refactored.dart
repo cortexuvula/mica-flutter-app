@@ -9,7 +9,7 @@ import 'package:mica/src/domain_results/praxis.dart';
 import 'package:mica/src/domain_results/verbal_shortterm_memory.dart';
 import 'package:mica/src/domain_results/verbal_working_memory.dart';
 import 'package:mica/src/domain_results/visual_short_term_memory.dart';
-import 'package:mica/resources/const_data.dart' as app_data;
+import 'package:mica/resources/strings/summary_strings.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:mica/src/providers/mica_provider.dart';
@@ -48,7 +48,7 @@ class TestSummaryWithProviderRefactoredState
         appBar: AppBar(
           title: ListTile(
             title: Text(
-              app_data.summary,
+              SummaryStrings.title,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -59,30 +59,30 @@ class TestSummaryWithProviderRefactoredState
           actions: <Widget>[
             IconButton(
               icon: const Icon(Icons.share),
-              tooltip: "Share Summary",
+              tooltip: SummaryStrings.shareSummaryTooltip,
               onPressed: () => _shareReport(scoreModel),
             ),
             IconButton(
               icon: const Icon(Icons.download),
-              tooltip: "Download PDF",
+              tooltip: SummaryStrings.downloadPdfTooltip,
               onPressed: () => _downloadPdf(scoreModel),
             ),
             IconButton(
               icon: const Icon(Icons.home),
-              tooltip: "Go Home",
+              tooltip: SummaryStrings.goHomeTooltip,
               onPressed: () => _goHome(scoreModel),
             ),
           ],
-          bottom: const TabBar(
+          bottom: TabBar(
             indicatorColor: Colors.white,
             tabs: [
-              Tab(
+              const Tab(
                 icon: Icon(Icons.score),
-                text: "Domain Results",
+                text: SummaryStrings.domainResultsTab,
               ),
-              Tab(
+              const Tab(
                 icon: Icon(Icons.all_inclusive),
-                text: "Full Report",
+                text: SummaryStrings.fullReportTab,
               ),
             ],
           ),
@@ -145,11 +145,11 @@ class TestSummaryWithProviderRefactoredState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    'Name: ${scoreModel.patientName}',
+                    '${SummaryStrings.nameLabel}${scoreModel.patientName}',
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   Text(
-                    'Handedness: ${scoreModel.handedness}',
+                    '${SummaryStrings.handednessLabel}${scoreModel.handedness}',
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ],
@@ -158,11 +158,11 @@ class TestSummaryWithProviderRefactoredState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Text(
-                    'Test Date: ${_dateFormat.format(scoreModel.assessmentDate)}',
+                    '${SummaryStrings.testDateLabel}${_dateFormat.format(scoreModel.assessmentDate)}',
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   Text(
-                    'Assessor: ${scoreModel.assessorName}',
+                    '${SummaryStrings.assessorLabel}${scoreModel.assessorName}',
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ],
@@ -188,12 +188,12 @@ class TestSummaryWithProviderRefactoredState
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                    "Name: ${AssessmentStringUtils.formatPatientName(scoreModel.patientName)}"),
-                Text("Handedness: ${scoreModel.handedness}"),
+                    "${SummaryStrings.nameLabel}${AssessmentStringUtils.formatPatientName(scoreModel.patientName)}"),
+                Text("${SummaryStrings.handednessLabel}${scoreModel.handedness}"),
                 Text(
-                    "Date of Assessment: ${_dateFormat.format(scoreModel.assessmentDate)}"),
+                    "${SummaryStrings.dateOfAssessmentLabel}${_dateFormat.format(scoreModel.assessmentDate)}"),
                 Text(
-                    "Assessor: ${AssessmentStringUtils.formatAssessorName(scoreModel.assessorName)}"),
+                    "${SummaryStrings.assessorLabel}${AssessmentStringUtils.formatAssessorName(scoreModel.assessorName)}"),
               ],
             ),
           ),
@@ -203,16 +203,16 @@ class TestSummaryWithProviderRefactoredState
   }
 
   Widget _buildInfoCard() {
-    return const Padding(
-      padding: EdgeInsets.all(8.0),
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
       child: Card(
         elevation: 10.0,
-        color: Color(0xFFF5F5DC),
+        color: const Color(0xFFF5F5DC),
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Text(
-            'Some tasks have a numerical raw score. Other tasks provide an estimate based on clinical judgement which is indicated by the word "Clinical" in the table below.',
-            style: TextStyle(fontSize: 14),
+            SummaryStrings.infoCardText,
+            style: const TextStyle(fontSize: 14),
           ),
         ),
       ),
@@ -224,11 +224,11 @@ class TestSummaryWithProviderRefactoredState
       children: [
         // Attention & Concentration Domain
         DomainReportCard(
-          title: 'Attention & Concentration',
+          title: SummaryStrings.attentionDomain,
           tasks: [
             TaskRowData(
-              taskName: 'Attention: Vigilance Test',
-              scoringGuide: 'N = no mistakes, E = one mistake and I = > 1 mistake',
+              taskName: SummaryStrings.taskAttentionVigilance,
+              scoringGuide: SummaryStrings.scoreGuideAttention,
               result: scoreModel.attentionMistakes.toString(),
               nei: AssessmentStringUtils.radioValueToString(scoreModel.attention),
             ),
@@ -236,29 +236,29 @@ class TestSummaryWithProviderRefactoredState
         ),
         // Language Domain
         DomainReportCard(
-          title: 'Language',
+          title: SummaryStrings.languageDomain,
           tasks: [
             TaskRowData(
-              taskName: 'Anomia: Naming Pictures',
-              scoringGuide: 'N = all correct, E = 1 error, I >1 error',
-              result: 'Clinical',
+              taskName: SummaryStrings.taskAnomiaNaming,
+              scoringGuide: SummaryStrings.scoreGuideAnomia,
+              result: SummaryStrings.clinicalResult,
               nei: AssessmentStringUtils.radioValueToString(scoreModel.anomiaAgnosia),
             ),
             TaskRowData(
-              taskName: 'Spoken Language',
-              scoringGuide: 'N = Normal speech, E = Equivocal, I = definite impairment',
-              result: 'Clinical',
+              taskName: SummaryStrings.taskSpokenLanguage,
+              scoringGuide: SummaryStrings.scoreGuideSpokenLanguage,
+              result: SummaryStrings.clinicalResult,
               nei: AssessmentStringUtils.radioValueToString(scoreModel.spokenLanguage),
             ),
           ],
         ),
         // Verbal Working Memory Domain
         DomainReportCard(
-          title: 'Verbal Working Memory',
+          title: SummaryStrings.verbalWorkingMemoryDomain,
           tasks: [
             TaskRowData(
-              taskName: 'Working Memory Verbal Trial 1: 10 Word Recall',
-              scoringGuide: 'N > 6, E = 5-6, I < 5',
+              taskName: SummaryStrings.taskWorkingMemoryTrial1,
+              scoringGuide: SummaryStrings.scoreGuideTrial1,
               result: scoreModel.trialOneScore.toString(),
               nei: AssessmentStringUtils.trial1ResultToString(scoreModel.trialOneScore),
             ),
@@ -266,37 +266,37 @@ class TestSummaryWithProviderRefactoredState
         ),
         // Verbal Short-Term Memory Domain
         DomainReportCard(
-          title: 'Verbal Short-Term Memory',
+          title: SummaryStrings.verbalShortTermMemoryDomain,
           useResultColumn: true,
           tasks: [
             TaskRowData(
-              taskName: 'Short-term Memory Verbal Trial 2: 10 Word Recall',
-              scoringGuide: 'N > 6, E = 5-6, I < 5',
+              taskName: SummaryStrings.taskShortTermTrial2,
+              scoringGuide: SummaryStrings.scoreGuideTrial2,
               result: scoreModel.trialTwoScore.toString(),
               nei: AssessmentStringUtils.trial2ResultToString(scoreModel.trialTwoScore),
             ),
             TaskRowData(
-              taskName: 'Short-term Memory Verbal Trial 3: 10 Word Recall',
-              scoringGuide: 'N > 7, E = 5-7, I < 5',
+              taskName: SummaryStrings.taskShortTermTrial3,
+              scoringGuide: SummaryStrings.scoreGuideTrial3,
               result: scoreModel.trialThreeScore.toString(),
               nei: AssessmentStringUtils.trial3ResultToString(scoreModel.trialThreeScore),
             ),
             TaskRowData(
-              taskName: 'Short-Term Memory Verbal: Delayed Recall Of 10 Words',
-              scoringGuide: 'N >5, E = 5, I < 5',
+              taskName: SummaryStrings.taskDelayedRecall,
+              scoringGuide: SummaryStrings.scoreGuideDelayedRecall,
               result: scoreModel.tenWordDelay.toString(),
               nei: AssessmentStringUtils.delayRecallResultToString(scoreModel.tenWordDelay),
             ),
             TaskRowData(
-              taskName: 'Short-Term Memory Verbal Recognition: Total Score',
-              scoringGuide: 'N > 16, E = 14 - 16, I < 14',
+              taskName: SummaryStrings.taskRecognitionTotal,
+              scoringGuide: SummaryStrings.scoreGuideRecognition,
               result: scoreModel.scoreVerbalRecognitionMemoryTenWords.toString(),
               nei: AssessmentStringUtils.recognitionResultToString(
                   scoreModel.scoreVerbalRecognitionMemoryTenWords),
             ),
             TaskRowData(
-              taskName: 'Short-Term Memory Verbal Recall: Orientation',
-              scoringGuide: 'N = 5, E = 4, I < 4',
+              taskName: SummaryStrings.taskOrientation,
+              scoringGuide: SummaryStrings.scoreGuideOrientation,
               result: scoreModel.shorttermMemoryVerbalScore.toString(),
               nei: AssessmentStringUtils.orientationResultToString(
                   scoreModel.shorttermMemoryVerbalScore),
@@ -305,12 +305,12 @@ class TestSummaryWithProviderRefactoredState
         ),
         // Visual Short-Term Memory Domain
         DomainReportCard(
-          title: 'Visual Short-Term Memory',
+          title: SummaryStrings.visualShortTermMemoryDomain,
           useResultColumn: true,
           tasks: [
             TaskRowData(
-              taskName: 'Short-term Memory Visual: Line Drawing Recall',
-              scoringGuide: 'N >5, E = 5, I < 5',
+              taskName: SummaryStrings.taskVisualLineDrawing,
+              scoringGuide: SummaryStrings.scoreGuideVisualMemory,
               result: AssessmentStringUtils.calculateVisualMemoryScore(scoreModel, true).toString(),
               nei: AssessmentStringUtils.visualMemoryResultToString(scoreModel),
             ),
@@ -318,23 +318,23 @@ class TestSummaryWithProviderRefactoredState
         ),
         // Praxis Domain
         DomainReportCard(
-          title: 'Praxis',
+          title: SummaryStrings.praxisDomain,
           tasks: [
             TaskRowData(
-              taskName: 'Praxis: Finger-hand Dexterity: Right',
-              scoringGuide: 'N = No errors, E = Some difficulty, I = Clear difficulty',
-              result: 'Clinical',
+              taskName: SummaryStrings.taskPraxisRight,
+              scoringGuide: SummaryStrings.scoreGuidePraxis,
+              result: SummaryStrings.clinicalResult,
               nei: AssessmentStringUtils.radioValueToString(scoreModel.praxisRight),
             ),
             TaskRowData(
-              taskName: 'Praxis: Finger-hand Dexterity: Left',
-              scoringGuide: 'N = no errors, E = some difficulty, I = Clear difficulty',
-              result: 'Clinical',
+              taskName: SummaryStrings.taskPraxisLeft,
+              scoringGuide: SummaryStrings.scoreGuidePraxisAlt,
+              result: SummaryStrings.clinicalResult,
               nei: AssessmentStringUtils.radioValueToString(scoreModel.praxisLeft),
             ),
             TaskRowData(
-              taskName: 'Visuospatial & Praxis: Line Drawing Copy',
-              scoringGuide: 'N > 6, E = 6, I < 6',
+              taskName: SummaryStrings.taskVisuospatialPraxis,
+              scoringGuide: SummaryStrings.scoreGuideVisuospatial,
               result: AssessmentStringUtils.calculateVisualMemoryScore(scoreModel, true).toString(),
               nei: AssessmentStringUtils.visualMemoryResultToString(scoreModel),
             ),
@@ -342,17 +342,17 @@ class TestSummaryWithProviderRefactoredState
         ),
         // Gnosis Domain
         DomainReportCard(
-          title: 'Gnosis',
+          title: SummaryStrings.gnosisDomain,
           tasks: [
             TaskRowData(
-              taskName: 'Agnosia: Recognition of Pictures',
-              scoringGuide: 'N = all correct, E = 1 error, I >1 error',
-              result: 'Clinical',
+              taskName: SummaryStrings.taskAgnosiaRecognition,
+              scoringGuide: SummaryStrings.scoreGuideAgnosia,
+              result: SummaryStrings.clinicalResult,
               nei: AssessmentStringUtils.radioValueToString(scoreModel.agnosia),
             ),
             TaskRowData(
-              taskName: 'Visuospatial & Praxis: Line Drawing Copy',
-              scoringGuide: 'N > 6, E = 6, I < 6',
+              taskName: SummaryStrings.taskVisuospatialPraxis,
+              scoringGuide: SummaryStrings.scoreGuideVisuospatial,
               result: AssessmentStringUtils.calculateVisualMemoryScore(scoreModel, false).toString(),
               nei: AssessmentStringUtils.visualMemoryResultToString(scoreModel),
             ),
@@ -360,29 +360,29 @@ class TestSummaryWithProviderRefactoredState
         ),
         // Executive Function Domain
         DomainReportCard(
-          title: 'Executive Function',
+          title: SummaryStrings.executiveFunctionDomain,
           tasks: [
             TaskRowData(
-              taskName: 'Executive: Animal Naming Task',
-              scoringGuide: '>14 = N, 12-14 = E, <12 =I',
+              taskName: SummaryStrings.taskAnimalNaming,
+              scoringGuide: SummaryStrings.scoreGuideAnimalNaming,
               result: scoreModel.executiveAnimalNamingCount.toString(),
               nei: AssessmentStringUtils.radioValueToString(scoreModel.executiveAnimalNaming),
             ),
             TaskRowData(
-              taskName: 'Executive: Design Fluency',
-              scoringGuide: 'N > 7 drawings, E = 5-7 drawings, I< 5 drawings',
+              taskName: SummaryStrings.taskDesignFluency,
+              scoringGuide: SummaryStrings.scoreGuideDesignFluency,
               result: scoreModel.executive.toString(),
               nei: AssessmentStringUtils.radioValueToString(scoreModel.executive),
             ),
             TaskRowData(
-              taskName: 'Executive: Luria Alternating Hand Movements',
-              scoringGuide: 'N = 3 cycles without mistakes, E = able to do 1-2 cycles, I = unable to complete task',
+              taskName: SummaryStrings.taskLuriaAlternating,
+              scoringGuide: SummaryStrings.scoreGuideLuria,
               result: scoreModel.executiveLuriaScore.toString(),
               nei: AssessmentStringUtils.radioValueToString(scoreModel.executiveLuria),
             ),
             TaskRowData(
-              taskName: 'Executive: Serial Order Reversal Task',
-              scoringGuide: 'N = no errors, E = 1 error, I > 1 error',
+              taskName: SummaryStrings.taskSerialOrderReversal,
+              scoringGuide: SummaryStrings.scoreGuideSerialOrder,
               result: scoreModel.executiveSerialScore.toString(),
               nei: AssessmentStringUtils.radioValueToString(scoreModel.executiveSerial),
             ),
@@ -395,7 +395,7 @@ class TestSummaryWithProviderRefactoredState
   // Domain card builders using the new widgets
   Widget _buildAttentionCard(MicaScoreModel scoreModel) {
     return DomainCardWidget(
-      title: "Attention & Concentration",
+      title: SummaryStrings.attentionDomain,
       cardColor: AssessmentColorUtils.attentionColor(scoreModel.attention),
       statusIndicators: [
         StatusIndicator(
@@ -414,7 +414,7 @@ class TestSummaryWithProviderRefactoredState
 
   Widget _buildLanguageCard(MicaScoreModel scoreModel) {
     return DomainCardWidget(
-      title: "Language",
+      title: SummaryStrings.languageDomain,
       cardColor: AssessmentColorUtils.languageDomainColor(
         scoreModel.spokenLanguage,
         scoreModel.executiveAnimalNaming,
@@ -443,7 +443,7 @@ class TestSummaryWithProviderRefactoredState
 
   Widget _buildVerbalWorkingMemoryCard(MicaScoreModel scoreModel) {
     return DomainCardWidget(
-      title: "Verbal Working Memory",
+      title: SummaryStrings.verbalWorkingMemoryDomain,
       cardColor: AssessmentColorUtils.trial1Color(scoreModel.trialOneScore),
       statusIndicators: [
         StatusIndicator(
@@ -462,7 +462,7 @@ class TestSummaryWithProviderRefactoredState
 
   Widget _buildVerbalShortTermMemoryCard(MicaScoreModel scoreModel) {
     return DomainCardWidget(
-      title: "Verbal Short-Term Memory",
+      title: SummaryStrings.verbalShortTermMemoryDomain,
       cardColor: AssessmentColorUtils.verbalShortTermMemoryColor(
         scoreModel.trialTwoScore,
         scoreModel.trialThreeScore,
@@ -508,7 +508,7 @@ class TestSummaryWithProviderRefactoredState
 
   Widget _buildVisualShortTermMemoryCard(MicaScoreModel scoreModel) {
     return DomainCardWidget(
-      title: "Visual Short-Term Memory",
+      title: SummaryStrings.visualShortTermMemoryDomain,
       cardColor: AssessmentColorUtils.visualMemoryColor(scoreModel),
       statusIndicators: [
         StatusIndicator(
@@ -531,7 +531,7 @@ class TestSummaryWithProviderRefactoredState
 
   Widget _buildPraxisCard(MicaScoreModel scoreModel) {
     return DomainCardWidget(
-      title: "Praxis",
+      title: SummaryStrings.praxisDomain,
       cardColor: AssessmentColorUtils.praxisDomainColor(scoreModel),
       statusIndicators: [
         StatusIndicator(
@@ -559,7 +559,7 @@ class TestSummaryWithProviderRefactoredState
 
   Widget _buildGnosisCard(MicaScoreModel scoreModel) {
     return DomainCardWidget(
-      title: "Gnosis",
+      title: SummaryStrings.gnosisDomain,
       cardColor: AssessmentColorUtils.gnosisDomainColor(scoreModel),
       statusIndicators: [
         StatusIndicator(
@@ -583,7 +583,7 @@ class TestSummaryWithProviderRefactoredState
 
   Widget _buildExecutiveFunctionCard(MicaScoreModel scoreModel) {
     return DomainCardWidget(
-      title: "Executive Function",
+      title: SummaryStrings.executiveFunctionDomain,
       cardColor: AssessmentColorUtils.executiveFunctionColor(scoreModel.executive),
       statusIndicators: [
         StatusIndicator(
@@ -617,9 +617,9 @@ class TestSummaryWithProviderRefactoredState
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text(kIsWeb 
-                ? 'Report copied to clipboard!' 
-                : 'Share dialog opened'),
+            content: Text(kIsWeb
+                ? SummaryStrings.reportCopiedToClipboard
+                : SummaryStrings.shareDialogOpened),
             duration: const Duration(seconds: 2),
           ),
         );
@@ -628,7 +628,7 @@ class TestSummaryWithProviderRefactoredState
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error sharing: ${e.toString()}'),
+            content: Text('${SummaryStrings.errorSharing}${e.toString()}'),
             backgroundColor: Colors.red,
           ),
         );
@@ -642,8 +642,8 @@ class TestSummaryWithProviderRefactoredState
       
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('PDF downloaded successfully'),
+          SnackBar(
+            content: Text(SummaryStrings.pdfDownloadedSuccessfully),
             duration: Duration(seconds: 2),
           ),
         );
@@ -652,7 +652,7 @@ class TestSummaryWithProviderRefactoredState
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Error generating PDF: ${e.toString()}'),
+            content: Text('${SummaryStrings.errorGeneratingPdf}${e.toString()}'),
             backgroundColor: Colors.red,
           ),
         );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/executive_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class FingerNoseTask extends StatefulWidget {
   const FingerNoseTask({super.key});
@@ -56,7 +57,7 @@ class FingerNoseTaskState extends State<FingerNoseTask> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
-            'Finger-Nose Task',
+            ExecutiveStrings.fingerNoseTitle,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,
@@ -85,7 +86,7 @@ class FingerNoseTaskState extends State<FingerNoseTask> {
                 child: const Padding(
                   padding: EdgeInsets.all(16.0),
                   child: Text(
-                    app_data.testExecutiveFingerNoseDetails,
+                    ExecutiveStrings.fingerNoseExaminerInstruction,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,
@@ -107,7 +108,7 @@ class FingerNoseTaskState extends State<FingerNoseTask> {
                 child: const Padding(
                   padding: EdgeInsets.all(16.0),
                   child: Text(
-                    app_data.testExecutiveFingerNoseToPatient,
+                    ExecutiveStrings.fingerNosePatientInstruction,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,
@@ -129,7 +130,7 @@ class FingerNoseTaskState extends State<FingerNoseTask> {
                 child: const Padding(
                   padding: EdgeInsets.all(16.0),
                   child: Text(
-                    app_data.testExecutiveFingerNoseInstructions,
+                    ExecutiveStrings.fingerNoseVariationsInstruction,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,
@@ -153,7 +154,7 @@ class FingerNoseTaskState extends State<FingerNoseTask> {
                   child: Column(
                     children: [
                       const Text(
-                        app_data.testExecutiveFingerNoseResponse,
+                        ExecutiveStrings.fingerNoseResponse,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.black,
@@ -196,7 +197,7 @@ class FingerNoseTaskState extends State<FingerNoseTask> {
                                         ),
                                         const SizedBox(width: 8),
                                         const Text(
-                                          'Normal',
+                                          CommonStrings.normal,
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 14.0,
@@ -230,7 +231,7 @@ class FingerNoseTaskState extends State<FingerNoseTask> {
                                         ),
                                         const SizedBox(width: 8),
                                         const Text(
-                                          'Equivocal',
+                                          CommonStrings.equivocal,
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 14.0,
@@ -264,7 +265,7 @@ class FingerNoseTaskState extends State<FingerNoseTask> {
                                         ),
                                         const SizedBox(width: 8),
                                         const Text(
-                                          'Impaired',
+                                          CommonStrings.impaired,
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 14.0,
@@ -307,7 +308,7 @@ class FingerNoseTaskState extends State<FingerNoseTask> {
                       Navigator.pop(context);
                     },
                     child: const Text(
-                      'Task Completed',
+                      CommonStrings.taskCompleted,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 18.0,

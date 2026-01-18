@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/language_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class ObjectNaming extends StatefulWidget {
   const ObjectNaming({super.key});
@@ -18,7 +20,7 @@ class _ObjectNamingState extends State<ObjectNaming> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Naming',
+          LanguageStrings.objectNamingTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -36,7 +38,7 @@ class _ObjectNamingState extends State<ObjectNaming> {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Point towards the following objects and ask the patient to name it. Inability to name objects (nominal dysphasia) must be distinguished from visual object agnosia.',
+                LanguageStrings.objectNamingExaminerInstruction,
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16.0,
@@ -55,7 +57,7 @@ class _ObjectNamingState extends State<ObjectNaming> {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                '"Can you tell me what this is?"',
+                LanguageStrings.objectNamingPatientInstruction,
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16.0,
@@ -77,7 +79,7 @@ class _ObjectNamingState extends State<ObjectNaming> {
               child: Column(
                 children: [
                   Text(
-                    'Point to a watch, pen, tissue, button, shoe, and shirt.',
+                    LanguageStrings.objectNamingCommonObjects,
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 16.0,
@@ -87,7 +89,7 @@ class _ObjectNamingState extends State<ObjectNaming> {
                   ),
                   const SizedBox(height: 16.0),
                   Text(
-                    'Less common objects are: knuckles, ring finger, eyebrow, winder of a watch, and collar.',
+                    LanguageStrings.objectNamingUncommonObjects,
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 16.0,
@@ -97,7 +99,7 @@ class _ObjectNamingState extends State<ObjectNaming> {
                   ),
                   const SizedBox(height: 16.0),
                   Text(
-                    'To distinguish between nominal aphasia and visual object agnosia, ask the patient to describe the object or its use. If this can be done adequately then visual perception might be normal and the deficit is more likely language based. Language deficits can be further examined by providing the patient with language cues by saying either a part of the word or giving a phonetic clue. For example, say "col..." for collar or say it sounds like "dollar" Some patients may then be able to progress and say the word, the deficit is then more likely to be nominal aphasia.',
+                    LanguageStrings.objectNamingDistinguishInstruction,
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 16.0,
@@ -120,7 +122,7 @@ class _ObjectNamingState extends State<ObjectNaming> {
               child: Column(
                 children: [
                   const Text(
-                    'Note the response of the patient and score as below.',
+                    CommonStrings.noteResponseAndScore,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 16.0,
@@ -169,7 +171,7 @@ class _ObjectNamingState extends State<ObjectNaming> {
                                       }),
                                     ),
                                     const Text(
-                                      'Normal',
+                                      CommonStrings.normal,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -202,7 +204,7 @@ class _ObjectNamingState extends State<ObjectNaming> {
                                       }),
                                     ),
                                     const Text(
-                                      'Equivocal',
+                                      CommonStrings.equivocal,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -235,7 +237,7 @@ class _ObjectNamingState extends State<ObjectNaming> {
                                       }),
                                     ),
                                     const Text(
-                                      'Impaired',
+                                      CommonStrings.impaired,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -284,7 +286,7 @@ class _ObjectNamingState extends State<ObjectNaming> {
                           Navigator.of(context).pop();
                         },
                         child: const Text(
-                          'Task Completed',
+                          CommonStrings.taskCompleted,
                           style: TextStyle(color: Colors.black),
                         ),
                       ),

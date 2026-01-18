@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/language_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class Reading extends StatefulWidget {
   const Reading({super.key});
@@ -18,7 +20,7 @@ class _ReadingState extends State<Reading> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Reading',
+          LanguageStrings.readingTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -36,7 +38,7 @@ class _ReadingState extends State<Reading> {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Can you read this sentence and do what it says so that I can be sure you understood it?',
+                LanguageStrings.readingExaminerInstruction,
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16.0,
@@ -55,7 +57,7 @@ class _ReadingState extends State<Reading> {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'CLOSE YOUR EYES',
+                LanguageStrings.readingPatientInstruction,
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 20.0,
@@ -77,7 +79,7 @@ class _ReadingState extends State<Reading> {
               child: Column(
                 children: [
                   const Text(
-                    'Note the response of the patient and score as below.',
+                    CommonStrings.noteResponseAndScore,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 16.0,
@@ -126,7 +128,7 @@ class _ReadingState extends State<Reading> {
                                       }),
                                     ),
                                     const Text(
-                                      'Normal',
+                                      CommonStrings.normal,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -159,7 +161,7 @@ class _ReadingState extends State<Reading> {
                                       }),
                                     ),
                                     const Text(
-                                      'Equivocal',
+                                      CommonStrings.equivocal,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -192,7 +194,7 @@ class _ReadingState extends State<Reading> {
                                       }),
                                     ),
                                     const Text(
-                                      'Impaired',
+                                      CommonStrings.impaired,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -241,7 +243,7 @@ class _ReadingState extends State<Reading> {
                           Navigator.of(context).pop();
                         },
                         child: const Text(
-                          'Task Completed',
+                          CommonStrings.taskCompleted,
                           style: TextStyle(color: Colors.black),
                         ),
                       ),

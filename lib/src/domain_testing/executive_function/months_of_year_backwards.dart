@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/executive_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class MonthsOfYearBackwards extends StatefulWidget {
   const MonthsOfYearBackwards({super.key});
@@ -85,7 +86,7 @@ class MonthsOfYearBackwardsState extends State<MonthsOfYearBackwards> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
-            'Months of the Year Backwards',
+            ExecutiveStrings.monthsBackwardsTitle,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,
@@ -114,7 +115,7 @@ class MonthsOfYearBackwardsState extends State<MonthsOfYearBackwards> {
                 child: const Padding(
                   padding: EdgeInsets.all(16.0),
                   child: Text(
-                    app_data.testExecutiveSerialToPatient1,
+                    ExecutiveStrings.monthsBackwardsPatientInstruction1,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,
@@ -136,7 +137,7 @@ class MonthsOfYearBackwardsState extends State<MonthsOfYearBackwards> {
                 child: const Padding(
                   padding: EdgeInsets.all(16.0),
                   child: Text(
-                    app_data.testExecutiveSerialDetails,
+                    ExecutiveStrings.monthsBackwardsExaminerInstruction,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,
@@ -158,7 +159,7 @@ class MonthsOfYearBackwardsState extends State<MonthsOfYearBackwards> {
                 child: const Padding(
                   padding: EdgeInsets.all(16.0),
                   child: Text(
-                    app_data.testExecutiveSerialToPatient2,
+                    ExecutiveStrings.monthsBackwardsPatientInstruction2,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,
@@ -182,7 +183,7 @@ class MonthsOfYearBackwardsState extends State<MonthsOfYearBackwards> {
                   child: Column(
                     children: [
                       const Text(
-                        'Tap to score',
+                        ExecutiveStrings.tapToScore,
                         style: TextStyle(
                           color: Colors.black,
                           fontWeight: FontWeight.w500,
@@ -267,7 +268,7 @@ class MonthsOfYearBackwardsState extends State<MonthsOfYearBackwards> {
                   child: Column(
                     children: [
                       const Text(
-                        app_data.testExecutiveSerialResponse,
+                        ExecutiveStrings.monthsBackwardsResponse,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.black,
@@ -311,7 +312,7 @@ class MonthsOfYearBackwardsState extends State<MonthsOfYearBackwards> {
                                         const SizedBox(width: 4),
                                         const Flexible(
                                           child: Text(
-                                            'Normal',
+                                            CommonStrings.normal,
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 12.0,
@@ -347,7 +348,7 @@ class MonthsOfYearBackwardsState extends State<MonthsOfYearBackwards> {
                                         const SizedBox(width: 4),
                                         const Flexible(
                                           child: Text(
-                                            'Equivocal',
+                                            CommonStrings.equivocal,
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 12.0,
@@ -383,7 +384,7 @@ class MonthsOfYearBackwardsState extends State<MonthsOfYearBackwards> {
                                         const SizedBox(width: 4),
                                         const Flexible(
                                           child: Text(
-                                            'Impaired',
+                                            CommonStrings.impaired,
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 12.0,
@@ -403,7 +404,7 @@ class MonthsOfYearBackwardsState extends State<MonthsOfYearBackwards> {
                               const Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Text(
-                                  app_data.testExecutiveSerialResponseNormal,
+                                  ExecutiveStrings.monthsBackwardsResponseNormal,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.white,
@@ -414,8 +415,8 @@ class MonthsOfYearBackwardsState extends State<MonthsOfYearBackwards> {
                               const Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Text(
-                                  app_data
-                                      .testExecutiveSerialResponseEquivocal,
+                                  ExecutiveStrings
+                                      .monthsBackwardsResponseEquivocal,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.white,
@@ -426,7 +427,7 @@ class MonthsOfYearBackwardsState extends State<MonthsOfYearBackwards> {
                               const Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Text(
-                                  app_data.testExecutiveSerialResponseImpaired,
+                                  ExecutiveStrings.monthsBackwardsResponseImpaired,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.white,
@@ -465,7 +466,7 @@ class MonthsOfYearBackwardsState extends State<MonthsOfYearBackwards> {
                       Navigator.pop(context);
                     },
                     child: const Text(
-                      'Task Completed',
+                      CommonStrings.taskCompleted,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 18.0,

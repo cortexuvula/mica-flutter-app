@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/memory_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class VisualWorkingMemory extends StatefulWidget {
   const VisualWorkingMemory({super.key});
@@ -33,7 +35,7 @@ class _VisualWorkingMemoryState extends State<VisualWorkingMemory> {
         title: const Column(
           children: [
             Text(
-              'Visual Working Memory',
+              MemoryStrings.visualWorkingTitle,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -41,7 +43,7 @@ class _VisualWorkingMemoryState extends State<VisualWorkingMemory> {
               ),
             ),
             Text(
-              'Visual - Copy',
+              MemoryStrings.visualWorkingSubtitle,
               style: TextStyle(
                 color: Colors.white70,
                 fontSize: 12.0,
@@ -84,7 +86,7 @@ class _VisualWorkingMemoryState extends State<VisualWorkingMemory> {
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: const Text(
-                        'Prepare by having available 3 sheets of blank paper. The patient draws each figure on a separate sheet. Tap on the picture below to enlarge.',
+                        MemoryStrings.visualWorkingPrepareInstruction,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16.0,
@@ -105,7 +107,7 @@ class _VisualWorkingMemoryState extends State<VisualWorkingMemory> {
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: const Text(
-                        '"I will show you a sketch for 10 seconds. Try to memorise it during this time. I will then remove it and we will wait 10 seconds. Then draw what you can remember. Ready?"',
+                        MemoryStrings.visualWorkingPatientInstruction,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16.0,
@@ -200,7 +202,7 @@ class _VisualWorkingMemoryState extends State<VisualWorkingMemory> {
                                   borderRadius: BorderRadius.circular(4.0),
                                 ),
                                 child: const Text(
-                                  'Tap image to enlarge',
+                                  MemoryStrings.visualWorkingTapToEnlarge,
                                   style: TextStyle(
                                     color: Colors.blue,
                                     fontSize: 12.0,
@@ -226,7 +228,7 @@ class _VisualWorkingMemoryState extends State<VisualWorkingMemory> {
                       child: Column(
                         children: [
                           const Text(
-                            'Visuospatial Working Memory',
+                            MemoryStrings.visualWorkingVisuospatialTitle,
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 18.0,
@@ -256,10 +258,10 @@ class _VisualWorkingMemoryState extends State<VisualWorkingMemory> {
                                       ),
                                     ),
                                   ),
-                                  _buildHeaderCell('No Mistakes', '3'),
-                                  _buildHeaderCell('Few Omissions', '2'),
-                                  _buildHeaderCell('Poor', '1'),
-                                  _buildHeaderCell('No Drawing', '0'),
+                                  _buildHeaderCell(MemoryStrings.visualMemoryNoMistakes, '3'),
+                                  _buildHeaderCell(MemoryStrings.visualMemoryFewOmissions, '2'),
+                                  _buildHeaderCell(MemoryStrings.visualMemoryPoor, '1'),
+                                  _buildHeaderCell(MemoryStrings.visualMemoryNoDrawing, '0'),
                                 ],
                               ),
                             ],
@@ -284,7 +286,7 @@ class _VisualWorkingMemoryState extends State<VisualWorkingMemory> {
                                     child: Padding(
                                       padding: EdgeInsets.all(8.0),
                                       child: Text(
-                                        'Image 1',
+                                        MemoryStrings.visualMemoryImage1,
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14.0,
@@ -322,7 +324,7 @@ class _VisualWorkingMemoryState extends State<VisualWorkingMemory> {
                                     child: Padding(
                                       padding: EdgeInsets.all(8.0),
                                       child: Text(
-                                        'Image 2',
+                                        MemoryStrings.visualMemoryImage2,
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14.0,
@@ -360,7 +362,7 @@ class _VisualWorkingMemoryState extends State<VisualWorkingMemory> {
                                     child: Padding(
                                       padding: EdgeInsets.all(8.0),
                                       child: Text(
-                                        'Image 3',
+                                        MemoryStrings.visualMemoryImage3,
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14.0,
@@ -412,7 +414,7 @@ class _VisualWorkingMemoryState extends State<VisualWorkingMemory> {
                                   Navigator.of(context).pop();
                                 },
                                 child: const Text(
-                                  'Task Completed',
+                                  CommonStrings.taskCompleted,
                                   style: TextStyle(color: Colors.black),
                                 ),
                               ),
@@ -485,7 +487,7 @@ class _VisualWorkingMemoryState extends State<VisualWorkingMemory> {
                     right: 0,
                     child: const Center(
                       child: Text(
-                        'Tap anywhere or press X to close',
+                        MemoryStrings.visualWorkingCloseHint,
                         style: TextStyle(
                           color: Colors.white,
                           fontSize: 16.0,

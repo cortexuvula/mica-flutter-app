@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/language_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class Repetition extends StatefulWidget {
   const Repetition({super.key});
@@ -18,7 +20,7 @@ class _RepetitionState extends State<Repetition> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Repetition',
+          LanguageStrings.repetitionTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -36,7 +38,7 @@ class _RepetitionState extends State<Repetition> {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Ask the patient to repeat the following.',
+                LanguageStrings.repetitionExaminerInstruction,
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16.0,
@@ -57,7 +59,7 @@ class _RepetitionState extends State<Repetition> {
               child: Column(
                 children: [
                   Text(
-                    '"No ifs ands or buts."',
+                    LanguageStrings.repetitionPatientInstruction1,
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 16.0,
@@ -68,7 +70,7 @@ class _RepetitionState extends State<Repetition> {
                   ),
                   const SizedBox(height: 8.0),
                   Text(
-                    '"The little boy went to the shopping mall to spend his money."',
+                    LanguageStrings.repetitionPatientInstruction2,
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 16.0,
@@ -137,7 +139,7 @@ class _RepetitionState extends State<Repetition> {
                                       }),
                                     ),
                                     const Text(
-                                      'Normal',
+                                      CommonStrings.normal,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -170,7 +172,7 @@ class _RepetitionState extends State<Repetition> {
                                       }),
                                     ),
                                     const Text(
-                                      'Equivocal',
+                                      CommonStrings.equivocal,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -203,7 +205,7 @@ class _RepetitionState extends State<Repetition> {
                                       }),
                                     ),
                                     const Text(
-                                      'Impaired',
+                                      CommonStrings.impaired,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -252,7 +254,7 @@ class _RepetitionState extends State<Repetition> {
                           Navigator.of(context).pop();
                         },
                         child: const Text(
-                          'Task Completed',
+                          CommonStrings.taskCompleted,
                           style: TextStyle(color: Colors.black),
                         ),
                       ),

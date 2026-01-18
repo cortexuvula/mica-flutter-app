@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/language_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class SpontaneousSpeech extends StatefulWidget {
   const SpontaneousSpeech({super.key});
@@ -18,7 +20,7 @@ class _SpontaneousSpeechState extends State<SpontaneousSpeech> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Spontaneous Speech',
+          LanguageStrings.spontaneousSpeechTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -36,7 +38,7 @@ class _SpontaneousSpeechState extends State<SpontaneousSpeech> {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Evaluate free speech by listening for impairments of fluency, articulation and the presence of paraphasias. Paraphasias are word substitutions and can be phonemic i.e. "sitter" for "sister" or semantic i.e. "jug" for "glass."',
+                LanguageStrings.spontaneousSpeechExaminerInstruction,
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16.0,
@@ -57,7 +59,7 @@ class _SpontaneousSpeechState extends State<SpontaneousSpeech> {
               child: Column(
                 children: [
                   const Text(
-                    'Note the response of the patient and score as below.',
+                    CommonStrings.noteResponseAndScore,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 16.0,
@@ -102,7 +104,7 @@ class _SpontaneousSpeechState extends State<SpontaneousSpeech> {
                                       }),
                                     ),
                                     const Text(
-                                      'Normal',
+                                      CommonStrings.normal,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -135,7 +137,7 @@ class _SpontaneousSpeechState extends State<SpontaneousSpeech> {
                                       }),
                                     ),
                                     const Text(
-                                      'Equivocal',
+                                      CommonStrings.equivocal,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -168,7 +170,7 @@ class _SpontaneousSpeechState extends State<SpontaneousSpeech> {
                                       }),
                                     ),
                                     const Text(
-                                      'Impaired',
+                                      CommonStrings.impaired,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -217,7 +219,7 @@ class _SpontaneousSpeechState extends State<SpontaneousSpeech> {
                           Navigator.of(context).pop();
                         },
                         child: const Text(
-                          'Task Completed',
+                          CommonStrings.taskCompleted,
                           style: TextStyle(color: Colors.black),
                         ),
                       ),

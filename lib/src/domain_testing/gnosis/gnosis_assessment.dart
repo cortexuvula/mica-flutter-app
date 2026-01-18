@@ -5,6 +5,7 @@ import 'package:mica/src/domain_testing/gnosis/identify_objects_visually.dart';
 import 'package:mica/src/domain_testing/gnosis/identify_objects_by_touch.dart';
 import 'package:mica/src/domain_testing/gnosis/finger_perception_test.dart';
 import 'package:mica/src/domain_testing/gnosis/clock_drawing_test.dart';
+import 'package:mica/resources/strings/gnosis_strings.dart';
 
 class GnosisAssessment extends StatefulWidget {
   const GnosisAssessment({super.key});
@@ -21,7 +22,7 @@ class _GnosisAssessmentState extends State<GnosisAssessment> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Gnosis',
+          GnosisStrings.domainTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -48,9 +49,9 @@ class _GnosisAssessmentState extends State<GnosisAssessment> {
             children: <Widget>[
               // Identify Objects Visually
               _buildGnosisOption(
-                context, 
-                width, 
-                'Identify Objects Visually',
+                context,
+                width,
+                GnosisStrings.identifyObjectsVisually,
                 () {
                   NavigationHelper.navigateTo(
                     context,
@@ -59,12 +60,12 @@ class _GnosisAssessmentState extends State<GnosisAssessment> {
                 }
               ),
               const SizedBox(height: 10.0),
-              
+
               // Identify Objects by Touch
               _buildGnosisOption(
-                context, 
-                width, 
-                'Identify Objects by Touch',
+                context,
+                width,
+                GnosisStrings.identifyObjectsByTouch,
                 () {
                   NavigationHelper.navigateTo(
                     context,
@@ -73,12 +74,12 @@ class _GnosisAssessmentState extends State<GnosisAssessment> {
                 }
               ),
               const SizedBox(height: 10.0),
-              
+
               // Finger Perception Test
               _buildGnosisOption(
-                context, 
-                width, 
-                'Finger Perception Test',
+                context,
+                width,
+                GnosisStrings.fingerPerceptionTest,
                 () {
                   NavigationHelper.navigateTo(
                     context,
@@ -87,12 +88,12 @@ class _GnosisAssessmentState extends State<GnosisAssessment> {
                 }
               ),
               const SizedBox(height: 10.0),
-              
+
               // Clock Drawing Test
               _buildGnosisOption(
-                context, 
-                width, 
-                'Clock Drawing Test',
+                context,
+                width,
+                GnosisStrings.clockDrawingTest,
                 () {
                   NavigationHelper.navigateTo(
                     context,

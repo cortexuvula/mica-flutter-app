@@ -3,6 +3,8 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/show_image_anomia.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/language_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class PictureNaming extends StatefulWidget {
   const PictureNaming({super.key});
@@ -50,7 +52,7 @@ class _PictureNamingState extends State<PictureNaming> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Picture Naming',
+          LanguageStrings.pictureNamingTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -77,7 +79,7 @@ class _PictureNamingState extends State<PictureNaming> {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            app_data.testAnomiaAgnosiaToPatient,
+                            LanguageStrings.pictureNamingPatientInstruction,
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                                 color: Colors.black,
@@ -102,7 +104,7 @@ class _PictureNamingState extends State<PictureNaming> {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            app_data.testAnomiaAgnosiaDetails,
+                            LanguageStrings.pictureNamingExaminerInstruction,
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                                 color: Colors.black,
@@ -242,7 +244,7 @@ class _PictureNamingState extends State<PictureNaming> {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            app_data.testAnomiaAgnosiaResponse,
+                            LanguageStrings.pictureNamingAnomiaResponse,
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                                 color: Colors.black,
@@ -272,9 +274,9 @@ class _PictureNamingState extends State<PictureNaming> {
                                         value: 0,
                                         activeColor: Colors.white,
                                       ),
-                                    const Text(
-                                      "Normal",
-                                      style: TextStyle(
+                                    Text(
+                                      CommonStrings.normal,
+                                      style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
                                       ),
@@ -287,9 +289,9 @@ class _PictureNamingState extends State<PictureNaming> {
                                       value: 1,
                                       activeColor: Colors.white,
                                     ),
-                                    const Text(
-                                      "Equivocal",
-                                      style: TextStyle(
+                                    Text(
+                                      CommonStrings.equivocal,
+                                      style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
                                       ),
@@ -302,9 +304,9 @@ class _PictureNamingState extends State<PictureNaming> {
                                       value: 2,
                                       activeColor: Colors.white,
                                     ),
-                                    const Text(
-                                      "Impaired",
-                                      style: TextStyle(
+                                    Text(
+                                      CommonStrings.impaired,
+                                      style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
                                       ),
@@ -316,7 +318,7 @@ class _PictureNamingState extends State<PictureNaming> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    app_data.testAnomiaAgnosiaResponseNormal,
+                                    LanguageStrings.pictureNamingResponseNormal,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(fontSize: 10.0),
                                   ),
@@ -324,8 +326,8 @@ class _PictureNamingState extends State<PictureNaming> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    app_data
-                                        .testAnomiaAgnosiaResponseEquivocal,
+                                    LanguageStrings
+                                        .pictureNamingResponseEquivocal,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(fontSize: 10.0),
                                   ),
@@ -333,8 +335,8 @@ class _PictureNamingState extends State<PictureNaming> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    app_data
-                                        .testAnomiaAgnosiaResponseImpaired,
+                                    LanguageStrings
+                                        .pictureNamingResponseImpaired,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(fontSize: 10.0),
                                   ),
@@ -347,7 +349,7 @@ class _PictureNamingState extends State<PictureNaming> {
                             height: 5.0,
                           ),
                           Text(
-                            app_data.testAnomiaAgnosiaResponse2,
+                            LanguageStrings.pictureNamingAgnosiaResponse,
                             textAlign: TextAlign.center,
                             style: const TextStyle(
                                 color: Colors.black,
@@ -377,9 +379,9 @@ class _PictureNamingState extends State<PictureNaming> {
                                         value: 0,
                                         activeColor: Colors.white,
                                       ),
-                                    const Text(
-                                      "Normal",
-                                      style: TextStyle(
+                                    Text(
+                                      CommonStrings.normal,
+                                      style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
                                       ),
@@ -392,9 +394,9 @@ class _PictureNamingState extends State<PictureNaming> {
                                       value: 1,
                                       activeColor: Colors.white,
                                     ),
-                                    const Text(
-                                      "Equivocal",
-                                      style: TextStyle(
+                                    Text(
+                                      CommonStrings.equivocal,
+                                      style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
                                       ),
@@ -407,9 +409,9 @@ class _PictureNamingState extends State<PictureNaming> {
                                       value: 2,
                                       activeColor: Colors.white,
                                     ),
-                                    const Text(
-                                      "Impaired",
-                                      style: TextStyle(
+                                    Text(
+                                      CommonStrings.impaired,
+                                      style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
                                       ),
@@ -421,7 +423,7 @@ class _PictureNamingState extends State<PictureNaming> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    app_data.testAnomiaAgnosiaResponseNormal,
+                                    LanguageStrings.pictureNamingResponseNormal,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(fontSize: 10.0),
                                   ),
@@ -429,8 +431,8 @@ class _PictureNamingState extends State<PictureNaming> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    app_data
-                                        .testAnomiaAgnosiaResponseEquivocal,
+                                    LanguageStrings
+                                        .pictureNamingResponseEquivocal,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(fontSize: 10.0),
                                   ),
@@ -438,8 +440,8 @@ class _PictureNamingState extends State<PictureNaming> {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text(
-                                    app_data
-                                        .testAnomiaAgnosiaResponseImpaired,
+                                    LanguageStrings
+                                        .pictureNamingResponseImpaired,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(fontSize: 10.0),
                                   ),
@@ -485,8 +487,8 @@ class _PictureNamingState extends State<PictureNaming> {
                                 // Pop back to naming menu
                                 Navigator.of(context).pop();
                               },
-                              child: const Text("Task Completed",
-                                  style: TextStyle(color: Colors.black)),
+                              child: Text(CommonStrings.taskCompleted,
+                                  style: const TextStyle(color: Colors.black)),
                             ),
                           ),
                         ],

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/domain_testing/attention_concentration/domain_digit.dart';
 import 'package:mica/src/domain_testing/attention_concentration/domain_language.dart';
 import 'package:mica/src/domain_testing/attention_concentration/domain_serial_seven.dart';
@@ -7,8 +6,7 @@ import 'package:mica/src/domain_testing/attention_concentration/domain_spell_wor
 import 'package:mica/src/domain_testing/attention_concentration/domain_vigilance.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
-
-const String vigilance = "Vigilance";
+import 'package:mica/resources/strings/attention_strings.dart';
 
 class AttentionConcentration extends StatefulWidget {
   const AttentionConcentration({super.key});
@@ -26,7 +24,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            app_data.domainAttentionTitle,
+            AttentionStrings.domainTitle,
             style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -34,7 +32,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
             textAlign: TextAlign.start,
           ),
           subtitle: Text(
-            app_data.domainAttentionSubtitle,
+            AttentionStrings.domainSubtitle,
             style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -81,7 +79,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                             );
                           },
                           child: Text(
-                            app_data.attentionConcentrationButton1,
+                            AttentionStrings.vigilanceButton,
                             style: TextStyle(color: Colors.black),
                             textAlign: TextAlign.center,
                           ),
@@ -118,7 +116,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                             );
                           },
                           child: Text(
-                            app_data.attentionConcentrationButton2,
+                            AttentionStrings.spellWordButton,
                             style: TextStyle(color: Colors.black),
                             textAlign: TextAlign.center,
                           ),
@@ -155,7 +153,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                             );
                           },
                           child: Text(
-                            app_data.attentionConcentrationButton3,
+                            AttentionStrings.serialButton,
                             style: TextStyle(color: Colors.black),
                             textAlign: TextAlign.center,
                           ),
@@ -192,7 +190,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                             );
                           },
                           child: Text(
-                            app_data.attentionConcentrationButton4,
+                            AttentionStrings.digitSpanButton,
                             style: TextStyle(color: Colors.black),
                             textAlign: TextAlign.center,
                           ),
@@ -229,7 +227,7 @@ class _AttentionConcentrationState extends State<AttentionConcentration> {
                             );
                           },
                           child: Text(
-                            app_data.attentionConcentrationButton5,
+                            AttentionStrings.observationButton,
                             style: TextStyle(color: Colors.black),
                             textAlign: TextAlign.center,
                           ),

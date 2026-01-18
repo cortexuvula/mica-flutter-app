@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/language_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class ComprehensionThreeStage extends StatefulWidget {
   const ComprehensionThreeStage({super.key});
@@ -21,7 +23,7 @@ class _ComprehensionThreeStageState extends State<ComprehensionThreeStage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Language',
+              LanguageStrings.domainTitle,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -29,7 +31,7 @@ class _ComprehensionThreeStageState extends State<ComprehensionThreeStage> {
               ),
             ),
             Text(
-              'Comprehension',
+              LanguageStrings.comprehensionThreeStageTitle,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w400,
@@ -49,7 +51,7 @@ class _ComprehensionThreeStageState extends State<ComprehensionThreeStage> {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Evaluate comprehension by using a 3-stage command. Intact basic comprehension ensures good compliance with any test procedures that follow.',
+                LanguageStrings.comprehensionThreeStageExaminerInstruction,
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16.0,
@@ -68,7 +70,7 @@ class _ComprehensionThreeStageState extends State<ComprehensionThreeStage> {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                '"Can you point with your finger to the ceiling, the floor and the door."',
+                LanguageStrings.comprehensionThreeStagePatientInstruction,
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16.0,
@@ -139,7 +141,7 @@ class _ComprehensionThreeStageState extends State<ComprehensionThreeStage> {
                                       }),
                                     ),
                                     const Text(
-                                      'Normal',
+                                      CommonStrings.normal,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -171,7 +173,7 @@ class _ComprehensionThreeStageState extends State<ComprehensionThreeStage> {
                                       }),
                                     ),
                                     const Text(
-                                      'Equivocal',
+                                      CommonStrings.equivocal,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -203,7 +205,7 @@ class _ComprehensionThreeStageState extends State<ComprehensionThreeStage> {
                                       }),
                                     ),
                                     const Text(
-                                      'Impaired',
+                                      CommonStrings.impaired,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -223,7 +225,7 @@ class _ComprehensionThreeStageState extends State<ComprehensionThreeStage> {
                             child: Container(
                               padding: const EdgeInsets.all(16.0),
                               child: const Text(
-                                '3 stages complete without an error',
+                                LanguageStrings.comprehensionThreeStageResponseNormal,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 14.0,
@@ -236,7 +238,7 @@ class _ComprehensionThreeStageState extends State<ComprehensionThreeStage> {
                             child: Container(
                               padding: const EdgeInsets.all(16.0),
                               child: const Text(
-                                'Some difficulty',
+                                LanguageStrings.comprehensionThreeStageResponseEquivocal,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 14.0,
@@ -249,7 +251,7 @@ class _ComprehensionThreeStageState extends State<ComprehensionThreeStage> {
                             child: Container(
                               padding: const EdgeInsets.all(16.0),
                               child: const Text(
-                                '1 or more clear errors',
+                                LanguageStrings.comprehensionThreeStageResponseImpaired,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 14.0,
@@ -296,7 +298,7 @@ class _ComprehensionThreeStageState extends State<ComprehensionThreeStage> {
                           Navigator.of(context).pop();
                         },
                         child: const Text(
-                          'Task Completed',
+                          CommonStrings.taskCompleted,
                           style: TextStyle(color: Colors.black),
                         ),
                       ),

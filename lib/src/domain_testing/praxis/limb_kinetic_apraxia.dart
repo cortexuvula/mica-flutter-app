@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/praxis_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class LimbKineticApraxia extends StatefulWidget {
   const LimbKineticApraxia({super.key});
@@ -40,7 +42,7 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Limb-kinetic Apraxia',
+          PraxisStrings.limbKineticTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -75,7 +77,7 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                   child: const Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      '"Take this pen and rotate it with your fingers as fast as you can."',
+                      PraxisStrings.limbKineticPatientInstruction,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -97,7 +99,7 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                   child: const Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      'Test both hands.',
+                      PraxisStrings.limbKineticExaminerInstruction,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -159,7 +161,7 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                                   child: Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Text(
-                                      'Normal',
+                                      CommonStrings.normal,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontWeight: FontWeight.w500,
@@ -171,7 +173,7 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                                   child: Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Text(
-                                      'Equivocal',
+                                      CommonStrings.equivocal,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontWeight: FontWeight.w500,
@@ -183,7 +185,7 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                                   child: Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Text(
-                                      'Impaired',
+                                      CommonStrings.impaired,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontWeight: FontWeight.w500,
@@ -218,7 +220,7 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                                 const Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: Text(
-                                    'Right',
+                                    PraxisStrings.right,
                                     style: TextStyle(fontWeight: FontWeight.w500),
                                   ),
                                 ),
@@ -307,7 +309,7 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                                 const Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: Text(
-                                    'Left',
+                                    PraxisStrings.left,
                                     style: TextStyle(fontWeight: FontWeight.w500),
                                   ),
                                 ),
@@ -395,7 +397,7 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                                   child: Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Text(
-                                      'No errors',
+                                      PraxisStrings.noErrors,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(fontSize: 12.0),
                                     ),
@@ -405,7 +407,7 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                                   child: Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Text(
-                                      'Some difficulty',
+                                      PraxisStrings.someDifficulty,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(fontSize: 12.0),
                                     ),
@@ -415,7 +417,7 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                                   child: Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Text(
-                                      'Clear difficulty',
+                                      PraxisStrings.clearDifficulty,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(fontSize: 12.0),
                                     ),
@@ -452,7 +454,7 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
                         Navigator.pop(context);
                       },
                       child: const Text(
-                        'Task Completed',
+                        CommonStrings.taskCompleted,
                         style: TextStyle(color: Colors.black),
                       ),
                     ),

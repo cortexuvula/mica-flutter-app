@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/memory_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class TenWordVerbalRecall extends StatefulWidget {
   const TenWordVerbalRecall({super.key});
@@ -89,22 +91,22 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
   List<bool> delayedRecallSelected = List.filled(10, false);
 
   String getTitle() {
-    if (currentStep == 0 && currentTrial == 1) return 'Working Memory';
-    if (currentStep == 1) return 'Word Intermission';
-    if (currentStep == 2 && currentTrial == 2) return 'Short-Term Memory';
-    if (currentStep == 3 && currentTrial == 3) return 'Short-Term Memory';
-    if (currentStep == 4) return 'Short-Term Memory';
-    if (currentStep == 5) return 'Short-Term Memory';
-    if (currentStep == 6) return 'Results';
-    return 'Memory Test';
+    if (currentStep == 0 && currentTrial == 1) return MemoryStrings.tenWordWorkingMemoryTitle;
+    if (currentStep == 1) return MemoryStrings.tenWordIntermissionTitle;
+    if (currentStep == 2 && currentTrial == 2) return MemoryStrings.tenWordShortTermTitle;
+    if (currentStep == 3 && currentTrial == 3) return MemoryStrings.tenWordShortTermTitle;
+    if (currentStep == 4) return MemoryStrings.tenWordShortTermTitle;
+    if (currentStep == 5) return MemoryStrings.tenWordShortTermTitle;
+    if (currentStep == 6) return MemoryStrings.tenWordResultsTitle;
+    return MemoryStrings.tenWordMemoryTestTitle;
   }
 
   String getSubtitle() {
-    if (currentStep == 0 && currentTrial == 1) return 'Verbal Trial 1';
-    if (currentStep == 2 && currentTrial == 2) return 'Verbal Trial 2';
-    if (currentStep == 3 && currentTrial == 3) return 'Verbal Trial 3';
-    if (currentStep == 4) return 'Verbal Delayed Recall';
-    if (currentStep == 5) return 'Verbal Recognition';
+    if (currentStep == 0 && currentTrial == 1) return MemoryStrings.tenWordVerbalTrial1;
+    if (currentStep == 2 && currentTrial == 2) return MemoryStrings.tenWordVerbalTrial2;
+    if (currentStep == 3 && currentTrial == 3) return MemoryStrings.tenWordVerbalTrial3;
+    if (currentStep == 4) return MemoryStrings.tenWordDelayedRecall;
+    if (currentStep == 5) return MemoryStrings.tenWordRecognition;
     return '';
   }
 
@@ -190,7 +192,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                 child: Column(
                   children: [
                     Text(
-                      'Scroll down to reveal more instructions',
+                      MemoryStrings.tenWordScrollInstruction,
                       style: TextStyle(
                         color: Colors.grey.shade600,
                         fontSize: 14.0,
@@ -208,7 +210,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: const Text(
-                          '"I am going to read you a list of 10 words. Remember these words, as I will ask you what you can remember afterwards. Please repeat each word after I have said it, so that I can be sure that you have heard it correctly. Do you understand? Are you ready? Let\'s go!"',
+                          MemoryStrings.tenWordTrial1PatientInstruction,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16.0,
@@ -227,7 +229,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: const Text(
-                          'If the patient does not repeat the word say: "Please repeat the word." Read the words from left to right. Carry on with the rest of the list.',
+                          MemoryStrings.tenWordRepeatWordInstruction,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16.0,
@@ -246,7 +248,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: const Text(
-                          'Read the words aloud again from left to right, asking for repetition after every word.',
+                          MemoryStrings.tenWordReadWordsInstruction,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16.0,
@@ -266,7 +268,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: const Text(
-                        '"What were those words?"',
+                        MemoryStrings.tenWordWhatWereThoseWords,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16.0,
@@ -286,7 +288,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: const Text(
-                          'Tap on each word correctly recalled.',
+                          MemoryStrings.tenWordTapRecalledInstruction,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16.0,
@@ -305,7 +307,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                           borderRadius: BorderRadius.circular(8.0),
                         ),
                         child: const Text(
-                          '"Now try to remember the words because I will ask you again later."',
+                          MemoryStrings.tenWordRememberLaterInstruction,
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 16.0,
@@ -435,7 +437,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                             });
                           },
                           child: const Text(
-                            'Continue',
+                            CommonStrings.continueButton,
                             style: TextStyle(color: Colors.black),
                           ),
                         ),
@@ -470,7 +472,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                 child: Column(
                   children: [
                     Text(
-                      'Scroll down to reveal more instructions',
+                      MemoryStrings.tenWordScrollInstruction,
                       style: TextStyle(
                         color: Colors.grey.shade600,
                         fontSize: 14.0,
@@ -487,7 +489,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: const Text(
-                        'Read the words aloud again from left to right, asking for repetition after every word.',
+                        MemoryStrings.tenWordReadWordsInstruction,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16.0,
@@ -506,7 +508,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: const Text(
-                        '"What were those words?"',
+                        MemoryStrings.tenWordWhatWereThoseWords,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16.0,
@@ -525,7 +527,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: const Text(
-                        'Tap on each word correctly recalled.',
+                        MemoryStrings.tenWordTapRecalledInstruction,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16.0,
@@ -544,7 +546,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: const Text(
-                        '"Now try to remember the words because I will ask you again later."',
+                        MemoryStrings.tenWordRememberLaterInstruction,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16.0,
@@ -673,7 +675,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                             });
                           },
                           child: const Text(
-                            'Continue',
+                            CommonStrings.continueButton,
                             style: TextStyle(color: Colors.black),
                           ),
                         ),
@@ -703,7 +705,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
           constraints: const BoxConstraints(maxWidth: 600),
           padding: const EdgeInsets.all(24.0),
           child: const Text(
-            'Allow about 5 minutes to pass by using distraction tasks such as Months Backwards, Design Fluency and/or Luria Alternating Hand Movements.',
+            MemoryStrings.tenWordIntermissionInstruction,
             style: TextStyle(
               color: Colors.black,
               fontSize: 18.0,
@@ -737,7 +739,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                       });
                     },
                     child: const Text(
-                      'Continue',
+                      CommonStrings.continueButton,
                       style: TextStyle(color: Colors.black),
                     ),
                   ),
@@ -777,7 +779,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                         borderRadius: BorderRadius.circular(8.0),
                       ),
                       child: const Text(
-                        '"Tell me the words you learned during this memory test."',
+                        MemoryStrings.tenWordDelayedRecallInstruction,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16.0,
@@ -892,7 +894,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                             });
                           },
                           child: const Text(
-                            'Continue',
+                            CommonStrings.continueButton,
                             style: TextStyle(color: Colors.black),
                           ),
                         ),
@@ -924,7 +926,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
           child: Column(
             children: [
               const Text(
-                'Scroll down to reveal more instructions',
+                MemoryStrings.tenWordScrollInstruction,
                 style: TextStyle(
                   color: Colors.grey,
                   fontSize: 14.0,
@@ -941,7 +943,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: const Text(
-                  '"I am now going to read a list of words. Some of the words are from the list that I asked you to remember and some of the words are new. Say yes if you recognise the word and no if it was not in the list I asked you to memorise. If you don\'t know the answer just guess."',
+                  MemoryStrings.tenWordRecognitionPatientInstruction,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16.0,
@@ -960,7 +962,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                   borderRadius: BorderRadius.circular(8.0),
                 ),
                 child: const Text(
-                  'The instructions may be repeated if forgotten. To select correct responses, tap on Yes or No for each word. (Words from the original memory list are in BOLD.)',
+                  MemoryStrings.tenWordRecognitionExaminerInstruction,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16.0,
@@ -1108,7 +1110,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                       });
                     },
                     child: const Text(
-                      'Continue',
+                      CommonStrings.continueButton,
                       style: TextStyle(color: Colors.black),
                     ),
                   ),
@@ -1154,7 +1156,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
           child: Column(
             children: [
               const Text(
-                'Score Summary',
+                MemoryStrings.tenWordScoreSummary,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 24.0,
@@ -1175,7 +1177,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'Working Memory:',
+                        MemoryStrings.tenWordWorkingMemoryLabel,
                         style: TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
@@ -1188,7 +1190,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                       ),
                       const SizedBox(height: 16.0),
                       const Text(
-                        'Short-Term Memory:',
+                        MemoryStrings.tenWordShortTermMemoryLabel,
                         style: TextStyle(
                           fontSize: 18.0,
                           fontWeight: FontWeight.bold,
@@ -1263,7 +1265,7 @@ class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
                       Navigator.of(context).pop();
                     },
                     child: const Text(
-                      'Task Completed',
+                      CommonStrings.taskCompleted,
                       style: TextStyle(color: Colors.black),
                     ),
                   ),

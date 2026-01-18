@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mica/resources/strings/summary_strings.dart';
 
 /// A widget for displaying domain assessment sections in the full report
 class DomainReportCard extends StatelessWidget {
@@ -48,22 +49,22 @@ class DomainReportCard extends StatelessWidget {
                     children: [
                       const Padding(
                         padding: EdgeInsets.all(8.0),
-                        child: Text('Task',
+                        child: Text(SummaryStrings.taskHeader,
                             style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                       const Padding(
                         padding: EdgeInsets.all(8.0),
-                        child: Text('Scoring Guide',
+                        child: Text(SummaryStrings.scoringGuideHeader,
                             style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                       Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Text(useResultColumn ? 'Result' : 'Estimate',
+                        child: Text(useResultColumn ? SummaryStrings.resultHeader : SummaryStrings.estimateHeader,
                             style: const TextStyle(fontWeight: FontWeight.bold)),
                       ),
                       const Padding(
                         padding: EdgeInsets.all(8.0),
-                        child: Text('N / E / I',
+                        child: Text(SummaryStrings.neiHeader,
                             style: TextStyle(fontWeight: FontWeight.bold)),
                       ),
                     ],

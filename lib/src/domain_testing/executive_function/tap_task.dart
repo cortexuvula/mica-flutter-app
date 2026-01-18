@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/executive_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class TapTask extends StatefulWidget {
   const TapTask({super.key});
@@ -56,7 +57,7 @@ class TapTaskState extends State<TapTask> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
-            'Tap Task',
+            ExecutiveStrings.tapTaskTitle,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,
@@ -85,7 +86,7 @@ class TapTaskState extends State<TapTask> {
                 child: const Padding(
                   padding: EdgeInsets.all(16.0),
                   child: Text(
-                    app_data.testExecutiveTapToPatient,
+                    ExecutiveStrings.tapTaskPatientInstruction,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,
@@ -107,7 +108,7 @@ class TapTaskState extends State<TapTask> {
                 child: const Padding(
                   padding: EdgeInsets.all(16.0),
                   child: Text(
-                    app_data.testExecutiveTapInstructions,
+                    ExecutiveStrings.tapTaskExaminerInstruction,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,
@@ -131,7 +132,7 @@ class TapTaskState extends State<TapTask> {
                   child: Column(
                     children: [
                       const Text(
-                        app_data.testExecutiveTapResponse,
+                        ExecutiveStrings.tapTaskResponse,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.black,
@@ -174,7 +175,7 @@ class TapTaskState extends State<TapTask> {
                                         ),
                                         const SizedBox(width: 8),
                                         const Text(
-                                          'Normal',
+                                          CommonStrings.normal,
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 14.0,
@@ -208,7 +209,7 @@ class TapTaskState extends State<TapTask> {
                                         ),
                                         const SizedBox(width: 8),
                                         const Text(
-                                          'Equivocal',
+                                          CommonStrings.equivocal,
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 14.0,
@@ -242,7 +243,7 @@ class TapTaskState extends State<TapTask> {
                                         ),
                                         const SizedBox(width: 8),
                                         const Text(
-                                          'Impaired',
+                                          CommonStrings.impaired,
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 14.0,
@@ -285,7 +286,7 @@ class TapTaskState extends State<TapTask> {
                       Navigator.pop(context);
                     },
                     child: const Text(
-                      'Task Completed',
+                      CommonStrings.taskCompleted,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 18.0,

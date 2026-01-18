@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/language_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class ComprehensionMovingObjects extends StatefulWidget {
   const ComprehensionMovingObjects({super.key});
@@ -18,7 +20,7 @@ class _ComprehensionMovingObjectsState extends State<ComprehensionMovingObjects>
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Comprehension: Moving 3 Objects Task',
+          LanguageStrings.comprehensionMovingObjectsTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -36,7 +38,7 @@ class _ComprehensionMovingObjectsState extends State<ComprehensionMovingObjects>
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Place 3 objects in front of the patient and name them while they are being placed to exclude naming ability and object agnosia as confounding factors. Common objects such as a coin, keys and a piece of paper can be used. Begin with simple commands and then move to more complex instructions.',
+                LanguageStrings.comprehensionMovingObjectsExaminerInstruction,
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16.0,
@@ -57,7 +59,7 @@ class _ComprehensionMovingObjectsState extends State<ComprehensionMovingObjects>
               child: Column(
                 children: [
                   Text(
-                    '"Turn the coin over"',
+                    LanguageStrings.comprehensionMovingObjectsPatientInstruction1,
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 16.0,
@@ -68,7 +70,7 @@ class _ComprehensionMovingObjectsState extends State<ComprehensionMovingObjects>
                   ),
                   const SizedBox(height: 8.0),
                   Text(
-                    '"Place the keys on the other side of the paper"',
+                    LanguageStrings.comprehensionMovingObjectsPatientInstruction2,
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 16.0,
@@ -79,7 +81,7 @@ class _ComprehensionMovingObjectsState extends State<ComprehensionMovingObjects>
                   ),
                   const SizedBox(height: 8.0),
                   Text(
-                    '"Place the coin between the keys and the paper, and then turn over the paper."',
+                    LanguageStrings.comprehensionMovingObjectsPatientInstruction3,
                     style: const TextStyle(
                       color: Colors.black,
                       fontSize: 16.0,
@@ -152,7 +154,7 @@ class _ComprehensionMovingObjectsState extends State<ComprehensionMovingObjects>
                                       }),
                                     ),
                                     const Text(
-                                      'Normal',
+                                      CommonStrings.normal,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -185,7 +187,7 @@ class _ComprehensionMovingObjectsState extends State<ComprehensionMovingObjects>
                                       }),
                                     ),
                                     const Text(
-                                      'Equivocal',
+                                      CommonStrings.equivocal,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -218,7 +220,7 @@ class _ComprehensionMovingObjectsState extends State<ComprehensionMovingObjects>
                                       }),
                                     ),
                                     const Text(
-                                      'Impaired',
+                                      CommonStrings.impaired,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -267,7 +269,7 @@ class _ComprehensionMovingObjectsState extends State<ComprehensionMovingObjects>
                           Navigator.of(context).pop();
                         },
                         child: const Text(
-                          'Task Completed',
+                          CommonStrings.taskCompleted,
                           style: TextStyle(color: Colors.black),
                         ),
                       ),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/praxis_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class IdeomotorApraxia extends StatefulWidget {
   const IdeomotorApraxia({super.key});
@@ -40,7 +42,7 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Ideomotor Apraxia',
+          PraxisStrings.ideomotorTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -75,7 +77,7 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                   child: const Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      'This is a failure to correctly position and move a limb in space. It can be assessed by asking the patient to mime tasks.',
+                      PraxisStrings.ideomotorExaminerInstruction,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -97,7 +99,7 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                   child: const Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      '"Show with your right hand how you would pour a cup of tea, add sugar and stir it."',
+                      PraxisStrings.ideomotorPatientInstruction1,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -119,7 +121,7 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                   child: const Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      '"Now do the same with your left hand."',
+                      PraxisStrings.ideomotorPatientInstruction2,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -143,7 +145,7 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                     child: Column(
                       children: <Widget>[
                         const Text(
-                          'Note the response of the patient and score as below.',
+                          CommonStrings.noteResponseAndScore,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.black,
@@ -175,7 +177,7 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                                 const Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: Text(
-                                    'Right',
+                                    PraxisStrings.right,
                                     style: TextStyle(fontWeight: FontWeight.w500),
                                   ),
                                 ),
@@ -197,7 +199,7 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                                           ),
                                         ),
                                         const Text(
-                                          'Normal',
+                                          CommonStrings.normal,
                                           style: TextStyle(fontSize: 12.0),
                                         ),
                                       ],
@@ -222,7 +224,7 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                                           ),
                                         ),
                                         const Text(
-                                          'Equivocal',
+                                          CommonStrings.equivocal,
                                           style: TextStyle(fontSize: 12.0),
                                         ),
                                       ],
@@ -247,7 +249,7 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                                           ),
                                         ),
                                         const Text(
-                                          'Impaired',
+                                          CommonStrings.impaired,
                                           style: TextStyle(fontSize: 12.0),
                                         ),
                                       ],
@@ -282,7 +284,7 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                                 const Padding(
                                   padding: EdgeInsets.all(8.0),
                                   child: Text(
-                                    'Left',
+                                    PraxisStrings.left,
                                     style: TextStyle(fontWeight: FontWeight.w500),
                                   ),
                                 ),
@@ -304,7 +306,7 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                                           ),
                                         ),
                                         const Text(
-                                          'Normal',
+                                          CommonStrings.normal,
                                           style: TextStyle(fontSize: 12.0),
                                         ),
                                       ],
@@ -329,7 +331,7 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                                           ),
                                         ),
                                         const Text(
-                                          'Equivocal',
+                                          CommonStrings.equivocal,
                                           style: TextStyle(fontSize: 12.0),
                                         ),
                                       ],
@@ -354,7 +356,7 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                                           ),
                                         ),
                                         const Text(
-                                          'Impaired',
+                                          CommonStrings.impaired,
                                           style: TextStyle(fontSize: 12.0),
                                         ),
                                       ],
@@ -388,7 +390,7 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                                   child: Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Text(
-                                      'No errors',
+                                      PraxisStrings.noErrors,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(fontSize: 12.0),
                                     ),
@@ -398,7 +400,7 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                                   child: Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Text(
-                                      'Some difficulty',
+                                      PraxisStrings.someDifficulty,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(fontSize: 12.0),
                                     ),
@@ -408,7 +410,7 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                                   child: Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Text(
-                                      'Clear difficulty',
+                                      PraxisStrings.clearDifficulty,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(fontSize: 12.0),
                                     ),
@@ -445,7 +447,7 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
                         Navigator.pop(context);
                       },
                       child: const Text(
-                        'Task Completed',
+                        CommonStrings.taskCompleted,
                         style: TextStyle(color: Colors.black),
                       ),
                     ),

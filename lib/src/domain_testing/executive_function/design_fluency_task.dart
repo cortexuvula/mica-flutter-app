@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/executive_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class DesignFluencyTask extends StatefulWidget {
   const DesignFluencyTask({super.key});
@@ -94,7 +95,7 @@ class DesignFluencyTaskState extends State<DesignFluencyTask> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
-            'Design Fluency Task',
+            ExecutiveStrings.designFluencyTitle,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,
@@ -123,7 +124,7 @@ class DesignFluencyTaskState extends State<DesignFluencyTask> {
                 child: const Padding(
                   padding: EdgeInsets.all(16.0),
                   child: Text(
-                    app_data.testExecutiveToPatient,
+                    ExecutiveStrings.designFluencyPatientInstruction,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,
@@ -147,7 +148,7 @@ class DesignFluencyTaskState extends State<DesignFluencyTask> {
                   child: Column(
                     children: [
                       const Text(
-                        app_data.testExecutiveDetails,
+                        ExecutiveStrings.designFluencyExaminerInstruction,
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: Colors.black,
@@ -202,7 +203,7 @@ class DesignFluencyTaskState extends State<DesignFluencyTask> {
                 child: const Padding(
                   padding: EdgeInsets.all(16.0),
                   child: Text(
-                    app_data.testExecutiveToPatient2,
+                    ExecutiveStrings.designFluencyPatientInstruction2,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,
@@ -250,10 +251,10 @@ class DesignFluencyTaskState extends State<DesignFluencyTask> {
                               : _startTimer,
                           child: Text(
                             _timerCompleted
-                                ? 'Complete'
+                                ? ExecutiveStrings.timerComplete
                                 : _isTimerRunning
-                                    ? 'Running'
-                                    : 'Start',
+                                    ? ExecutiveStrings.timerRunning
+                                    : ExecutiveStrings.timerStart,
                             style: const TextStyle(
                               fontSize: 18.0,
                               fontWeight: FontWeight.w500,
@@ -313,7 +314,7 @@ class DesignFluencyTaskState extends State<DesignFluencyTask> {
                                         const SizedBox(width: 4),
                                         const Flexible(
                                           child: Text(
-                                            'Normal',
+                                            CommonStrings.normal,
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 12.0,
@@ -349,7 +350,7 @@ class DesignFluencyTaskState extends State<DesignFluencyTask> {
                                         const SizedBox(width: 4),
                                         const Flexible(
                                           child: Text(
-                                            'Equivocal',
+                                            CommonStrings.equivocal,
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 12.0,
@@ -385,7 +386,7 @@ class DesignFluencyTaskState extends State<DesignFluencyTask> {
                                         const SizedBox(width: 4),
                                         const Flexible(
                                           child: Text(
-                                            'Impaired',
+                                            CommonStrings.impaired,
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 12.0,
@@ -405,7 +406,7 @@ class DesignFluencyTaskState extends State<DesignFluencyTask> {
                               const Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Text(
-                                  app_data.testExecutiveResponseNormal,
+                                  ExecutiveStrings.designFluencyResponseNormal,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.white,
@@ -416,7 +417,7 @@ class DesignFluencyTaskState extends State<DesignFluencyTask> {
                               const Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Text(
-                                  app_data.testExecutiveResponseEquivocal,
+                                  ExecutiveStrings.designFluencyResponseEquivocal,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.white,
@@ -427,7 +428,7 @@ class DesignFluencyTaskState extends State<DesignFluencyTask> {
                               const Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Text(
-                                  app_data.testExecutiveResponseImpaired,
+                                  ExecutiveStrings.designFluencyResponseImpaired,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.white,
@@ -466,7 +467,7 @@ class DesignFluencyTaskState extends State<DesignFluencyTask> {
                       Navigator.pop(context);
                     },
                     child: const Text(
-                      'Task Completed',
+                      CommonStrings.taskCompleted,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 18.0,

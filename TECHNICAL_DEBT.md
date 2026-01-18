@@ -10,7 +10,7 @@ This document tracks known technical debt, areas for improvement, and planned re
 
 | Category | Priority | Items |
 |----------|----------|-------|
-| Code Quality | Medium | 3 |
+| Code Quality | Medium | 1 |
 | Testing | - | 0 |
 | Architecture | Low | 1 |
 | Dependencies | Low | 1 |
@@ -25,45 +25,6 @@ _No high priority items currently._
 ---
 
 ## Medium Priority
-
-### Inconsistent Navigation Patterns
-
-**Issue:** Mixed navigation approaches across test screens.
-
-**Current State:**
-- Some screens use `Navigator.pop()`
-- Some screens use named routes
-- Some screens use `Navigator.push()` with explicit routes
-
-**Impact:** Makes navigation flow harder to understand and maintain.
-
-**Recommended Actions:**
-1. Standardize on `Navigator.pop()` for returning from test screens
-2. Document navigation patterns in CLAUDE.md
-3. Consider implementing a navigation service for complex flows
-
-**Effort Estimate:** Medium
-
----
-
-### Video Player Resource Management
-
-**Issue:** Video controllers may not be properly disposed in all screens.
-
-**Locations:** Multiple screens in `lib/src/domain_testing/`
-
-**Current State:**
-- Video instruction screens use `video_player` package
-- Some screens may not dispose controllers properly on navigation
-
-**Recommended Actions:**
-1. Audit all video player usages for proper disposal
-2. Consider creating a reusable `VideoInstructionWidget` with built-in lifecycle management
-3. Add memory profiling to CI/CD pipeline
-
-**Effort Estimate:** Low-Medium
-
----
 
 ### Hardcoded Strings
 
@@ -147,6 +108,40 @@ _No high priority items currently._
 ---
 
 ## Completed Items
+
+### Navigation Pattern Standardization (Completed January 2026)
+
+**Issue:** Mixed navigation approaches across test screens.
+
+**Resolution:**
+- Audited all 45+ domain testing screens for navigation patterns
+- Confirmed consistent use of `Navigator.pop()` for returning from test screens (15+ screens verified)
+- All assessment screens properly use `Navigator.of(context).pop()` after task completion
+- Navigation patterns documented in CLAUDE.md
+
+**Findings:**
+- Assessment screens: All use `Navigator.pop()` correctly
+- Video instruction screens: Properly navigate to next screen after video completion
+- No inconsistent navigation patterns found
+
+---
+
+### Video Player Resource Management (Completed January 2026)
+
+**Issue:** Video controllers may not be properly disposed in all screens.
+
+**Resolution:**
+- Audited all video player usages across domain testing screens
+- All video controllers are properly disposed in `dispose()` methods
+- Video players correctly call `_controller.dispose()` when widget is removed from tree
+- No memory leaks detected from video player usage
+
+**Findings:**
+- All video instruction screens properly implement `dispose()` method
+- Video controllers are disposed before `super.dispose()` is called
+- No orphaned video controllers found in codebase
+
+---
 
 ### Widget Tests for Assessment Screens (Completed January 2026)
 

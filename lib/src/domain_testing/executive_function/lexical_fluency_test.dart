@@ -1,7 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/executive_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class LexicalFluencyTest extends StatefulWidget {
   const LexicalFluencyTest({super.key});
@@ -126,7 +127,7 @@ class LexicalFluencyTestState extends State<LexicalFluencyTest> {
       child: Scaffold(
         appBar: AppBar(
           title: const Text(
-            'Lexical Fluency Test',
+            ExecutiveStrings.lexicalFluencyTitle,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,
@@ -155,7 +156,7 @@ class LexicalFluencyTestState extends State<LexicalFluencyTest> {
                 child: const Padding(
                   padding: EdgeInsets.all(16.0),
                   child: Text(
-                    app_data.testExecutiveLexicalFluencyToPatient,
+                    ExecutiveStrings.lexicalFluencyPatientInstruction,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,
@@ -177,7 +178,7 @@ class LexicalFluencyTestState extends State<LexicalFluencyTest> {
                 child: const Padding(
                   padding: EdgeInsets.all(16.0),
                   child: Text(
-                    app_data.testExecutiveLexicalFluencyDetails,
+                    ExecutiveStrings.lexicalFluencyExaminerInstruction,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       color: Colors.black,
@@ -225,10 +226,10 @@ class LexicalFluencyTestState extends State<LexicalFluencyTest> {
                               : _startTimer,
                           child: Text(
                             _timerCompleted
-                                ? 'Complete'
+                                ? ExecutiveStrings.timerComplete
                                 : _isTimerRunning
-                                    ? 'Running'
-                                    : 'Start',
+                                    ? ExecutiveStrings.timerRunning
+                                    : ExecutiveStrings.timerStart,
                             style: const TextStyle(
                               fontSize: 18.0,
                               fontWeight: FontWeight.w500,
@@ -283,7 +284,7 @@ class LexicalFluencyTestState extends State<LexicalFluencyTest> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   const Text(
-                                    'Tap to count Words',
+                                    ExecutiveStrings.tapToCountWords,
                                     style: TextStyle(
                                       fontSize: 14,
                                       fontWeight: FontWeight.w500,
@@ -364,7 +365,7 @@ class LexicalFluencyTestState extends State<LexicalFluencyTest> {
                                         const SizedBox(width: 4),
                                         const Flexible(
                                           child: Text(
-                                            'Normal',
+                                            CommonStrings.normal,
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 12.0,
@@ -400,7 +401,7 @@ class LexicalFluencyTestState extends State<LexicalFluencyTest> {
                                         const SizedBox(width: 4),
                                         const Flexible(
                                           child: Text(
-                                            'Equivocal',
+                                            CommonStrings.equivocal,
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 12.0,
@@ -436,7 +437,7 @@ class LexicalFluencyTestState extends State<LexicalFluencyTest> {
                                         const SizedBox(width: 4),
                                         const Flexible(
                                           child: Text(
-                                            'Impaired',
+                                            CommonStrings.impaired,
                                             style: TextStyle(
                                               color: Colors.white,
                                               fontSize: 12.0,
@@ -456,8 +457,7 @@ class LexicalFluencyTestState extends State<LexicalFluencyTest> {
                               const Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Text(
-                                  app_data
-                                      .testExecutiveLexicalFluencyResponseNormal,
+                                  ExecutiveStrings.lexicalFluencyResponseNormal,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.white,
@@ -468,8 +468,7 @@ class LexicalFluencyTestState extends State<LexicalFluencyTest> {
                               const Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Text(
-                                  app_data
-                                      .testExecutiveLexicalFluencyResponseEquivocal,
+                                  ExecutiveStrings.lexicalFluencyResponseEquivocal,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.white,
@@ -480,8 +479,7 @@ class LexicalFluencyTestState extends State<LexicalFluencyTest> {
                               const Padding(
                                 padding: EdgeInsets.all(8.0),
                                 child: Text(
-                                  app_data
-                                      .testExecutiveLexicalFluencyResponseImpaired,
+                                  ExecutiveStrings.lexicalFluencyResponseImpaired,
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     color: Colors.white,
@@ -520,7 +518,7 @@ class LexicalFluencyTestState extends State<LexicalFluencyTest> {
                       Navigator.pop(context);
                     },
                     child: const Text(
-                      'Task Completed',
+                      CommonStrings.taskCompleted,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 18.0,

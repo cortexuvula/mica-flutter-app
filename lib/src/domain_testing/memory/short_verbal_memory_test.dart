@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/memory_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class ShortVerbalMemoryTest extends StatefulWidget {
   const ShortVerbalMemoryTest({super.key});
@@ -54,7 +56,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Short Verbal Memory Test',
+          MemoryStrings.shortVerbalTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -97,7 +99,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            '"I would like you to remember a name and address. Listen carefully as I will say it only once. Are you ready?"',
+            MemoryStrings.shortVerbalPatientInstruction1,
             style: const TextStyle(
               color: Colors.black,
               fontSize: 16.0,
@@ -116,7 +118,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            '"Peter Black, 25 Market Close, Northam, Wheatbelt. Can you repeat that?"',
+            MemoryStrings.shortVerbalPatientInstruction2,
             style: const TextStyle(
               color: Colors.black,
               fontSize: 16.0,
@@ -137,7 +139,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
           child: Column(
             children: [
               const Text(
-                'Tap on words correctly recalled.',
+                MemoryStrings.shortVerbalTapWordsInstruction,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 16.0,
@@ -216,7 +218,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            'If the patient is able to recall without error then continue. If unable, then the name and address can be repeated up to 3 times asking for recall each time. This is not scored.',
+            MemoryStrings.shortVerbalRepeatInstruction,
             style: const TextStyle(
               color: Colors.black,
               fontSize: 16.0,
@@ -239,7 +241,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            '"Remember the name and address as I will ask for it later."',
+            MemoryStrings.shortVerbalPatientReminder,
             style: const TextStyle(
               color: Colors.black,
               fontSize: 16.0,
@@ -258,7 +260,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            'Allow about 5 minutes to pass by using distraction',
+            MemoryStrings.shortVerbalDistractionInstruction,
             style: const TextStyle(
               color: Colors.black,
               fontSize: 16.0,
@@ -284,7 +286,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
             });
           },
           child: const Text(
-            'Continue to Delayed Recall',
+            MemoryStrings.shortVerbalContinueDelayed,
             style: TextStyle(color: Colors.black),
           ),
         ),
@@ -304,7 +306,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            '"Tell me the name and address that you learned earlier."',
+            MemoryStrings.shortVerbalDelayedInstruction,
             style: const TextStyle(
               color: Colors.black,
               fontSize: 16.0,
@@ -325,7 +327,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
           child: Column(
             children: [
               const Text(
-                'Tap on words correctly recalled.',
+                MemoryStrings.shortVerbalTapWordsInstruction,
                 style: TextStyle(
                   color: Colors.black,
                   fontSize: 16.0,
@@ -416,7 +418,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
             });
           },
           child: const Text(
-            'Continue to Cued Recall',
+            MemoryStrings.shortVerbalContinueCued,
             style: TextStyle(color: Colors.black),
           ),
         ),
@@ -443,7 +445,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            'Test for cued recall by giving alternatives as indicated below.',
+            MemoryStrings.shortVerbalCuedExaminerInstruction,
             style: const TextStyle(
               color: Colors.black,
               fontSize: 16.0,
@@ -462,7 +464,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            '"Did I ask you to remember...?"',
+            MemoryStrings.shortVerbalCuedInstruction,
             style: const TextStyle(
               color: Colors.black,
               fontSize: 16.0,
@@ -482,9 +484,9 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
-              const Text(
-                'Read 2 alternatives and target word.\nTap on words correctly recalled.',
-                style: TextStyle(
+              Text(
+                MemoryStrings.shortVerbalCuedTapInstruction,
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16.0,
                   fontWeight: FontWeight.w500,
@@ -601,7 +603,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
                       Navigator.of(context).pop();
                     },
                     child: const Text(
-                      'Task Completed',
+                      CommonStrings.taskCompleted,
                       style: TextStyle(color: Colors.black),
                     ),
                   ),
@@ -748,7 +750,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
         child: Column(
           children: [
             const Text(
-              'Name and Address: Recognition Memory',
+              MemoryStrings.shortVerbalRecognitionMemoryTitle,
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 16.0,
@@ -784,7 +786,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
                               }),
                             ),
                             const Text(
-                              'Normal',
+                              CommonStrings.normal,
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 16.0,
@@ -810,7 +812,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
                               }),
                             ),
                             const Text(
-                              'Equivocal',
+                              CommonStrings.equivocal,
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 16.0,
@@ -836,7 +838,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
                               }),
                             ),
                             const Text(
-                              'Impaired',
+                              CommonStrings.impaired,
                               style: TextStyle(
                                 color: Colors.black,
                                 fontSize: 16.0,
@@ -853,7 +855,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
                     const Padding(
                       padding: EdgeInsets.all(16.0),
                       child: Text(
-                        'No errors',
+                        MemoryStrings.shortVerbalNoErrors,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 14.0,
@@ -864,7 +866,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
                     const Padding(
                       padding: EdgeInsets.all(16.0),
                       child: Text(
-                        '1 error',
+                        MemoryStrings.shortVerbalOneError,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 14.0,
@@ -875,7 +877,7 @@ class _ShortVerbalMemoryTestState extends State<ShortVerbalMemoryTest> {
                     const Padding(
                       padding: EdgeInsets.all(16.0),
                       child: Text(
-                        '> 1 error',
+                        MemoryStrings.shortVerbalMoreThanOneError,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 14.0,

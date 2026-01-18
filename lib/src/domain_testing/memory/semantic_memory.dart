@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/memory_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class SemanticMemory extends StatefulWidget {
   const SemanticMemory({super.key});
@@ -50,7 +52,7 @@ class _SemanticMemoryState extends State<SemanticMemory> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Semantic memory',
+          MemoryStrings.semanticTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -105,7 +107,7 @@ class _SemanticMemoryState extends State<SemanticMemory> {
                           ),
                           const SizedBox(height: 8.0),
                           const Text(
-                            'Most people will be able to give a correct answer for 3 or more of the questions.',
+                            MemoryStrings.semanticScoringNote,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 16.0,
@@ -143,7 +145,7 @@ class _SemanticMemoryState extends State<SemanticMemory> {
                                   Navigator.of(context).pop();
                                 },
                                 child: const Text(
-                                  'Task Completed',
+                                  CommonStrings.taskCompleted,
                                   style: TextStyle(color: Colors.black),
                                 ),
                               ),
@@ -199,7 +201,7 @@ class _SemanticMemoryState extends State<SemanticMemory> {
             child: Column(
               children: [
                 const Text(
-                  'Tap on the button to log answer',
+                  MemoryStrings.semanticTapInstruction,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16.0,

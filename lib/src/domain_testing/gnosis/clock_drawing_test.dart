@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/gnosis_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class ClockDrawingTest extends StatefulWidget {
   const ClockDrawingTest({super.key});
@@ -29,7 +31,7 @@ class _ClockDrawingTestState extends State<ClockDrawingTest> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Clock Drawing Test',
+          GnosisStrings.clockDrawingTest,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -61,7 +63,7 @@ class _ClockDrawingTestState extends State<ClockDrawingTest> {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: const Text(
-                  'Drawing a clock requires a number of cognitive domains to work together. Guiding the hand involves praxis. Planning the task is executive functioning. Monitoring the result visually is gnosis.',
+                  GnosisStrings.clockDrawingExplanation,
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
@@ -81,7 +83,7 @@ class _ClockDrawingTestState extends State<ClockDrawingTest> {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: const Text(
-                  '"Draw a clock face with the time set to 10 past five. It must have all the numbers and hands so that a child can read the time"',
+                  GnosisStrings.clockDrawingPatientInstruction,
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
@@ -104,7 +106,7 @@ class _ClockDrawingTestState extends State<ClockDrawingTest> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
                     Text(
-                      'The instructions may be repeated once if required. A total of five points are awarded.\nMost people would be able to score full marks.',
+                      GnosisStrings.clockDrawingScoringIntro,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
@@ -115,7 +117,7 @@ class _ClockDrawingTestState extends State<ClockDrawingTest> {
                     ),
                     SizedBox(height: 16.0),
                     Text(
-                      '- Score one point if the outer circle is present.',
+                      GnosisStrings.clockDrawingScoreCriteria1,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
@@ -125,7 +127,7 @@ class _ClockDrawingTestState extends State<ClockDrawingTest> {
                     ),
                     SizedBox(height: 8.0),
                     Text(
-                      '- Score one point if all the numbers are present, in the correct order and in the appropriate quadrant. No other numbers or letters are allowed.',
+                      GnosisStrings.clockDrawingScoreCriteria2,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
@@ -135,7 +137,7 @@ class _ClockDrawingTestState extends State<ClockDrawingTest> {
                     ),
                     SizedBox(height: 8.0),
                     Text(
-                      '- Score one point if all the hands are present. The minute hand must be longer than the hour hand.',
+                      GnosisStrings.clockDrawingScoreCriteria3,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
@@ -145,7 +147,7 @@ class _ClockDrawingTestState extends State<ClockDrawingTest> {
                     ),
                     SizedBox(height: 8.0),
                     Text(
-                      '- Score one point if the time is correctly indicated.',
+                      GnosisStrings.clockDrawingScoreCriteria4,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
@@ -155,7 +157,7 @@ class _ClockDrawingTestState extends State<ClockDrawingTest> {
                     ),
                     SizedBox(height: 8.0),
                     Text(
-                      '- Score one point for good overall planning (starts with a circle and plans the writing of the numbers in appropriate quadrants).',
+                      GnosisStrings.clockDrawingScoreCriteria5,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
@@ -178,7 +180,7 @@ class _ClockDrawingTestState extends State<ClockDrawingTest> {
                 child: Column(
                   children: <Widget>[
                     const Text(
-                      'Note the response of the patient and score as below.',
+                      CommonStrings.noteResponseAndScore,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
@@ -217,7 +219,7 @@ class _ClockDrawingTestState extends State<ClockDrawingTest> {
                                         }),
                                       ),
                                       const Text(
-                                        'Normal',
+                                        CommonStrings.normal,
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14.0,
@@ -246,7 +248,7 @@ class _ClockDrawingTestState extends State<ClockDrawingTest> {
                                         }),
                                       ),
                                       const Text(
-                                        'Equivocal',
+                                        CommonStrings.equivocal,
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14.0,
@@ -275,7 +277,7 @@ class _ClockDrawingTestState extends State<ClockDrawingTest> {
                                         }),
                                       ),
                                       const Text(
-                                        'Impaired',
+                                        CommonStrings.impaired,
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14.0,
@@ -319,7 +321,7 @@ class _ClockDrawingTestState extends State<ClockDrawingTest> {
                       Navigator.of(context).pop();
                     },
                     child: const Text(
-                      'Task Completed',
+                      CommonStrings.taskCompleted,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16.0,

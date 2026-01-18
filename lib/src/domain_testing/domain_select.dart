@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as app_data;
+import 'package:mica/resources/strings/common_strings.dart';
 import 'package:mica/src/domain_testing/attention_concentration/domain_attention_concentration.dart';
 import 'package:mica/src/domain_testing/language/language_assessment.dart';
 import 'package:mica/src/domain_testing/memory/memory_assessment.dart';
@@ -35,7 +35,7 @@ class DomainSelectState extends State<DomainSelect> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            app_data.domainSelect,
+            CommonStrings.domainSelect,
             style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -71,7 +71,7 @@ class DomainSelectState extends State<DomainSelect> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          app_data.domainSelectInfo.toUpperCase(),
+                          CommonStrings.domainSelectInfo.toUpperCase(),
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                               fontWeight: FontWeight.w500, color: Colors.black),
@@ -109,7 +109,7 @@ class DomainSelectState extends State<DomainSelect> {
                               (Route<dynamic> route) => true,
                             );
                           },
-                          child: Text(app_data.domainSelectButton1,
+                          child: Text(CommonStrings.domainSelectAttention,
                               style: TextStyle(color: Colors.black)),
                         ),
                       ),
@@ -145,7 +145,7 @@ class DomainSelectState extends State<DomainSelect> {
                               (Route<dynamic> route) => true,
                             );
                           },
-                          child: Text(app_data.domainSelectButton2,
+                          child: Text(CommonStrings.domainSelectLanguage,
                               style: TextStyle(color: Colors.black)),
                         ),
                       ),
@@ -181,7 +181,7 @@ class DomainSelectState extends State<DomainSelect> {
                               (Route<dynamic> route) => true,
                             );
                           },
-                          child: Text(app_data.domainSelectButton3,
+                          child: Text(CommonStrings.domainSelectMemory,
                               style: TextStyle(color: Colors.black)),
                         ),
                       ),
@@ -217,7 +217,7 @@ class DomainSelectState extends State<DomainSelect> {
                               (Route<dynamic> route) => true,
                             );
                           },
-                          child: Text(app_data.domainSelectButton4,
+                          child: Text(CommonStrings.domainSelectPraxis,
                               style: TextStyle(color: Colors.black)),
                         ),
                       ),
@@ -253,7 +253,7 @@ class DomainSelectState extends State<DomainSelect> {
                               (Route<dynamic> route) => true,
                             );
                           },
-                          child: Text(app_data.domainSelectButton5,
+                          child: Text(CommonStrings.domainSelectGnosis,
                               style: TextStyle(color: Colors.black)),
                         ),
                       ),
@@ -289,7 +289,7 @@ class DomainSelectState extends State<DomainSelect> {
                               (Route<dynamic> route) => true,
                             );
                           },
-                          child: Text(app_data.domainSelectButton6,
+                          child: Text(CommonStrings.domainSelectExecutive,
                               style: TextStyle(color: Colors.black)),
                         ),
                       ),

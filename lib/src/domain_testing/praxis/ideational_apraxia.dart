@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/praxis_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class IdeationalApraxia extends StatefulWidget {
   const IdeationalApraxia({super.key});
@@ -39,7 +41,7 @@ class _IdeationalApraxiaState extends State<IdeationalApraxia> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Ideational Apraxia',
+          PraxisStrings.ideationalTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -74,7 +76,7 @@ class _IdeationalApraxiaState extends State<IdeationalApraxia> {
                   child: const Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      'This is the ability to correctly sequence a series of well-learned motor acts that lead to a goal. The patient is given an A4 sheet of paper, an envelope and a pencil.',
+                      PraxisStrings.ideationalExaminerInstruction1,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -96,7 +98,7 @@ class _IdeationalApraxiaState extends State<IdeationalApraxia> {
                   child: const Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      '"Pretend that you have written a letter and would like to post it. Fold the sheet of paper so that it fits into the envelope, then seal the envelope and address it to yourself and then indicate where you will put a stamp."',
+                      PraxisStrings.ideationalPatientInstruction,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -118,7 +120,7 @@ class _IdeationalApraxiaState extends State<IdeationalApraxia> {
                   child: const Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      'The instructions can be repeated, as this is not a test of memory. Most individuals are able to do this task without any difficulty.',
+                      PraxisStrings.ideationalExaminerInstruction2,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -142,7 +144,7 @@ class _IdeationalApraxiaState extends State<IdeationalApraxia> {
                     child: Column(
                       children: <Widget>[
                         const Text(
-                          'Note the response of the patient and score as below.',
+                          CommonStrings.noteResponseAndScore,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.black,
@@ -191,7 +193,7 @@ class _IdeationalApraxiaState extends State<IdeationalApraxia> {
                                           ),
                                           const SizedBox(width: 8.0),
                                           const Text(
-                                            'Normal',
+                                            CommonStrings.normal,
                                             style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               fontSize: 14.0,
@@ -223,7 +225,7 @@ class _IdeationalApraxiaState extends State<IdeationalApraxia> {
                                           ),
                                           const SizedBox(width: 8.0),
                                           const Text(
-                                            'Equivocal',
+                                            CommonStrings.equivocal,
                                             style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               fontSize: 14.0,
@@ -255,7 +257,7 @@ class _IdeationalApraxiaState extends State<IdeationalApraxia> {
                                           ),
                                           const SizedBox(width: 8.0),
                                           const Text(
-                                            'Impaired',
+                                            CommonStrings.impaired,
                                             style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               fontSize: 14.0,
@@ -298,7 +300,7 @@ class _IdeationalApraxiaState extends State<IdeationalApraxia> {
                         Navigator.pop(context);
                       },
                       child: const Text(
-                        'Task Completed',
+                        CommonStrings.taskCompleted,
                         style: TextStyle(color: Colors.black),
                       ),
                     ),

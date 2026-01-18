@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/gnosis_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class IdentifyObjectsVisually extends StatefulWidget {
   const IdentifyObjectsVisually({super.key});
@@ -29,7 +31,7 @@ class _IdentifyObjectsVisuallyState extends State<IdentifyObjectsVisually> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Identify Objects Visually',
+          GnosisStrings.identifyObjectsVisually,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -61,7 +63,7 @@ class _IdentifyObjectsVisuallyState extends State<IdentifyObjectsVisually> {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: const Text(
-                  'Point towards the following objects and ask the patient to name it. Inability to name objects (nominal dysphasia) must be distinguished from visual object agnosia.',
+                  GnosisStrings.visualIdentificationExaminerInstruction,
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
@@ -81,7 +83,7 @@ class _IdentifyObjectsVisuallyState extends State<IdentifyObjectsVisually> {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: const Text(
-                  '"Can you tell me what this is?"',
+                  GnosisStrings.visualIdentificationPatientInstruction,
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
@@ -102,7 +104,7 @@ class _IdentifyObjectsVisuallyState extends State<IdentifyObjectsVisually> {
                 child: Column(
                   children: const [
                     Text(
-                      'Point to a watch, pen, tissue, button, shoe, and shirt.',
+                      GnosisStrings.visualIdentificationCommonObjects,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
@@ -113,7 +115,7 @@ class _IdentifyObjectsVisuallyState extends State<IdentifyObjectsVisually> {
                     ),
                     SizedBox(height: 12.0),
                     Text(
-                      'Less common objects are: knuckles, ring finger, eyebrow, winder of a watch, and collar.',
+                      GnosisStrings.visualIdentificationUncommonObjects,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
@@ -124,7 +126,7 @@ class _IdentifyObjectsVisuallyState extends State<IdentifyObjectsVisually> {
                     ),
                     SizedBox(height: 12.0),
                     Text(
-                      'To distinguish between nominal aphasia and visual object agnosia, ask the patient to describe the object or its use. If this can be done adequately then visual perception might be normal and the deficit is more likely language based. Language deficits can be further examined by providing the patient with language cues by saying either a part of the word or giving a phonetic clue. For example, say "col..." for collar or say it sounds like "dollar" Some patients may then be able to progress and say the word, the deficit is then more likely to be nominal aphasia.',
+                      GnosisStrings.visualIdentificationDistinguishing,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
@@ -148,7 +150,7 @@ class _IdentifyObjectsVisuallyState extends State<IdentifyObjectsVisually> {
                 child: Column(
                   children: <Widget>[
                     const Text(
-                      'Note the response of the patient and score as below.',
+                      CommonStrings.noteResponseAndScore,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
@@ -187,7 +189,7 @@ class _IdentifyObjectsVisuallyState extends State<IdentifyObjectsVisually> {
                                         }),
                                       ),
                                       const Text(
-                                        'Normal',
+                                        CommonStrings.normal,
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14.0,
@@ -216,7 +218,7 @@ class _IdentifyObjectsVisuallyState extends State<IdentifyObjectsVisually> {
                                         }),
                                       ),
                                       const Text(
-                                        'Equivocal',
+                                        CommonStrings.equivocal,
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14.0,
@@ -245,7 +247,7 @@ class _IdentifyObjectsVisuallyState extends State<IdentifyObjectsVisually> {
                                         }),
                                       ),
                                       const Text(
-                                        'Impaired',
+                                        CommonStrings.impaired,
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14.0,
@@ -289,7 +291,7 @@ class _IdentifyObjectsVisuallyState extends State<IdentifyObjectsVisually> {
                       Navigator.of(context).pop();
                     },
                     child: const Text(
-                      'Task Completed',
+                      CommonStrings.taskCompleted,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16.0,

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/praxis_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class OralApraxia extends StatefulWidget {
   const OralApraxia({super.key});
@@ -39,7 +41,7 @@ class _OralApraxiaState extends State<OralApraxia> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Oral Apraxia',
+          PraxisStrings.oralTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -74,7 +76,7 @@ class _OralApraxiaState extends State<OralApraxia> {
                   child: const Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      'Oral apraxia is an inability to perform orobuccal movements.',
+                      PraxisStrings.oralExaminerInstruction,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -96,7 +98,7 @@ class _OralApraxiaState extends State<OralApraxia> {
                   child: const Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      '"Show me how you would blow out a match."',
+                      PraxisStrings.oralPatientInstruction1,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -118,7 +120,7 @@ class _OralApraxiaState extends State<OralApraxia> {
                   child: const Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      '"Lick crumbs from your lips?"',
+                      PraxisStrings.oralPatientInstruction2,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -140,7 +142,7 @@ class _OralApraxiaState extends State<OralApraxia> {
                   child: const Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      '"Blow a kiss?"',
+                      PraxisStrings.oralPatientInstruction3,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -164,7 +166,7 @@ class _OralApraxiaState extends State<OralApraxia> {
                     child: Column(
                       children: <Widget>[
                         const Text(
-                          'Note the response of the patient and score as below.',
+                          CommonStrings.noteResponseAndScore,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.black,
@@ -213,7 +215,7 @@ class _OralApraxiaState extends State<OralApraxia> {
                                           ),
                                           const SizedBox(width: 8.0),
                                           const Text(
-                                            'Normal',
+                                            CommonStrings.normal,
                                             style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               fontSize: 14.0,
@@ -245,7 +247,7 @@ class _OralApraxiaState extends State<OralApraxia> {
                                           ),
                                           const SizedBox(width: 8.0),
                                           const Text(
-                                            'Equivocal',
+                                            CommonStrings.equivocal,
                                             style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               fontSize: 14.0,
@@ -277,7 +279,7 @@ class _OralApraxiaState extends State<OralApraxia> {
                                           ),
                                           const SizedBox(width: 8.0),
                                           const Text(
-                                            'Impaired',
+                                            CommonStrings.impaired,
                                             style: TextStyle(
                                               fontWeight: FontWeight.w500,
                                               fontSize: 14.0,
@@ -320,7 +322,7 @@ class _OralApraxiaState extends State<OralApraxia> {
                         Navigator.pop(context);
                       },
                       child: const Text(
-                        'Task Completed',
+                        CommonStrings.taskCompleted,
                         style: TextStyle(color: Colors.black),
                       ),
                     ),

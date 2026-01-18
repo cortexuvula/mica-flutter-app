@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/gnosis_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class IdentifyObjectsByTouch extends StatefulWidget {
   const IdentifyObjectsByTouch({super.key});
@@ -30,7 +32,7 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Identify Objects by Touch',
+          GnosisStrings.identifyObjectsByTouch,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -62,7 +64,7 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: const Text(
-                  '"Please hold out your right hand. I am going to ask you to close your eyes and then I will place an object in your hand. Identify this by touch only."',
+                  GnosisStrings.touchIdentificationPatientInstruction,
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
@@ -82,7 +84,7 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: const Text(
-                  'Place common objects such as keys, coin or pen in the patient\'s right hand. Repeat the same with the left hand. An inability to identify objects by touch is known as astereognosis.',
+                  GnosisStrings.touchIdentificationExaminerInstruction,
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w500,
@@ -104,7 +106,7 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
                 child: Column(
                   children: <Widget>[
                     const Text(
-                      'Note the response of the patient and score as below.',
+                      CommonStrings.noteResponseAndScore,
                       style: TextStyle(
                         color: Colors.black,
                         fontWeight: FontWeight.w500,
@@ -138,7 +140,7 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
                             Container(
                               padding: const EdgeInsets.all(12.0),
                               child: const Text(
-                                'Normal',
+                                CommonStrings.normal,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 14.0,
@@ -150,7 +152,7 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
                             Container(
                               padding: const EdgeInsets.all(12.0),
                               child: const Text(
-                                'Equivocal',
+                                CommonStrings.equivocal,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 14.0,
@@ -162,7 +164,7 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
                             Container(
                               padding: const EdgeInsets.all(12.0),
                               child: const Text(
-                                'Impaired',
+                                CommonStrings.impaired,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 14.0,
@@ -191,7 +193,7 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
                             Container(
                               padding: const EdgeInsets.all(12.0),
                               child: const Text(
-                                'Right',
+                                GnosisStrings.touchIdentificationRightHand,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 14.0,
@@ -271,7 +273,7 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
                             Container(
                               padding: const EdgeInsets.all(12.0),
                               child: const Text(
-                                'Left',
+                                GnosisStrings.touchIdentificationLeftHand,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 14.0,
@@ -358,7 +360,7 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
                             Container(
                               padding: const EdgeInsets.all(12.0),
                               child: const Text(
-                                'No errors',
+                                GnosisStrings.touchIdentificationNoErrors,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 12.0,
@@ -369,7 +371,7 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
                             Container(
                               padding: const EdgeInsets.all(12.0),
                               child: const Text(
-                                'Some difficulty',
+                                GnosisStrings.touchIdentificationSomeDifficulty,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 12.0,
@@ -380,7 +382,7 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
                             Container(
                               padding: const EdgeInsets.all(12.0),
                               child: const Text(
-                                'Clear difficulty',
+                                GnosisStrings.touchIdentificationClearDifficulty,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 12.0,
@@ -420,7 +422,7 @@ class _IdentifyObjectsByTouchState extends State<IdentifyObjectsByTouch> {
                       Navigator.of(context).pop();
                     },
                     child: const Text(
-                      'Task Completed',
+                      CommonStrings.taskCompleted,
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 16.0,

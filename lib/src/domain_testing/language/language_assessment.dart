@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/resources/strings/language_strings.dart';
 import 'package:mica/src/domain_testing/language/spontaneous_speech.dart';
 import 'package:mica/src/domain_testing/language/comprehension_three_stage.dart';
 import 'package:mica/src/domain_testing/language/comprehension_moving_objects.dart';
@@ -24,10 +25,10 @@ class _LanguageAssessmentState extends State<LanguageAssessment> {
     
     return Scaffold(
       appBar: AppBar(
-        title: const ListTile(
+        title: ListTile(
           title: Text(
-            'Language',
-            style: TextStyle(
+            LanguageStrings.domainTitle,
+            style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
                 fontSize: 15.0),
@@ -63,7 +64,7 @@ class _LanguageAssessmentState extends State<LanguageAssessment> {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          'SELECT A LANGUAGE ASSESSMENT BELOW',
+                          LanguageStrings.selectAssessmentInstruction,
                           textAlign: TextAlign.center,
                           style: const TextStyle(
                               fontWeight: FontWeight.w500, color: Colors.black),
@@ -102,7 +103,7 @@ class _LanguageAssessmentState extends State<LanguageAssessment> {
                               (Route<dynamic> route) => true,
                             );
                           },
-                          child: const Text('Spontaneous Speech',
+                          child: const Text(LanguageStrings.spontaneousSpeechButton,
                               style: TextStyle(color: Colors.black)),
                         ),
                       ),
@@ -139,7 +140,7 @@ class _LanguageAssessmentState extends State<LanguageAssessment> {
                               (Route<dynamic> route) => true,
                             );
                           },
-                          child: const Text('Comprehension: 3 Stage Command Task',
+                          child: const Text(LanguageStrings.comprehensionThreeStageButton,
                               style: TextStyle(color: Colors.black),
                               textAlign: TextAlign.center),
                         ),
@@ -177,7 +178,7 @@ class _LanguageAssessmentState extends State<LanguageAssessment> {
                               (Route<dynamic> route) => true,
                             );
                           },
-                          child: const Text('Comprehension: Moving 3 Objects Task',
+                          child: const Text(LanguageStrings.comprehensionMovingObjectsButton,
                               style: TextStyle(color: Colors.black),
                               textAlign: TextAlign.center),
                         ),
@@ -215,7 +216,7 @@ class _LanguageAssessmentState extends State<LanguageAssessment> {
                               (Route<dynamic> route) => true,
                             );
                           },
-                          child: const Text('Repetition',
+                          child: const Text(LanguageStrings.repetitionButton,
                               style: TextStyle(color: Colors.black)),
                         ),
                       ),
@@ -252,7 +253,7 @@ class _LanguageAssessmentState extends State<LanguageAssessment> {
                               (Route<dynamic> route) => true,
                             );
                           },
-                          child: const Text('Naming',
+                          child: const Text(LanguageStrings.namingButton,
                               style: TextStyle(color: Colors.black)),
                         ),
                       ),
@@ -289,7 +290,7 @@ class _LanguageAssessmentState extends State<LanguageAssessment> {
                               (Route<dynamic> route) => true,
                             );
                           },
-                          child: const Text('Reading',
+                          child: const Text(LanguageStrings.readingButton,
                               style: TextStyle(color: Colors.black)),
                         ),
                       ),
@@ -326,7 +327,7 @@ class _LanguageAssessmentState extends State<LanguageAssessment> {
                               (Route<dynamic> route) => true,
                             );
                           },
-                          child: const Text('Writing',
+                          child: const Text(LanguageStrings.writingButton,
                               style: TextStyle(color: Colors.black)),
                         ),
                       ),

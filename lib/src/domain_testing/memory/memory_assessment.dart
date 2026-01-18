@@ -6,6 +6,7 @@ import 'package:mica/src/domain_testing/memory/ten_word_verbal_recall.dart';
 import 'package:mica/src/domain_testing/memory/visual_working_memory.dart';
 import 'package:mica/src/domain_testing/memory/visual_short_term_memory.dart';
 import 'package:mica/src/domain_testing/memory/semantic_memory.dart';
+import 'package:mica/resources/strings/memory_strings.dart';
 
 class MemoryAssessment extends StatefulWidget {
   const MemoryAssessment({super.key});
@@ -23,7 +24,7 @@ class _MemoryAssessmentState extends State<MemoryAssessment> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Memory',
+          MemoryStrings.domainTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -73,7 +74,7 @@ class _MemoryAssessmentState extends State<MemoryAssessment> {
                                 (Route<dynamic> route) => true,
                               );
                             },
-                            child: const Text('Short Verbal Memory Test',
+                            child: const Text(MemoryStrings.shortVerbalMemoryButton,
                                 style: TextStyle(color: Colors.black)),
                           ),
                         ),
@@ -110,7 +111,7 @@ class _MemoryAssessmentState extends State<MemoryAssessment> {
                                 (Route<dynamic> route) => true,
                               );
                             },
-                            child: const Text('10-Word Verbal Recall',
+                            child: const Text(MemoryStrings.tenWordVerbalRecallButton,
                                 style: TextStyle(color: Colors.black)),
                           ),
                         ),
@@ -147,7 +148,7 @@ class _MemoryAssessmentState extends State<MemoryAssessment> {
                                 (Route<dynamic> route) => true,
                               );
                             },
-                            child: const Text('Visual Working Memory',
+                            child: const Text(MemoryStrings.visualWorkingMemoryButton,
                                 style: TextStyle(color: Colors.black)),
                           ),
                         ),
@@ -184,7 +185,7 @@ class _MemoryAssessmentState extends State<MemoryAssessment> {
                                 (Route<dynamic> route) => true,
                               );
                             },
-                            child: const Text('Visual Short-Term Memory',
+                            child: const Text(MemoryStrings.visualShortTermMemoryButton,
                                 style: TextStyle(color: Colors.black)),
                           ),
                         ),
@@ -221,7 +222,7 @@ class _MemoryAssessmentState extends State<MemoryAssessment> {
                                 (Route<dynamic> route) => true,
                               );
                             },
-                            child: const Text('Semantic memory',
+                            child: const Text(MemoryStrings.semanticMemoryButton,
                                 style: TextStyle(color: Colors.black)),
                           ),
                         ),

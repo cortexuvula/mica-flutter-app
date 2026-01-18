@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/resources/strings/attention_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class SerialSeven extends StatefulWidget {
   const SerialSeven({super.key});
@@ -21,7 +22,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            app_data.domainSerialTitle,
+            AttentionStrings.serialTitle,
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -66,7 +67,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          "Serial 7's",
+                          AttentionStrings.serialSevenHeader,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.black,
@@ -86,7 +87,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    app_data.domainSerialSevenPatient,
+                                    AttentionStrings.serialSevenPatientInstruction,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -111,7 +112,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    app_data.domainSerialSevenExaminer,
+                                    AttentionStrings.serialSevenExaminerInstruction,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -136,7 +137,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    app_data.domainSerialSevenPatient2,
+                                    AttentionStrings.serialSevenPatientInstruction2,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -241,7 +242,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          "Serial 3's",
+                          AttentionStrings.serialThreeHeader,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.black,
@@ -261,7 +262,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    app_data.domainSerialThreePatient,
+                                    AttentionStrings.serialThreePatientInstruction,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -286,7 +287,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    app_data.domainSerialThreeExaminer,
+                                    AttentionStrings.serialThreeExaminerInstruction,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -311,7 +312,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                               child: Column(
                                 children: <Widget>[
                                   Text(
-                                    app_data.domainSerialThreePatient2,
+                                    AttentionStrings.serialThreePatientInstruction2,
                                     textAlign: TextAlign.center,
                                     style: TextStyle(
                                         color: Colors.black,
@@ -445,7 +446,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                                       activeColor: Colors.white,
                                     ),
                                     Text(
-                                      "Normal",
+                                      CommonStrings.normal,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
@@ -460,7 +461,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                                       activeColor: Colors.white,
                                     ),
                                     Text(
-                                      "Equivocal",
+                                      CommonStrings.equivocal,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
@@ -475,7 +476,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                                       activeColor: Colors.white,
                                     ),
                                     Text(
-                                      "Impaired",
+                                      CommonStrings.impaired,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
@@ -488,7 +489,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  app_data.testAttentionResponseNormal,
+                                  AttentionStrings.vigilanceResponseNormal,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 10.0,
@@ -498,7 +499,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  app_data.testAttentionResponseEquivocal,
+                                  AttentionStrings.vigilanceResponseEquivocal,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 10.0,
@@ -508,7 +509,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  app_data.testAttentionResponseImpaired,
+                                  AttentionStrings.vigilanceResponseImpaired,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 10.0,
@@ -542,7 +543,7 @@ class DomainSerialSevenState extends State<SerialSeven> {
                         Navigator.of(context).pop();
                       },
                       child: Text(
-                        app_data.domainTestCompleteButton,
+                        CommonStrings.taskCompleted,
                         style: TextStyle(color: Colors.black),
                       ),
                     ),

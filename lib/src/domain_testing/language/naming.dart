@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/domain_testing/language/object_naming.dart';
 import 'package:mica/src/domain_testing/language/picture_naming.dart';
+import 'package:mica/resources/strings/language_strings.dart';
 
 class Naming extends StatefulWidget {
   const Naming({super.key});
@@ -18,7 +19,7 @@ class _NamingState extends State<Naming> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Naming',
+          LanguageStrings.namingTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -56,7 +57,7 @@ class _NamingState extends State<Naming> {
                             );
                           },
                           child: const Text(
-                            'Picture Naming',
+                            LanguageStrings.pictureNamingButton,
                             style: TextStyle(color: Colors.black),
                           ),
                         ),
@@ -92,7 +93,7 @@ class _NamingState extends State<Naming> {
                             );
                           },
                           child: const Text(
-                            'Object Naming',
+                            LanguageStrings.objectNamingButton,
                             style: TextStyle(color: Colors.black),
                           ),
                         ),

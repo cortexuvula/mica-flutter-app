@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/praxis_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class LineDrawing extends StatefulWidget {
   const LineDrawing({super.key});
@@ -51,7 +53,7 @@ class _LineDrawingState extends State<LineDrawing> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Line Drawing',
+          PraxisStrings.lineDrawingTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -88,7 +90,7 @@ class _LineDrawingState extends State<LineDrawing> {
                     child: Column(
                       children: [
                         Text(
-                          'Line drawings are presented, and the patient is asked to copy them. The ability to successfully copy a line drawing depends on correct recognition of the drawing with visual processing. This input function is part of gnosis. Drawing with the dominant hand is an output function and part of praxis as it involves motor planning.',
+                          PraxisStrings.lineDrawingExaminerInstruction1,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.black,
@@ -98,7 +100,7 @@ class _LineDrawingState extends State<LineDrawing> {
                         ),
                         SizedBox(height: 16.0),
                         Text(
-                          'The patient can be asked if their drawing resembles the stimulus drawing. If the patient says the drawing differs from the stimulus, but they do not know how to draw it correctly then it may indicate visual perception is intact but not higher order motor control.',
+                          PraxisStrings.lineDrawingExaminerInstruction2,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.black,
@@ -122,7 +124,7 @@ class _LineDrawingState extends State<LineDrawing> {
                   child: const Padding(
                     padding: EdgeInsets.all(16.0),
                     child: Text(
-                      '"Copy these drawings."',
+                      PraxisStrings.lineDrawingPatientInstruction,
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -210,7 +212,7 @@ class _LineDrawingState extends State<LineDrawing> {
                     child: Column(
                       children: <Widget>[
                         const Text(
-                          'Cannot name picture',
+                          PraxisStrings.lineDrawingScoringHeader,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.black,
@@ -242,7 +244,7 @@ class _LineDrawingState extends State<LineDrawing> {
                                   child: Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Text(
-                                      'Image',
+                                      PraxisStrings.imageHeader,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
@@ -254,20 +256,7 @@ class _LineDrawingState extends State<LineDrawing> {
                                   child: Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Text(
-                                      'No Mistakes',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12.0,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                TableCell(
-                                  child: Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(
-                                      'Few Omissions',
+                                      PraxisStrings.noMistakes,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
@@ -280,7 +269,7 @@ class _LineDrawingState extends State<LineDrawing> {
                                   child: Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Text(
-                                      'Poor',
+                                      PraxisStrings.fewOmissions,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
@@ -293,7 +282,20 @@ class _LineDrawingState extends State<LineDrawing> {
                                   child: Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Text(
-                                      'No Drawing',
+                                      PraxisStrings.poor,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 12.0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                TableCell(
+                                  child: Padding(
+                                    padding: EdgeInsets.all(8.0),
+                                    child: Text(
+                                      PraxisStrings.noDrawing,
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         fontWeight: FontWeight.bold,
@@ -331,7 +333,7 @@ class _LineDrawingState extends State<LineDrawing> {
                                   child: Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Text(
-                                      'Image 1',
+                                      PraxisStrings.image1,
                                       style: TextStyle(fontWeight: FontWeight.w500),
                                     ),
                                   ),
@@ -370,7 +372,7 @@ class _LineDrawingState extends State<LineDrawing> {
                                   child: Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Text(
-                                      'Image 2',
+                                      PraxisStrings.image2,
                                       style: TextStyle(fontWeight: FontWeight.w500),
                                     ),
                                   ),
@@ -409,7 +411,7 @@ class _LineDrawingState extends State<LineDrawing> {
                                   child: Padding(
                                     padding: EdgeInsets.all(8.0),
                                     child: Text(
-                                      'Image 3',
+                                      PraxisStrings.image3,
                                       style: TextStyle(fontWeight: FontWeight.w500),
                                     ),
                                   ),
@@ -450,7 +452,7 @@ class _LineDrawingState extends State<LineDrawing> {
                         Navigator.pop(context);
                       },
                       child: const Text(
-                        'Task Completed',
+                        CommonStrings.taskCompleted,
                         style: TextStyle(color: Colors.black),
                       ),
                     ),

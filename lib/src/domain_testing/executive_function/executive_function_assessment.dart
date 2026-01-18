@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/resources/strings/executive_strings.dart';
 import 'package:mica/src/domain_testing/executive_function/luria_alternating_hand_movements.dart';
 import 'package:mica/src/domain_testing/executive_function/luria_fist_edge_palm_movement.dart';
 import 'package:mica/src/domain_testing/executive_function/animal_naming_task.dart';
@@ -28,7 +29,7 @@ class ExecutiveFunctionAssessmentState
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Executive Functions',
+          ExecutiveStrings.domainTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -54,7 +55,7 @@ class ExecutiveFunctionAssessmentState
           _buildTestButton(
             context,
             width,
-            'Luria Alternating Hand Movements',
+            ExecutiveStrings.luriaAlternatingButton,
             () {
               NavigationHelper.navigateAndRemoveUntil(
                 context,
@@ -67,7 +68,7 @@ class ExecutiveFunctionAssessmentState
           _buildTestButton(
             context,
             width,
-            'Luria Fist-Edge-Palm Movement',
+            ExecutiveStrings.luriaFistEdgePalmButton,
             () {
               NavigationHelper.navigateAndRemoveUntil(
                 context,
@@ -80,7 +81,7 @@ class ExecutiveFunctionAssessmentState
           _buildTestButton(
             context,
             width,
-            'Animal Naming Task',
+            ExecutiveStrings.animalNamingButton,
             () {
               NavigationHelper.navigateAndRemoveUntil(
                 context,
@@ -93,7 +94,7 @@ class ExecutiveFunctionAssessmentState
           _buildTestButton(
             context,
             width,
-            'Lexical Fluency Test',
+            ExecutiveStrings.lexicalFluencyButton,
             () {
               NavigationHelper.navigateAndRemoveUntil(
                 context,
@@ -106,7 +107,7 @@ class ExecutiveFunctionAssessmentState
           _buildTestButton(
             context,
             width,
-            'Design Fluency Task',
+            ExecutiveStrings.designFluencyButton,
             () {
               NavigationHelper.navigateAndRemoveUntil(
                 context,
@@ -119,7 +120,7 @@ class ExecutiveFunctionAssessmentState
           _buildTestButton(
             context,
             width,
-            'Finger-Nose Task',
+            ExecutiveStrings.fingerNoseButton,
             () {
               NavigationHelper.navigateAndRemoveUntil(
                 context,
@@ -132,7 +133,7 @@ class ExecutiveFunctionAssessmentState
           _buildTestButton(
             context,
             width,
-            'Tap Task',
+            ExecutiveStrings.tapTaskButton,
             () {
               NavigationHelper.navigateAndRemoveUntil(
                 context,
@@ -145,7 +146,7 @@ class ExecutiveFunctionAssessmentState
           _buildTestButton(
             context,
             width,
-            'Alternating Sequences',
+            ExecutiveStrings.alternatingSequencesButton,
             () {
               NavigationHelper.navigateAndRemoveUntil(
                 context,
@@ -158,7 +159,7 @@ class ExecutiveFunctionAssessmentState
           _buildTestButton(
             context,
             width,
-            'Months of the Year Backwards',
+            ExecutiveStrings.monthsBackwardsButton,
             () {
               NavigationHelper.navigateAndRemoveUntil(
                 context,

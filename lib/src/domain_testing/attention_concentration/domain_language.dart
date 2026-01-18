@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/resources/strings/attention_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class DomainLanguage extends StatefulWidget {
   const DomainLanguage({super.key});
@@ -25,7 +26,7 @@ class DomainLanguageState extends State<DomainLanguage> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            app_data.domainObservationTitle,
+            AttentionStrings.observationTitle,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w500,
@@ -33,7 +34,7 @@ class DomainLanguageState extends State<DomainLanguage> {
             textAlign: TextAlign.start,
           ),
           subtitle: Text(
-            app_data.domainObservationSubtitle,
+            AttentionStrings.observationSubtitle,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w300,
@@ -72,7 +73,7 @@ class DomainLanguageState extends State<DomainLanguage> {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            app_data.domainObservationExaminer,
+                            AttentionStrings.observationExaminerInstruction,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -100,7 +101,7 @@ class DomainLanguageState extends State<DomainLanguage> {
                       child: Column(
                         children: <Widget>[
                           Text(
-                            app_data.testLanguageComprehensionResponse,
+                            AttentionStrings.observationResponseInstruction,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                                 color: Colors.black,
@@ -129,7 +130,7 @@ class DomainLanguageState extends State<DomainLanguage> {
                                         activeColor: Colors.white,
                                       ),
                                       Text(
-                                        "Normal",
+                                        CommonStrings.normal,
                                         style: TextStyle(
                                             color: Colors.black, fontSize: 10.0),
                                       ),
@@ -142,7 +143,7 @@ class DomainLanguageState extends State<DomainLanguage> {
                                         activeColor: Colors.white,
                                       ),
                                       Text(
-                                        "Equivocal",
+                                        CommonStrings.equivocal,
                                         style: TextStyle(
                                             color: Colors.black, fontSize: 10.0),
                                         overflow: TextOverflow.ellipsis,
@@ -156,7 +157,7 @@ class DomainLanguageState extends State<DomainLanguage> {
                                         activeColor: Colors.white,
                                       ),
                                       Text(
-                                        "Impaired",
+                                        CommonStrings.impaired,
                                         style: TextStyle(
                                             color: Colors.black, fontSize: 10.0),
                                       ),
@@ -189,7 +190,7 @@ class DomainLanguageState extends State<DomainLanguage> {
                           Navigator.of(context).pop();
                         },
                         child: Text(
-                          app_data.domainTestCompleteButton,
+                          CommonStrings.taskCompleted,
                           style: TextStyle(color: Colors.black),
                         ),
                       ),

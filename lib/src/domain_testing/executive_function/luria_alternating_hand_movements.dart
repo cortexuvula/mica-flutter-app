@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/executive_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class LuriaAlternatingHandMovements extends StatefulWidget {
   const LuriaAlternatingHandMovements({super.key});
@@ -28,7 +30,7 @@ class LuriaAlternatingHandMovementsState
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Luria Alternating Hand Movements',
+          ExecutiveStrings.luriaAlternatingTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -56,7 +58,7 @@ class LuriaAlternatingHandMovementsState
               child: const Padding(
                 padding: EdgeInsets.all(16.0),
                 child: Text(
-                  '"Place both hands on the table like I do. Watch me carefully because I want you to do the same as I am doing. Can you see that I am making a fist with one hand? Now swap the hands over. Can you do that as fast as you can?"',
+                  ExecutiveStrings.luriaAlternatingPatientInstruction,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 16.0,
@@ -133,7 +135,7 @@ class LuriaAlternatingHandMovementsState
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 const Text(
-                                  'Tap to count Cycles',
+                                  ExecutiveStrings.tapToCountCycles,
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w500,
@@ -191,9 +193,9 @@ class LuriaAlternatingHandMovementsState
                       children: [
                         TableRow(
                           children: [
-                            _buildScoreCell('Normal', 0, '5 cycles without any mistakes'),
-                            _buildScoreCell('Equivocal', 1, '1 mistake'),
-                            _buildScoreCell('Impaired', 2, '2 or more mistakes'),
+                            _buildScoreCell(CommonStrings.normal, 0, ExecutiveStrings.fiveCyclesNoMistakes),
+                            _buildScoreCell(CommonStrings.equivocal, 1, ExecutiveStrings.oneMistake),
+                            _buildScoreCell(CommonStrings.impaired, 2, ExecutiveStrings.twoOrMoreMistakes),
                           ],
                         ),
                       ],
@@ -225,7 +227,7 @@ class LuriaAlternatingHandMovementsState
                     Navigator.pop(context);
                   },
                   child: const Text(
-                    'Task Completed',
+                    CommonStrings.taskCompleted,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 18.0,

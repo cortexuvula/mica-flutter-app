@@ -4,6 +4,8 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/resources/strings/attention_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class DomainVigilance extends StatefulWidget {
   final String? patientName;
@@ -90,7 +92,7 @@ class DomainVigilanceState extends State<DomainVigilance> {
         appBar: AppBar(
           title: ListTile(
             title: Text(
-              app_data.testAttention,
+              AttentionStrings.vigilanceTitle,
               overflow: TextOverflow.ellipsis,
               style: const TextStyle(
                 color: Colors.white,
@@ -99,7 +101,7 @@ class DomainVigilanceState extends State<DomainVigilance> {
               textAlign: TextAlign.start,
             ),
             subtitle: Text(
-              app_data.testAttentionSubtitle,
+              AttentionStrings.vigilanceSubtitle,
               style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w300,
@@ -135,7 +137,7 @@ class DomainVigilanceState extends State<DomainVigilance> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              app_data.testAttentionToPatient,
+                              AttentionStrings.vigilancePatientInstruction,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   color: Colors.black,
@@ -160,7 +162,7 @@ class DomainVigilanceState extends State<DomainVigilance> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              app_data.testAttentionDetails,
+                              AttentionStrings.vigilanceExaminerInstruction,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   color: Colors.black,
@@ -311,7 +313,7 @@ class DomainVigilanceState extends State<DomainVigilance> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              "Correct: ",
+                              AttentionStrings.vigilanceCorrectLabel,
                               style: const TextStyle(
                                   color: Colors.green,
                                   fontWeight: FontWeight.w500,
@@ -325,7 +327,7 @@ class DomainVigilanceState extends State<DomainVigilance> {
                                   fontSize: 25.0),
                             ),
                             Text(
-                              "Mistakes: ",
+                              AttentionStrings.vigilanceMistakesLabel,
                               style: const TextStyle(
                                   color: Colors.red,
                                   fontWeight: FontWeight.w500,
@@ -356,7 +358,7 @@ class DomainVigilanceState extends State<DomainVigilance> {
                         child: Column(
                           children: <Widget>[
                             Text(
-                              app_data.testAttentionResponse,
+                              AttentionStrings.vigilanceResponseInstruction,
                               textAlign: TextAlign.center,
                               style: const TextStyle(
                                   color: Colors.black,
@@ -384,7 +386,7 @@ class DomainVigilanceState extends State<DomainVigilance> {
                                           activeColor: Colors.white,
                                         ),
                                         Text(
-                                          "Normal",
+                                          CommonStrings.normal,
                                           style: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 10.0,
@@ -399,7 +401,7 @@ class DomainVigilanceState extends State<DomainVigilance> {
                                           activeColor: Colors.white,
                                         ),
                                         Text(
-                                          "Equivocal",
+                                          CommonStrings.equivocal,
                                           style: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 10.0,
@@ -414,7 +416,7 @@ class DomainVigilanceState extends State<DomainVigilance> {
                                           activeColor: Colors.white,
                                         ),
                                         Text(
-                                          "Impaired",
+                                          CommonStrings.impaired,
                                           style: const TextStyle(
                                             color: Colors.black,
                                             fontSize: 10.0,
@@ -427,7 +429,7 @@ class DomainVigilanceState extends State<DomainVigilance> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      app_data.testAttentionResponseNormal,
+                                      AttentionStrings.vigilanceResponseNormal,
                                       style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
@@ -437,7 +439,7 @@ class DomainVigilanceState extends State<DomainVigilance> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      app_data.testAttentionResponseEquivocal,
+                                      AttentionStrings.vigilanceResponseEquivocal,
                                       style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
@@ -447,7 +449,7 @@ class DomainVigilanceState extends State<DomainVigilance> {
                                   Padding(
                                     padding: const EdgeInsets.all(8.0),
                                     child: Text(
-                                      app_data.testAttentionResponseImpaired,
+                                      AttentionStrings.vigilanceResponseImpaired,
                                       style: const TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
@@ -484,7 +486,7 @@ class DomainVigilanceState extends State<DomainVigilance> {
                             // Just pop the screen to return to previous
                             Navigator.of(context).pop();
                           },
-                          child: Text(app_data.domainTestCompleteButton,
+                          child: Text(CommonStrings.taskCompleted,
                               style: TextStyle(color: Colors.black)),
                         ),
                       ),

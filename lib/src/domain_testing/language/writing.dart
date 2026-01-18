@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/language_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class Writing extends StatefulWidget {
   const Writing({super.key});
@@ -18,7 +20,7 @@ class _WritingState extends State<Writing> {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Writing',
+          LanguageStrings.writingTitle,
           style: TextStyle(
             color: Colors.white,
             fontWeight: FontWeight.w500,
@@ -36,7 +38,7 @@ class _WritingState extends State<Writing> {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                '"Can you write a sentence for me here?"',
+                LanguageStrings.writingExaminerInstruction,
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16.0,
@@ -55,7 +57,7 @@ class _WritingState extends State<Writing> {
             child: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                'Provide the patient with a piece of paper and a pen.',
+                LanguageStrings.writingPatientInstruction,
                 style: const TextStyle(
                   color: Colors.black,
                   fontSize: 16.0,
@@ -76,7 +78,7 @@ class _WritingState extends State<Writing> {
               child: Column(
                 children: [
                   const Text(
-                    'Note the response of the patient and score as below.',
+                    CommonStrings.noteResponseAndScore,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 16.0,
@@ -121,7 +123,7 @@ class _WritingState extends State<Writing> {
                                       }),
                                     ),
                                     const Text(
-                                      'Normal',
+                                      CommonStrings.normal,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -154,7 +156,7 @@ class _WritingState extends State<Writing> {
                                       }),
                                     ),
                                     const Text(
-                                      'Equivocal',
+                                      CommonStrings.equivocal,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -187,7 +189,7 @@ class _WritingState extends State<Writing> {
                                       }),
                                     ),
                                     const Text(
-                                      'Impaired',
+                                      CommonStrings.impaired,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 16.0,
@@ -236,7 +238,7 @@ class _WritingState extends State<Writing> {
                           Navigator.of(context).pop();
                         },
                         child: const Text(
-                          'Task Completed',
+                          CommonStrings.taskCompleted,
                           style: TextStyle(color: Colors.black),
                         ),
                       ),

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/resources/strings/attention_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class SpellWordBarkwards extends StatefulWidget {
   const SpellWordBarkwards({super.key});
@@ -21,7 +22,7 @@ class DomainSpellWordState extends State<SpellWordBarkwards> {
       appBar: AppBar(
         title: ListTile(
           title: Text(
-            app_data.domainSpellWordTitle,
+            AttentionStrings.spellWordTitle,
             style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -58,7 +59,7 @@ class DomainSpellWordState extends State<SpellWordBarkwards> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          app_data.domainSpellWordPatient,
+                          AttentionStrings.spellWordPatientInstruction,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.black,
@@ -83,7 +84,7 @@ class DomainSpellWordState extends State<SpellWordBarkwards> {
                     child: Column(
                       children: <Widget>[
                         Text(
-                          app_data.domainSpellWordAlternative,
+                          AttentionStrings.spellWordAlternativeInstruction,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.black,
@@ -128,7 +129,7 @@ class DomainSpellWordState extends State<SpellWordBarkwards> {
                                       activeColor: Colors.white,
                                     ),
                                     Text(
-                                      "Normal",
+                                      CommonStrings.normal,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
@@ -143,7 +144,7 @@ class DomainSpellWordState extends State<SpellWordBarkwards> {
                                       activeColor: Colors.white,
                                     ),
                                     Text(
-                                      "Equivocal",
+                                      CommonStrings.equivocal,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
@@ -158,7 +159,7 @@ class DomainSpellWordState extends State<SpellWordBarkwards> {
                                       activeColor: Colors.white,
                                     ),
                                     Text(
-                                      "Impaired",
+                                      CommonStrings.impaired,
                                       style: TextStyle(
                                         color: Colors.black,
                                         fontSize: 10.0,
@@ -171,7 +172,7 @@ class DomainSpellWordState extends State<SpellWordBarkwards> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  app_data.testAttentionResponseNormal,
+                                  AttentionStrings.vigilanceResponseNormal,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 10.0,
@@ -181,7 +182,7 @@ class DomainSpellWordState extends State<SpellWordBarkwards> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  app_data.testAttentionResponseEquivocal,
+                                  AttentionStrings.vigilanceResponseEquivocal,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 10.0,
@@ -191,7 +192,7 @@ class DomainSpellWordState extends State<SpellWordBarkwards> {
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Text(
-                                  app_data.testAttentionResponseImpaired,
+                                  AttentionStrings.vigilanceResponseImpaired,
                                   style: TextStyle(
                                     color: Colors.black,
                                     fontSize: 10.0,
@@ -225,7 +226,7 @@ class DomainSpellWordState extends State<SpellWordBarkwards> {
                         Navigator.of(context).pop();
                       },
                       child: Text(
-                        app_data.domainTestCompleteButton,
+                        CommonStrings.taskCompleted,
                         style: TextStyle(color: Colors.black),
                       ),
                     ),

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/resources/strings/memory_strings.dart';
+import 'package:mica/resources/strings/common_strings.dart';
 
 class VisualShortTermMemory extends StatefulWidget {
   const VisualShortTermMemory({super.key});
@@ -32,7 +34,7 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
         title: const Column(
           children: [
             Text(
-              'Visual Short-Term Memory',
+              MemoryStrings.visualShortTermTitle,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w500,
@@ -40,7 +42,7 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
               ),
             ),
             Text(
-              'Visual - 3 Shapes',
+              MemoryStrings.visualShortTermSubtitle,
               style: TextStyle(
                 color: Colors.white70,
                 fontSize: 12.0,
@@ -83,7 +85,7 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: const Text(
-                        'Allow 5 minutes or more to pass before testing recall of the line drawings shown in Visual Working Memory.',
+                        MemoryStrings.visualShortTermDelayInstruction,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16.0,
@@ -104,7 +106,7 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: const Text(
-                        '"Earlier I showed you some drawings to test your memory. Can you still remember them? Please draw what you can remember here."',
+                        MemoryStrings.visualShortTermPatientInstruction,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16.0,
@@ -125,7 +127,7 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: const Text(
-                        'Provide the patient with a blank sheet of paper.',
+                        MemoryStrings.visualShortTermProvideBlankPaper,
                         style: TextStyle(
                           color: Colors.black,
                           fontSize: 16.0,
@@ -198,7 +200,7 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
                                     child: Padding(
                                       padding: EdgeInsets.all(8.0),
                                       child: Text(
-                                        'Image',
+                                        MemoryStrings.visualMemoryImageHeader,
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14.0,
@@ -207,10 +209,10 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
                                       ),
                                     ),
                                   ),
-                                  _buildHeaderCell('No Mistakes', '3'),
-                                  _buildHeaderCell('Few Omissions', '2'),
-                                  _buildHeaderCell('Poor', '1'),
-                                  _buildHeaderCell('No Drawing', '0'),
+                                  _buildHeaderCell(MemoryStrings.visualMemoryNoMistakes, '3'),
+                                  _buildHeaderCell(MemoryStrings.visualMemoryFewOmissions, '2'),
+                                  _buildHeaderCell(MemoryStrings.visualMemoryPoor, '1'),
+                                  _buildHeaderCell(MemoryStrings.visualMemoryNoDrawing, '0'),
                                 ],
                               ),
                             ],
@@ -235,7 +237,7 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
                                     child: Padding(
                                       padding: EdgeInsets.all(8.0),
                                       child: Text(
-                                        'Image 1',
+                                        MemoryStrings.visualMemoryImage1,
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14.0,
@@ -273,7 +275,7 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
                                     child: Padding(
                                       padding: EdgeInsets.all(8.0),
                                       child: Text(
-                                        'Image 2',
+                                        MemoryStrings.visualMemoryImage2,
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14.0,
@@ -311,7 +313,7 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
                                     child: Padding(
                                       padding: EdgeInsets.all(8.0),
                                       child: Text(
-                                        'Image 3',
+                                        MemoryStrings.visualMemoryImage3,
                                         style: TextStyle(
                                           color: Colors.black,
                                           fontSize: 14.0,
@@ -365,7 +367,7 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
                                   Navigator.of(context).pop();
                                 },
                                 child: const Text(
-                                  'Task Completed',
+                                  CommonStrings.taskCompleted,
                                   style: TextStyle(color: Colors.black),
                                 ),
                               ),
