@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:mica/l10n/app_localizations.dart';
 import 'package:mica/src/loading_screen.dart';
 import 'package:mica/src/patient_information.dart';
 import 'package:mica/src/providers/mica_provider.dart';
@@ -15,6 +16,9 @@ class MicaApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "Midlands Cognitive Assessment",
+        // Localization support
+        localizationsDelegates: AppLocalizations.localizationsDelegates,
+        supportedLocales: AppLocalizations.supportedLocales,
         home: const LoadingScreen(),
         builder: (context, child) {
           return ResponsiveWrapper(child: child!);
