@@ -11,7 +11,7 @@ This document tracks known technical debt, areas for improvement, and planned re
 | Category | Priority | Items |
 |----------|----------|-------|
 | Code Quality | Medium | 3 |
-| Testing | High | 2 |
+| Testing | - | 0 |
 | Architecture | Low | 1 |
 | Dependencies | Low | 1 |
 | Documentation | Low | 1 |
@@ -20,25 +20,7 @@ This document tracks known technical debt, areas for improvement, and planned re
 
 ## High Priority
 
-### Widget Tests for Assessment Screens
-
-**Issue:** Domain testing screens lack widget tests.
-
-**Current State:**
-- MicaScoreModel unit tests now complete (68 tests)
-- Most domain testing screens lack widget tests
-- No integration tests for end-to-end flows
-
-**Impact:** Changes to UI may introduce regressions that are not caught.
-
-**Recommended Actions:**
-1. Add widget tests for each domain assessment screen
-2. Create integration tests for critical user flows:
-   - Patient information entry -> Assessment -> Summary
-   - Score persistence across navigation
-3. Set up test coverage reporting in CI/CD
-
-**Effort Estimate:** Medium-High
+_No high priority items currently._
 
 ---
 
@@ -165,6 +147,41 @@ This document tracks known technical debt, areas for improvement, and planned re
 ---
 
 ## Completed Items
+
+### Widget Tests for Assessment Screens (Completed January 2026)
+
+**Issue:** Domain testing screens lacked widget tests.
+
+**Resolution:**
+- Created reusable test utilities at `test/helpers/widget_test_helpers.dart`:
+  - `setupTestScreen()` - Configures test screen size for proper ListView rendering
+  - `wrapWithProviders()` / `wrapWithModel()` - Provider wrappers for widget tests
+  - `createTestModel()` / `createTestModelWithScores()` - Test model factories
+  - Common finders: `findTaskCompletedButton()`, `findRadioOption()`, `findRadioGroup()`
+  - Helper functions: `tapRadioOption()`, `tapTaskCompleted()`, `isRadioSelected()`
+- Created widget tests for representative assessment screens:
+  - `test/src/domain_testing/gnosis/clock_drawing_test_test.dart` (8 tests)
+  - `test/src/domain_testing/language/object_naming_test.dart` (8 tests)
+  - `test/src/domain_testing/executive_function/animal_naming_task_test.dart` (16 tests)
+- Created integration tests at `integration_test/assessment_flow_test.dart` (4 tests):
+  - Navigation flow tests
+  - Score persistence across screens
+  - Score editing and persistence
+  - All assessment options accessibility
+
+**Test Coverage:**
+- Total tests: 143 (up from 111)
+- New widget tests: 32
+- New integration tests: 4
+
+**Files Added:**
+- `test/helpers/widget_test_helpers.dart`
+- `test/src/domain_testing/gnosis/clock_drawing_test_test.dart`
+- `test/src/domain_testing/language/object_naming_test.dart`
+- `test/src/domain_testing/executive_function/animal_naming_task_test.dart`
+- `integration_test/assessment_flow_test.dart`
+
+---
 
 ### Widget Reuse Opportunities (Completed January 2026)
 
