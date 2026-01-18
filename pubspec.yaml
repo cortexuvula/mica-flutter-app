@@ -21,7 +21,6 @@ dependencies:
   cupertino_icons: ^1.0.5
   after_layout: ^1.2.0
   intl: ^0.20.2
-  # pdf_render_flutter: ^2.0.1
   chewie: ^1.7.1
   video_player: ^2.7.2
   pdf: ^3.10.4
@@ -29,7 +28,6 @@ dependencies:
   file_saver: ^0.2.9
   share_plus: ^10.1.4
   url_launcher: ^6.1.14
-  # ping_flutter: ^1.0.0
   shared_preferences: ^2.2.1
   timer_count_down: ^2.2.2
   simple_animations: ^5.0.2

@@ -1,5 +1,7 @@
 import 'package:flutter/foundation.dart';
 
+import 'score_validation.dart';
+
 /// Model class for MICA test scores to be used with Provider state management
 class MicaScoreModel extends ChangeNotifier {
   // Patient information
@@ -232,11 +234,15 @@ class MicaScoreModel extends ChangeNotifier {
 
   // Methods to update language scores
   void setLanguageComprehension(int value) {
+    assert(ScoreValidation.isValidRadioValue(value),
+        'Language comprehension must be 0-2, got $value');
     _languageComprehensionRadioValue = value;
     notifyListeners();
   }
 
   void setSpokenLanguage(int value) {
+    assert(ScoreValidation.isValidRadioValue(value),
+        'Spoken language must be 0-2, got $value');
     _spokenLanguage = value;
     notifyListeners();
   }
@@ -244,36 +250,50 @@ class MicaScoreModel extends ChangeNotifier {
   // Language domain setters (expanded)
 
   void setLanguageReading(int score) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Language reading must be 0-2, got $score');
     _languageReading = score;
     notifyListeners();
   }
 
   void setLanguageRepetition(int score) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Language repetition must be 0-2, got $score');
     _languageRepetition = score;
     notifyListeners();
   }
 
   void setLanguageComprehensionMoving(int score) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Language comprehension moving must be 0-2, got $score');
     _languageComprehensionMoving = score;
     notifyListeners();
   }
 
   void setLanguageWriting(int score) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Language writing must be 0-2, got $score');
     _languageWriting = score;
     notifyListeners();
   }
 
   void setLanguageObjectNaming(int score) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Language object naming must be 0-2, got $score');
     _languageObjectNaming = score;
     notifyListeners();
   }
 
   void setLanguageSpontaneousSpeech(int score) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Language spontaneous speech must be 0-2, got $score');
     _languageSpontaneousSpeech = score;
     notifyListeners();
   }
 
   void setLanguageComprehensionThreeStage(int score) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Language comprehension three stage must be 0-2, got $score');
     _languageComprehensionThreeStage = score;
     notifyListeners();
   }
@@ -284,6 +304,14 @@ class MicaScoreModel extends ChangeNotifier {
     required int total,
     required int agnosia,
   }) {
+    assert(ScoreValidation.isValidPictureNamingScore(correct),
+        'Picture naming correct must be 0-10, got $correct');
+    assert(ScoreValidation.isValidPictureNamingScore(total),
+        'Picture naming total must be 0-10, got $total');
+    assert(ScoreValidation.isValidCorrectTotal(correct, total),
+        'Picture naming correct ($correct) must be <= total ($total)');
+    assert(ScoreValidation.isValidRadioValue(agnosia),
+        'Picture agnosia must be 0-2, got $agnosia');
     _languagePictureNamingCorrect = correct;
     _languagePictureNamingTotal = total;
     _languagePictureAgnosia = agnosia;
@@ -292,26 +320,39 @@ class MicaScoreModel extends ChangeNotifier {
 
   // Methods to update memory scores
   void setTrialOneScore(int score) {
+    assert(ScoreValidation.isValidTenWordTrialScore(score),
+        'Trial one score must be 0-10, got $score');
     _trialOneScore = score;
     notifyListeners();
   }
 
   void setTrialTwoScore(int score) {
+    assert(ScoreValidation.isValidTenWordTrialScore(score),
+        'Trial two score must be 0-10, got $score');
     _trialTwoScore = score;
     notifyListeners();
   }
 
   void setTrialThreeScore(int score) {
+    assert(ScoreValidation.isValidTenWordTrialScore(score),
+        'Trial three score must be 0-10, got $score');
     _trialThreeScore = score;
     notifyListeners();
   }
 
   void setTenWordDelay(int score) {
+    assert(score >= ScoreValidation.tenWordDelayMin &&
+            score <= ScoreValidation.tenWordDelayMax,
+        'Ten word delay must be 0-10, got $score');
     _tenWordDelay = score;
     notifyListeners();
   }
 
   void setShorttermMemoryVerbal(int score, int verbalScore) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Short term memory verbal score must be 0-2, got $score');
+    assert(ScoreValidation.isValidShortVerbalMemoryScore(verbalScore),
+        'Short term memory verbal count must be 0-7, got $verbalScore');
     _shorttermMemoryVerbal = score;
     _shorttermMemoryVerbalScore = verbalScore;
     notifyListeners();
@@ -322,6 +363,15 @@ class MicaScoreModel extends ChangeNotifier {
     required int inList,
     required int notInList,
   }) {
+    assert(score >= ScoreValidation.recognitionTotalMin &&
+            score <= ScoreValidation.recognitionTotalMax,
+        'Recognition total must be 0-20, got $score');
+    assert(inList >= ScoreValidation.recognitionInListMin &&
+            inList <= ScoreValidation.recognitionInListMax,
+        'Recognition in list must be 0-10, got $inList');
+    assert(notInList >= ScoreValidation.recognitionNotInListMin &&
+            notInList <= ScoreValidation.recognitionNotInListMax,
+        'Recognition not in list must be 0-10, got $notInList');
     _scoreVerbalRecognitionMemoryTenWords = score;
     _scoreVerbalRecognitionMemoryTenWordsInList = inList;
     _scoreVerbalRecognitionMemoryTenWordsNotInList = notInList;
@@ -334,6 +384,12 @@ class MicaScoreModel extends ChangeNotifier {
     required int image2,
     required int image3,
   }) {
+    assert(ScoreValidation.isValidImageScore(image1),
+        'Visual memory image1 must be 0-3, got $image1');
+    assert(ScoreValidation.isValidImageScore(image2),
+        'Visual memory image2 must be 0-3, got $image2');
+    assert(ScoreValidation.isValidImageScore(image3),
+        'Visual memory image3 must be 0-3, got $image3');
     _shorttermMemoryVisualImage1 = image1;
     _shorttermMemoryVisualImage2 = image2;
     _shorttermMemoryVisualImage3 = image3;
@@ -343,6 +399,8 @@ class MicaScoreModel extends ChangeNotifier {
   // Memory domain setters (expanded)
 
   void setMemorySemanticScore(int score) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Semantic memory score must be 0-2, got $score');
     _memorySemanticScore = score;
     notifyListeners();
   }
@@ -353,6 +411,12 @@ class MicaScoreModel extends ChangeNotifier {
     required int image2,
     required int image3,
   }) {
+    assert(ScoreValidation.isValidImageScore(image1),
+        'Visual working image1 must be 0-3, got $image1');
+    assert(ScoreValidation.isValidImageScore(image2),
+        'Visual working image2 must be 0-3, got $image2');
+    assert(ScoreValidation.isValidImageScore(image3),
+        'Visual working image3 must be 0-3, got $image3');
     _memoryVisualWorkingImage1 = image1;
     _memoryVisualWorkingImage2 = image2;
     _memoryVisualWorkingImage3 = image3;
@@ -364,6 +428,12 @@ class MicaScoreModel extends ChangeNotifier {
     required int correct,
     required int total,
   }) {
+    assert(ScoreValidation.isValidShortVerbalMemoryScore(correct),
+        'Short verbal correct must be 0-7, got $correct');
+    assert(ScoreValidation.isValidShortVerbalMemoryScore(total),
+        'Short verbal total must be 0-7, got $total');
+    assert(ScoreValidation.isValidCorrectTotal(correct, total),
+        'Short verbal correct ($correct) must be <= total ($total)');
     _memoryShortVerbalCorrect = correct;
     _memoryShortVerbalTotal = total;
     notifyListeners();
@@ -374,6 +444,12 @@ class MicaScoreModel extends ChangeNotifier {
     required int correct,
     required int falsePositive,
   }) {
+    assert(correct >= ScoreValidation.recognitionInListMin &&
+            correct <= ScoreValidation.recognitionInListMax,
+        'Recognition correct must be 0-10, got $correct');
+    assert(falsePositive >= ScoreValidation.recognitionNotInListMin &&
+            falsePositive <= ScoreValidation.recognitionNotInListMax,
+        'Recognition false positive must be 0-10, got $falsePositive');
     _memoryTenWordRecognitionCorrect = correct;
     _memoryTenWordRecognitionFalsePositive = falsePositive;
     notifyListeners();
@@ -385,6 +461,12 @@ class MicaScoreModel extends ChangeNotifier {
     required int image2,
     required int image3,
   }) {
+    assert(ScoreValidation.isValidImageScore(image1),
+        'Visuospatial praxis image1 must be 0-3, got $image1');
+    assert(ScoreValidation.isValidImageScore(image2),
+        'Visuospatial praxis image2 must be 0-3, got $image2');
+    assert(ScoreValidation.isValidImageScore(image3),
+        'Visuospatial praxis image3 must be 0-3, got $image3');
     _visuospatialPraxisImage1 = image1;
     _visuospatialPraxisImage2 = image2;
     _visuospatialPraxisImage3 = image3;
@@ -392,6 +474,10 @@ class MicaScoreModel extends ChangeNotifier {
   }
 
   void setPraxisScores({required int right, required int left}) {
+    assert(ScoreValidation.isValidRadioValue(right),
+        'Praxis right must be 0-2, got $right');
+    assert(ScoreValidation.isValidRadioValue(left),
+        'Praxis left must be 0-2, got $left');
     _praxisRight = right;
     _praxisLeft = left;
     notifyListeners();
@@ -403,6 +489,14 @@ class MicaScoreModel extends ChangeNotifier {
     required int correct,
     required int mistakes,
   }) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Attention score must be 0-2, got $score');
+    assert(ScoreValidation.isValidAttentionCounter(correct),
+        'Attention correct must be 0-30, got $correct');
+    assert(ScoreValidation.isValidAttentionCounter(mistakes),
+        'Attention mistakes must be 0-30, got $mistakes');
+    assert(ScoreValidation.isValidAttentionSum(correct, mistakes),
+        'Attention correct ($correct) + mistakes ($mistakes) must be <= 30');
     _attention = score;
     _attentionCorrect = correct;
     _attentionMistakes = mistakes;
@@ -414,6 +508,10 @@ class MicaScoreModel extends ChangeNotifier {
     required int score,
     required int count,
   }) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Animal naming score must be 0-2, got $score');
+    assert(ScoreValidation.isValidFluencyCount(count),
+        'Animal naming count must be 0-100, got $count');
     _executiveAnimalNaming = score;
     _executiveAnimalNamingCount = count;
     notifyListeners();
@@ -423,27 +521,39 @@ class MicaScoreModel extends ChangeNotifier {
     required int score,
     required int count,
   }) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Lexical fluency score must be 0-2, got $score');
+    assert(ScoreValidation.isValidFluencyCount(count),
+        'Lexical fluency count must be 0-100, got $count');
     _executiveLexicalFluency = score;
     _executiveLexicalFluencyCount = count;
     notifyListeners();
   }
 
   void setExecutiveDesignFluency(int score) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Design fluency must be 0-2, got $score');
     _executiveDesignFluency = score;
     notifyListeners();
   }
 
   void setExecutiveFingerNose(int score) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Finger nose must be 0-2, got $score');
     _executiveFingerNose = score;
     notifyListeners();
   }
 
   void setExecutiveTap(int score) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Executive tap must be 0-2, got $score');
     _executiveTap = score;
     notifyListeners();
   }
 
   void setExecutiveAlternatingSequences(int score) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Alternating sequences must be 0-2, got $score');
     _executiveAlternatingSequences = score;
     notifyListeners();
   }
@@ -452,6 +562,10 @@ class MicaScoreModel extends ChangeNotifier {
     required int score,
     required int count,
   }) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Luria score must be 0-2, got $score');
+    assert(ScoreValidation.isValidFluencyCount(count),
+        'Luria count must be 0-100, got $count');
     _executiveLuria = score;
     _executiveLuriaScore = count;
     notifyListeners();
@@ -461,23 +575,33 @@ class MicaScoreModel extends ChangeNotifier {
     required int score,
     required int count,
   }) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Serial score must be 0-2, got $score');
+    assert(ScoreValidation.isValidFluencyCount(count),
+        'Serial count must be 0-100, got $count');
     _executiveSerial = score;
     _executiveSerialScore = count;
     notifyListeners();
   }
 
   void setExecutive(int score) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Executive must be 0-2, got $score');
     _executive = score;
     notifyListeners();
   }
 
   // Methods to update anomia/agnosia scores
   void setAnomiaAgnosia(int score) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Anomia/agnosia must be 0-2, got $score');
     _anomiaAgnosia = score;
     notifyListeners();
   }
 
   void setAgnosia(int score) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Agnosia must be 0-2, got $score');
     _agnosia = score;
     notifyListeners();
   }
@@ -494,6 +618,21 @@ class MicaScoreModel extends ChangeNotifier {
     required int pattern6,
     required int pattern7,
   }) {
+    assert(ScoreValidation.isValidFingerPerceptionPattern(pattern1),
+        'Finger perception pattern1 must be 0-2, got $pattern1');
+    assert(ScoreValidation.isValidFingerPerceptionPattern(pattern2),
+        'Finger perception pattern2 must be 0-2, got $pattern2');
+    assert(ScoreValidation.isValidFingerPerceptionPattern(pattern3),
+        'Finger perception pattern3 must be 0-2, got $pattern3');
+    assert(ScoreValidation.isValidFingerPerceptionPattern(pattern4),
+        'Finger perception pattern4 must be 0-2, got $pattern4');
+    assert(ScoreValidation.isValidFingerPerceptionPattern(pattern5),
+        'Finger perception pattern5 must be 0-2, got $pattern5');
+    assert(ScoreValidation.isValidFingerPerceptionPattern(pattern6),
+        'Finger perception pattern6 must be 0-2, got $pattern6');
+    assert(ScoreValidation.isValidFingerPerceptionPattern(pattern7),
+        'Finger perception pattern7 must be 0-2, got $pattern7');
+
     _gnosisFingerPerceptionPattern1 = pattern1;
     _gnosisFingerPerceptionPattern2 = pattern2;
     _gnosisFingerPerceptionPattern3 = pattern3;
@@ -514,6 +653,14 @@ class MicaScoreModel extends ChangeNotifier {
     required int nominalDysphasia,
     required int visualAgnosia,
   }) {
+    assert(
+        nominalDysphasia >= ScoreValidation.visualIdentificationMin &&
+            nominalDysphasia <= ScoreValidation.visualIdentificationMax,
+        'Nominal dysphasia must be 0-2, got $nominalDysphasia');
+    assert(
+        visualAgnosia >= ScoreValidation.visualIdentificationMin &&
+            visualAgnosia <= ScoreValidation.visualIdentificationMax,
+        'Visual agnosia must be 0-2, got $visualAgnosia');
     _gnosisVisualNominalDysphasia = nominalDysphasia;
     _gnosisVisualAgnosia = visualAgnosia;
     notifyListeners();
@@ -524,6 +671,14 @@ class MicaScoreModel extends ChangeNotifier {
     required int rightHand,
     required int leftHand,
   }) {
+    assert(
+        rightHand >= ScoreValidation.astereognosisMin &&
+            rightHand <= ScoreValidation.astereognosisMax,
+        'Astereognosis right must be 0-2, got $rightHand');
+    assert(
+        leftHand >= ScoreValidation.astereognosisMin &&
+            leftHand <= ScoreValidation.astereognosisMax,
+        'Astereognosis left must be 0-2, got $leftHand');
     _gnosisAstereognosisRight = rightHand;
     _gnosisAstereognosisLeft = leftHand;
     notifyListeners();
@@ -531,6 +686,8 @@ class MicaScoreModel extends ChangeNotifier {
 
   /// Set clock drawing test score (0-5 scale)
   void setGnosisClockDrawing(int score) {
+    assert(ScoreValidation.isValidClockDrawingScore(score),
+        'Clock drawing must be 0-5, got $score');
     _gnosisClockDrawing = score;
     notifyListeners();
   }
