@@ -5,6 +5,7 @@ import 'package:mica/src/home.dart';
 import 'package:mica/src/resource_page.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/utils/screen_routes.dart';
 import 'package:mica/src/widgets/error/error_widgets.dart';
 import 'package:mica/src/services/persistence_service.dart';
 import 'package:mica/src/providers/mica_provider.dart';
@@ -31,6 +32,12 @@ class WelcomeState extends State<Welcome> {
     final hasProgress = await PersistenceService.hasInProgressAssessment();
     final patientName = await PersistenceService.getSavedPatientName();
 
+    // Debug: Show what's actually stored
+    final savedData = await PersistenceService.loadProgress();
+    print('DEBUG Welcome: hasProgress=$hasProgress');
+    print('DEBUG Welcome: savedData currentScreen=${savedData?['currentScreen']}');
+    print('DEBUG Welcome: savedData patientName=${savedData?['patientName']}');
+
     if (mounted) {
       setState(() {
         _hasInProgressAssessment = hasProgress;
@@ -42,13 +49,40 @@ class WelcomeState extends State<Welcome> {
 
   Future<void> _resumeAssessment() async {
     if (!mounted) return;
+
+    // First, load the raw data to see what we have
+    final rawData = await PersistenceService.loadProgress();
+    print('DEBUG RESUME: Raw data loaded: $rawData');
+    print('DEBUG RESUME: Raw currentScreen: ${rawData?['currentScreen']}');
+
     final model = MicaProviders.getScoreModel(context, listen: false);
+    print('DEBUG RESUME: Model currentScreen BEFORE restore: ${model.currentScreen}');
+
     final success = await PersistenceService.restoreProgress(model);
+    print('DEBUG RESUME: Restore success: $success');
+    print('DEBUG RESUME: Model currentScreen AFTER restore: ${model.currentScreen}');
 
     if (!mounted) return;
     if (success) {
+      // Navigate to the saved screen, or DomainSelect as fallback
+      final savedRoute = model.currentScreen;
+      print('DEBUG RESUME: savedRoute value: $savedRoute');
+      print('DEBUG RESUME: Will navigate to: ${ScreenRoutes.getDisplayName(savedRoute)}');
+
+      // Show a snackbar with debug info (visible to user)
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text('Resuming to: ${ScreenRoutes.getDisplayName(savedRoute)} (route: $savedRoute)'),
+            duration: const Duration(seconds: 2),
+          ),
+        );
+      }
+
       Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => const DomainSelect()),
+        MaterialPageRoute(
+          builder: (context) => ScreenRoutes.buildScreen(savedRoute),
+        ),
         (Route<dynamic> route) => true,
       );
     } else {

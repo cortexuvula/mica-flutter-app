@@ -90,10 +90,7 @@ class AssessmentStringUtils {
 
   // Visual memory result string
   static String visualMemoryResultToString(MicaScoreModel scoreModel) {
-    int score1 = 3 - scoreModel.shorttermMemoryVisualImage1;
-    int score2 = 3 - scoreModel.shorttermMemoryVisualImage2;
-    int score3 = 3 - scoreModel.shorttermMemoryVisualImage3;
-    int combinedScore = score1 + score2 + score3;
+    final combinedScore = scoreModel.visualMemoryTotalScore;
 
     if (combinedScore > 7) {
       return "Normal";
@@ -106,15 +103,9 @@ class AssessmentStringUtils {
 
   // Calculate visual memory combined score
   static int calculateVisualMemoryScore(MicaScoreModel scoreModel, bool useShortTermMemory) {
-    if (useShortTermMemory) {
-      return (3 - scoreModel.shorttermMemoryVisualImage1) +
-             (3 - scoreModel.shorttermMemoryVisualImage2) +
-             (3 - scoreModel.shorttermMemoryVisualImage3);
-    } else {
-      return (3 - scoreModel.visuospatialPraxisImage1) +
-             (3 - scoreModel.visuospatialPraxisImage2) +
-             (3 - scoreModel.visuospatialPraxisImage3);
-    }
+    return useShortTermMemory
+        ? scoreModel.visualMemoryTotalScore
+        : scoreModel.visuospatialPraxisTotalScore;
   }
 
   // Format patient name with proper capitalization

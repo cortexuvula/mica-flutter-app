@@ -5,6 +5,8 @@ import 'package:mica/src/executive_animal_naming.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/utils/screen_routes.dart';
+import 'package:mica/src/services/persistence_service.dart';
 
 class Attention extends StatefulWidget {
   const Attention({super.key});
@@ -57,6 +59,16 @@ class _AttentionState extends State<Attention> {
     letterTapButtonColor = List.filled(letterCount, Colors.cyan.shade200);
 
     initFromProvider();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _saveCurrentScreen();
+    });
+  }
+
+  void _saveCurrentScreen() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setCurrentScreen(ScreenRoutes.attentionOld);
+    PersistenceService.saveProgressImmediate(scoreModel);
   }
 
   @override

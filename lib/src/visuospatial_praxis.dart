@@ -5,6 +5,8 @@ import 'package:mica/src/show_image.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/utils/screen_routes.dart';
+import 'package:mica/src/services/persistence_service.dart';
 
 class VisuospatialPraxis extends StatefulWidget {
   const VisuospatialPraxis({super.key});
@@ -30,6 +32,16 @@ class VisuospatialPraxisState extends State<VisuospatialPraxis> {
   void initState() {
     super.initState();
     initFromProvider();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _saveCurrentScreen();
+    });
+  }
+
+  void _saveCurrentScreen() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setCurrentScreen(ScreenRoutes.visuospatialPraxis);
+    PersistenceService.saveProgressImmediate(scoreModel);
   }
 
   // Update the provider with visuospatial praxis scores

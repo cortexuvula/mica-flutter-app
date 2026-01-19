@@ -582,8 +582,8 @@ void main() {
       expect(shareDoc.contains('Raw score: 8/10'), true);
 
       // Check calculated scores for visuospatial
-      // Images are 0,1,0 so score should be image1 + image2 + image3 = 0+1+0 = 1/9
-      expect(shareDoc.contains('Raw score: 1/9'), true); // Visuospatial scores
+      // Images errors are 0,1,0 so correct score = (3-0)+(3-1)+(3-0) = 8/9
+      expect(shareDoc.contains('Raw score: 8/9'), true); // Visuospatial scores
 
       // Check N/E/I classifications
       expect(shareDoc.contains('Normal'), true);

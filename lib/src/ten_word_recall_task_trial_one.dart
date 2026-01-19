@@ -4,6 +4,8 @@ import 'package:mica/src/ten_word_recall_task_trial_two.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/utils/screen_routes.dart';
+import 'package:mica/src/services/persistence_service.dart';
 
 class TenWordRecallTrialOne extends StatefulWidget {
   const TenWordRecallTrialOne({super.key});
@@ -31,6 +33,16 @@ class TenWordRecallTrialOneState extends State<TenWordRecallTrialOne>
       wordColor.add('yellow');
     }
     initFromProvider();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _saveCurrentScreen();
+    });
+  }
+
+  void _saveCurrentScreen() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setCurrentScreen(ScreenRoutes.tenWordRecallTrialOne);
+    PersistenceService.saveProgressImmediate(scoreModel);
   }
 
   // Update the provider with the trial one score

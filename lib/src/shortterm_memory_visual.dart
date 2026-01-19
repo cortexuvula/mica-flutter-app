@@ -5,6 +5,8 @@ import 'package:mica/src/welcome.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:provider/provider.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/utils/screen_routes.dart';
+import 'package:mica/src/services/persistence_service.dart';
 
 class ShortTermMemoryVisual extends StatefulWidget {
   // Using Provider pattern, no need for parameters
@@ -27,6 +29,16 @@ class _ShortTermMemoryVisualState extends State<ShortTermMemoryVisual> {
   void initState() {
     super.initState();
     initStateData();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _saveCurrentScreen();
+    });
+  }
+
+  void _saveCurrentScreen() {
+    final scoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+    scoreModel.setCurrentScreen(ScreenRoutes.shorttermMemoryVisual);
+    PersistenceService.saveProgressImmediate(scoreModel);
   }
 
   @override

@@ -4,6 +4,8 @@ import 'package:mica/src/executive_luria.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/utils/screen_routes.dart';
+import 'package:mica/src/services/persistence_service.dart';
 
 class ExecutiveAnimalNaming extends StatefulWidget {
   const ExecutiveAnimalNaming({super.key});
@@ -50,7 +52,7 @@ class ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
       vsync: this,
       duration: Duration(seconds: startSeconds),
     );
-    
+
     // Listen for when timer reaches 0
     clockController.addListener(() {
       if (clockController.value == 0.0 && timerStarted && !clockController.isAnimating) {
@@ -60,6 +62,16 @@ class ExecutiveAnimalNamingState extends State<ExecutiveAnimalNaming>
         });
       }
     });
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _saveCurrentScreen();
+    });
+  }
+
+  void _saveCurrentScreen() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setCurrentScreen(ScreenRoutes.executiveAnimalNamingOld);
+    PersistenceService.saveProgressImmediate(scoreModel);
   }
 
   @override

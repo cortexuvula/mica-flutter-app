@@ -10,6 +10,11 @@ class MicaScoreModel extends ChangeNotifier {
   String _handedness = 'Right';
   DateTime _assessmentDate = DateTime.now();
 
+  // Current screen for resume functionality
+  // Stores the route identifier (e.g., 'memory', 'attention') so the app
+  // can navigate back to the correct screen when resuming an assessment.
+  String? _currentScreen;
+
   // Test scores for different domains
   // Language scores
   int _languageComprehensionRadioValue = 0;
@@ -119,6 +124,9 @@ class MicaScoreModel extends ChangeNotifier {
   String get assessorName => _assessorName;
   String get handedness => _handedness;
   DateTime get assessmentDate => _assessmentDate;
+
+  // Getter for current screen (used by resume functionality)
+  String? get currentScreen => _currentScreen;
 
   // Getters for language scores
   int get languageComprehensionRadioValue => _languageComprehensionRadioValue;
@@ -266,6 +274,13 @@ class MicaScoreModel extends ChangeNotifier {
     _assessorName = assessorName;
     _handedness = handedness;
     _assessmentDate = assessmentDate;
+    notifyListeners();
+  }
+
+  /// Set the current screen route for resume functionality.
+  /// This should be called when navigating to a domain assessment screen.
+  void setCurrentScreen(String? route) {
+    _currentScreen = route;
     notifyListeners();
   }
 
@@ -894,6 +909,9 @@ class MicaScoreModel extends ChangeNotifier {
 
   // Method to reset all scores
   void resetScores() {
+    // Reset current screen
+    _currentScreen = null;
+
     _patientName = '';
     _assessorName = '';
     _handedness = 'Right';
@@ -1000,6 +1018,9 @@ class MicaScoreModel extends ChangeNotifier {
       // Metadata
       'savedAt': DateTime.now().toIso8601String(),
 
+      // Current screen for resume functionality
+      'currentScreen': _currentScreen,
+
       // Patient information
       'patientName': _patientName,
       'assessorName': _assessorName,
@@ -1100,6 +1121,9 @@ class MicaScoreModel extends ChangeNotifier {
 
   /// Restore model from JSON map
   void fromJson(Map<String, dynamic> json) {
+    // Current screen for resume functionality
+    _currentScreen = json['currentScreen'] as String?;
+
     // Patient information
     _patientName = json['patientName'] as String? ?? '';
     _assessorName = json['assessorName'] as String? ?? '';
@@ -1225,6 +1249,9 @@ class MicaScoreModel extends ChangeNotifier {
 
   /// Check if assessment has meaningful data worth saving
   bool get hasData {
+    // Check if there's a current screen to resume to
+    if (_currentScreen != null) return true;
+
     // Check patient info
     if (_patientName.isNotEmpty) return true;
     if (_assessorName.isNotEmpty) return true;

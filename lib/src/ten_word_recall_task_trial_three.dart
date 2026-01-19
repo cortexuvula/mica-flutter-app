@@ -4,6 +4,8 @@ import 'package:mica/src/visuospatial_praxis.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/utils/screen_routes.dart';
+import 'package:mica/src/services/persistence_service.dart';
 
 class TenWordRecallTrialThree extends StatefulWidget {
   const TenWordRecallTrialThree({super.key});
@@ -26,6 +28,16 @@ class TenWordRecallTrialThreeState extends State<TenWordRecallTrialThree> {
       wordColor.add('yellow');
     }
     initFromProvider();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _saveCurrentScreen();
+    });
+  }
+
+  void _saveCurrentScreen() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setCurrentScreen(ScreenRoutes.tenWordRecallTrialThree);
+    PersistenceService.saveProgressImmediate(scoreModel);
   }
 
   // Update the provider with the trial three score

@@ -101,7 +101,7 @@ class ShareService {
     shareDoc += "Visuospatial & Praxis: Line Drawing Copy\n\n";
     shareDoc += "N > 7, E = 7, I < 7\n\n";
     shareDoc +=
-        "  Raw score: ${(scoreModel.visuospatialPraxisImage1 + scoreModel.visuospatialPraxisImage2 + scoreModel.visuospatialPraxisImage3)}/9\n";
+        "  Raw score: ${scoreModel.visuospatialPraxisTotalScore}/9\n";
     shareDoc +=
         "  ${AssessmentStringUtils.resultToFullName(AssessmentStringUtils.visualMemoryResultToString(scoreModel))}\n\n";
 
@@ -174,7 +174,7 @@ class ShareService {
     // Short-Term Memory Visual: Line Drawing Recall
     shareDoc += "Short-Term Memory Visual: Line Drawing Recall\n\n";
     shareDoc += "N > 5, E = 5, I < 5\n\n";
-    shareDoc += "  Raw score: ${(scoreModel.shorttermMemoryVisualImage1 + scoreModel.shorttermMemoryVisualImage2 + scoreModel.shorttermMemoryVisualImage3)}/9\n";
+    shareDoc += "  Raw score: ${scoreModel.visualMemoryTotalScore}/9\n";
     shareDoc +=
         "  ${AssessmentStringUtils.resultToFullName(AssessmentStringUtils.visualMemoryResultToString(scoreModel))}\n\n";
 

@@ -4,6 +4,8 @@ import 'package:mica/src/executive_serial.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/utils/screen_routes.dart';
+import 'package:mica/src/services/persistence_service.dart';
 
 class ExecutiveLuria extends StatefulWidget {
   const ExecutiveLuria({super.key});
@@ -30,6 +32,16 @@ class ExecutiveLuriaState extends State<ExecutiveLuria> {
   void initState() {
     super.initState();
     initFromProvider();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _saveCurrentScreen();
+    });
+  }
+
+  void _saveCurrentScreen() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setCurrentScreen(ScreenRoutes.executiveLuria);
+    PersistenceService.saveProgressImmediate(scoreModel);
   }
 
   @override

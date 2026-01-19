@@ -6,6 +6,8 @@ import 'package:mica/src/welcome.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:provider/provider.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/utils/screen_routes.dart';
+import 'package:mica/src/services/persistence_service.dart';
 
 class AnomiaAgnosia extends StatefulWidget {
   const AnomiaAgnosia({super.key});
@@ -30,6 +32,16 @@ class _AnomiaAgnosiaState extends State<AnomiaAgnosia> {
   void initState() {
     super.initState();
     initFromProvider();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _saveCurrentScreen();
+    });
+  }
+
+  void _saveCurrentScreen() {
+    final scoreModel = Provider.of<MicaScoreModel>(context, listen: false);
+    scoreModel.setCurrentScreen(ScreenRoutes.anomiaAgnosia);
+    PersistenceService.saveProgressImmediate(scoreModel);
   }
 
   @override

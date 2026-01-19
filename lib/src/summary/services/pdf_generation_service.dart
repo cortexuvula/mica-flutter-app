@@ -198,7 +198,7 @@ class PdfGenerationService {
       title: "Visuospatial & Praxis: Line Drawing Copy",
       guide: "N > 7, E = 7, I < 7",
       rawScore:
-          "Raw score: ${9 - (scoreModel.visuospatialPraxisImage1 + scoreModel.visuospatialPraxisImage2 + scoreModel.visuospatialPraxisImage3)}/9",
+          "Raw score: ${scoreModel.visuospatialPraxisTotalScore}/9",
       result: AssessmentStringUtils.resultToFullName(
           AssessmentStringUtils.visualMemoryResultToString(scoreModel)),
     ));
@@ -297,7 +297,7 @@ class PdfGenerationService {
       title: "Short-Term Memory Visual: Line Drawing Recall",
       guide: "N > 5, E = 5, I < 5",
       rawScore:
-          "Raw score: ${9 - (scoreModel.shorttermMemoryVisualImage1 + scoreModel.shorttermMemoryVisualImage2 + scoreModel.shorttermMemoryVisualImage3)}/9",
+          "Raw score: ${scoreModel.visualMemoryTotalScore}/9",
       result: AssessmentStringUtils.resultToFullName(
           AssessmentStringUtils.visualMemoryResultToString(scoreModel)),
     ));

@@ -45,7 +45,9 @@ class PersistenceService {
   static Future<bool> _performSave(MicaScoreModel model) async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      final json = jsonEncode(model.toJson());
+      final jsonMap = model.toJson();
+      print('DEBUG: Saving currentScreen: ${jsonMap['currentScreen']}');
+      final json = jsonEncode(jsonMap);
       return prefs.setString(_storageKey, json);
     } catch (e) {
       // Log error in debug mode, but don't crash
@@ -151,7 +153,9 @@ class PersistenceService {
     if (data == null) return false;
 
     try {
+      print('DEBUG: Loaded data currentScreen: ${data['currentScreen']}');
       model.fromJson(data);
+      print('DEBUG: Model currentScreen after fromJson: ${model.currentScreen}');
       return true;
     } catch (e) {
       assert(() {

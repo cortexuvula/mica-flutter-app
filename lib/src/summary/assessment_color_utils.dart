@@ -122,10 +122,7 @@ class AssessmentColorUtils {
 
   // Visual Short-Term Memory color
   static Color visualMemoryColor(MicaScoreModel scoreModel) {
-    int score1 = 3 - scoreModel.shorttermMemoryVisualImage1;
-    int score2 = 3 - scoreModel.shorttermMemoryVisualImage2;
-    int score3 = 3 - scoreModel.shorttermMemoryVisualImage3;
-    int combinedScore = score1 + score2 + score3;
+    final combinedScore = scoreModel.visualMemoryTotalScore;
 
     if (combinedScore < 6) {
       return Colors.red;
@@ -138,10 +135,7 @@ class AssessmentColorUtils {
 
   // Praxis domain color
   static Color praxisDomainColor(MicaScoreModel scoreModel) {
-    int score1 = 3 - scoreModel.visuospatialPraxisImage1;
-    int score2 = 3 - scoreModel.visuospatialPraxisImage2;
-    int score3 = 3 - scoreModel.visuospatialPraxisImage3;
-    int combinedScore = score1 + score2 + score3;
+    final combinedScore = scoreModel.visuospatialPraxisTotalScore;
 
     if (combinedScore < 5 ||
         scoreModel.praxisLeft == 2 ||
@@ -158,10 +152,7 @@ class AssessmentColorUtils {
 
   // Gnosis domain color
   static Color gnosisDomainColor(MicaScoreModel scoreModel) {
-    int score1 = 3 - scoreModel.visuospatialPraxisImage1;
-    int score2 = 3 - scoreModel.visuospatialPraxisImage2;
-    int score3 = 3 - scoreModel.visuospatialPraxisImage3;
-    int combinedScore = score1 + score2 + score3;
+    final combinedScore = scoreModel.visuospatialPraxisTotalScore;
 
     if (combinedScore < 5 || scoreModel.anomiaAgnosia == 2) {
       return Colors.red;

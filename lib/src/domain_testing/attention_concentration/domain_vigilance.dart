@@ -63,6 +63,15 @@ class DomainVigilanceState extends State<DomainVigilance> {
   @override
   void initState() {
     super.initState();
+    // Initialize lists with correct length
+    final letterCount = app_data.attentionList.length;
+    tapCorrect = List.filled(letterCount, false);
+    tapWrong = List.filled(letterCount, false);
+    correctCheck = List.filled(letterCount, false);
+    letterTapButtonColor = List.filled(letterCount, Colors.cyan.shade200);
+
+    initFromProvider();
+
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _saveCurrentScreen();
     });
@@ -72,19 +81,6 @@ class DomainVigilanceState extends State<DomainVigilance> {
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     scoreModel.setCurrentScreen(ScreenRoutes.attentionVigilance);
     PersistenceService.saveProgressImmediate(scoreModel);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    // Initialize lists with correct length
-    final letterCount = app_data.attentionList.length;
-    tapCorrect = List.filled(letterCount, false);
-    tapWrong = List.filled(letterCount, false);
-    correctCheck = List.filled(letterCount, false);
-    letterTapButtonColor = List.filled(letterCount, Colors.cyan.shade200);
-
-    initFromProvider();
   }
 
   @override
