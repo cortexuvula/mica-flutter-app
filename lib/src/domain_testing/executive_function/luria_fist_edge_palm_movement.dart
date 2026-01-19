@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/utils/screen_routes.dart';
+import 'package:mica/src/services/persistence_service.dart';
 import 'package:mica/resources/strings/executive_strings.dart';
 import 'package:mica/resources/strings/common_strings.dart';
 
@@ -25,6 +27,15 @@ class LuriaFistEdgePalmMovementState
     // Initialize with Impaired selected for both hands (count = 0)
     rightHandScore = 2;
     leftHandScore = 2;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _saveCurrentScreen();
+    });
+  }
+
+  void _saveCurrentScreen() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setCurrentScreen(ScreenRoutes.executiveLuriaFistEdgePalm);
+    PersistenceService.saveProgressImmediate(scoreModel);
   }
   
   @override

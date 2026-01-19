@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/utils/screen_routes.dart';
 import 'package:mica/resources/strings/executive_strings.dart';
 import 'package:mica/src/domain_testing/executive_function/luria_alternating_hand_movements.dart';
 import 'package:mica/src/domain_testing/executive_function/luria_fist_edge_palm_movement.dart';
@@ -11,6 +12,8 @@ import 'package:mica/src/domain_testing/executive_function/months_of_year_backwa
 import 'package:mica/src/domain_testing/executive_function/finger_nose_task.dart';
 import 'package:mica/src/domain_testing/executive_function/tap_task.dart';
 import 'package:mica/src/domain_testing/executive_function/alternating_sequences.dart';
+import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/services/persistence_service.dart';
 
 class ExecutiveFunctionAssessment extends StatefulWidget {
   const ExecutiveFunctionAssessment({super.key});
@@ -22,6 +25,21 @@ class ExecutiveFunctionAssessment extends StatefulWidget {
 
 class ExecutiveFunctionAssessmentState
     extends State<ExecutiveFunctionAssessment> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _saveCurrentScreen();
+    });
+  }
+
+  void _saveCurrentScreen() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setCurrentScreen(ScreenRoutes.executive);
+    // Use immediate save to ensure currentScreen is persisted before user exits
+    PersistenceService.saveProgressImmediate(scoreModel);
+  }
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;

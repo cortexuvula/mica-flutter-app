@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/utils/screen_routes.dart';
+import 'package:mica/src/services/persistence_service.dart';
 import 'package:mica/resources/strings/executive_strings.dart';
 import 'package:mica/resources/strings/common_strings.dart';
 
@@ -24,7 +26,14 @@ class LexicalFluencyTestState extends State<LexicalFluencyTest> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _loadFromModel();
+      _saveCurrentScreen();
     });
+  }
+
+  void _saveCurrentScreen() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setCurrentScreen(ScreenRoutes.executiveLexicalFluency);
+    PersistenceService.saveProgressImmediate(scoreModel);
   }
 
   @override

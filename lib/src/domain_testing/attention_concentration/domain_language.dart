@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/utils/screen_routes.dart';
+import 'package:mica/src/services/persistence_service.dart';
 import 'package:mica/resources/strings/attention_strings.dart';
 import 'package:mica/resources/strings/common_strings.dart';
 
@@ -16,6 +19,20 @@ class DomainLanguageState extends State<DomainLanguage> {
   var format = DateFormat.yMMMMd();
   int _radioValue = 0;
   double sizeBoxHeight = 10.0;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _saveCurrentScreen();
+    });
+  }
+
+  void _saveCurrentScreen() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setCurrentScreen(ScreenRoutes.attentionLanguage);
+    PersistenceService.saveProgressImmediate(scoreModel);
+  }
 
   @override
   Widget build(BuildContext context) {

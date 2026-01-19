@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/utils/screen_routes.dart';
+import 'package:mica/src/services/persistence_service.dart';
 import 'package:mica/resources/strings/praxis_strings.dart';
 import 'package:mica/resources/strings/common_strings.dart';
 
@@ -21,7 +23,14 @@ class _DressingApraxiaState extends State<DressingApraxia> {
     // Initialize from provider if needed
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _initializeFromProvider();
+      _saveCurrentScreen();
     });
+  }
+
+  void _saveCurrentScreen() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setCurrentScreen(ScreenRoutes.praxisDressing);
+    PersistenceService.saveProgressImmediate(scoreModel);
   }
 
   void _initializeFromProvider() {

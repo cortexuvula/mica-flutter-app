@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/utils/screen_routes.dart';
+import 'package:mica/src/services/persistence_service.dart';
 import 'package:mica/resources/strings/language_strings.dart';
 import 'package:mica/resources/strings/common_strings.dart';
 
@@ -12,6 +14,20 @@ class ObjectNaming extends StatefulWidget {
 
 class _ObjectNamingState extends State<ObjectNaming> {
   int? selectedOption;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _saveCurrentScreen();
+    });
+  }
+
+  void _saveCurrentScreen() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setCurrentScreen(ScreenRoutes.languageObjectNaming);
+    PersistenceService.saveProgressImmediate(scoreModel);
+  }
 
   @override
   Widget build(BuildContext context) {

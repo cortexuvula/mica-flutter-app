@@ -9,6 +9,8 @@ import 'package:mica/src/domain_testing/executive_function/executive_function_as
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/utils/screen_routes.dart';
+import 'package:mica/src/services/persistence_service.dart';
 
 class DomainSelect extends StatefulWidget {
   const DomainSelect({super.key});
@@ -24,7 +26,19 @@ class DomainSelectState extends State<DomainSelect> {
     // Defer model initialization to after the build phase
     WidgetsBinding.instance.addPostFrameCallback((_) {
       initializeModelData();
+      _saveCurrentScreen();
     });
+  }
+
+  void _saveCurrentScreen() {
+    print('DEBUG DOMAINSELECT: _saveCurrentScreen() called');
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    print('DEBUG DOMAINSELECT: Setting currentScreen to: ${ScreenRoutes.domainSelect}');
+    scoreModel.setCurrentScreen(ScreenRoutes.domainSelect);
+    print('DEBUG DOMAINSELECT: Model currentScreen is now: ${scoreModel.currentScreen}');
+    // Use immediate save to ensure currentScreen is persisted before user exits
+    PersistenceService.saveProgressImmediate(scoreModel);
+    print('DEBUG DOMAINSELECT: Save called');
   }
 
   @override
@@ -175,6 +189,7 @@ class DomainSelectState extends State<DomainSelect> {
                                 Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
+                            print('DEBUG DOMAINSELECT: Navigating to MemoryAssessment');
                             NavigationHelper.navigateAndRemoveUntil(
                               context,
                               const MemoryAssessment(),

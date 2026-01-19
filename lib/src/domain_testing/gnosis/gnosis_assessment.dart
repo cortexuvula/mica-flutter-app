@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/utils/screen_routes.dart';
 import 'package:mica/src/domain_testing/gnosis/identify_objects_visually.dart';
 import 'package:mica/src/domain_testing/gnosis/identify_objects_by_touch.dart';
 import 'package:mica/src/domain_testing/gnosis/finger_perception_test.dart';
 import 'package:mica/src/domain_testing/gnosis/clock_drawing_test.dart';
 import 'package:mica/resources/strings/gnosis_strings.dart';
+import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/services/persistence_service.dart';
 
 class GnosisAssessment extends StatefulWidget {
   const GnosisAssessment({super.key});
@@ -15,6 +18,21 @@ class GnosisAssessment extends StatefulWidget {
 }
 
 class _GnosisAssessmentState extends State<GnosisAssessment> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _saveCurrentScreen();
+    });
+  }
+
+  void _saveCurrentScreen() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setCurrentScreen(ScreenRoutes.gnosis);
+    // Use immediate save to ensure currentScreen is persisted before user exits
+    PersistenceService.saveProgressImmediate(scoreModel);
+  }
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;

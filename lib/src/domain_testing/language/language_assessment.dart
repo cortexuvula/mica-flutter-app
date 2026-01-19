@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/utils/screen_routes.dart';
 import 'package:mica/resources/strings/language_strings.dart';
 import 'package:mica/src/domain_testing/language/spontaneous_speech.dart';
 import 'package:mica/src/domain_testing/language/comprehension_three_stage.dart';
@@ -9,6 +10,8 @@ import 'package:mica/src/domain_testing/language/repetition.dart';
 import 'package:mica/src/domain_testing/language/naming.dart';
 import 'package:mica/src/domain_testing/language/reading.dart';
 import 'package:mica/src/domain_testing/language/writing.dart';
+import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/services/persistence_service.dart';
 
 class LanguageAssessment extends StatefulWidget {
   const LanguageAssessment({super.key});
@@ -18,6 +21,21 @@ class LanguageAssessment extends StatefulWidget {
 }
 
 class _LanguageAssessmentState extends State<LanguageAssessment> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _saveCurrentScreen();
+    });
+  }
+
+  void _saveCurrentScreen() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setCurrentScreen(ScreenRoutes.language);
+    // Use immediate save to ensure currentScreen is persisted before user exits
+    PersistenceService.saveProgressImmediate(scoreModel);
+  }
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/utils/screen_routes.dart';
 import 'package:mica/src/domain_testing/praxis/limb_kinetic_apraxia.dart';
 import 'package:mica/src/domain_testing/praxis/ideomotor_apraxia.dart';
 import 'package:mica/src/domain_testing/praxis/ideational_apraxia.dart';
@@ -8,6 +9,8 @@ import 'package:mica/src/domain_testing/praxis/oral_apraxia.dart';
 import 'package:mica/src/domain_testing/praxis/dressing_apraxia.dart';
 import 'package:mica/src/domain_testing/praxis/line_drawing.dart';
 import 'package:mica/resources/strings/praxis_strings.dart';
+import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/services/persistence_service.dart';
 
 class PraxisAssessment extends StatefulWidget {
   const PraxisAssessment({super.key});
@@ -17,6 +20,21 @@ class PraxisAssessment extends StatefulWidget {
 }
 
 class _PraxisAssessmentState extends State<PraxisAssessment> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _saveCurrentScreen();
+    });
+  }
+
+  void _saveCurrentScreen() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setCurrentScreen(ScreenRoutes.praxis);
+    // Use immediate save to ensure currentScreen is persisted before user exits
+    PersistenceService.saveProgressImmediate(scoreModel);
+  }
+
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;

@@ -6,7 +6,10 @@ import 'package:mica/src/domain_testing/attention_concentration/domain_spell_wor
 import 'package:mica/src/domain_testing/attention_concentration/domain_vigilance.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/utils/screen_routes.dart';
 import 'package:mica/resources/strings/attention_strings.dart';
+import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/services/persistence_service.dart';
 
 class AttentionConcentration extends StatefulWidget {
   const AttentionConcentration({super.key});
@@ -16,6 +19,21 @@ class AttentionConcentration extends StatefulWidget {
 }
 
 class _AttentionConcentrationState extends State<AttentionConcentration> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _saveCurrentScreen();
+    });
+  }
+
+  void _saveCurrentScreen() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setCurrentScreen(ScreenRoutes.attention);
+    // Use immediate save to ensure currentScreen is persisted before user exits
+    PersistenceService.saveProgressImmediate(scoreModel);
+  }
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;

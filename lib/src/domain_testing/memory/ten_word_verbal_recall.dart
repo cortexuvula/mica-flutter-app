@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:mica/src/welcome.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/utils/screen_routes.dart';
 import 'package:mica/src/providers/mica_provider.dart';
+import 'package:mica/src/services/persistence_service.dart';
 import 'package:mica/resources/strings/memory_strings.dart';
 import 'package:mica/resources/strings/common_strings.dart';
 
@@ -13,6 +15,20 @@ class TenWordVerbalRecall extends StatefulWidget {
 }
 
 class _TenWordVerbalRecallState extends State<TenWordVerbalRecall> {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _saveCurrentScreen();
+    });
+  }
+
+  void _saveCurrentScreen() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    scoreModel.setCurrentScreen(ScreenRoutes.memoryTenWordRecall);
+    PersistenceService.saveProgressImmediate(scoreModel);
+  }
+
   // Memory items
   final List<String> memoryItems = [
     'CARROT',
