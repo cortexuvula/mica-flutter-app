@@ -73,8 +73,18 @@ class MicaScoreModel extends ChangeNotifier {
   int _praxisRight = 0;
   int _praxisLeft = 0;
 
+  // Praxis sub-test scores (dedicated fields to prevent overwrites)
+  int _praxisLimbKineticRight = 0;
+  int _praxisLimbKineticLeft = 0;
+  int _praxisIdeomotorRight = 0;
+  int _praxisIdeomotorLeft = 0;
+  int _praxisIdeational = 0;
+  int _praxisOral = 0;
+  int _praxisDressing = 0;
+
   // Attention scores
   int _attention = 0;
+  int _attentionDigitSpan = 0;
   int _attentionCorrect = 0;
   int _attentionMistakes = 0;
 
@@ -184,8 +194,18 @@ class MicaScoreModel extends ChangeNotifier {
   int get praxisRight => _praxisRight;
   int get praxisLeft => _praxisLeft;
 
+  // Getters for praxis sub-test scores
+  int get praxisLimbKineticRight => _praxisLimbKineticRight;
+  int get praxisLimbKineticLeft => _praxisLimbKineticLeft;
+  int get praxisIdeomotorRight => _praxisIdeomotorRight;
+  int get praxisIdeomotorLeft => _praxisIdeomotorLeft;
+  int get praxisIdeational => _praxisIdeational;
+  int get praxisOral => _praxisOral;
+  int get praxisDressing => _praxisDressing;
+
   // Getters for attention scores
   int get attention => _attention;
+  int get attentionDigitSpan => _attentionDigitSpan;
   int get attentionCorrect => _attentionCorrect;
   int get attentionMistakes => _attentionMistakes;
 
@@ -535,7 +555,56 @@ class MicaScoreModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  // Praxis sub-test setters
+  void setPraxisLimbKinetic({required int right, required int left}) {
+    assert(ScoreValidation.isValidRadioValue(right),
+        'Limb kinetic right must be 0-2, got $right');
+    assert(ScoreValidation.isValidRadioValue(left),
+        'Limb kinetic left must be 0-2, got $left');
+    _praxisLimbKineticRight = right;
+    _praxisLimbKineticLeft = left;
+    notifyListeners();
+  }
+
+  void setPraxisIdeomotor({required int right, required int left}) {
+    assert(ScoreValidation.isValidRadioValue(right),
+        'Ideomotor right must be 0-2, got $right');
+    assert(ScoreValidation.isValidRadioValue(left),
+        'Ideomotor left must be 0-2, got $left');
+    _praxisIdeomotorRight = right;
+    _praxisIdeomotorLeft = left;
+    notifyListeners();
+  }
+
+  void setPraxisIdeational(int score) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Ideational score must be 0-2, got $score');
+    _praxisIdeational = score;
+    notifyListeners();
+  }
+
+  void setPraxisOral(int score) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Oral score must be 0-2, got $score');
+    _praxisOral = score;
+    notifyListeners();
+  }
+
+  void setPraxisDressing(int score) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Dressing score must be 0-2, got $score');
+    _praxisDressing = score;
+    notifyListeners();
+  }
+
   // Methods to update attention scores
+  void setAttentionDigitSpan(int score) {
+    assert(ScoreValidation.isValidRadioValue(score),
+        'Digit span score must be 0-2, got $score');
+    _attentionDigitSpan = score;
+    notifyListeners();
+  }
+
   void setAttention({
     required int score,
     required int correct,
@@ -669,6 +738,7 @@ class MicaScoreModel extends ChangeNotifier {
     required int pattern5,
     required int pattern6,
     required int pattern7,
+    int summary = 0,
   }) {
     assert(ScoreValidation.isValidFingerPerceptionPattern(pattern1),
         'Finger perception pattern1 must be 0-2, got $pattern1');
@@ -693,9 +763,8 @@ class MicaScoreModel extends ChangeNotifier {
     _gnosisFingerPerceptionPattern6 = pattern6;
     _gnosisFingerPerceptionPattern7 = pattern7;
 
-    // Calculate total (sum of all patterns)
-    _gnosisFingerPerceptionTotal = pattern1 + pattern2 + pattern3 +
-                                    pattern4 + pattern5 + pattern6 + pattern7;
+    // Store the summary score (overall clinical assessment)
+    _gnosisFingerPerceptionTotal = summary;
 
     notifyListeners();
   }
@@ -776,6 +845,14 @@ class MicaScoreModel extends ChangeNotifier {
     required int shorttermMemoryVerbalScore,
     required int praxisRight,
     required int praxisLeft,
+    int praxisLimbKineticRight = 0,
+    int praxisLimbKineticLeft = 0,
+    int praxisIdeomotorRight = 0,
+    int praxisIdeomotorLeft = 0,
+    int praxisIdeational = 0,
+    int praxisOral = 0,
+    int praxisDressing = 0,
+    int attentionDigitSpan = 0,
     required int tenWordDelay,
     required int scoreVerbalRecognitionMemoryTenWords,
     required int scoreVerbalRecognitionMemoryTenWordsInList,
@@ -852,6 +929,14 @@ class MicaScoreModel extends ChangeNotifier {
     _shorttermMemoryVerbalScore = shorttermMemoryVerbalScore;
     _praxisRight = praxisRight;
     _praxisLeft = praxisLeft;
+    _praxisLimbKineticRight = praxisLimbKineticRight;
+    _praxisLimbKineticLeft = praxisLimbKineticLeft;
+    _praxisIdeomotorRight = praxisIdeomotorRight;
+    _praxisIdeomotorLeft = praxisIdeomotorLeft;
+    _praxisIdeational = praxisIdeational;
+    _praxisOral = praxisOral;
+    _praxisDressing = praxisDressing;
+    _attentionDigitSpan = attentionDigitSpan;
     _tenWordDelay = tenWordDelay;
     _scoreVerbalRecognitionMemoryTenWords =
         scoreVerbalRecognitionMemoryTenWords;
@@ -940,8 +1025,16 @@ class MicaScoreModel extends ChangeNotifier {
     _visuospatialPraxisImage3 = 0;
     _praxisRight = 0;
     _praxisLeft = 0;
+    _praxisLimbKineticRight = 0;
+    _praxisLimbKineticLeft = 0;
+    _praxisIdeomotorRight = 0;
+    _praxisIdeomotorLeft = 0;
+    _praxisIdeational = 0;
+    _praxisOral = 0;
+    _praxisDressing = 0;
 
     _attention = 0;
+    _attentionDigitSpan = 0;
     _attentionCorrect = 0;
     _attentionMistakes = 0;
 
@@ -1077,9 +1170,17 @@ class MicaScoreModel extends ChangeNotifier {
       'visuospatialPraxisImage3': _visuospatialPraxisImage3,
       'praxisRight': _praxisRight,
       'praxisLeft': _praxisLeft,
+      'praxisLimbKineticRight': _praxisLimbKineticRight,
+      'praxisLimbKineticLeft': _praxisLimbKineticLeft,
+      'praxisIdeomotorRight': _praxisIdeomotorRight,
+      'praxisIdeomotorLeft': _praxisIdeomotorLeft,
+      'praxisIdeational': _praxisIdeational,
+      'praxisOral': _praxisOral,
+      'praxisDressing': _praxisDressing,
 
       // Attention scores
       'attention': _attention,
+      'attentionDigitSpan': _attentionDigitSpan,
       'attentionCorrect': _attentionCorrect,
       'attentionMistakes': _attentionMistakes,
 
@@ -1192,9 +1293,17 @@ class MicaScoreModel extends ChangeNotifier {
     _visuospatialPraxisImage3 = json['visuospatialPraxisImage3'] as int? ?? 0;
     _praxisRight = json['praxisRight'] as int? ?? 0;
     _praxisLeft = json['praxisLeft'] as int? ?? 0;
+    _praxisLimbKineticRight = json['praxisLimbKineticRight'] as int? ?? 0;
+    _praxisLimbKineticLeft = json['praxisLimbKineticLeft'] as int? ?? 0;
+    _praxisIdeomotorRight = json['praxisIdeomotorRight'] as int? ?? 0;
+    _praxisIdeomotorLeft = json['praxisIdeomotorLeft'] as int? ?? 0;
+    _praxisIdeational = json['praxisIdeational'] as int? ?? 0;
+    _praxisOral = json['praxisOral'] as int? ?? 0;
+    _praxisDressing = json['praxisDressing'] as int? ?? 0;
 
     // Attention scores
     _attention = json['attention'] as int? ?? 0;
+    _attentionDigitSpan = json['attentionDigitSpan'] as int? ?? 0;
     _attentionCorrect = json['attentionCorrect'] as int? ?? 0;
     _attentionMistakes = json['attentionMistakes'] as int? ?? 0;
 

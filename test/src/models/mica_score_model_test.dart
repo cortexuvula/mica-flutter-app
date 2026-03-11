@@ -573,6 +573,7 @@ void main() {
         pattern5: 1,
         pattern6: 2,
         pattern7: 1,
+        summary: 2,
       );
 
       expect(model.gnosisFingerPerceptionPattern1, 2);
@@ -582,8 +583,8 @@ void main() {
       expect(model.gnosisFingerPerceptionPattern5, 1);
       expect(model.gnosisFingerPerceptionPattern6, 2);
       expect(model.gnosisFingerPerceptionPattern7, 1);
-      // Total should be 2+1+2+0+1+2+1 = 9
-      expect(model.gnosisFingerPerceptionTotal, 9);
+      // Total stores the summary score
+      expect(model.gnosisFingerPerceptionTotal, 2);
       expect(notifyCount, 1);
     });
 
@@ -601,7 +602,7 @@ void main() {
       expect(model.gnosisFingerPerceptionTotal, 0);
     });
 
-    test('setGnosisFingerPerception with max values gives total of 14', () {
+    test('setGnosisFingerPerception with max values and summary', () {
       model.setGnosisFingerPerception(
         pattern1: 2,
         pattern2: 2,
@@ -610,9 +611,10 @@ void main() {
         pattern5: 2,
         pattern6: 2,
         pattern7: 2,
+        summary: 2,
       );
 
-      expect(model.gnosisFingerPerceptionTotal, 14);
+      expect(model.gnosisFingerPerceptionTotal, 2);
     });
 
     test('setGnosisVisualIdentification updates values and notifies', () {
