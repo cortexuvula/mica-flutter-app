@@ -104,7 +104,7 @@ jobs:
           name: ios-build
           path: ios-build.tar.gz
 
-  # ─── macOS ────────────────────────────────────────────────────
+  # ─── macOS (signed + notarized) ───────────────────────────────
   build-macos:
     name: Build macOS
     needs: analyze-and-test
@@ -121,8 +121,73 @@ jobs:
       - name: Get dependencies
         run: flutter pub get
 
+      # ── Import code-signing certificate ──
+      - name: Install certificate
+        env:
+          MACOS_CERTIFICATE: ${{ secrets.MACOS_CERTIFICATE }}
+          MACOS_CERTIFICATE_PASSWORD: ${{ secrets.MACOS_CERTIFICATE_PASSWORD }}
+          MACOS_KEYCHAIN_PASSWORD: ${{ secrets.MACOS_KEYCHAIN_PASSWORD }}
+        run: |
+          # Decode certificate
+          echo "$MACOS_CERTIFICATE" | base64 --decode > certificate.p12
+
+          # Create temporary keychain
+          security create-keychain -p "$MACOS_KEYCHAIN_PASSWORD" build.keychain
+          security default-keychain -s build.keychain
+          security unlock-keychain -p "$MACOS_KEYCHAIN_PASSWORD" build.keychain
+
+          # Import certificate
+          security import certificate.p12 -k build.keychain \
+            -P "$MACOS_CERTIFICATE_PASSWORD" \
+            -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple: \
+            -s -k "$MACOS_KEYCHAIN_PASSWORD" build.keychain
+
+          # Clean up
+          rm certificate.p12
+
       - name: Build macOS
         run: flutter build macos --release
+
+      # ── Code sign the app ──
+      - name: Code sign app
+        run: |
+          APP_PATH="build/macos/Build/Products/Release/mica.app"
+          # Sign all frameworks and dylibs first, then the app itself
+          find "$APP_PATH" -name "*.framework" -o -name "*.dylib" | while read f; do
+            codesign --deep --force --verify --verbose \
+              --sign "Developer ID Application" \
+              --options runtime \
+              "$f"
+          done
+          codesign --deep --force --verify --verbose \
+            --sign "Developer ID Application" \
+            --options runtime \
+            "$APP_PATH"
+
+      # ── Notarize ──
+      - name: Notarize app
+        env:
+          APPLE_ID: ${{ secrets.APPLE_ID }}
+          APPLE_ID_PASSWORD: ${{ secrets.APPLE_ID_PASSWORD }}
+          APPLE_TEAM_ID: ${{ secrets.APPLE_TEAM_ID }}
+        run: |
+          APP_PATH="build/macos/Build/Products/Release/mica.app"
+
+          # Create a zip for notarization
+          ditto -c -k --keepParent "$APP_PATH" mica-notarize.zip
+
+          # Submit for notarization and wait
+          xcrun notarytool submit mica-notarize.zip \
+            --apple-id "$APPLE_ID" \
+            --password "$APPLE_ID_PASSWORD" \
+            --team-id "$APPLE_TEAM_ID" \
+            --wait
+
+          # Staple the notarization ticket to the app
+          xcrun stapler staple "$APP_PATH"
+
+          rm mica-notarize.zip
 
       - name: Archive macOS build
         run: |
