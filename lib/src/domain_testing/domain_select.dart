@@ -31,14 +31,10 @@ class DomainSelectState extends State<DomainSelect> {
   }
 
   void _saveCurrentScreen() {
-    print('DEBUG DOMAINSELECT: _saveCurrentScreen() called');
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-    print('DEBUG DOMAINSELECT: Setting currentScreen to: ${ScreenRoutes.domainSelect}');
     scoreModel.setCurrentScreen(ScreenRoutes.domainSelect);
-    print('DEBUG DOMAINSELECT: Model currentScreen is now: ${scoreModel.currentScreen}');
     // Use immediate save to ensure currentScreen is persisted before user exits
     PersistenceService.saveProgressImmediate(scoreModel);
-    print('DEBUG DOMAINSELECT: Save called');
   }
 
   @override
@@ -189,7 +185,6 @@ class DomainSelectState extends State<DomainSelect> {
                                 Theme.of(context).colorScheme.secondary,
                           ),
                           onPressed: () {
-                            print('DEBUG DOMAINSELECT: Navigating to MemoryAssessment');
                             NavigationHelper.navigateAndRemoveUntil(
                               context,
                               const MemoryAssessment(),
