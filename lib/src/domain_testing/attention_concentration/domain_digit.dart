@@ -29,8 +29,19 @@ class DigitState extends State<Digit> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      _initFromProvider();
       _saveCurrentScreen();
     });
+  }
+
+  void _initFromProvider() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    final saved = scoreModel.attentionDigitSpan;
+    if (saved != _radioValue) {
+      setState(() {
+        _radioValue = saved;
+      });
+    }
   }
 
   void _saveCurrentScreen() {
@@ -403,6 +414,8 @@ class DigitState extends State<Digit> {
                         elevation: 10.0,
                       ),
                       onPressed: () {
+                        final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+                        scoreModel.setAttentionDigitSpan(_radioValue);
                         Navigator.of(context).pop();
                       },
                       child: Text(

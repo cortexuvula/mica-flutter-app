@@ -38,8 +38,8 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     setState(() {
       // Initialize with existing scores if any
-      _rightHandScore = scoreModel.praxisRight;
-      _leftHandScore = scoreModel.praxisLeft;
+      _rightHandScore = scoreModel.praxisLimbKineticRight;
+      _leftHandScore = scoreModel.praxisLimbKineticLeft;
     });
   }
 
@@ -493,7 +493,7 @@ class _LimbKineticApraxiaState extends State<LimbKineticApraxia> {
     if (!mounted) return;
     
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-    scoreModel.setPraxisScores(
+    scoreModel.setPraxisLimbKinetic(
       right: _rightHandScore ?? 0,
       left: _leftHandScore ?? 0,
     );

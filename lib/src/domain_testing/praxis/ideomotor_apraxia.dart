@@ -38,8 +38,8 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     setState(() {
       // Initialize with existing scores if any
-      _rightHandScore = scoreModel.praxisRight;
-      _leftHandScore = scoreModel.praxisLeft;
+      _rightHandScore = scoreModel.praxisIdeomotorRight;
+      _leftHandScore = scoreModel.praxisIdeomotorLeft;
     });
   }
 
@@ -486,7 +486,7 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
     if (!mounted) return;
     
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-    scoreModel.setPraxisScores(
+    scoreModel.setPraxisIdeomotor(
       right: _rightHandScore ?? 0,
       left: _leftHandScore ?? 0,
     );

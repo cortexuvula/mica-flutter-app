@@ -155,6 +155,29 @@ class ShareService {
     shareDoc +=
         "  ${AssessmentStringUtils.resultToFullName(AssessmentStringUtils.radioValueToString(scoreModel.praxisLeft))}\n\n";
 
+    // Praxis sub-test scores
+    shareDoc += "Limb-Kinetic Apraxia: Right\n";
+    shareDoc +=
+        "  ${AssessmentStringUtils.resultToFullName(AssessmentStringUtils.radioValueToString(scoreModel.praxisLimbKineticRight))}\n\n";
+    shareDoc += "Limb-Kinetic Apraxia: Left\n";
+    shareDoc +=
+        "  ${AssessmentStringUtils.resultToFullName(AssessmentStringUtils.radioValueToString(scoreModel.praxisLimbKineticLeft))}\n\n";
+    shareDoc += "Ideomotor Apraxia: Right\n";
+    shareDoc +=
+        "  ${AssessmentStringUtils.resultToFullName(AssessmentStringUtils.radioValueToString(scoreModel.praxisIdeomotorRight))}\n\n";
+    shareDoc += "Ideomotor Apraxia: Left\n";
+    shareDoc +=
+        "  ${AssessmentStringUtils.resultToFullName(AssessmentStringUtils.radioValueToString(scoreModel.praxisIdeomotorLeft))}\n\n";
+    shareDoc += "Ideational Apraxia\n";
+    shareDoc +=
+        "  ${AssessmentStringUtils.resultToFullName(AssessmentStringUtils.radioValueToString(scoreModel.praxisIdeational))}\n\n";
+    shareDoc += "Oral Apraxia\n";
+    shareDoc +=
+        "  ${AssessmentStringUtils.resultToFullName(AssessmentStringUtils.radioValueToString(scoreModel.praxisOral))}\n\n";
+    shareDoc += "Dressing Apraxia\n";
+    shareDoc +=
+        "  ${AssessmentStringUtils.resultToFullName(AssessmentStringUtils.radioValueToString(scoreModel.praxisDressing))}\n\n";
+
     // Short-Term Memory Verbal: Delayed Recall Of 10 Words
     shareDoc += "Short-Term Memory Verbal: Delayed Recall Of 10 Words\n\n";
     shareDoc += "N > 5, E = 5, I < 5\n\n";

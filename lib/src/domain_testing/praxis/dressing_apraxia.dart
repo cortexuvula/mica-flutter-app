@@ -36,9 +36,7 @@ class _DressingApraxiaState extends State<DressingApraxia> {
   void _initializeFromProvider() {
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     setState(() {
-      // Initialize with existing score if any
-      // Using praxisRight as the dressing apraxia score for now
-      _score = scoreModel.praxisRight;
+      _score = scoreModel.praxisDressing;
     });
   }
 
@@ -291,11 +289,6 @@ class _DressingApraxiaState extends State<DressingApraxia> {
     if (!mounted) return;
     
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-    // Store the dressing apraxia score as praxisRight for now
-    // You may want to add a specific field for dressing apraxia in the model
-    scoreModel.setPraxisScores(
-      right: _score ?? 0,
-      left: scoreModel.praxisLeft,
-    );
+    scoreModel.setPraxisDressing(_score ?? 0);
   }
 }

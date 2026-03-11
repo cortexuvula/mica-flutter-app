@@ -271,6 +271,57 @@ class PdfGenerationService {
           AssessmentStringUtils.radioValueToString(scoreModel.praxisLeft)),
     ));
 
+    // Praxis sub-test scores
+    sections.add(_addAssessmentSection(
+      title: "Limb-Kinetic Apraxia: Right",
+      guide: "N = no errors, E = some difficulty, I = clear difficulty",
+      rawScore: "",
+      result: AssessmentStringUtils.resultToFullName(
+          AssessmentStringUtils.radioValueToString(scoreModel.praxisLimbKineticRight)),
+    ));
+    sections.add(_addAssessmentSection(
+      title: "Limb-Kinetic Apraxia: Left",
+      guide: "N = no errors, E = some difficulty, I = clear difficulty",
+      rawScore: "",
+      result: AssessmentStringUtils.resultToFullName(
+          AssessmentStringUtils.radioValueToString(scoreModel.praxisLimbKineticLeft)),
+    ));
+    sections.add(_addAssessmentSection(
+      title: "Ideomotor Apraxia: Right",
+      guide: "N = no errors, E = some difficulty, I = clear difficulty",
+      rawScore: "",
+      result: AssessmentStringUtils.resultToFullName(
+          AssessmentStringUtils.radioValueToString(scoreModel.praxisIdeomotorRight)),
+    ));
+    sections.add(_addAssessmentSection(
+      title: "Ideomotor Apraxia: Left",
+      guide: "N = no errors, E = some difficulty, I = clear difficulty",
+      rawScore: "",
+      result: AssessmentStringUtils.resultToFullName(
+          AssessmentStringUtils.radioValueToString(scoreModel.praxisIdeomotorLeft)),
+    ));
+    sections.add(_addAssessmentSection(
+      title: "Ideational Apraxia",
+      guide: "N = no errors, E = some difficulty, I = clear difficulty",
+      rawScore: "",
+      result: AssessmentStringUtils.resultToFullName(
+          AssessmentStringUtils.radioValueToString(scoreModel.praxisIdeational)),
+    ));
+    sections.add(_addAssessmentSection(
+      title: "Oral Apraxia",
+      guide: "N = no errors, E = some difficulty, I = clear difficulty",
+      rawScore: "",
+      result: AssessmentStringUtils.resultToFullName(
+          AssessmentStringUtils.radioValueToString(scoreModel.praxisOral)),
+    ));
+    sections.add(_addAssessmentSection(
+      title: "Dressing Apraxia",
+      guide: "N = no errors, E = some difficulty, I = clear difficulty",
+      rawScore: "",
+      result: AssessmentStringUtils.resultToFullName(
+          AssessmentStringUtils.radioValueToString(scoreModel.praxisDressing)),
+    ));
+
     // Short-Term Memory Verbal: Delayed Recall Of 10 Words
     sections.add(_addAssessmentSection(
       title: "Short-Term Memory Verbal: Delayed Recall Of 10 Words",

@@ -543,6 +543,7 @@ class _FingerPerceptionTestState extends State<FingerPerceptionTest> {
       pattern5: _patternScores[4] ?? 0,
       pattern6: _patternScores[5] ?? 0,
       pattern7: _patternScores[6] ?? 0,
+      summary: _summaryScore ?? 0,
     );
   }
 

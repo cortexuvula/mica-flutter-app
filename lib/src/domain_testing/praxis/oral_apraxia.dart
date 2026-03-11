@@ -36,9 +36,7 @@ class _OralApraxiaState extends State<OralApraxia> {
   void _initializeFromProvider() {
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     setState(() {
-      // Initialize with existing score if any
-      // Using praxisLeft as the oral apraxia score for now
-      _score = scoreModel.praxisLeft;
+      _score = scoreModel.praxisOral;
     });
   }
 
@@ -357,11 +355,6 @@ class _OralApraxiaState extends State<OralApraxia> {
     if (!mounted) return;
     
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
-    // Store the oral apraxia score as praxisLeft for now
-    // You may want to add a specific field for oral apraxia in the model
-    scoreModel.setPraxisScores(
-      right: scoreModel.praxisRight,
-      left: _score ?? 0,
-    );
+    scoreModel.setPraxisOral(_score ?? 0);
   }
 }

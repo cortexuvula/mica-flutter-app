@@ -552,6 +552,13 @@ class TestSummaryWithProviderRefactoredState
             visuospatialPraxisImage1: scoreModel.visuospatialPraxisImage1,
             visuospatialPraxisImage2: scoreModel.visuospatialPraxisImage2,
             visuospatialPraxisImage3: scoreModel.visuospatialPraxisImage3,
+            limbKineticRight: scoreModel.praxisLimbKineticRight,
+            limbKineticLeft: scoreModel.praxisLimbKineticLeft,
+            ideomotorRight: scoreModel.praxisIdeomotorRight,
+            ideomotorLeft: scoreModel.praxisIdeomotorLeft,
+            ideational: scoreModel.praxisIdeational,
+            oral: scoreModel.praxisOral,
+            dressing: scoreModel.praxisDressing,
           ),
           (Route<dynamic> route) => true,
         );

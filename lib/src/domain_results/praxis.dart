@@ -6,6 +6,13 @@ class Praxis extends StatefulWidget {
   final int visuospatialPraxisImage1;
   final int visuospatialPraxisImage2;
   final int visuospatialPraxisImage3;
+  final int limbKineticRight;
+  final int limbKineticLeft;
+  final int ideomotorRight;
+  final int ideomotorLeft;
+  final int ideational;
+  final int oral;
+  final int dressing;
 
   const Praxis({
     super.key,
@@ -14,6 +21,13 @@ class Praxis extends StatefulWidget {
     required this.visuospatialPraxisImage1,
     required this.visuospatialPraxisImage2,
     required this.visuospatialPraxisImage3,
+    this.limbKineticRight = 0,
+    this.limbKineticLeft = 0,
+    this.ideomotorRight = 0,
+    this.ideomotorLeft = 0,
+    this.ideational = 0,
+    this.oral = 0,
+    this.dressing = 0,
   });
 
   @override
@@ -104,6 +118,13 @@ class PraxisState extends State<Praxis> {
               ),
             ),
           ),
+          _buildSubTestCard("Limb-Kinetic Apraxia: Right", widget.limbKineticRight),
+          _buildSubTestCard("Limb-Kinetic Apraxia: Left", widget.limbKineticLeft),
+          _buildSubTestCard("Ideomotor Apraxia: Right", widget.ideomotorRight),
+          _buildSubTestCard("Ideomotor Apraxia: Left", widget.ideomotorLeft),
+          _buildSubTestCard("Ideational Apraxia", widget.ideational),
+          _buildSubTestCard("Oral Apraxia", widget.oral),
+          _buildSubTestCard("Dressing Apraxia", widget.dressing),
           Card(
             color: resultColor,
             elevation: 10.0,
@@ -127,6 +148,57 @@ class PraxisState extends State<Praxis> {
         ],
       ),
     );
+  }
+
+  Widget _buildSubTestCard(String title, int value) {
+    final color = _radioValueToColor(value);
+    final label = _radioValueToString(value);
+    return Card(
+      color: color,
+      elevation: 10.0,
+      child: ListTile(
+        title: Text(
+          title,
+          style: const TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        trailing: Text(
+          label,
+          style: const TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Color _radioValueToColor(int value) {
+    switch (value) {
+      case 0:
+        return Colors.green;
+      case 1:
+        return Colors.yellow;
+      case 2:
+        return Colors.red;
+      default:
+        return Colors.green;
+    }
+  }
+
+  String _radioValueToString(int value) {
+    switch (value) {
+      case 0:
+        return "Normal";
+      case 1:
+        return "Equivocal";
+      case 2:
+        return "Impaired";
+      default:
+        return "Normal";
+    }
   }
 
   void radio3ButtonValueToStringPraxisRight(int value) {
@@ -188,11 +260,9 @@ class PraxisState extends State<Praxis> {
   }
 
   void combineScores() {
-    int score1 = 3 - widget.visuospatialPraxisImage1;
-    int score2 = 3 - widget.visuospatialPraxisImage2;
-    int score3 = 3 - widget.visuospatialPraxisImage3;
-
-    int combineScore = score1 + score2 + score3;
+    int combineScore = widget.visuospatialPraxisImage1 +
+        widget.visuospatialPraxisImage2 +
+        widget.visuospatialPraxisImage3;
 
     if (combineScore > 5) {
       setState(() {
