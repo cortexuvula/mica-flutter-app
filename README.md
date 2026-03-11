@@ -2,9 +2,24 @@
 
 A Flutter application for cognitive assessment and monitoring.
 
+[![Build All Platforms](https://github.com/cortexuvula/mica-flutter-app/actions/workflows/build.yml/badge.svg)](https://github.com/cortexuvula/mica-flutter-app/actions/workflows/build.yml)
+
 ## Description
 
-Mica is a mobile application designed to provide cognitive assessments in clinical and research settings. The app delivers standardized tests to measure various cognitive domains while providing an intuitive user experience for both practitioners and patients.
+Mica is a multi-platform application designed to provide cognitive assessments in clinical and research settings. The app delivers standardized tests to measure various cognitive domains while providing an intuitive user experience for both practitioners and patients.
+
+## Downloads
+
+Pre-built binaries are available on the [Releases](https://github.com/cortexuvula/mica-flutter-app/releases/latest) page:
+
+| Platform | Format |
+|----------|--------|
+| Android | APK, App Bundle |
+| iOS | .app (tar.gz) |
+| macOS | DMG (signed & notarized) |
+| Windows | Executable (tar.gz) |
+| Linux | Bundle (tar.gz) |
+| Web | Static site (tar.gz) |
 
 ## Features
 
@@ -15,26 +30,28 @@ Mica is a mobile application designed to provide cognitive assessments in clinic
   - **Memory**: Verbal and visual short-term memory, delayed recall, recognition
   - **Praxis**: Limb-kinetic, ideomotor, ideational, oral, and dressing apraxia tests
   - **Gnosis**: Visual object identification, astereognosis, finger perception, clock drawing
+  - **Executive Function**: Luria alternating hand movements, fist-edge-palm, design fluency
 - Secure data collection and storage with Provider pattern
-- Cross-platform support (iOS and Android)
-- Responsive UI design for various device sizes
-- Results summary with domain-specific scoring and PDF generation
+- Assessment persistence — resume where you left off
+- Results summary with domain-specific scoring, colour-coded indicators, and PDF report generation
 - Video instructions for complex assessments
+- Cross-platform: Android, iOS, macOS, Windows, Linux, and Web
 
 ## Technology Stack
 
-- Flutter for cross-platform development
-- Dart programming language
-- State management: Provider pattern with ChangeNotifier
-- PDF generation for assessment reports
-- Video player for instructional content
+- **Framework**: Flutter 3.41+ / Dart
+- **State Management**: Provider pattern with ChangeNotifier
+- **PDF Generation**: `pdf` and `printing` packages
+- **Video**: `video_player` for instructional content
+- **Persistence**: `shared_preferences` for assessment progress
+- **CI/CD**: GitHub Actions — builds all 6 platforms on every push
 
 ## Installation
 
 ### Prerequisites
 
-- Flutter SDK (latest stable version)
-- Android Studio / Xcode
+- Flutter SDK >=3.0.0 <4.0.0
+- Android Studio / Xcode (for mobile)
 - Git
 
 ### Setup
@@ -44,20 +61,35 @@ Mica is a mobile application designed to provide cognitive assessments in clinic
    git clone https://github.com/cortexuvula/mica-flutter-app.git
    ```
 
-2. Navigate to the project directory:
+2. Install dependencies:
    ```bash
    cd mica-flutter-app
-   ```
-
-3. Install dependencies:
-   ```bash
    flutter pub get
    ```
 
-4. Run the application:
+3. Run the application:
    ```bash
    flutter run
    ```
+
+### Build for specific platforms
+
+```bash
+flutter run -d chrome      # Web
+flutter run -d ios          # iOS simulator
+flutter run -d android      # Android emulator
+flutter run -d macos        # macOS
+flutter run -d windows      # Windows
+flutter run -d linux        # Linux
+
+flutter build apk --release       # Android APK
+flutter build appbundle --release  # Android App Bundle
+flutter build ios --release        # iOS
+flutter build macos --release      # macOS
+flutter build windows --release    # Windows
+flutter build linux --release      # Linux
+flutter build web                  # Web
+```
 
 ## Development
 
@@ -67,41 +99,43 @@ Mica is a mobile application designed to provide cognitive assessments in clinic
 lib/
 ├── main.dart                    # Application entry point
 ├── resources/
-│   └── const_data.dart         # Constants and static data
+│   ├── const_data.dart          # Constants and static data
+│   └── strings/                 # Localizable strings
 ├── src/
-│   ├── domain_testing/         # Assessment modules by domain
+│   ├── domain_testing/          # Assessment modules by domain
 │   │   ├── attention_concentration/
 │   │   ├── language/
 │   │   ├── memory/
 │   │   ├── praxis/
-│   │   └── gnosis/            # Gnosis assessment tests
-│   │       ├── gnosis_assessment.dart
-│   │       ├── identify_objects_visually.dart
-│   │       ├── identify_objects_by_touch.dart
-│   │       ├── finger_perception_test.dart
-│   │       └── clock_drawing_test.dart
-│   ├── domain_results/         # Result display screens
-│   ├── models/                 # Data models
-│   │   └── mica_score_model.dart
-│   ├── providers/              # State management
-│   │   └── mica_provider.dart
-│   ├── summary/                # Summary and report generation
-│   │   └── services/
-│   │       └── pdf_generation_service.dart
-│   └── utils/                  # Utility functions
-│       └── navigation_helper.dart
-├── images/                     # Image assets
-│   └── handdiagram1-7.png    # Finger perception test diagrams
-└── video/                      # Instructional videos
+│   │   ├── gnosis/
+│   │   └── executive_function/
+│   ├── domain_results/          # Result display screens
+│   ├── models/
+│   │   └── mica_score_model.dart  # Central score model
+│   ├── providers/
+│   │   └── mica_provider.dart     # Provider configuration
+│   ├── services/
+│   │   └── persistence_service.dart  # Assessment save/restore
+│   ├── summary/                 # Summary and report generation
+│   │   ├── services/
+│   │   │   ├── pdf_generation_service.dart
+│   │   │   └── share_service.dart
+│   │   └── assessment_color_utils.dart
+│   ├── utils/
+│   │   ├── navigation_helper.dart
+│   │   └── screen_routes.dart
+│   └── widgets/                 # Reusable UI components
+├── images/                      # Image assets
+└── video/                       # Instructional videos (.m4v)
 ```
 
-### State Management
+### Testing
 
-The application uses the Provider pattern with ChangeNotifier for state management. The centralized `MicaScoreModel` holds all test scores and patient information, providing a single source of truth across the application. Key patterns include:
-
-- `MicaProviders.getProviders()` - Returns MultiProvider configuration
-- `MicaProviders.getScoreModel(context)` - Access the score model from any screen
-- Deferred initialization using `WidgetsBinding.instance.addPostFrameCallback`
+```bash
+flutter test                                          # All tests
+flutter test test/src/models/mica_score_model_test.dart  # Specific test
+flutter analyze                                       # Static analysis
+```
 
 ## Contributing
 
@@ -114,9 +148,3 @@ The application uses the Provider pattern with ChangeNotifier for state manageme
 ## License
 
 [Specify license information here]
-
----
-
-For help getting started with Flutter development, view the
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
