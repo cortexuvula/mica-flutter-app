@@ -35,7 +35,7 @@ if (keystorePropertiesFile.exists()) {
 
 android {
     namespace "net.neoncortex.mica"
-    compileSdkVersion 34
+    compileSdk 35
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_17
@@ -50,15 +50,14 @@ android {
         main.java.srcDirs += 'src/main/kotlin'
     }
 
-    lintOptions {
+    lint {
         disable 'InvalidPackage'
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId "net.neoncortex.mica"
-        minSdkVersion flutter.minSdkVersion
-        targetSdkVersion 33
+        minSdk flutter.minSdkVersion
+        targetSdk 34
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
