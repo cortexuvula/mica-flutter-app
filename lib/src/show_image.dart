@@ -37,6 +37,12 @@ class ShowImageState extends State<ShowImage> {
           image2 = 1;
           break;
         }
+      default:
+        {
+          image1 = 0;
+          image2 = 1;
+          break;
+        }
     }
     var width = MediaQuery.of(context).size.width;
     return Scaffold(

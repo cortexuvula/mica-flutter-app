@@ -99,17 +99,17 @@ void main() {
     });
 
     group('delayRecallColor', () {
-      test('returns red for value < 7', () {
+      test('returns red for value < 5', () {
         expect(AssessmentColorUtils.delayRecallColor(0), Colors.red);
-        expect(AssessmentColorUtils.delayRecallColor(6), Colors.red);
+        expect(AssessmentColorUtils.delayRecallColor(4), Colors.red);
       });
 
-      test('returns yellow for value = 7', () {
-        expect(AssessmentColorUtils.delayRecallColor(7), Colors.yellow);
+      test('returns yellow for value = 5', () {
+        expect(AssessmentColorUtils.delayRecallColor(5), Colors.yellow);
       });
 
-      test('returns green for value > 7', () {
-        expect(AssessmentColorUtils.delayRecallColor(8), Colors.green);
+      test('returns green for value > 5', () {
+        expect(AssessmentColorUtils.delayRecallColor(6), Colors.green);
         expect(AssessmentColorUtils.delayRecallColor(10), Colors.green);
       });
     });

@@ -3,7 +3,6 @@ import 'package:mica/resources/const_data.dart' as app_data;
 import 'package:mica/src/domain_testing/domain_select.dart';
 import 'package:mica/src/home.dart';
 import 'package:mica/src/resource_page.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/utils/screen_routes.dart';
 import 'package:mica/src/widgets/error/error_widgets.dart';
@@ -83,7 +82,7 @@ class WelcomeState extends State<Welcome> {
         MaterialPageRoute(
           builder: (context) => ScreenRoutes.buildScreen(savedRoute),
         ),
-        (Route<dynamic> route) => true,
+        (Route<dynamic> route) => false,
       );
     } else {
       // Failed to restore - clear corrupted data and refresh
@@ -301,7 +300,7 @@ class WelcomeState extends State<Welcome> {
                                   builder: (BuildContext context) =>
                                       const DomainSelect());
                               Navigator.of(context).pushAndRemoveUntil(
-                                  router, (Route<dynamic> route) => true);
+                                  router, (Route<dynamic> route) => false);
                             },
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
@@ -444,24 +443,13 @@ class WelcomeState extends State<Welcome> {
   }
 
   Future<void> _launchURL() async {
-    final Uri url = Uri.parse('/assets/bca.pdf');
-
-    try {
-      final bool launched = await launchUrl(url);
-
-      if (!launched && mounted) {
-        SnackbarHelper.showError(
-          context,
-          'Unable to open the resource file. Please try again.',
-        );
-      }
-    } catch (e) {
-      if (mounted) {
-        SnackbarHelper.showError(
-          context,
-          'Failed to open the resource: ${e.toString()}',
-        );
-      }
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('PDF resource is bundled with the app.'),
+          duration: Duration(seconds: 3),
+        ),
+      );
     }
   }
 }

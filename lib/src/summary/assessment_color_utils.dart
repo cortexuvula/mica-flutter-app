@@ -52,9 +52,9 @@ class AssessmentColorUtils {
 
   // Delay recall color
   static Color delayRecallColor(int value) {
-    if (value < 7) {
+    if (value < 5) {
       return Colors.red;
-    } else if (value == 7) {
+    } else if (value == 5) {
       return Colors.yellow;
     } else {
       return Colors.green;

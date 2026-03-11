@@ -61,6 +61,14 @@ class ShowImageAnomiaState extends State<ShowImageAnomia> {
           image4 = 3;
           break;
         }
+      default:
+        {
+          image1 = 0;
+          image2 = 1;
+          image3 = 2;
+          image4 = 3;
+          break;
+        }
     }
     var width = MediaQuery.of(context).size.width;
     return Scaffold(

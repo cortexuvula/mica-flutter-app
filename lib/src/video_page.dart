@@ -61,7 +61,11 @@ class VideoPageState extends State<VideoPage> {
     });
 
     // Dispose old controller and create new one
-    videoPlayerController.dispose();
+    try {
+      videoPlayerController.dispose();
+    } catch (_) {
+      // Ignore errors from disposing a failed controller
+    }
     _chewieController?.dispose();
     _chewieController = null;
 
