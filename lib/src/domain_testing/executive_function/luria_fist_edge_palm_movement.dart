@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 import 'package:mica/src/utils/screen_routes.dart';
@@ -411,9 +412,8 @@ class LuriaFistEdgePalmMovementState
   void _saveScore() {
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
 
-    // Calculate average score from both hands
-    // If one hand has no cycles, it defaults to 0 (Normal)
-    int averageScore = ((rightHandScore ?? 0) + (leftHandScore ?? 0)) ~/ 2;
+    // Use worst-case (max) score from both hands
+    int averageScore = max(rightHandScore ?? 0, leftHandScore ?? 0);
     int totalCycles = rightHandCycleCount + leftHandCycleCount;
 
     scoreModel.setExecutiveLuria(

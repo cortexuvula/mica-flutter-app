@@ -135,11 +135,9 @@ class _GnosisState extends State<Gnosis> {
   }
 
   void combineScores() {
-    int score1 = 3 - widget.visuospatialPraxisImage1;
-    int score2 = 3 - widget.visuospatialPraxisImage2;
-    int score3 = 3 - widget.visuospatialPraxisImage3;
-
-    int combineScore = score1 + score2 + score3;
+    int combineScore = widget.visuospatialPraxisImage1 +
+        widget.visuospatialPraxisImage2 +
+        widget.visuospatialPraxisImage3;
 
     if (combineScore > 5) {
       setState(() {

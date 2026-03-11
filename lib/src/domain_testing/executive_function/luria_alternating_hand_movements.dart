@@ -300,10 +300,10 @@ class LuriaAlternatingHandMovementsState
   void _updateScoreBasedOnCount() {
     if (cycleCount == 0) {
       selectedScore = 2; // Impaired
-    } else if (cycleCount == 1) {
+    } else if (cycleCount >= 1 && cycleCount <= 4) {
       selectedScore = 1; // Equivocal
     } else {
-      selectedScore = 0; // Normal (> 1)
+      selectedScore = 0; // Normal (>= 5)
     }
   }
   

@@ -19,6 +19,7 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
+      _initFromProvider();
       _saveCurrentScreen();
     });
   }
@@ -29,10 +30,24 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
     PersistenceService.saveProgressImmediate(scoreModel);
   }
 
+  void _initFromProvider() {
+    final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+    final img1 = scoreModel.shorttermMemoryVisualImage1;
+    final img2 = scoreModel.shorttermMemoryVisualImage2;
+    final img3 = scoreModel.shorttermMemoryVisualImage3;
+    if (img1 != 0 || img2 != 0 || img3 != 0) {
+      setState(() {
+        selectedScores['image1'] = img1;
+        selectedScores['image2'] = img2;
+        selectedScores['image3'] = img3;
+      });
+    }
+  }
+
   Map<String, int> selectedScores = {
-    'image1': 3,
-    'image2': 3,
-    'image3': 3,
+    'image1': 0,
+    'image2': 0,
+    'image3': 0,
   }; // Default scores
   
   final List<String> shapeImages = [
