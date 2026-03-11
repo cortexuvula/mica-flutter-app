@@ -5,5 +5,9 @@
              Flutter draws its first frame -->
         <item name="android:windowBackground">@drawable/launch_background</item>
     </style>
+    <!-- Theme applied after Flutter engine starts and draws first frame -->
+    <style name="NormalTheme" parent="@android:style/Theme.Black.NoTitleBar">
+        <item name="android:windowBackground">?android:colorBackground</item>
+    </style>
     <color name="mySplashColor">#aba9e9</color>
 </resources>
