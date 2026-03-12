@@ -34,6 +34,7 @@ class _IdeationalApraxiaState extends State<IdeationalApraxia> {
   }
 
   void _initializeFromProvider() {
+    if (!mounted) return;
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     setState(() {
       _score = scoreModel.praxisIdeational;

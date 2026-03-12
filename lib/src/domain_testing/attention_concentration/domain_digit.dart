@@ -323,7 +323,7 @@ class DigitState extends State<Digit> {
                                       CommonStrings.normal,
                                       style: TextStyle(
                                         color: Colors.black,
-                                        fontSize: 10.0,
+                                        fontSize: 12.0,
                                       ),
                                     ),
                                   ],
@@ -338,7 +338,7 @@ class DigitState extends State<Digit> {
                                       CommonStrings.equivocal,
                                       style: TextStyle(
                                         color: Colors.black,
-                                        fontSize: 10.0,
+                                        fontSize: 12.0,
                                       ),
                                     ),
                                   ],
@@ -353,7 +353,7 @@ class DigitState extends State<Digit> {
                                       CommonStrings.impaired,
                                       style: TextStyle(
                                         color: Colors.black,
-                                        fontSize: 10.0,
+                                        fontSize: 12.0,
                                       ),
                                     ),
                                   ],

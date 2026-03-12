@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class Gnosis extends StatefulWidget {
   final int visuospatialPraxisImage1;
@@ -33,6 +34,10 @@ class _GnosisState extends State<Gnosis> {
 
     radio3ButtonValueToStringAgnosia(widget.anomiaAgnosia);
     combineScores();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      MicaProviders.getScoreModel(context, listen: false)
+          .markDomainCompleted('gnosis');
+    });
   }
 
   @override
@@ -135,9 +140,10 @@ class _GnosisState extends State<Gnosis> {
   }
 
   void combineScores() {
-    int combineScore = widget.visuospatialPraxisImage1 +
-        widget.visuospatialPraxisImage2 +
-        widget.visuospatialPraxisImage3;
+    int score1 = 3 - widget.visuospatialPraxisImage1;
+    int score2 = 3 - widget.visuospatialPraxisImage2;
+    int score3 = 3 - widget.visuospatialPraxisImage3;
+    int combineScore = score1 + score2 + score3;
 
     if (combineScore > 5) {
       setState(() {

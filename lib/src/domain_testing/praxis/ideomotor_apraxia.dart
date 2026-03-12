@@ -35,6 +35,7 @@ class _IdeomotorApraxiaState extends State<IdeomotorApraxia> {
   }
 
   void _initializeFromProvider() {
+    if (!mounted) return;
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     setState(() {
       // Initialize with existing scores if any

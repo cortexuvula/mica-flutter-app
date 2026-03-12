@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class VerbalWorkingMemory extends StatefulWidget {
   final int trialOneScore;
@@ -18,6 +19,10 @@ class _VerbalWorkingMemoryState extends State<VerbalWorkingMemory> {
     super.initState();
     result = "Normal";
     valueTrial12ResultToString(widget.trialOneScore);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      MicaProviders.getScoreModel(context, listen: false)
+          .markDomainCompleted('verbal_working_memory');
+    });
   }
 
   @override

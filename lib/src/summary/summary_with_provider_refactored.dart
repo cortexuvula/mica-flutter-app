@@ -14,6 +14,7 @@ import 'package:mica/src/welcome.dart';
 import 'package:mica/src/models/mica_score_model.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
+import 'package:mica/src/utils/confirmation_dialog.dart';
 import 'package:mica/src/services/persistence_service.dart';
 
 // Import refactored components
@@ -99,10 +100,13 @@ class TestSummaryWithProviderRefactoredState
     );
   }
 
+  static const int _totalDomains = 8;
+
   Widget _buildDomainReport(MicaScoreModel scoreModel) {
     return SingleChildScrollView(
       child: Column(
         children: <Widget>[
+          _buildCompletenessBanner(scoreModel),
           _buildPatientInfoCard(scoreModel),
           _buildAttentionCard(scoreModel),
           _buildLanguageCard(scoreModel),
@@ -337,8 +341,8 @@ class TestSummaryWithProviderRefactoredState
             TaskRowData(
               taskName: SummaryStrings.taskVisuospatialPraxis,
               scoringGuide: SummaryStrings.scoreGuideVisuospatial,
-              result: AssessmentStringUtils.calculateVisualMemoryScore(scoreModel, true).toString(),
-              nei: AssessmentStringUtils.visualMemoryResultToString(scoreModel),
+              result: AssessmentStringUtils.calculateVisualMemoryScore(scoreModel, false).toString(),
+              nei: AssessmentStringUtils.visuospatialPraxisResultToString(scoreModel),
             ),
           ],
         ),
@@ -356,7 +360,7 @@ class TestSummaryWithProviderRefactoredState
               taskName: SummaryStrings.taskVisuospatialPraxis,
               scoringGuide: SummaryStrings.scoreGuideVisuospatial,
               result: AssessmentStringUtils.calculateVisualMemoryScore(scoreModel, false).toString(),
-              nei: AssessmentStringUtils.visualMemoryResultToString(scoreModel),
+              nei: AssessmentStringUtils.visuospatialPraxisResultToString(scoreModel),
             ),
           ],
         ),
@@ -394,6 +398,50 @@ class TestSummaryWithProviderRefactoredState
     );
   }
 
+  Widget _buildCompletenessBanner(MicaScoreModel scoreModel) {
+    final completed = scoreModel.completedDomainCount;
+    final isComplete = completed >= _totalDomains;
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+      color: isComplete ? Colors.green.shade100 : Colors.orange.shade100,
+      child: Text(
+        '$completed of $_totalDomains domains completed',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontWeight: FontWeight.w500,
+          color: isComplete ? Colors.green.shade900 : Colors.orange.shade900,
+        ),
+      ),
+    );
+  }
+
+  Future<bool> _confirmIncompleteExport(MicaScoreModel scoreModel) async {
+    if (scoreModel.completedDomainCount >= _totalDomains) return true;
+    final result = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Incomplete Assessment'),
+        content: Text(
+          'Only ${scoreModel.completedDomainCount} of $_totalDomains domains '
+          'have been completed. Unassessed domains will show default scores.\n\n'
+          'Continue exporting?',
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text('Cancel'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text('Export Anyway'),
+          ),
+        ],
+      ),
+    );
+    return result ?? false;
+  }
+
   // Domain card builders using the new widgets
   Widget _buildAttentionCard(MicaScoreModel scoreModel) {
     return DomainCardWidget(
@@ -419,14 +467,14 @@ class TestSummaryWithProviderRefactoredState
       title: SummaryStrings.languageDomain,
       cardColor: AssessmentColorUtils.languageDomainColor(
         scoreModel.spokenLanguage,
-        scoreModel.executiveAnimalNaming,
+        scoreModel.anomiaAgnosia,
       ),
       statusIndicators: [
         StatusIndicator(
           color: AssessmentColorUtils.radioValueToColor(scoreModel.spokenLanguage),
         ),
         StatusIndicator(
-          color: AssessmentColorUtils.radioValueToColor(scoreModel.executive),
+          color: AssessmentColorUtils.radioValueToColor(scoreModel.anomiaAgnosia),
         ),
       ],
       onTap: () {
@@ -435,7 +483,7 @@ class TestSummaryWithProviderRefactoredState
           Language(
             spokenLanguage: scoreModel.spokenLanguage,
             comprehension: scoreModel.languageComprehensionRadioValue,
-            drawLine: scoreModel.executive,
+            drawLine: scoreModel.anomiaAgnosia,
           ),
           (Route<dynamic> route) => true,
         );
@@ -611,6 +659,9 @@ class TestSummaryWithProviderRefactoredState
           context,
           ExecutiveFunctions(
             executiveAnimalNaming: scoreModel.executiveAnimalNaming,
+            executiveDesignFluency: scoreModel.executive,
+            executiveLuria: scoreModel.executiveLuria,
+            executiveSerial: scoreModel.executiveSerial,
           ),
           (Route<dynamic> route) => true,
         );
@@ -620,6 +671,7 @@ class TestSummaryWithProviderRefactoredState
 
   // Action handlers
   Future<void> _shareReport(MicaScoreModel scoreModel) async {
+    if (!await _confirmIncompleteExport(scoreModel)) return;
     try {
       await ShareService.shareReport(scoreModel);
       
@@ -646,6 +698,7 @@ class TestSummaryWithProviderRefactoredState
   }
 
   Future<void> _downloadPdf(MicaScoreModel scoreModel) async {
+    if (!await _confirmIncompleteExport(scoreModel)) return;
     try {
       await PdfGenerationService.generateAndDownloadPdf(scoreModel);
       
@@ -670,6 +723,9 @@ class TestSummaryWithProviderRefactoredState
   }
 
   Future<void> _goHome(MicaScoreModel scoreModel) async {
+    final confirmed = await showDiscardConfirmation(context);
+    if (!confirmed || !mounted) return;
+
     // Clear saved progress since assessment is complete
     await PersistenceService.clearProgress();
     scoreModel.resetScores();

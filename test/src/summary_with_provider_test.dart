@@ -48,18 +48,18 @@ void main() {
     });
 
     group('trial1Color', () {
-      test('returns red for value < 5', () {
+      test('returns red for value < 4', () {
         expect(AssessmentColorUtils.trial1Color(0), Colors.red);
-        expect(AssessmentColorUtils.trial1Color(4), Colors.red);
+        expect(AssessmentColorUtils.trial1Color(3), Colors.red);
       });
 
-      test('returns yellow for value 5-6', () {
+      test('returns yellow for value 4-5', () {
+        expect(AssessmentColorUtils.trial1Color(4), Colors.yellow);
         expect(AssessmentColorUtils.trial1Color(5), Colors.yellow);
-        expect(AssessmentColorUtils.trial1Color(6), Colors.yellow);
       });
 
-      test('returns green for value > 6', () {
-        expect(AssessmentColorUtils.trial1Color(7), Colors.green);
+      test('returns green for value >= 6', () {
+        expect(AssessmentColorUtils.trial1Color(6), Colors.green);
         expect(AssessmentColorUtils.trial1Color(10), Colors.green);
       });
     });
@@ -117,65 +117,65 @@ void main() {
     group('verbalShortTermMemoryColor', () {
       test('returns green when all scores are excellent', () {
         expect(
-          AssessmentColorUtils.verbalShortTermMemoryColor(7, 8, 0, 6, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(7, 8, 0, 6, 17),
           Colors.green,
         );
         expect(
-          AssessmentColorUtils.verbalShortTermMemoryColor(10, 10, 5, 10, 10),
+          AssessmentColorUtils.verbalShortTermMemoryColor(10, 10, 5, 10, 20),
           Colors.green,
         );
       });
 
       test('returns red when any score is impaired', () {
         expect(
-          AssessmentColorUtils.verbalShortTermMemoryColor(4, 8, 0, 6, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(4, 8, 0, 6, 17),
           Colors.red,
         );
         expect(
-          AssessmentColorUtils.verbalShortTermMemoryColor(7, 4, 0, 6, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(7, 4, 0, 6, 17),
           Colors.red,
         );
         expect(
-          AssessmentColorUtils.verbalShortTermMemoryColor(7, 8, 3, 6, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(7, 8, 3, 6, 17),
           Colors.red,
         );
         expect(
-          AssessmentColorUtils.verbalShortTermMemoryColor(7, 8, 0, 4, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(7, 8, 0, 4, 17),
           Colors.red,
         );
         expect(
-          AssessmentColorUtils.verbalShortTermMemoryColor(7, 8, 0, 6, 4),
+          AssessmentColorUtils.verbalShortTermMemoryColor(7, 8, 0, 6, 13),
           Colors.red,
         );
       });
 
       test('returns yellow when any score is equivocal and none impaired', () {
         expect(
-          AssessmentColorUtils.verbalShortTermMemoryColor(5, 8, 0, 6, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(5, 8, 0, 6, 17),
           Colors.yellow,
         );
         expect(
-          AssessmentColorUtils.verbalShortTermMemoryColor(6, 8, 0, 6, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(6, 8, 0, 6, 17),
           Colors.yellow,
         );
         expect(
-          AssessmentColorUtils.verbalShortTermMemoryColor(7, 5, 0, 6, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(7, 5, 0, 6, 17),
           Colors.yellow,
         );
         expect(
-          AssessmentColorUtils.verbalShortTermMemoryColor(7, 7, 0, 6, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(7, 7, 0, 6, 17),
           Colors.yellow,
         );
         expect(
-          AssessmentColorUtils.verbalShortTermMemoryColor(7, 8, 4, 6, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(7, 8, 4, 6, 17),
           Colors.yellow,
         );
         expect(
-          AssessmentColorUtils.verbalShortTermMemoryColor(7, 8, 0, 5, 6),
+          AssessmentColorUtils.verbalShortTermMemoryColor(7, 8, 0, 5, 17),
           Colors.yellow,
         );
         expect(
-          AssessmentColorUtils.verbalShortTermMemoryColor(7, 8, 0, 6, 5),
+          AssessmentColorUtils.verbalShortTermMemoryColor(7, 8, 0, 6, 14),
           Colors.yellow,
         );
       });
@@ -183,6 +183,7 @@ void main() {
 
     group('visualMemoryColor', () {
       test('calculates visual scores correctly', () {
+        // Score = 9 (all correct) -> Normal (green)
         scoreModel.setShorttermMemoryVisualImages(
           image1: 0,
           image2: 0,
@@ -190,24 +191,27 @@ void main() {
         );
         expect(AssessmentColorUtils.visualMemoryColor(scoreModel), Colors.green);
 
+        // Score = 6 -> Normal (green, > 5)
         scoreModel.setShorttermMemoryVisualImages(
           image1: 1,
-          image2: 0,
-          image3: 0,
+          image2: 1,
+          image3: 1,
         );
         expect(AssessmentColorUtils.visualMemoryColor(scoreModel), Colors.green);
 
+        // Score = 5 -> Equivocal (yellow, == 5)
         scoreModel.setShorttermMemoryVisualImages(
           image1: 1,
           image2: 1,
-          image3: 1,
+          image3: 2,
         );
         expect(AssessmentColorUtils.visualMemoryColor(scoreModel), Colors.yellow);
 
+        // Score = 4 -> Impaired (red, < 5)
         scoreModel.setShorttermMemoryVisualImages(
           image1: 2,
           image2: 1,
-          image3: 1,
+          image3: 2,
         );
         expect(AssessmentColorUtils.visualMemoryColor(scoreModel), Colors.red);
       });
@@ -314,9 +318,9 @@ void main() {
       test('converts trial 1 scores to string correctly', () {
         expect(AssessmentStringUtils.trial1ResultToString(0), 'I');
         expect(AssessmentStringUtils.trial1ResultToString(3), 'I');
-        expect(AssessmentStringUtils.trial1ResultToString(4), 'I');
+        expect(AssessmentStringUtils.trial1ResultToString(4), 'E');
         expect(AssessmentStringUtils.trial1ResultToString(5), 'E');
-        expect(AssessmentStringUtils.trial1ResultToString(6), 'E');
+        expect(AssessmentStringUtils.trial1ResultToString(6), 'N');
         expect(AssessmentStringUtils.trial1ResultToString(7), 'N');
         expect(AssessmentStringUtils.trial1ResultToString(10), 'N');
       });
@@ -378,6 +382,7 @@ void main() {
 
     group('visualMemoryResultToString', () {
       test('converts visual scores to string correctly', () {
+        // Score = 0 -> Impaired (< 5)
         scoreModel.setShorttermMemoryVisualImages(
           image1: 3,
           image2: 3,
@@ -385,6 +390,7 @@ void main() {
         );
         expect(AssessmentStringUtils.visualMemoryResultToString(scoreModel), 'Impaired');
 
+        // Score = 3 -> Impaired (< 5)
         scoreModel.setShorttermMemoryVisualImages(
           image1: 2,
           image2: 2,
@@ -392,27 +398,31 @@ void main() {
         );
         expect(AssessmentStringUtils.visualMemoryResultToString(scoreModel), 'Impaired');
 
+        // Score = 4 -> Impaired (< 5)
         scoreModel.setShorttermMemoryVisualImages(
           image1: 2,
           image2: 1,
-          image3: 1,
+          image3: 2,
         );
         expect(AssessmentStringUtils.visualMemoryResultToString(scoreModel), 'Impaired');
 
+        // Score = 5 -> Equivocal (== 5)
         scoreModel.setShorttermMemoryVisualImages(
           image1: 1,
           image2: 1,
-          image3: 1,
-        );
-        expect(AssessmentStringUtils.visualMemoryResultToString(scoreModel), 'Impaired');
-
-        scoreModel.setShorttermMemoryVisualImages(
-          image1: 1,
-          image2: 1,
-          image3: 0,
+          image3: 2,
         );
         expect(AssessmentStringUtils.visualMemoryResultToString(scoreModel), 'Equivocal');
 
+        // Score = 6 -> Normal (> 5)
+        scoreModel.setShorttermMemoryVisualImages(
+          image1: 1,
+          image2: 1,
+          image3: 1,
+        );
+        expect(AssessmentStringUtils.visualMemoryResultToString(scoreModel), 'Normal');
+
+        // Score = 9 -> Normal (> 5)
         scoreModel.setShorttermMemoryVisualImages(
           image1: 0,
           image2: 0,

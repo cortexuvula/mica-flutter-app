@@ -196,11 +196,11 @@ class PdfGenerationService {
     // Visuospatial & Praxis
     sections.add(_addAssessmentSection(
       title: "Visuospatial & Praxis: Line Drawing Copy",
-      guide: "N > 7, E = 7, I < 7",
+      guide: "N > 5, E = 5, I < 5",
       rawScore:
           "Raw score: ${scoreModel.visuospatialPraxisTotalScore}/9",
       result: AssessmentStringUtils.resultToFullName(
-          AssessmentStringUtils.visualMemoryResultToString(scoreModel)),
+          AssessmentStringUtils.visuospatialPraxisResultToString(scoreModel)),
     ));
 
     // Attention
@@ -335,11 +335,11 @@ class PdfGenerationService {
     // Short-Term Memory Verbal Recognition: Total Score
     sections.add(_addAssessmentSection(
       title: "Short-Term Memory Verbal Recognition: Total Score",
-      guide: "N > 5, E = 5, I < 5",
+      guide: "N > 16, E = 14-16, I < 14",
       rawScore:
           "Raw score: Words correctly identified in original word list: ${scoreModel.scoreVerbalRecognitionMemoryTenWordsInList}/10\nRaw score: Words correctly identified NOT in original word list: ${scoreModel.scoreVerbalRecognitionMemoryTenWordsNotInList}/10\nRaw score: Words identified: ${scoreModel.scoreVerbalRecognitionMemoryTenWords}/20",
       result: AssessmentStringUtils.resultToFullName(
-          AssessmentStringUtils.delayRecallResultToString(
+          AssessmentStringUtils.recognitionResultToString(
               scoreModel.scoreVerbalRecognitionMemoryTenWords)),
     ));
 

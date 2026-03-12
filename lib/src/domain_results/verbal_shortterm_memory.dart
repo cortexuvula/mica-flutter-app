@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class VerbalShortTermMemory extends StatefulWidget {
   final int trialTwoScore;
@@ -44,6 +45,10 @@ class VerbalShortTermMemoryState extends State<VerbalShortTermMemory> {
     valueOrientationResultToString(widget.orientation);
     valueRecallResultToString(widget.tenWordDelay);
     valueRecogResultToString(widget.scoreVerbalRecognitionMemoryTenWords);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      MicaProviders.getScoreModel(context, listen: false)
+          .markDomainCompleted('verbal_short_term_memory');
+    });
   }
 
   @override

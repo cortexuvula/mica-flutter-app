@@ -10,6 +10,7 @@ import 'package:mica/src/welcome.dart';
 import 'package:mica/src/providers/mica_provider.dart';
 import 'package:mica/src/utils/navigation_helper.dart';
 import 'package:mica/src/utils/screen_routes.dart';
+import 'package:mica/src/utils/confirmation_dialog.dart';
 import 'package:mica/src/services/persistence_service.dart';
 
 class DomainSelect extends StatefulWidget {
@@ -56,12 +57,15 @@ class DomainSelectState extends State<DomainSelect> {
         actions: <Widget>[
           IconButton(
               icon: const Icon(Icons.clear),
-              onPressed: () {
-                NavigationHelper.navigateAndRemoveUntil(
-                  context,
-                  const Welcome(),
-                  (Route<dynamic> route) => false,
-                );
+              onPressed: () async {
+                final confirmed = await showDiscardConfirmation(context);
+                if (confirmed && context.mounted) {
+                  NavigationHelper.navigateAndRemoveUntil(
+                    context,
+                    const Welcome(),
+                    (Route<dynamic> route) => false,
+                  );
+                }
               })
         ],
       ),

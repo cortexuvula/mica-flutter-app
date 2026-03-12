@@ -34,6 +34,7 @@ class _DressingApraxiaState extends State<DressingApraxia> {
   }
 
   void _initializeFromProvider() {
+    if (!mounted) return;
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     setState(() {
       _score = scoreModel.praxisDressing;

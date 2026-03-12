@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class VisualShortTermMemory extends StatefulWidget {
   final int shorttermMemoryVisualImage1;
@@ -25,6 +26,10 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
     super.initState();
     result = "Normal";
     combineScores();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      MicaProviders.getScoreModel(context, listen: false)
+          .markDomainCompleted('visual_short_term_memory');
+    });
   }
 
   @override

@@ -16,7 +16,10 @@ class AttentionConcentrationState extends State<AttentionConcentration> {
   @override
   void initState() {
     super.initState();
-    // We'll get the attention value in build instead of initState
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final scoreModel = MicaProviders.getScoreModel(context, listen: false);
+      scoreModel.markDomainCompleted('attention');
+    });
   }
 
   @override

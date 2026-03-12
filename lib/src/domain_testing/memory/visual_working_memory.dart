@@ -31,6 +31,7 @@ class _VisualWorkingMemoryState extends State<VisualWorkingMemory> {
   }
 
   void _initFromProvider() {
+    if (!mounted) return;
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     final img1 = scoreModel.memoryVisualWorkingImage1;
     final img2 = scoreModel.memoryVisualWorkingImage2;

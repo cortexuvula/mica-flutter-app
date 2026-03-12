@@ -99,11 +99,11 @@ class ShareService {
 
     // Visuospatial & Praxis: Line Drawing Copy
     shareDoc += "Visuospatial & Praxis: Line Drawing Copy\n\n";
-    shareDoc += "N > 7, E = 7, I < 7\n\n";
+    shareDoc += "N > 5, E = 5, I < 5\n\n";
     shareDoc +=
         "  Raw score: ${scoreModel.visuospatialPraxisTotalScore}/9\n";
     shareDoc +=
-        "  ${AssessmentStringUtils.resultToFullName(AssessmentStringUtils.visualMemoryResultToString(scoreModel))}\n\n";
+        "  ${AssessmentStringUtils.resultToFullName(AssessmentStringUtils.visuospatialPraxisResultToString(scoreModel))}\n\n";
 
     // Attention: Vigilance Test
     shareDoc += "Attention: Vigilance Test\n\n";

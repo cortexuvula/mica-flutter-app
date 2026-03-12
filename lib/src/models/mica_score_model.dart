@@ -15,6 +15,9 @@ class MicaScoreModel extends ChangeNotifier {
   // can navigate back to the correct screen when resuming an assessment.
   String? _currentScreen;
 
+  // Track which domains have been completed (viewed results)
+  final Set<String> _completedDomains = {};
+
   // Test scores for different domains
   // Language scores
   int _languageComprehensionRadioValue = 0;
@@ -137,6 +140,17 @@ class MicaScoreModel extends ChangeNotifier {
 
   // Getter for current screen (used by resume functionality)
   String? get currentScreen => _currentScreen;
+
+  // Domain completion tracking
+  Set<String> get completedDomains => Set.unmodifiable(_completedDomains);
+  int get completedDomainCount => _completedDomains.length;
+  bool isDomainCompleted(String domain) => _completedDomains.contains(domain);
+
+  void markDomainCompleted(String domain) {
+    if (_completedDomains.add(domain)) {
+      notifyListeners();
+    }
+  }
 
   // Getters for language scores
   int get languageComprehensionRadioValue => _languageComprehensionRadioValue;
@@ -996,6 +1010,7 @@ class MicaScoreModel extends ChangeNotifier {
   void resetScores() {
     // Reset current screen
     _currentScreen = null;
+    _completedDomains.clear();
 
     _patientName = '';
     _assessorName = '';
@@ -1114,6 +1129,9 @@ class MicaScoreModel extends ChangeNotifier {
       // Current screen for resume functionality
       'currentScreen': _currentScreen,
 
+      // Completed domains
+      'completedDomains': _completedDomains.toList(),
+
       // Patient information
       'patientName': _patientName,
       'assessorName': _assessorName,
@@ -1224,6 +1242,13 @@ class MicaScoreModel extends ChangeNotifier {
   void fromJson(Map<String, dynamic> json) {
     // Current screen for resume functionality
     _currentScreen = json['currentScreen'] as String?;
+
+    // Completed domains
+    _completedDomains.clear();
+    final domains = json['completedDomains'] as List<dynamic>?;
+    if (domains != null) {
+      _completedDomains.addAll(domains.cast<String>());
+    }
 
     // Patient information
     _patientName = json['patientName'] as String? ?? '';

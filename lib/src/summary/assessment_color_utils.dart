@@ -19,9 +19,9 @@ class AssessmentColorUtils {
 
   // Trial 1 color (Working Memory)
   static Color trial1Color(int value) {
-    if (value < 5) {
+    if (value < 4) {
       return Colors.red;
-    } else if (value == 5 || value == 6) {
+    } else if (value >= 4 && value <= 5) {
       return Colors.yellow;
     } else {
       return Colors.green;
@@ -85,7 +85,7 @@ class AssessmentColorUtils {
         trial3Score >= 8 &&
         (orientation == 0 || orientation >= 5) &&
         delayRecall >= 6 &&
-        recognition >= 6) {
+        recognition >= 17) {
       return Colors.green;
     }
 
@@ -95,7 +95,7 @@ class AssessmentColorUtils {
         trial3Score < 5 ||
         orientationImpaired ||
         delayRecall < 5 ||
-        recognition < 5;
+        recognition < 14;
 
     if (isImpaired) {
       return Colors.red;
@@ -106,7 +106,7 @@ class AssessmentColorUtils {
     bool trial3Equivocal = trial3Score >= 5 && trial3Score <= 7;
     bool orientationEquivocal = orientation == 4;
     bool delayEquivocal = delayRecall == 5;
-    bool recognitionEquivocal = recognition == 5;
+    bool recognitionEquivocal = recognition >= 14 && recognition <= 16;
 
     bool isEquivocal = trial2Equivocal ||
         trial3Equivocal ||
@@ -124,9 +124,9 @@ class AssessmentColorUtils {
   static Color visualMemoryColor(MicaScoreModel scoreModel) {
     final combinedScore = scoreModel.visualMemoryTotalScore;
 
-    if (combinedScore < 6) {
+    if (combinedScore < 5) {
       return Colors.red;
-    } else if (combinedScore == 6) {
+    } else if (combinedScore == 5) {
       return Colors.yellow;
     } else {
       return Colors.green;

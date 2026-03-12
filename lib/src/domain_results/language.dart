@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mica/src/providers/mica_provider.dart';
 
 class Language extends StatefulWidget {
   final int spokenLanguage;
@@ -31,6 +32,10 @@ class LanguageState extends State<Language> {
     radio3ButtonValueToStringSpokenLanguage(widget.spokenLanguage);
     radio3ButtonValueToStringComprehension(widget.comprehension);
     radio3ButtonValueToStringDrawLine(widget.drawLine);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      MicaProviders.getScoreModel(context, listen: false)
+          .markDomainCompleted('language');
+    });
   }
 
   @override
@@ -79,7 +84,7 @@ class LanguageState extends State<Language> {
           //   ),
           // ),
           Card(
-            color: cardColorSpokenLanguage,
+            color: cardColorDrawLine,
             elevation: 10.0,
             child: ListTile(
               title: const Text(
@@ -99,7 +104,7 @@ class LanguageState extends State<Language> {
             ),
           ),
           Card(
-            color: cardColorDrawLine,
+            color: cardColorSpokenLanguage,
             elevation: 10.0,
             child: ListTile(
               title: const Text(

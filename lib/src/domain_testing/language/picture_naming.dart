@@ -26,6 +26,7 @@ class _PictureNamingState extends State<PictureNaming> {
 
   bool backButtonActive = false;
   bool forwardButtonActive = true;
+  bool _imagesPreloaded = false;
 
   @override
   void initState() {
@@ -50,6 +51,8 @@ class _PictureNamingState extends State<PictureNaming> {
   }
 
   void _preloadImages() {
+    if (_imagesPreloaded) return;
+    _imagesPreloaded = true;
     for (String imageUrl in app_data.imageURL) {
       precacheImage(AssetImage(imageUrl), context);
     }
@@ -141,23 +144,15 @@ class _PictureNamingState extends State<PictureNaming> {
                           onPressed: backButtonActive
                               ? () {
                                   debugPrint("Navigation button tapped");
-                                  if (imageNumber > 0) {
-                                    setState(() {
+                                  setState(() {
+                                    if (imageNumber > 0) {
                                       imageNumber -= 1;
                                       displayImage =
                                           app_data.imageURL[imageNumber];
-                                    });
-                                  }
-                                  if (imageNumber == 0) {
-                                    setState(() {
-                                      backButtonActive = false;
-                                    });
-                                  }
-                                  if (imageNumber < 4) {
-                                    setState(() {
-                                      forwardButtonActive = true;
-                                    });
-                                  }
+                                    }
+                                    backButtonActive = imageNumber > 0;
+                                    forwardButtonActive = imageNumber < 4;
+                                  });
                                 }
                               : null),
                       SizedBox(
@@ -220,23 +215,15 @@ class _PictureNamingState extends State<PictureNaming> {
                           onPressed: forwardButtonActive
                               ? () {
                                   debugPrint("Navigation button tapped");
-                                  if (imageNumber < 4) {
-                                    setState(() {
+                                  setState(() {
+                                    if (imageNumber < 4) {
                                       imageNumber += 1;
                                       displayImage =
                                           app_data.imageURL[imageNumber];
-                                    });
-                                  }
-                                  if (imageNumber == 4) {
-                                    setState(() {
-                                      forwardButtonActive = false;
-                                    });
-                                  }
-                                  if (imageNumber > 0) {
-                                    setState(() {
-                                      backButtonActive = true;
-                                    });
-                                  }
+                                    }
+                                    forwardButtonActive = imageNumber < 4;
+                                    backButtonActive = imageNumber > 0;
+                                  });
                                 }
                               : null),
                     ],
@@ -289,7 +276,7 @@ class _PictureNamingState extends State<PictureNaming> {
                                       CommonStrings.normal,
                                       style: const TextStyle(
                                         color: Colors.black,
-                                        fontSize: 10.0,
+                                        fontSize: 12.0,
                                       ),
                                     ),
                                   ],
@@ -304,7 +291,7 @@ class _PictureNamingState extends State<PictureNaming> {
                                       CommonStrings.equivocal,
                                       style: const TextStyle(
                                         color: Colors.black,
-                                        fontSize: 10.0,
+                                        fontSize: 12.0,
                                       ),
                                     ),
                                   ],
@@ -319,7 +306,7 @@ class _PictureNamingState extends State<PictureNaming> {
                                       CommonStrings.impaired,
                                       style: const TextStyle(
                                         color: Colors.black,
-                                        fontSize: 10.0,
+                                        fontSize: 12.0,
                                       ),
                                     ),
                                   ],
@@ -394,7 +381,7 @@ class _PictureNamingState extends State<PictureNaming> {
                                       CommonStrings.normal,
                                       style: const TextStyle(
                                         color: Colors.black,
-                                        fontSize: 10.0,
+                                        fontSize: 12.0,
                                       ),
                                     ),
                                   ],
@@ -409,7 +396,7 @@ class _PictureNamingState extends State<PictureNaming> {
                                       CommonStrings.equivocal,
                                       style: const TextStyle(
                                         color: Colors.black,
-                                        fontSize: 10.0,
+                                        fontSize: 12.0,
                                       ),
                                     ),
                                   ],
@@ -424,7 +411,7 @@ class _PictureNamingState extends State<PictureNaming> {
                                       CommonStrings.impaired,
                                       style: const TextStyle(
                                         color: Colors.black,
-                                        fontSize: 10.0,
+                                        fontSize: 12.0,
                                       ),
                                     ),
                                   ],

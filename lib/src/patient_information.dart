@@ -114,6 +114,12 @@ class PatientInformationState extends State<PatientInformation> {
                                 color: Colors.black,
                               ),
                               hintText: "Jane Doe"),
+                          validator: (value) {
+                            if (value == null || value.trim().isEmpty) {
+                              return 'Please enter a patient name';
+                            }
+                            return null;
+                          },
                         ),
                       ),
                       Padding(
@@ -224,14 +230,11 @@ class PatientInformationState extends State<PatientInformation> {
                       padding: const EdgeInsets.all(8.0),
                       child: ElevatedButton(
                         onPressed: () {
-                          // Handedness will be processed in _updateProviderWithPatientInfo
-                          if (myPatient.text == "") {
-                            myPatient.text = "No Name Provided";
-                          }
-                          if (myAssessor.text == "") {
+                          if (_formKey.currentState?.validate() ?? false) {
+                          // Assessor name is optional — use fallback
+                          if (myAssessor.text.trim().isEmpty) {
                             myAssessor.text = "No Name Provided";
                           }
-                          if (_formKey.currentState?.validate() ?? false) {
                             // Save to provider
                             saveToProvider();
 

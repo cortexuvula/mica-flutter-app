@@ -24,9 +24,9 @@ class AssessmentStringUtils {
 
   // Trial 1 result string (Working Memory)
   static String trial1ResultToString(int value) {
-    if (value < 5) {
+    if (value < 4) {
       return AssessmentConstants.impaired;
-    } else if (value == 5 || value == 6) {
+    } else if (value >= 4 && value <= 5) {
       return AssessmentConstants.equivocal;
     } else {
       return AssessmentConstants.normal;
@@ -92,9 +92,22 @@ class AssessmentStringUtils {
   static String visualMemoryResultToString(MicaScoreModel scoreModel) {
     final combinedScore = scoreModel.visualMemoryTotalScore;
 
-    if (combinedScore > 7) {
+    if (combinedScore > 5) {
       return "Normal";
-    } else if (combinedScore < 7) {
+    } else if (combinedScore < 5) {
+      return "Impaired";
+    } else {
+      return "Equivocal";
+    }
+  }
+
+  // Visuospatial praxis result string (line drawing copy)
+  static String visuospatialPraxisResultToString(MicaScoreModel scoreModel) {
+    final combinedScore = scoreModel.visuospatialPraxisTotalScore;
+
+    if (combinedScore > 5) {
+      return "Normal";
+    } else if (combinedScore < 5) {
       return "Impaired";
     } else {
       return "Equivocal";
@@ -111,12 +124,14 @@ class AssessmentStringUtils {
   // Format patient name with proper capitalization
   static String formatPatientName(String name) {
     if (name.isEmpty) return 'No Name Provided';
+    if (name.length == 1) return name.toUpperCase();
     return name[0].toUpperCase() + name.substring(1);
   }
 
   // Format assessor name with proper capitalization
   static String formatAssessorName(String name) {
     if (name.isEmpty) return 'No Name Provided';
+    if (name.length == 1) return name.toUpperCase();
     return name[0].toUpperCase() + name.substring(1);
   }
 }

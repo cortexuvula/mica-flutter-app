@@ -39,6 +39,7 @@ class LexicalFluencyTestState extends State<LexicalFluencyTest> {
   @override
   void dispose() {
     _timer?.cancel();
+    _timer = null;
     super.dispose();
   }
 
@@ -69,10 +70,15 @@ class LexicalFluencyTestState extends State<LexicalFluencyTest> {
     });
 
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (!mounted) {
+        timer.cancel();
+        return;
+      }
       setState(() {
         _seconds++;
         if (_seconds >= 60) {
           _timer?.cancel();
+          _timer = null;
           _isTimerRunning = false;
           _timerCompleted = true;
         }

@@ -31,6 +31,7 @@ class _VisualShortTermMemoryState extends State<VisualShortTermMemory> {
   }
 
   void _initFromProvider() {
+    if (!mounted) return;
     final scoreModel = MicaProviders.getScoreModel(context, listen: false);
     final img1 = scoreModel.shorttermMemoryVisualImage1;
     final img2 = scoreModel.shorttermMemoryVisualImage2;

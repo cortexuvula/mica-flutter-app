@@ -38,6 +38,7 @@ class DesignFluencyTaskState extends State<DesignFluencyTask> {
   @override
   void dispose() {
     _timer?.cancel();
+    _timer = null;
     super.dispose();
   }
 
@@ -63,10 +64,15 @@ class DesignFluencyTaskState extends State<DesignFluencyTask> {
     });
 
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (!mounted) {
+        timer.cancel();
+        return;
+      }
       setState(() {
         _seconds++;
         if (_seconds >= 60) {
           _timer?.cancel();
+          _timer = null;
           _isTimerRunning = false;
           _timerCompleted = true;
         }
