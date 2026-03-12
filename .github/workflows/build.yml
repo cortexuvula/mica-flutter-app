@@ -3,6 +3,7 @@ name: Build All Platforms
 on:
   push:
     branches: [main]
+    tags: ['v*']
   pull_request:
     branches: [main]
   workflow_dispatch:
@@ -220,11 +221,14 @@ jobs:
       - name: Build Windows
         run: flutter build windows --release
 
+      - name: Archive Windows build
+        run: tar -czf windows-build.tar.gz -C build/windows/x64/runner/Release .
+
       - name: Upload Windows build
         uses: actions/upload-artifact@v4
         with:
           name: windows-build
-          path: build/windows/x64/runner/Release/
+          path: windows-build.tar.gz
 
   # ─── Linux ────────────────────────────────────────────────────
   build-linux:
@@ -280,8 +284,41 @@ jobs:
       - name: Build Web
         run: flutter build web
 
+      - name: Archive Web build
+        run: tar -czf web-build.tar.gz -C build/web .
+
       - name: Upload Web build
         uses: actions/upload-artifact@v4
         with:
           name: web-build
-          path: build/web/
+          path: web-build.tar.gz
+
+  # ─── Upload to GitHub Release ────────────────────────────────
+  upload-release-assets:
+    name: Upload Release Assets
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: [build-android, build-ios, build-macos, build-windows, build-linux, build-web]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Upload assets to release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          gh release upload "$TAG" \
+            artifacts/android-apk/app-release.apk \
+            artifacts/android-aab/app-release.aab \
+            artifacts/ios-build/ios-build.tar.gz \
+            artifacts/macos-build/macos-build.tar.gz \
+            artifacts/windows-build/windows-build.tar.gz \
+            artifacts/linux-build/linux-build.tar.gz \
+            artifacts/web-build/web-build.tar.gz \
+            --repo "$GITHUB_REPOSITORY" \
+            --clobber
