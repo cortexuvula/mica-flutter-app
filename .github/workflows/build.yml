@@ -190,16 +190,17 @@ jobs:
 
           rm mica-notarize.zip
 
-      - name: Archive macOS build
+      - name: Create DMG
         run: |
-          cd build/macos/Build/Products/Release
-          tar -czf ../../../../../macos-build.tar.gz mica.app
+          APP_PATH="build/macos/Build/Products/Release/mica.app"
+          hdiutil create -volname "MICA" -srcfolder "$APP_PATH" \
+            -ov -format UDZO mica-macos.dmg
 
       - name: Upload macOS build
         uses: actions/upload-artifact@v4
         with:
           name: macos-build
-          path: macos-build.tar.gz
+          path: mica-macos.dmg
 
   # ─── Windows ──────────────────────────────────────────────────
   build-windows:
@@ -316,7 +317,7 @@ jobs:
             artifacts/android-apk/app-release.apk \
             artifacts/android-aab/app-release.aab \
             artifacts/ios-build/ios-build.tar.gz \
-            artifacts/macos-build/macos-build.tar.gz \
+            artifacts/macos-build/mica-macos.dmg \
             artifacts/windows-build/windows-build.tar.gz \
             artifacts/linux-build/linux-build.tar.gz \
             artifacts/web-build/web-build.tar.gz \
